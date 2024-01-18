@@ -1,0 +1,5 @@
+apiVersion: v2
+name: ums-stack
+description: The Univention Management Stack
+type: application
+version: 0.0.1

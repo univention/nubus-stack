@@ -1,0 +1,48 @@
+{{ template "chart.header" . }}
+{{ template "chart.deprecationWarning" . }}
+
+{{ template "chart.description" . }}
+
+- **Version**: {{ template "chart.version" . }}
+- **Type**: {{ template "chart.type" . }}
+- **AppVersion**: {{ template "chart.appVersion" . }}
+{%- if chart.home %}
+- {{ template "chart.homepageLine" . }}
+{%- end %}
+
+## TL;DR
+
+```console
+helm upgrade --install ums-stack oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/ums-stack/helm/ums-stack
+```
+
+
+## Introduction
+
+This chart does install the Univention Management Stack.
+
+{{ template "chart.maintainersSection" . }}
+
+{{ template "chart.sourcesSection" . }}
+
+
+## Installing
+
+To install the chart with the release name `ums-stack`:
+
+```console
+helm upgrade --install ums-stack oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/ums-stack/helm/ums-stack
+```
+
+
+## Uninstalling
+
+To uninstall the chart with the release name `portal-server`:
+
+```console
+helm uninstall ums-stack
+```
+
+{{ template "chart.requirementsSection" . }}
+
+{{ template "chart.valuesSectionHtml" . }}
