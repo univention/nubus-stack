@@ -1,0 +1,8 @@
+# Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
+_src_path: ../team-souvap/templates/repo-component
+contact_email: johannes.bornhold.extern@univention.de
+project_author: Team openDesk Dev
+project_copyright: 2024, Univention GmbH
+project_name: UMS Stack
+project_slug: ums-stack
+project_url: https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack

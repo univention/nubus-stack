@@ -1,0 +1,29 @@
+
+services:
+
+  # Environment to build the documentation
+  docs:
+    image: docker-registry.knut.univention.de/sphinx:latest
+    working_dir: /src/docs
+    volumes:
+      - ".:/src"
+    profiles:
+      - docs
+
+  # Environment of the pre-commit linter.
+  pre-commit:
+    profiles:
+      - test
+    image: gitregistry.knut.univention.de/univention/customers/dataport/upx/container-pre-commit/upx-pre-commit:latest
+    volumes:
+      - type: bind
+        source: .
+        target: /code
+      - type: volume
+        # pre-commit installs dependencies, having them cached speeds things up
+        # a lot.
+        source: pre-commit-cache
+        target: /cache
+
+volumes:
+  pre-commit-cache:
