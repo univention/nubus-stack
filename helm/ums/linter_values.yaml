@@ -6,10 +6,14 @@
 notifications-api:
   ingress:
     host: localhost
+    tls:
+      enabled: false
 
 portal-frontend:
   ingress:
     host: localhost
+    tls:
+      enabled: false
 
 portal-listener:
   portalListener:
@@ -29,6 +33,19 @@ portal-server:
     umcSessionUrl: "http://umc-server/get/session-info"
   ingress:
     host: localhost
+    tls:
+      enabled: false
+
+store-dav:
+  storeDav:
+    auth:
+      basicAuth:
+        portal-server: "univention"
+        portal-listener: "univention"
+  ingress:
+    host: localhost
+    tls:
+      enabled: false
 
 tags:
   pre-release: true

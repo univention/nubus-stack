@@ -1,15 +1,18 @@
 dependencies:
 - name: portal-frontend
   repository: oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm
-  version: 0.9.2
+  version: 0.9.5
 - name: portal-listener
   repository: oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm
-  version: 0.9.2
+  version: 0.9.5
 - name: portal-server
   repository: oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm
-  version: 0.9.2
+  version: 0.9.5
 - name: notifications-api
   repository: oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm
-  version: 0.9.2
-digest: sha256:773896e9a8b7b5bbb7dcfc59bbacfd58d68d3b9d17791d9ec7f611672fabef5c
-generated: "2024-01-20T15:10:28.96762+01:00"
+  version: 0.9.5
+- name: store-dav
+  repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-store-dav/helm
+  version: 0.2.0
+digest: sha256:e68e4abfadc29242d3dfc7b7dc686715c28c2e9e21465a8610e3111c98af4c90
+generated: "2024-01-20T18:45:44.966631+01:00"

@@ -43,6 +43,7 @@ helm uninstall ums
 | oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm | portal-frontend | ^0.9.2 |
 | oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm | portal-listener | ^0.9.2 |
 | oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm | portal-server | ^0.9.2 |
+| oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-store-dav/helm | store-dav | ^0.2.0 |
 
 ## Values
 
