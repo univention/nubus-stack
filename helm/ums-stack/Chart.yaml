@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: AGPL-3.0-only
+# SPDX-FileCopyrightText: 2024 Univention GmbH
+
 apiVersion: v2
 name: ums-stack
 description: The Univention Management Stack
