@@ -74,11 +74,11 @@ helm template --set example.key=value ums ./helm/ums
 
 If you want to verify changes in a real deployment, then you have to first make
 sure to have a Kubernetes cluster available. Typically you would work with the
-sub-commands `install`, `update` and `uninstall`:
+sub-commands `install`, `upgrade` and `uninstall`:
 
 ```sh
-# Often the use of "update" with the argument "--install" is useful
-helm update --install --values your-values-file.yaml ums ./helm/ums
+# Often the use of "upgrade" with the argument "--install" is useful
+helm upgrade --install --values your-values-file.yaml ums ./helm/ums
 ```
 
 
