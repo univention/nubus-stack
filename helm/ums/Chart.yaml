@@ -7,3 +7,23 @@ name: ums
 description: The Univention Management Stack
 type: application
 version: 0.0.1
+
+dependencies:
+  - name: "portal-frontend"
+    version: "^0.9.2"
+    repository: "oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm"
+    condition: "portal-frontend.enabled"
+  - name: "portal-listener"
+    version: "^0.9.2"
+    repository: "oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm"
+    condition: "portal-frontend.enabled"
+  - name: "portal-server"
+    version: "^0.9.2"
+    repository: "oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm"
+    condition: "portal-server.enabled"
+  - name: "notifications-api"
+    version: "^0.9.2"
+    repository: "oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm"
+    condition: "notifications-api.enabled"
+    tags:
+      - pre-release

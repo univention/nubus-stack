@@ -1,4 +1,26 @@
+# SPDX-License-Identifier: AGPL-3.0-only
+# SPDX-FileCopyrightText: 2024 Univention GmbH
+
 ---
+
+notifications-api:
+  ingress:
+    host: localhost
+
+portal-frontend:
+  ingress:
+    host: localhost
+
+portal-listener:
+  portalListener:
+    adminGroup: "cn=Domain Admins,cn=groups,dc=univention-organization,dc=intranet"
+    umcGetUrl: "http://umc-server/get"
+    umcSessionUrl: "http://umc-server/get/session-info"
+    ldapSecret: "password"
+    machineSecret: "password"
+  store-dav:
+    bundled: false
+
 portal-server:
   portalServer:
     adminGroup: "cn=Domain Admins,cn=groups,dc=univention-organization,dc=intranet"
@@ -7,3 +29,6 @@ portal-server:
     umcSessionUrl: "http://umc-server/get/session-info"
   ingress:
     host: localhost
+
+tags:
+  pre-release: true

@@ -1,2 +1,9 @@
 # SPDX-License-Identifier: AGPL-3.0-only
 # SPDX-FileCopyrightText: 2024 Univention GmbH
+---
+
+tags:
+  # -- Components which are not yet fully integrated or not yet feature complete
+  # are flagged with this tag. The intention is to make it easy to follow the
+  # development progress for evaluation purposes.
+  pre-release: false
