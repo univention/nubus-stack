@@ -15,7 +15,7 @@ include:
       - "jobs/license-check.yaml"
       - "jobs/lint-commit-messages.yaml"
       - "jobs/lint-pre-commit.yaml"
-      - "jobs/package-and-publish-helm-charts.yaml"
+      - "jobs/package-and-publish-helm-charts-souvap.yaml"
       - "jobs/semantic-release-env.yaml"
 
 
