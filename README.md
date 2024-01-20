@@ -32,7 +32,7 @@ The status will be updated once it does stabilize.
 ## Example usage
 
 This repository is mainly concerned with the Helm chart for the stack. Please
-take a look into the README file of the chart in `./helm/ums-stack/README.md`.
+take a look into the README file of the chart in `./helm/ums/README.md`.
 
 
 ## Development setup
@@ -50,7 +50,7 @@ helm registry login gitregistry.knut.univention.de
 Afterwards the dependencies can be loaded:
 
 ```sh
-helm dependency build ./helm/ums-stack
+helm dependency build ./helm/ums
 ```
 
 ### Fast feedback loop with `helm template`
@@ -59,11 +59,11 @@ Use `helm template` to have a fast feedback loop and inspect the rendered output
 as YAML files. This also works if you don't have a Kubernetes cluster available:
 
 ```sh
-helm template ums-stack ./helm/ums-stack
+helm template ums ./helm/ums
 
 # Add custom values if you want to check specific scenarios
-helm template --values your-values-file.yaml ums-stack ./helm/ums-stack
-helm template --set example.key=value ums-stack ./helm/ums-stack
+helm template --values your-values-file.yaml ums ./helm/ums
+helm template --set example.key=value ums ./helm/ums
 
 # Be aware, there are further options to set values on the command line,
 # "helm template --help" will provide further details.
@@ -78,7 +78,7 @@ sub-commands `install`, `update` and `uninstall`:
 
 ```sh
 # Often the use of "update" with the argument "--install" is useful
-helm update --install --values your-values-file.yaml ums-stack ./helm/ums-stack
+helm update --install --values your-values-file.yaml ums ./helm/ums
 ```
 
 

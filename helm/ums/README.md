@@ -1,4 +1,4 @@
-# ums-stack
+# ums
 
 The Univention Management Stack
 
@@ -12,7 +12,7 @@ The Univention Management Stack
 ## TL;DR
 
 ```console
-helm upgrade --install ums-stack oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/ums-stack/helm/ums-stack
+helm upgrade --install ums oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/ums-stack/helm/ums
 ```
 
 ## Introduction
@@ -21,10 +21,10 @@ This chart does install the Univention Management Stack.
 
 ## Installing
 
-To install the chart with the release name `ums-stack`:
+To install the chart with the release name `ums`:
 
 ```console
-helm upgrade --install ums-stack oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/ums-stack/helm/ums-stack
+helm upgrade --install ums oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/ums-stack/helm/ums
 ```
 
 ## Uninstalling
@@ -32,6 +32,5 @@ helm upgrade --install ums-stack oci://gitregistry.knut.univention.de/univention
 To uninstall the chart with the release name `portal-server`:
 
 ```console
-helm uninstall ums-stack
+helm uninstall ums
 ```
-

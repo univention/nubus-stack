@@ -1,0 +1,9 @@
+---
+portal-server:
+  portalServer:
+    adminGroup: "cn=Domain Admins,cn=groups,dc=univention-organization,dc=intranet"
+    ucsInternalUrl: "http://portal-server:password@store-dav/portal-data"
+    umcGetUrl: "http://umc-server/get"
+    umcSessionUrl: "http://umc-server/get/session-info"
+  ingress:
+    host: localhost
