@@ -18,6 +18,18 @@ include:
       - "jobs/package-and-publish-helm-charts.yaml"
 
 
+# TODO: Interim, integrate upstream
+.pages-rules:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+      when: "never"
+    - if: '$CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
+    - changes:
+        - "docs/**/*"
+        - "CHANGELOG.*"
+        - "README.*"
+
+
 # TODO: Interim, remove after upstream fix
 .package-helm-charts:
   stage: "package"
