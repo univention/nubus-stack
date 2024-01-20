@@ -32,7 +32,7 @@ The status will be updated once it does stabilize.
 ## Example usage
 
 This repository is mainly concerned with the Helm chart for the stack. Please
-take a look into the readme file of the chart in `./helm/ums-stack/README.md`.
+take a look into the README file of the chart in `./helm/ums-stack/README.md`.
 
 
 ## Development setup
