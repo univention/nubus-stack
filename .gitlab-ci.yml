@@ -16,6 +16,7 @@ include:
       - "jobs/lint-commit-messages.yaml"
       - "jobs/lint-pre-commit.yaml"
       - "jobs/package-and-publish-helm-charts.yaml"
+      - "jobs/semantic-release-env.yaml"
 
 
 # TODO: Interim, integrate upstream
