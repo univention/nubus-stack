@@ -7,5 +7,6 @@ UMS Stack
    :maxdepth: 2
 
    about
+   develop
    genindex
    glossary
