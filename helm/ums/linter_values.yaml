@@ -19,6 +19,28 @@ ldap-server:
     ldapSecret: "password"
     ldapBaseDn: "dc=univention-organization,dc=intranet"
 
+  extraVolumes:
+    - name: "opendesk-schemas"
+      configMap:
+        name: "ums-stack-data-swp-schemas"
+
+  extraVolumeMounts:
+    - name: "opendesk-schemas"
+      mountPath: "/var/lib/univention-ldap-local/local-schema/opendeskFileshare.schema"
+      subPath: "opendeskFileshare.schema"
+    - name: "opendesk-schemas"
+      mountPath: "/var/lib/univention-ldap-local/local-schema/opendeskKnowledgemanagement.schema"
+      subPath: "opendeskKnowledgemanagement.schema"
+    - name: "opendesk-schemas"
+      mountPath: "/var/lib/univention-ldap-local/local-schema/opendeskLearnmanagement.schema"
+      subPath: "opendeskLearnmanagement.schema"
+    - name: "opendesk-schemas"
+      mountPath: "/var/lib/univention-ldap-local/local-schema/opendeskLivecollaboration.schema"
+      subPath: "opendeskLivecollaboration.schema"
+    - name: "opendesk-schemas"
+      mountPath: "/var/lib/univention-ldap-local/local-schema/opendeskProjectmanagement.schema"
+      subPath: "opendeskProjectmanagement.schema"
+
 notifications-api:
   ingress:
     host: localhost
@@ -33,24 +55,31 @@ portal-frontend:
 
 portal-listener:
   portalListener:
+    assetsRoot: "http://portal-listener:password@ums-store-dav/portal-assets/"
     adminGroup: "cn=Domain Admins,cn=groups,dc=univention-organization,dc=intranet"
+    ucsInternalUrl: "http://portal-server:password@ums-store-dav/portal-data"
     udmApiUrl: "http://ums-udm-rest-api/udm/"
     udmApiUsername: "cn=admin"
-    umcGetUrl: "http://umc-server/get"
-    umcSessionUrl: "http://umc-server/get/session-info"
+    umcGetUrl: "http://ums-umc-server/get"
+    umcSessionUrl: "http://ums-umc-server/get/session-info"
     ldapHost: "ums-ldap-server"
+    notifierServer: "ums-ldap-notifier"
+    ldapBaseDn: "dc=univention-organization,dc=intranet"
+    portalDefaultDn: "cn=domain,cn=portal,cn=portals,cn=univention,dc=univention-organization,dc=intranet"
     ldapHostDn: "cn=admin,dc=univention-organization,dc=intranet"
     ldapSecret: "password"
     machineSecret: "password"
+    tlsMode: "off"
+
   store-dav:
     bundled: false
 
 portal-server:
   portalServer:
     adminGroup: "cn=Domain Admins,cn=groups,dc=univention-organization,dc=intranet"
-    ucsInternalUrl: "http://portal-server:password@store-dav/portal-data"
-    umcGetUrl: "http://umc-server/get"
-    umcSessionUrl: "http://umc-server/get/session-info"
+    ucsInternalUrl: "http://portal-server:password@ums-store-dav/portal-data"
+    umcGetUrl: "http://ums-umc-server/get"
+    umcSessionUrl: "http://ums-umc-server/get/session-info"
   ingress:
     host: localhost
     tls:
@@ -59,12 +88,20 @@ portal-server:
 stack-data-ums:
   stackDataUms:
     udmApiPassword: "password"
+    udmApiUrl: "http://ums-udm-rest-api/udm/"
+    loadDevData: true
   stackDataContext:
     initialPasswordAdministrator: "password"
+    ldapHost: "ums-ldap-server"
 
 stack-data-swp:
   stackDataSwp:
     udmApiPassword: "password"
+    udmApiUrl: "http://ums-udm-rest-api/udm/"
+    loadDevData: true
+  stackDataContext:
+    userPassword: "univention"
+    adminPassword: "univention"
 
 store-dav:
   storeDav:
@@ -72,6 +109,15 @@ store-dav:
       basicAuth:
         portal-server: "password"
         portal-listener: "password"
+  ingress:
+    host: localhost
+    tls:
+      enabled: false
+
+udm-rest-api:
+  udmRestApi:
+    ldapSecret: "password"
+    machineSecret: "password"
   ingress:
     host: localhost
     tls:
