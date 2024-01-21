@@ -267,7 +267,10 @@ umc-server:
     tls:
       enabled: false
   postgresql:
-    bundled: false
+    nameOverride: "umc-server-postgresql"
+    auth:
+      password: "password"
+      postgresPassword: "password"
   memcached:
     bundled: false
 
