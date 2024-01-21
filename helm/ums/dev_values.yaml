@@ -2,6 +2,10 @@
 # SPDX-FileCopyrightText: 2024 Univention GmbH
 ---
 
+# This file contains settings which are useful for development deployments.
+# The intention is to make it easy to apply these settings by including this
+# file with the "--values" flag to the helm command.
+
 stack-data-swp:
   stackDataSwp:
     extraDataFiles:
