@@ -272,7 +272,9 @@ umc-server:
       password: "password"
       postgresPassword: "password"
   memcached:
-    bundled: false
+    nameOverride: "umc-server-memcached"
+    auth:
+      password: "password"
 
 tags:
   pre-release: true
