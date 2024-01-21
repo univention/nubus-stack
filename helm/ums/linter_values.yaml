@@ -3,6 +3,22 @@
 
 ---
 
+global:
+  configMapUcrDefaults: "ums-stack-data-ums-ucr"
+  configMapUcr: "ums-stack-data-swp-ucr"
+  configMapUcrForced: null
+
+ldap-notifier:
+  volumes:
+    claims:
+      shared-data: "shared-data-ums-ldap-server-0"
+      shared-run: "shared-run-ums-ldap-server-0"
+
+ldap-server:
+  ldapServer:
+    ldapSecret: "password"
+    ldapBaseDn: "dc=univention-organization,dc=intranet"
+
 notifications-api:
   ingress:
     host: localhost
@@ -18,8 +34,12 @@ portal-frontend:
 portal-listener:
   portalListener:
     adminGroup: "cn=Domain Admins,cn=groups,dc=univention-organization,dc=intranet"
+    udmApiUrl: "http://ums-udm-rest-api/udm/"
+    udmApiUsername: "cn=admin"
     umcGetUrl: "http://umc-server/get"
     umcSessionUrl: "http://umc-server/get/session-info"
+    ldapHost: "ums-ldap-server"
+    ldapHostDn: "cn=admin,dc=univention-organization,dc=intranet"
     ldapSecret: "password"
     machineSecret: "password"
   store-dav:
@@ -36,12 +56,22 @@ portal-server:
     tls:
       enabled: false
 
+stack-data-ums:
+  stackDataUms:
+    udmApiPassword: "password"
+  stackDataContext:
+    initialPasswordAdministrator: "password"
+
+stack-data-swp:
+  stackDataSwp:
+    udmApiPassword: "password"
+
 store-dav:
   storeDav:
     auth:
       basicAuth:
-        portal-server: "univention"
-        portal-listener: "univention"
+        portal-server: "password"
+        portal-listener: "password"
   ingress:
     host: localhost
     tls:
