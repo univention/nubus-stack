@@ -54,6 +54,39 @@ notifications-api:
       enabled: false
 
 portal-frontend:
+  extraIngresses:
+    redirects:
+      enabled: true
+    workaround:
+      enabled: true
+    # See "extraVolumeMounts" below
+    custom-favicon:
+      enabled: true
+      annotations:
+        nginx.org/mergeable-ingress-type: "minion"
+      paths:
+        - pathType: Exact
+          path: /favicon.ico
+      tls: {}
+    # See "extraVolumeMounts" below
+    custom-branding:
+      enabled: true
+      annotations:
+        nginx.ingress.kubernetes.io/configuration-snippet: |
+          rewrite ^/univention/portal(/.*)$ $1 break;
+        nginx.org/location-snippets: |
+          rewrite ^/univention/portal(/.*)$ $1 break;
+        nginx.org/mergeable-ingress-type: "minion"
+      paths:
+        # This relies on the correct implementation of the matching for paths of
+        # type "Prefix" since "/univention/portal/icons/entries/" is owned by
+        # store-dav.
+        # See: https://kubernetes.io/docs/concepts/services-networking/ingress/#multiple-matches
+        - pathType: Prefix
+          path: /univention/portal/icons/
+        - pathType: Prefix
+          path: /univention/portal/custom/
+      tls: {}
   extraVolumes:
     - name: "opendesk-branding"
       configMap:
