@@ -39,11 +39,19 @@ helm uninstall ums
 
 | Repository | Name | Version |
 |------------|------|---------|
-| oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm | notifications-api | ^0.9.2 |
-| oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm | portal-frontend | ^0.9.2 |
-| oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm | portal-listener | ^0.9.2 |
-| oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm | portal-server | ^0.9.2 |
-| oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-store-dav/helm | store-dav | ^0.2.0 |
+| oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm | notifications-api | 0.* |
+| oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm | portal-frontend | 0.* |
+| oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm | portal-listener | 0.* |
+| oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm | portal-server | 0.* |
+| oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/common-helm/helm | common | 0.* |
+| oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-ldap/helm | ldap-notifier | 0.* |
+| oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-ldap/helm | ldap-server | 0.* |
+| oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-store-dav/helm | store-dav | 0.* |
+| oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-udm-rest/helm | udm-rest-api | 0.* |
+| oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-umc/helm | umc-gateway | 0.* |
+| oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-umc/helm | umc-server | 0.* |
+| oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/stack-data/helm | stack-data-swp | 0.* |
+| oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/stack-data/helm | stack-data-ums | 0.* |
 
 ## Values
 
