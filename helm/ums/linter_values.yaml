@@ -53,6 +53,7 @@ notifications-api:
     tls:
       enabled: false
   postgresql:
+    nameOverride: "notifications-api-postgresql"
     auth:
       password: "password"
       postgresPassword: "password"
