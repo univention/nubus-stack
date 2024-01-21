@@ -54,6 +54,29 @@ notifications-api:
       enabled: false
 
 portal-frontend:
+  extraVolumes:
+    - name: "opendesk-branding"
+      configMap:
+        name: "ums-stack-data-swp-branding"
+  extraVolumeMounts:
+    - name: "opendesk-branding"
+      mountPath: "/var/www/html/favicon.ico"
+      subPath: "favicon.ico"
+    - name: "opendesk-branding"
+      mountPath: "/var/www/html/css/custom.css"
+      subPath: "custom.css"
+    - name: "opendesk-branding"
+      mountPath: "/var/www/html/icons/logo.svg"
+      subPath: "logo.svg"
+    - name: "opendesk-branding"
+      mountPath: "/var/www/html/icons/logo_small_border.svg"
+      subPath: "logo_small_border.svg"
+    - name: "opendesk-branding"
+      mountPath: "/var/www/html/custom/portal_background_image.png"
+      subPath: "portal_background_image.png"
+    - name: "opendesk-branding"
+      mountPath: "/var/www/html/custom/portal_background_image.svg"
+      subPath: "portal_background_image.svg"
   ingress:
     host: localhost
     tls:
@@ -124,10 +147,91 @@ udm-rest-api:
   udmRestApi:
     ldapSecret: "password"
     machineSecret: "password"
+  extraVolumes:
+    - name: "attribute-to-group-mapper-hook"
+      configMap:
+        name: "ums-stack-data-swp-attribute-to-group-mapper-hook"
+  extraVolumeMounts:
+    - name: "attribute-to-group-mapper-hook"
+      mountPath: "/usr/lib/python3/dist-packages/univention/admin/hooks.d/AttributeToGroupMapper.py"
+      subPath: "AttributeToGroupMapper.py"
+    - name: "attribute-to-group-mapper-hook"
+      mountPath: "/usr/share/attribute-to-group-mapper/flag_to_group_mapping.json"
+      subPath: "flag_to_group_mapping.json"
   ingress:
     host: localhost
     tls:
       enabled: false
+
+umc-gateway:
+  umcGateway:
+    umcHtmlTitle: "openDesk - Admin"
+  extraVolumes:
+    - name: "entrypoint-swp-patches"
+      configMap:
+        name: "ums-stack-data-swp-umc-gateway-entrypoint"
+        defaultMode: 0555
+    - name: "announcements-customization"
+      configMap:
+        name: "ums-stack-data-swp-umc-server-announcements"
+        defaultMode: 0444
+  extraVolumeMounts:
+    - name: "entrypoint-swp-patches"
+      mountPath: "/entrypoint.d/90-swp.sh"
+      subPath: "90-swp.sh"
+    - name: "announcements-customization"
+      mountPath:
+        "/usr/share/univention-management-console-frontend/js/dijit/themes\
+        /umc/icons/16x16/udm-portals-announcement.png"
+      subPath: "udm-portals-announcement.png"
+  ingress:
+    host: localhost
+    tls:
+      enabled: false
+
+umc-server:
+  umcServer:
+    ldapSecret: "password"
+    machineSecret: "password"
+  extraVolumes:
+    - name: "entrypoint-swp-patches"
+      configMap:
+        name: "ums-stack-data-swp-umc-server-entrypoint"
+        defaultMode: 0555
+    - name: "self-service-emails"
+      configMap:
+        name: "ums-stack-data-swp-self-service-emails"
+        defaultMode: 0444
+    - name: "attribute-to-group-mapper-hook"
+      configMap:
+        name: "ums-stack-data-swp-attribute-to-group-mapper-hook"
+    - name: "announcements-customization"
+      configMap:
+        name: "ums-stack-data-swp-umc-server-announcements"
+        defaultMode: 0444
+  extraVolumeMounts:
+    - name: "entrypoint-swp-patches"
+      mountPath: "/entrypoint.d/90-customization.sh"
+      subPath: "90-customization.sh"
+    - name: "self-service-emails"
+      mountPath: "/usr/share/univention-self-service/email_bodies"
+    - name: "attribute-to-group-mapper-hook"
+      mountPath: "/usr/lib/python3/dist-packages/univention/admin/hooks.d/AttributeToGroupMapper.py"
+      subPath: "AttributeToGroupMapper.py"
+    - name: "attribute-to-group-mapper-hook"
+      mountPath: "/usr/share/attribute-to-group-mapper/flag_to_group_mapping.json"
+      subPath: "flag_to_group_mapping.json"
+    - name: "announcements-customization"
+      mountPath: "/usr/share/univention-management-console/modules/udm-portals-announcement.xml"
+      subPath: "udm-portals-announcement.xml"
+  ingress:
+    host: localhost
+    tls:
+      enabled: false
+  postgresql:
+    bundled: false
+  memcached:
+    bundled: false
 
 tags:
   pre-release: true
