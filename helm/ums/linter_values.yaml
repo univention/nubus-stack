@@ -158,7 +158,7 @@ stack-data-ums:
     udmApiUrl: "http://ums-udm-rest-api/udm/"
     loadDevData: true
   stackDataContext:
-    initialPasswordAdministrator: "password"
+    initialPasswordAdministrator: "univention!1"
     ldapHost: "ums-ldap-server"
 
 stack-data-swp:
@@ -167,8 +167,8 @@ stack-data-swp:
     udmApiUrl: "http://ums-udm-rest-api/udm/"
     loadDevData: true
   stackDataContext:
-    userPassword: "univention"
-    adminPassword: "univention"
+    userPassword: "univention!1"
+    adminPassword: "univention!1"
 
 store-dav:
   storeDav:
