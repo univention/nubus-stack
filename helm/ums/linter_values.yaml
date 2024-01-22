@@ -159,6 +159,7 @@ stack-data-ums:
     loadDevData: true
   stackDataContext:
     initialPasswordAdministrator: "univention!1"
+    initialPasswordSysIdpUser: "univention!1"
     ldapHost: "ums-ldap-server"
 
 stack-data-swp:
