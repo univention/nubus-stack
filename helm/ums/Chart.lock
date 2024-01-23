@@ -32,6 +32,12 @@ dependencies:
 - name: ums-keycloak
   repository: oci://registry.souvap-univention.de/souvap/tooling/charts/univention-keycloak
   version: 1.0.3
+- name: keycloak-extensions
+  repository: oci://gitregistry.knut.univention.de/univention/components/keycloak-extensions/helm
+  version: 0.2.0
+- name: ums-keycloak-bootstrap
+  repository: oci://registry.souvap-univention.de/souvap/tooling/charts/univention-keycloak-bootstrap
+  version: 1.1.11
 - name: postgresql
   repository: https://charts.bitnami.com/bitnami
   version: 12.7.3
@@ -59,5 +65,5 @@ dependencies:
 - name: common
   repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/common-helm/helm
   version: 0.6.0
-digest: sha256:51ac780e2d2e5b7d8b4ac4de7d31e009ec656103bf4ff5853b5fa76639e9ea2c
-generated: "2024-01-23T19:24:55.615294+01:00"
+digest: sha256:30739a7f118d19a84f15dd5f6e379fc88866e01bc66c8cda0b871ba07a303330
+generated: "2024-01-23T21:21:35.706495+01:00"

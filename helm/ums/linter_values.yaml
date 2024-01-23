@@ -17,13 +17,15 @@ global:
 guardian-authorization-api:
   guardianAuthorizationApi:
     guardianAuthzLoggingStructured: false
-    oauthAdapterWellKnownUrl: "http://ums-keycloak:8080/realms/opendesk/.well-known/openid-configuration"
+    # TODO: Bootstrap of the realm is pending
+    # oauthAdapterWellKnownUrl: "http://ums-keycloak:8080/realms/opendesk/.well-known/openid-configuration"
+    oauthAdapterWellKnownUrl: "http://ums-keycloak:8080/realms/master/.well-known/openid-configuration"
     opaAdapterUrl: "http://ums-open-policy-agent/"
     udmDataAdapterUrl: "http://ums-udm-rest-api/udm/"
     udmDataAdapterUsername: "cn=admin"
     udmDataAdapterPassword: "password"
   ingress:
-    host: "localhost"
+    host: "portal.local-cluster.test"
 
 guardian-management-api:
   guardianManagementApi:
@@ -31,24 +33,28 @@ guardian-management-api:
     guardianManagementAdapterAuthorizationApiUrl: "http://ums-guardian-authorization-api/guardian/authorization"
     guardianManagementBaseUrl: "http://localhost:8000"
     oauthAdapterM2mSecret: "password"
-    oauthAdapterWellKnownUrl: "http://ums-keycloak:8080/realms/opendesk/.well-known/openid-configuration"
+    # TODO: Bootstrap of the realm pending
+    # oauthAdapterWellKnownUrl: "http://ums-keycloak:8080/realms/opendesk/.well-known/openid-configuration"
+    oauthAdapterWellKnownUrl: "http://ums-keycloak:8080/realms/master/.well-known/openid-configuration"
   ingress:
-    host: "localhost"
+    host: "portal.local-cluster.test"
 
 guardian-management-ui:
   guardianManagementUi:
     viteApiDataAdapterUri: "http://localhost:8000/guardian/management"
     # TODO: This needs a Keycloak specific value
     viteKeycloakAuthenticationAdapterSsoUri: "http://localhost:8000"
-    viteKeycloakAuthenticationAdapterRealm: "opendesk"
+    # TODO: Bootstrap of the realm pending
+    # viteKeycloakAuthenticationAdapterRealm: "opendesk"
+    viteKeycloakAuthenticationAdapterRealm: "master"
   ingress:
-    host: "localhost"
+    host: "portal.local-cluster.test"
 
 open-policy-agent:
   openPolicyAgent:
     opaGuardianManagementUrl: "http://ums-guardian-management-api:8000/guardian/management"
   ingress:
-    host: "localhost"
+    host: "portal.local-cluster.test"
 
 ldap-notifier:
   volumes:
@@ -85,7 +91,7 @@ ldap-server:
 
 notifications-api:
   ingress:
-    host: localhost
+    host: "portal.local-cluster.test"
     tls:
       enabled: false
   postgresql:
@@ -152,7 +158,7 @@ portal-frontend:
       mountPath: "/var/www/html/custom/portal_background_image.svg"
       subPath: "portal_background_image.svg"
   ingress:
-    host: localhost
+    host: "portal.local-cluster.test"
     tls:
       enabled: false
 
@@ -184,7 +190,7 @@ portal-server:
     umcGetUrl: "http://ums-umc-server/get"
     umcSessionUrl: "http://ums-umc-server/get/session-info"
   ingress:
-    host: localhost
+    host: "portal.local-cluster.test"
     tls:
       enabled: false
 
@@ -192,7 +198,7 @@ provisioning:
   events-and-consumer-api:
     nameOverride: "provisioning-events-and-consumer-api"
     ingress:
-      host: "localhost"
+      host: "portal.local-cluster.test"
       tls:
         enabled: false
     config:
@@ -262,7 +268,7 @@ store-dav:
         portal-server: "password"
         portal-listener: "password"
   ingress:
-    host: localhost
+    host: "portal.local-cluster.test"
     tls:
       enabled: false
 
@@ -282,7 +288,7 @@ udm-rest-api:
       mountPath: "/usr/share/attribute-to-group-mapper/flag_to_group_mapping.json"
       subPath: "flag_to_group_mapping.json"
   ingress:
-    host: localhost
+    host: "portal.local-cluster.test"
     tls:
       enabled: false
 
@@ -308,7 +314,7 @@ umc-gateway:
         /umc/icons/16x16/udm-portals-announcement.png"
       subPath: "udm-portals-announcement.png"
   ingress:
-    host: localhost
+    host: "portal.local-cluster.test"
     tls:
       enabled: false
 
@@ -348,7 +354,7 @@ umc-server:
       mountPath: "/usr/share/univention-management-console/modules/udm-portals-announcement.xml"
       subPath: "udm-portals-announcement.xml"
   ingress:
-    host: localhost
+    host: "portal.local-cluster.test"
     tls:
       enabled: false
   postgresql:
@@ -371,6 +377,87 @@ keycloak:
       username: "keycloak"
       database: "keycloak"
       password: "password"
+
+keycloak-bootstrap:
+  enabled: false
+  global:
+    domain: "local-cluster.test"
+    hosts:
+      keycloak: "id"
+  config:
+    keycloak:
+      adminUser: "kcadmin"
+      adminPassword: "password"
+      realm: "opendesk"
+      intraCluster:
+        enabled: true
+        internalBaseUrl: "http://ums-keycloak:8080"
+      loginLinks:
+        - link_number: 1
+          language: "de"
+          description: "Passwort vergessen?"
+          href: "http://portal.local-cluster.test/univention/portal/#/selfservice/passwordforgotten"
+        - link_number: 1
+          language: "en"
+          description: "Forgot password?"
+          href: "http://portal.local-cluster.test:8000/univention/portal/#/selfservice/passwordforgotten"
+    ums:
+      ldap:
+        internalHostname: "ums-ldap-server"
+        baseDn: "dc=univention-organization,dc=intranet"
+        readUserDN: "uid=ldapsearch_keycloak,cn=users,dc=univention-organization,dc=intranet"
+        readUserPassword: "password"
+        mappers:
+          - ldapAndUserModelAttributeName: "opendeskProjectmanagementAdmin"
+          - ldapAndUserModelAttributeName: "oxContextIDNum"
+      saml:
+        serviceProviderHostname: "portal.local-cluster.test:8443"
+    twoFactorAuthentication:
+      enabled: true
+      group: "2fa-users"
+
+keycloak-extensions:
+  global:
+    keycloak:
+      host: "ums-keycloak:8080"
+      adminUsername: "kcadmin"
+      adminPassword: "password"
+      adminRealm: "master"
+      # TODO: Bootstrap of the realm is pending
+      # realm: "opendesk"
+      realm: "master"
+    postgresql:
+      connection:
+        host: "ums-keycloak-postgresql"
+        port: 5432
+      auth:
+        database: "keycloak"
+        username: "keycloak"
+        password: "password"
+  handler:
+    nameOverride: "keycloak-extensions-handler"
+    appConfig: {}
+  postgresql:
+    enabled: false
+  proxy:
+    nameOverride: "keycloak-extensions-proxy"
+    ingress:
+      annotations:
+        nginx.org/proxy-buffer-size: "8k"
+        nginx.ingress.kubernetes.io/proxy-buffer-size: "8k"
+      paths:
+        - pathType: "Prefix"
+          path: "/realms"
+        - pathType: "Prefix"
+          path: "/resources"
+        - pathType: "Prefix"
+          path: "/fingerprintjs"
+      enabled: true
+      ingressClassName: "nginx"
+      host: "id.local-cluster.test"
+      tls:
+        enabled: false
+        secretName: ""
 
 keycloak-postgresql:
   auth:
