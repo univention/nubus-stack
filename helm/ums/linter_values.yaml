@@ -192,6 +192,8 @@ provisioning:
       ldapHostDn: "cn=admin,dc=univention-organization,dc=intranet"
       ldapPassword: "password"
       ldapPort: "389"
+      natsHost: "ums-provisioning-nats"
+      natsPort: 4222
       notifierServer: "ums-ldap-notifier"
       tlsMode: "off"
 
