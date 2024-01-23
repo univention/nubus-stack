@@ -5,7 +5,9 @@
 
 - **Version**: {{ template "chart.version" . }}
 - **Type**: {{ template "chart.type" . }}
+{{- if .AppVersion }}
 - **AppVersion**: {{ template "chart.appVersion" . }}
+{{- end }}
 {{- if .Home }}
 - {{ template "chart.homepageLine" . }}
 {{- end }}

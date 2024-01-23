@@ -4,7 +4,6 @@ The Univention Management Stack
 
 - **Version**: 0.0.1
 - **Type**: application
-- **AppVersion**:
 
 ## TL;DR
 
