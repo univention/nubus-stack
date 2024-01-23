@@ -5,9 +5,6 @@ The Univention Management Stack
 - **Version**: 0.0.1
 - **Type**: application
 - **AppVersion**:
-{%- if chart.home %}
--
-{%- end %}
 
 ## TL;DR
 
