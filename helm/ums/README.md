@@ -25,7 +25,7 @@ helm upgrade --install ums oci://gitregistry.knut.univention.de/univention/custo
 
 ## Uninstalling
 
-To uninstall the chart with the release name `portal-server`:
+To uninstall the chart with the release name `ums`:
 
 ```console
 helm uninstall ums
