@@ -62,6 +62,31 @@ dependencies:
     tags:
       - pre-release
 
+  - name: "guardian-authorization-api"
+    repository: "oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/guardian-helm/helm"
+    version: "0.*"
+    condition: "guardian-authorization-api.enabled"
+    tags:
+      - pre-release
+  - name: "guardian-management-api"
+    repository: "oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/guardian-helm/helm"
+    version: "0.*"
+    condition: "guardian-management-api.enabled"
+    tags:
+      - pre-release
+  - name: "guardian-management-ui"
+    repository: "oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/guardian-helm/helm"
+    version: "0.*"
+    condition: "guardian-management-ui.enabled"
+    tags:
+      - pre-release
+  - name: "open-policy-agent"
+    repository: "oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/guardian-helm/helm"
+    version: "0.*"
+    condition: "open-policy-agent.enabled"
+    tags:
+      - pre-release
+
   - name: "stack-data-ums"
     repository: "oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/stack-data/helm"
     version: "0.*"
