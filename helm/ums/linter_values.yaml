@@ -152,6 +152,52 @@ portal-server:
     tls:
       enabled: false
 
+provisioning:
+  events-and-consumer-api:
+    nameOverride: "provisioning-events-and-consumer-api"
+    ingress:
+      host: "localhost"
+      tls:
+        enabled: false
+    config:
+      logLevel: "DEBUG"
+      rootPath: "/univention/provisioning-api"
+      natsHost: "ums-provisioning-nats"
+      natsPort: 4222
+    # TODO: Usage of "common.names.dependency.fullname" expects this
+    nats:
+      nameOverride: "provisioning-nats"
+
+  dispatcher:
+    nameOverride: "provisioning-dispatcher"
+    config:
+      natsHost: "ums-provisioning-nats"
+      natsPort: 4222
+    # TODO: Usage of "common.names.dependency.fullname" expects this
+    nats:
+      nameOverride: "provisioning-nats"
+    # TODO: The probes are not working
+    probes:
+      liveness:
+        enabled: false
+      readiness:
+        enabled: false
+
+  udm-listener:
+    nameOverride: "provisioning-listener"
+    config:
+      debugLevel: "4"
+      ldapBaseDn: "dc=univention-organization,dc=intranet"
+      ldapHost: "ums-ldap-server"
+      ldapHostDn: "cn=admin,dc=univention-organization,dc=intranet"
+      ldapPassword: "password"
+      ldapPort: "389"
+      notifierServer: "ums-ldap-notifier"
+      tlsMode: "off"
+
+  nats:
+    nameOverride: "provisioning-nats"
+
 stack-data-ums:
   stackDataUms:
     udmApiPassword: "password"

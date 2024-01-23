@@ -55,6 +55,13 @@ dependencies:
     version: "0.*"
     condition: "umc-server.enabled"
 
+  - name: "provisioning"
+    repository: "oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/provisioning/helm"
+    version: "0.*"
+    condition: "provisioning.enabled"
+    tags:
+      - pre-release
+
   - name: "stack-data-ums"
     repository: "oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/stack-data/helm"
     version: "0.*"
