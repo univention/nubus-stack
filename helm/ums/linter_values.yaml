@@ -14,6 +14,42 @@ global:
   configMapUcr: "ums-stack-data-swp-ucr"
   configMapUcrForced: null
 
+guardian-authorization-api:
+  guardianAuthorizationApi:
+    guardianAuthzLoggingStructured: false
+    oauthAdapterWellKnownUrl: "http://ums-keycloak:8080/realms/opendesk/.well-known/openid-configuration"
+    opaAdapterUrl: "http://ums-open-policy-agent/"
+    udmDataAdapterUrl: "http://ums-udm-rest-api/udm/"
+    udmDataAdapterUsername: "cn=admin"
+    udmDataAdapterPassword: "password"
+  ingress:
+    host: "localhost"
+
+guardian-management-api:
+  guardianManagementApi:
+    guardianManagementLoggingStructured: false
+    guardianManagementAdapterAuthorizationApiUrl: "http://ums-guardian-authorization-api/guardian/authorization"
+    guardianManagementBaseUrl: "http://localhost:8000"
+    oauthAdapterM2mSecret: "password"
+    oauthAdapterWellKnownUrl: "http://ums-keycloak:8080/realms/opendesk/.well-known/openid-configuration"
+  ingress:
+    host: "localhost"
+
+guardian-management-ui:
+  guardianManagementUi:
+    viteApiDataAdapterUri: "http://localhost:8000/guardian/management"
+    # TODO: This needs a Keycloak specific value
+    viteKeycloakAuthenticationAdapterSsoUri: "http://localhost:8000"
+    viteKeycloakAuthenticationAdapterRealm: "opendesk"
+  ingress:
+    host: "localhost"
+
+open-policy-agent:
+  openPolicyAgent:
+    opaGuardianManagementUrl: "http://ums-guardian-management-api:8000/guardian/management"
+  ingress:
+    host: "localhost"
+
 ldap-notifier:
   volumes:
     claims:
