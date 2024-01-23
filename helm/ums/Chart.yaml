@@ -2,11 +2,11 @@
 # SPDX-FileCopyrightText: 2024 Univention GmbH
 ---
 
-apiVersion: v2
-name: ums
-description: The Univention Management Stack
-type: application
-version: 0.0.1
+apiVersion: "v2"
+name: "ums"
+description: "The Univention Management Stack"
+type: "application"
+version: "0.0.1"
 
 dependencies:
   - name: "portal-frontend"
