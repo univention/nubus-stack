@@ -361,5 +361,23 @@ umc-server:
     auth:
       password: "password"
 
+keycloak:
+  config:
+    admin:
+      password: "password"
+    database:
+      host: "ums-keycloak-postgresql"
+      port: 5432
+      username: "keycloak"
+      database: "keycloak"
+      password: "password"
+
+keycloak-postgresql:
+  auth:
+    username: "keycloak"
+    database: "keycloak"
+    password: "password"
+    postgresPassword: "password"
+
 tags:
   pre-release: true

@@ -55,6 +55,17 @@ dependencies:
     version: "0.*"
     condition: "umc-server.enabled"
 
+  - name: "ums-keycloak"
+    alias: "keycloak"
+    repository: "oci://registry.souvap-univention.de/souvap/tooling/charts/univention-keycloak"
+    version: "1.*"
+    condition: "ums-keycloak.enabled"
+  - name: "postgresql"
+    alias: "keycloak-postgresql"
+    repository: "https://charts.bitnami.com/bitnami"
+    version: "~12.7.1"
+    condition: "keycloak-postgresql.enabled"
+
   - name: "provisioning"
     repository: "oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/provisioning/helm"
     version: "0.*"
