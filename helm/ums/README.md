@@ -35,6 +35,8 @@ helm uninstall ums
 
 | Repository | Name | Version |
 |------------|------|---------|
+| https://charts.bitnami.com/bitnami | keycloak-postgresql(postgresql) | ~12.7.1 |
+| oci://gitregistry.knut.univention.de/univention/components/keycloak-extensions/helm | keycloak-extensions | 0.* |
 | oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm | notifications-api | 0.* |
 | oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm | portal-frontend | 0.* |
 | oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm | portal-listener | 0.* |
@@ -46,9 +48,16 @@ helm uninstall ums
 | oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-udm-rest/helm | udm-rest-api | 0.* |
 | oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-umc/helm | umc-gateway | 0.* |
 | oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-umc/helm | umc-server | 0.* |
+| oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/guardian-helm/helm | guardian-authorization-api | 0.* |
+| oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/guardian-helm/helm | guardian-management-api | 0.* |
+| oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/guardian-helm/helm | guardian-management-ui | 0.* |
+| oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/guardian-helm/helm | open-policy-agent | 0.* |
 | oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/provisioning/helm | provisioning | 0.* |
+| oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/selfservice-listener/helm | selfservice-listener | 0.* |
 | oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/stack-data/helm | stack-data-swp | 0.* |
 | oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/stack-data/helm | stack-data-ums | 0.* |
+| oci://registry.souvap-univention.de/souvap/tooling/charts/univention-keycloak-bootstrap | keycloak-bootstrap(ums-keycloak-bootstrap) | 1.* |
+| oci://registry.souvap-univention.de/souvap/tooling/charts/univention-keycloak | keycloak(ums-keycloak) | 1.* |
 
 ## Values
 
