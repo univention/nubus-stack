@@ -375,6 +375,10 @@ keycloak:
       username: "keycloak"
       database: "keycloak"
       password: "password"
+  theme:
+    univentionTheme: "https://portal.local-cluster.test/univention/theme.css"
+    univentionCustomTheme: "https://portal.local-cluster.test/univention/portal/css/custom.css"
+    favIcon: "https://portal.local-cluster.test/favicon.ico"
 
 keycloak-bootstrap:
   enabled: false
