@@ -381,11 +381,16 @@ keycloak:
     favIcon: "https://portal.local-cluster.test/favicon.ico"
 
 keycloak-bootstrap:
+  # TODO: Find easier way to skip this in the call to "helm upgrade"
   enabled: false
   global:
     domain: "local-cluster.test"
     hosts:
       keycloak: "id"
+  # TODO: The helm chart does not use latest but "1.0.0" instead as default
+  # image tag. The old image is lacking the "intraCluster" feature.
+  image:
+    tag: "1.0.8"
   config:
     keycloak:
       adminUser: "kcadmin"
