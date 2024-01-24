@@ -8,6 +8,9 @@ dependencies:
 - name: portal-server
   repository: oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm
   version: 0.10.0
+- name: selfservice-listener
+  repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/selfservice-listener/helm
+  version: 0.3.2
 - name: store-dav
   repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-store-dav/helm
   version: 0.10.0
@@ -65,5 +68,5 @@ dependencies:
 - name: common
   repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/common-helm/helm
   version: 0.6.0
-digest: sha256:30739a7f118d19a84f15dd5f6e379fc88866e01bc66c8cda0b871ba07a303330
-generated: "2024-01-23T21:21:35.706495+01:00"
+digest: sha256:53ab3ed1032b17ab9d31e59cf7839d55d75d9ef68db41bd35e6d8ef741a0348b
+generated: "2024-01-24T18:45:37.963391+01:00"

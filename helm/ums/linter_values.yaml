@@ -271,6 +271,20 @@ stack-data-swp:
         password: "univention!1"
       # TODO: We need typically more entries, compare opendesk setup
 
+selfservice-listener:
+  selfserviceListener:
+    ldapBaseDn: "dc=univention-organization,dc=intranet"
+    ldapHost: "ums-ldap-server"
+    ldapHostDn: "cn=admin,dc=univention-organization,dc=intranet"
+    ldapPassword: "password"
+    machineSecret: "password"
+    notifierServer: "ums-ldap-notifier"
+    debugLevel: "4"
+    tlsMode: "off"
+    umcServerUrl: "http://ums-umc-server"
+    umcAdminUser: "default.admin"
+    umcAdminPassword: "univention!1"
+
 store-dav:
   storeDav:
     auth:
