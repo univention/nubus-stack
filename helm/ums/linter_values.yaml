@@ -455,6 +455,9 @@ keycloak-extensions:
         nginx.org/proxy-buffer-size: "8k"
         nginx.ingress.kubernetes.io/proxy-buffer-size: "8k"
       paths:
+        # TODO: temporary
+        - pathType: "Prefix"
+          path: "/admin"
         - pathType: "Prefix"
           path: "/realms"
         - pathType: "Prefix"
