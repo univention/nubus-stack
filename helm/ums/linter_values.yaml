@@ -366,6 +366,10 @@ umc-server:
       password: "password"
 
 keycloak:
+  global:
+    domain: "local-cluster.test"
+    hosts:
+      keycloak: "id"
   config:
     admin:
       password: "password"
@@ -407,18 +411,18 @@ keycloak-bootstrap:
         - link_number: 1
           language: "en"
           description: "Forgot password?"
-          href: "http://portal.local-cluster.test:8000/univention/portal/#/selfservice/passwordforgotten"
+          href: "http://portal.local-cluster.test/univention/portal/#/selfservice/passwordforgotten"
     ums:
       ldap:
         internalHostname: "ums-ldap-server"
         baseDN: "dc=univention-organization,dc=intranet"
         readUserDN: "uid=ldapsearch_keycloak,cn=users,dc=univention-organization,dc=intranet"
-        readUserPassword: "password"
+        readUserPassword: "univention!1"
         mappers:
           - ldapAndUserModelAttributeName: "opendeskProjectmanagementAdmin"
           - ldapAndUserModelAttributeName: "oxContextIDNum"
       saml:
-        serviceProviderHostname: "portal.local-cluster.test:8443"
+        serviceProviderHostname: "portal.local-cluster.test"
     twoFactorAuthentication:
       enabled: true
       group: "2fa-users"
@@ -430,9 +434,7 @@ keycloak-extensions:
       adminUsername: "kcadmin"
       adminPassword: "password"
       adminRealm: "master"
-      # TODO: Bootstrap of the realm is pending
-      # realm: "opendesk"
-      realm: "master"
+      realm: "opendesk"
     postgresql:
       connection:
         host: "ums-keycloak-postgresql"
