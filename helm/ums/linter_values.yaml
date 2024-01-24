@@ -404,7 +404,7 @@ keycloak-bootstrap:
     ums:
       ldap:
         internalHostname: "ums-ldap-server"
-        baseDn: "dc=univention-organization,dc=intranet"
+        baseDN: "dc=univention-organization,dc=intranet"
         readUserDN: "uid=ldapsearch_keycloak,cn=users,dc=univention-organization,dc=intranet"
         readUserPassword: "password"
         mappers:
