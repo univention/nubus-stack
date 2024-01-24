@@ -254,6 +254,10 @@ stack-data-swp:
   stackDataContext:
     userPassword: "univention!1"
     adminPassword: "univention!1"
+    ldapSearchUsers:
+      - username: "ldapsearch_keycloak"
+        password: "univention!1"
+      # TODO: We need typically more entries, compare opendesk setup
 
 store-dav:
   storeDav:
