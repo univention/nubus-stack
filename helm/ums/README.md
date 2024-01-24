@@ -35,7 +35,6 @@ helm uninstall ums
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | keycloak-postgresql(postgresql) | ~12.7.1 |
 | oci://gitregistry.knut.univention.de/univention/components/keycloak-extensions/helm | keycloak-extensions | 0.* |
 | oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm | notifications-api | 0.* |
 | oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm | portal-frontend | 0.* |
@@ -56,6 +55,7 @@ helm uninstall ums
 | oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/selfservice-listener/helm | selfservice-listener | 0.* |
 | oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/stack-data/helm | stack-data-swp | 0.* |
 | oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/stack-data/helm | stack-data-ums | 0.* |
+| oci://registry-1.docker.io/bitnamicharts | keycloak-postgresql(postgresql) | ~12.7.1 |
 | oci://registry.souvap-univention.de/souvap/tooling/charts/univention-keycloak-bootstrap | keycloak-bootstrap(ums-keycloak-bootstrap) | 1.* |
 | oci://registry.souvap-univention.de/souvap/tooling/charts/univention-keycloak | keycloak(ums-keycloak) | 1.* |
 

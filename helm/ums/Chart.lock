@@ -42,7 +42,7 @@ dependencies:
   repository: oci://registry.souvap-univention.de/souvap/tooling/charts/univention-keycloak-bootstrap
   version: 1.1.11
 - name: postgresql
-  repository: https://charts.bitnami.com/bitnami
+  repository: oci://registry-1.docker.io/bitnamicharts
   version: 12.7.3
 - name: provisioning
   repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/provisioning/helm
@@ -68,5 +68,5 @@ dependencies:
 - name: common
   repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/common-helm/helm
   version: 0.6.0
-digest: sha256:53ab3ed1032b17ab9d31e59cf7839d55d75d9ef68db41bd35e6d8ef741a0348b
-generated: "2024-01-24T18:45:37.963391+01:00"
+digest: sha256:bead577892931f8935ddf05fc925f0fb5cb73d029be9d2eff5b7991b30230c07
+generated: "2024-01-24T19:07:58.707426+01:00"
