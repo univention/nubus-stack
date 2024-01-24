@@ -17,9 +17,7 @@ global:
 guardian-authorization-api:
   guardianAuthorizationApi:
     guardianAuthzLoggingStructured: false
-    # TODO: Bootstrap of the realm is pending
-    # oauthAdapterWellKnownUrl: "http://ums-keycloak:8080/realms/opendesk/.well-known/openid-configuration"
-    oauthAdapterWellKnownUrl: "http://ums-keycloak:8080/realms/master/.well-known/openid-configuration"
+    oauthAdapterWellKnownUrl: "http://ums-keycloak:8080/realms/opendesk/.well-known/openid-configuration"
     opaAdapterUrl: "http://ums-open-policy-agent/"
     udmDataAdapterUrl: "http://ums-udm-rest-api/udm/"
     udmDataAdapterUsername: "cn=admin"
@@ -33,9 +31,7 @@ guardian-management-api:
     guardianManagementAdapterAuthorizationApiUrl: "http://ums-guardian-authorization-api/guardian/authorization"
     guardianManagementBaseUrl: "http://localhost:8000"
     oauthAdapterM2mSecret: "password"
-    # TODO: Bootstrap of the realm pending
-    # oauthAdapterWellKnownUrl: "http://ums-keycloak:8080/realms/opendesk/.well-known/openid-configuration"
-    oauthAdapterWellKnownUrl: "http://ums-keycloak:8080/realms/master/.well-known/openid-configuration"
+    oauthAdapterWellKnownUrl: "http://ums-keycloak:8080/realms/opendesk/.well-known/openid-configuration"
   ingress:
     host: "portal.local-cluster.test"
 
@@ -44,9 +40,7 @@ guardian-management-ui:
     viteApiDataAdapterUri: "http://localhost:8000/guardian/management"
     # TODO: This needs a Keycloak specific value
     viteKeycloakAuthenticationAdapterSsoUri: "http://localhost:8000"
-    # TODO: Bootstrap of the realm pending
-    # viteKeycloakAuthenticationAdapterRealm: "opendesk"
-    viteKeycloakAuthenticationAdapterRealm: "master"
+    viteKeycloakAuthenticationAdapterRealm: "opendesk"
   ingress:
     host: "portal.local-cluster.test"
 
