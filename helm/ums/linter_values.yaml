@@ -9,6 +9,12 @@
 # Long term this file shall be reduced again to the minimal set of required
 # values so that "helm lint" can be successfully executed.
 
+# Current Requirements
+# ====================
+#
+# - The domain "*.local-cluster.test" has to resolve to the cluster's IP
+#   address. On a local dev cluster this could be "127.0.0.1".
+
 global:
   configMapUcrDefaults: "ums-stack-data-ums-ucr"
   configMapUcr: "ums-stack-data-swp-ucr"
