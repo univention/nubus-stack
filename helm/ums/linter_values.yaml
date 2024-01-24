@@ -245,6 +245,12 @@ stack-data-ums:
     initialPasswordAdministrator: "univention!1"
     initialPasswordSysIdpUser: "univention!1"
     ldapHost: "ums-ldap-server"
+    idpSamlMetadataUrl: "http://ums-keycloak:8080/realms/opendesk/protocol/saml/descriptor"
+    idpSamlMetadataUrlInternal: null
+    idpFqdn: "id.local-cluster.test"
+    umcSamlSpFqdn: "portal.local-cluster.test"
+    umcSamlSchemes: "https"
+    ldapSamlSpUrls: "https://ums-portal-server/univention/saml/metadata"
 
 stack-data-swp:
   stackDataSwp:
