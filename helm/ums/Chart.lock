@@ -25,13 +25,13 @@ dependencies:
   version: 0.9.1
 - name: udm-rest-api
   repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-udm-rest/helm
-  version: 0.7.0
+  version: 0.7.1
 - name: umc-gateway
   repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-umc/helm
-  version: 0.9.0
+  version: 0.10.0
 - name: umc-server
   repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-umc/helm
-  version: 0.9.0
+  version: 0.10.0
 - name: ums-keycloak
   repository: oci://registry.souvap-univention.de/souvap/tooling/charts/univention-keycloak
   version: 1.0.3
@@ -46,19 +46,19 @@ dependencies:
   version: 12.7.3
 - name: provisioning
   repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/provisioning/helm
-  version: 0.8.0
+  version: 0.9.1
 - name: guardian-authorization-api
   repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/guardian-helm/helm
-  version: 0.1.0
+  version: 0.2.0
 - name: guardian-management-api
   repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/guardian-helm/helm
-  version: 0.1.0
+  version: 0.2.0
 - name: guardian-management-ui
   repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/guardian-helm/helm
-  version: 0.1.0
+  version: 0.2.0
 - name: open-policy-agent
   repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/guardian-helm/helm
-  version: 0.1.0
+  version: 0.2.0
 - name: stack-data-ums
   repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/stack-data/helm
   version: 0.43.2
@@ -68,5 +68,5 @@ dependencies:
 - name: common
   repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/common-helm/helm
   version: 0.6.0
-digest: sha256:bead577892931f8935ddf05fc925f0fb5cb73d029be9d2eff5b7991b30230c07
-generated: "2024-01-24T19:07:58.707426+01:00"
+digest: sha256:cf606e0eb19e01e3aff74570af018a6ad90e7cc713c1beff54fd77278c12318d
+generated: "2024-01-30T07:30:22.417889+01:00"
