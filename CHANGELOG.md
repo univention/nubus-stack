@@ -1,5 +1,30 @@
 # Changelog
 
+## [0.3.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.2.0...v0.3.0) (2024-01-30)
+
+
+### Features
+
+* Add "ldapSearchUser" for the keycloak integration ([667c1b8](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/667c1b8a7fe61ad7241a64b4f595c44f86aada5a))
+* Add guardian related charts into the list of dependencies ([bf49bde](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/bf49bde444325167337d9e73b19e99c59cd938d8))
+* Add keycloak-bootstrap and extensions as dependencies ([fb628fb](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/fb628fbf94cf28805c9145ef1e64eb1d72d2e5ac))
+* Add SAML related settings for stack-data-ums ([2ff3677](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/2ff36774d041afc5e9aec5690f4e1299401f1f2f))
+* Add selfservice-listener ([16ac8de](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/16ac8de6593fbf757bb5419a1897de20b06c6071))
+* Add theming related configuration regarding Keycloak ([61bf6b3](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/61bf6b3afe9e476758c30e025bf73eebc6af7222))
+* Add univention keycloak into the dependencies ([3a36626](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/3a36626e45862e322f0f4bae888b7a01196e1f5c))
+* Adjust oauth related settings to realm "opendesk" ([9d79b97](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/9d79b978e2fb56291329ea3c8b63e6d2b1a31e3b))
+* Domain and realm related tweaks for the keycloak integration ([8e0119a](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/8e0119aedbe4c3b71d482c0c3b5a6d29f3c98c9b))
+* Expose the Keycloak admin interface via Ingress of keycloak-extensions ([7f227ff](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/7f227fff48d5364e63ffb76be9fa714e3f81628d))
+* First iteration on Guardian related configuration ([616bb3c](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/616bb3c99af2e1ba793659c8f7284d086190a81d))
+* Update dependencies to latest versions ([de65e6e](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/de65e6eed1a696735abc1b289fc401039796a4d6))
+
+
+### Bug Fixes
+
+* Configure "natsHost" for the provisioning listener ([c4bf7c5](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/c4bf7c5a88e804b17d030abd052644a839d8e9a1))
+* Correct typo in parameter "keycloak-bootstrap.config.ums.ldap.baseDN" ([3d36a7a](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/3d36a7a62fec57adf8ed79e1fa921c8feed34158))
+* Ensure a more recent image is used in "keycloak-bootstrap" ([7e5fb47](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/7e5fb479aad29f1be1db4dcff51dcb8887aa688c))
+
 ## [0.2.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.1.0...v0.2.0) (2024-01-23)
 
 
