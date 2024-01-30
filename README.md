@@ -37,6 +37,13 @@ take a look into the README file of the chart in `./helm/ums/README.md`.
 
 ## Development setup
 
+### Known limitations
+
+- The values for a test deployment are currently in the file
+  `linter_values.yaml`.
+- `keycloak-bootstrap` is currently disabled in `linter_values.yaml`. Use `--set
+  keycloak-bootstrap.enabled=true` when you want to run it during development.
+
 
 ### Preparation - Load dependencies
 
