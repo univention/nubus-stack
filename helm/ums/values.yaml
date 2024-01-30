@@ -7,6 +7,72 @@ tags:
   # development progress for evaluation purposes.
   pre-release: false
 
+<<<<<<< HEAD
+=======
+provisioning:
+  resources:
+    dispatcher:
+      limits:
+        memory: "1Gi"
+      requests:
+        cpu: "10m"
+        memory: "32Mi"
+    prefill:
+      limits:
+        memory: "1Gi"
+      requests:
+        cpu: "10m"
+        memory: "32Mi"
+    api:
+      limits:
+        memory: "1Gi"
+      requests:
+        cpu: "10m"
+        memory: "32Mi"
+  nats:
+    resources:
+      limits:
+        memory: "1Gi"
+      requests:
+        cpu: "100m"
+        memory: "64Mi"
+    reloader:
+      resources:
+        limits:
+          memory: "256Mi"
+        requests:
+          cpu: "100m"
+          memory: "64Mi"
+    natsBox:
+      resources:
+        limits:
+          memory: "256Mi"
+        requests:
+          cpu: "100m"
+          memory: "64Mi"
+
+ldap-server:
+  limits:
+  memory: "1Gi"
+  requests:
+    cpu: "100m"
+    memory: "512Mi"
+
+store-dav:
+  limits:
+  memory: "1Gi"
+  requests:
+    cpu: "100m"
+    memory: "512Mi"
+
+udm-rest-api:
+  limits:
+  memory: "1Gi"
+  requests:
+    cpu: "100m"
+    memory: "512Mi"
+
+>>>>>>> 15175d5 (feat: use BSI compliant charts)
 minio:
   persistence:
     enabled: true

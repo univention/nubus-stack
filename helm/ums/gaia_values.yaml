@@ -1,7 +1,6 @@
 # SPDX-License-Identifier: AGPL-3.0-only
 # SPDX-FileCopyrightText: 2024 Univention GmbH
 ---
-
 # This file currently contains the set of required values to make a local
 # deployment into an evaluation cluster possible. It assumes that the ingress
 # controller "ingress-nginx" is in use.
@@ -9,35 +8,13 @@
 # Long term this file shall be reduced again to the minimal set of required
 # values so that "helm lint" can be successfully executed.
 
-# Current Requirements
-# ====================
-#
-# - The domain "*.local-cluster.test" has to resolve to the cluster's IP
-#   address. On a local dev cluster this could be "127.0.0.1".
-
 global:
   configMapUcrDefaults: "ums-stack-data-ums-ucr"
   configMapUcr: "ums-stack-data-swp-ucr"
-  configMapUcrForced: "ums-ucr-overrides"
+  configMapUcrForced: null
+  # this also affects keycloak, which gets images from docker.software-univention.de
+  # imageRegistry: "external-registry.souvap-univention.de"
 
-ums:
-  # TODO: Decide about the right home for this. We have a duplication in our
-  # development environment. We should most likely have a utility chart or
-  # extension to an existing one to make it easy to provide UCR values which
-  # override the defaults.
-  ucrForcedValues: |-
-    directory/manager/rest/ldap-connection/user-read/start-tls: 0
-    directory/manager/rest/show-tracebacks: true
-    portal/auth-mode: ucs
-    umc/http/show_tracebacks: true
-    password/quality/length/min: 8
-    password/quality/required/chars:
-    password/quality/forbidden/chars:
-    password/quality/credit/digits: 0
-    password/quality/credit/upper: 0
-    password/quality/credit/other: 0
-    password/quality/credit/lower: 0
-    password/quality/mspolicy: false
 
 guardian-authorization-api:
   guardianAuthorizationApi:
@@ -48,7 +25,7 @@ guardian-authorization-api:
     udmDataAdapterUsername: "cn=admin"
     udmDataAdapterPassword: "password"
   ingress:
-    host: "portal.local-cluster.test"
+    enabled: false
 
 guardian-management-api:
   guardianManagementApi:
@@ -58,7 +35,7 @@ guardian-management-api:
     oauthAdapterM2mSecret: "password"
     oauthAdapterWellKnownUrl: "http://ums-keycloak:8080/realms/opendesk/.well-known/openid-configuration"
   ingress:
-    host: "portal.local-cluster.test"
+    enabled: false
 
 guardian-management-ui:
   guardianManagementUi:
@@ -67,24 +44,49 @@ guardian-management-ui:
     viteKeycloakAuthenticationAdapterSsoUri: "http://localhost:8000"
     viteKeycloakAuthenticationAdapterRealm: "opendesk"
   ingress:
-    host: "portal.local-cluster.test"
+    enabled: false
 
 open-policy-agent:
   openPolicyAgent:
     opaGuardianManagementUrl: "http://ums-guardian-management-api:8000/guardian/management"
   ingress:
-    host: "portal.local-cluster.test"
+    enabled: false
 
 ldap-notifier:
+  image:
+    registry: "external-registry.souvap-univention.de"
+    repository: "sovereign-workplace/souvap/tooling/images/univention/ldap-notifier"
+    tag: "0.10.0-pre-feat-bsi-compliance@sha256:d078dd4fa92496a86b27c27116fb025e32f44bfad175a19f1e15a74fbc58b43a"
   volumes:
     claims:
       shared-data: "shared-data-ums-ldap-server-0"
       shared-run: "shared-run-ums-ldap-server-0"
 
 ldap-server:
+  enabled: true
+  extraSecrets:
+    - name: openldap-credentials
+      stringData:
+        adminPassword: "password"
   ldapServer:
-    ldapSecret: "password"
-    ldapBaseDn: "dc=univention-organization,dc=intranet"
+    image:
+      registry: "external-registry.souvap-univention.de"
+      repository: "sovereign-workplace/souvap/tooling/images/univention/ldap-server"
+      tag: "0.10.0-pre-feat-bsi-compliance@sha256:87439fb1f02cbd199556434fda5d598489e0374fb93a871ed9d81a7c3212c81c"
+    config:
+      domainName: "univention-organization.intranet"
+      ldapBaseDn: "dc=univention-organization,dc=intranet"
+      samlMetadataUrl: "http://ums-keycloak:8080/realms/opendesk/protocol/saml/descriptor"
+      samlMetadataUrlInternal: "http://ums-keycloak:8080/realms/opendesk/protocol/saml/descriptor"
+      samlServiceProviders: "http://ums-keycloak:8000/univention/saml/metadata,http://ums-keycloak:8000/auth/realms/ucs"
+    credentialSecret:
+      name: openldap-credentials
+      key: adminPassword
+  dhInitContainer:
+    image:
+      registry: "docker.io"
+      repository: "alpine/openssl"
+      tag: "3.1.3@sha256:caa8dde43c9b0a98a3703c74dfb0bb3e8fb6a75a4a873a0c76fbb7e015d00bc2"
 
   extraVolumes:
     - name: "opendesk-schemas"
@@ -109,59 +111,53 @@ ldap-server:
       subPath: "opendeskProjectmanagement.schema"
 
 notifications-api:
+  image:
+    registry: "external-registry.souvap-univention.de"
+    repository: "sovereign-workplace/souvap/tooling/images/univention/notifications-api"
+    tag: "0.19.1@sha256:871968236cb1601dcbb8827dd415a78a4edd8b092c64f69365c4c8797b41b5e6"
   ingress:
-    host: "portal.local-cluster.test"
+    host: localhost
+    enabled: false
     tls:
       enabled: false
   postgresql:
     nameOverride: "notifications-api-postgresql"
-    auth:
-      existingSecret: "ums-notifications-api-postgresql-credentials"
-    image:
-      # TODO: Workaround to allow avoid failing "helm update". Without setting
-      # the image back to "15.*" Helm does during install select version "16.*"
-      # and during update "15.*".
-      tag: "15.3.0-debian-11-r77"
-  extraSecrets:
-    - name: "ums-notifications-api-postgresql-credentials"
-      stringData:
-        postgres-password: "password"
-        password: "password"
+    existingSecret: "ums-notifications-api-postgresql-credentials"
 
 portal-frontend:
-  extraIngresses:
-    redirects:
-      enabled: true
-    workaround:
-      enabled: true
-    # See "extraVolumeMounts" below
-    custom-favicon:
-      enabled: true
-      annotations:
-        nginx.org/mergeable-ingress-type: "minion"
-      paths:
-        - pathType: Exact
-          path: /favicon.ico
-      tls: {}
-    # See "extraVolumeMounts" below
-    custom-branding:
-      enabled: true
-      annotations:
-        nginx.ingress.kubernetes.io/configuration-snippet: |
-          rewrite ^/univention/portal(/.*)$ $1 break;
-        nginx.org/location-snippets: |
-          rewrite ^/univention/portal(/.*)$ $1 break;
-        nginx.org/mergeable-ingress-type: "minion"
-      paths:
-        # This relies on the correct implementation of the matching for paths of
-        # type "Prefix" since "/univention/portal/icons/entries/" is owned by
-        # store-dav.
-        # See: https://kubernetes.io/docs/concepts/services-networking/ingress/#multiple-matches
-        - pathType: Prefix
-          path: /univention/portal/icons/
-        - pathType: Prefix
-          path: /univention/portal/custom/
-      tls: {}
+  image:
+    registry: "external-registry.souvap-univention.de"
+    repository: "sovereign-workplace/souvap/tooling/images/univention/portal-frontend"
+    tag: "0.19.1@sha256:4b284d5ed2d9716c141558e50e14e8b6634aae5d6ad6131678bec56b17435d33"
+  # extraIngresses: []
+  #   # See "extraVolumeMounts" below
+  #   custom-favicon:
+  #     enabled: true
+  #     annotations:
+  #       nginx.org/mergeable-ingress-type: "minion"
+  #     paths:
+  #       - pathType: Exact
+  #         path: /favicon.ico
+  #     tls: {}
+  #   # See "extraVolumeMounts" below
+  #   custom-branding:
+  #     enabled: true
+  #     annotations:
+  #       nginx.ingress.kubernetes.io/configuration-snippet: |
+  #         rewrite ^/univention/portal(/.*)$ $1 break;
+  #       nginx.org/location-snippets: |
+  #         rewrite ^/univention/portal(/.*)$ $1 break;
+  #       nginx.org/mergeable-ingress-type: "minion"
+  #     paths:
+  #       # This relies on the correct implementation of the matching for paths of
+  #       # type "Prefix" since "/univention/portal/icons/entries/" is owned by
+  #       # store-dav.
+  #       # See: https://kubernetes.io/docs/concepts/services-networking/ingress/#multiple-matches
+  #       - pathType: Prefix
+  #         path: /univention/portal/icons/
+  #       - pathType: Prefix
+  #         path: /univention/portal/custom/
+  #     tls: {}
   extraVolumes:
     - name: "opendesk-branding"
       configMap:
@@ -186,11 +182,20 @@ portal-frontend:
       mountPath: "/var/www/html/custom/portal_background_image.svg"
       subPath: "portal_background_image.svg"
   ingress:
-    host: "portal.local-cluster.test"
+    host: localhost
+    enabled: false
     tls:
       enabled: false
 
 portal-listener:
+  image:
+    registry: "external-registry.souvap-univention.de"
+    repository: "sovereign-workplace/souvap/tooling/images/univention/portal-listener"
+    tag: "0.19.1@sha256:dc8132583dd61b8197efc8416a877294c7297f74cb277a8b490ed4f6c2403cd7"
+    waitForDependency:
+      registry: "external-registry.souvap-univention.de"
+      repository: "sovereign-workplace/souvap/tooling/images/univention/wait-for-dependency"
+      tag: "0.19.1@sha256:a886117377bed88e4c4af4d61379ab0612dac64197c435a74a921f19280e5247"
   portalListener:
     assetsRoot: "http://portal-listener:password@ums-store-dav/portal-assets/"
     adminGroup: "cn=Domain Admins,cn=groups,dc=univention-organization,dc=intranet"
@@ -210,65 +215,157 @@ portal-listener:
     objectStorageEndpoint: "http://ums-minio:9000"
     objectStorageBucket: "ums"
     objectStorageAccessKeyId: "ums_user"
-    objectStorageSecretAccessKey: "univention"
+    objectStorageSecretAccessKey: "password"
+
+  store-dav:
+    bundled: false
 
 portal-server:
+  image:
+    registry: "external-registry.souvap-univention.de"
+    repository: "sovereign-workplace/souvap/tooling/images/univention/portal-server"
+    tag: "0.19.1@sha256:e6a13f92b3c2076e3a2fb9c9f8fac4894eec5eacbd2a8a83ece0346b6dabe54c"
+    # tag: "0.20.0-pre-feat-bsi-compliance"
+    # imagePullPolicy: "Always"
   portalServer:
     adminGroup: "cn=Domain Admins,cn=groups,dc=univention-organization,dc=intranet"
-    ucsInternalPath: "portal-data"
+    ucsInternalUrl: "http://portal-server:password@ums-store-dav/portal-data"
     umcGetUrl: "http://ums-umc-server/get"
     umcSessionUrl: "http://ums-umc-server/get/session-info"
+    ucsInternalPath: "portal-data"
     objectStorageEndpoint: "http://ums-minio:9000"
     objectStorageBucket: "ums"
-    objectStorageAccessKeyId: "ums_user"
-    objectStorageSecretAccessKey: "univention"
+    centralNavigation:
+      enabled: true
+    credentialSecret:
+      name: "ums-portal-server-minio-credentials"
+      # accessKeyId: "accessKeyId"
+      accessKeyId: ""
+      # secretAccessKey: "secretAccessKey"
+      secretAccessKey: ""
   ingress:
-    host: "portal.local-cluster.test"
+    host: localhost
+    enabled: false
     tls:
       enabled: false
 
 provisioning:
-  # TODO: Workaround until MR is merged
-  # See https://git.knut.univention.de/univention/customers/dataport/upx/provisioning/-/merge_requests/117
-  global:
-    imageRegistry: "gitregistry.knut.univention.de"
-
-  events-and-consumer-api:
-    nameOverride: "provisioning-events-and-consumer-api"
-    ingress:
-      host: "portal.local-cluster.test"
-      tls:
-        enabled: false
-    config:
-      logLevel: "DEBUG"
-      rootPath: "/univention/provisioning-api"
-      natsHost: "ums-provisioning-nats"
-      natsPort: 4222
-    # TODO: Usage of "common.names.dependency.fullname" expects this
-    nats:
-      nameOverride: "provisioning-nats"
-
+  enabled: true
+  api:
+    image:
+      registry: "external-registry.souvap-univention.de"
+      imagePullPolicy: "IfNotPresent"
+      repository: "sovereign-workplace/souvap/tooling/images/univention/events-and-consumer-api"
+      tag: "0.13.0@sha256:402dc64830e51b6e75f3c1b6f1fac0bed507c23027b49a73036f9384e8690743"
+    credentialSecretName: "ums-provisioning-api-credentials"
   dispatcher:
-    nameOverride: "provisioning-dispatcher"
-    config:
-      natsHost: "ums-provisioning-nats"
-      natsPort: 4222
-    # TODO: Usage of "common.names.dependency.fullname" expects this
-    nats:
-      nameOverride: "provisioning-nats"
-    # TODO: The probes are not working
-    probes:
-      liveness:
-        enabled: false
-      readiness:
-        enabled: false
-
+    image:
+      registry: "external-registry.souvap-univention.de"
+      imagePullPolicy: "IfNotPresent"
+      repository: "sovereign-workplace/souvap/tooling/images/univention/dispatcher"
+      tag: "0.13.0@sha256:29fa427bb54f416d26e0faaf8dd55c7f9fb2bfc84b6e7f73341b8145564ab0ed"
+    credentialSecretName: "ums-provisioning-dispatcher-credentials"
+  prefill:
+    image:
+      registry: "external-registry.souvap-univention.de"
+      imagePullPolicy: "IfNotPresent"
+      repository: "sovereign-workplace/souvap/tooling/images/univention/prefill"
+      tag: "0.13.0@sha256:ee2bf4f8146d39720a516a022d40ede295fc6f38e0e3457e55df48a04add9b7b"
+    credentialSecretName: "ums-provisioning-prefill-credentials"
   nats:
-    nameOverride: "provisioning-nats"
+    config:
+      authorization:
+        enabled: false
+        users:
+          - user: "admin"
+            password: "$NATS_PASSWORD"
+            permissions:
+              publish: ">"
+              subscribe: ">"
+          - user: "$NATS_API_USER"
+            password: "$NATS_API_PASSWORD"
+            permissions:
+              publish: ">"
+              subscribe: ">"
+          - user: "$NATS_DISPATCHER_USER"
+            password: "$NATS_DISPATCHER_PASSWORD"
+            permissions:
+              publish: ">"
+              subscribe: ">"
+          - user: "$NATS_PREFILL_USER"
+            password: "$NATS_PREFILL_PASSWORD"
+            permissions:
+              publish: ">"
+              subscribe: ">"
+    extraEnvVars:
+      - name: NATS_USER
+        value: "admin"
+      - name: NATS_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: ums-provisioning-nats-credentials
+            key: admin_password
+      - name: NATS_API_USER
+        valueFrom:
+          secretKeyRef:
+            name: ums-provisioning-api-credentials
+            key: NATS_USER
+      - name: NATS_API_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: ums-provisioning-api-credentials
+            key: NATS_PASSWORD
+      - name: NATS_DISPATCHER_USER
+        valueFrom:
+          secretKeyRef:
+            name: ums-provisioning-dispatcher-credentials
+            key: NATS_USER
+      - name: NATS_DISPATCHER_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: ums-provisioning-dispatcher-credentials
+            key: NATS_PASSWORD
+      - name: NATS_PREFILL_USER
+        valueFrom:
+          secretKeyRef:
+            name: ums-provisioning-prefill-credentials
+            key: NATS_USER
+      - name: NATS_PREFILL_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: ums-provisioning-prefill-credentials
+            key: NATS_PASSWORD
+
+  ingress:
+    host: "localhost"
+    tls:
+      enabled: false
+  extraSecrets:
+    - name: ums-provisioning-nats-credentials
+      stringData:
+        admin_password: "nimda"
+    - name: ums-provisioning-api-credentials
+      stringData:
+        NATS_USER: "api"
+        NATS_PASSWORD: "password"
+    - name: ums-provisioning-dispatcher-credentials
+      stringData:
+        UDM_USERNAME: "cn=admin"
+        UDM_PASSWORD: "password"
+        NATS_USER: "dispatcher"
+        NATS_PASSWORD: "password"
+    - name: ums-provisioning-prefill-credentials
+      stringData:
+        NATS_USER: "prefill"
+        NATS_PASSWORD: "password"
 
 udm-listener:
-  enabled: true
   nameOverride: "provisioning-listener"
+  image:
+    registry: "external-registry.souvap-univention.de"
+    imagePullPolicy: "IfNotPresent"
+    repository: "sovereign-workplace/souvap/tooling/images/univention/udm-listener"
+    tag: "0.9.5@sha256:4550913a415e0ab17701a4475f87461836b74546cb9a89d452ac607e5b5dfdfb"
   config:
     debugLevel: "4"
     ldapBaseDn: "dc=univention-organization,dc=intranet"
@@ -281,37 +378,58 @@ udm-listener:
     natsHost: "ums-provisioning-nats"
 
 stack-data-ums:
+  image:
+    registry: "external-registry.souvap-univention.de"
+    repository: "sovereign-workplace/souvap/tooling/images/univention/data-loader"
+    tag: "0.43.2-post-main@sha256:c061e7dcd018f5f83ea206e7aaff1e46f49cbe6c0a919ee1f09755cb116938c9"
+    imagePullPolicy: "IfNotPresent"
   stackDataUms:
     udmApiPassword: "password"
     udmApiUrl: "http://ums-udm-rest-api/udm/"
     loadDevData: true
   stackDataContext:
-    initialPasswordAdministrator: "univention"
-    initialPasswordSysIdpUser: "univention"
+    initialPasswordAdministrator: "univention!1"
+    initialPasswordSysIdpUser: "univention!1"
     ldapHost: "ums-ldap-server"
     idpSamlMetadataUrl: "http://ums-keycloak:8080/realms/opendesk/protocol/saml/descriptor"
     idpSamlMetadataUrlInternal: null
-    idpFqdn: "id.local-cluster.test"
-    umcSamlSpFqdn: "portal.local-cluster.test"
+    idpFqdn: "id.uv-aniemann.gaia.open-desk.cloud"
+    umcSamlSpFqdn: "portal.uv-aniemann.gaia.open-desk.cloud"
     umcSamlSchemes: "https"
-    umcMemcachedHostname: "ums-umc-server-memcached"
-    umcPostgresqlHostname: "ums-umc-server-postgresql"
-    ldapSamlSpUrls: "https://portal.local-cluster.test/univention/saml/metadata"
+    ldapSamlSpUrls: "https://ums-portal-server/univention/saml/metadata"
 
 stack-data-swp:
+  image:
+    registry: "external-registry.souvap-univention.de"
+    repository: "sovereign-workplace/souvap/tooling/images/univention/data-loader"
+    tag: "0.43.2-post-main@sha256:c061e7dcd018f5f83ea206e7aaff1e46f49cbe6c0a919ee1f09755cb116938c9"
+    imagePullPolicy: "IfNotPresent"
   stackDataSwp:
     udmApiPassword: "password"
     udmApiUrl: "http://ums-udm-rest-api/udm/"
     loadDevData: true
   stackDataContext:
-    userPassword: "univention"
-    adminPassword: "univention"
+    userPassword: "univention!1"
+    adminPassword: "univention!1"
     ldapSearchUsers:
       - username: "ldapsearch_keycloak"
-        password: "univention"
+        password: "univention!1"
       # TODO: We need typically more entries, compare opendesk setup
 
 selfservice-listener:
+  image:
+    selfserviceInvitation:
+      registry: "external-registry.souvap-univention.de"
+      repository: "sovereign-workplace/souvap/tooling/images/univention/selfservice-invitation"
+      tag: "0.3.2-post-main@sha256:ac62c193692af76b122da9d193b5c0106b92ff2e5eb55309b7b4e2c4a65d617f"
+    waitForDependency:
+      registry: "external-registry.souvap-univention.de"
+      repository: "sovereign-workplace/souvap/tooling/images/univention/wait-for-dependency"
+      tag: "0.19.1@sha256:1b1d654747774833cdd7bfee36773ed86fb9d5c256c3e5e68e1f8ff5239b4e0b"
+    selfserviceListener:
+      registry: "external-registry.souvap-univention.de"
+      repository: "sovereign-workplace/souvap/tooling/images/univention/selfservice-listener"
+      tag: "0.3.2-post-main@sha256:b91393185b1681111ebe55fe0a8ad74a1423287c69fa53e54a669c82af772bdc"
   selfserviceListener:
     ldapBaseDn: "dc=univention-organization,dc=intranet"
     ldapHost: "ums-ldap-server"
@@ -323,42 +441,64 @@ selfservice-listener:
     tlsMode: "off"
     umcServerUrl: "http://ums-umc-server"
     umcAdminUser: "default.admin"
-    umcAdminPassword: "univention"
+    umcAdminPassword: "univention!1"
 
 store-dav:
+  enabled: false
   storeDav:
+    image:
+      registry: "external-registry.souvap-univention.de"
+      repository: "sovereign-workplace/souvap/tooling/images/univention/store-dav"
+      tag: "0.10.0-post-feat-bsi-compliance@sha256:dfeba6f7d3a81b462a9e6db53dc3c0bd01d27fbd346d976784ee4f483eaa064b"
+    environment: "staging"
     auth:
       basicAuth:
         portal-server: "password"
         portal-listener: "password"
+  configHtpasswd:
+    image:
+      registry: "external-registry.souvap-univention.de"
+      repository: "sovereign-workplace/souvap/tooling/images/univention/config-htpasswd"
+      imagePullPolicy: "IfNotPresent"
+      tag: "0.10.0-post-feat-bsi-compliance@sha256:90d6ef4756f17e97c33104e920869a44c04acea831c7f3720fa3f58515995599"
   ingress:
-    host: "portal.local-cluster.test"
+    host: "portal.uv-aniemann.gaia.open-desk.cloud"
+    ingressClassName: "nginx"
     tls:
-      enabled: false
+      enabled: true
+      secretName: "portal.uv-aniemann.gaia.open-desk.cloud"
+    annotations:
+      nginx.ingress.kubernetes.io/configuration-snippet: |
+        rewrite ^/univention/portal(/icons/(?:entries|logos)/.*)$ /portal-assets$1 break;
+      nginx.org/location-snippets: |
+        rewrite ^/univention/portal(/icons/(?:entries|logos)/.*)$ /portal-assets$1 break;
+      nginx.org/mergeable-ingress-type: minion
 
 udm-rest-api:
+  enabled: true
   udmRestApi:
+    secretRef: udm-rest-api-credentials
     ldap:
       uri: "ldap://ums-ldap-server:389"
       baseDN: "dc=univention-organization,dc=intranet"
-    secretRef: udm-rest-api-credentials
-    # TODO: Pending correction
-    # See https://git.knut.univention.de/univention/customers/dataport/upx/container-udm-rest/-/merge_requests/100
+    tls:
+      enabled: false
+      secretName: "portal.uv-aniemann.gaia.open-desk.cloud"
+    ldapSecretFile: /etc/ldap.secret
+    machineSecretFile: /etc/machine.secret
     image:
-      registry: "gitregistry.knut.univention.de"
-      tag: "latest"
-
+      registry: "external-registry.souvap-univention.de"
+      repository: "sovereign-workplace/souvap/tooling/images/univention/udm-rest-api"
+      tag: "0.7.2-pre-feat-bsi-compliance@sha256:b3635b3ae49303658c8a8662413aa300329c1ce3ac773ae3c4bac62019a9680f"
   extraSecrets:
     - name: udm-rest-api-credentials
       stringData:
         ldap.secret: "password"
         machine.secret: "password"
-
   extraVolumes:
     - name: "attribute-to-group-mapper-hook"
       configMap:
         name: "ums-stack-data-swp-attribute-to-group-mapper-hook"
-
   extraVolumeMounts:
     - name: "attribute-to-group-mapper-hook"
       mountPath: "/usr/lib/python3/dist-packages/univention/admin/hooks.d/AttributeToGroupMapper.py"
@@ -366,13 +506,22 @@ udm-rest-api:
     - name: "attribute-to-group-mapper-hook"
       mountPath: "/usr/share/attribute-to-group-mapper/flag_to_group_mapping.json"
       subPath: "flag_to_group_mapping.json"
-
   ingress:
-    host: "portal.local-cluster.test"
-    tls:
-      enabled: false
+    host: "portal.uv-aniemann.gaia.open-desk.cloud"
+    ingressClassName: "nginx"
+    annotations:
+      nginx.ingress.kubernetes.io/configuration-snippet: |
+        rewrite ^/univention(/udm/.*)$ $1 break;
+      nginx.org/location-snippets: |
+        rewrite ^/univention(/udm/.*)$ $1 break;
+      nginx.org/mergeable-ingress-type: minion
 
 umc-gateway:
+  image:
+    registry: "external-registry.souvap-univention.de"
+    repository: "sovereign-workplace/souvap/tooling/images/univention/umc-gateway"
+    tag: "0.10.1-post-main@sha256:dcadc9867eadba2c815adedb70d371f246aab29b67544264fb9cbb271d9ccac9"
+    imagePullPolicy: "IfNotPresent"
   umcGateway:
     umcHtmlTitle: "openDesk - Admin"
   extraVolumes:
@@ -394,11 +543,17 @@ umc-gateway:
         /umc/icons/16x16/udm-portals-announcement.png"
       subPath: "udm-portals-announcement.png"
   ingress:
-    host: "portal.local-cluster.test"
+    host: localhost
+    enabled: false
     tls:
       enabled: false
 
 umc-server:
+  image:
+    registry: "external-registry.souvap-univention.de"
+    repository: "sovereign-workplace/souvap/tooling/images/univention/umc-server"
+    tag: "0.10.1-post-main@sha256:2334a5cd6a3fef16d28c024dd622bb869650263afa27d49d539fb26e11215575"
+    imagePullPolicy: "IfNotPresent"
   umcServer:
     ldapSecret: "password"
     machineSecret: "password"
@@ -434,7 +589,8 @@ umc-server:
       mountPath: "/usr/share/univention-management-console/modules/udm-portals-announcement.xml"
       subPath: "udm-portals-announcement.xml"
   ingress:
-    host: "portal.local-cluster.test"
+    host: localhost
+    enabled: false
     tls:
       enabled: false
   postgresql:
@@ -449,7 +605,7 @@ umc-server:
 
 keycloak:
   global:
-    domain: "local-cluster.test"
+    domain: "uv-aniemann.gaia.open-desk.cloud"
     hosts:
       keycloak: "id"
   config:
@@ -461,20 +617,16 @@ keycloak:
       username: "keycloak"
       database: "keycloak"
       password: "password"
-  resources:
-    limits:
-      # TODO: Workaround, did not find a yet a working way to "unset" the limit
-      memory: "99Gi"
   theme:
-    univentionTheme: "https://portal.local-cluster.test/univention/theme.css"
-    univentionCustomTheme: "https://portal.local-cluster.test/univention/portal/css/custom.css"
-    favIcon: "https://portal.local-cluster.test/favicon.ico"
+    univentionTheme: "https://portal.uv-aniemann.gaia.open-desk.cloud/univention/theme.css"
+    univentionCustomTheme: "https://portal.uv-aniemann.gaia.open-desk.cloud/univention/portal/css/custom.css"
+    favIcon: "https://portal.uv-aniemann.gaia.open-desk.cloud/favicon.ico"
 
 keycloak-bootstrap:
   # TODO: Find easier way to skip this in the call to "helm upgrade"
-  enabled: false
+  enabled: true
   global:
-    domain: "local-cluster.test"
+    domain: "uv-aniemann.gaia.open-desk.cloud"
     hosts:
       keycloak: "id"
   # TODO: The helm chart does not use latest but "1.0.0" instead as default
@@ -493,22 +645,22 @@ keycloak-bootstrap:
         - link_number: 1
           language: "de"
           description: "Passwort vergessen?"
-          href: "http://portal.local-cluster.test/univention/portal/#/selfservice/passwordforgotten"
+          href: "http://portal.uv-aniemann.gaia.open-desk.cloud/univention/portal/#/selfservice/passwordforgotten"
         - link_number: 1
           language: "en"
           description: "Forgot password?"
-          href: "http://portal.local-cluster.test/univention/portal/#/selfservice/passwordforgotten"
+          href: "http://portal.uv-aniemann.gaia.open-desk.cloud/univention/portal/#/selfservice/passwordforgotten"
     ums:
       ldap:
         internalHostname: "ums-ldap-server"
         baseDN: "dc=univention-organization,dc=intranet"
         readUserDN: "uid=ldapsearch_keycloak,cn=users,dc=univention-organization,dc=intranet"
-        readUserPassword: "univention"
+        readUserPassword: "univention!1"
         mappers:
           - ldapAndUserModelAttributeName: "opendeskProjectmanagementAdmin"
           - ldapAndUserModelAttributeName: "oxContextIDNum"
       saml:
-        serviceProviderHostname: "portal.local-cluster.test"
+        serviceProviderHostname: "portal.uv-aniemann.gaia.open-desk.cloud"
     twoFactorAuthentication:
       enabled: true
       group: "2fa-users"
@@ -530,16 +682,30 @@ keycloak-extensions:
         username: "keycloak"
         password: "password"
   handler:
+    image:
+      registry: "external-registry.souvap-univention.de"
+      repository: "sovereign-workplace/souvap/tooling/images/univention/keycloak-handler"
+      tag: "0.2.0@sha256:ed3a391cb32b9bb9408a4b8e9839b6ee89cbab60149732cd51165a871a91c54d"
+      imagePullPolicy: "IfNotPresent"
     nameOverride: "keycloak-extensions-handler"
     appConfig: {}
   postgresql:
     enabled: false
   proxy:
+    image:
+      registry: "external-registry.souvap-univention.de"
+      repository: "sovereign-workplace/souvap/tooling/images/univention/keycloak-proxy"
+      tag: "0.2.0@sha256:8b924ab47771b9aee07384e3d13106406d49b1e7ef7fc46648adb1f0fb401327"
     nameOverride: "keycloak-extensions-proxy"
     ingress:
+      enabled: true
       annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod-dns
         nginx.org/proxy-buffer-size: "8k"
         nginx.ingress.kubernetes.io/proxy-buffer-size: "8k"
+      tls:
+        enabled: true
+        secretName: "id-tls"
       paths:
         # TODO: temporary
         - pathType: "Prefix"
@@ -550,12 +716,8 @@ keycloak-extensions:
           path: "/resources"
         - pathType: "Prefix"
           path: "/fingerprintjs"
-      enabled: true
       ingressClassName: "nginx"
-      host: "id.local-cluster.test"
-      tls:
-        enabled: false
-        secretName: ""
+      host: "id.uv-aniemann.gaia.open-desk.cloud"
 
 keycloak-postgresql:
   auth:
@@ -564,51 +726,18 @@ keycloak-postgresql:
     password: "password"
     postgresPassword: "password"
 
-stack-gateway:
-  enabled: false
-
 tags:
   pre-release: true
 
-minio:
-  enabled: true
-  auth:
-    rootPassword: "univention"
-  defaultBuckets: "ums"
-  provisioning:
-    enabled: true
-    cleanupAfterFinished:
-      enabled: true
-    extraCommands:
-      - mc anonymous set download provisioning/ums/portal-assets
-    buckets:
-      - name: "ums"
-        versioning: false
-        withLock: false
-    policies:
-      - name: "ums-bucket-policy"
-        statements:
-          - resources:
-              - "arn:aws:s3:::ums"
-            effect: "Allow"
-            actions:
-              - "s3:*"
-          - resources:
-              - "arn:aws:s3:::ums/*"
-            effect: "Allow"
-            actions:
-              - "s3:*"
-    users:
-      - username: "ums_user"
-        password: "univention"
-        disabled: false
-        policies:
-          - "ums-bucket-policy"
-        setPolicies: true
 
 stack-gateway:
   enabled: true
   fullnameOverride: "ums-stack-gateway"
+  image:
+    registry: "external-registry.souvap-univention.de"
+    repository: "sovereign-workplace/bitnami/nginx"
+    tag: "1.25.3@sha256:40ce0d6b8f5fc174a4df8c59c8893164c540192ee862cb7253650a30d9dc3b73"
+    pullPolicy: "IfNotPresent"
 
   ingress:
     annotations:
@@ -616,13 +745,13 @@ stack-gateway:
       # headers. This is a requirement from the UDM Rest API.
       nginx.org/proxy-buffer-size: "64k"
       nginx.org/proxy-buffers: "4 128k"
-      nginx.ingress.kubernetes.io/proxy-buffer-size: "64k"
+      cert-manager.io/cluster-issuer: letsencrypt-prod-dns
     enabled: true
     extraTls:
       - hosts:
-          - "portal.local-cluster.test"
+          - "portal.uv-aniemann.gaia.open-desk.cloud"
         secretName: "portal-tls"
-    hostname: "portal.local-cluster.test"
+    hostname: "portal.uv-aniemann.gaia.open-desk.cloud"
     ingressClassName: "nginx"
     tls: false
 
@@ -648,6 +777,8 @@ stack-gateway:
 
   serviceAccount:
     create: true
+
+  fullnameOverride: "ums-stack-gateway"
 
   # The content of the "serverBlock" does resemble the Ingress configuration of
   # the UMS components. The "location" entries do intentionally reflect precisely
@@ -895,3 +1026,63 @@ stack-gateway:
       }
 
     }
+
+minio:
+  mode: "standalone"
+  # mode: "distributed"
+  # statefulset:
+  #   replicaCount: 1
+  #   drivesPerNode: 4
+  auth:
+    existingSecret: "ums-minio-credentials"
+  ingress:
+    enabled: true
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-prod-dns
+    tls: true
+    ingressClassName: "nginx"
+    hostname: "minio.uv-aniemann.gaia.open-desk.cloud"
+
+  provisioning:
+    usersExistingSecrets:
+      - ums-minio-users
+
+extraSecrets:
+  - name: ums-minio-credentials
+    stringData:
+      root-user: "admin"
+      root-password: "password"
+  - name: ums-minio-users
+    stringData:
+      ums_user: |
+        username=ums_user
+        password=password
+        disabled=false
+        policies=ums-bucket-policy
+        setPolicies=false
+      # openproject_user: |
+      #   username=openproject_user
+      #   password=password
+      #   disabled=false
+      #   policies=openproject-bucket-policy
+      #   setPolicies=false
+      # openxchange_user: |
+      #   username=openxchange_user
+      #   password=password
+      #   disabled=false
+      #   policies=openxchange-bucket-policy
+      #   setPolicies=false
+      # nextcloud_user": |
+      #   username=nextcloud_user
+      #   password=password
+      #   disabled=false
+      #   policies=nextcloud_-bucket-policy
+      #   setPolicies=false
+  - name: ums-portal-server-minio-credentials
+    stringData:
+      accessKeyId: "ums_user"
+      secretAccessKey: "password"
+  - name: ums-notifications-api-postgresql-credentials
+    stringData:
+      postgres-password: "password"
+      password: "password"

@@ -260,6 +260,42 @@ false
 </td>
 			<td>Components which are not yet fully integrated or not yet feature complete are flagged with this tag. The intention is to make it easy to follow the development progress for evaluation purposes.</td>
 		</tr>
+		<tr>
+			<td>udm-rest-api.limits</td>
+			<td>string</td>
+			<td><pre lang="json">
+null
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>udm-rest-api.memory</td>
+			<td>string</td>
+			<td><pre lang="json">
+"1Gi"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>udm-rest-api.requests.cpu</td>
+			<td>string</td>
+			<td><pre lang="json">
+"100m"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>udm-rest-api.requests.memory</td>
+			<td>string</td>
+			<td><pre lang="json">
+"512Mi"
+</pre>
+</td>
+			<td></td>
+		</tr>
 	</tbody>
 </table>
 
