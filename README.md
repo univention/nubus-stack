@@ -86,6 +86,9 @@ sub-commands `install`, `upgrade` and `uninstall`:
 ```sh
 # Often the use of "upgrade" with the argument "--install" is useful
 helm upgrade --install --values your-values-file.yaml ums ./helm/ums
+
+# If you want to run the bootstrap job of Keycloak (required on initial deployment)
+helm upgrade --install --values linter_values.yaml --set keycloak-bootstrap.enabled=true ums ./
 ```
 
 
