@@ -36,10 +36,10 @@ helm uninstall ums
 | Repository | Name | Version |
 |------------|------|---------|
 | oci://gitregistry.knut.univention.de/univention/components/keycloak-extensions/helm | keycloak-extensions | 0.* |
-| oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm | notifications-api | 0.* |
-| oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm | portal-frontend | 0.* |
-| oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm | portal-listener | 0.* |
-| oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm | portal-server | 0.* |
+| oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm | notifications-api | 0.20.0 |
+| oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm | portal-frontend | 0.20.0 |
+| oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm | portal-listener | 0.20.0 |
+| oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm | portal-server | 0.20.0 |
 | oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-ldap/helm | ldap-notifier | 0.* |
 | oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-ldap/helm | ldap-server | 0.* |
 | oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-udm-rest/helm | udm-rest-api | 0.* |
