@@ -58,13 +58,6 @@ ldap-server:
     cpu: "100m"
     memory: "512Mi"
 
-store-dav:
-  limits:
-  memory: "1Gi"
-  requests:
-    cpu: "100m"
-    memory: "512Mi"
-
 udm-rest-api:
   limits:
   memory: "1Gi"

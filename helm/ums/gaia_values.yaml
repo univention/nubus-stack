@@ -443,36 +443,36 @@ selfservice-listener:
     umcAdminUser: "default.admin"
     umcAdminPassword: "univention!1"
 
-store-dav:
-  enabled: false
-  storeDav:
-    image:
-      registry: "external-registry.souvap-univention.de"
-      repository: "sovereign-workplace/souvap/tooling/images/univention/store-dav"
-      tag: "0.10.0-post-feat-bsi-compliance@sha256:dfeba6f7d3a81b462a9e6db53dc3c0bd01d27fbd346d976784ee4f483eaa064b"
-    environment: "staging"
-    auth:
-      basicAuth:
-        portal-server: "password"
-        portal-listener: "password"
-  configHtpasswd:
-    image:
-      registry: "external-registry.souvap-univention.de"
-      repository: "sovereign-workplace/souvap/tooling/images/univention/config-htpasswd"
-      imagePullPolicy: "IfNotPresent"
-      tag: "0.10.0-post-feat-bsi-compliance@sha256:90d6ef4756f17e97c33104e920869a44c04acea831c7f3720fa3f58515995599"
-  ingress:
-    host: "portal.uv-aniemann.gaia.open-desk.cloud"
-    ingressClassName: "nginx"
-    tls:
-      enabled: true
-      secretName: "portal.uv-aniemann.gaia.open-desk.cloud"
-    annotations:
-      nginx.ingress.kubernetes.io/configuration-snippet: |
-        rewrite ^/univention/portal(/icons/(?:entries|logos)/.*)$ /portal-assets$1 break;
-      nginx.org/location-snippets: |
-        rewrite ^/univention/portal(/icons/(?:entries|logos)/.*)$ /portal-assets$1 break;
-      nginx.org/mergeable-ingress-type: minion
+# store-dav:
+#   enabled: false
+#   storeDav:
+#     image:
+#       registry: "external-registry.souvap-univention.de"
+#       repository: "sovereign-workplace/souvap/tooling/images/univention/store-dav"
+#       tag: "0.10.0-post-feat-bsi-compliance@sha256:dfeba6f7d3a81b462a9e6db53dc3c0bd01d27fbd346d976784ee4f483eaa064b"
+#     environment: "staging"
+#     auth:
+#       basicAuth:
+#         portal-server: "password"
+#         portal-listener: "password"
+#   configHtpasswd:
+#     image:
+#       registry: "external-registry.souvap-univention.de"
+#       repository: "sovereign-workplace/souvap/tooling/images/univention/config-htpasswd"
+#       imagePullPolicy: "IfNotPresent"
+#       tag: "0.10.0-post-feat-bsi-compliance@sha256:90d6ef4756f17e97c33104e920869a44c04acea831c7f3720fa3f58515995599"
+#   ingress:
+#     host: "portal.uv-aniemann.gaia.open-desk.cloud"
+#     ingressClassName: "nginx"
+#     tls:
+#       enabled: true
+#       secretName: "portal.uv-aniemann.gaia.open-desk.cloud"
+#     annotations:
+#       nginx.ingress.kubernetes.io/configuration-snippet: |
+#         rewrite ^/univention/portal(/icons/(?:entries|logos)/.*)$ /portal-assets$1 break;
+#       nginx.org/location-snippets: |
+#         rewrite ^/univention/portal(/icons/(?:entries|logos)/.*)$ /portal-assets$1 break;
+#       nginx.org/mergeable-ingress-type: minion
 
 udm-rest-api:
   enabled: true
