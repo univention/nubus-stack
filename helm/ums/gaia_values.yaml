@@ -73,7 +73,8 @@ ldap-server:
     image:
       registry: "external-registry.souvap-univention.de"
       repository: "sovereign-workplace/souvap/tooling/images/univention/ldap-server"
-      tag: "0.10.0-pre-feat-bsi-compliance@sha256:87439fb1f02cbd199556434fda5d598489e0374fb93a871ed9d81a7c3212c81c"
+      #tag: "0.10.0-pre-feat-bsi-compliance@sha256:87439fb1f02cbd199556434fda5d598489e0374fb93a871ed9d81a7c3212c81c"
+      tag: "0.10.0-pre-feat-bsi-compliance@sha256:eec47727df8cdb5e923ad40d5f89b031e185506c233d61a732f470232905aa84"
     config:
       domainName: "univention-organization.intranet"
       ldapBaseDn: "dc=univention-organization,dc=intranet"
@@ -123,8 +124,9 @@ notifications-api:
     tls:
       enabled: false
   postgresql:
-    nameOverride: "notifications-api-postgresql"
-    existingSecret: "ums-notifications-api-postgresql-credentials"
+    auth:
+      nameOverride: "notifications-api-postgresql"
+      existingSecret: "ums-notifications-api-postgresql-credentials"
 
 portal-frontend:
   enabled: true
@@ -219,24 +221,24 @@ provisioning:
   enabled: true
   api:
     image:
-      registry: "external-registry.souvap-univention.de"
+      registry: "registry.souvap-univention.de"
       imagePullPolicy: "IfNotPresent"
-      repository: "sovereign-workplace/souvap/tooling/images/univention/events-and-consumer-api"
-      tag: "0.17.1@sha256:6644495a54b29780c1ada7051abe22c65d22cb74f9d9f99143e9d55b61adf1c9"
+      repository: "souvap/tooling/images/univention/provisioning-events-and-consumer-api"
+      tag: "0.17.3@sha256:c6221302f452c3a4fcc3f8e05ba7f2effca895c532d4b7c247f4fcc9c16df4fa"
     credentialSecretName: "ums-provisioning-api-credentials"
   dispatcher:
     image:
-      registry: "external-registry.souvap-univention.de"
+      registry: "registry.souvap-univention.de"
       imagePullPolicy: "IfNotPresent"
-      repository: "sovereign-workplace/souvap/tooling/images/univention/dispatcher"
-      tag: "0.17.1@sha256:28f5ed80a8975efb595b9cc78a265ac00210066f35db6a087dd25294f1d9be66"
+      repository: "souvap/tooling/images/univention/provisioning-dispatcher"
+      tag: "0.17.3@sha256:c06d049eb1e92385771e08f559e3f6d92a919af7fce1a31c64141ac36f98626e"
     credentialSecretName: "ums-provisioning-dispatcher-credentials"
   prefill:
     image:
-      registry: "external-registry.souvap-univention.de"
+      registry: "registry.souvap-univention.de"
       imagePullPolicy: "IfNotPresent"
-      repository: "sovereign-workplace/souvap/tooling/images/univention/prefill"
-      tag: "0.17.1@sha256:a5cd5c8ec964f6151800ed27bcd0961c6c1ee64d64c2b4cb46bda79c619d72a6"
+      repository: "souvap/tooling/images/univention/provisioning-prefill"
+      tag: "0.17.3@sha256:686f5960ddb3c1ecd18da971795492bbb486232cda770c7be65b22e16d92c66b"
     credentialSecretName: "ums-provisioning-prefill-credentials"
   nats:
     config:
@@ -275,12 +277,12 @@ provisioning:
         valueFrom:
           secretKeyRef:
             name: ums-provisioning-api-credentials
-            key: NATS_USER
+            key: ADMIN_NATS_USER
       - name: NATS_API_PASSWORD
         valueFrom:
           secretKeyRef:
             name: ums-provisioning-api-credentials
-            key: NATS_PASSWORD
+            key: ADMIN_NATS_PASSWORD
       - name: NATS_DISPATCHER_USER
         valueFrom:
           secretKeyRef:
@@ -311,10 +313,10 @@ udm-listener:
   enabled: true
   nameOverride: "provisioning-listener"
   image:
-    registry: "external-registry.souvap-univention.de"
+    registry: "registry.souvap-univention.de"
     imagePullPolicy: "IfNotPresent"
-    repository: "sovereign-workplace/souvap/tooling/images/univention/udm-listener"
-    tag: "0.17.1@sha256:f3dbca0e76d1ee90d9be933185c9652c8cfed31109e9904a3f5b3a09837ea8a7"
+    repository: "souvap/tooling/images/univention/provisioning-udm-listener"
+    tag: "0.17.3@sha256:550592eaabdd41f79cc73b9ac10259090c179dcd4ed2a70bf706d871656c2128"
   config:
     debugLevel: "4"
     ldapBaseDn: "dc=univention-organization,dc=intranet"
@@ -410,7 +412,7 @@ udm-rest-api:
     image:
       registry: "external-registry.souvap-univention.de"
       repository: "sovereign-workplace/souvap/tooling/images/univention/udm-rest-api"
-      tag: "0.8.1-pre-feat-bsi-compliance@sha256:6a9ba9af8b32fc50b140a40c64393a3197822a9bae977d8e19673c91698825a4"
+      tag: "0.8.1-pre-feat-bsi-compliance@sha256:2a647974220825b9bc582eb9deb2b1eaa6e92083f0711d53ba61d9a8d696f154"
 
   extraVolumes:
     - name: "attribute-to-group-mapper-hook"
@@ -903,19 +905,19 @@ stack-gateway:
       }
 
       ## guardian
-      location /univention/guardian/management-ui {
-        proxy_pass http://ums-guardian-management-ui:80/univention/guardian/management-ui;
-      }
-      location /guardian/opa {
-        rewrite ^/guardian/opa(/.*)$ $1 break;
-        proxy_pass http://ums-open-policy-agent:80/;
-      }
-      location /guardian/management {
-        proxy_pass http://ums-guardian-management-api:80/guardian/management;
-      }
-      location /guardian/authorization {
-        proxy_pass http://ums-guardian-authorization-api:80/guardian/authorization;
-      }
+      # location /univention/guardian/management-ui {
+      #   proxy_pass http://ums-guardian-management-ui:80/univention/guardian/management-ui;
+      # }
+      # location /guardian/opa {
+      #   rewrite ^/guardian/opa(/.*)$ $1 break;
+      #   proxy_pass http://ums-open-policy-agent:80/;
+      # }
+      # location /guardian/management {
+      #   proxy_pass http://ums-guardian-management-api:80/guardian/management;
+      # }
+      # location /guardian/authorization {
+      #   proxy_pass http://ums-guardian-authorization-api:80/guardian/authorization;
+      # }
 
       ## object storage (minio)
       location /univention/portal/icons/entries/ {
@@ -983,16 +985,18 @@ extraSecrets:
       admin_password: "nimda"
   - name: ums-provisioning-api-credentials
     stringData:
-      NATS_USER: "api"
-      NATS_PASSWORD: "password"
+      ADMIN_NATS_USER: "api"
+      ADMIN_NATS_PASSWORD: "password"
+      ADMIN_USERNAME: "api"
+      ADMIN_PASSWORD: "password"
   - name: ums-provisioning-dispatcher-credentials
     stringData:
-      UDM_USERNAME: "cn=admin"
-      UDM_PASSWORD: "password"
       NATS_USER: "dispatcher"
       NATS_PASSWORD: "password"
   - name: ums-provisioning-prefill-credentials
     stringData:
+      UDM_USERNAME: "cn=admin"
+      UDM_PASSWORD: "password"
       NATS_USER: "prefill"
       NATS_PASSWORD: "password"
   - name: udm-rest-api-credentials
