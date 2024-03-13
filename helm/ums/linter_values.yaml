@@ -83,9 +83,12 @@ ldap-notifier:
 
 ldap-server:
   ldapServer:
-    ldapSecret: "password"
-    ldapBaseDn: "dc=univention-organization,dc=intranet"
-
+    config:
+      domainName: "univention-organization.intranet"
+      ldapBaseDn: "dc=univention-organization,dc=intranet"
+      samlMetadataUrl: "http://ums-keycloak:8080/realms/opendesk/protocol/saml/descriptor"
+      samlMetadataUrlInternal: "http://ums-keycloak:8080/realms/opendesk/protocol/saml/descriptor"
+      samlServiceProviders: "http://ums-keycloak:8000/univention/saml/metadata,http://ums-keycloak:8000/auth/realms/ucs"
   extraVolumes:
     - name: "opendesk-schemas"
       configMap:
