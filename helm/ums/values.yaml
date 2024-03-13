@@ -7,8 +7,6 @@ tags:
   # development progress for evaluation purposes.
   pre-release: false
 
-<<<<<<< HEAD
-=======
 provisioning:
   resources:
     dispatcher:
@@ -58,6 +56,13 @@ ldap-server:
     cpu: "100m"
     memory: "512Mi"
 
+store-dav:
+  limits:
+  memory: "1Gi"
+  requests:
+    cpu: "100m"
+    memory: "512Mi"
+
 udm-rest-api:
   limits:
   memory: "1Gi"
@@ -65,7 +70,6 @@ udm-rest-api:
     cpu: "100m"
     memory: "512Mi"
 
->>>>>>> 15175d5 (feat: use BSI compliant charts)
 minio:
   persistence:
     enabled: true
