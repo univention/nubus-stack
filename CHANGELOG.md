@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.4.0...v0.5.0) (2024-03-13)
+
+
+### Features
+
+* add stack-gateway ([f6d78d4](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/f6d78d4422c78655fe6bd3a9ad9b7592a8f92620))
+
 ## [0.4.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.3.0...v0.4.0) (2024-03-13)
 
 
