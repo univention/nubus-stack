@@ -195,9 +195,9 @@ portal-frontend:
 
 portal-listener:
   portalListener:
-    assetsRoot: "http://portal-listener:password@ums-store-dav/portal-assets/"
+    assetsRootPath: "portal-assets"
     adminGroup: "cn=Domain Admins,cn=groups,dc=univention-organization,dc=intranet"
-    ucsInternalUrl: "http://portal-server:password@ums-store-dav/portal-data"
+    ucsInternalPath: "portal-data"
     udmApiUrl: "http://ums-udm-rest-api/udm/"
     udmApiUsername: "cn=admin"
     umcGetUrl: "http://ums-umc-server/get"
@@ -327,17 +327,6 @@ selfservice-listener:
     umcServerUrl: "http://ums-umc-server"
     umcAdminUser: "default.admin"
     umcAdminPassword: "univention"
-
-store-dav:
-  storeDav:
-    auth:
-      basicAuth:
-        portal-server: "password"
-        portal-listener: "password"
-  ingress:
-    host: "portal.local-cluster.test"
-    tls:
-      enabled: false
 
 udm-rest-api:
   udmRestApi:

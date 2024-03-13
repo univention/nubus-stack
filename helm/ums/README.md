@@ -36,12 +36,12 @@ helm uninstall ums
 | Repository | Name | Version |
 |------------|------|---------|
 | oci://gitregistry.knut.univention.de/univention/components/keycloak-extensions/helm | keycloak-extensions | 0.* |
-| oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm | notifications-api | 0.20.0 |
-| oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm | portal-frontend | 0.20.0 |
-| oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm | portal-listener | 0.20.0 |
-| oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm | portal-server | 0.20.0 |
+| oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm | notifications-api | 0.* |
+| oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm | portal-frontend | 0.* |
+| oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm | portal-listener | 0.* |
+| oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm | portal-server | 0.* |
 | oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-ldap/helm | ldap-notifier | 0.* |
-| oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-ldap/helm | ldap-server | 0.* |
+| oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-ldap/helm | ldap-server | 0.10.0-pre-feat-bsi-compliance |
 | oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-udm-rest/helm | udm-rest-api | 0.* |
 | oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-umc/helm | umc-gateway | 0.* |
 | oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-umc/helm | umc-server | 0.* |
@@ -71,6 +71,42 @@ helm uninstall ums
 		<th>Description</th>
 	</thead>
 	<tbody>
+		<tr>
+			<td>ldap-server.limits</td>
+			<td>string</td>
+			<td><pre lang="json">
+null
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>ldap-server.memory</td>
+			<td>string</td>
+			<td><pre lang="json">
+"1Gi"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>ldap-server.requests.cpu</td>
+			<td>string</td>
+			<td><pre lang="json">
+"100m"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>ldap-server.requests.memory</td>
+			<td>string</td>
+			<td><pre lang="json">
+"512Mi"
+</pre>
+</td>
+			<td></td>
+		</tr>
 		<tr>
 			<td>minio.defaultBuckets</td>
 			<td>string</td>
@@ -247,6 +283,168 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 "arn:aws:s3:::ums/*"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>provisioning.nats.natsBox.resources.limits.memory</td>
+			<td>string</td>
+			<td><pre lang="json">
+"256Mi"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>provisioning.nats.natsBox.resources.requests.cpu</td>
+			<td>string</td>
+			<td><pre lang="json">
+"100m"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>provisioning.nats.natsBox.resources.requests.memory</td>
+			<td>string</td>
+			<td><pre lang="json">
+"64Mi"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>provisioning.nats.reloader.resources.limits.memory</td>
+			<td>string</td>
+			<td><pre lang="json">
+"256Mi"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>provisioning.nats.reloader.resources.requests.cpu</td>
+			<td>string</td>
+			<td><pre lang="json">
+"100m"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>provisioning.nats.reloader.resources.requests.memory</td>
+			<td>string</td>
+			<td><pre lang="json">
+"64Mi"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>provisioning.nats.resources.limits.memory</td>
+			<td>string</td>
+			<td><pre lang="json">
+"1Gi"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>provisioning.nats.resources.requests.cpu</td>
+			<td>string</td>
+			<td><pre lang="json">
+"100m"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>provisioning.nats.resources.requests.memory</td>
+			<td>string</td>
+			<td><pre lang="json">
+"64Mi"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>provisioning.resources.api.limits.memory</td>
+			<td>string</td>
+			<td><pre lang="json">
+"1Gi"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>provisioning.resources.api.requests.cpu</td>
+			<td>string</td>
+			<td><pre lang="json">
+"10m"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>provisioning.resources.api.requests.memory</td>
+			<td>string</td>
+			<td><pre lang="json">
+"32Mi"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>provisioning.resources.dispatcher.limits.memory</td>
+			<td>string</td>
+			<td><pre lang="json">
+"1Gi"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>provisioning.resources.dispatcher.requests.cpu</td>
+			<td>string</td>
+			<td><pre lang="json">
+"10m"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>provisioning.resources.dispatcher.requests.memory</td>
+			<td>string</td>
+			<td><pre lang="json">
+"32Mi"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>provisioning.resources.prefill.limits.memory</td>
+			<td>string</td>
+			<td><pre lang="json">
+"1Gi"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>provisioning.resources.prefill.requests.cpu</td>
+			<td>string</td>
+			<td><pre lang="json">
+"10m"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>provisioning.resources.prefill.requests.memory</td>
+			<td>string</td>
+			<td><pre lang="json">
+"32Mi"
 </pre>
 </td>
 			<td></td>
