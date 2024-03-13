@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.4.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.3.0...v0.4.0) (2024-03-13)
+
+
+### Features
+
+* add minio to chart ([9563ca9](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/9563ca9aa4910f1c93e5cf7488bd2ee314409749))
+
+
+### Bug Fixes
+
+* **ci/docs:** update docs, update gitlab-ci ([9789063](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/97890638968342a00af662c0ad7577d1d69b7d86))
+
 ## [0.3.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.2.0...v0.3.0) (2024-01-30)
 
 
