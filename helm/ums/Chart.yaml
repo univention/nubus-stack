@@ -135,6 +135,13 @@ dependencies:
     version: "0.*"
     condition: "stack-data-ums.enabled"
 
+  # stack-gateway related chart(s)
+  - name: "nginx"
+    alias: "stack-gateway"
+    repository: "oci://registry-1.docker.io/bitnamicharts"
+    version: "^15.x.x"
+    condition: "stack-gateway.enabled"
+
   # udm-rest-api related chart(s)
   - name: "udm-rest-api"
     repository: "oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-udm-rest/helm"

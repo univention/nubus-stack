@@ -40,10 +40,10 @@ dependencies:
   version: 0.3.2
 - name: provisioning
   repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/provisioning/helm
-  version: 0.19.3
+  version: 0.19.4
 - name: udm-listener
   repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/provisioning/helm
-  version: 0.19.3
+  version: 0.19.4
 - name: ums-keycloak
   repository: oci://registry.souvap-univention.de/souvap/tooling/charts/univention-keycloak
   version: 1.0.5
@@ -62,6 +62,9 @@ dependencies:
 - name: stack-data-ums
   repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/stack-data/helm
   version: 0.44.2
+- name: nginx
+  repository: oci://registry-1.docker.io/bitnamicharts
+  version: 15.14.0
 - name: udm-rest-api
   repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-udm-rest/helm
   version: 0.8.1
@@ -71,5 +74,5 @@ dependencies:
 - name: umc-server
   repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-umc/helm
   version: 0.10.3
-digest: sha256:152a7f16ebb4ee0fefa847d42322efecffe9336471a69a52ae599243954870ff
-generated: "2024-03-13T11:48:35.335525+01:00"
+digest: sha256:f96c7320e1223830a57ac65e86f0611d083d6bbe96575ee9d68e08d47dba324b
+generated: "2024-03-13T12:23:41.411332+01:00"

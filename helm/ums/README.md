@@ -56,6 +56,7 @@ helm uninstall ums
 | oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/stack-data/helm | stack-data-ums | 0.* |
 | oci://registry-1.docker.io/bitnamicharts | common | ^2.x.x |
 | oci://registry-1.docker.io/bitnamicharts | minio | ^13.x.x |
+| oci://registry-1.docker.io/bitnamicharts | stack-gateway(nginx) | ^15.x.x |
 | oci://registry-1.docker.io/bitnamicharts | keycloak-postgresql(postgresql) | ^12.x.x |
 | oci://registry.souvap-univention.de/souvap/tooling/charts/univention-keycloak-bootstrap | keycloak-bootstrap(ums-keycloak-bootstrap) | 1.* |
 | oci://registry.souvap-univention.de/souvap/tooling/charts/univention-keycloak | keycloak(ums-keycloak) | 1.* |
