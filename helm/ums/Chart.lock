@@ -1,52 +1,7 @@
 dependencies:
-- name: portal-frontend
-  repository: oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm
-  version: 0.10.0
-- name: portal-listener
-  repository: oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm
-  version: 0.10.0
-- name: portal-server
-  repository: oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm
-  version: 0.10.0
-- name: selfservice-listener
-  repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/selfservice-listener/helm
-  version: 0.3.2
-- name: store-dav
-  repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-store-dav/helm
-  version: 0.10.0
-- name: notifications-api
-  repository: oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm
-  version: 0.10.0
-- name: ldap-server
-  repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-ldap/helm
-  version: 0.9.1
-- name: ldap-notifier
-  repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-ldap/helm
-  version: 0.9.1
-- name: udm-rest-api
-  repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-udm-rest/helm
-  version: 0.7.1
-- name: umc-gateway
-  repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-umc/helm
-  version: 0.10.0
-- name: umc-server
-  repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-umc/helm
-  version: 0.10.0
-- name: ums-keycloak
-  repository: oci://registry.souvap-univention.de/souvap/tooling/charts/univention-keycloak
-  version: 1.0.3
-- name: keycloak-extensions
-  repository: oci://gitregistry.knut.univention.de/univention/components/keycloak-extensions/helm
-  version: 0.2.0
-- name: ums-keycloak-bootstrap
-  repository: oci://registry.souvap-univention.de/souvap/tooling/charts/univention-keycloak-bootstrap
-  version: 1.1.11
-- name: postgresql
+- name: common
   repository: oci://registry-1.docker.io/bitnamicharts
-  version: 12.7.3
-- name: provisioning
-  repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/provisioning/helm
-  version: 0.9.1
+  version: 2.19.0
 - name: guardian-authorization-api
   repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/guardian-helm/helm
   version: 0.2.0
@@ -59,14 +14,62 @@ dependencies:
 - name: open-policy-agent
   repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/guardian-helm/helm
   version: 0.2.0
-- name: stack-data-ums
-  repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/stack-data/helm
-  version: 0.43.2
+- name: ldap-notifier
+  repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-ldap/helm
+  version: 0.9.3
+- name: ldap-server
+  repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-ldap/helm
+  version: 0.9.3
+- name: minio
+  repository: oci://registry-1.docker.io/bitnamicharts
+  version: 13.8.3
+- name: notifications-api
+  repository: oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm
+  version: 0.20.1
+- name: portal-frontend
+  repository: oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm
+  version: 0.20.1
+- name: portal-listener
+  repository: oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm
+  version: 0.20.1
+- name: portal-server
+  repository: oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm
+  version: 0.20.1
+- name: selfservice-listener
+  repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/selfservice-listener/helm
+  version: 0.3.2
+- name: provisioning
+  repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/provisioning/helm
+  version: 0.19.3
+- name: udm-listener
+  repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/provisioning/helm
+  version: 0.19.3
+- name: ums-keycloak
+  repository: oci://registry.souvap-univention.de/souvap/tooling/charts/univention-keycloak
+  version: 1.0.5
+- name: keycloak-extensions
+  repository: oci://gitregistry.knut.univention.de/univention/components/keycloak-extensions/helm
+  version: 0.2.1
+- name: ums-keycloak-bootstrap
+  repository: oci://registry.souvap-univention.de/souvap/tooling/charts/univention-keycloak-bootstrap
+  version: 1.1.11
+- name: postgresql
+  repository: oci://registry-1.docker.io/bitnamicharts
+  version: 12.12.10
 - name: stack-data-swp
   repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/stack-data/helm
-  version: 0.43.2
-- name: common
-  repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/common-helm/helm
-  version: 0.6.0
-digest: sha256:cf606e0eb19e01e3aff74570af018a6ad90e7cc713c1beff54fd77278c12318d
-generated: "2024-01-30T07:30:22.417889+01:00"
+  version: 0.44.2
+- name: stack-data-ums
+  repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/stack-data/helm
+  version: 0.44.2
+- name: udm-rest-api
+  repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-udm-rest/helm
+  version: 0.8.1
+- name: umc-gateway
+  repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-umc/helm
+  version: 0.10.3
+- name: umc-server
+  repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-umc/helm
+  version: 0.10.3
+digest: sha256:152a7f16ebb4ee0fefa847d42322efecffe9336471a69a52ae599243954870ff
+generated: "2024-03-13T11:48:35.335525+01:00"

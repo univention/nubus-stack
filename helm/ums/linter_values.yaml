@@ -225,22 +225,22 @@ provisioning:
       readiness:
         enabled: false
 
-  udm-listener:
-    nameOverride: "provisioning-listener"
-    config:
-      debugLevel: "4"
-      ldapBaseDn: "dc=univention-organization,dc=intranet"
-      ldapHost: "ums-ldap-server"
-      ldapHostDn: "cn=admin,dc=univention-organization,dc=intranet"
-      ldapPassword: "password"
-      ldapPort: "389"
-      natsHost: "ums-provisioning-nats"
-      natsPort: 4222
-      notifierServer: "ums-ldap-notifier"
-      tlsMode: "off"
-
   nats:
     nameOverride: "provisioning-nats"
+
+udm-listener:
+  enabled: true
+  nameOverride: "provisioning-listener"
+  config:
+    debugLevel: "4"
+    ldapBaseDn: "dc=univention-organization,dc=intranet"
+    ldapHost: "ums-ldap-server"
+    ldapHostDn: "cn=admin,dc=univention-organization,dc=intranet"
+    ldapPassword: "password"
+    ldapPort: "389"
+    notifierServer: "ums-ldap-notifier"
+    tlsMode: "off"
+    natsHost: "ums-provisioning-nats"
 
 stack-data-ums:
   stackDataUms:
@@ -300,6 +300,9 @@ udm-rest-api:
   udmRestApi:
     ldapSecret: "password"
     machineSecret: "password"
+    ldap:
+      uri: "ldap://ums-ldap-server:389"
+      baseDN: "dc=univention-organization,dc=intranet"
   extraVolumes:
     - name: "attribute-to-group-mapper-hook"
       configMap:
@@ -506,3 +509,6 @@ keycloak-postgresql:
 
 tags:
   pre-release: true
+
+minio:
+  enabled: true

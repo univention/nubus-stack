@@ -40,7 +40,6 @@ helm uninstall ums
 | oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm | portal-frontend | 0.* |
 | oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm | portal-listener | 0.* |
 | oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm | portal-server | 0.* |
-| oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/common-helm/helm | common | 0.* |
 | oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-ldap/helm | ldap-notifier | 0.* |
 | oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-ldap/helm | ldap-server | 0.* |
 | oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-store-dav/helm | store-dav | 0.* |
@@ -55,6 +54,7 @@ helm uninstall ums
 | oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/selfservice-listener/helm | selfservice-listener | 0.* |
 | oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/stack-data/helm | stack-data-swp | 0.* |
 | oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/stack-data/helm | stack-data-ums | 0.* |
+| oci://registry-1.docker.io/bitnamicharts | minio | 13.4.26 |
 | oci://registry-1.docker.io/bitnamicharts | keycloak-postgresql(postgresql) | ~12.7.1 |
 | oci://registry.souvap-univention.de/souvap/tooling/charts/univention-keycloak-bootstrap | keycloak-bootstrap(ums-keycloak-bootstrap) | 1.* |
 | oci://registry.souvap-univention.de/souvap/tooling/charts/univention-keycloak | keycloak(ums-keycloak) | 1.* |
@@ -69,6 +69,186 @@ helm uninstall ums
 		<th>Description</th>
 	</thead>
 	<tbody>
+		<tr>
+			<td>minio.defaultBuckets</td>
+			<td>string</td>
+			<td><pre lang="json">
+"ums"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>minio.networkPolicy.enabled</td>
+			<td>bool</td>
+			<td><pre lang="json">
+false
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>minio.persistence.accessModes[0]</td>
+			<td>string</td>
+			<td><pre lang="json">
+"ReadWriteOnce"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>minio.persistence.enabled</td>
+			<td>bool</td>
+			<td><pre lang="json">
+true
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>minio.persistence.mountPath</td>
+			<td>string</td>
+			<td><pre lang="json">
+"/bitnami/minio/data"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>minio.persistence.size</td>
+			<td>string</td>
+			<td><pre lang="json">
+"1Gi"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>minio.persistence.storageClass</td>
+			<td>string</td>
+			<td><pre lang="json">
+""
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>minio.provisioning.buckets[0].name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"ums"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>minio.provisioning.buckets[0].versioning</td>
+			<td>bool</td>
+			<td><pre lang="json">
+false
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>minio.provisioning.buckets[0].withLock</td>
+			<td>bool</td>
+			<td><pre lang="json">
+false
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>minio.provisioning.cleanupAfterFinished.enabled</td>
+			<td>bool</td>
+			<td><pre lang="json">
+true
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>minio.provisioning.enabled</td>
+			<td>bool</td>
+			<td><pre lang="json">
+true
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>minio.provisioning.extraCommands[0]</td>
+			<td>string</td>
+			<td><pre lang="json">
+"mc anonymous set download provisioning/ums/portal-assets"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>minio.provisioning.policies[0].name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"ums-bucket-policy"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>minio.provisioning.policies[0].statements[0].actions[0]</td>
+			<td>string</td>
+			<td><pre lang="json">
+"s3:*"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>minio.provisioning.policies[0].statements[0].effect</td>
+			<td>string</td>
+			<td><pre lang="json">
+"Allow"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>minio.provisioning.policies[0].statements[0].resources[0]</td>
+			<td>string</td>
+			<td><pre lang="json">
+"arn:aws:s3:::ums"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>minio.provisioning.policies[0].statements[1].actions[0]</td>
+			<td>string</td>
+			<td><pre lang="json">
+"s3:*"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>minio.provisioning.policies[0].statements[1].effect</td>
+			<td>string</td>
+			<td><pre lang="json">
+"Allow"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>minio.provisioning.policies[0].statements[1].resources[0]</td>
+			<td>string</td>
+			<td><pre lang="json">
+"arn:aws:s3:::ums/*"
+</pre>
+</td>
+			<td></td>
+		</tr>
 		<tr>
 			<td>tags.pre-release</td>
 			<td>bool</td>
