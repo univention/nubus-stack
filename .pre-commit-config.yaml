@@ -2,53 +2,58 @@
 # SPDX-FileCopyrightText: 2024 Univention GmbH
 
 ---
-
 # See https://pre-commit.com for more information
 # See https://pre-commit.com/hooks.html for more hooks
 
 exclude: '^.*\.patch'
 
 repos:
-  - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v2.4.0
+  - repo: "https://github.com/pre-commit/pre-commit-hooks"
+    rev: "v4.5.0"
     hooks:
-      - id: check-added-large-files
-      - id: check-merge-conflict
-      - id: check-yaml
+      # "Check for added large files"
+      - id: "check-added-large-files"
+      # "Check for merge conflicts"
+      - id: "check-merge-conflict"
+      # "Check Yaml"
+      - id: "check-yaml"
         args:
           # Allow custom tags like Gitlab's "!reference" tag.
-          - --unsafe
-        exclude: ^helm/.+/templates/
-      - id: trailing-whitespace
+          - "--unsafe"
+        exclude: "^helm/.+/templates/"
+      # "Trim Trailing Whitespace"
+      - id: "trailing-whitespace"
       - id: "end-of-file-fixer"
         exclude: "^helm/.+/README.md$"
 
-  - repo: https://github.com/compilerla/conventional-pre-commit
-    rev: v2.1.1
+  # "Commit messages"
+  - repo: "https://github.com/compilerla/conventional-pre-commit"
+    rev: "v2.4.0"
     hooks:
-      - id: conventional-pre-commit
-        stages: [commit-msg]
+      - id: "conventional-pre-commit"
+        stages: ["commit-msg"]
 
   - repo: https://gitlab.com/univention/pre-commit-hooks/docker-compose-check
     rev: 7702a8801a158b8595569dd29e2dd655d8a08310
     hooks:
       - id: docker-compose-check
 
-  - repo: https://github.com/gruntwork-io/pre-commit
-    rev: v0.1.20
+  # "Helm chart linter"
+  - repo: "https://github.com/gruntwork-io/pre-commit"
+    rev: "v0.1.23"
     hooks:
-      - id: helmlint
+      - id: "helmlint"
 
-  - repo: https://github.com/norwoodj/helm-docs
-    rev: v1.11.0
+  - repo: "https://github.com/norwoodj/helm-docs"
+    rev: "v1.11.0"
     hooks:
-      - id: helm-docs
+      - id: "helm-docs"
         args:
-          - --chart-search-root=helm
-          - --template-files=README.md.gotmpl
+          - "--chart-search-root=helm"
+          - "--template-files=README.md.gotmpl"
 
-  - repo: https://git.knut.univention.de/univention/dist/pre-commit-hooks/addlicense
-    rev: v1.0.1
+  - repo: "https://git.knut.univention.de/univention/dist/pre-commit-hooks/addlicense"
+    rev: "v1.0.1"
     hooks:
-      - id: addlicense
-        name: Check or add license headers to files
+      - id: "addlicense"
+        name: "Check or add license headers to files"

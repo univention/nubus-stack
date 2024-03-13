@@ -2,103 +2,20 @@
 # SPDX-FileCopyrightText: 2024 Univention GmbH
 
 ---
-
 include:
   - project: "univention/customers/dataport/upx/common-ci"
-    ref: "v1.16.3"
+    ref: "v1.23.0"
     file:
       # TODO: Sphinx docs inherits a stage definition from upstream,
       # has to be included before our default stages to avoid trouble.
       - "jobs/sphinx-docs.yaml"
       - "defaults/souvap-workflow.yaml"
       - "defaults/stages.yaml"
-      - "jobs/license-check.yaml"
       - "jobs/lint-commit-messages.yaml"
       - "jobs/lint-pre-commit.yaml"
       - "jobs/package-and-publish-helm-charts-souvap.yaml"
       - "jobs/semantic-release-env.yaml"
 
-
-# TODO: Interim, integrate upstream
-# Pending https://git.knut.univention.de/univention/customers/dataport/upx/common-ci/-/merge_requests/101
-.pages-rules:
-  rules:
-    - if: '$CI_PIPELINE_SOURCE == "schedule"'
-      when: "never"
-    - if: '$CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
-    - changes:
-        - "docs/**/*"
-        - "CHANGELOG.*"
-        - "README.*"
-
-
-# TODO: Interim, remove after upstream fix
-# Pending https://git.knut.univention.de/univention/customers/dataport/upx/common-ci/-/merge_requests/101
-.package-helm-charts:
-  stage: "package"
-  rules:
-    - if: '$CI_PIPELINE_SOURCE == "schedule"'
-      when: "never"
-    - when: "on_success"
-  artifacts:
-    paths:
-      - "packages/*.tgz"
-      - "packages/*.tgz.prov"
-  image:
-    name: "${IMAGE_HELM}"
-    entrypoint: [""]
-  script:
-    - !reference [".bash-header-script", "script"]
-    - !reference [".check-required-variables-bash-script", "script"]
-    - |
-      required_variables=(
-        HELM_GPG_KEY
-        HELM_GPG_KEY_PASSWORD
-      )
-      check_required_variables 1 "${required_variables[@]}"
-    - |
-      echo $CI_REGISTRY_PASSWORD | helm registry login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
-
-      # TODO: Interim, we should prefer to use the OCI charts from bitnami. Drop
-      # in v2 of common-ci.
-      helm repo add bitnami https://charts.bitnami.com/bitnami
-      helm repo add nats https://nats-io.github.io/k8s/helm/charts/
-
-      # TODO: Interim use the release version based on the last tag from Git.
-      # Intentionally not using "--abbrev" to ensure that only the tagged commit
-      # will add the release version.
-      #
-      # All builds from non-default branches use the version out of Chart.yaml
-      # as before.
-      #
-      # This will be replaced once
-      # https://git.knut.univention.de/univention/customers/dataport/team-souvap/-/issues/120
-      # is done.
-      #
-      # See also: https://git-scm.com/docs/git-describe
-
-      if [ -z "${RELEASE_VERSION:-}" ] && [ "${CI_COMMIT_REF_NAME:-}" = "${CI_DEFAULT_BRANCH:-}" ]; then
-        echo "Using the git tag"
-        RELEASE_VERSION="$(git describe --tags | sed s@^v@@g )"
-      fi
-      cat ${HELM_GPG_KEY} | base64 -d > ${CI_PROJECT_DIR}/secring.gpg
-      ls -la ${CI_PROJECT_DIR}/secring.gpg
-
-      for helm_path in `find ./helm -mindepth 1 -maxdepth 1 -type d`; do
-        helm_dir=$(basename "${helm_path}")
-        echo "Packaging helm-chart ${helm_dir}"
-
-        # Flag release as pre-release if not on default branch
-        if [ -z "${RELEASE_VERSION:-}" ] && [ "${CI_COMMIT_REF_NAME:-}" != "${CI_DEFAULT_BRANCH:-}" ]; then
-          echo "Using version from chart"
-          RELEASE_VERSION=$(helm show chart "${helm_path}" | grep "^version:" | sed "s/^version: //")
-          RELEASE_VERSION="${RELEASE_VERSION}-pre-${CI_COMMIT_REF_SLUG}"
-        fi
-        echo "RELEASE_VERSION = ${RELEASE_VERSION}"
-
-        helm dependency build "helm/${helm_dir}"
-        helm package --sign --key "Univention GmbH" --keyring ${CI_PROJECT_DIR}/secring.gpg --passphrase-file ${HELM_GPG_KEY_PASSWORD} --version "${RELEASE_VERSION}" --destination "./packages" "helm/${helm_dir}"
-      done
-      ls -la packages/
-  variables:
-    IMAGE_HELM: "gitregistry.knut.univention.de/univention/customers/dataport/upx/common-ci/helm:latest"
+lint-pre-commit:
+  before_script:
+    - helm repo add bitnami "https://charts.bitnami.com/bitnami"
