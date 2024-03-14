@@ -16,10 +16,10 @@ dependencies:
   version: 0.2.0
 - name: ldap-notifier
   repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-ldap/helm
-  version: 0.9.4
+  version: 0.10.0
 - name: ldap-server
   repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-ldap/helm
-  version: 0.9.4
+  version: 0.10.0
 - name: minio
   repository: oci://registry-1.docker.io/bitnamicharts
   version: 13.8.4
@@ -40,10 +40,10 @@ dependencies:
   version: 0.3.2
 - name: provisioning
   repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/provisioning/helm
-  version: 0.20.2
+  version: 0.20.3
 - name: udm-listener
   repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/provisioning/helm
-  version: 0.20.2
+  version: 0.20.3
 - name: ums-keycloak
   repository: oci://registry.souvap-univention.de/souvap/tooling/charts/univention-keycloak
   version: 1.0.5
@@ -58,21 +58,21 @@ dependencies:
   version: 12.12.10
 - name: stack-data-swp
   repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/stack-data/helm
-  version: 0.45.0
+  version: 0.45.1
 - name: stack-data-ums
   repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/stack-data/helm
-  version: 0.45.0
+  version: 0.45.1
 - name: nginx
   repository: oci://registry-1.docker.io/bitnamicharts
   version: 15.14.0
 - name: udm-rest-api
   repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-udm-rest/helm
-  version: 0.9.0
+  version: 0.9.1
 - name: umc-gateway
   repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-umc/helm
   version: 0.11.2
 - name: umc-server
   repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-umc/helm
   version: 0.11.2
-digest: sha256:56809b50aecf7717a22f284a96d423fdeb2414608c13109e27d81a6f32cf6cfd
-generated: "2024-03-19T13:07:41.706681+01:00"
+digest: sha256:d85b21c5b65c3545ec8053e72ca56d5c2874ccb0785dc0d0da38f7ce44348a30
+generated: "2024-03-20T13:12:59.75499+01:00"

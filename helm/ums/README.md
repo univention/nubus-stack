@@ -41,7 +41,7 @@ helm uninstall ums
 | oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm | portal-listener | 0.* |
 | oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm | portal-server | 0.* |
 | oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-ldap/helm | ldap-notifier | 0.* |
-| oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-ldap/helm | ldap-server | 0.10.0-pre-feat-bsi-compliance |
+| oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-ldap/helm | ldap-server | 0.* |
 | oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-udm-rest/helm | udm-rest-api | 0.* |
 | oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-umc/helm | umc-gateway | 0.* |
 | oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-umc/helm | umc-server | 0.* |
@@ -493,6 +493,15 @@ null
 </pre>
 </td>
 			<td></td>
+		</tr>
+		<tr>
+			<td>ums</td>
+			<td>object</td>
+			<td><pre lang="json">
+{}
+</pre>
+</td>
+			<td>Load data to override ucr variables. example: ums:   ucrForcedValues: |     portal/auth-mode: ucs</td>
 		</tr>
 	</tbody>
 </table>

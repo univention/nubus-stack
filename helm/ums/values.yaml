@@ -99,3 +99,10 @@ minio:
             effect: "Allow"
             actions:
               - "s3:*"
+
+# -- Load data to override ucr variables.
+# example:
+# ums:
+#   ucrForcedValues: |
+#     portal/auth-mode: ucs
+ums: {}
