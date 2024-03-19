@@ -294,6 +294,8 @@ stack-data-ums:
     idpFqdn: "id.local-cluster.test"
     umcSamlSpFqdn: "portal.local-cluster.test"
     umcSamlSchemes: "https"
+    umcMemcachedHostname: "ums-umc-server-memcached"
+    umcPostgresqlHostname: "ums-umc-server-postgresql"
     ldapSamlSpUrls: "https://portal.local-cluster.test/univention/saml/metadata"
 
 stack-data-swp:
