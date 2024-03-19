@@ -98,6 +98,11 @@ notifications-api:
     nameOverride: "notifications-api-postgresql"
     auth:
       existingSecret: "ums-notifications-api-postgresql-credentials"
+    image:
+      # TODO: Workaround to allow avoid failing "helm update". Without setting
+      # the image back to "15.*" Helm does during install select version "16.*"
+      # and during update "15.*".
+      tag: "15.3.0-debian-11-r77"
   extraSecrets:
     - name: "ums-notifications-api-postgresql-credentials"
       stringData:
