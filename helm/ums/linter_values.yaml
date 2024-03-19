@@ -542,6 +542,39 @@ tags:
 
 minio:
   enabled: true
+  auth:
+    rootPassword: "univention"
+  defaultBuckets: "ums"
+  provisioning:
+    enabled: true
+    cleanupAfterFinished:
+      enabled: true
+    extraCommands:
+      - mc anonymous set download provisioning/ums/portal-assets
+    buckets:
+      - name: "ums"
+        versioning: false
+        withLock: false
+    policies:
+      - name: "ums-bucket-policy"
+        statements:
+          - resources:
+              - "arn:aws:s3:::ums"
+            effect: "Allow"
+            actions:
+              - "s3:*"
+          - resources:
+              - "arn:aws:s3:::ums/*"
+            effect: "Allow"
+            actions:
+              - "s3:*"
+    users:
+      - username: "ums_user"
+        password: "univention"
+        disabled: false
+        policies:
+          - "ums-bucket-policy"
+        setPolicies: true
 
 stack-gateway:
   enabled: true
