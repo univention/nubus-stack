@@ -97,8 +97,12 @@ notifications-api:
   postgresql:
     nameOverride: "notifications-api-postgresql"
     auth:
-      password: "password"
-      postgresPassword: "password"
+      existingSecret: "ums-notifications-api-postgresql-credentials"
+  extraSecrets:
+    - name: "ums-notifications-api-postgresql-credentials"
+      stringData:
+        postgres-password: "password"
+        password: "password"
 
 portal-frontend:
   extraIngresses:
