@@ -338,8 +338,6 @@ store-dav:
 
 udm-rest-api:
   udmRestApi:
-    ldapSecret: "password"
-    machineSecret: "password"
     ldap:
       uri: "ldap://ums-ldap-server:389"
       baseDN: "dc=univention-organization,dc=intranet"
