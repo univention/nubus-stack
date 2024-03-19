@@ -307,10 +307,12 @@ udm-rest-api:
     ldap:
       uri: "ldap://ums-ldap-server:389"
       baseDN: "dc=univention-organization,dc=intranet"
+
   extraVolumes:
     - name: "attribute-to-group-mapper-hook"
       configMap:
         name: "ums-stack-data-swp-attribute-to-group-mapper-hook"
+
   extraVolumeMounts:
     - name: "attribute-to-group-mapper-hook"
       mountPath: "/usr/lib/python3/dist-packages/univention/admin/hooks.d/AttributeToGroupMapper.py"
@@ -318,6 +320,7 @@ udm-rest-api:
     - name: "attribute-to-group-mapper-hook"
       mountPath: "/usr/share/attribute-to-group-mapper/flag_to_group_mapping.json"
       subPath: "flag_to_group_mapping.json"
+
   ingress:
     host: "portal.local-cluster.test"
     tls:
