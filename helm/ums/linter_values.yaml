@@ -209,6 +209,11 @@ portal-server:
       enabled: false
 
 provisioning:
+  # TODO: Workaround until MR is merged
+  # See https://git.knut.univention.de/univention/customers/dataport/upx/provisioning/-/merge_requests/117
+  global:
+    imageRegistry: "gitregistry.knut.univention.de"
+
   events-and-consumer-api:
     nameOverride: "provisioning-events-and-consumer-api"
     ingress:
