@@ -348,12 +348,11 @@ udm-rest-api:
       registry: "gitregistry.knut.univention.de"
       tag: "latest"
 
-
   extraSecrets:
     - name: udm-rest-api-credentials
       stringData:
-        ldap.secret: "univention"
-        machine.secret: "univention"
+        ldap.secret: "password"
+        machine.secret: "password"
 
   extraVolumes:
     - name: "attribute-to-group-mapper-hook"
