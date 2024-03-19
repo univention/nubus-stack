@@ -286,8 +286,8 @@ stack-data-ums:
     udmApiUrl: "http://ums-udm-rest-api/udm/"
     loadDevData: true
   stackDataContext:
-    initialPasswordAdministrator: "univention!1"
-    initialPasswordSysIdpUser: "univention!1"
+    initialPasswordAdministrator: "univention"
+    initialPasswordSysIdpUser: "univention"
     ldapHost: "ums-ldap-server"
     idpSamlMetadataUrl: "http://ums-keycloak:8080/realms/opendesk/protocol/saml/descriptor"
     idpSamlMetadataUrlInternal: null
@@ -302,11 +302,11 @@ stack-data-swp:
     udmApiUrl: "http://ums-udm-rest-api/udm/"
     loadDevData: true
   stackDataContext:
-    userPassword: "univention!1"
-    adminPassword: "univention!1"
+    userPassword: "univention"
+    adminPassword: "univention"
     ldapSearchUsers:
       - username: "ldapsearch_keycloak"
-        password: "univention!1"
+        password: "univention"
       # TODO: We need typically more entries, compare opendesk setup
 
 selfservice-listener:
@@ -321,7 +321,7 @@ selfservice-listener:
     tlsMode: "off"
     umcServerUrl: "http://ums-umc-server"
     umcAdminUser: "default.admin"
-    umcAdminPassword: "univention!1"
+    umcAdminPassword: "univention"
 
 store-dav:
   storeDav:
@@ -504,7 +504,7 @@ keycloak-bootstrap:
         internalHostname: "ums-ldap-server"
         baseDN: "dc=univention-organization,dc=intranet"
         readUserDN: "uid=ldapsearch_keycloak,cn=users,dc=univention-organization,dc=intranet"
-        readUserPassword: "univention!1"
+        readUserPassword: "univention"
         mappers:
           - ldapAndUserModelAttributeName: "opendeskProjectmanagementAdmin"
           - ldapAndUserModelAttributeName: "oxContextIDNum"
