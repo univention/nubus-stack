@@ -270,7 +270,7 @@ stack-data-ums:
     idpFqdn: "id.local-cluster.test"
     umcSamlSpFqdn: "portal.local-cluster.test"
     umcSamlSchemes: "https"
-    ldapSamlSpUrls: "https://ums-portal-server/univention/saml/metadata"
+    ldapSamlSpUrls: "https://portal.local-cluster.test/univention/saml/metadata"
 
 stack-data-swp:
   stackDataSwp:
