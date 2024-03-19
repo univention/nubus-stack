@@ -613,6 +613,7 @@ stack-gateway:
       # headers. This is a requirement from the UDM Rest API.
       nginx.org/proxy-buffer-size: "64k"
       nginx.org/proxy-buffers: "4 128k"
+      nginx.ingress.kubernetes.io/proxy-buffer-size: "64k"
       cert-manager.io/cluster-issuer: letsencrypt-prod-dns
     enabled: true
     extraTls:
