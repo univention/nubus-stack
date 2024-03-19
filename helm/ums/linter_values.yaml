@@ -18,7 +18,26 @@
 global:
   configMapUcrDefaults: "ums-stack-data-ums-ucr"
   configMapUcr: "ums-stack-data-swp-ucr"
-  configMapUcrForced: null
+  configMapUcrForced: "ums-ucr-overrides"
+
+ums:
+  # TODO: Decide about the right home for this. We have a duplication in our
+  # development environment. We should most likely have a utility chart or
+  # extension to an existing one to make it easy to provide UCR values which
+  # override the defaults.
+  ucrForcedValues: |-
+    directory/manager/rest/ldap-connection/user-read/start-tls: 0
+    directory/manager/rest/show-tracebacks: true
+    portal/auth-mode: ucs
+    umc/http/show_tracebacks: true
+    password/quality/length/min: 8
+    password/quality/required/chars:
+    password/quality/forbidden/chars:
+    password/quality/credit/digits: 0
+    password/quality/credit/upper: 0
+    password/quality/credit/other: 0
+    password/quality/credit/lower: 0
+    password/quality/mspolicy: false
 
 guardian-authorization-api:
   guardianAuthorizationApi:
