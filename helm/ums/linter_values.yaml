@@ -183,9 +183,10 @@ portal-listener:
     ldapSecret: "password"
     machineSecret: "password"
     tlsMode: "off"
-
-  store-dav:
-    bundled: false
+    objectStorageEndpoint: "http://minio:9000"
+    objectStorageBucket: "ums"
+    objectStorageAccessKeyId: "ums_user"
+    objectStorageSecretAccessKey: "univention"
 
 portal-server:
   portalServer:
