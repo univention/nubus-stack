@@ -307,6 +307,13 @@ udm-rest-api:
     ldap:
       uri: "ldap://ums-ldap-server:389"
       baseDN: "dc=univention-organization,dc=intranet"
+    secretRef: udm-rest-api-credentials
+
+  extraSecrets:
+    - name: udm-rest-api-credentials
+      stringData:
+        ldap.secret: "univention"
+        machine.secret: "univention"
 
   extraVolumes:
     - name: "attribute-to-group-mapper-hook"
