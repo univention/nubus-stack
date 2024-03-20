@@ -22,7 +22,7 @@ dependencies:
   version: 0.10.0
 - name: minio
   repository: oci://registry-1.docker.io/bitnamicharts
-  version: 13.8.4
+  version: 14.1.0
 - name: notifications-api
   repository: oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm
   version: 0.20.1
@@ -58,10 +58,10 @@ dependencies:
   version: 12.12.10
 - name: stack-data-swp
   repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/stack-data/helm
-  version: 0.45.1
+  version: 0.45.0
 - name: stack-data-ums
   repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/stack-data/helm
-  version: 0.45.1
+  version: 0.45.0
 - name: nginx
   repository: oci://registry-1.docker.io/bitnamicharts
   version: 15.14.0
@@ -74,5 +74,5 @@ dependencies:
 - name: umc-server
   repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-umc/helm
   version: 0.11.2
-digest: sha256:d85b21c5b65c3545ec8053e72ca56d5c2874ccb0785dc0d0da38f7ce44348a30
-generated: "2024-03-20T13:12:59.75499+01:00"
+digest: sha256:af2f6eef51aca6f91d7b9a047b758505927ecb23b2e813b42ad15f057c8610ca
+generated: "2024-03-20T16:03:45.631384826+01:00"

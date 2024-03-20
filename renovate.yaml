@@ -18,7 +18,9 @@ requireConfig: optional
 repositories:
   - repository: univention/customers/dataport/upx/ums-stack
     baseBranches:
-      - main
+      - jconde/renovate
+      # FIXME: remove the one above
+      # - main
     branchPrefix: "renovate/"
     commitMessageLowerCase: never
     draftPR: true
