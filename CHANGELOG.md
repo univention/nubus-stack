@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.2](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.7.1...v0.7.2) (2024-03-20)
+
+
+### Bug Fixes
+
+* check helm sha256 sum ([7824e8c](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/7824e8c6573f1392536abd22ee476409fc691382))
+
 ## [0.7.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.7.0...v0.7.1) (2024-03-20)
 
 
