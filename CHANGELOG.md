@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.7.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.7.0...v0.7.1) (2024-03-20)
+
+
+### Bug Fixes
+
+* add renovate job for automatic dependency update MRs ([bf3ad38](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/bf3ad38fec1275cd0582aab31e7496321f47e7cf))
+* chart versions ([8eb0658](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/8eb0658a00191135b63af76343743d4c4285ddf1))
+
 ## [0.7.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.6.0...v0.7.0) (2024-03-20)
 
 
