@@ -15,6 +15,22 @@ include:
       - "jobs/lint-pre-commit.yaml"
       - "jobs/package-and-publish-helm-charts-souvap.yaml"
       - "jobs/semantic-release-env.yaml"
+  - project: 'univention/dist/renovate-runner'
+    file: '/templates/renovate.gitlab-ci.yml'
+
+renovate:
+  stage: "package"
+  variables:
+    LOG_LEVEL: debug
+    RENOVATE_CONFIG_FILE: renovate.yaml
+  before_script:
+    - curl -o /tmp/helm.tar.gz https://get.helm.sh/helm-v3.14.3-linux-amd64.tar.gz
+    - tar -zxvf /tmp/helm.tar.gz
+    - mv linux-amd64/helm /usr/local/bin/helm
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+      when: always
+    - when: never
 
 lint-pre-commit:
   before_script:
