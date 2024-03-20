@@ -1,5 +1,34 @@
 # Changelog
 
+## [0.6.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.5.0...v0.6.0) (2024-03-20)
+
+
+### Features
+
+* Add configuration regarding the S3 compatible object store for portal-listener ([aa41f2c](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/aa41f2ca1c374f4414cceddb84a257fdb3a2ed82))
+* Apply password policy and tls related UCR settings from dev-env ([967b028](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/967b0283070509bd65a3a76e3bcc212768c6f778))
+* Extend minio configuration for usage by other components ([0874a16](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/0874a16a42badd8bec94affda337a6a6fb175fab))
+* Simplify development stub passwords after policy update ([4651956](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/4651956d90e2b53c503dda51258531bdd432858f))
+* Update dependencies to latest versions ([887045c](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/887045cf867c2aaa096e823bfc56f60acd5b9afa))
+
+
+### Bug Fixes
+
+* Add "proxy-buffer-size" annotation to stack-gateway for ingress-nginx ([617c4df](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/617c4dffb91385a56a8bfd4c646b11e716f68d0d))
+* Add UMC related settings to stack-data-ums ([805165b](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/805165b006869288cf8852257c6ec65281c01fe0))
+* Add workaround for provisioning until the default registry is configured ([ea18192](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/ea18192d8f4ecac9a0d21e571dae7fccb0d5802b))
+* Add workaround regarding the postgresql version for notifications-api ([be91792](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/be91792f2ae8bbaef8514945f3a7904f14ee658c))
+* Adjust portal-server configuration to use minio ([fb3943c](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/fb3943c9e34306accd3468a7a8386a81e0f1a5c6))
+* Adjust secrets configuration for notifications-api's postgres ([666a0d8](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/666a0d89b126c42e4026929001eb209849edd662))
+* Apply interim fix related to the udm-rest-api ([86539a4](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/86539a4218cf41bf1da4a2552bfd82f2e3fd69ff))
+* Correct ldap related credentials for udm-rest-api ([8163782](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/8163782ff539b3e121ed4f5ecbc2b2116e63c45a))
+* Correct objectStorageEndpoint for the portal-listener ([7612586](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/7612586b1026cad82f74f653280e6be4fe34e1a7))
+* Correct SAML ID in the ldap configuration ([941dca1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/941dca143e1a0c4e1c81f60085992cd5485150c6))
+* Remove cert-manager related configuration from linter values ([bdc3c8b](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/bdc3c8b577609ad6d30902f31595c4cb1c0cec68))
+* Remove now outdated secret configuration for udm-rest-api ([5a9495c](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/5a9495c788bc886f3126e0da4bbed07c0a032424))
+* Switch to use "extraSecrets" for udm rest api ([9859a71](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/9859a710724c8d7e34aa30b56090f17ac0c89611))
+* Workaround for the keycloak default memory limit ([621a1f8](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/621a1f893c8937ba9a1fca3f1133b8a9edcc4cd6))
+
 ## [0.5.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.4.0...v0.5.0) (2024-03-13)
 
 
