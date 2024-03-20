@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.7.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.6.0...v0.7.0) (2024-03-20)
+
+
+### Features
+
+* use BSI compliant charts ([9b2b97b](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/9b2b97bf08e6c5cca231853c7555bbb9424d506e))
+
+
+### Bug Fixes
+
+* adjust to upstream helm changes ([cf1be6d](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/cf1be6d95ed4897d91950fb1c73add07c9c226fc))
+* fix linter_values.yaml ([6be7c69](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/6be7c6931f941452168c70ce3baed4cf19301588))
+* merge artifact ([aa43a77](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/aa43a7767228e78df977f0009678ab2a9a750bc5))
+* ref ldap-server feature branch ([66e3328](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/66e33289e0e99385f8c7961c15959878611211e4))
+* remove store-dav references ([e1f426e](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/e1f426ea7913d9d75c4b02cd5f74894222cc7cdb))
+* test new upstream versions ([9762162](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/97621626f14ab156e2f8fd0eced9b7068671b993))
+
 ## [0.6.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.5.0...v0.6.0) (2024-03-20)
 
 
