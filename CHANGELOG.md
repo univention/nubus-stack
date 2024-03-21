@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.3](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.7.2...v0.7.3) (2024-03-21)
+
+
+### Bug Fixes
+
+* **ci:** renovate target branch ([2b8bd95](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/2b8bd9543614acc3d72cd9775b7d61bea83040f0))
+
 ## [0.7.2](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.7.1...v0.7.2) (2024-03-20)
 
 
