@@ -159,5 +159,5 @@ dependencies:
 
   - name: "umc-server"
     repository: "oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-umc/helm"
-    version: "0.11.2"
+    version: "0.11.3"
     condition: "umc-server.enabled"

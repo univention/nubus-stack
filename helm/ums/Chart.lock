@@ -73,6 +73,6 @@ dependencies:
   version: 0.11.2
 - name: umc-server
   repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-umc/helm
-  version: 0.11.2
-digest: sha256:b1b50a9940ccd059816366e461a6f9e29e7d12b3b1bb7248d28d9b8047658513
-generated: "2024-03-21T19:40:00.705407807+01:00"
+  version: 0.11.3
+digest: sha256:3ac6f708e61a22eacd26ea3500649513d52c71703d478dc8cee08f166a3660be
+generated: "2024-03-25T10:34:58.280768004+01:00"
