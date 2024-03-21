@@ -466,6 +466,8 @@ umc-server:
   umcServer:
     ldapSecret: "password"
     machineSecret: "password"
+    smtpSecret: ""
+    caCert: ""
   extraVolumes:
     - name: "entrypoint-swp-patches"
       configMap:
