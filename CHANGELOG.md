@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.4](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.7.3...v0.7.4) (2024-03-21)
+
+
+### Bug Fixes
+
+* missing values ([44b25b1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/44b25b1c4f042fca8e4666114e067ef64fd1f3e3))
+
 ## [0.7.3](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.7.2...v0.7.3) (2024-03-21)
 
 
