@@ -17,12 +17,6 @@ This repository does contain a Helm chart which allows to install the Univention
 Management Stack components.
 
 
-## Status - EXPERIMENTAL
-
-The umbrella Helm chart for the UMS Stack is being built up in this repository.
-The status will be updated once it does stabilize.
-
-
 ## Example usage
 
 This repository is mainly concerned with the Helm chart for the stack. Please
