@@ -466,7 +466,7 @@ keycloak:
 
 keycloak-bootstrap:
   # TODO: Find easier way to skip this in the call to "helm upgrade"
-  enabled: false
+  enabled: true
   global:
     domain: "local-cluster.test"
     hosts:
