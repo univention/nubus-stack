@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.8.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.7.5...v0.8.0) (2024-03-25)
+
+
+### Features
+
+* **helm:** demo values ([87ea152](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/87ea1520a24f608a0560fa5b8bf20bb60eb40007))
+
+
+### Bug Fixes
+
+* default to enabled keycloak bootstrap ([e5a1341](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/e5a13413bcf681135e4398dc79b8447475e376fd))
+* remove contact details ([81afd3b](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/81afd3b88b6aa3157385aa1e659e7827ea2981fc))
+
 ## [0.7.5](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.7.4...v0.7.5) (2024-03-25)
 
 
