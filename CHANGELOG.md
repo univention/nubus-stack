@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.5](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.7.4...v0.7.5) (2024-03-25)
+
+
+### Bug Fixes
+
+* **univention-management-stack:** update helm chart ([e9125fc](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/e9125fc5434365cd9426b5e6008ee7b83bf94d8a))
+
 ## [0.7.4](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.7.3...v0.7.4) (2024-03-21)
 
 
