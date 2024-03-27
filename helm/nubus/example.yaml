@@ -1,0 +1,17 @@
+# SPDX-License-Identifier: AGPL-3.0-only
+# SPDX-FileCopyrightText: 2024 Univention GmbH
+---
+global:
+  nubusDeployment: true
+  ldap:
+    baseDn: "dc=example,dc=com"
+    domainName: "example.com"
+  domain: example.com
+  ingressClass: "nginx"
+  certManagerIssuer: "letsencrypt"
+  nubusMasterPassword: "nubus"
+
+nubusStackGateway:
+  ingress:
+    hostname: "portal.example.com"
+    ingressClassName: "nginx"

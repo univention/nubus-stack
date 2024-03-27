@@ -15,13 +15,13 @@
 ## TL;DR
 
 ```console
-helm upgrade --install ums oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/ums-stack/helm/ums
+helm upgrade --install nubus oci://artifacts.software-univention.de/nubus/charts/nubus
 ```
 
 
 ## Introduction
 
-This chart does install the Univention Management Stack.
+This chart does install Nubus.
 
 {{ template "chart.maintainersSection" . }}
 
@@ -30,19 +30,19 @@ This chart does install the Univention Management Stack.
 
 ## Installing
 
-To install the chart with the release name `ums`:
+To install the chart with the release name `nubus`:
 
 ```console
-helm upgrade --install ums oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/ums-stack/helm/ums
+helm upgrade --install nubus oci://artifacts.software-univention.de/nubus/charts/nubus
 ```
 
 
 ## Uninstalling
 
-To uninstall the chart with the release name `ums`:
+To uninstall the chart with the release name `nubus`:
 
 ```console
-helm uninstall ums
+helm uninstall nubus
 ```
 
 {{ template "chart.requirementsSection" . }}

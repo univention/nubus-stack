@@ -25,7 +25,7 @@ repositories:
     semanticCommitScope: "deps"
     semanticCommitType: "fix"
     includePaths:
-      - helm/ums/Chart.yaml
+      - helm/nubus/Chart.yaml
     customManagers:
       # Tries to match entries as the following:
       #
@@ -35,7 +35,7 @@ repositories:
       #   condition: "portal-frontend.enabled"
 
       - customType: "regex"
-        fileMatch: "^helm/ums/Chart.yaml$"
+        fileMatch: "^helm/nubus/Chart.yaml$"
         datasourceTemplate: "helm"
         matchStrings:
           - repository:\s\".*?(?<datasource>.*?\/helm.*?)\"

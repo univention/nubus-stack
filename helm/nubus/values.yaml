@@ -1,0 +1,833 @@
+# SPDX-License-Identifier: AGPL-3.0-only
+# SPDX-FileCopyrightText: 2024 Univention GmbH
+---
+global:
+  # -- Indicates to all subcharts that they are being used as part of a Nubus deployment.
+  nubusDeployment: true
+  # -- Master password from which other passwords are derived.
+  nubusMasterPassword: ""
+  ldap:
+    baseDn: ""
+    domainName: ""
+  domain: ""
+  subDomains:
+    portal: portal
+    keycloak: id
+  ingressClass: ""
+  certManagerIssuer: ""
+  postgresql:
+    connection:
+      host: ""
+      port: ""
+  minio:
+    connection:
+      host: ""
+      port: ""
+  memcached:
+    connection:
+      host: ""
+    auth:
+      username: ""
+  keycloak:
+    realm: "nubus"
+
+  configMapUcrDefaults: "{{ .Release.Name }}-stack-data-ums-ucr"
+  configMapUcr: "{{ .Release.Name }}-stack-data-swp-ucr"
+  configMapUcrForced: null
+
+# -- Load data to override ucr variables.
+# example:
+# ucrForcedValues: |
+#   portal/auth-mode: ucs
+ucrForcedValues: {}
+
+# -- Additional custom annotations to add to all objects deployed directly by the umbrella chart.
+additionalAnnotations: {}
+
+# -- Additional custom labels to add to all objects deployed directly by the umbrella chart.
+additionalLabels: {}
+
+nubusDevelopment:
+  resources: &nubusDevelopmentResources
+    limits:
+      cpu: 288
+      memory: "1Gi"
+    requests:
+      cpu: "100m"
+      memory: "16Mi"
+  terminationGracePeriodSeconds: &nubusTerminationGracePeriodSeconds 5
+
+postgresql:
+  enabled: true
+  resources: *nubusDevelopmentResources
+  auth:
+    existingSecret: "{{ .Release.Name }}-postgresql-credentials"
+    username: "nubus"
+    secretKeys:
+      adminPasswordKey: "admin_password"
+      userPasswordKey: "user_password"
+      replicationPasswordKey: "replication_password"
+  tls:
+    enabled: false
+    existingSecret: "{{ .Release.Name }}-postgresql-tls"
+    certFilename: "tls.crt"
+    certKeyFilename: "tls.key"
+    certCaFilename: "ca.crt"
+  provisioning:
+    enabled: true
+    ttlSecondsAfterFinished: 30
+    image:
+      registry: "docker.io"
+      repository: "bitnami/postgresql"
+      tag: "15.4.0-debian-11-r45"
+    containerSecurityContext:
+      enabled: true
+      seLinuxOptions: {}
+      runAsUser: 1001
+      runAsGroup: 1001
+      runAsNonRoot: true
+      privileged: false
+      readOnlyRootFilesystem: true
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop: ["ALL"]
+      seccompProfile:
+        type: "RuntimeDefault"
+  primary:
+    resources: *nubusDevelopmentResources
+    terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
+
+minio:
+  terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
+  enabled: true
+  resources: *nubusDevelopmentResources
+  networkPolicy:
+    enabled: false
+    resources: *nubusDevelopmentResources
+  auth:
+    rootUser: admin
+    existingSecret: "{{ .Release.Name }}-minio-credentials"
+  tls:
+    enabled: false
+    resources: *nubusDevelopmentResources
+    existingSecret: "{{ .Release.Name }}-minio-tls"
+  defaultBuckets: "nubus"
+
+  provisioning:
+    enabled: true
+    resources: *nubusDevelopmentResources
+    cleanupAfterFinished:
+      enabled: true
+      resources: *nubusDevelopmentResources
+    extraCommands:
+      - "mc anonymous set download provisioning/nubus/portal-assets"
+    buckets:
+      - name: "nubus"
+        versioning: false
+        withLock: false
+    policies:
+      - name: "nubus-bucket-policy"
+        statements:
+          - resources:
+              - "arn:aws:s3:::nubus"
+            effect: "Allow"
+            actions:
+              - "s3:*"
+          - resources:
+              - "arn:aws:s3:::nubus/*"
+            effect: "Allow"
+            actions:
+              - "s3:*"
+    usersExistingSecrets:
+      - nubus-minio-provisioning
+
+keycloak:
+  terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
+  enabled: true
+  resources: *nubusDevelopmentResources
+  postgresql:
+    connection:
+      host: ""
+      port: ""
+    auth:
+      username: keycloak_user
+      database: keycloak
+      credentialSecret:
+        key: password
+nubusGuardian: &nubusGuardian
+  terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
+  nameOverride: "guardian"
+  enabled: true
+  resources: *nubusDevelopmentResources
+  postgresql:
+    bundled: false
+    connection:
+      host: ""
+      port: ""
+    auth:
+      database: guardian
+      username: guardian
+      credentialSecret:
+        key: password
+  provisioning:
+    enabled: true
+    config:
+      keycloak:
+        admin: "kcadmin"
+        credentialSecret:
+          key: adminPassword
+      managementApi:
+        credentialSecret:
+          key: managementApiClientSecret
+nubusLdapNotifier: &nubusLdapNotifier
+  terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
+  nameOverride: "ldap-notifier"
+  enabled: true
+  resources: *nubusDevelopmentResources
+nubusLdapServer: &nubusLdapServer
+  terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
+  nameOverride: "ldap-server"
+  enabled: true
+  highAvailabilityMode: true
+  resourcesPrimary: *nubusDevelopmentResources
+  resourcesSecondary: *nubusDevelopmentResources
+  resourcesProxy: *nubusDevelopmentResources
+  extraVolumes:
+    - name: "opendesk-schemas"
+      configMap:
+        name: "{{ .Release.Name }}-stack-data-swp-schemas"
+  extraVolumeMounts:
+    - name: "opendesk-schemas"
+      mountPath: "/var/lib/univention-ldap-local/local-schema/opendeskFileshare.schema"
+      subPath: "opendeskFileshare.schema"
+    - name: "opendesk-schemas"
+      mountPath: "/var/lib/univention-ldap-local/local-schema/opendeskKnowledgemanagement.schema"
+      subPath: "opendeskKnowledgemanagement.schema"
+    - name: "opendesk-schemas"
+      mountPath: "/var/lib/univention-ldap-local/local-schema/opendeskLearnmanagement.schema"
+      subPath: "opendeskLearnmanagement.schema"
+    - name: "opendesk-schemas"
+      mountPath: "/var/lib/univention-ldap-local/local-schema/opendeskLivecollaboration.schema"
+      subPath: "opendeskLivecollaboration.schema"
+    - name: "opendesk-schemas"
+      mountPath: "/var/lib/univention-ldap-local/local-schema/opendeskProjectmanagement.schema"
+      subPath: "opendeskProjectmanagement.schema"
+nubusNotificationsApi: &nubusNotificationsApi
+  terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
+  nameOverride: "notifications-api"
+  enabled: true
+  resources: *nubusDevelopmentResources
+  postgresql:
+    bundled: false
+    connection:
+      host: ""
+      port: ""
+    auth:
+      username: notificationsapi_user
+      database: notificationsapi
+      credentialSecret:
+        key: password
+nubusPortalFrontend: &nubusPortalFrontend
+  terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
+  nameOverride: "portal-frontend"
+  enabled: true
+  resources: *nubusDevelopmentResources
+  extraVolumes:
+    - name: "opendesk-branding"
+      configMap:
+        name: "{{ .Release.Name }}-stack-data-swp-branding"
+  extraVolumeMounts:
+    - name: "opendesk-branding"
+      mountPath: "/var/www/html/favicon.ico"
+      subPath: "favicon.ico"
+    - name: "opendesk-branding"
+      mountPath: "/var/www/html/css/custom.css"
+      subPath: "custom.css"
+    - name: "opendesk-branding"
+      mountPath: "/var/www/html/icons/logo.svg"
+      subPath: "logo.svg"
+    - name: "opendesk-branding"
+      mountPath: "/var/www/html/icons/logo_small_border.svg"
+      subPath: "logo_small_border.svg"
+    - name: "opendesk-branding"
+      mountPath: "/var/www/html/custom/portal_background_image.png"
+      subPath: "portal_background_image.png"
+    - name: "opendesk-branding"
+      mountPath: "/var/www/html/custom/portal_background_image.svg"
+      subPath: "portal_background_image.svg"
+nubusPortalListener: &nubusPortalListener
+  terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
+  nameOverride: "portal-listener"
+  enabled: true
+  resources: *nubusDevelopmentResources
+  # Currently gets its configuration from UCR.
+  # minio:
+  #   connection:
+  #     host: ""
+  #     port: ""
+  #     accessKey:
+  #       secretKeyRef:
+  #         key: accessKey
+  #     secretKey:
+  #       secretKeyRef:
+  #         key: secretKey
+  # Currently gets its configuration from UCR.
+  # ldap:
+  #   connection:
+  #     host: ""
+  #     port: ""
+  #   auth:
+  #     bindDn: cn=admin,dc=example,dc=org
+  #     credentialSecret:
+  #       key: password
+  portalListener:
+    ldapHost: "{{ .Release.Name }}-ldap-server-primary"
+    objectStorageBucket: "nubus"
+nubusPortalServer: &nubusPortalServer
+  terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
+  nameOverride: "portal-server"
+  enabled: true
+  resources: *nubusDevelopmentResources
+  portalServer:
+    objectStorageBucket: "nubus"
+  # Currently gets its configuration from UCR.
+  # minio:
+  #   connection:
+  #     host: ""
+  #     port: ""
+  #     accessKey:
+  #       secretKeyRef:
+  #         key: accessKey
+  #     secretKey:
+  #       secretKeyRef:
+  #         key: secretKey
+nubusProvisioning: &nubusProvisioning
+  terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
+  nameOverride: "provisioning"
+  enabled: true
+  resources:
+    dispatcher: *nubusDevelopmentResources
+    prefill: *nubusDevelopmentResources
+    api: *nubusDevelopmentResources
+  nats:
+    global:
+      imageRegistry: "docker.io"
+    resources: *nubusDevelopmentResources
+    reloader:
+      resources: *nubusDevelopmentResources
+    natsBox:
+      resources: *nubusDevelopmentResources
+  api:
+    nats:
+      connection:
+        host: ""
+        port: ""
+        username: events_and_consumer_api
+        password:
+          secretKeyRef:
+            key: password
+  dispatcher:
+    nats:
+      connection:
+        host: ""
+        port: ""
+        username: dispatcher
+        password:
+          secretKeyRef:
+            key: password
+  prefill:
+    nats:
+      connection:
+        host: ""
+        port: ""
+        username: prefill
+        password:
+          secretKeyRef:
+            key: password
+nubusUdmListener: &nubusUdmListener
+  terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
+  nameOverride: "provisioning-listener"
+  enabled: true
+  resources: *nubusDevelopmentResources
+  ldap:
+    connection:
+      host: ""
+      port: ""
+    auth:
+      bindDn: cn=admin,dc=example,dc=org
+      credentialSecret:
+        key: password
+  config:
+    ldapHost: "{{ .Release.Name }}-ldap-server-primary"
+nubusStackDataSwp: &nubusStackDataSwp
+  terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
+  nameOverride: "stack-data-swp"
+  enabled: true
+  resources: *nubusDevelopmentResources
+  stackDataSwp:
+    loadDevData: true
+  stackDataContext:
+    ldapSearchUsers:
+      - username: "readonly"
+        password: '{{ include "nubusTemplates.credentials.ldap.users.readonly.password" . }}'
+  # Currently gets its configuration from UCR.
+  # ldap:
+  #   connection:
+  #     host: ""
+  #     port: ""
+  #   auth:
+  #     bindDn: cn=admin,dc=example,dc=org
+  #     credentialSecret:
+  #       key: password
+  #       name: stack-data-swp-ldap-credentials
+nubusSelfServiceListener: &nubusSelfServiceListener
+  terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
+  nameOverride: "selfservice-listener"
+  enabled: true
+  resources: *nubusDevelopmentResources
+  umc:
+    auth:
+      username: "Administrator"
+  provisioningApi:
+    auth:
+      username: "selfservice"
+nubusUdmRestApi: &nubusUdmRestApi
+  terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
+  nameOverride: "udm-rest-api"
+  enabled: true
+  resources: *nubusDevelopmentResources
+  ldap:
+    connection:
+      host: ""
+      port: ""
+    auth:
+      bindDn: cn=admin,dc=example,dc=org
+      credentialSecret:
+        key: password
+  extraVolumes:
+    - name: "attribute-to-group-mapper-hook"
+      configMap:
+        name: "{{ .Release.Name }}-stack-data-swp-attribute-to-group-mapper-hook"
+  extraVolumeMounts:
+    - name: "attribute-to-group-mapper-hook"
+      mountPath: "/usr/lib/python3/dist-packages/univention/admin/hooks.d/AttributeToGroupMapper.py"
+      subPath: "AttributeToGroupMapper.py"
+    - name: "attribute-to-group-mapper-hook"
+      mountPath: "/usr/share/attribute-to-group-mapper/flag_to_group_mapping.json"
+      subPath: "flag_to_group_mapping.json"
+nubusUmcGateway: &nubusUmcGateway
+  terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
+  nameOverride: "umc-gateway"
+  enabled: true
+  resources: *nubusDevelopmentResources
+nubusUmcServer: &nubusUmcServer
+  terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
+  nameOverride: "umc-server"
+  enabled: true
+  resources: *nubusDevelopmentResources
+  postgresql:
+    connection:
+      host: ""
+      port: ""
+    auth:
+      username: selfservice
+      database: selfservice
+      credentialSecret:
+        key: password
+  global:
+    imageRegistry: "docker.io"
+  image:
+    registry: "artifacts.software-univention.de"
+  memcached:
+    nameOverride: "umc-server-memcached"
+    containerSecurityContext:
+      readOnlyRootFilesystem: false
+    auth:
+      username: selfservice
+      existingPasswordSecret: '{{ printf "%s-umc-server-memcached-credentials" .Release.Name }}'
+      credentialSecret:
+        key: "memcached-password"
+        name: ""
+    connection:
+      host: ""
+      port: ""
+      username: umcserver
+  umcServer:
+    certPemFile: "/var/secrets/ssl/tls.crt"
+    privateKeyFile: "/var/secrets/ssl/tls.key"
+  extraVolumes:
+    - name: "certificates"
+      secret:
+        secretName: "{{ .Release.Name }}-saml-tls"
+    - name: "entrypoint-swp-patches"
+      configMap:
+        name: "{{ .Release.Name }}-stack-data-swp-umc-server-entrypoint"
+        defaultMode: 0555
+    - name: "self-service-emails"
+      configMap:
+        name: "{{ .Release.Name }}-stack-data-swp-self-service-emails"
+        defaultMode: 0444
+    - name: "attribute-to-group-mapper-hook"
+      configMap:
+        name: "{{ .Release.Name }}-stack-data-swp-attribute-to-group-mapper-hook"
+    - name: "announcements-customization"
+      configMap:
+        name: "{{ .Release.Name }}-stack-data-swp-umc-server-announcements"
+        defaultMode: 0444
+  extraVolumeMounts:
+    - name: "certificates"
+      mountPath: "/var/secrets/ssl"
+    - name: "entrypoint-swp-patches"
+      mountPath: "/entrypoint.d/90-customization.sh"
+      subPath: "90-customization.sh"
+    - name: "self-service-emails"
+      mountPath: "/usr/share/univention-self-service/email_bodies"
+    - name: "attribute-to-group-mapper-hook"
+      mountPath: "/usr/lib/python3/dist-packages/univention/admin/hooks.d/AttributeToGroupMapper.py"
+      subPath: "AttributeToGroupMapper.py"
+    - name: "attribute-to-group-mapper-hook"
+      mountPath: "/usr/share/attribute-to-group-mapper/flag_to_group_mapping.json"
+      subPath: "flag_to_group_mapping.json"
+    - name: "announcements-customization"
+      mountPath: "/usr/share/univention-management-console/modules/udm-portals-announcement.xml"
+      subPath: "udm-portals-announcement.xml"
+nubusKeycloakBootstrap: &nubusKeycloakBootstrap
+  terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
+  nameOverride: "keycloak-bootstrap"
+  enabled: true
+  resources: *nubusDevelopmentResources
+nubusKeycloakExtensions: &nubusKeycloakExtensions
+  terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
+  nameOverride: "keycloak-extensions"
+  enabled: true
+  resources: *nubusDevelopmentResources
+  smtp:
+    connection:
+      host: ""
+    auth:
+      username: "keycloak-extensions"
+      credentialSecret:
+        key: password
+  keycloak:
+    connection:
+      host: ""
+    auth:
+      username: "kcadmin"
+      credentialSecret:
+        key: password
+  postgresql:
+    connection:
+      host: ""
+      port: ""
+    auth:
+      database: keycloak_extensions
+      username: keycloak_extensions
+      credentialSecret:
+        key: password
+nubusStackGateway:
+  terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
+  nameOverride: "stack-gateway"
+  enabled: true
+  resources: *nubusDevelopmentResources
+  ingress:
+    enabled: true
+    annotations:
+      nginx.org/proxy-buffer-size: "64k"
+      nginx.org/proxy-buffers: "4 128k"
+      cert-manager.io/cluster-issuer: "{{ .Values.global.certManagerIssuer }}"
+    extraTls:
+      - hosts:
+          - "{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
+        secretName: "{{ .Release.Name }}-portal-tls"
+    tls: false
+
+  podSecurityContext:
+    enabled: true
+    fsGroup: 1001
+
+  containerSecurityContext:
+    enabled: true
+    runAsUser: 1001
+    runAsNonRoot: true
+    privileged: false
+    readOnlyRootFilesystem: false
+    allowPrivilegeEscalation: false
+    capabilities:
+      drop:
+        - "ALL"
+    seccompProfile:
+      type: "RuntimeDefault"
+
+  service:
+    type: "ClusterIP"
+
+  serviceAccount:
+    create: true
+
+  # The content of the "serverBlock" does resemble the Ingress configuration of
+  # the Nubus components. The "location" entries do intentionally reflect precisely
+  # the respective paths which are configured.
+  serverBlock: |
+    server {
+      listen 8080;
+      server_name _;
+      proxy_http_version 1.1;
+
+      proxy_set_header Host $http_host;
+
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header X-Forwarded-Host $http_x_forwarded_host;
+      proxy_set_header X-Forwarded-Port $http_x_forwarded_port;
+      proxy_set_header X-Forwarded-Proto $http_x_forwarded_proto;
+
+      ## portal-frontend
+      # The frontend does not own "/univention/portal" nor
+      # "/univention/selfservice", only these two bits
+      location = /univention/portal/ {
+        rewrite ^/univention/portal(/.*)$ $1 break;
+        proxy_pass http://{{ .Release.Name }}-portal-frontend:80/;
+      }
+      location = /univention/portal/index.html {
+        rewrite ^/univention/portal(/.*)$ $1 break;
+        proxy_pass http://{{ .Release.Name }}-portal-frontend:80/;
+      }
+      location = /univention/selfservice/ {
+        rewrite ^/univention/selfservice(/.*)$ $1 break;
+        proxy_pass http://{{ .Release.Name }}-portal-frontend:80/;
+      }
+
+      # The following prefixes are owned by the frontend
+      location /univention/portal/css/ {
+        rewrite ^/univention/portal(/.*)$ $1 break;
+        proxy_pass http://{{ .Release.Name }}-portal-frontend:80;
+      }
+      location /univention/portal/fonts/ {
+        rewrite ^/univention/portal(/.*)$ $1 break;
+        proxy_pass http://{{ .Release.Name }}-portal-frontend:80;
+      }
+      location /univention/portal/i18n/ {
+        rewrite ^/univention/portal(/.*)$ $1 break;
+        proxy_pass http://{{ .Release.Name }}-portal-frontend:80;
+      }
+      location /univention/portal/media/ {
+        rewrite ^/univention/portal(/.*)$ $1 break;
+        proxy_pass http://{{ .Release.Name }}-portal-frontend:80;
+      }
+      location /univention/portal/js/ {
+        rewrite ^/univention/portal(/.*)$ $1 break;
+        proxy_pass http://{{ .Release.Name }}-portal-frontend:80;
+      }
+      location /univention/portal/oidc/ {
+        rewrite ^/univention/portal(/.*)$ $1 break;
+        proxy_pass http://{{ .Release.Name }}-portal-frontend:80;
+      }
+      location /univention/selfservice/css/ {
+        rewrite ^/univention/selfservice(/.*)$ $1 break;
+        proxy_pass http://{{ .Release.Name }}-portal-frontend:80;
+      }
+      location /univention/selfservice/fonts/ {
+        rewrite ^/univention/selfservice(/.*)$ $1 break;
+        proxy_pass http://{{ .Release.Name }}-portal-frontend:80;
+      }
+      location /univention/selfservice/i18n/ {
+        rewrite ^/univention/selfservice(/.*)$ $1 break;
+        proxy_pass http://{{ .Release.Name }}-portal-frontend:80;
+      }
+      location /univention/selfservice/media/ {
+        rewrite ^/univention/selfservice(/.*)$ $1 break;
+        proxy_pass http://{{ .Release.Name }}-portal-frontend:80;
+      }
+      location /univention/selfservice/js/ {
+        rewrite ^/univention/selfservice(/.*)$ $1 break;
+        proxy_pass http://{{ .Release.Name }}-portal-frontend:80;
+      }
+      location /univention/selfservice/oidc/ {
+        rewrite ^/univention/selfservice(/.*)$ $1 break;
+        proxy_pass http://{{ .Release.Name }}-portal-frontend:80;
+      }
+
+
+      ## frontend redirects
+      location = / {
+        absolute_redirect off;
+        return 302 /univention/portal/;
+      }
+      location = /univention {
+        absolute_redirect off;
+        return 302 /univention/portal/;
+      }
+      location = /univention/ {
+        absolute_redirect off;
+        return 302 /univention/portal/;
+      }
+      location = /univention/portal {
+        absolute_redirect off;
+        return 302 /univention/portal/;
+      }
+      location = /univention/selfservice {
+        absolute_redirect off;
+        return 302 /univention/selfservice/;
+      }
+
+
+      ## portal-server
+      location = /univention/portal/portal.json {
+        proxy_pass http://{{ .Release.Name }}-portal-server:80;
+      }
+      location = /univention/selfservice/portal.json {
+        proxy_pass http://{{ .Release.Name }}-portal-server:80;
+      }
+      location = /univention/portal/navigation.json {
+        proxy_pass http://{{ .Release.Name }}-portal-server:80;
+      }
+
+
+      ## udm-rest-api
+      location /univention/udm/ {
+        # The UDM Rest API does return on some endpoints a lot of headers
+        proxy_busy_buffers_size 128k;
+        proxy_buffers 4 128k;
+        proxy_buffer_size 64k;
+
+        rewrite ^/univention(/udm/.*)$ $1 break;
+        proxy_pass http://{{ .Release.Name }}-udm-rest-api:80;
+      }
+
+
+      ## umc-gateway
+      location = /univention/languages.json {
+        proxy_pass http://{{ .Release.Name }}-umc-gateway:80;
+      }
+      location = /univention/meta.json {
+        proxy_pass http://{{ .Release.Name }}-umc-gateway:80;
+      }
+      location = /univention/theme.css {
+        proxy_pass http://{{ .Release.Name }}-umc-gateway:80;
+      }
+      location /univention/js/ {
+        proxy_pass http://{{ .Release.Name }}-umc-gateway:80;
+      }
+      location /univention/login/ {
+        proxy_pass http://{{ .Release.Name }}-umc-gateway:80;
+      }
+      location /univention/management/ {
+        proxy_pass http://{{ .Release.Name }}-umc-gateway:80;
+      }
+      location /univention/themes/ {
+        proxy_pass http://{{ .Release.Name }}-umc-gateway:80;
+      }
+
+
+      ## umc-server
+      location = /univention/auth {
+        rewrite ^/univention(/.*)$ $1 break;
+        proxy_pass http://{{ .Release.Name }}-umc-server:80;
+        proxy_set_header X-UMC-HTTPS 'on';
+      }
+      location /univention/logout {
+        rewrite ^/univention(/.*)$ $1 break;
+        proxy_pass http://{{ .Release.Name }}-umc-server:80;
+      }
+      location /univention/saml {
+        rewrite ^/univention(/.*)$ $1 break;
+        proxy_pass http://{{ .Release.Name }}-umc-server:80;
+        proxy_set_header X-UMC-HTTPS 'on';
+      }
+      location /univention/get {
+        rewrite ^/univention(/.*)$ $1 break;
+        proxy_pass http://{{ .Release.Name }}-umc-server:80;
+      }
+      location /univention/set {
+        rewrite ^/univention(/.*)$ $1 break;
+        proxy_pass http://{{ .Release.Name }}-umc-server:80;
+      }
+      location /univention/command {
+        rewrite ^/univention(/.*)$ $1 break;
+        proxy_pass http://{{ .Release.Name }}-umc-server:80;
+      }
+      location /univention/upload {
+        rewrite ^/univention(/.*)$ $1 break;
+        proxy_pass http://{{ .Release.Name }}-umc-server:80;
+      }
+
+
+      ## notifications-api
+      location /univention/portal/notifications-api/ {
+        rewrite ^/univention/portal/notifications-api(/.*)$ $1 break;
+        proxy_pass http://{{ .Release.Name }}-notifications-api:80;
+      }
+
+      ## branding
+      location = /favicon.ico {
+        proxy_pass http://{{ .Release.Name }}-portal-frontend:80/;
+      }
+      location /univention/portal/custom/ {
+        rewrite ^/univention/portal(/.*)$ $1 break;
+        proxy_pass http://{{ .Release.Name }}-portal-frontend:80/;
+      }
+      location /univention/portal/icons/ {
+        rewrite ^/univention/portal(/.*)$ $1 break;
+        proxy_pass http://{{ .Release.Name }}-portal-frontend:80/;
+      }
+
+      ## provisioning-api
+      # location /univention/provisioning-api/ {
+      #   rewrite ^/univention/provisioning-api(/.*)$ $1 break;
+      #   proxy_pass http://{{ .Release.Name }}-provisioning-api:80;
+      # }
+
+      # guardian
+      location /univention/guardian/management-ui {
+        proxy_pass http://{{ .Release.Name }}-guardian-management-ui:80/univention/guardian/management-ui;
+      }
+      location /guardian/opa {
+        rewrite ^/guardian/opa(/.*)$ $1 break;
+        proxy_pass http://{{ .Release.Name }}-guardian-open-policy-agent:80/;
+      }
+      location /guardian/management {
+        proxy_pass http://{{ .Release.Name }}-guardian-management-api:80/guardian/management;
+      }
+      location /guardian/authorization {
+        proxy_pass http://{{ .Release.Name }}-guardian-authorization-api:80/guardian/authorization;
+      }
+
+      ## object storage (minio)
+      location /univention/portal/icons/entries/ {
+        rewrite ^/univention/portal(/icons/entries/.*)$ /nubus/portal-assets$1 break;
+        proxy_pass http://{{ .Release.Name }}-minio:9000;
+      }
+      location /univention/portal/icons/logos/ {
+        rewrite ^/univention/portal(/icons/logos/.*)$ /nubus/portal-assets$1 break;
+        proxy_pass http://{{ .Release.Name }}-minio:9000;
+      }
+      location /univention/selfservice/icons/entries/ {
+        rewrite ^/univention/selfservice(/icons/entries/.*)$ /nubus/portal-assets$1 break;
+        proxy_pass http://{{ .Release.Name }}-minio:9000;
+      }
+      location /univention/selfservice/icons/logos/ {
+        rewrite ^/univention/selfservice(/icons/logos/.*)$ /nubus/portal-assets$1 break;
+        proxy_pass http://{{ .Release.Name }}-minio:9000;
+      }
+
+    }
+
+
+nubusStackDataUms:
+  terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
+  nameOverride: "stack-data-ums"
+  enabled: true
+  resources: *nubusDevelopmentResources
+  nubusNotificationsApi: *nubusNotificationsApi
+  nubusUmcServer: *nubusUmcServer
+  nubusKeycloakExtensions: *nubusKeycloakExtensions
+  nubusKeycloakBootstrap: *nubusKeycloakBootstrap
+  nubusPortalListener: *nubusPortalListener
+  nubusPortalServer: *nubusPortalServer
+  nubusProvisioning: *nubusProvisioning
+  nubusUdmListener: *nubusUdmListener
+  nubusStackDataSwp: *nubusStackDataSwp
+  nubusSelfServiceListener: *nubusSelfServiceListener
+  nubusUdmRestApi: *nubusUdmRestApi
+  stackDataContext:
+    ldapMasterHost: '{{ include "nubusTemplates.connections.ldap.primary.host" . }}'
+    ldapHost: '{{ include "nubusTemplates.connections.ldap.primary.host" . }}'

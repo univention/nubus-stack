@@ -8,19 +8,19 @@ context of the
 project.
 
 The repository's content provides you with first insights into the containerized
-cloud IAM from Univention, derived from the UCS appliance.
+cloud IAM from Univention, extracting the core technologies from the UCS appliance.
 
 
-# UMS Stack
+# Nubus
 
-This repository does contain a Helm chart which allows to install the Univention
-Management Stack components.
+This repository does contain a Helm chart which allows to install all the Nubus
+components.
 
 
 ## Example usage
 
 This repository is mainly concerned with the Helm chart for the stack. Please
-take a look into the README file of the chart in `./helm/ums/README.md`.
+take a look into the README file of the chart in `./helm/nubus/README.md`.
 
 
 ## Development setup
@@ -28,24 +28,14 @@ take a look into the README file of the chart in `./helm/ums/README.md`.
 ### Known limitations
 
 - The values for a test deployment are currently in the file
-  `linter_values.yaml`.
-- `keycloak-bootstrap` is currently disabled in `linter_values.yaml`. Use `--set
-  keycloak-bootstrap.enabled=true` when you want to run it during development.
-
+  `example.yaml`, which you can use as a starting point.
 
 ### Preparation - Load dependencies
 
-Make sure that you have the dependencies downloaded. You may have to log into
-the OCI registry if you did not yet do so before:
+The dependencies can be loaded:
 
 ```sh
-helm registry login gitregistry.knut.univention.de
-```
-
-Afterwards the dependencies can be loaded:
-
-```sh
-helm dependency build ./helm/ums
+helm dependency build ./helm/nubus
 ```
 
 ### Fast feedback loop with `helm template`
@@ -54,11 +44,11 @@ Use `helm template` to have a fast feedback loop and inspect the rendered output
 as YAML files. This also works if you don't have a Kubernetes cluster available:
 
 ```sh
-helm template ums ./helm/ums
+helm template nubus ./helm/nubus
 
 # Add custom values if you want to check specific scenarios
-helm template --values your-values-file.yaml ums ./helm/ums
-helm template --set example.key=value ums ./helm/ums
+helm template --values your-values-file.yaml nubus ./helm/nubus
+helm template --set example.key=value nubus ./helm/nubus
 
 # Be aware, there are further options to set values on the command line,
 # "helm template --help" will provide further details.
@@ -73,10 +63,10 @@ sub-commands `install`, `upgrade` and `uninstall`:
 
 ```sh
 # Often the use of "upgrade" with the argument "--install" is useful
-helm upgrade --install --values your-values-file.yaml ums ./helm/ums
+helm upgrade --install --values your-values-file.yaml nubus ./helm/nubus
 
 # If you want to run the bootstrap job of Keycloak (required on initial deployment)
-helm upgrade --install --values linter_values.yaml --set keycloak-bootstrap.enabled=true ums ./
+helm upgrade --install --values linter_values.yaml --set keycloak-bootstrap.enabled=true nubus ./
 ```
 
 

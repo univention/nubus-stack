@@ -1,1 +1,4 @@
+.DS_Store
 /helm/ums/charts/
+/helm/nubus/charts/
+/helm/nubus/*.dev.yaml

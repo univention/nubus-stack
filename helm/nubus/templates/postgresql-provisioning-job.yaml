@@ -1,0 +1,172 @@
+# SPDX-License-Identifier: AGPL-3.0-only
+# SPDX-FileCopyrightText: 2024 Univention GmbH
+{{ if and .Values.postgresql.provisioning }}
+---
+apiVersion: "batch/v1"
+kind: "Job"
+metadata:
+  name: {{ printf "%s-postgresql-provisioning" .Release.Name | quote }}
+  namespace: {{ include "common.names.namespace" $ | quote }}
+  labels:
+    {{- include "common.labels.standard" . | nindent 4 }}
+  {{- if .Values.additionalAnnotations }}
+  annotations:
+    {{ toYaml .Values.additionalAnnotations | nindent 4 }}
+  {{- end }}
+spec:
+  ttlSecondsAfterFinished: {{ .Values.postgresql.provisioning.ttlSecondsAfterFinished | default 30 }}
+  template:
+    metadata:
+      name: {{ include "common.names.name" . }}
+      labels:
+        {{- include "common.labels.standard" . | nindent 8 }}
+      annotations:
+        checksum/config: '{{ include (print $.Template.BasePath "/postgresql-provisioning-configmap.yaml") . | sha256sum }}'
+        {{- if .Values.additionalAnnotations }}
+        {{ toYaml .Values.additionalAnnotations | nindent 8 }}
+        {{- end }}
+    spec:
+      restartPolicy: "OnFailure"
+      {{- if or .Values.postgresql.imagePullSecrets .Values.global.imagePullSecrets }}
+      imagePullSecrets:
+        {{- range .Values.global.imagePullSecrets }}
+        - name: "{{ . }}"
+        {{- end }}
+        {{- range .Values.postgresql.imagePullSecrets }}
+        - name: "{{ . }}"
+        {{- end }}
+      {{- end }}
+      {{- if .Values.postgresql.affinity }}
+      affinity: {{- include "common.tplvalues.render" (dict "value" .Values.postgresql.affinity "context" .) | nindent 8 }}
+      {{- end }}
+      {{- if .Values.postgresql.tolerations }}
+      tolerations: {{- include "common.tplvalues.render" (dict "value" .Values.postgresql.tolerations "context" .) | nindent 8 }}
+      {{- end }}
+      {{- if .Values.postgresql.topologySpreadConstraints }}
+      topologySpreadConstraints: {{- include "common.tplvalues.render" (dict "value" .Values.postgresql.topologySpreadConstraints "context" .) | nindent 8 }}
+      {{- end }}
+      {{- if .Values.postgresql.nodeSelector }}
+      nodeSelector: {{- include "common.tplvalues.render" (dict "value" .Values.postgresql.nodeSelector "context" .) | nindent 8 }}
+      {{- end }}
+      {{- if and .Values.postgresql.podSecurityContext .Values.postgresql.podSecurityContext.enabled }}
+      securityContext: {{- omit .Values.postgresql.podSecurityContext "enabled" | toYaml | nindent 8 }}
+      {{- end }}
+      {{- if and .Values.postgresql.serviceAccount .Values.postgresql.serviceAccount.create }}
+      serviceAccountName: {{ printf "%s-postgresql" .Release.Name }}
+      {{- end }}
+      {{- if .Values.postgresql.provisioning.terminationGracePeriodSeconds }}
+      terminationGracePeriodSeconds: {{ .Values.postgresql.terminationGracePeriodSeconds }}
+      {{- end }}
+      initContainers:
+      - name: wait-for-postgresql
+        command:
+          - /bin/sh
+          - -c
+          - |
+              until pg_isready -h {{ coalesce (printf "%s-postgresql" .Release.Name) .Values.global.postgresql.connection.host }}; do
+              sleep 1
+              done
+        {{- with .Values.postgresql.provisioning.image }}
+        image: "{{ .registry }}/{{ .repository }}{{ if .sha256 }}@sha256:{{ .sha256 }}{{ else }}:{{ .tag }}{{ end }}"
+        imagePullPolicy: "{{ .pullPolicy }}"
+        {{- end }}
+        env:
+          - name: PGHOST
+            value: {{ coalesce (printf "%s-postgresql" .Release.Name) .Values.global.postgresql.connection.host }}
+          - name: PGUSER
+            value: "postgres"
+          - name: PGPASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{ tpl .Values.postgresql.auth.existingSecret . }}
+                key: {{ .Values.postgresql.auth.secretKeys.adminPasswordKey }}
+          - name: PGDATABASE
+            value: postgres
+        resources:
+          {{- toYaml .Values.postgresql.resources | nindent 10 }}
+        {{- if and .Values.postgresql.provisioning.containerSecurityContext .Values.postgresql.provisioning.containerSecurityContext.enabled }}
+        securityContext: {{- omit .Values.postgresql.provisioning.containerSecurityContext "enabled" | toYaml | nindent 10 }}
+        {{- end }}
+      containers:
+      - name: "provisioning"
+        {{- with .Values.postgresql.provisioning.image }}
+        image: "{{ .registry }}/{{ .repository }}{{ if .sha256 }}@sha256:{{ .sha256 }}{{ else }}:{{ .tag }}{{ end }}"
+        imagePullPolicy: "{{ .pullPolicy }}"
+        {{- end }}
+        env:
+          - name: PGHOST
+            value: {{ coalesce (printf "%s-postgresql" .Release.Name) .Values.global.postgresql.connection.host }}
+          - name: PGUSER
+            value: "postgres"
+          - name: PGPASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{ tpl .Values.postgresql.auth.existingSecret . }}
+                key: {{ .Values.postgresql.auth.secretKeys.adminPasswordKey }}
+          - name: PGDATABASE
+            value: postgres
+        command:
+          - /bin/bash
+          - -c
+          - |
+            set -euxo pipefail
+            sh -eux /provisioning-scripts/provision-databases.sh
+            sh -eux /provisioning-scripts/provision-users.sh
+        resources:
+          {{- toYaml .Values.postgresql.resources | nindent 10 }}
+        {{- if and .Values.postgresql.provisioning.containerSecurityContext .Values.postgresql.provisioning.containerSecurityContext.enabled }}
+        securityContext: {{- omit .Values.postgresql.provisioning.containerSecurityContext "enabled" | toYaml | nindent 10 }}
+        {{- end }}
+        volumeMounts:
+          - name: "provisioning-scripts-volume"
+            mountPath: "/provisioning-scripts"
+          - name: "umc-server-postgresql-credentials"
+            mountPath: "/provisioning/passwords/{{ .Values.nubusUmcServer.postgresql.auth.username }}"
+            subPath: "{{ .Values.nubusUmcServer.postgresql.auth.username }}"
+          - name: "notifications-api-postgresql-credentials"
+            mountPath: "/provisioning/passwords/{{ .Values.nubusNotificationsApi.postgresql.auth.username }}"
+            subPath: "{{ .Values.nubusNotificationsApi.postgresql.auth.username }}"
+          - name: "keycloak-postgresql-credentials"
+            mountPath: "/provisioning/passwords/{{ .Values.keycloak.postgresql.auth.username }}"
+            subPath: "{{ .Values.keycloak.postgresql.auth.username }}"
+          - name: "keycloak-extensions-postgresql-credentials"
+            mountPath: "/provisioning/passwords/{{ .Values.nubusKeycloakExtensions.postgresql.auth.username }}"
+            subPath: "{{ .Values.nubusKeycloakExtensions.postgresql.auth.username }}"
+          - name: "guardian-postgresql-credentials"
+            mountPath: "/provisioning/passwords/{{ .Values.nubusGuardian.postgresql.auth.username }}"
+            subPath: "{{ .Values.nubusGuardian.postgresql.auth.username }}"
+      volumes:
+      - name: "provisioning-scripts-volume"
+        configMap:
+          name: {{ printf "%s-postgresql-provisioning" .Release.Name | quote }}
+      - name: "umc-server-postgresql-credentials"
+        secret:
+          secretName: {{ (printf "%s-umc-server-postgresql-credentials" .Release.Name) | quote }}
+          items:
+            - key: {{ .Values.nubusUmcServer.postgresql.auth.credentialSecret.key | quote }}
+              path: {{ .Values.nubusUmcServer.postgresql.auth.username | quote }}
+      - name: "notifications-api-postgresql-credentials"
+        secret:
+          secretName: {{ (printf "%s-notifications-api-postgresql-credentials" .Release.Name) | quote }}
+          items:
+            - key: {{ .Values.nubusNotificationsApi.postgresql.auth.credentialSecret.key | quote }}
+              path: {{ .Values.nubusNotificationsApi.postgresql.auth.username | quote }}
+      - name: "keycloak-postgresql-credentials"
+        secret:
+          secretName: {{ (printf "%s-keycloak-postgresql-credentials" .Release.Name) | quote }}
+          items:
+            - key: {{ .Values.keycloak.postgresql.auth.credentialSecret.key | quote }}
+              path: {{ .Values.keycloak.postgresql.auth.username | quote }}
+      - name: "keycloak-extensions-postgresql-credentials"
+        secret:
+          secretName: {{ (printf "%s-keycloak-extensions-postgresql-credentials" .Release.Name) | quote }}
+          items:
+            - key: {{ .Values.nubusKeycloakExtensions.postgresql.auth.credentialSecret.key | quote }}
+              path: {{ .Values.nubusKeycloakExtensions.postgresql.auth.username | quote }}
+      - name: "guardian-postgresql-credentials"
+        secret:
+          secretName: {{ (printf "%s-guardian-management-api-postgresql-credentials" .Release.Name) | quote }}
+          items:
+            - key: {{ .Values.nubusGuardian.postgresql.auth.credentialSecret.key | quote }}
+              path: {{ .Values.nubusGuardian.postgresql.auth.username | quote }}
+{{ end }}

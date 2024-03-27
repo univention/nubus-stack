@@ -1,0 +1,26 @@
+# SPDX-License-Identifier: AGPL-3.0-only
+# SPDX-FileCopyrightText: 2024 Univention GmbH
+{{- if not .Values.global.nubusMasterPassword -}}
+# {{- required "Variable .Values.global.nubusMasterPassword must be set" .Values.false -}}
+{{- end -}}
+{{- if not .Values.global.domain -}}
+# {{- required "Variable .Values.global.domain must be set" .Values.false -}}
+{{- end -}}
+{{- if not (index (default dict .Values.global.subDomains) "portal") -}}
+# {{- required "Variable .Values.global.subDomains.portal must be set" .Values.false -}}
+{{- end -}}
+{{- if not (index (default dict .Values.global.subDomains) "keycloak") -}}
+# {{- required "Variable .Values.global.subDomains.keycloak must be set" .Values.false -}}
+{{- end -}}
+{{- if not .Values.global.ingressClass -}}
+# {{- required "Variable .Values.global.ingressClass must be set" .Values.false -}}
+{{- end -}}
+{{- if not (or .Values.global.certManagerIssuer .Values.global.certManagerClusterIssuer) -}}
+# {{- required "Either .Values.global.certManagerIssuer or .Values.global.certManagerClusterIssuer must be set" .Values.false -}}
+{{- end -}}
+{{- if not (index (default dict .Values.global.ldap) "baseDn") -}}
+# {{- required "Variable .Values.global.ldap.baseDn must be set" .Values.false -}}
+{{- end -}}
+{{- if not (index (default dict .Values.global.ldap) "domainName") -}}
+# {{- required "Variable .Values.global.ldap.domainName must be set" .Values.false -}}
+{{- end }}

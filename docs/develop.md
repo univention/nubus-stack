@@ -5,7 +5,7 @@
 ### Symbolic links in `charts`
 
 Symbolic links can be useful during development. When using symbolic links
-inside the folder `helm/ums/charts`, then the `.tgz` packages can cause
+inside the folder `helm/nubus/charts`, then the `.tgz` packages can cause
 trouble during the evaluation.
 
 Example command:

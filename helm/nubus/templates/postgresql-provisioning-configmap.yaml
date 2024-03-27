@@ -1,0 +1,95 @@
+# SPDX-License-Identifier: AGPL-3.0-only
+# SPDX-FileCopyrightText: 2024 Univention GmbH
+{{ if and .Values.postgresql.provisioning }}
+---
+kind: "ConfigMap"
+apiVersion: "v1"
+metadata:
+  name: {{ printf "%s-postgresql-provisioning" .Release.Name | quote }}
+  namespace: {{ include "common.names.namespace" $ | quote }}
+  labels:
+    {{- include "common.labels.standard" . | nindent 4 }}
+  {{- if .Values.additionalAnnotations }}
+  annotations:
+    {{ toYaml .Values.additionalAnnotations | nindent 4 }}
+  {{- end }}
+data:
+  provision-databases.sh: |
+    #!/usr/bin/env sh
+    echo "Provisioning databases ..."
+    cat /provisioning-scripts/databases.list
+    for db in $(cat /provisioning-scripts/databases.list | sort | uniq); do
+      echo "Provisioning database $db ..."
+      psql -c "SELECT 'CREATE DATABASE $db;' WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = '$db');" -t | psql -v ON_ERROR_STOP=1
+      psql -v ON_ERROR_STOP=1 <<-EOSQL
+        SELECT * FROM pg_database;
+    EOSQL
+    done
+  provision-users.sh: |
+    #!/usr/bin/env sh
+    set -eux
+    echo "Provisioning users ..."
+    for user in $(cat /provisioning-scripts/users.list | sort | uniq); do
+      USER_PASSWORD=$(cat /provisioning/passwords/$user)
+      echo "Provisioning user $user ..."
+      psql -v ON_ERROR_STOP=1 <<-EOSQL
+        DO \$\$
+        BEGIN
+        IF NOT EXISTS (SELECT * FROM pg_user WHERE usename = '$user') THEN
+          CREATE USER $user WITH PASSWORD '$USER_PASSWORD';
+        END IF;
+        END \$\$;
+    EOSQL
+      psql -v ON_ERROR_STOP=1 <<-EOSQL
+          ALTER USER $user PASSWORD '$USER_PASSWORD';
+    EOSQL
+    done
+
+    echo "Provisioning user grants ..."
+    for grant in $(cat /provisioning-scripts/grants.list | sort | uniq); do
+      echo "Processing grant: $grant"
+      _USER=$(echo $grant | cut -d: -f1)
+      _DATABASE=$(echo $grant | cut -d: -f2)
+      _PRIVILEGES=$(echo $grant | cut -d: -f3)
+      echo "Provisioning '$_PRIVILEGES' privileges for user $_USER on database $_DATABASE ..."
+      case ${_PRIVILEGES} in
+          rw)
+            psql -v ON_ERROR_STOP=1 <<-EOSQL
+            GRANT ALL PRIVILEGES ON DATABASE $_DATABASE TO ${_USER};
+            \c $_DATABASE
+            GRANT ALL ON SCHEMA public TO ${_USER};
+    EOSQL
+            ;;
+          ro)
+            psql -v ON_ERROR_STOP=1 <<-EOSQL
+            GRANT CONNECT ON DATABASE $_DATABASE TO ${_USER};
+            \c $_DATABASE
+            GRANT USAGE ON SCHEMA public TO ${_USER};
+            GRANT SELECT ON ALL TABLES IN SCHEMA public TO ${_USER};
+    EOSQL
+            ;;
+          *)
+            echo "Invalid privileges: ${_PRIVILEGES}"
+            exit 1
+            ;;
+        esac
+    done
+  grants.list: |
+    {{ .Values.nubusNotificationsApi.postgresql.auth.username }}:{{ .Values.nubusNotificationsApi.postgresql.auth.database }}:rw
+    {{ .Values.nubusUmcServer.postgresql.auth.username }}:{{ .Values.nubusUmcServer.postgresql.auth.database }}:rw
+    {{ .Values.keycloak.postgresql.auth.username }}:{{ .Values.keycloak.postgresql.auth.database }}:rw
+    {{ .Values.nubusKeycloakExtensions.postgresql.auth.username }}:{{ .Values.nubusKeycloakExtensions.postgresql.auth.database }}:rw
+    {{ .Values.nubusGuardian.postgresql.auth.username }}:{{ .Values.nubusGuardian.postgresql.auth.database }}:rw
+  users.list: |
+    {{ .Values.nubusNotificationsApi.postgresql.auth.username }}
+    {{ .Values.nubusUmcServer.postgresql.auth.username }}
+    {{ .Values.keycloak.postgresql.auth.username }}
+    {{ .Values.nubusKeycloakExtensions.postgresql.auth.username }}
+    {{ .Values.nubusGuardian.postgresql.auth.username }}
+  databases.list: |
+    {{ .Values.nubusNotificationsApi.postgresql.auth.database }}
+    {{ .Values.nubusUmcServer.postgresql.auth.database }}
+    {{ .Values.keycloak.postgresql.auth.database }}
+    {{ .Values.nubusKeycloakExtensions.postgresql.auth.database }}
+    {{ .Values.nubusGuardian.postgresql.auth.database }}
+{{ end }}

@@ -1,6 +1,5 @@
-# SPDX-License-Identifier: AGPL-3.0-only
-# SPDX-FileCopyrightText: 2024 Univention GmbH
-{{- range .Values.extraSecrets }}
+{{- define "nubus.extraSecrets" -}}
+{{- range .Values.nubusSecrets }}
 ---
 kind: "Secret"
 apiVersion: "v1"
@@ -28,5 +27,5 @@ stringData:
   {{ $k }}: {{ $v | quote }}
 {{- end }}
 {{- end }}
-...
 {{- end }}
+{{- end -}}

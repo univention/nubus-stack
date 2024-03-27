@@ -1,0 +1,14 @@
+Thank you for installing {{ .Chart.Name }}.
+
+Your release is named {{ .Release.Name }}.
+
+To learn more about the release, try:
+
+  $ helm status {{ .Release.Name }}
+  $ helm get all {{ .Release.Name }}
+
+The default admin user is called "default.admin", you can retreive its password by running:
+  $ kubectl -n  {{ .Release.Namespace }} get secret {{ .Release.Name }}-nubus-credentials -o json | jq -r '.data.admin_password' | base64 -d
+
+The default user is called "default.user", you can retreive its password by running:
+  $ kubectl -n  {{ .Release.Namespace }} get secret {{ .Release.Name }}-nubus-credentials -o json | jq -r '.data.user_password' | base64 -d
