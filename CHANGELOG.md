@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.9.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.8.0...v0.9.0) (2024-03-28)
+
+
+### Features
+
+* **guardian:** guardian keycloak provisioning and settings ([efeea2f](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/efeea2fd5f4d2b044f85af3e515efbd39bec8ec0))
+
 ## [0.8.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.7.5...v0.8.0) (2024-03-25)
 
 
