@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.9.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.9.0...v0.9.1) (2024-04-02)
+
+
+### Bug Fixes
+
+* reference updated charts (container-umc) ([243d873](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/243d873f8174501fa7aaa6df232bd9d2b821f6cc))
+
 ## [0.9.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.8.0...v0.9.0) (2024-03-28)
 
 
