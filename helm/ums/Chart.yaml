@@ -139,8 +139,6 @@ dependencies:
   # stack-gateway related chart(s)
   - name: "nginx"
     alias: "stack-gateway"
-    # repository: "oci://registry.opencode.de/bmi/opendesk/components/external/charts/bitnami-charts"
-    # version: "15.5.1"
     repository: "oci://registry-1.docker.io/bitnamicharts"
     version: "^15.x.x"
     condition: "stack-gateway.enabled"
@@ -154,10 +152,10 @@ dependencies:
   # umc related chart(s)
   - name: "umc-gateway"
     repository: "oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-umc/helm"
-    version: "0.11.2"
+    version: "0.11.5"
     condition: "umc-gateway.enabled"
 
   - name: "umc-server"
     repository: "oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-umc/helm"
-    version: "0.11.3"
+    version: "0.11.5"
     condition: "umc-server.enabled"

@@ -1,7 +1,7 @@
 dependencies:
 - name: common
   repository: oci://registry-1.docker.io/bitnamicharts
-  version: 2.19.0
+  version: 2.19.1
 - name: guardian-authorization-api
   repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/guardian-helm/helm
   version: 0.2.0
@@ -64,15 +64,15 @@ dependencies:
   version: 0.45.1
 - name: nginx
   repository: oci://registry-1.docker.io/bitnamicharts
-  version: 15.14.0
+  version: 15.14.2
 - name: udm-rest-api
   repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-udm-rest/helm
   version: 0.9.1
 - name: umc-gateway
   repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-umc/helm
-  version: 0.11.2
+  version: 0.11.5
 - name: umc-server
   repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-umc/helm
-  version: 0.11.3
-digest: sha256:3ac6f708e61a22eacd26ea3500649513d52c71703d478dc8cee08f166a3660be
-generated: "2024-03-25T10:34:58.280768004+01:00"
+  version: 0.11.5
+digest: sha256:a06b247a0f4056ed6c521ddbf63b3755b65dc8f6277a808e65f64ebc1f65add4
+generated: "2024-04-02T18:15:57.846956+02:00"
