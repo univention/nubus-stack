@@ -15,47 +15,68 @@ global:
   # this also affects keycloak, which gets images from docker.software-univention.de
   # imageRegistry: "external-registry.souvap-univention.de"
 
-guardian-authorization-api:
+guardian:
   enabled: true
-  guardianAuthorizationApi:
-    guardianAuthzLoggingStructured: false
-    oauthAdapterWellKnownUrl: "http://ums-keycloak:8080/realms/opendesk/.well-known/openid-configuration"
-    opaAdapterUrl: "http://ums-open-policy-agent/"
-    udmDataAdapterUrl: "http://ums-udm-rest-api/udm/"
-    udmDataAdapterUsername: "cn=admin"
-    udmDataAdapterPassword: "password"
-  ingress:
-    enabled: false
+  authorizationApi:
+    config:
+      guardianAuthzLoggingStructured: false
+      oauthAdapterWellKnownUrl: "http://ums-keycloak:8080/realms/opendesk/.well-known/openid-configuration"
+      opaAdapterUrl: "http://ums-guardian-open-policy-agent/"
+      udmDataAdapterUrl: "http://ums-udm-rest-api/udm/"
+      udmDataAdapterUsername: "cn=admin"
+      udmDataAdapterPassword: "password"
+    ingress:
+      enabled: false
 
-guardian-management-api:
-  enabled: true
-  guardianManagementApi:
-    guardianManagementLoggingStructured: false
-    guardianManagementAdapterAuthorizationApiUrl: "http://ums-guardian-authorization-api/guardian/authorization"
-    guardianManagementBaseUrl: "http://portal.uv-example.gaia.open-desk.cloud"
-    oauthAdapterM2mSecret: "some_secret"
-    oauthAdapterWellKnownUrl: "http://ums-keycloak:8080/realms/opendesk/.well-known/openid-configuration"
-  ingress:
-    enabled: false
+  managementApi:
+    config:
+      guardianManagementLoggingStructured: false
+      guardianManagementAdapterAuthorizationApiUrl: "http://ums-guardian-authorization-api/guardian/authorization"
+      guardianManagementBaseUrl: "http://portal.uv-example.gaia.open-desk.cloud"
+      oauthAdapterM2mSecret: "some_secret"
+      oauthAdapterWellKnownUrl: "http://ums-keycloak:8080/realms/opendesk/.well-known/openid-configuration"
+    ingress:
+      enabled: false
 
-guardian-management-ui:
-  enabled: true
-  guardianManagementUi:
-    viteManagementUiAdapterAuthenticationPort: "keycloak"
-    viteManagementUiAdapterDataPort: "api"
-    viteApiDataAdapterUri: "http://portal.uv-example.gaia.open-desk.cloud/guardian/management"
-    viteKeycloakAuthenticationAdapterSsoUri: "http://id.uv-example.gaia.open-desk.cloud"
-    viteKeycloakAuthenticationAdapterRealm: "opendesk"
-  ingress:
-    enabled: false
+  managementUi:
+    config:
+      viteKeycloakAuthenticationAdapterClientId: "guardian-ui"
+      viteManagementUiAdapterAuthenticationPort: "keycloak"
+      viteManagementUiAdapterDataPort: "api"
+      viteApiDataAdapterUri: "http://portal.uv-example.gaia.open-desk.cloud/guardian/management"
+      viteKeycloakAuthenticationAdapterSsoUri: "http://id.uv-example.gaia.open-desk.cloud"
+      viteKeycloakAuthenticationAdapterRealm: "opendesk"
+    ingress:
+      enabled: false
 
-open-policy-agent:
-  enabled: true
   openPolicyAgent:
-    opaGuardianManagementUrl: "http://ums-guardian-management-api:8000/guardian/management"
-  ingress:
-    enabled: false
+    config:
+      opaGuardianManagementUrl: "http://ums-guardian-management-api/guardian/management"
+    ingress:
+      enabled: false
 
+  provisioning:
+    enabled: true
+    image:
+      registry: "external-registry.souvap-univention.de"
+      repository: "sovereign-workplace/souvap/tooling/images/univention/guardian-init"
+      tag: "0.3.0"
+      imagePullPolicy: "Always"
+    config:
+      nubusBaseUrl: "https://portal.uv-example.gaia.open-desk.cloud/"
+      keycloak:
+        url: "http://ums-keycloak:8080"
+        fqdn: "id.uv-example.gaia.open-desk.cloud"
+        realm: "opendesk"
+        admin: "kcadmin"
+    credentialSecretName: "guardian-keycloak-secret"
+
+  postgresql:
+    bundled: true
+    auth:
+      username: "guardian"
+      database: "guardian"
+      password: "guardian"
 
 ldap-notifier:
   enabled: true
@@ -543,6 +564,8 @@ keycloak-bootstrap:
     domain: "uv-example.gaia.open-desk.cloud"
     hosts:
       keycloak: "id"
+  config:
+    debug: true
   # TODO: The helm chart does not use latest but "1.0.0" instead as default
   # image tag. The old image is lacking the "intraCluster" feature.
   image:
@@ -578,296 +601,6 @@ keycloak-bootstrap:
     twoFactorAuthentication:
       enabled: true
       group: "2fa-users"
-    custom:
-      clients:
-        - name: "guardian-management-api"
-          clientId: "guardian-management-api"
-          rootUrl: "https://id.uv-example.gaia.open-desk.cloud"
-          baseUrl: "https://id.uv-example.gaia.open-desk.cloud"
-          protocol: "openid-connect"
-          clientAuthenticatorType: "client-secret"
-          secret:
-            secretKeyRef:
-              key: guardian-management-api
-              name: guardian-client-credentials
-          redirectUris:
-            - "https://portal.uv-example.gaia.open-desk.cloud/guardian/*"
-          fullScopeAllowed: true
-          protocolMappers:
-            - name: "Client Host"
-              protocol: "openid-connect"
-              protocolMapper: "oidc-usersessionmodel-note-mapper"
-              consentRequired: false
-              config:
-                user.session.note: "clientHost"
-                userinfo.token.claim: true
-                id.token.claim: true
-                access.token.claim: true
-                claim.name: "clientHost"
-                jsonType.label: "String"
-            - name: "Client ID"
-              protocol: "openid-connect"
-              protocolMapper: "oidc-usersessionmodel-note-mapper"
-              consentRequired: false
-              config:
-                user.session.note: "client_id"
-                userinfo.token.claim: true
-                id.token.claim: true
-                access.token.claim: true
-                claim.name: "client_id"
-                jsonType.label: "String"
-            - name: "guardian-audience"
-              protocol: "openid-connect"
-              protocolMapper: "oidc-audience-mapper"
-              consentRequired: false
-              config:
-                included.client.audience: "guardian"
-                userinfo.token.claim: false
-                id.token.claim: false
-                access.token.claim: true
-            - name: "audiencemap"
-              protocol: "openid-connect"
-              protocolMapper: "oidc-audience-mapper"
-              consentRequired: false
-              config:
-                included.client.audience: "guardian-cli"
-                userinfo.token.claim: true
-                id.token.claim: true
-                access.token.claim: true
-            - name: "dn"
-              protocol: "openid-connect"
-              protocolMapper: "oidc-usermodel-attribute-mapper"
-              consentRequired: false
-              config:
-                userinfo.token.claim: false
-                user.attribute: "LDAP_ENTRY_DN"
-                id.token.claim: false
-                access.token.claim: true
-                claim.name: "dn"
-                jsonType.label: "String"
-            - name: "username"
-              protocol: "openid-connect"
-              protocolMapper: "oidc-usermodel-property-mapper"
-              consentRequired: false
-              config:
-                userinfo.token.claim: true
-                user.attribute: "username"
-                id.token.claim: true
-                access.token.claim: true
-                claim.name: "preferred_username"
-                jsonType.label: "String"
-            - name: "uid"
-              protocol: "openid-connect"
-              protocolMapper: "oidc-usermodel-attribute-mapper"
-              consentRequired: false
-              config:
-                userinfo.token.claim: true
-                user.attribute: "uid"
-                id.token.claim: true
-                access.token.claim: true
-                claim.name: "uid"
-                jsonType.label: "String"
-            - name: "email"
-              protocol: "openid-connect"
-              protocolMapper: "oidc-usermodel-property-mapper"
-              consentRequired: false
-              config:
-                userinfo.token.claim: true
-                user.attribute: "email"
-                id.token.claim: true
-                access.token.claim: true
-                claim.name: "email"
-                jsonType.label: "String"
-            - name: "Client IP Address"
-              protocol: "openid-connect"
-              protocolMapper: "oidc-usersessionmodel-note-mapper"
-              consentRequired: false
-              config:
-                user.session.note: "clientAddress"
-                userinfo.token.claim: true
-                id.token.claim: true
-                access.token.claim: true
-                claim.name: "clientAddress"
-                jsonType.label: "String"
-        - name: "guardian-scripts"
-          clientId: "guardian-scripts"
-          description: ""
-          rootUrl: "https://id.uv-example.gaia.open-desk.cloud"
-          adminUrl: "https://id.uv-example.gaia.open-desk.cloud"
-          baseUrl: "https://id.uv-example.gaia.open-desk.cloud"
-          surrogateAuthRequired: false
-          enabled: true
-          alwaysDisplayInConsole: false
-          clientAuthenticatorType: "client-secret"
-          redirectUris:
-            - "https://portal.uv-example.gaia.open-desk.cloud/univention/guardian/*"
-            - "https://portal.uv-example.gaia.open-desk.cloud"
-            - "https://portal.uv-example.gaia.open-desk.cloud/guardian/*"
-          webOrigins:
-            - "https://portal.uv-example.gaia.open-desk.cloud"
-          bearerOnly: false
-          consentRequired: false
-          standardFlowEnabled: true
-          implicitFlowEnabled: false
-          directAccessGrantsEnabled: true
-          serviceAccountsEnabled: false
-          publicClient: true
-          frontchannelLogout: false
-          protocol: "openid-connect"
-          fullScopeAllowed: true
-          protocolMappers:
-            - name: "email"
-              protocol: "openid-connect"
-              protocolMapper: "oidc-usermodel-property-mapper"
-              consentRequired: false
-              config:
-                userinfo.token.claim: true
-                user.attribute: "email"
-                id.token.claim: true
-                access.token.claim: true
-                claim.name: "email"
-                jsonType.label: "String"
-            - name: "guardian-audience"
-              protocol: "openid-connect"
-              protocolMapper: "oidc-audience-mapper"
-              consentRequired: false
-              config:
-                included.client.audience: "guardian"
-                id.token.claim: false
-                access.token.claim: true
-                userinfo.token.claim: false
-            - name: "username"
-              protocol: "openid-connect"
-              protocolMapper: "oidc-usermodel-property-mapper"
-              consentRequired: false
-              config:
-                userinfo.token.claim: true
-                user.attribute: "username"
-                id.token.claim: true
-                access.token.claim: true
-                claim.name: "preferred_username"
-                jsonType.label: "String"
-            - name: "uid"
-              protocol: "openid-connect"
-              protocolMapper: "oidc-usermodel-attribute-mapper"
-              consentRequired: false
-              config:
-                userinfo.token.claim: true
-                user.attribute: "uid"
-                id.token.claim: true
-                access.token.claim: true
-                claim.name: "uid"
-                jsonType.label: "String"
-            - name: "audiencemap"
-              protocol: "openid-connect"
-              protocolMapper: "oidc-audience-mapper"
-              consentRequired: false
-              config:
-                included.client.audience: "guardian-scripts"
-                id.token.claim: true
-                access.token.claim: true
-                userinfo.token.claim: true
-            - name: "dn"
-              protocol: "openid-connect"
-              protocolMapper: "oidc-usermodel-attribute-mapper"
-              consentRequired: false
-              config:
-                aggregate.attrs: false
-                multivalued: false
-                userinfo.token.claim: false
-                user.attribute: "LDAP_ENTRY_DN"
-                id.token.claim: false
-                access.token.claim: true
-                claim.name: "dn"
-                jsonType.label: "String"
-          defaultClientScopes:
-            - "opendesk"
-            - "web-origins"
-            - "acr"
-            - "roles"
-            - "profile"
-            - "email"
-          optionalClientScopes:
-            - "address"
-            - "phone"
-            - "offline_access"
-            - "microprofile-jwt"
-        - name: "guardian-ui"
-          clientId: "guardian-ui"
-          rootUrl: "https://id.uv-example.gaia.open-desk.cloud"
-          baseUrl: "https://id.uv-example.gaia.open-desk.cloud"
-          clientAuthenticatorType: "client-secret"
-          redirectUris:
-            - "https://portal.uv-example.gaia.open-desk.cloud/univention/guardian/*"
-          standardFlowEnabled: true
-          publicClient: true
-          protocol: "openid-connect"
-          fullScopeAllowed: true
-          protocolMappers:
-            - name: "uid"
-              protocol: "openid-connect"
-              protocolMapper: "oidc-usermodel-attribute-mapper"
-              consentRequired: false
-              config:
-                userinfo.token.claim: true
-                user.attribute: "uid"
-                id.token.claim: true
-                access.token.claim: true
-                claim.name: "uid"
-                jsonType.label: "String"
-            - name: "username"
-              protocol: "openid-connect"
-              protocolMapper: "oidc-usermodel-property-mapper"
-              consentRequired: false
-              config:
-                userinfo.token.claim: true
-                user.attribute: "username"
-                id.token.claim: true
-                access.token.claim: true
-                claim.name: "preferred_username"
-                jsonType.label: "String"
-            - name: "dn"
-              protocol: "openid-connect"
-              protocolMapper: "oidc-usermodel-attribute-mapper"
-              consentRequired: false
-              config:
-                userinfo.token.claim: "false"
-                user.attribute: "LDAP_ENTRY_DN"
-                id.token.claim: false
-                access.token.claim: true
-                claim.name: "dn"
-                jsonType.label: "String"
-            - name: "audiencemap"
-              protocol: "openid-connect"
-              protocolMapper: "oidc-audience-mapper"
-              consentRequired: false
-              config:
-                included.client.audience: "guardian-ui"
-                id.token.claim: true
-                access.token.claim: true
-                userinfo.token.claim: true
-            - name: "email"
-              protocol: "openid-connect"
-              protocolMapper: "oidc-usermodel-property-mapper"
-              consentRequired: false
-              config:
-                userinfo.token.claim: true
-                user.attribute: "email"
-                id.token.claim: true
-                access.token.claim: true
-                claim.name: "email"
-                jsonType.label: "String"
-            - name: "guardian-audience"
-              protocol: "openid-connect"
-              protocolMapper: "oidc-audience-mapper"
-              consentRequired: false
-              config:
-                included.client.audience: "guardian"
-                id.token.claim: false
-                access.token.claim: true
-              userinfo.token.claim: false
-
-
 
 keycloak-extensions:
   enabled: true
@@ -1290,6 +1023,10 @@ extraSecrets:
     stringData:
       ldap.secret: "password"
       machine.secret: "password"
-  - name: guardian-client-credentials
+  - name: "guardian-keycloak-client-secret"
     stringData:
-      guardian-management-api: "some_secret"
+      oauthAdapterM2mSecret: "stub_client_secret"
+  - name: "guardian-keycloak-secret"
+    stringData:
+      KEYCLOAK_ADMIN_PASSWORD: "password"
+      GUARDIAN_MANAGEMENT_API_CLIENT_SECRET: "stub_client_secret"

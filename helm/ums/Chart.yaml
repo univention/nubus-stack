@@ -12,32 +12,10 @@ dependencies:
     version: "^2.x.x"
     repository: "oci://registry-1.docker.io/bitnamicharts"
 
-  # guardian related chart(s)
-  - name: "guardian-authorization-api"
+  - name: "guardian"
     repository: "oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/guardian-helm/helm"
-    version: "0.2.0"
-    condition: "guardian-authorization-api.enabled"
-    tags:
-      - pre-release
-
-  - name: "guardian-management-api"
-    repository: "oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/guardian-helm/helm"
-    version: "0.2.0"
-    condition: "guardian-management-api.enabled"
-    tags:
-      - pre-release
-
-  - name: "guardian-management-ui"
-    repository: "oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/guardian-helm/helm"
-    version: "0.2.0"
-    condition: "guardian-management-ui.enabled"
-    tags:
-      - pre-release
-
-  - name: "open-policy-agent"
-    repository: "oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/guardian-helm/helm"
-    version: "0.2.0"
-    condition: "open-policy-agent.enabled"
+    version: "0.3.0"
+    condition: "guardian.enabled"
     tags:
       - pre-release
 
@@ -49,7 +27,6 @@ dependencies:
 
   - name: "ldap-server"
     repository: "oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-ldap/helm"
-    #version: "0.*"
     version: "0.10.1"
     condition: "ldap-server.enabled"
 
