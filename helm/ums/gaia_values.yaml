@@ -63,7 +63,7 @@ guardian:
       tag: "0.3.0"
       imagePullPolicy: "Always"
     config:
-      nubusBaseUrl: "https://portal.uv-example.gaia.open-desk.cloud/"
+      nubusBaseUrl: "https://portal.uv-example.gaia.open-desk.cloud"
       keycloak:
         url: "http://ums-keycloak:8080"
         fqdn: "id.uv-example.gaia.open-desk.cloud"
