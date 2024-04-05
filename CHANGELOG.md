@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.10.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.9.1...v0.10.0) (2024-04-05)
+
+
+### Features
+
+* **guardian:** refactor values ([ec017e5](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/ec017e5115ee065336ccd8db09c6a0fdf24d89f5))
+
 ## [0.9.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.9.0...v0.9.1) (2024-04-02)
 
 
