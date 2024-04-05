@@ -15,49 +15,68 @@ global:
   # this also affects keycloak, which gets images from docker.software-univention.de
   # imageRegistry: "external-registry.souvap-univention.de"
 
-guardian-authorization-api:
+guardian:
   enabled: true
-  guardianAuthorizationApi:
-    guardianAuthzLoggingStructured: false
-    oauthAdapterWellKnownUrl: "http://ums-keycloak:8080/realms/opendesk/.well-known/openid-configuration"
-    opaAdapterUrl: "http://ums-open-policy-agent/"
-    udmDataAdapterUrl: "http://ums-udm-rest-api/udm/"
-    udmDataAdapterUsername: "cn=admin"
-    udmDataAdapterPassword: "password"
-  ingress:
-    enabled: true
-    host: "portal.local-cluster.test"
+  authorizationApi:
+    config:
+      guardianAuthzLoggingStructured: false
+      oauthAdapterWellKnownUrl: "http://ums-keycloak:8080/realms/opendesk/.well-known/openid-configuration"
+      opaAdapterUrl: "http://ums-guardian-open-policy-agent/"
+      udmDataAdapterUrl: "http://ums-udm-rest-api/udm/"
+      udmDataAdapterUsername: "cn=admin"
+      udmDataAdapterPassword: "password"
+    ingress:
+      enabled: false
 
-guardian-management-api:
-  enabled: true
-  guardianManagementApi:
-    guardianManagementLoggingStructured: false
-    guardianManagementAdapterAuthorizationApiUrl: "http://ums-guardian-authorization-api/guardian/authorization"
-    guardianManagementBaseUrl: "http://portal.local-cluster.test"
-    oauthAdapterM2mSecret: "some_secret"
-    oauthAdapterWellKnownUrl: "http://ums-keycloak:8080/realms/opendesk/.well-known/openid-configuration"
-  ingress:
-    enabled: true
-    host: "portal.local-cluster.test"
+  managementApi:
+    config:
+      guardianManagementLoggingStructured: false
+      guardianManagementAdapterAuthorizationApiUrl: "http://ums-guardian-authorization-api/guardian/authorization"
+      guardianManagementBaseUrl: "http://portal.local-cluster.test"
+      oauthAdapterM2mSecret: "some_secret"
+      oauthAdapterWellKnownUrl: "http://ums-keycloak:8080/realms/opendesk/.well-known/openid-configuration"
+    ingress:
+      enabled: false
 
-guardian-management-ui:
-  enabled: true
-  guardianManagementUi:
-    viteManagementUiAdapterAuthenticationPort: "keycloak"
-    viteManagementUiAdapterDataPort: "api"
-    viteApiDataAdapterUri: "http://portal.local-cluster.test/guardian/management"
-    viteKeycloakAuthenticationAdapterSsoUri: "http://id.local-cluster.test"
-    viteKeycloakAuthenticationAdapterRealm: "opendesk"
-  ingress:
-    enabled: true
-    host: "portal.local-cluster.test"
+  managementUi:
+    config:
+      viteKeycloakAuthenticationAdapterClientId: "guardian-ui"
+      viteManagementUiAdapterAuthenticationPort: "keycloak"
+      viteManagementUiAdapterDataPort: "api"
+      viteApiDataAdapterUri: "http://portal.local-cluster.test/guardian/management"
+      viteKeycloakAuthenticationAdapterSsoUri: "http://id.local-cluster.test"
+      viteKeycloakAuthenticationAdapterRealm: "opendesk"
+    ingress:
+      enabled: false
 
-open-policy-agent:
-  enabled: true
   openPolicyAgent:
-    opaGuardianManagementUrl: "http://ums-guardian-management-api:8000/guardian/management"
-  ingress:
-    enabled: false
+    config:
+      opaGuardianManagementUrl: "http://ums-guardian-management-api/guardian/management"
+    ingress:
+      enabled: false
+
+  provisioning:
+    enabled: true
+    image:
+      registry: "external-registry.souvap-univention.de"
+      repository: "sovereign-workplace/souvap/tooling/images/univention/guardian-init"
+      tag: "0.3.0"
+      imagePullPolicy: "Always"
+    config:
+      nubusBaseUrl: "https://portal.local-cluster.test"
+      keycloak:
+        url: "http://ums-keycloak:8080"
+        fqdn: "id.local-cluster.test"
+        realm: "opendesk"
+        admin: "kcadmin"
+    credentialSecretName: "guardian-keycloak-secret"
+
+  postgresql:
+    bundled: true
+    auth:
+      username: "guardian"
+      database: "guardian"
+      password: "guardian"
 
 ldap-notifier:
   enabled: true
