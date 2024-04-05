@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.11.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.10.0...v0.11.0) (2024-04-05)
+
+
+### Features
+
+* **guardian:** demo values ([6f72032](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/6f7203242db9c642162101c9b663087c3a4b46cb))
+
+
+### Bug Fixes
+
+* **guardian:** default value with no trailing slash ([ca34394](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/ca343943d7ba97ba02b4b11eaf624715992d08d5))
+* update dependencies ([95c935d](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/95c935d795558babed7bfd29d951932527a50f98))
+
 ## [0.10.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.9.1...v0.10.0) (2024-04-05)
 
 
