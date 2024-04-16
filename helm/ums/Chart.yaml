@@ -66,7 +66,7 @@ dependencies:
   # provisioning related chart(s)
   - name: "provisioning"
     repository: "oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/provisioning/helm"
-    version: "0.21.3"
+    version: "0.23.1"
     condition: "provisioning.enabled"
     tags:
       - pre-release

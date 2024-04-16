@@ -31,7 +31,7 @@ dependencies:
   version: 0.4.0
 - name: provisioning
   repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/provisioning/helm
-  version: 0.21.3
+  version: 0.23.1
 - name: udm-listener
   repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/provisioning/helm
   version: 0.21.3
@@ -65,5 +65,5 @@ dependencies:
 - name: umc-server
   repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-umc/helm
   version: 0.11.6
-digest: sha256:d877e26ad741a8e0ba6bce9a2459d6cbac691a68040d838af1c0a3a74edfb23f
-generated: "2024-04-05T17:10:31.620253+02:00"
+digest: sha256:d0094f8b2979f58ab53c0c350014fc13bce8e0b9cdb138e42e820cd9b6784954
+generated: "2024-04-17T22:08:07.885763+02:00"
