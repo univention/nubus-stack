@@ -22,12 +22,12 @@ dependencies:
   # ldap-server related chart(s)
   - name: "ldap-notifier"
     repository: "oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-ldap/helm"
-    version: "0.10.3"
+    version: "0.12.0"
     condition: "ldap-notifier.enabled"
 
   - name: "ldap-server"
     repository: "oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-ldap/helm"
-    version: "0.10.3"
+    version: "0.12.0"
     condition: "ldap-server.enabled"
 
   # portal related chart(s)
@@ -37,24 +37,24 @@ dependencies:
     condition: "minio.enabled"
 
   - name: "notifications-api"
-    version: "0.20.4"
+    version: "0.21.0"
     repository: "oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm"
     condition: notifications-api.enabled
     tags:
       - pre-release
 
   - name: "portal-frontend"
-    version: "0.20.4"
+    version: "0.21.0"
     repository: "oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm"
     condition: "portal-frontend.enabled"
 
   - name: "portal-listener"
-    version: "0.20.7"
+    version: "0.21.0"
     repository: "oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm"
     condition: "portal-listener.enabled"
 
   - name: "portal-server"
-    version: "0.20.4"
+    version: "0.21.0"
     repository: "oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm"
     condition: "portal-server.enabled"
 
@@ -66,14 +66,14 @@ dependencies:
   # provisioning related chart(s)
   - name: "provisioning"
     repository: "oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/provisioning/helm"
-    version: "0.23.1"
+    version: "0.24.0"
     condition: "provisioning.enabled"
     tags:
       - pre-release
 
   - name: "udm-listener"
     repository: "oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/provisioning/helm"
-    version: "0.21.3"
+    version: "0.24.0"
     condition: "provisioning.enabled"
     tags:
       - pre-release
@@ -87,7 +87,7 @@ dependencies:
 
   - name: "keycloak-extensions"
     repository: "oci://gitregistry.knut.univention.de/univention/components/keycloak-extensions/helm"
-    version: "0.3.2"
+    version: "0.3.3"
     condition: "keycloak-extensions.enabled"
 
   - name: "ums-keycloak-bootstrap"
@@ -105,12 +105,12 @@ dependencies:
   # stack-data related chart(s)
   - name: "stack-data-swp"
     repository: "oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/stack-data/helm"
-    version: "0.45.2"
+    version: "0.47.0"
     condition: "stack-data-swp.enabled"
 
   - name: "stack-data-ums"
     repository: "oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/stack-data/helm"
-    version: "0.45.2"
+    version: "0.47.0"
     condition: "stack-data-ums.enabled"
 
   # stack-gateway related chart(s)
@@ -122,17 +122,17 @@ dependencies:
 
   # udm-rest-api related chart(s)
   - name: "udm-rest-api"
-    repository: "oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-udm-rest/helm"
-    version: "0.9.2"
+    repository: "oci://artifacts.software-univention.de/nubus/charts"
+    version: "0.11.0"
     condition: "udm-rest-api.enabled"
 
   # umc related chart(s)
   - name: "umc-gateway"
     repository: "oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-umc/helm"
-    version: "0.11.6"
+    version: "0.13.0"
     condition: "umc-gateway.enabled"
 
   - name: "umc-server"
     repository: "oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-umc/helm"
-    version: "0.11.6"
+    version: "0.13.0"
     condition: "umc-server.enabled"
