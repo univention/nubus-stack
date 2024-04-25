@@ -22,7 +22,7 @@ dependencies:
   version: 0.20.4
 - name: portal-listener
   repository: oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm
-  version: 0.20.4
+  version: 0.20.7
 - name: portal-server
   repository: oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm
   version: 0.20.4
@@ -65,5 +65,5 @@ dependencies:
 - name: umc-server
   repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-umc/helm
   version: 0.11.6
-digest: sha256:d0094f8b2979f58ab53c0c350014fc13bce8e0b9cdb138e42e820cd9b6784954
-generated: "2024-04-17T22:08:07.885763+02:00"
+digest: sha256:49c07ce0a5b11372b5fdaa6399bc8c75ececd47630519b0e5a0e72c8c203a8a7
+generated: "2024-04-25T16:07:31.534857+02:00"
