@@ -188,11 +188,11 @@ portal-listener:
   image:
     registry: "external-registry.souvap-univention.de"
     repository: "sovereign-workplace/souvap/tooling/images/univention/portal-listener"
-    tag: "0.20.1@sha256:e93f256f736223edceaac50831cee062b4b8fee0a46f27175e6ea0c506620358"
+    tag: "0.20.7@sha256:3d72dbab95640d1b53e8cd491432225d06f9e93b38b1ab07fc5030543585a6d6"
     waitForDependency:
       registry: "external-registry.souvap-univention.de"
       repository: "sovereign-workplace/souvap/tooling/images/univention/wait-for-dependency"
-      tag: "0.20.1@sha256:8b3d7195223de10ce6ac2649a363eed073dad9bb277c0d8d2d1c0f1613e0d5a7"
+      tag: "0.20.7@sha256:d0e09a83340688c4c7ad5ef2f5e83a4a00cd8873d30f05d01fa3c2b2411f470b"
   portalListener:
     assetsRootPath: "portal-assets"
     adminGroup: "cn=Domain Admins,cn=groups,dc=univention-organization,dc=intranet"
