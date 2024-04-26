@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.11.2](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.11.1...v0.11.2) (2024-04-26)
+
+
+### Bug Fixes
+
+* Update portal-listener images to 0.20.7 ([744b48b](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/744b48bae39539440f4c738482be2c6e39c24017))
+* Update portal-listener to 0.20.7 ([d772342](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/d7723429aed43c5389f672ab2943c1c4ab1536d1))
+
 ## [0.11.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.11.0...v0.11.1) (2024-04-17)
 
 
