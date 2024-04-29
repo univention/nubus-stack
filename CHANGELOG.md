@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.12.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.11.2...v0.12.0) (2024-04-29)
+
+
+### Features
+
+* pre-refactored umbrella with refactored sub charts ([50a2d56](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/50a2d56e86912158e5d83ee955fdf725e9575322))
+
 ## [0.11.2](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.11.1...v0.11.2) (2024-04-26)
 
 
