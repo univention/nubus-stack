@@ -90,10 +90,10 @@ dependencies:
     version: "0.3.3"
     condition: "keycloak-extensions.enabled"
 
-  - name: "ums-keycloak-bootstrap"
+  - name: "keycloak-bootstrap"
     alias: "keycloak-bootstrap"
-    repository: "oci://registry.souvap-univention.de/souvap/tooling/charts/univention-keycloak-bootstrap"
-    version: "1.*"
+    repository: "oci://artifacts.software-univention.de/nubus-dev/charts"
+    version: "0.1.0-pre-feat-cleanup-redundant-values"
     condition: "keycloak-bootstrap.enabled"
 
   - name: "postgresql"

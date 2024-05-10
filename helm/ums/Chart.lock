@@ -1,7 +1,7 @@
 dependencies:
 - name: common
   repository: oci://registry-1.docker.io/bitnamicharts
-  version: 2.19.1
+  version: 2.19.2
 - name: guardian
   repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/guardian-helm/helm
   version: 0.3.0
@@ -41,9 +41,9 @@ dependencies:
 - name: keycloak-extensions
   repository: oci://gitregistry.knut.univention.de/univention/components/keycloak-extensions/helm
   version: 0.3.3
-- name: ums-keycloak-bootstrap
-  repository: oci://registry.souvap-univention.de/souvap/tooling/charts/univention-keycloak-bootstrap
-  version: 1.1.11
+- name: keycloak-bootstrap
+  repository: oci://artifacts.software-univention.de/nubus-dev/charts
+  version: 0.1.0-pre-feat-cleanup-redundant-values
 - name: postgresql
   repository: oci://registry-1.docker.io/bitnamicharts
   version: 12.12.10
@@ -65,5 +65,5 @@ dependencies:
 - name: umc-server
   repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-umc/helm
   version: 0.13.0
-digest: sha256:70a096446dc97c440df0a687b1a3056f21823520ad4ea1cb9a6075344175ba56
-generated: "2024-04-29T14:48:20.869644+02:00"
+digest: sha256:fe729aee0744bfefac7de92b24a5be1ea0768f2f87f7c77f226770d6c864c487
+generated: "2024-05-10T08:17:34.392979+02:00"

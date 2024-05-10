@@ -35,6 +35,7 @@ helm uninstall ums
 
 | Repository | Name | Version |
 |------------|------|---------|
+| oci://artifacts.software-univention.de/nubus-dev/charts | keycloak-bootstrap(keycloak-bootstrap) | 0.1.0-pre-feat-cleanup-redundant-values |
 | oci://artifacts.software-univention.de/nubus/charts | udm-rest-api | 0.11.0 |
 | oci://gitregistry.knut.univention.de/univention/components/keycloak-extensions/helm | keycloak-extensions | 0.3.3 |
 | oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm | notifications-api | 0.21.0 |
@@ -55,7 +56,6 @@ helm uninstall ums
 | oci://registry-1.docker.io/bitnamicharts | minio | 14.1.4 |
 | oci://registry-1.docker.io/bitnamicharts | stack-gateway(nginx) | ^15.x.x |
 | oci://registry-1.docker.io/bitnamicharts | keycloak-postgresql(postgresql) | ^12.x.x |
-| oci://registry.souvap-univention.de/souvap/tooling/charts/univention-keycloak-bootstrap | keycloak-bootstrap(ums-keycloak-bootstrap) | 1.* |
 | oci://registry.souvap-univention.de/souvap/tooling/charts/univention-keycloak | keycloak(ums-keycloak) | 1.* |
 
 ## Values
