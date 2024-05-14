@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.13.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.12.0...v0.13.0) (2024-05-14)
+
+
+### Features
+
+* update keycloak-bootstrap subchart ([6065ac3](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/6065ac36f248cbe5e053eec716c2d82b38eb0cdd))
+
+
+### Bug Fixes
+
+* update keycloak-extensions subchart ([2cd3233](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/2cd323328771ee348aa5f8b83c46dff728a19e62))
+
 ## [0.12.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.11.2...v0.12.0) (2024-04-29)
 
 
