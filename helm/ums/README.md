@@ -35,9 +35,9 @@ helm uninstall ums
 
 | Repository | Name | Version |
 |------------|------|---------|
-| oci://artifacts.software-univention.de/nubus-dev/charts | keycloak-bootstrap(keycloak-bootstrap) | 0.1.0-pre-feat-cleanup-redundant-values |
+| oci://artifacts.software-univention.de/nubus/charts | keycloak-bootstrap(keycloak-bootstrap) | 0.1.0 |
 | oci://artifacts.software-univention.de/nubus/charts | udm-rest-api | 0.11.0 |
-| oci://gitregistry.knut.univention.de/univention/components/keycloak-extensions/helm | keycloak-extensions | 0.3.3 |
+| oci://gitregistry.knut.univention.de/univention/components/keycloak-extensions/helm | keycloak-extensions | 0.4.0 |
 | oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm | notifications-api | 0.21.0 |
 | oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm | portal-frontend | 0.21.0 |
 | oci://gitregistry.knut.univention.de/univention/components/univention-portal/helm | portal-listener | 0.21.0 |

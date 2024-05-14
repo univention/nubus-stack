@@ -40,10 +40,10 @@ dependencies:
   version: 1.0.5
 - name: keycloak-extensions
   repository: oci://gitregistry.knut.univention.de/univention/components/keycloak-extensions/helm
-  version: 0.3.3
+  version: 0.4.0
 - name: keycloak-bootstrap
-  repository: oci://artifacts.software-univention.de/nubus-dev/charts
-  version: 0.1.0-pre-feat-cleanup-redundant-values
+  repository: oci://artifacts.software-univention.de/nubus/charts
+  version: 0.1.0
 - name: postgresql
   repository: oci://registry-1.docker.io/bitnamicharts
   version: 12.12.10
@@ -65,5 +65,5 @@ dependencies:
 - name: umc-server
   repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-umc/helm
   version: 0.13.0
-digest: sha256:fe729aee0744bfefac7de92b24a5be1ea0768f2f87f7c77f226770d6c864c487
-generated: "2024-05-10T08:17:34.392979+02:00"
+digest: sha256:c4fd09c3aefd47529e917d9eabbead698567f154b129fb26136eb7306498c834
+generated: "2024-05-14T10:10:07.140283+02:00"

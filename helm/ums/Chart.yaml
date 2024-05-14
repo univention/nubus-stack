@@ -87,13 +87,13 @@ dependencies:
 
   - name: "keycloak-extensions"
     repository: "oci://gitregistry.knut.univention.de/univention/components/keycloak-extensions/helm"
-    version: "0.3.3"
+    version: "0.4.0"
     condition: "keycloak-extensions.enabled"
 
   - name: "keycloak-bootstrap"
     alias: "keycloak-bootstrap"
-    repository: "oci://artifacts.software-univention.de/nubus-dev/charts"
-    version: "0.1.0-pre-feat-cleanup-redundant-values"
+    repository: "oci://artifacts.software-univention.de/nubus/charts"
+    version: "0.1.0"
     condition: "keycloak-bootstrap.enabled"
 
   - name: "postgresql"
