@@ -89,6 +89,8 @@ ldap-server:
       samlMetadataUrl: "http://ums-keycloak:8080/realms/opendesk/protocol/saml/descriptor"
       samlMetadataUrlInternal: "http://ums-keycloak:8080/realms/opendesk/protocol/saml/descriptor"
       samlServiceProviders: "http://ums-keycloak:8000/univention/saml/metadata,http://ums-keycloak:8000/auth/realms/ucs"
+    credentialSecret:
+      name: ldap-credentials
   extraVolumes:
     - name: "opendesk-schemas"
       configMap:
@@ -254,6 +256,8 @@ provisioning:
   dispatcher:
     nameOverride: "provisioning-dispatcher"
     config:
+      LOG_LEVEL: "DEBUG"
+      UDM_HOST: "udm-rest-api"
       natsHost: "ums-provisioning-nats"
       natsPort: 4222
     # TODO: Usage of "common.names.dependency.fullname" expects this
@@ -268,6 +272,27 @@ provisioning:
 
   nats:
     nameOverride: "provisioning-nats"
+
+  udmTransformer:
+    config:
+      LOG_LEVEL: "DEBUG"
+      UDM_HOST: "udm-rest-api"
+      UDM_PORT: 80
+      LDAP_TLS_MODE: "off"
+    api:
+      auth:
+        credentialSecretName: "ums-provisioning-udm-transformer-api-credentials"
+    nats:
+      auth:
+        credentialSecretName: "ums-provisioning-udm-transformer-nats-credentials"
+    ldap:
+      baseDn: "dc=univention-organization,dc=intranet"
+      auth:
+        bindDn: "cn=admin,dc=univention-organization,dc=intranet"
+        credentialSecretName: "provisioning-udm-transformer-ldap-credentials"
+      connection:
+        host: "ldap-server"
+        port: "389"
 
 udm-listener:
   enabled: true
@@ -332,7 +357,7 @@ udm-rest-api:
   udmRestApi:
     ldap:
       uri: "ldap://ums-ldap-server:389"
-      baseDN: "dc=univention-organization,dc=intranet"
+      baseDn: "dc=univention-organization,dc=intranet"
     secretRef: udm-rest-api-credentials
     # TODO: Pending correction
     # See https://git.knut.univention.de/univention/customers/dataport/upx/container-udm-rest/-/merge_requests/100
@@ -441,6 +466,7 @@ umc-server:
     auth:
       password: "password"
 
+
 keycloak:
   global:
     domain: "local-cluster.test"
@@ -475,59 +501,43 @@ keycloak-bootstrap:
   # image tag. The old image is lacking the "intraCluster" feature.
   image:
     tag: "1.0.8"
-  config:
-    keycloak:
-      adminUser: "kcadmin"
-      adminPassword: "password"
+  keycloak:
+    auth:
+      username: "kcadmin"
+      password: "password"
       realm: "opendesk"
-      intraCluster:
-        enabled: true
-        internalBaseUrl: "http://ums-keycloak:8080"
-      loginLinks:
-        - link_number: 1
-          language: "de"
-          description: "Passwort vergessen?"
-          href: "http://portal.local-cluster.test/univention/portal/#/selfservice/passwordforgotten"
-        - link_number: 1
-          language: "en"
-          description: "Forgot password?"
-          href: "http://portal.local-cluster.test/univention/portal/#/selfservice/passwordforgotten"
-    ums:
-      ldap:
-        internalHostname: "ums-ldap-server"
-        baseDN: "dc=univention-organization,dc=intranet"
-        readUserDN: "uid=ldapsearch_keycloak,cn=users,dc=univention-organization,dc=intranet"
-        readUserPassword: "univention"
-        mappers:
-          - ldapAndUserModelAttributeName: "opendeskProjectmanagementAdmin"
-          - ldapAndUserModelAttributeName: "oxContextIDNum"
-      saml:
-        serviceProviderHostname: "portal.local-cluster.test"
-    twoFactorAuthentication:
-      enabled: true
-      group: "2fa-users"
+    connection:
+      host: "ums-keycloak:8080"
+      baseUrl: "http://ums-keycloak:8080"
+  ldap:
+    connection:
+      host: "ums-ldap-server"
+      port: 389
+    baseDn: "dc=univention-organization,dc=intranet"
+    auth:
+      bindDn: "uid=ldapsearch_keycloak,cn=users,dc=univention-organization,dc=intranet"
+      password: "univention"
 
 keycloak-extensions:
-  global:
-    keycloak:
+  keycloak:
+    connection:
       host: "ums-keycloak:8080"
-      adminUsername: "kcadmin"
-      adminPassword: "password"
-      adminRealm: "master"
-      realm: "opendesk"
-    postgresql:
-      connection:
-        host: "ums-keycloak-postgresql"
-        port: 5432
-      auth:
-        database: "keycloak"
-        username: "keycloak"
-        password: "password"
+    auth:
+      username: "kcadmin"
+      password: "password"
+      realm: "master"
+  postgresql:
+    enabled: false
+    connection:
+      host: "ums-keycloak-postgresql"
+      port: 5432
+    auth:
+      database: "keycloak"
+      username: "keycloak"
+      password: "password"
   handler:
     nameOverride: "keycloak-extensions-handler"
     appConfig: {}
-  postgresql:
-    enabled: false
   proxy:
     nameOverride: "keycloak-extensions-proxy"
     ingress:
