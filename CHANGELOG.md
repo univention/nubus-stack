@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.14.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.13.0...v0.14.0) (2024-05-16)
+
+
+### Features
+
+* update provisioning subchart ([46f24ad](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/46f24ad0253fc82b4eae6674004da0d47b702de0))
+
+
+### Bug Fixes
+
+* update linter values ([4fb8e88](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/4fb8e88901a94a18b4ac42b844415b55094a1c9a))
+
 ## [0.13.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.12.0...v0.13.0) (2024-05-14)
 
 
