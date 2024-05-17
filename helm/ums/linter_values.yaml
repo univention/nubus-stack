@@ -508,6 +508,9 @@ keycloak-bootstrap:
     auth:
       bindDn: "uid=ldapsearch_keycloak,cn=users,dc=univention-organization,dc=intranet"
       password: "univention"
+  config:
+    saml:
+      serviceProviderHostname: "portal.local-cluster.test"
 
 keycloak-extensions:
   keycloak:

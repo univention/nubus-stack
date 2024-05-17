@@ -11,6 +11,9 @@ keycloak:
 keycloak-bootstrap:
   global:
     domain: "jbornhold-tmp.gaia.open-desk.cloud"
+  config:
+    saml:
+      serviceProviderHostname: "portal.jbornhold-tmp.gaia.open-desk.cloud"
 
 keycloak-extensions:
   proxy:
