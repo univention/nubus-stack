@@ -28,15 +28,17 @@ ums:
     password/quality/credit/lower: 0
     password/quality/mspolicy: false
 
-stack-data-swp:
-  stackDataSwp:
-    extraDataFiles:
-      99-dev-env-overrides.yaml: |
-        {{ with .Values.stackDataContext }}
-        ---
-        action: "modify"
-        module: "portals/entry"
-        position: "cn=login-ucs,cn=entry,cn=portals,cn=univention,{{ .ldapBase }}"
-        properties:
-          activated: true
-        {{ end }}
+# This makes the entry for the UMC login visible again
+
+# stack-data-swp:
+#   stackDataSwp:
+#     extraDataFiles:
+#       99-dev-env-overrides.yaml: |
+#         {{ with .Values.stackDataContext }}
+#         ---
+#         action: "modify"
+#         module: "portals/entry"
+#         position: "cn=login-ucs,cn=entry,cn=portals,cn=univention,{{ .ldapBase }}"
+#         properties:
+#           activated: true
+#         {{ end }}
