@@ -136,13 +136,31 @@ notifications-api:
 
 portal-frontend:
   extraIngresses:
-    redirects:
-      enabled: true
-    workaround:
-      enabled: true
+    - name: redirects
+      host: ""
+      paths:
+        - pathType: Exact
+          path: /
+        - pathType: Exact
+          path: /univention
+        - pathType: Exact
+          path: /univention/
+        - pathType: Exact
+          path: /univention/portal
+        - pathType: Exact
+          path: /univention/selfservice
+      ingressClassName: "nginx"
+      annotations:
+        nginx.ingress.kubernetes.io/configuration-snippet: |
+          absolute_redirect off;
+          return 302 /univention/portal/;
+        nginx.org/location-snippets: |
+          absolute_redirect off;
+          return 302 /univention/portal/;
+        nginx.org/mergeable-ingress-type: "minion"
+      tls: {}
     # See "extraVolumeMounts" below
-    custom-favicon:
-      enabled: true
+    - name: custom-favicon
       annotations:
         nginx.org/mergeable-ingress-type: "minion"
       paths:
@@ -150,8 +168,7 @@ portal-frontend:
           path: /favicon.ico
       tls: {}
     # See "extraVolumeMounts" below
-    custom-branding:
-      enabled: true
+    - name: custom-branding
       annotations:
         nginx.ingress.kubernetes.io/configuration-snippet: |
           rewrite ^/univention/portal(/.*)$ $1 break;
