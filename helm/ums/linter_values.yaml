@@ -503,7 +503,7 @@ keycloak-bootstrap:
 keycloak-extensions:
   keycloak:
     connection:
-      host: "ums-keycloak:8080"
+      host: "ums-keycloak"
     auth:
       username: "kcadmin"
       password: "password"
