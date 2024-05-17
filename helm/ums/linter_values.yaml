@@ -24,7 +24,7 @@ guardian:
     config:
       guardianAuthzLoggingStructured: false
       oauthAdapterWellKnownUrl: "http://ums-keycloak:8080/realms/opendesk/.well-known/openid-configuration"
-      opaAdapterUrl: "http://ums-open-policy-agent/"
+      opaAdapterUrl: "http://ums-guardian-open-policy-agent/"
       udmDataAdapterUrl: "http://ums-udm-rest-api/udm/"
       udmDataAdapterUsername: "cn=admin"
       udmDataAdapterPassword: "password"
