@@ -111,6 +111,8 @@ notifications-api:
     auth:
       username: notifications
       database: notifications
+      password: "password"
+      postgresPassword: "password"
       existingSecret: "ums-notifications-api-postgresql-credentials"
     image:
       # TODO: Workaround to allow avoid failing "helm update". Without setting
