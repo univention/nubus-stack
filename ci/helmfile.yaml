@@ -1,0 +1,27 @@
+---
+environments:
+  default:
+    values:
+      - gaia-values.yaml
+  # Copy "gaia-values.yaml" to "local-values.yaml" and run helmfile with "-e
+  # local" for local experimentation e.g. with other clusters.
+  local:
+    values:
+      - local-values.yaml
+
+---
+repositories:
+  - name: univention
+    url: registry.souvap-univention.de/souvap/tooling/charts/univention
+    oci: true
+
+releases:
+  - name: ums
+    chart: univention/ums
+    version: 0.14.0
+    values:
+      - ../helm/ums/linter_values.yaml
+      - ../helm/ums/public_images_values.yaml
+      - ../helm/ums/dev_values.yaml
+      - ../helm/ums/stage1_values.yaml
+      - ./domain-values.yaml.gotmpl

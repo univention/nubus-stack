@@ -1,0 +1,41 @@
+# This file contains the external domain specific configuration
+
+keycloak:
+  global:
+    domain: {{ .Values.reviewBaseDomain }}
+  theme:
+    univentionTheme: "https://portal.{{ .Values.reviewBaseDomain }}/univention/theme.css"
+    univentionCustomTheme: "https://portal.{{ .Values.reviewBaseDomain }}/univention/portal/css/custom.css"
+    favIcon: "https://portal.{{ .Values.reviewBaseDomain }}/favicon.ico"
+
+keycloak-bootstrap:
+  global:
+    domain: "{{ .Values.reviewBaseDomain }}"
+  config:
+    saml:
+      serviceProviderHostname: "portal.{{ .Values.reviewBaseDomain }}"
+
+keycloak-extensions:
+  proxy:
+    ingress:
+      host: "id.{{ .Values.reviewBaseDomain }}"
+      tls:
+        secretName: "certificates-ci-tls"
+
+stack-data-ums:
+  stackDataContext:
+    idpFqdn: "id.{{ .Values.reviewBaseDomain }}"
+    umcSamlSpFqdn: "portal.{{ .Values.reviewBaseDomain }}"
+    ldapSamlSpUrls: "https://portal.{{ .Values.reviewBaseDomain }}/univention/saml/metadata"
+
+stack-data-swp:
+  stackDataContext:
+    externalDomainName: "{{ .Values.reviewBaseDomain }}"
+
+stack-gateway:
+  ingress:
+    extraTls:
+      - hosts:
+          - "portal.{{ .Values.reviewBaseDomain }}"
+        secretName: "certificates-ci-tls"
+    hostname: "portal.{{ .Values.reviewBaseDomain }}"

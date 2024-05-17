@@ -2,10 +2,23 @@
 
 This directory contains tooling to support our CI setup.
 
+## Deployment
+
+Example commands:
+
+```
+helmfile template
+helmfile apply
+helmfile -e local apply
+```
+
 ## Certificates
 
-Currently using the openDesk chart with the following command:
+A wildcard certificate has to be available via the name `certificates-ci-tls`
+and it should have the following pattern:
 
-```
-helm -n jbornhold-tmp upgrade --install certificates oci://registry.opencode.de/bmi/opendesk/components/platform-development/charts/opendesk-certificates/opendesk-certificates --values ./values-certificates.yaml
-```
+- `reviewBaseDomain`
+- `*.reviewBaseDomain`
+- `*.id.reviewBaseDomain`
+- `*.portal.reviewBaseDomain`
+- `*.test.reviewBaseDomain`
