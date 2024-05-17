@@ -3,39 +3,46 @@
 keycloak:
   global:
     domain: {{ .Values.reviewBaseDomain }}
+    hosts:
+      univentionManagementStack: "{{ .Values.reviewPrefix }}.portal"
+      keycloak: "{{ .Values.reviewPrefix }}.id"
   theme:
-    univentionTheme: "https://portal.{{ .Values.reviewBaseDomain }}/univention/theme.css"
-    univentionCustomTheme: "https://portal.{{ .Values.reviewBaseDomain }}/univention/portal/css/custom.css"
-    favIcon: "https://portal.{{ .Values.reviewBaseDomain }}/favicon.ico"
+    univentionTheme: "https://{{ .Values.reviewPrefix }}.portal.{{ .Values.reviewBaseDomain }}/univention/theme.css"
+    univentionCustomTheme: "https://{{ .Values.reviewPrefix }}.portal.{{ .Values.reviewBaseDomain }}/univention/portal/css/custom.css"
+    favIcon: "https://{{ .Values.reviewPrefix }}.portal.{{ .Values.reviewBaseDomain }}/favicon.ico"
 
 keycloak-bootstrap:
   global:
     domain: "{{ .Values.reviewBaseDomain }}"
+    subDomains:
+      portal: "{{ .Values.reviewPrefix }}.portal"
+      keycloak: "{{ .Values.reviewPrefix }}.id"
   config:
     saml:
-      serviceProviderHostname: "portal.{{ .Values.reviewBaseDomain }}"
+      serviceProviderHostname: "{{ .Values.reviewPrefix }}.portal.{{ .Values.reviewBaseDomain }}"
 
 keycloak-extensions:
   proxy:
     ingress:
-      host: "id.{{ .Values.reviewBaseDomain }}"
+      host: "{{ .Values.reviewPrefix }}.id.{{ .Values.reviewBaseDomain }}"
       tls:
         secretName: "certificates-ci-tls"
 
 stack-data-ums:
   stackDataContext:
-    idpFqdn: "id.{{ .Values.reviewBaseDomain }}"
-    umcSamlSpFqdn: "portal.{{ .Values.reviewBaseDomain }}"
-    ldapSamlSpUrls: "https://portal.{{ .Values.reviewBaseDomain }}/univention/saml/metadata"
+    idpFqdn: "{{ .Values.reviewPrefix }}.id.{{ .Values.reviewBaseDomain }}"
+    umcSamlSpFqdn: "{{ .Values.reviewPrefix }}.portal.{{ .Values.reviewBaseDomain }}"
+    ldapSamlSpUrls: "https://{{ .Values.reviewPrefix }}.portal.{{ .Values.reviewBaseDomain }}/univention/saml/metadata"
 
 stack-data-swp:
   stackDataContext:
     externalDomainName: "{{ .Values.reviewBaseDomain }}"
+    portalFqdn: "{{ .Values.reviewPrefix }}.portal.{{ .Values.reviewBaseDomain }}"
 
 stack-gateway:
   ingress:
     extraTls:
       - hosts:
-          - "portal.{{ .Values.reviewBaseDomain }}"
+          - "{{ .Values.reviewPrefix }}.portal.{{ .Values.reviewBaseDomain }}"
         secretName: "certificates-ci-tls"
-    hostname: "portal.{{ .Values.reviewBaseDomain }}"
+    hostname: "{{ .Values.reviewPrefix }}.portal.{{ .Values.reviewBaseDomain }}"
