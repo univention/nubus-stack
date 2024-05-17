@@ -101,8 +101,11 @@ notifications-api:
     tls:
       enabled: false
   postgresql:
+    bundled: true
     nameOverride: "notifications-api-postgresql"
     auth:
+      username: notifications
+      database: notifications
       existingSecret: "ums-notifications-api-postgresql-credentials"
     image:
       # TODO: Workaround to allow avoid failing "helm update". Without setting
