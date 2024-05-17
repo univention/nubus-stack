@@ -39,41 +39,42 @@ ums:
     password/quality/credit/lower: 0
     password/quality/mspolicy: false
 
-guardian-authorization-api:
-  guardianAuthorizationApi:
-    guardianAuthzLoggingStructured: false
-    oauthAdapterWellKnownUrl: "http://ums-keycloak:8080/realms/opendesk/.well-known/openid-configuration"
-    opaAdapterUrl: "http://ums-open-policy-agent/"
-    udmDataAdapterUrl: "http://ums-udm-rest-api/udm/"
-    udmDataAdapterUsername: "cn=admin"
-    udmDataAdapterPassword: "password"
-  ingress:
-    host: "portal.local-cluster.test"
+guardian:
+  authorizationApi:
+    config:
+      guardianAuthzLoggingStructured: false
+      oauthAdapterWellKnownUrl: "http://ums-keycloak:8080/realms/opendesk/.well-known/openid-configuration"
+      opaAdapterUrl: "http://ums-open-policy-agent/"
+      udmDataAdapterUrl: "http://ums-udm-rest-api/udm/"
+      udmDataAdapterUsername: "cn=admin"
+      udmDataAdapterPassword: "password"
+    ingress:
+      host: "portal.local-cluster.test"
 
-guardian-management-api:
-  guardianManagementApi:
-    guardianManagementLoggingStructured: false
-    guardianManagementAdapterAuthorizationApiUrl: "http://ums-guardian-authorization-api/guardian/authorization"
-    guardianManagementBaseUrl: "http://localhost:8000"
-    oauthAdapterM2mSecret: "password"
-    oauthAdapterWellKnownUrl: "http://ums-keycloak:8080/realms/opendesk/.well-known/openid-configuration"
-  ingress:
-    host: "portal.local-cluster.test"
+  managementApi:
+    config:
+      guardianManagementLoggingStructured: false
+      guardianManagementAdapterAuthorizationApiUrl: "http://ums-guardian-authorization-api/guardian/authorization"
+      guardianManagementBaseUrl: "http://localhost:8000"
+      oauthAdapterM2mSecret: "password"
+      oauthAdapterWellKnownUrl: "http://ums-keycloak:8080/realms/opendesk/.well-known/openid-configuration"
+    ingress:
+      host: "portal.local-cluster.test"
 
-guardian-management-ui:
-  guardianManagementUi:
-    viteApiDataAdapterUri: "http://localhost:8000/guardian/management"
-    # TODO: This needs a Keycloak specific value
-    viteKeycloakAuthenticationAdapterSsoUri: "http://localhost:8000"
-    viteKeycloakAuthenticationAdapterRealm: "opendesk"
-  ingress:
-    host: "portal.local-cluster.test"
+  managementUi:
+    config:
+      viteApiDataAdapterUri: "http://localhost:8000/guardian/management"
+      # TODO: This needs a Keycloak specific value
+      viteKeycloakAuthenticationAdapterSsoUri: "http://localhost:8000"
+      viteKeycloakAuthenticationAdapterRealm: "opendesk"
+    ingress:
+      host: "portal.local-cluster.test"
 
-open-policy-agent:
   openPolicyAgent:
-    opaGuardianManagementUrl: "http://ums-guardian-management-api:8000/guardian/management"
-  ingress:
-    host: "portal.local-cluster.test"
+    config:
+      opaGuardianManagementUrl: "http://ums-guardian-management-api:8000/guardian/management"
+    ingress:
+      host: "portal.local-cluster.test"
 
 ldap-notifier:
   volumes:
