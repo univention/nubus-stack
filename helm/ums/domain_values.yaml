@@ -26,6 +26,10 @@ stack-data-ums:
     umcSamlSpFqdn: "portal.jbornhold-tmp.gaia.open-desk.cloud"
     ldapSamlSpUrls: "https://portal.jbornhold-tmp.gaia.open-desk.cloud/univention/saml/metadata"
 
+stack-data-swp:
+  stackDataContext:
+    externalDomainName: "jbornhold-tmp.gaia.open-desk.cloud"
+
 stack-gateway:
   ingress:
     extraTls:
