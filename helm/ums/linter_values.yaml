@@ -862,7 +862,7 @@ stack-gateway:
       }
       location /guardian/opa {
         rewrite ^/guardian/opa(/.*)$ $1 break;
-        proxy_pass http://ums-open-policy-agent:80/;
+        proxy_pass http://ums-guardian-open-policy-agent:80/;
       }
       location /guardian/management {
         proxy_pass http://ums-guardian-management-api:80/guardian/management;
