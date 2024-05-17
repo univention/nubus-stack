@@ -559,9 +559,6 @@ keycloak-postgresql:
     password: "password"
     postgresPassword: "password"
 
-stack-gateway:
-  enabled: false
-
 tags:
   pre-release: true
 
