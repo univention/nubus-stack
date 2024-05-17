@@ -106,9 +106,10 @@ selfservice-listener:
 
 udm-rest-api:
   udmRestApi:
+    # TODO: Unclear why the default from the sources is not working
     image:
-      registry: "external-registry.souvap-univention.de"
-      repository: "sovereign-workplace/souvap/tooling/images/univention/udm-rest-api"
+      registry: "artifacts.software-univention.de"
+      repository: "nubus-dev/images/udm-rest-api"
 
 umc-gateway:
   image:

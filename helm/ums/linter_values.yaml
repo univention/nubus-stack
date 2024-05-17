@@ -356,11 +356,6 @@ udm-rest-api:
       uri: "ldap://ums-ldap-server:389"
       baseDn: "dc=univention-organization,dc=intranet"
     secretRef: udm-rest-api-credentials
-    # TODO: Pending correction
-    # See https://git.knut.univention.de/univention/customers/dataport/upx/container-udm-rest/-/merge_requests/100
-    image:
-      registry: "gitregistry.knut.univention.de"
-      tag: "latest"
 
   extraVolumes:
     - name: "attribute-to-group-mapper-hook"
