@@ -532,7 +532,7 @@ keycloak-extensions:
   proxy:
     nameOverride: "keycloak-extensions-proxy"
     ingress:
-      enabled: false
+      enabled: true
       annotations:
         nginx.org/proxy-buffer-size: "8k"
         nginx.ingress.kubernetes.io/proxy-buffer-size: "8k"
