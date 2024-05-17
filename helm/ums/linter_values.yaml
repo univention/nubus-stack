@@ -553,7 +553,7 @@ keycloak-extensions:
       host: "id.local-cluster.test"
       tls:
         enabled: true
-        secretName: "id-tls"
+        secretName: "certificates-tls"
 
 keycloak-postgresql:
   auth:
@@ -616,7 +616,7 @@ stack-gateway:
     extraTls:
       - hosts:
           - "portal.local-cluster.test"
-        secretName: "portal-tls"
+        secretName: "certificates-tls"
     hostname: "portal.local-cluster.test"
     ingressClassName: "nginx"
     tls: false

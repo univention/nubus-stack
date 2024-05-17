@@ -35,5 +35,5 @@ stack-gateway:
     extraTls:
       - hosts:
           - "portal.jbornhold-tmp.gaia.open-desk.cloud"
-        secretName: "portal-tls"
+        secretName: "certificates-tls"
     hostname: "portal.jbornhold-tmp.gaia.open-desk.cloud"
