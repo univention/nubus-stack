@@ -483,10 +483,6 @@ keycloak-bootstrap:
     domain: "local-cluster.test"
     hosts:
       keycloak: "id"
-  # TODO: The helm chart does not use latest but "1.0.0" instead as default
-  # image tag. The old image is lacking the "intraCluster" feature.
-  image:
-    tag: "1.0.8"
   keycloak:
     auth:
       username: "kcadmin"
