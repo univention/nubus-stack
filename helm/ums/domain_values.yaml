@@ -1,0 +1,32 @@
+# This file contains the external domain specific configuration
+
+keycloak:
+  global:
+    domain: "jbornhold-tmp.gaia.open-desk.cloud"
+  theme:
+    univentionTheme: "https://portal.jbornhold-tmp.gaia.open-desk.cloud/univention/theme.css"
+    univentionCustomTheme: "https://portal.jbornhold-tmp.gaia.open-desk.cloud/univention/portal/css/custom.css"
+    favIcon: "https://portal.jbornhold-tmp.gaia.open-desk.cloud/favicon.ico"
+
+keycloak-bootstrap:
+  global:
+    domain: "jbornhold-tmp.gaia.open-desk.cloud"
+
+keycloak-extensions:
+  proxy:
+    ingress:
+      host: "id.jbornhold-tmp.gaia.open-desk.cloud"
+
+stack-data-ums:
+  stackDataContext:
+    idpFqdn: "id.jbornhold-tmp.gaia.open-desk.cloud"
+    umcSamlSpFqdn: "portal.jbornhold-tmp.gaia.open-desk.cloud"
+    ldapSamlSpUrls: "https://portal.jbornhold-tmp.gaia.open-desk.cloud/univention/saml/metadata"
+
+stack-gateway:
+  ingress:
+    extraTls:
+      - hosts:
+          - "portal.jbornhold-tmp.gaia.open-desk.cloud"
+        secretName: "portal-tls"
+    hostname: "portal.jbornhold-tmp.gaia.open-desk.cloud"
