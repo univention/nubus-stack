@@ -1,0 +1,6 @@
+# These settings are interim needed to avoid that the guardian provisioning job can
+# block the keycloak-bootstrap job which it depends upon.
+
+guardian:
+  provisioning:
+    enabled: false
