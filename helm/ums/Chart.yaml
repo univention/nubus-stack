@@ -14,7 +14,7 @@ dependencies:
 
   - name: "guardian"
     repository: "oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/guardian-helm/helm"
-    version: "0.3.0"
+    version: "0.4.2"
     condition: "guardian.enabled"
     tags:
       - pre-release
