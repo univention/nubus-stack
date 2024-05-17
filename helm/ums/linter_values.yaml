@@ -479,8 +479,6 @@ keycloak:
     favIcon: "https://portal.local-cluster.test/favicon.ico"
 
 keycloak-bootstrap:
-  # TODO: Find easier way to skip this in the call to "helm upgrade"
-  enabled: true
   global:
     domain: "local-cluster.test"
     hosts:
