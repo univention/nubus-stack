@@ -549,8 +549,8 @@ keycloak-extensions:
       ingressClassName: "nginx"
       host: "id.local-cluster.test"
       tls:
-        enabled: false
-        secretName: ""
+        enabled: true
+        secretName: "id-tls"
 
 keycloak-postgresql:
   auth:
