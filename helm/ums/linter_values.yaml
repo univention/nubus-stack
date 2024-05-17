@@ -71,7 +71,8 @@ ldap-server:
       samlMetadataUrlInternal: "http://ums-keycloak:8080/realms/opendesk/protocol/saml/descriptor"
       samlServiceProviders: "http://ums-keycloak:8000/univention/saml/metadata,http://ums-keycloak:8000/auth/realms/ucs"
     credentialSecret:
-      name: ldap-credentials
+      name: openldap-credentials
+      key: adminPassword
   extraVolumes:
     - name: "opendesk-schemas"
       configMap:
@@ -108,11 +109,6 @@ notifications-api:
       # the image back to "15.*" Helm does during install select version "16.*"
       # and during update "15.*".
       tag: "15.3.0-debian-11-r77"
-  extraSecrets:
-    - name: "ums-notifications-api-postgresql-credentials"
-      stringData:
-        postgres-password: "password"
-        password: "password"
 
 portal-frontend:
   extraIngresses:
@@ -362,12 +358,6 @@ udm-rest-api:
     image:
       registry: "gitregistry.knut.univention.de"
       tag: "latest"
-
-  extraSecrets:
-    - name: udm-rest-api-credentials
-      stringData:
-        ldap.secret: "password"
-        machine.secret: "password"
 
   extraVolumes:
     - name: "attribute-to-group-mapper-hook"
@@ -897,3 +887,58 @@ stack-gateway:
       }
 
     }
+
+extraSecrets:
+  - name: ums-minio-credentials
+    stringData:
+      root-user: "admin"
+      root-password: "password"
+  - name: ums-minio-users
+    stringData:
+      ums_user: |
+        username=ums_user
+        password=password
+        disabled=false
+        policies=ums-bucket-policy
+        setPolicies=false
+  - name: ums-portal-server-minio-credentials
+    stringData:
+      accessKeyId: "ums_user"
+      secretAccessKey: "password"
+  - name: ums-notifications-api-postgresql-credentials
+    stringData:
+      postgres-password: "password"
+      password: "password"
+  - name: openldap-credentials
+    stringData:
+      adminPassword: "password"
+  - name: ums-provisioning-nats-credentials
+    stringData:
+      admin_password: "password"
+  - name: ums-provisioning-api-credentials
+    stringData:
+      ADMIN_NATS_USER: "api"
+      ADMIN_NATS_PASSWORD: "password"
+      ADMIN_USERNAME: "api"
+      ADMIN_PASSWORD: "password"
+  - name: ums-provisioning-dispatcher-credentials
+    stringData:
+      NATS_USER: "dispatcher"
+      NATS_PASSWORD: "password"
+  - name: ums-provisioning-prefill-credentials
+    stringData:
+      UDM_USERNAME: "cn=admin"
+      UDM_PASSWORD: "password"
+      NATS_USER: "prefill"
+      NATS_PASSWORD: "password"
+  - name: udm-rest-api-credentials
+    stringData:
+      ldap.secret: "password"
+      machine.secret: "password"
+  - name: "guardian-keycloak-client-secret"
+    stringData:
+      oauthAdapterM2mSecret: "stub_client_secret"
+  - name: "guardian-keycloak-secret"
+    stringData:
+      KEYCLOAK_ADMIN_PASSWORD: "password"
+      GUARDIAN_MANAGEMENT_API_CLIENT_SECRET: "stub_client_secret"
