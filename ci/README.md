@@ -3,6 +3,7 @@
 This directory contains tooling to support our CI setup and deploy Nubus into a
 prepared environment.
 
+
 ## Deployment
 
 The idea is to deploy into a new namespace which is based on the name of the
@@ -14,6 +15,15 @@ helmfile -n your-namespace template
 helmfile -n your-namespace apply
 helmfile -n your-namespace -e local apply
 ```
+
+
+## Environment variables
+
+- `REVIEW_PREFIX` - allows to override the prefix in use. This will be used to
+  construct domains, e.g. `{{ REVIEW_PREFIX }}.portal.reviewBaseDomain`.
+
+- `CHART_VERSION` - allows to set the chart version to deploy.
+
 
 ## Certificates
 

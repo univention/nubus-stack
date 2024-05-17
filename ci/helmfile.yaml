@@ -26,7 +26,7 @@ releases:
 
   - name: ums
     chart: univention/ums
-    version: 0.14.0
+    version: {{ env "CHART_VERSION" | default "0.14.0" }}
     values:
       - ../helm/ums/linter_values.yaml
       - ../helm/ums/public_images_values.yaml
