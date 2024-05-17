@@ -2,12 +2,14 @@
 environments:
   default:
     values:
-      - gaia-values.yaml
+      - gaia-values.yaml.gotmpl
+      - reviewPrefix: {{ env "REVIEW_PREFIX" | default .Namespace }}
   # Copy "gaia-values.yaml" to "local-values.yaml" and run helmfile with "-e
   # local" for local experimentation e.g. with other clusters.
   local:
     values:
-      - local-values.yaml
+      - local-values.yaml.gotmpl
+      - reviewPrefix: {{ env "REVIEW_PREFIX" | default .Namespace }}
 
 ---
 repositories:

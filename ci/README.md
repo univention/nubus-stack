@@ -1,15 +1,18 @@
 # CI Utilities
 
-This directory contains tooling to support our CI setup.
+This directory contains tooling to support our CI setup and deploy Nubus into a
+prepared environment.
 
 ## Deployment
 
-Example commands:
+The idea is to deploy into a new namespace which is based on the name of the
+branch or a tag. The Ingress objects will then be configured based on this
+namespace.
 
 ```
-helmfile template
-helmfile apply
-helmfile -e local apply
+helmfile -n your-namespace template
+helmfile -n your-namespace apply
+helmfile -n your-namespace -e local apply
 ```
 
 ## Certificates
@@ -22,3 +25,8 @@ and it should have the following pattern:
 - `*.id.reviewBaseDomain`
 - `*.portal.reviewBaseDomain`
 - `*.test.reviewBaseDomain`
+
+The deployment will assume the certificate to be prepared in a secret within the
+central CI namespace, e.g. `nubus-ci`, and try to deploy a copy into the target
+namespace. This way there is no certificate request needed for a deployment and
+we avoid bumping into rate limits.
