@@ -29,6 +29,7 @@ guardian:
       udmDataAdapterUsername: "cn=admin"
       udmDataAdapterPassword: "password"
     ingress:
+      enabled: false
       host: "portal.local-cluster.test"
 
   managementApi:
@@ -39,6 +40,7 @@ guardian:
       oauthAdapterM2mSecret: "password"
       oauthAdapterWellKnownUrl: "http://ums-keycloak:8080/realms/opendesk/.well-known/openid-configuration"
     ingress:
+      enabled: false
       host: "portal.local-cluster.test"
 
   managementUi:
@@ -48,12 +50,14 @@ guardian:
       viteKeycloakAuthenticationAdapterSsoUri: "http://localhost:8000"
       viteKeycloakAuthenticationAdapterRealm: "opendesk"
     ingress:
+      enabled: false
       host: "portal.local-cluster.test"
 
   openPolicyAgent:
     config:
       opaGuardianManagementUrl: "http://ums-guardian-management-api:8000/guardian/management"
     ingress:
+      enabled: false
       host: "portal.local-cluster.test"
 
 ldap-notifier:
@@ -97,6 +101,7 @@ ldap-server:
 
 notifications-api:
   ingress:
+    enabled: false
     host: "portal.local-cluster.test"
     tls:
       enabled: false
@@ -188,6 +193,7 @@ portal-frontend:
       mountPath: "/var/www/html/custom/portal_background_image.svg"
       subPath: "portal_background_image.svg"
   ingress:
+    enabled: false
     host: "portal.local-cluster.test"
     tls:
       enabled: false
@@ -225,6 +231,7 @@ portal-server:
     objectStorageAccessKeyId: "ums_user"
     objectStorageSecretAccessKey: "univention"
   ingress:
+    enabled: false
     host: "portal.local-cluster.test"
     tls:
       enabled: false
@@ -238,6 +245,7 @@ provisioning:
   events-and-consumer-api:
     nameOverride: "provisioning-events-and-consumer-api"
     ingress:
+      enabled: false
       host: "portal.local-cluster.test"
       tls:
         enabled: false
@@ -371,6 +379,7 @@ udm-rest-api:
       subPath: "flag_to_group_mapping.json"
 
   ingress:
+    enabled: false
     host: "portal.local-cluster.test"
     tls:
       enabled: false
@@ -397,6 +406,7 @@ umc-gateway:
         /umc/icons/16x16/udm-portals-announcement.png"
       subPath: "udm-portals-announcement.png"
   ingress:
+    enabled: false
     host: "portal.local-cluster.test"
     tls:
       enabled: false
@@ -439,6 +449,7 @@ umc-server:
       mountPath: "/usr/share/univention-management-console/modules/udm-portals-announcement.xml"
       subPath: "udm-portals-announcement.xml"
   ingress:
+    enabled: false
     host: "portal.local-cluster.test"
     tls:
       enabled: false
@@ -521,6 +532,7 @@ keycloak-extensions:
   proxy:
     nameOverride: "keycloak-extensions-proxy"
     ingress:
+      enabled: false
       annotations:
         nginx.org/proxy-buffer-size: "8k"
         nginx.ingress.kubernetes.io/proxy-buffer-size: "8k"
@@ -534,7 +546,6 @@ keycloak-extensions:
           path: "/resources"
         - pathType: "Prefix"
           path: "/fingerprintjs"
-      enabled: true
       ingressClassName: "nginx"
       host: "id.local-cluster.test"
       tls:
