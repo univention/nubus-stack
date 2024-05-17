@@ -342,7 +342,7 @@ stack-data-swp:
     ldapSearchUsers:
       - username: "ldapsearch_keycloak"
         password: "univention"
-      # TODO: We need typically more entries, compare opendesk setup
+    ldapBase: "dc=univention-organization,dc=intranet"
 
 selfservice-listener:
   selfserviceListener:
