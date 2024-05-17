@@ -1,0 +1,6 @@
+global:
+  domain: "jbornhold-tmp.gaia.open-desk.cloud"
+issuerRef:
+  kind: ClusterIssuer
+  name: letsencrypt-prod-dns
+wildcard: true
