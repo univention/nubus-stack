@@ -1,2 +1,6 @@
 reviewBaseDomain: review.gaia.open-desk.cloud
 reviewPrefix: example
+
+cluster:
+  namespaces:
+    ci: nubus-ci

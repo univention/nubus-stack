@@ -16,6 +16,12 @@ repositories:
     oci: true
 
 releases:
+  - name: certificate
+    chart: ./certificate
+    values:
+      - certificate: {{ printf "ref+k8s://v1/Secret/%s/certificates-ci-tls/tls.crt" .Values.cluster.namespaces.ci | fetchSecretValue | quote }}
+        key: {{ printf "ref+k8s://v1/Secret/%s/certificates-ci-tls/tls.key" .Values.cluster.namespaces.ci | fetchSecretValue | quote }}
+
   - name: ums
     chart: univention/ums
     version: 0.14.0
