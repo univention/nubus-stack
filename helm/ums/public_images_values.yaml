@@ -1,0 +1,121 @@
+# These settings change the image configuration to publicly available registries.
+# The intention is to make it easy to apply these settings by including this
+# file with the "--values" flag to the helm command.
+#
+# This file should go away over time once all images are being published into
+# the new public registry.
+
+guardian:
+  provisioning:
+    image:
+      registry: "external-registry.souvap-univention.de"
+      repository: "sovereign-workplace/souvap/tooling/images/univention/guardian-init"
+
+keycloak-extensions:
+  handler:
+    image:
+      registry: "external-registry.souvap-univention.de"
+      repository: "sovereign-workplace/souvap/tooling/images/univention/keycloak-handler"
+  proxy:
+    image:
+      registry: "external-registry.souvap-univention.de"
+      repository: "sovereign-workplace/souvap/tooling/images/univention/keycloak-proxy"
+
+ldap-notifier:
+  image:
+    registry: "external-registry.souvap-univention.de"
+    repository: "sovereign-workplace/souvap/tooling/images/univention/ldap-notifier"
+
+ldap-server:
+  waitForDependency:
+    image:
+      registry: "external-registry.souvap-univention.de"
+      repository: "sovereign-workplace/souvap/tooling/images/univention/wait-for-dependency"
+  ldapServer:
+    image:
+      registry: "external-registry.souvap-univention.de"
+      repository: "sovereign-workplace/souvap/tooling/images/univention/ldap-server"
+
+notifications-api:
+  image:
+    registry: "external-registry.souvap-univention.de"
+    repository: "sovereign-workplace/souvap/tooling/images/univention/notifications-api"
+
+portal-frontend:
+  image:
+    registry: "external-registry.souvap-univention.de"
+    repository: "sovereign-workplace/souvap/tooling/images/univention/portal-frontend"
+
+portal-listener:
+  image:
+    registry: "external-registry.souvap-univention.de"
+    repository: "sovereign-workplace/souvap/tooling/images/univention/portal-listener"
+    waitForDependency:
+      registry: "external-registry.souvap-univention.de"
+      repository: "sovereign-workplace/souvap/tooling/images/univention/wait-for-dependency"
+
+portal-server:
+  image:
+    registry: "external-registry.souvap-univention.de"
+    repository: "sovereign-workplace/souvap/tooling/images/univention/portal-server"
+
+provisioning:
+  api:
+    image:
+      registry: "registry.souvap-univention.de"
+      repository: "souvap/tooling/images/univention/provisioning-events-and-consumer-api"
+  dispatcher:
+    image:
+      registry: "registry.souvap-univention.de"
+      repository: "souvap/tooling/images/univention/provisioning-dispatcher"
+  prefill:
+    image:
+      registry: "registry.souvap-univention.de"
+      repository: "souvap/tooling/images/univention/provisioning-prefill"
+  udmTransformer:
+    image:
+      registry: "registry.souvap-univention.de"
+      repository: "souvap/tooling/images/univention/provisioning-udm-transformer"
+
+udm-listener:
+  image:
+    registry: "registry.souvap-univention.de"
+    repository: "souvap/tooling/images/univention/provisioning-udm-listener"
+
+stack-data-ums:
+  image:
+    registry: "external-registry.souvap-univention.de"
+    repository: "sovereign-workplace/souvap/tooling/images/univention/data-loader"
+
+stack-data-swp:
+  image:
+    registry: "external-registry.souvap-univention.de"
+    repository: "sovereign-workplace/souvap/tooling/images/univention/data-loader"
+
+selfservice-listener:
+  image:
+    selfserviceInvitation:
+      registry: "external-registry.souvap-univention.de"
+      repository: "sovereign-workplace/souvap/tooling/images/univention/selfservice-invitation"
+    waitForDependency:
+      registry: "external-registry.souvap-univention.de"
+      repository: "sovereign-workplace/souvap/tooling/images/univention/wait-for-dependency"
+    selfserviceListener:
+      registry: "external-registry.souvap-univention.de"
+      repository: "sovereign-workplace/souvap/tooling/images/univention/selfservice-listener"
+
+udm-rest-api:
+  udmRestApi:
+    image:
+      registry: "external-registry.souvap-univention.de"
+      repository: "sovereign-workplace/souvap/tooling/images/univention/udm-rest-api"
+
+umc-gateway:
+  image:
+    registry: "external-registry.souvap-univention.de"
+    repository: "sovereign-workplace/souvap/tooling/images/univention/umc-gateway"
+
+umc-server:
+  image:
+    registry: "external-registry.souvap-univention.de"
+    repository: "sovereign-workplace/souvap/tooling/images/univention/umc-server"
