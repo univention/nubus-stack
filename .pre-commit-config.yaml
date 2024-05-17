@@ -20,7 +20,7 @@ repos:
         args:
           # Allow custom tags like Gitlab's "!reference" tag.
           - "--unsafe"
-        exclude: "^helm/.+/templates/"
+        exclude: "^helm/.+/templates/|^ci/"
       # "Trim Trailing Whitespace"
       - id: "trailing-whitespace"
       - id: "end-of-file-fixer"
