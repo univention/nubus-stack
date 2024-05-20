@@ -79,10 +79,9 @@ dependencies:
       - pre-release
 
   # keycloak related chart(s)
-  - name: "ums-keycloak"
-    alias: "keycloak"
-    repository: "oci://registry.souvap-univention.de/souvap/tooling/charts/univention-keycloak"
-    version: "1.*"
+  - name: "keycloak"
+    repository: "oci://artifacts.software-univention.de/nubus/charts"
+    version: "0.1.0"
     condition: "keycloak.enabled"
 
   - name: "keycloak-extensions"

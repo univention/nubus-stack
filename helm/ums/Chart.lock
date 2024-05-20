@@ -35,9 +35,9 @@ dependencies:
 - name: udm-listener
   repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/provisioning/helm
   version: 0.26.0
-- name: ums-keycloak
-  repository: oci://registry.souvap-univention.de/souvap/tooling/charts/univention-keycloak
-  version: 1.0.5
+- name: keycloak
+  repository: oci://artifacts.software-univention.de/nubus/charts
+  version: 0.1.0
 - name: keycloak-extensions
   repository: oci://gitregistry.knut.univention.de/univention/components/keycloak-extensions/helm
   version: 0.4.0
@@ -65,5 +65,5 @@ dependencies:
 - name: umc-server
   repository: oci://gitregistry.knut.univention.de/univention/customers/dataport/upx/container-umc/helm
   version: 0.13.0
-digest: sha256:65d7df1ce1994e9c02c59ea32ca4c0d6649529f3f12fd1c5f04838e6b28b7138
-generated: "2024-05-16T10:01:51.622640744+02:00"
+digest: sha256:5a14dbd34f0afcfacbeeb6c02215326d8fa252c9d9435747f6ecec5cd4111461
+generated: "2024-05-17T11:31:57.993744746+02:00"
