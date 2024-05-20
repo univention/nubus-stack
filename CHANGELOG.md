@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.15.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.14.0...v0.15.0) (2024-05-20)
+
+
+### Features
+
+* upgrade keycloak version ([051f386](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/051f386c44fa21ff12a27e295d293ecf5e787acf))
+
 ## [0.14.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.13.0...v0.14.0) (2024-05-16)
 
 
