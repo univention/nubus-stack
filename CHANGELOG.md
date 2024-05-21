@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.16.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.15.0...v0.16.0) (2024-05-21)
+
+
+### Features
+
+* **guardian:** deduplicated yaml values ([85ef851](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/85ef851dc11b0f53818280601c1602a1784c8472))
+
 ## [0.15.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.14.0...v0.15.0) (2024-05-20)
 
 
