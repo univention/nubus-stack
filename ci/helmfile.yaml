@@ -36,3 +36,4 @@ releases:
       - ../helm/ums/dev_values.yaml
       - ../helm/ums/stage1_values.yaml
       - ./domain-values.yaml.gotmpl
+      - ./secret-values.yaml.gotmpl

@@ -6,6 +6,11 @@ cluster:
     # The namespace where things like the prepared TLS certificate can be found.
     ci: nubus-ci
 
+secrets:
+  # Master password used to generate stable secrets for deployments.
+  # Intentionally without a default value.
+  masterPassword: {{ requiredEnv "MASTER_PASSWORD" }}
+
 # Flags useful for development
 dev:
   # Allows to select the local chart instead of a packaged one
