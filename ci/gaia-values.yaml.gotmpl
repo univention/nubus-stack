@@ -1,9 +1,12 @@
 reviewBaseDomain: review.gaia.open-desk.cloud
 
+# Details about the target cluster
 cluster:
   namespaces:
+    # The namespace where things like the prepared TLS certificate can be found.
     ci: nubus-ci
 
+# Flags useful for development
 dev:
   # Allows to select the local chart instead of a packaged one
   #
