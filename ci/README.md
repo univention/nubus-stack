@@ -24,8 +24,16 @@ helmfile -n your-namespace -e local apply
 
 - `CHART_VERSION` - allows to set the chart version to deploy.
 
+- `MASTER_PASSWORD` - has to be provided as a seed for the password derivation.
 
-## Certificates
+
+## Dependencies and requirements
+
+The requirements can be met via the setup in
+<https://git.knut.univention.de/univention/customers/dataport/upx/nubus-ci-base>.
+
+
+### Certificates
 
 A wildcard certificate has to be available via the name `certificates-ci-tls`
 and it should have the following pattern:
