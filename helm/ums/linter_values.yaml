@@ -53,6 +53,13 @@ guardian:
       enabled: false
       host: "portal.local-cluster.test"
 
+  postgresql:
+    bundled: true
+    auth:
+      username: user
+      password: password
+      database: database
+
   openPolicyAgent:
     config:
       opaGuardianManagementUrl: "http://ums-guardian-management-api:8000/guardian/management"
