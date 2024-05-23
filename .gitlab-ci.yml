@@ -53,6 +53,8 @@ deploy-gaia:
   stage: "deploy"
   image: "registry.opencode.de/bmi/opendesk/components/platform-development/images/helm:1.0.1\
           @sha256:d38f41b88374e055332860018f2936db8807b763caf6089735db0484cbb2842a"
+  # TODO: Make the job required once we did gain enough confidence
+  allow_failure: true
   script:
     - cd ci
     - export CHART_VERSION=$RELEASE_VERSION
