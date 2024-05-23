@@ -471,14 +471,17 @@ umc-server:
 keycloak:
   global:
     domain: "local-cluster.test"
-    hosts:
+    subDomains:
       keycloak: "id"
-  config:
-    admin:
+  keycloak:
+    auth:
+      username: "kcadmin"
       password: "password"
-    database:
+  postgresql:
+    connection:
       host: "ums-keycloak-postgresql"
       port: 5432
+    auth:
       username: "keycloak"
       database: "keycloak"
       password: "password"
@@ -494,7 +497,7 @@ keycloak:
 keycloak-bootstrap:
   global:
     domain: "local-cluster.test"
-    hosts:
+    subDomains:
       keycloak: "id"
   keycloak:
     auth:

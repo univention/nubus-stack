@@ -3,7 +3,7 @@
 keycloak:
   global:
     domain: {{ .Values.reviewBaseDomain }}
-    hosts:
+    subDomains:
       univentionManagementStack: "{{ .Values.reviewPrefix }}.portal"
       keycloak: "{{ .Values.reviewPrefix }}.id"
   theme:
