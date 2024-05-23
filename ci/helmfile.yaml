@@ -29,7 +29,7 @@ releases:
 
   - name: ums
     chart: {{ if .Values.dev.useLocalChart }}../helm/ums{{ else }}univention/ums{{ end }}
-    version: {{ env "CHART_VERSION" | default "0.14.0" }}
+    version: {{ env "CHART_VERSION" | default "*" | quote }}
     values:
       # TODO: Pending cleanup once the value refactoring has been merged.
       # See: https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/-/merge_requests/23
