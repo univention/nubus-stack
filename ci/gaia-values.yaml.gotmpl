@@ -3,3 +3,11 @@ reviewBaseDomain: review.gaia.open-desk.cloud
 cluster:
   namespaces:
     ci: nubus-ci
+
+dev:
+  # Allows to select the local chart instead of a packaged one
+  #
+  # Example on the CLI:
+  #
+  # helmfile --state-values-set dev.useLocalChart=true template
+  useLocalChart: false

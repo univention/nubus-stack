@@ -28,7 +28,7 @@ releases:
         key: {{ printf "ref+k8s://v1/Secret/%s/certificates-ci-tls/tls.key" .Values.cluster.namespaces.ci | fetchSecretValue | quote }}
 
   - name: ums
-    chart: univention/ums
+    chart: {{ if .Values.dev.useLocalChart }}../helm/ums{{ else }}univention/ums{{ end }}
     version: {{ env "CHART_VERSION" | default "0.14.0" }}
     values:
       - ../helm/ums/linter_values.yaml
