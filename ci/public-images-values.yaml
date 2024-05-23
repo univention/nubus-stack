@@ -5,8 +5,8 @@
 # The intention is to make it easy to apply these settings by including this
 # file with the "--values" flag to the helm command.
 #
-# This file should go away over time once all images are being published into
-# the new public registry.
+# TODO: This file should go away over time once all images are being published
+# into the new public registry.
 
 guardian:
   provisioning:

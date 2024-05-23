@@ -34,8 +34,8 @@ releases:
       # TODO: Pending cleanup once the value refactoring has been merged.
       # See: https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/-/merge_requests/23
       - ../helm/ums/linter_values.yaml
-      - ../helm/ums/public_images_values.yaml
+      - ./public-images-values.yaml
       - ../helm/ums/dev_values.yaml
-      - ../helm/ums/stage1_values.yaml
+      - ./stage1-values.yaml
       - ./domain-values.yaml.gotmpl
       - ./secret-values.yaml.gotmpl
