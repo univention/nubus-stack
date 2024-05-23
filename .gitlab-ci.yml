@@ -20,9 +20,12 @@ include:
 
 variables:
   SKIP_UPDATE_HELM_VALUES: "1"
-  REVIEW_PREFIX:
-    description: "The subdomain prefix to use in the deployment."
-    value: $CI_COMMIT_REF_SLUG
+  DEPLOY_NAMESPACE:
+    description: "The namespace to deploy into."
+    value: "ci-${CI_COMMIT_REF_SLUG}"
+  DEPLOY_SUBDOMAIN:
+    description: "The subdomain to prepend during the deployment."
+    value: "${CI_COMMIT_REF_SLUG}"
 
 renovate:
   stage: "package"
@@ -51,12 +54,12 @@ deploy-gaia:
   allow_failure: true
   script:
     - cd ci
-    - export CHART_VERSION=$RELEASE_VERSION
-    - export REVIEW_PREFIX=$CI_COMMIT_REF_SLUG
-    - helmfile -n "ci-${CI_COMMIT_REF_SLUG}" apply --skip-diff-on-install
+    - export CHART_VERSION=${RELEASE_VERSION}
+    - export REVIEW_PREFIX=${DEPLOY_SUBDOMAIN}
+    - helmfile -n "${DEPLOY_NAMESPACE}" apply --skip-diff-on-install
   environment:
     name: review/$CI_COMMIT_REF_SLUG
-    url: https://${CI_COMMIT_REF_SLUG}.portal.review.gaia.open-desk.cloud
+    url: https://${DEPLOY_SUBDOMAIN}.portal.review.gaia.open-desk.cloud
     on_stop: stop-deployment
     auto_stop_in: 1 day
     deployment_tier: development
