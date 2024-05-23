@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.16.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.16.0...v0.16.1) (2024-05-23)
+
+
+### Bug Fixes
+
+* Adjust linter_values to match latest guardian configuration schema ([e3a8c1d](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/e3a8c1d7d95509074da2fa346e36082eeab5eb49))
+* Adjust the extra ingress configuration around the portal frontend ([94edb57](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/94edb5726f062d6ae7c2578ae0e39615067bf25b))
+
 ## [0.16.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.15.0...v0.16.0) (2024-05-21)
 
 
