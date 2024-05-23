@@ -26,8 +26,9 @@ guardian:
       oauthAdapterWellKnownUrl: "http://ums-keycloak:8080/realms/opendesk/.well-known/openid-configuration"
       opaAdapterUrl: "http://ums-guardian-open-policy-agent/"
       udmDataAdapterUrl: "http://ums-udm-rest-api/udm/"
-      udmDataAdapterUsername: "cn=admin"
-      udmDataAdapterPassword: "password"
+
+      secretRef: "guardian-udm-secret"
+
     ingress:
       enabled: false
       host: "portal.local-cluster.test"
@@ -37,8 +38,9 @@ guardian:
       guardianManagementLoggingStructured: false
       guardianManagementAdapterAuthorizationApiUrl: "http://ums-guardian-authorization-api/guardian/authorization"
       guardianManagementBaseUrl: "http://localhost:8000"
-      oauthAdapterM2mSecret: "password"
       oauthAdapterWellKnownUrl: "http://ums-keycloak:8080/realms/opendesk/.well-known/openid-configuration"
+      secretRef: "guardian-keycloak-client-secret"
+
     ingress:
       enabled: false
       host: "portal.local-cluster.test"
@@ -959,3 +961,7 @@ extraSecrets:
     stringData:
       KEYCLOAK_ADMIN_PASSWORD: "password"
       GUARDIAN_MANAGEMENT_API_CLIENT_SECRET: "stub_client_secret"
+  - name: "guardian-udm-secret"
+    stringData:
+      udmDataAdapterUsername: "cn=admin"
+      udmDataAdapterPassword: "password"
