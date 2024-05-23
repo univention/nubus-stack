@@ -4,31 +4,25 @@
 ---
 include:
   - project: "univention/customers/dataport/upx/common-ci"
-    ref: "v1.23.0"
+    ref: "v1.31.0"
     file:
       # TODO: Sphinx docs inherits a stage definition from upstream,
       # has to be included before our default stages to avoid trouble.
       - "jobs/sphinx-docs.yaml"
-      - "defaults/souvap-workflow.yaml"
+      - "defaults/nubus-workflow.yaml"
       - "defaults/stages.yaml"
       - "jobs/lint-commit-messages.yaml"
       - "jobs/lint-pre-commit.yaml"
-      - "jobs/package-and-publish-helm-charts-souvap.yaml"
+      - "jobs/package-and-publish-helm-charts-external.yaml"
       - "jobs/semantic-release-env.yaml"
   - project: 'univention/dist/renovate-runner'
     file: '/templates/renovate.gitlab-ci.yml'
 
-stages:
-- ".pre"
-- lint
-- prepare
-- build
-- test
-- trigger
-- package
-- publish
-- deploy
-- ".post"
+variables:
+  SKIP_UPDATE_HELM_VALUES: "1"
+  REVIEW_PREFIX:
+    description: "The subdomain prefix to use in the deployment."
+    value: $CI_COMMIT_REF_SLUG
 
 renovate:
   stage: "package"
