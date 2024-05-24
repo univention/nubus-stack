@@ -474,7 +474,7 @@ umc-server:
     bundled: true
     nameOverride: "umc-server-memcached"
     auth:
-      password: "password"
+      enabled: false
 
 
 keycloak:
