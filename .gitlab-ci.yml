@@ -67,6 +67,10 @@ deploy-gaia:
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
       when: manual
+    - if: $CI_PIPELINE_SOURCE == "web"
+      when: manual
+    - if: $CI_PIPELINE_SOURCE == "push"
+      when: manual
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
 
 stop-deployment:
