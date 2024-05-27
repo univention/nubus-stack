@@ -1,16 +1,27 @@
 global:
-  nubusMasterPassword: {{ .Values.secrets.masterPassword | quote }}
+  certManagerIssuer: "no-issuer"
+  domain: "{{ .Values.reviewBaseDomain }}"
+  ingressClass: "nginx"
   ldap:
     baseDn: "dc=univention-organization,dc=intranet"
     domainName: "univention-organization.intranet"
-  domain: {{ .Values.reviewBaseDomain | quote }}
+  nubusDeployment: true
+  nubusMasterPassword: {{ .Values.secrets.masterPassword | quote }}
   subDomains:
     portal: "{{ .Values.reviewPrefix }}.portal"
     keycloak: "{{ .Values.reviewPrefix }}.id"
-  ingressClass: "nginx"
-  certManagerIssuer: "no-issuer"
 
 nubusStackGateway:
   ingress:
     hostname: "{{ .Values.reviewPrefix }}.portal.{{ .Values.reviewBaseDomain }}"
     ingressClassName: "nginx"
+
+nubusStackDataSwp:
+  stackDataContext:
+    # TODO: Fix in the subchart
+    portalFqdn: "{{ .Values.reviewPrefix }}.portal.{{ .Values.reviewBaseDomain }}"
+
+nubusStackDataUms:
+  stackDataContext:
+    # TODO: Fix in the subchart
+    ldapSamlSpUrls: "https://{{ .Values.reviewPrefix }}.portal.{{ .Values.reviewBaseDomain }}/univention/saml/metadata"

@@ -32,7 +32,7 @@ releases:
     version: {{ env "CHART_VERSION" | default "*" | quote }}
     values:
       - ./ci-values.yaml.gotmpl
-      - ./dev-values.yaml
+      # - ./dev-values.yaml
       # TODO: Pending cleanup once the value refactoring has been merged.
       # See: https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/-/merge_requests/23
       # - ../helm/nubus/linter_values.yaml
