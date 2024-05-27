@@ -1,5 +1,47 @@
 # Changelog
 
+## [0.17.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.16.1...v0.17.0) (2024-05-27)
+
+
+### Features
+
+* Add interim "stage1_values" ([bdbe63b](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/bdbe63bb094cbf7c742ca54fdeb8d610d37c78d6))
+* Add minimal Helmfile to deploy nubus ([736db95](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/736db958ff6197745fce0b49c90b01ce32f57f60))
+* Add notes about certificates installation in the CI environment ([9d6bf92](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/9d6bf92f8e1a1ea3f7f8c90192e6ff1f112e3f45))
+* Add support for reviewPrefix in CI deployment ([f373d99](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/f373d997c1f330432e9169216afebd1309cc31a9))
+* Add values file with the current public image configuration ([50702e3](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/50702e3ba0d964b74f27d57c65119b46935d6e72))
+* Allow to override the chart version dynamically ([8af44bb](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/8af44bb61190d42aea924ae34463f2fde155422f))
+* Capture domain specific configuration into a dedicated file ([edc9b01](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/edc9b016b63c3bb3e0020472bf325a9dbc7f517b))
+* Copy CI certificate into target namespace ([c77c8c7](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/c77c8c7ca33dc9bc0e0f80ba829a5c2aae8b154e))
+* Use secret name "certificates-tls" for ingress configuration ([b89fea8](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/b89fea8c04f437dbdf39de1db76aa7c67d100830))
+
+
+### Bug Fixes
+
+* Adjust postgresql configuration for guardian update ([f8fa53a](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/f8fa53a3cbf38e563aaeb2a1a807c9f4c6efd14b))
+* Adjust values configuration to updated keycloak dependency ([87c6ccd](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/87c6ccdd9f24da84c4ae74a373008d1e17cdf6a1))
+* Cleanup domain_values.yaml ([34b6ab9](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/34b6ab9b36544f6bc0f0786ce1c01479a0073a5c))
+* Cleanup the outdated todo remark around keycloak-bootstrap and the related setting ([11b0447](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/11b04477734eb14e3559e85eb38f0362750514da))
+* Comment out the login entry in the dev values ([8a1eb11](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/8a1eb118c5a30acaf8a4f3926161044a0427b833))
+* Correct database configuration for notifications-api in linter values ([2139364](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/2139364e7873e511ff1b2140a3946000ce05af31))
+* Correct domain for keycloak-bootstrap ([711142f](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/711142fd87635d9d3367c4074d9e5df689344d0b))
+* Correct keycloak configuration in linter values ([e5449c5](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/e5449c5027289a9a1f08685b3f2684b5ba86966f))
+* Correct open policy agent service name in linter values ([e31af90](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/e31af90f9907709f1d6b7385327ea67b6fa286b8))
+* Correct the upstream configuration for guardian/opa in stack-gateway ([7f0a701](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/7f0a701c66ecf598a0aae346b3ee520b09ff6023))
+* Enable TLS in the keycloak extensions ingress ([c6af8fa](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/c6af8faef81c2e9a158e917d991fcf06c8fdde16))
+* Enabled ingress for keycloak-extensions ([20e7760](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/20e776079ffd72150a5318a1e5f856b4e0b96f6c))
+* Ensure that umc-server deploys its dependencies ([5f6ebaf](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/5f6ebaf04343aa2f36938e622db6047b6eba9484))
+* Provide "reviewPrefix" from within the helmfile ([16a0eeb](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/16a0eeb00d5992549e70da8e06399e91f7ebf9c7))
+* Provide domain into stack-data-swp ([6af7529](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/6af7529191ee4034e4bc0f5f22f4cad36e02537a))
+* Provide ldapBase for stack-data-swp ([209e547](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/209e5478c960d62c1d1bd53280ef86d39ed3a3c3))
+* Remove duplicated entry for stack-gateway ([30bd314](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/30bd314e26d08c59ae160c1ecc29f3f106c189fd))
+* Remove the tag configuration for keycloak-bootstrap in linter values ([a7ee3ab](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/a7ee3ab0926092791cf7e5e8f5ec73eaf9d75d2f))
+* Setting stub value for bundled postgresql of notifications-api ([e80d84a](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/e80d84a39d59bf348718e8e77aaf001cd39f3fb4))
+* Switch off the Ingress configuration in linter values consistently ([9e1de65](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/9e1de65863c34e3b284c3ab5ddb47aeee6b62898))
+* Update extraSecrets configuration in linter values ([284d338](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/284d3383d25f78c176f077285256f4456bea57ad))
+* Update image configuration regarding the udm-rest-api ([b308eea](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/b308eeade0384654b016f2293869b3430877c374))
+* Use secretRef for guardian credentials ([44339be](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/44339beefb713cde5755787c87e3595d7cdfa990))
+
 ## [0.16.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.16.0...v0.16.1) (2024-05-23)
 
 
