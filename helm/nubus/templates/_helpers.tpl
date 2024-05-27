@@ -18,7 +18,7 @@ SPDX-License-Identifier: AGPL-3.0-only
 
 {{- define "nubusTemplates.credentials.ldap.users.readonly.password" -}}
 {{- $nubusMasterPassword := include "nubusTemplates.masterPassword" . -}}
-{{- print (derivePassword 1 "long" $nubusMasterPassword "nubus" "readonly") | sha1sum  -}}
+{{- print (derivePassword 1 "long" $nubusMasterPassword "ldap-server" "ldap-readonly") | sha1sum  -}}
 {{- end -}}
 
 {{- define "nubusTemplates.connections.ldap.primary.host" -}}
