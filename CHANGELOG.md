@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.18.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.17.0...v0.18.0) (2024-05-27)
+
+
+### Features
+
+* value deduplication ([d81ed74](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/d81ed74f0844360495d0b95dd318430889ea6702))
+
 ## [0.17.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.16.1...v0.17.0) (2024-05-27)
 
 
