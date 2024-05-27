@@ -4524,6 +4524,15 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusStackGateway.ingress.annotations."nginx.ingress.kubernetes.io/proxy-buffer-size"</td>
+			<td>string</td>
+			<td><pre lang="json">
+"64k"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusStackGateway.ingress.annotations."nginx.org/proxy-buffer-size"</td>
 			<td>string</td>
 			<td><pre lang="json">
