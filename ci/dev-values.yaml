@@ -6,9 +6,7 @@ global:
   configMapUcrForced: "ci-dev-ucr"
 
 ucrForcedValues: |-
-  directory/manager/rest/ldap-connection/user-read/start-tls: 0
   directory/manager/rest/show-tracebacks: true
-  portal/auth-mode: ucs
   umc/http/show_tracebacks: true
   password/quality/length/min: 8
   password/quality/required/chars:
