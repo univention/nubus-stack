@@ -2,3 +2,4 @@
 /helm/ums/charts/
 /helm/nubus/charts/
 /helm/nubus/*.dev.yaml
+/ci/local-values.yaml.gotmpl
