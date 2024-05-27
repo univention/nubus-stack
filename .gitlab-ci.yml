@@ -53,7 +53,12 @@ deploy-gaia:
     - cd ci
     - export CHART_VERSION=${RELEASE_VERSION}
     - export REVIEW_PREFIX=${DEPLOY_SUBDOMAIN}
-    - helmfile -n "${DEPLOY_NAMESPACE}" apply --skip-diff-on-install
+    # TODO: There is an issue around the call to "helm diff". Using "apply"
+    # would be preferred since it gives a nice diff of the changes.
+    #
+    # See: https://github.com/databus23/helm-diff/issues/460
+    # - helmfile -n "${DEPLOY_NAMESPACE}" apply --skip-diff-on-install
+    - helmfile -n "${DEPLOY_NAMESPACE}" sync
   environment:
     name: review/$CI_COMMIT_REF_SLUG
     url: https://${DEPLOY_SUBDOMAIN}.portal.review.gaia.open-desk.cloud
