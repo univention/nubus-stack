@@ -27,15 +27,17 @@ releases:
       - certificate: {{ printf "ref+k8s://v1/Secret/%s/certificates-ci-tls/tls.crt" .Values.cluster.namespaces.ci | fetchSecretValue | quote }}
         key: {{ printf "ref+k8s://v1/Secret/%s/certificates-ci-tls/tls.key" .Values.cluster.namespaces.ci | fetchSecretValue | quote }}
 
-  - name: ums
-    chart: {{ if .Values.dev.useLocalChart }}../helm/ums{{ else }}nubus-dev/ums{{ end }}
+  - name: nubus
+    chart: {{ if .Values.dev.useLocalChart }}../helm/nubus{{ else }}nubus-dev/nubus{{ end }}
     version: {{ env "CHART_VERSION" | default "*" | quote }}
     values:
+      - ./ci-values.yaml.gotmpl
+      - ./dev-values.yaml
       # TODO: Pending cleanup once the value refactoring has been merged.
       # See: https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/-/merge_requests/23
-      - ../helm/ums/linter_values.yaml
-      - ./public-images-values.yaml
-      - ../helm/ums/dev_values.yaml
-      - ./stage1-values.yaml
-      - ./domain-values.yaml.gotmpl
-      - ./secret-values.yaml.gotmpl
+      # - ../helm/nubus/linter_values.yaml
+      # - ./public-images-values.yaml
+      # - ../helm/ums/dev_values.yaml
+      # - ./stage1-values.yaml
+      # - ./domain-values.yaml.gotmpl
+      # - ./secret-values.yaml.gotmpl

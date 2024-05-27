@@ -1,0 +1,16 @@
+global:
+  nubusMasterPassword: {{ .Values.secrets.masterPassword | quote }}
+  ldap:
+    baseDn: "dc=univention-organization,dc=intranet"
+    domainName: "univention-organization.intranet"
+  domain: {{ .Values.reviewBaseDomain | quote }}
+  subDomains:
+    portal: "{{ .Values.reviewPrefix }}.portal"
+    keycloak: "{{ .Values.reviewPrefix }}.id"
+  ingressClass: "nginx"
+  certManagerIssuer: "no-issuer"
+
+nubusStackGateway:
+  ingress:
+    hostname: "{{ .Values.reviewPrefix }}.portal.{{ .Values.reviewBaseDomain }}"
+    ingressClassName: "nginx"

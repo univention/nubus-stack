@@ -1,0 +1,35 @@
+# SPDX-License-Identifier: AGPL-3.0-only
+# SPDX-FileCopyrightText: 2024 Univention GmbH
+---
+
+global:
+  configMapUcrForced: "ci-dev-ucr"
+
+ucrForcedValues: |-
+  directory/manager/rest/ldap-connection/user-read/start-tls: 0
+  directory/manager/rest/show-tracebacks: true
+  portal/auth-mode: ucs
+  umc/http/show_tracebacks: true
+  password/quality/length/min: 8
+  password/quality/required/chars:
+  password/quality/forbidden/chars:
+  password/quality/credit/digits: 0
+  password/quality/credit/upper: 0
+  password/quality/credit/other: 0
+  password/quality/credit/lower: 0
+  password/quality/mspolicy: false
+
+# This makes the entry for the UMC login visible again
+
+# stack-data-swp:
+#   stackDataSwp:
+#     extraDataFiles:
+#       99-dev-env-overrides.yaml: |
+#         {{ with .Values.stackDataContext }}
+#         ---
+#         action: "modify"
+#         module: "portals/entry"
+#         position: "cn=login-ucs,cn=entry,cn=portals,cn=univention,{{ .ldapBase }}"
+#         properties:
+#           activated: true
+#         {{ end }}
