@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.18.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.18.0...v0.18.1) (2024-05-28)
+
+
+### Bug Fixes
+
+* Add annotation for ingress-nginx ([367cb2c](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/367cb2cdada632994a1ed0702ea05087e5317d60))
+* Tweak password derivation to avoid trouble during bootstrap ([a163e20](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/a163e208fe112ac8a60b6ad5088e68684559c818))
+
 ## [0.18.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.17.0...v0.18.0) (2024-05-27)
 
 
