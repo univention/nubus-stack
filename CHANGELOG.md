@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.18.2](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.18.1...v0.18.2) (2024-05-30)
+
+
+### Bug Fixes
+
+* Update chart description with new product name. ([52e2ebe](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/52e2ebe3d3aa45eff3a3e7d003544e6871feb1af))
+
 ## [0.18.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.18.0...v0.18.1) (2024-05-28)
 
 
