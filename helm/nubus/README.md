@@ -35,7 +35,7 @@ helm uninstall nubus
 
 | Repository | Name | Version |
 |------------|------|---------|
-| oci://artifacts.software-univention.de/nubus/charts | nubusGuardian(guardian) | 0.5.1 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusGuardian(guardian) | 0.6.0 |
 | oci://artifacts.software-univention.de/nubus/charts | keycloak(keycloak) | 0.1.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakBootstrap(keycloak-bootstrap) | 0.1.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakExtensions(keycloak-extensions) | 0.5.1 |
@@ -45,7 +45,7 @@ helm uninstall nubus
 | oci://artifacts.software-univention.de/nubus/charts | nubusPortalFrontend(portal-frontend) | 0.24.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusPortalListener(portal-listener) | 0.24.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.24.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 0.27.1 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 0.27.2 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceListener(selfservice-listener) | 0.6.2 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusStackDataSwp(stack-data-swp) | 0.49.2 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.49.2 |

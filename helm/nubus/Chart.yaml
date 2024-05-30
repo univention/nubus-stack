@@ -24,7 +24,7 @@ dependencies:
   - name: "guardian"
     alias: "nubusGuardian"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.5.1"
+    version: "0.6.0"
     condition: "nubusGuardian.enabled"
 
   # ldap-server related chart(s)
@@ -78,7 +78,7 @@ dependencies:
   - name: "provisioning"
     alias: "nubusProvisioning"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.27.1"
+    version: "0.27.2"
     condition: "nubusProvisioning.enabled"
 
   - name: "udm-listener"
