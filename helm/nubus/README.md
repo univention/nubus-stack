@@ -1,6 +1,6 @@
 # nubus
 
-The Univention Management Stack
+Univention Nubus
 
 - **Version**: 0.0.1
 - **Type**: application

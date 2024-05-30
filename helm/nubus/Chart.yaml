@@ -2,7 +2,7 @@
 # SPDX-FileCopyrightText: 2024 Univention GmbH
 apiVersion: "v2"
 name: "nubus"
-description: "The Univention Management Stack"
+description: "Univention Nubus"
 type: "application"
 version: "0.0.1"
 
