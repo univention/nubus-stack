@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.18.3](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.18.2...v0.18.3) (2024-05-31)
+
+
+### Bug Fixes
+
+* **guardian:** provisioning from opendesk ([4e7180f](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/4e7180f72bef09982e390d3771be3febdb61c533))
+
 ## [0.18.2](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.18.1...v0.18.2) (2024-05-30)
 
 
