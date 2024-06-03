@@ -59,6 +59,12 @@ deploy-gaia:
     # See: https://github.com/databus23/helm-diff/issues/460
     # - helmfile -n "${DEPLOY_NAMESPACE}" apply --skip-diff-on-install
     - helmfile -n "${DEPLOY_NAMESPACE}" sync
+    - cd ..
+    - echo "PORTAL_BASE_URL=https://${DEPLOY_SUBDOMAIN}.portal.review.gaia.open-desk.cloud/univention/portal/" >> deploy.env
+    - echo "USER_PASSWORD=$(kubectl get secret -n "${DEPLOY_NAMESPACE}" nubus-nubus-credentials -o jsonpath='{.data.user_password}' | base64 -d)" >> deploy.env
+    - echo "ADMIN_PASSWORD=$(kubectl get secret -n "${DEPLOY_NAMESPACE}" nubus-nubus-credentials -o jsonpath='{.data.admin_password}' | base64 -d)" >> deploy.env
+    - echo "UDM_ADMIN_PASSWORD=$(kubectl get secret -n "${DEPLOY_NAMESPACE}" nubus-nubus-credentials -o jsonpath='{.data.udm_admin_password}' | base64 -d)" >> deploy.env
+    - echo "UDM_ADMIN_PASSWORD=$(kubectl get secret -n "${DEPLOY_NAMESPACE}" nubus-udm-rest-api-credentials -o jsonpath="{.data['machine\.secret']}" | base64 -d | base64 -d)" >> deploy.env
   environment:
     name: review/$CI_COMMIT_REF_SLUG
     url: https://${DEPLOY_SUBDOMAIN}.portal.review.gaia.open-desk.cloud
@@ -74,6 +80,24 @@ deploy-gaia:
     - if: $CI_PIPELINE_SOURCE == "push"
       when: manual
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+  artifacts:
+    reports:
+      dotenv: deploy.env
+
+e2e-tests:
+  stage: deploy
+  needs:
+    - job: deploy-gaia
+      artifacts: true
+  variables:
+    PORTAL_BASE_URL: $PORTAL_BASE_URL
+    USER_PASSWORD: $USER_PASSWORD
+    ADMIN_PASSWORD: $ADMIN_PASSWORD
+    UDM_ADMIN_PASSWORD: $UDM_ADMIN_PASSWORD
+  allow_failure: true
+  trigger:
+    project: "univention/customers/dataport/upx/e2e-tests"
+    strategy: depend
 
 stop-deployment:
   stage: "deploy"
