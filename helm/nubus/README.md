@@ -41,15 +41,15 @@ helm uninstall nubus
 | oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakExtensions(keycloak-extensions) | 0.6.1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusLdapNotifier(ldap-notifier) | 0.15.2 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusLdapServer(ldap-server) | 0.17.1 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusNotificationsApi(notifications-api) | 0.24.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalFrontend(portal-frontend) | 0.24.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalListener(portal-listener) | 0.24.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.24.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 0.27.2 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusNotificationsApi(notifications-api) | 0.26.3 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalFrontend(portal-frontend) | 0.26.3 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalListener(portal-listener) | 0.24.2 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.26.3 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 0.28.3 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceListener(selfservice-listener) | 0.6.2 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataSwp(stack-data-swp) | 0.50.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.50.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 0.27.1 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataSwp(stack-data-swp) | 0.51.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.51.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 0.28.3 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmRestApi(udm-rest-api) | 0.15.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.15.1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUmcServer(umc-server) | 0.15.1 |
@@ -85,6 +85,15 @@ helm uninstall nubus
 </pre>
 </td>
 			<td>Additional custom labels to add to all objects deployed directly by the umbrella chart.</td>
+		</tr>
+		<tr>
+			<td>extraSecrets</td>
+			<td>list</td>
+			<td><pre lang="json">
+[]
+</pre>
+</td>
+			<td></td>
 		</tr>
 		<tr>
 			<td>global.certManagerIssuer</td>
@@ -186,24 +195,6 @@ null
 			<td></td>
 		</tr>
 		<tr>
-			<td>global.minio.connection.host</td>
-			<td>string</td>
-			<td><pre lang="json">
-""
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>global.minio.connection.port</td>
-			<td>string</td>
-			<td><pre lang="json">
-""
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>global.nubusDeployment</td>
 			<td>bool</td>
 			<td><pre lang="json">
@@ -220,6 +211,51 @@ true
 </pre>
 </td>
 			<td>Master password from which other passwords are derived.</td>
+		</tr>
+		<tr>
+			<td>global.objectStorage.bucket</td>
+			<td>string</td>
+			<td><pre lang="json">
+"nubus"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>global.objectStorage.connection.endpoint</td>
+			<td>string</td>
+			<td><pre lang="json">
+""
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>global.objectStorage.connection.host</td>
+			<td>string</td>
+			<td><pre lang="json">
+""
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>global.objectStorage.connection.port</td>
+			<td>string</td>
+			<td><pre lang="json">
+""
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>global.objectStorage.connection.protocol</td>
+			<td>string</td>
+			<td><pre lang="json">
+""
+</pre>
+</td>
+			<td></td>
 		</tr>
 		<tr>
 			<td>global.postgresql.connection.host</td>
@@ -2526,7 +2562,7 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataSwp.stackDataContext.ldapSearchUsers[0].password</td>
+			<td>nubusStackDataSwp.stackDataContext.ldapSystemUsers[0].password</td>
 			<td>string</td>
 			<td><pre lang="json">
 "{{ include \"nubusTemplates.credentials.ldap.users.readonly.password\" . }}"
@@ -2535,7 +2571,7 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataSwp.stackDataContext.ldapSearchUsers[0].username</td>
+			<td>nubusStackDataSwp.stackDataContext.ldapSystemUsers[0].username</td>
 			<td>string</td>
 			<td><pre lang="json">
 "readonly"
@@ -3570,7 +3606,7 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataUms.nubusStackDataSwp.stackDataContext.ldapSearchUsers[0].password</td>
+			<td>nubusStackDataUms.nubusStackDataSwp.stackDataContext.ldapSystemUsers[0].password</td>
 			<td>string</td>
 			<td><pre lang="json">
 "{{ include \"nubusTemplates.credentials.ldap.users.readonly.password\" . }}"
@@ -3579,7 +3615,7 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataUms.nubusStackDataSwp.stackDataContext.ldapSearchUsers[0].username</td>
+			<td>nubusStackDataUms.nubusStackDataSwp.stackDataContext.ldapSystemUsers[0].username</td>
 			<td>string</td>
 			<td><pre lang="json">
 "readonly"
@@ -4653,7 +4689,7 @@ true
 			<td>nubusStackGateway.serverBlock</td>
 			<td>string</td>
 			<td><pre lang="json">
-"server {\n  listen 8080;\n  server_name _;\n  proxy_http_version 1.1;\n\n  proxy_set_header Host $http_host;\n\n  proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n  proxy_set_header X-Forwarded-Host $http_x_forwarded_host;\n  proxy_set_header X-Forwarded-Port $http_x_forwarded_port;\n  proxy_set_header X-Forwarded-Proto $http_x_forwarded_proto;\n\n  ## portal-frontend\n  # The frontend does not own \"/univention/portal\" nor\n  # \"/univention/selfservice\", only these two bits\n  location = /univention/portal/ {\n    rewrite ^/univention/portal(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-portal-frontend:80/;\n  }\n  location = /univention/portal/index.html {\n    rewrite ^/univention/portal(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-portal-frontend:80/;\n  }\n  location = /univention/selfservice/ {\n    rewrite ^/univention/selfservice(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-portal-frontend:80/;\n  }\n\n  # The following prefixes are owned by the frontend\n  location /univention/portal/css/ {\n    rewrite ^/univention/portal(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-portal-frontend:80;\n  }\n  location /univention/portal/fonts/ {\n    rewrite ^/univention/portal(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-portal-frontend:80;\n  }\n  location /univention/portal/i18n/ {\n    rewrite ^/univention/portal(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-portal-frontend:80;\n  }\n  location /univention/portal/media/ {\n    rewrite ^/univention/portal(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-portal-frontend:80;\n  }\n  location /univention/portal/js/ {\n    rewrite ^/univention/portal(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-portal-frontend:80;\n  }\n  location /univention/portal/oidc/ {\n    rewrite ^/univention/portal(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-portal-frontend:80;\n  }\n  location /univention/selfservice/css/ {\n    rewrite ^/univention/selfservice(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-portal-frontend:80;\n  }\n  location /univention/selfservice/fonts/ {\n    rewrite ^/univention/selfservice(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-portal-frontend:80;\n  }\n  location /univention/selfservice/i18n/ {\n    rewrite ^/univention/selfservice(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-portal-frontend:80;\n  }\n  location /univention/selfservice/media/ {\n    rewrite ^/univention/selfservice(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-portal-frontend:80;\n  }\n  location /univention/selfservice/js/ {\n    rewrite ^/univention/selfservice(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-portal-frontend:80;\n  }\n  location /univention/selfservice/oidc/ {\n    rewrite ^/univention/selfservice(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-portal-frontend:80;\n  }\n\n\n  ## frontend redirects\n  location = / {\n    absolute_redirect off;\n    return 302 /univention/portal/;\n  }\n  location = /univention {\n    absolute_redirect off;\n    return 302 /univention/portal/;\n  }\n  location = /univention/ {\n    absolute_redirect off;\n    return 302 /univention/portal/;\n  }\n  location = /univention/portal {\n    absolute_redirect off;\n    return 302 /univention/portal/;\n  }\n  location = /univention/selfservice {\n    absolute_redirect off;\n    return 302 /univention/selfservice/;\n  }\n\n\n  ## portal-server\n  location = /univention/portal/portal.json {\n    proxy_pass http://{{ .Release.Name }}-portal-server:80;\n  }\n  location = /univention/selfservice/portal.json {\n    proxy_pass http://{{ .Release.Name }}-portal-server:80;\n  }\n  location = /univention/portal/navigation.json {\n    proxy_pass http://{{ .Release.Name }}-portal-server:80;\n  }\n\n\n  ## udm-rest-api\n  location /univention/udm/ {\n    # The UDM Rest API does return on some endpoints a lot of headers\n    proxy_busy_buffers_size 128k;\n    proxy_buffers 4 128k;\n    proxy_buffer_size 64k;\n\n    rewrite ^/univention(/udm/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-udm-rest-api:80;\n  }\n\n\n  ## umc-gateway\n  location = /univention/languages.json {\n    proxy_pass http://{{ .Release.Name }}-umc-gateway:80;\n  }\n  location = /univention/meta.json {\n    proxy_pass http://{{ .Release.Name }}-umc-gateway:80;\n  }\n  location = /univention/theme.css {\n    proxy_pass http://{{ .Release.Name }}-umc-gateway:80;\n  }\n  location /univention/js/ {\n    proxy_pass http://{{ .Release.Name }}-umc-gateway:80;\n  }\n  location /univention/login/ {\n    proxy_pass http://{{ .Release.Name }}-umc-gateway:80;\n  }\n  location /univention/management/ {\n    proxy_pass http://{{ .Release.Name }}-umc-gateway:80;\n  }\n  location /univention/themes/ {\n    proxy_pass http://{{ .Release.Name }}-umc-gateway:80;\n  }\n\n\n  ## umc-server\n  location = /univention/auth {\n    rewrite ^/univention(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-umc-server:80;\n    proxy_set_header X-UMC-HTTPS 'on';\n  }\n  location /univention/logout {\n    rewrite ^/univention(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-umc-server:80;\n  }\n  location /univention/saml {\n    rewrite ^/univention(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-umc-server:80;\n    proxy_set_header X-UMC-HTTPS 'on';\n  }\n  location /univention/get {\n    rewrite ^/univention(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-umc-server:80;\n  }\n  location /univention/set {\n    rewrite ^/univention(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-umc-server:80;\n  }\n  location /univention/command {\n    rewrite ^/univention(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-umc-server:80;\n  }\n  location /univention/upload {\n    rewrite ^/univention(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-umc-server:80;\n  }\n\n\n  ## notifications-api\n  location /univention/portal/notifications-api/ {\n    rewrite ^/univention/portal/notifications-api(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-notifications-api:80;\n  }\n\n  ## branding\n  location = /favicon.ico {\n    proxy_pass http://{{ .Release.Name }}-portal-frontend:80/;\n  }\n  location /univention/portal/custom/ {\n    rewrite ^/univention/portal(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-portal-frontend:80/;\n  }\n  location /univention/portal/icons/ {\n    rewrite ^/univention/portal(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-portal-frontend:80/;\n  }\n\n  ## provisioning-api\n  # location /univention/provisioning-api/ {\n  #   rewrite ^/univention/provisioning-api(/.*)$ $1 break;\n  #   proxy_pass http://{{ .Release.Name }}-provisioning-api:80;\n  # }\n\n  # guardian\n  location /univention/guardian/management-ui {\n    proxy_pass http://{{ .Release.Name }}-guardian-management-ui:80/univention/guardian/management-ui;\n  }\n  location /guardian/opa {\n    rewrite ^/guardian/opa(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-guardian-open-policy-agent:80/;\n  }\n  location /guardian/management {\n    proxy_pass http://{{ .Release.Name }}-guardian-management-api:80/guardian/management;\n  }\n  location /guardian/authorization {\n    proxy_pass http://{{ .Release.Name }}-guardian-authorization-api:80/guardian/authorization;\n  }\n\n  ## object storage (minio)\n  location /univention/portal/icons/entries/ {\n    rewrite ^/univention/portal(/icons/entries/.*)$ /nubus/portal-assets$1 break;\n    proxy_pass http://{{ .Release.Name }}-minio:9000;\n  }\n  location /univention/portal/icons/logos/ {\n    rewrite ^/univention/portal(/icons/logos/.*)$ /nubus/portal-assets$1 break;\n    proxy_pass http://{{ .Release.Name }}-minio:9000;\n  }\n  location /univention/selfservice/icons/entries/ {\n    rewrite ^/univention/selfservice(/icons/entries/.*)$ /nubus/portal-assets$1 break;\n    proxy_pass http://{{ .Release.Name }}-minio:9000;\n  }\n  location /univention/selfservice/icons/logos/ {\n    rewrite ^/univention/selfservice(/icons/logos/.*)$ /nubus/portal-assets$1 break;\n    proxy_pass http://{{ .Release.Name }}-minio:9000;\n  }\n\n}\n"
+"server {\n  listen 8080;\n  server_name _;\n  proxy_http_version 1.1;\n\n  proxy_set_header Host $http_host;\n\n  proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n  proxy_set_header X-Forwarded-Host $http_x_forwarded_host;\n  proxy_set_header X-Forwarded-Port $http_x_forwarded_port;\n  proxy_set_header X-Forwarded-Proto $http_x_forwarded_proto;\n\n  ## portal-frontend\n  # The frontend does not own \"/univention/portal\" nor\n  # \"/univention/selfservice\", only these two bits\n  location = /univention/portal/ {\n    rewrite ^/univention/portal(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-portal-frontend:80/;\n  }\n  location = /univention/portal/index.html {\n    rewrite ^/univention/portal(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-portal-frontend:80/;\n  }\n  location = /univention/selfservice/ {\n    rewrite ^/univention/selfservice(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-portal-frontend:80/;\n  }\n\n  # The following prefixes are owned by the frontend\n  location /univention/portal/css/ {\n    rewrite ^/univention/portal(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-portal-frontend:80;\n  }\n  location /univention/portal/fonts/ {\n    rewrite ^/univention/portal(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-portal-frontend:80;\n  }\n  location /univention/portal/i18n/ {\n    rewrite ^/univention/portal(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-portal-frontend:80;\n  }\n  location /univention/portal/media/ {\n    rewrite ^/univention/portal(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-portal-frontend:80;\n  }\n  location /univention/portal/js/ {\n    rewrite ^/univention/portal(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-portal-frontend:80;\n  }\n  location /univention/portal/oidc/ {\n    rewrite ^/univention/portal(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-portal-frontend:80;\n  }\n  location /univention/selfservice/css/ {\n    rewrite ^/univention/selfservice(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-portal-frontend:80;\n  }\n  location /univention/selfservice/fonts/ {\n    rewrite ^/univention/selfservice(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-portal-frontend:80;\n  }\n  location /univention/selfservice/i18n/ {\n    rewrite ^/univention/selfservice(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-portal-frontend:80;\n  }\n  location /univention/selfservice/media/ {\n    rewrite ^/univention/selfservice(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-portal-frontend:80;\n  }\n  location /univention/selfservice/js/ {\n    rewrite ^/univention/selfservice(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-portal-frontend:80;\n  }\n  location /univention/selfservice/oidc/ {\n    rewrite ^/univention/selfservice(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-portal-frontend:80;\n  }\n\n\n  ## frontend redirects\n  location = / {\n    absolute_redirect off;\n    return 302 /univention/portal/;\n  }\n  location = /univention {\n    absolute_redirect off;\n    return 302 /univention/portal/;\n  }\n  location = /univention/ {\n    absolute_redirect off;\n    return 302 /univention/portal/;\n  }\n  location = /univention/portal {\n    absolute_redirect off;\n    return 302 /univention/portal/;\n  }\n  location = /univention/selfservice {\n    absolute_redirect off;\n    return 302 /univention/selfservice/;\n  }\n\n\n  ## portal-server\n  location = /univention/portal/portal.json {\n    proxy_pass http://{{ .Release.Name }}-portal-server:80;\n  }\n  location = /univention/selfservice/portal.json {\n    proxy_pass http://{{ .Release.Name }}-portal-server:80;\n  }\n  location = /univention/portal/navigation.json {\n    proxy_pass http://{{ .Release.Name }}-portal-server:80;\n  }\n\n\n  ## udm-rest-api\n  location /univention/udm/ {\n    # The UDM Rest API does return on some endpoints a lot of headers\n    proxy_busy_buffers_size 128k;\n    proxy_buffers 4 128k;\n    proxy_buffer_size 64k;\n\n    rewrite ^/univention(/udm/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-udm-rest-api:80;\n  }\n\n\n  ## umc-gateway\n  location = /univention/languages.json {\n    proxy_pass http://{{ .Release.Name }}-umc-gateway:80;\n  }\n  location = /univention/meta.json {\n    proxy_pass http://{{ .Release.Name }}-umc-gateway:80;\n  }\n  location = /univention/theme.css {\n    proxy_pass http://{{ .Release.Name }}-umc-gateway:80;\n  }\n  location /univention/js/ {\n    proxy_pass http://{{ .Release.Name }}-umc-gateway:80;\n  }\n  location /univention/login/ {\n    proxy_pass http://{{ .Release.Name }}-umc-gateway:80;\n  }\n  location /univention/management/ {\n    proxy_pass http://{{ .Release.Name }}-umc-gateway:80;\n  }\n  location /univention/themes/ {\n    proxy_pass http://{{ .Release.Name }}-umc-gateway:80;\n  }\n\n\n  ## umc-server\n  location = /univention/auth {\n    rewrite ^/univention(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-umc-server:80;\n    proxy_set_header X-UMC-HTTPS 'on';\n  }\n  location /univention/logout {\n    rewrite ^/univention(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-umc-server:80;\n  }\n  location /univention/saml {\n    rewrite ^/univention(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-umc-server:80;\n    proxy_set_header X-UMC-HTTPS 'on';\n  }\n  location /univention/get {\n    rewrite ^/univention(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-umc-server:80;\n  }\n  location /univention/set {\n    rewrite ^/univention(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-umc-server:80;\n  }\n  location /univention/command {\n    rewrite ^/univention(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-umc-server:80;\n  }\n  location /univention/upload {\n    rewrite ^/univention(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-umc-server:80;\n  }\n\n\n  ## notifications-api\n  location /univention/portal/notifications-api/ {\n    rewrite ^/univention/portal/notifications-api(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-notifications-api:80;\n  }\n\n  ## branding\n  location = /favicon.ico {\n    proxy_pass http://{{ .Release.Name }}-portal-frontend:80/;\n  }\n  location /univention/portal/custom/ {\n    rewrite ^/univention/portal(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-portal-frontend:80/;\n  }\n  location /univention/portal/icons/ {\n    rewrite ^/univention/portal(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-portal-frontend:80/;\n  }\n\n  ## provisioning-api\n  # location /univention/provisioning-api/ {\n  #   rewrite ^/univention/provisioning-api(/.*)$ $1 break;\n  #   proxy_pass http://{{ .Release.Name }}-provisioning-api:80;\n  # }\n\n  # guardian\n  location /univention/guardian/management-ui {\n    proxy_pass http://{{ .Release.Name }}-guardian-management-ui:80/univention/guardian/management-ui;\n  }\n  location /guardian/opa {\n    rewrite ^/guardian/opa(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-guardian-open-policy-agent:80/;\n  }\n  location /guardian/management {\n    proxy_pass http://{{ .Release.Name }}-guardian-management-api:80/guardian/management;\n  }\n  location /guardian/authorization {\n    proxy_pass http://{{ .Release.Name }}-guardian-authorization-api:80/guardian/authorization;\n  }\n\n  ## object storage (minio)\n  location /univention/portal/icons/entries/ {\n    rewrite ^/univention/portal(/icons/entries/.*)$ /{{ .Values.global.objectStorage.bucket }}/portal-assets$1 break;\n    proxy_pass {{ include \"nubusTemplates.connections.objectStorage.endpoint\" . }};\n  }\n  location /univention/portal/icons/logos/ {\n    rewrite ^/univention/portal(/icons/logos/.*)$ /{{ .Values.global.objectStorage.bucket }}/portal-assets$1 break;\n    proxy_pass {{ include \"nubusTemplates.connections.objectStorage.endpoint\" . }};\n  }\n  location /univention/selfservice/icons/entries/ {\n    rewrite ^/univention/selfservice(/icons/entries/.*)$ /{{ .Values.global.objectStorage.bucket }}/portal-assets$1 break;\n    proxy_pass {{ include \"nubusTemplates.connections.objectStorage.endpoint\" . }};\n  }\n  location /univention/selfservice/icons/logos/ {\n    rewrite ^/univention/selfservice(/icons/logos/.*)$ /{{ .Values.global.objectStorage.bucket }}/portal-assets$1 break;\n    proxy_pass {{ include \"nubusTemplates.connections.objectStorage.endpoint\" . }};\n  }\n\n}\n"
 </pre>
 </td>
 			<td></td>

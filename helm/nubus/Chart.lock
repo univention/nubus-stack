@@ -19,25 +19,25 @@ dependencies:
   version: 0.17.1
 - name: notifications-api
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.24.0
+  version: 0.26.3
 - name: portal-frontend
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.24.0
+  version: 0.26.3
 - name: portal-listener
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.24.0
+  version: 0.24.2
 - name: portal-server
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.24.0
+  version: 0.26.3
 - name: selfservice-listener
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.6.2
 - name: provisioning
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.27.2
+  version: 0.28.3
 - name: udm-listener
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.27.1
+  version: 0.28.3
 - name: keycloak
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.1.0
@@ -49,10 +49,10 @@ dependencies:
   version: 0.1.0
 - name: stack-data-swp
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.50.0
+  version: 0.51.0
 - name: stack-data-ums
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.50.0
+  version: 0.51.0
 - name: nginx
   repository: oci://registry-1.docker.io/bitnamicharts
   version: 15.14.2
@@ -65,5 +65,5 @@ dependencies:
 - name: umc-server
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.15.1
-digest: sha256:213c61539b9f9ddb3f006c36eea3c7395b19b79fac8ee0c85d19072f33756d39
-generated: "2024-06-27T10:25:25.302182262+02:00"
+digest: sha256:a299f36bdd92b2cddba2fc369359caf4ae089dd9b214b2f15a7eb2c063815229
+generated: "2024-06-27T12:21:43.057848+02:00"

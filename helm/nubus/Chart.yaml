@@ -44,25 +44,25 @@ dependencies:
 
   - name: "notifications-api"
     alias: "nubusNotificationsApi"
-    version: "0.24.0"
+    version: "0.26.3"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
     condition: nubusNotificationsApi.enabled
 
   - name: "portal-frontend"
     alias: "nubusPortalFrontend"
-    version: "0.24.0"
+    version: "0.26.3"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
     condition: "nubusPortalFrontend.enabled"
 
   - name: "portal-listener"
     alias: "nubusPortalListener"
-    version: "0.24.0"
+    version: "0.24.2"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
     condition: "nubusPortalListener.enabled"
 
   - name: "portal-server"
     alias: "nubusPortalServer"
-    version: "0.24.0"
+    version: "0.26.3"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
     condition: "nubusPortalServer.enabled"
 
@@ -78,13 +78,13 @@ dependencies:
   - name: "provisioning"
     alias: "nubusProvisioning"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.27.2"
+    version: "0.28.3"
     condition: "nubusProvisioning.enabled"
 
   - name: "udm-listener"
     alias: "nubusUdmListener"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.27.1"
+    version: "0.28.3"
     condition: "nubusProvisioning.enabled"
 
   # keycloak related chart(s)
@@ -110,13 +110,13 @@ dependencies:
   - name: "stack-data-swp"
     alias: "nubusStackDataSwp"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.50.0"
+    version: "0.51.0"
     condition: "nubusStackDataSwp.enabled"
 
   - name: "stack-data-ums"
     alias: "nubusStackDataUms"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.50.0"
+    version: "0.51.0"
     condition: "nubusStackDataUms.enabled"
 
   # stack-gateway related chart(s)

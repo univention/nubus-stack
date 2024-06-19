@@ -19,10 +19,13 @@ global:
     connection:
       host: ""
       port: ""
-  minio:
+  objectStorage:
+    bucket: "nubus"
     connection:
       host: ""
       port: ""
+      protocol: ""
+      endpoint: ""
   memcached:
     connection:
       host: ""
@@ -367,7 +370,7 @@ nubusStackDataSwp: &nubusStackDataSwp
   stackDataSwp:
     loadDevData: true
   stackDataContext:
-    ldapSearchUsers:
+    ldapSystemUsers:
       - username: "readonly"
         password: '{{ include "nubusTemplates.credentials.ldap.users.readonly.password" . }}'
   # Currently gets its configuration from UCR.
@@ -794,20 +797,20 @@ nubusStackGateway:
 
       ## object storage (minio)
       location /univention/portal/icons/entries/ {
-        rewrite ^/univention/portal(/icons/entries/.*)$ /nubus/portal-assets$1 break;
-        proxy_pass http://{{ .Release.Name }}-minio:9000;
+        rewrite ^/univention/portal(/icons/entries/.*)$ /{{ .Values.global.objectStorage.bucket }}/portal-assets$1 break;
+        proxy_pass {{ include "nubusTemplates.connections.objectStorage.endpoint" . }};
       }
       location /univention/portal/icons/logos/ {
-        rewrite ^/univention/portal(/icons/logos/.*)$ /nubus/portal-assets$1 break;
-        proxy_pass http://{{ .Release.Name }}-minio:9000;
+        rewrite ^/univention/portal(/icons/logos/.*)$ /{{ .Values.global.objectStorage.bucket }}/portal-assets$1 break;
+        proxy_pass {{ include "nubusTemplates.connections.objectStorage.endpoint" . }};
       }
       location /univention/selfservice/icons/entries/ {
-        rewrite ^/univention/selfservice(/icons/entries/.*)$ /nubus/portal-assets$1 break;
-        proxy_pass http://{{ .Release.Name }}-minio:9000;
+        rewrite ^/univention/selfservice(/icons/entries/.*)$ /{{ .Values.global.objectStorage.bucket }}/portal-assets$1 break;
+        proxy_pass {{ include "nubusTemplates.connections.objectStorage.endpoint" . }};
       }
       location /univention/selfservice/icons/logos/ {
-        rewrite ^/univention/selfservice(/icons/logos/.*)$ /nubus/portal-assets$1 break;
-        proxy_pass http://{{ .Release.Name }}-minio:9000;
+        rewrite ^/univention/selfservice(/icons/logos/.*)$ /{{ .Values.global.objectStorage.bucket }}/portal-assets$1 break;
+        proxy_pass {{ include "nubusTemplates.connections.objectStorage.endpoint" . }};
       }
 
     }
@@ -832,3 +835,6 @@ nubusStackDataUms:
   stackDataContext:
     ldapMasterHost: '{{ include "nubusTemplates.connections.ldap.primary.host" . }}'
     ldapHost: '{{ include "nubusTemplates.connections.ldap.primary.host" . }}'
+
+# Allows for creation of additional secrets, for example containing credentials for third party services.
+extraSecrets: []

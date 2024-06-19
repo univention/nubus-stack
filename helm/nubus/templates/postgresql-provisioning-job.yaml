@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: AGPL-3.0-only
 # SPDX-FileCopyrightText: 2024 Univention GmbH
-{{ if and .Values.postgresql.provisioning }}
+{{ if .Values.postgresql.provisioning.enabled }}
 ---
 apiVersion: "batch/v1"
 kind: "Job"
