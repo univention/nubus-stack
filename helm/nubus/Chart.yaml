@@ -37,7 +37,7 @@ dependencies:
   - name: "ldap-server"
     alias: "nubusLdapServer"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.15.2"
+    version: "0.17.1"
     condition: "nubusLdapServer.enabled"
 
   # portal related chart(s)
@@ -137,11 +137,11 @@ dependencies:
   - name: "umc-gateway"
     alias: "nubusUmcGateway"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.14.5"
+    version: "0.15.1"
     condition: "nubusUmcGateway.enabled"
 
   - name: "umc-server"
     alias: "nubusUmcServer"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.14.5"
+    version: "0.15.1"
     condition: "nubusUmcServer.enabled"
