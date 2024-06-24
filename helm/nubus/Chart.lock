@@ -1,13 +1,13 @@
 dependencies:
 - name: common
   repository: oci://registry-1.docker.io/bitnamicharts
-  version: 2.19.3
+  version: 2.20.3
 - name: postgresql
   repository: oci://registry-1.docker.io/bitnamicharts
   version: 12.12.10
 - name: minio
   repository: oci://registry-1.docker.io/bitnamicharts
-  version: 14.6.2
+  version: 14.6.12
 - name: guardian
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.6.0
@@ -43,7 +43,7 @@ dependencies:
   version: 0.1.0
 - name: keycloak-extensions
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.5.1
+  version: 0.6.1
 - name: keycloak-bootstrap
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.1.0
@@ -65,5 +65,5 @@ dependencies:
 - name: umc-server
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.14.5
-digest: sha256:79db8d8dc428694a556608222970c0abf2a2244c9a84bf58cb11035033010a89
-generated: "2024-05-31T11:10:22.471135933+02:00"
+digest: sha256:b383d2ae5705131c5d5a029837645b7fcb0bfcf5f15ba8014ba7ef3b902e8db4
+generated: "2024-06-24T19:13:59.38323659+02:00"
