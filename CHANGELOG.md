@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.19.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.19.0...v0.19.1) (2024-06-25)
+
+
+### Bug Fixes
+
+* UDM REST API version bump (uses UCS 5.2 sources) ([0172c7a](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/0172c7a006e70161dd4882c758ab50a07d2efbbf))
+
 ## [0.19.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.18.4...v0.19.0) (2024-06-25)
 
 
