@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.19.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.18.4...v0.19.0) (2024-06-25)
+
+
+### Features
+
+* disable password checks for default.admin, user and ldap search users ([ef7935c](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/ef7935cb3d2f6bd93ed223ba9220ae465c5ad464))
+
 ## [0.18.4](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.18.3...v0.18.4) (2024-06-25)
 
 
