@@ -49,10 +49,10 @@ dependencies:
   version: 0.1.0
 - name: stack-data-swp
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.49.2
+  version: 0.50.0
 - name: stack-data-ums
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.49.2
+  version: 0.50.0
 - name: nginx
   repository: oci://registry-1.docker.io/bitnamicharts
   version: 15.14.2
@@ -65,5 +65,5 @@ dependencies:
 - name: umc-server
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.14.5
-digest: sha256:b383d2ae5705131c5d5a029837645b7fcb0bfcf5f15ba8014ba7ef3b902e8db4
-generated: "2024-06-24T19:13:59.38323659+02:00"
+digest: sha256:e6f95823cb1e5139244995bbdab2dae69cc25cf1a5a9767af323290ab9dd1999
+generated: "2024-06-25T10:24:15.672422958+02:00"
