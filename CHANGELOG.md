@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.18.4](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.18.3...v0.18.4) (2024-06-25)
+
+
+### Bug Fixes
+
+* keycloak-extensions bump version ([fbef4de](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/fbef4deaaa797ee38842683df0e7c1870a701981))
+
 ## [0.18.3](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.18.2...v0.18.3) (2024-05-31)
 
 
