@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.19.2](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.19.1...v0.19.2) (2024-06-27)
+
+
+### Bug Fixes
+
+* add prefix to nats passwords to avoid the possibility of them being interpreted as integers ([234469a](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/234469a822160d85973e53253b7c362313298cd7))
+* bump ucs-base to 5.0-8 ([a63c708](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/a63c708fce1462e10ed14d37466e73478a44121c))
+
 ## [0.19.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.19.0...v0.19.1) (2024-06-25)
 
 
