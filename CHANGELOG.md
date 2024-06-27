@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.19.3](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.19.2...v0.19.3) (2024-06-27)
+
+
+### Bug Fixes
+
+* update notifcations-api sub-chart ([caaa13c](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/caaa13c576f7a8e5b6566551d1d66ac21af5f094))
+
 ## [0.19.2](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.19.1...v0.19.2) (2024-06-27)
 
 
