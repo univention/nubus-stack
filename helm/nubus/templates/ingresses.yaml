@@ -1,0 +1,76 @@
+# SPDX-License-Identifier: AGPL-3.0-only
+# SPDX-FileCopyrightText: 2024 Univention GmbH
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Release.Name }}-portal-customization
+  annotations:
+    cert-manager.io/cluster-issuer: {{ .Values.global.certManagerIssuer | quote }}
+    nginx.ingress.kubernetes.io/proxy-body-size: "128k"
+    nginx.ingress.kubernetes.io/proxy-buffer-size: "64k"
+    nginx.ingress.kubernetes.io/proxy-buffers-number: "4"
+    nginx.ingress.kubernetes.io/proxy-busy-buffers-size: "128k"
+    nginx.ingress.kubernetes.io/proxy-http-version: "1.1"
+    nginx.ingress.kubernetes.io/proxy-set-headers: |
+      Host $http_host;
+      X-Forwarded-For $proxy_add_x_forwarded_for;
+      X-Forwarded-Host $http_x_forwarded_host;
+      X-Forwarded-Port $http_x_forwarded_port;
+      X-Forwarded-Proto $http_x_forwarded_proto;
+    nginx.ingress.kubernetes.io/use-regex: "true"
+spec:
+  ingressClassName: {{ .Values.global.ingressClass | quote }}
+  tls:
+  - hosts:
+    - {{ printf "%s.%s" .Values.global.subDomains.portal .Values.global.domain | quote }}
+    secretName: {{ .Release.Name }}-portal-tls
+  rules:
+  - host: {{ printf "%s.%s" .Values.global.subDomains.portal .Values.global.domain | quote }}
+    http:
+      paths:
+      - path: /favicon.ico
+        pathType: Prefix
+        backend:
+          service:
+            name: {{ .Release.Name }}-portal-frontend
+            port:
+              number: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Release.Name }}-minio-rewrites
+  annotations:
+    cert-manager.io/cluster-issuer: {{ .Values.global.certManagerIssuer | quote }}
+    nginx.ingress.kubernetes.io/proxy-body-size: "128k"
+    nginx.ingress.kubernetes.io/proxy-buffer-size: "64k"
+    nginx.ingress.kubernetes.io/proxy-buffers-number: "4"
+    nginx.ingress.kubernetes.io/proxy-busy-buffers-size: "128k"
+    nginx.ingress.kubernetes.io/proxy-http-version: "1.1"
+    nginx.ingress.kubernetes.io/proxy-set-headers: |
+      Host $http_host;
+      X-Forwarded-For $proxy_add_x_forwarded_for;
+      X-Forwarded-Host $http_x_forwarded_host;
+      X-Forwarded-Port $http_x_forwarded_port;
+      X-Forwarded-Proto $http_x_forwarded_proto;
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: {{ printf "/%s/portal-assets/icons/$2/$3" .Values.global.objectStorage.bucket | quote }}
+spec:
+  ingressClassName: {{ .Values.global.ingressClass | quote }}
+  tls:
+  - hosts:
+    - {{ printf "%s.%s" .Values.global.subDomains.portal .Values.global.domain | quote}}
+    secretName: {{ .Release.Name }}-portal-tls
+  rules:
+  - host: {{ printf "%s.%s" .Values.global.subDomains.portal .Values.global.domain | quote }}
+    {{ .Values.global.objectStorage.connection.protocol | default "http" }}:
+      paths:
+      - path: /univention/(portal|selfservice)/icons/(logos|entries)/(.*)
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: {{ coalesce .Values.global.objectStorage.connection.host (printf "%s-minio" .Release.Name ) | quote }}
+            port:
+              number: {{ int (.Values.global.objectStorage.connection.port | default 9000) }}

@@ -35,27 +35,26 @@ helm uninstall nubus
 
 | Repository | Name | Version |
 |------------|------|---------|
-| oci://artifacts.software-univention.de/nubus/charts | nubusGuardian(guardian) | 0.6.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusGuardian(guardian) | 0.9.1 |
 | oci://artifacts.software-univention.de/nubus/charts | keycloak(keycloak) | 0.1.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakBootstrap(keycloak-bootstrap) | 0.1.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakExtensions(keycloak-extensions) | 0.6.1 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusLdapNotifier(ldap-notifier) | 0.20.1 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusLdapServer(ldap-server) | 0.20.1 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusNotificationsApi(notifications-api) | 0.26.3 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalFrontend(portal-frontend) | 0.26.3 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusLdapNotifier(ldap-notifier) | 0.15.2 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusLdapServer(ldap-server) | 0.17.1 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusNotificationsApi(notifications-api) | 0.27.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalFrontend(portal-frontend) | 0.27.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusPortalListener(portal-listener) | 0.24.2 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.26.3 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 0.28.7 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.27.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 0.28.3 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceListener(selfservice-listener) | 0.6.2 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataSwp(stack-data-swp) | 0.52.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.52.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 0.28.7 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUdmRestApi(udm-rest-api) | 0.18.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.22.3 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUmcServer(umc-server) | 0.22.3 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataSwp(stack-data-swp) | 0.51.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.51.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 0.28.3 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUdmRestApi(udm-rest-api) | 0.19.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.22.2 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUmcServer(umc-server) | 0.22.2 |
 | oci://registry-1.docker.io/bitnamicharts | common | ^2.x.x |
 | oci://registry-1.docker.io/bitnamicharts | minio | ^14.x.x |
-| oci://registry-1.docker.io/bitnamicharts | nubusStackGateway(nginx) | ^15.x.x |
 | oci://registry-1.docker.io/bitnamicharts | postgresql | ^12.x.x |
 
 ## Values
@@ -863,6 +862,24 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusGuardian.ingress.annotations."cert-manager.io/cluster-issuer"</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Values.global.certManagerIssuer }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusGuardian.ingress.host</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusGuardian.nameOverride</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -1601,6 +1618,24 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusNotificationsApi.ingress.annotations."cert-manager.io/cluster-issuer"</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Values.global.certManagerIssuer }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusNotificationsApi.ingress.host</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusNotificationsApi.nameOverride</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -1898,6 +1933,24 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusPortalFrontend.ingress.annotations."cert-manager.io/cluster-issuer"</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Values.global.certManagerIssuer }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusPortalFrontend.ingress.host</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusPortalFrontend.nameOverride</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -2037,6 +2090,24 @@ true
 			<td>bool</td>
 			<td><pre lang="json">
 true
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusPortalServer.ingress.annotations."cert-manager.io/cluster-issuer"</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Values.global.certManagerIssuer }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusPortalServer.ingress.host</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
 </pre>
 </td>
 			<td></td>
@@ -2888,6 +2959,24 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusStackDataUms.nubusNotificationsApi.ingress.annotations."cert-manager.io/cluster-issuer"</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Values.global.certManagerIssuer }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusNotificationsApi.ingress.host</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusStackDataUms.nubusNotificationsApi.nameOverride</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -3081,6 +3170,24 @@ true
 			<td>bool</td>
 			<td><pre lang="json">
 true
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusPortalServer.ingress.annotations."cert-manager.io/cluster-issuer"</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Values.global.certManagerIssuer }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusPortalServer.ingress.host</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
 </pre>
 </td>
 			<td></td>
@@ -3869,6 +3976,24 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusStackDataUms.nubusUdmRestApi.ingress.annotations."cert-manager.io/cluster-issuer"</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Values.global.certManagerIssuer }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusUdmRestApi.ingress.host</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusStackDataUms.nubusUdmRestApi.ldap.auth.bindDn</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -4481,258 +4606,6 @@ false
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackGateway.containerSecurityContext.allowPrivilegeEscalation</td>
-			<td>bool</td>
-			<td><pre lang="json">
-false
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackGateway.containerSecurityContext.capabilities.drop[0]</td>
-			<td>string</td>
-			<td><pre lang="json">
-"ALL"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackGateway.containerSecurityContext.enabled</td>
-			<td>bool</td>
-			<td><pre lang="json">
-true
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackGateway.containerSecurityContext.privileged</td>
-			<td>bool</td>
-			<td><pre lang="json">
-false
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackGateway.containerSecurityContext.readOnlyRootFilesystem</td>
-			<td>bool</td>
-			<td><pre lang="json">
-false
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackGateway.containerSecurityContext.runAsNonRoot</td>
-			<td>bool</td>
-			<td><pre lang="json">
-true
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackGateway.containerSecurityContext.runAsUser</td>
-			<td>int</td>
-			<td><pre lang="json">
-1001
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackGateway.containerSecurityContext.seccompProfile.type</td>
-			<td>string</td>
-			<td><pre lang="json">
-"RuntimeDefault"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackGateway.enabled</td>
-			<td>bool</td>
-			<td><pre lang="json">
-true
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackGateway.ingress.annotations."cert-manager.io/cluster-issuer"</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Values.global.certManagerIssuer }}"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackGateway.ingress.annotations."nginx.ingress.kubernetes.io/proxy-buffer-size"</td>
-			<td>string</td>
-			<td><pre lang="json">
-"64k"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackGateway.ingress.annotations."nginx.org/proxy-buffer-size"</td>
-			<td>string</td>
-			<td><pre lang="json">
-"64k"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackGateway.ingress.annotations."nginx.org/proxy-buffers"</td>
-			<td>string</td>
-			<td><pre lang="json">
-"4 128k"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackGateway.ingress.enabled</td>
-			<td>bool</td>
-			<td><pre lang="json">
-true
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackGateway.ingress.extraTls[0].hosts[0]</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackGateway.ingress.extraTls[0].secretName</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-portal-tls"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackGateway.ingress.tls</td>
-			<td>bool</td>
-			<td><pre lang="json">
-false
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackGateway.nameOverride</td>
-			<td>string</td>
-			<td><pre lang="json">
-"stack-gateway"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackGateway.podSecurityContext.enabled</td>
-			<td>bool</td>
-			<td><pre lang="json">
-true
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackGateway.podSecurityContext.fsGroup</td>
-			<td>int</td>
-			<td><pre lang="json">
-1001
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackGateway.resources.limits.cpu</td>
-			<td>int</td>
-			<td><pre lang="json">
-288
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackGateway.resources.limits.memory</td>
-			<td>string</td>
-			<td><pre lang="json">
-"1Gi"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackGateway.resources.requests.cpu</td>
-			<td>string</td>
-			<td><pre lang="json">
-"100m"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackGateway.resources.requests.memory</td>
-			<td>string</td>
-			<td><pre lang="json">
-"16Mi"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackGateway.serverBlock</td>
-			<td>string</td>
-			<td><pre lang="json">
-"server {\n  listen 8080;\n  server_name _;\n  proxy_http_version 1.1;\n\n  proxy_set_header Host $http_host;\n\n  proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n  proxy_set_header X-Forwarded-Host $http_x_forwarded_host;\n  proxy_set_header X-Forwarded-Port $http_x_forwarded_port;\n  proxy_set_header X-Forwarded-Proto $http_x_forwarded_proto;\n\n  ## portal-frontend\n  # The frontend does not own \"/univention/portal\" nor\n  # \"/univention/selfservice\", only these two bits\n  location = /univention/portal/ {\n    rewrite ^/univention/portal(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-portal-frontend:80/;\n  }\n  location = /univention/portal/index.html {\n    rewrite ^/univention/portal(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-portal-frontend:80/;\n  }\n  location = /univention/selfservice/ {\n    rewrite ^/univention/selfservice(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-portal-frontend:80/;\n  }\n\n  # The following prefixes are owned by the frontend\n  location /univention/portal/css/ {\n    rewrite ^/univention/portal(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-portal-frontend:80;\n  }\n  location /univention/portal/fonts/ {\n    rewrite ^/univention/portal(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-portal-frontend:80;\n  }\n  location /univention/portal/i18n/ {\n    rewrite ^/univention/portal(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-portal-frontend:80;\n  }\n  location /univention/portal/media/ {\n    rewrite ^/univention/portal(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-portal-frontend:80;\n  }\n  location /univention/portal/js/ {\n    rewrite ^/univention/portal(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-portal-frontend:80;\n  }\n  location /univention/portal/oidc/ {\n    rewrite ^/univention/portal(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-portal-frontend:80;\n  }\n  location /univention/selfservice/css/ {\n    rewrite ^/univention/selfservice(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-portal-frontend:80;\n  }\n  location /univention/selfservice/fonts/ {\n    rewrite ^/univention/selfservice(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-portal-frontend:80;\n  }\n  location /univention/selfservice/i18n/ {\n    rewrite ^/univention/selfservice(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-portal-frontend:80;\n  }\n  location /univention/selfservice/media/ {\n    rewrite ^/univention/selfservice(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-portal-frontend:80;\n  }\n  location /univention/selfservice/js/ {\n    rewrite ^/univention/selfservice(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-portal-frontend:80;\n  }\n  location /univention/selfservice/oidc/ {\n    rewrite ^/univention/selfservice(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-portal-frontend:80;\n  }\n\n\n  ## frontend redirects\n  location = / {\n    absolute_redirect off;\n    return 302 /univention/portal/;\n  }\n  location = /univention {\n    absolute_redirect off;\n    return 302 /univention/portal/;\n  }\n  location = /univention/ {\n    absolute_redirect off;\n    return 302 /univention/portal/;\n  }\n  location = /univention/portal {\n    absolute_redirect off;\n    return 302 /univention/portal/;\n  }\n  location = /univention/selfservice {\n    absolute_redirect off;\n    return 302 /univention/selfservice/;\n  }\n\n\n  ## portal-server\n  location = /univention/portal/portal.json {\n    proxy_pass http://{{ .Release.Name }}-portal-server:80;\n  }\n  location = /univention/selfservice/portal.json {\n    proxy_pass http://{{ .Release.Name }}-portal-server:80;\n  }\n  location = /univention/portal/navigation.json {\n    proxy_pass http://{{ .Release.Name }}-portal-server:80;\n  }\n\n\n  ## udm-rest-api\n  location /univention/udm/ {\n    # The UDM Rest API does return on some endpoints a lot of headers\n    proxy_busy_buffers_size 128k;\n    proxy_buffers 4 128k;\n    proxy_buffer_size 64k;\n\n    rewrite ^/univention(/udm/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-udm-rest-api:80;\n  }\n\n\n  ## umc-gateway\n  location = /univention/languages.json {\n    proxy_pass http://{{ .Release.Name }}-umc-gateway:80;\n  }\n  location = /univention/meta.json {\n    proxy_pass http://{{ .Release.Name }}-umc-gateway:80;\n  }\n  location = /univention/theme.css {\n    proxy_pass http://{{ .Release.Name }}-umc-gateway:80;\n  }\n  location /univention/js/ {\n    proxy_pass http://{{ .Release.Name }}-umc-gateway:80;\n  }\n  location /univention/login/ {\n    proxy_pass http://{{ .Release.Name }}-umc-gateway:80;\n  }\n  location /univention/management/ {\n    proxy_pass http://{{ .Release.Name }}-umc-gateway:80;\n  }\n  location /univention/themes/ {\n    proxy_pass http://{{ .Release.Name }}-umc-gateway:80;\n  }\n\n\n  ## umc-server\n  location = /univention/auth {\n    rewrite ^/univention(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-umc-server:80;\n    proxy_set_header X-UMC-HTTPS 'on';\n  }\n  location /univention/logout {\n    rewrite ^/univention(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-umc-server:80;\n  }\n  location /univention/saml {\n    rewrite ^/univention(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-umc-server:80;\n    proxy_set_header X-UMC-HTTPS 'on';\n  }\n  location /univention/get {\n    rewrite ^/univention(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-umc-server:80;\n  }\n  location /univention/set {\n    rewrite ^/univention(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-umc-server:80;\n  }\n  location /univention/command {\n    rewrite ^/univention(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-umc-server:80;\n  }\n  location /univention/upload {\n    rewrite ^/univention(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-umc-server:80;\n  }\n\n\n  ## notifications-api\n  location /univention/portal/notifications-api/ {\n    rewrite ^/univention/portal/notifications-api(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-notifications-api:80;\n  }\n\n  ## branding\n  location = /favicon.ico {\n    proxy_pass http://{{ .Release.Name }}-portal-frontend:80/;\n  }\n  location /univention/portal/custom/ {\n    rewrite ^/univention/portal(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-portal-frontend:80/;\n  }\n  location /univention/portal/icons/ {\n    rewrite ^/univention/portal(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-portal-frontend:80/;\n  }\n\n  ## provisioning-api\n  # location /univention/provisioning-api/ {\n  #   rewrite ^/univention/provisioning-api(/.*)$ $1 break;\n  #   proxy_pass http://{{ .Release.Name }}-provisioning-api:80;\n  # }\n\n  # guardian\n  location /univention/guardian/management-ui {\n    proxy_pass http://{{ .Release.Name }}-guardian-management-ui:80/univention/guardian/management-ui;\n  }\n  location /guardian/opa {\n    rewrite ^/guardian/opa(/.*)$ $1 break;\n    proxy_pass http://{{ .Release.Name }}-guardian-open-policy-agent:80/;\n  }\n  location /guardian/management {\n    proxy_pass http://{{ .Release.Name }}-guardian-management-api:80/guardian/management;\n  }\n  location /guardian/authorization {\n    proxy_pass http://{{ .Release.Name }}-guardian-authorization-api:80/guardian/authorization;\n  }\n\n  ## object storage (minio)\n  location /univention/portal/icons/entries/ {\n    rewrite ^/univention/portal(/icons/entries/.*)$ /{{ .Values.global.objectStorage.bucket }}/portal-assets$1 break;\n    proxy_pass {{ include \"nubusTemplates.connections.objectStorage.endpoint\" . }};\n  }\n  location /univention/portal/icons/logos/ {\n    rewrite ^/univention/portal(/icons/logos/.*)$ /{{ .Values.global.objectStorage.bucket }}/portal-assets$1 break;\n    proxy_pass {{ include \"nubusTemplates.connections.objectStorage.endpoint\" . }};\n  }\n  location /univention/selfservice/icons/entries/ {\n    rewrite ^/univention/selfservice(/icons/entries/.*)$ /{{ .Values.global.objectStorage.bucket }}/portal-assets$1 break;\n    proxy_pass {{ include \"nubusTemplates.connections.objectStorage.endpoint\" . }};\n  }\n  location /univention/selfservice/icons/logos/ {\n    rewrite ^/univention/selfservice(/icons/logos/.*)$ /{{ .Values.global.objectStorage.bucket }}/portal-assets$1 break;\n    proxy_pass {{ include \"nubusTemplates.connections.objectStorage.endpoint\" . }};\n  }\n\n}\n"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackGateway.service.type</td>
-			<td>string</td>
-			<td><pre lang="json">
-"ClusterIP"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackGateway.serviceAccount.create</td>
-			<td>bool</td>
-			<td><pre lang="json">
-true
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackGateway.terminationGracePeriodSeconds</td>
-			<td>int</td>
-			<td><pre lang="json">
-5
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusUdmListener.config.ldapHost</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -4917,6 +4790,24 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 "attribute-to-group-mapper-hook"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusUdmRestApi.ingress.annotations."cert-manager.io/cluster-issuer"</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Values.global.certManagerIssuer }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusUdmRestApi.ingress.host</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
 </pre>
 </td>
 			<td></td>
