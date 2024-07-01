@@ -7,7 +7,7 @@ dependencies:
   version: 12.12.10
 - name: minio
   repository: oci://registry-1.docker.io/bitnamicharts
-  version: 14.6.13
+  version: 14.6.16
 - name: guardian
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.6.0
@@ -58,12 +58,12 @@ dependencies:
   version: 15.14.2
 - name: udm-rest-api
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.15.0
+  version: 0.17.1
 - name: umc-gateway
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.15.1
 - name: umc-server
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.15.1
-digest: sha256:a299f36bdd92b2cddba2fc369359caf4ae089dd9b214b2f15a7eb2c063815229
-generated: "2024-06-27T12:21:43.057848+02:00"
+digest: sha256:2ba880002e2bed700d7850d49df4c4937e2c1b8bdee8ccf8239c569dd81f6db2
+generated: "2024-07-01T12:46:04.701617672+02:00"
