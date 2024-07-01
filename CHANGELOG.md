@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.19.4](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.19.3...v0.19.4) (2024-07-01)
+
+
+### Bug Fixes
+
+* udm-rest-api initContainer tags were wrongly set upstream ([ca7bcbb](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/ca7bcbb116eee8c540fe2753845935fffd1b7a19))
+
 ## [0.19.3](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.19.2...v0.19.3) (2024-06-27)
 
 
