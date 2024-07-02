@@ -31,13 +31,13 @@ dependencies:
   - name: "ldap-notifier"
     alias: "nubusLdapNotifier"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.20.0"
+    version: "0.20.1"
     condition: "nubusLdapNotifier.enabled"
 
   - name: "ldap-server"
     alias: "nubusLdapServer"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.20.0"
+    version: "0.20.1"
     condition: "nubusLdapServer.enabled"
 
   # portal related chart(s)
