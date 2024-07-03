@@ -141,6 +141,25 @@ null
 			<td></td>
 		</tr>
 		<tr>
+			<td>global.extensions</td>
+			<td>list</td>
+			<td><pre lang="json">
+[
+  {
+    "image": {
+      "imagePullPolicy": "IfNotPresent",
+      "registry": "artifacts.software-univention.de",
+      "repository": "nubus/images/ox-extension",
+      "tag": "0.9.1"
+    },
+    "name": "ox"
+  }
+]
+</pre>
+</td>
+			<td>Extensions to load. Add entries to load additional extensions into Nubus. Interim this value is pre-configured with the typical extensions loaded in the openDesk integration of Nubus to allow for a smooth transition. On the long run this value will become an empty list by default.</td>
+		</tr>
+		<tr>
 			<td>global.ingressClass</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -292,6 +311,25 @@ true
 </pre>
 </td>
 			<td></td>
+		</tr>
+		<tr>
+			<td>global.systemExtensions</td>
+			<td>list</td>
+			<td><pre lang="json">
+[
+  {
+    "image": {
+      "imagePullPolicy": "IfNotPresent",
+      "registry": "artifacts.software-univention.de",
+      "repository": "nubus/images/portal-extension",
+      "tag": "0.26.3"
+    },
+    "name": "portal"
+  }
+]
+</pre>
+</td>
+			<td>Allows to configure the system extensions to load. This is intended for internal usage, prefer to use `global.extensions` for user configured extensions.</td>
 		</tr>
 		<tr>
 			<td>keycloak.enabled</td>
