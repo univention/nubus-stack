@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.19.5](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.19.4...v0.19.5) (2024-07-04)
+
+
+### Bug Fixes
+
+* remove extensions from container-ldap ([c5b0327](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/c5b03274266b4c3daa9257567da531c0aa715dec))
+
 ## [0.19.4](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.19.3...v0.19.4) (2024-07-01)
 
 
