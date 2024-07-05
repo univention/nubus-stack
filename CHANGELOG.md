@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.22.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.21.0...v0.22.0) (2024-07-05)
+
+
+### Features
+
+* configMap for self-service password email moved to sub-chart ([05868c2](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/05868c26a66a4c334b0be7635530eb535bd9d81e))
+
 ## [0.21.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.20.0...v0.21.0) (2024-07-05)
 
 
