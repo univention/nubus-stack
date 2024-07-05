@@ -110,13 +110,13 @@ dependencies:
   - name: "stack-data-swp"
     alias: "nubusStackDataSwp"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.51.1"
+    version: "0.52.0"
     condition: "nubusStackDataSwp.enabled"
 
   - name: "stack-data-ums"
     alias: "nubusStackDataUms"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.51.1"
+    version: "0.52.0"
     condition: "nubusStackDataUms.enabled"
 
   # stack-gateway related chart(s)
@@ -137,11 +137,11 @@ dependencies:
   - name: "umc-gateway"
     alias: "nubusUmcGateway"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.19.0"
+    version: "0.20.0"
     condition: "nubusUmcGateway.enabled"
 
   - name: "umc-server"
     alias: "nubusUmcServer"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.19.0"
+    version: "0.20.0"
     condition: "nubusUmcServer.enabled"

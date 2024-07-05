@@ -47,12 +47,12 @@ helm uninstall nubus
 | oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.26.3 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 0.28.7 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceListener(selfservice-listener) | 0.6.2 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataSwp(stack-data-swp) | 0.51.1 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.51.1 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataSwp(stack-data-swp) | 0.52.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.52.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 0.28.7 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmRestApi(udm-rest-api) | 0.18.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.19.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUmcServer(umc-server) | 0.19.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.20.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUmcServer(umc-server) | 0.20.0 |
 | oci://registry-1.docker.io/bitnamicharts | common | ^2.x.x |
 | oci://registry-1.docker.io/bitnamicharts | minio | ^14.x.x |
 | oci://registry-1.docker.io/bitnamicharts | nubusStackGateway(nginx) | ^15.x.x |
@@ -4016,7 +4016,7 @@ true
 			<td>nubusStackDataUms.nubusUmcServer.extraVolumeMounts[2].mountPath</td>
 			<td>string</td>
 			<td><pre lang="json">
-"/usr/share/univention-self-service/email_bodies"
+"/usr/lib/python3/dist-packages/univention/admin/hooks.d/AttributeToGroupMapper.py"
 </pre>
 </td>
 			<td></td>
@@ -4025,7 +4025,16 @@ true
 			<td>nubusStackDataUms.nubusUmcServer.extraVolumeMounts[2].name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"self-service-emails"
+"attribute-to-group-mapper-hook"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusUmcServer.extraVolumeMounts[2].subPath</td>
+			<td>string</td>
+			<td><pre lang="json">
+"AttributeToGroupMapper.py"
 </pre>
 </td>
 			<td></td>
@@ -4034,7 +4043,7 @@ true
 			<td>nubusStackDataUms.nubusUmcServer.extraVolumeMounts[3].mountPath</td>
 			<td>string</td>
 			<td><pre lang="json">
-"/usr/lib/python3/dist-packages/univention/admin/hooks.d/AttributeToGroupMapper.py"
+"/usr/share/attribute-to-group-mapper/flag_to_group_mapping.json"
 </pre>
 </td>
 			<td></td>
@@ -4052,7 +4061,7 @@ true
 			<td>nubusStackDataUms.nubusUmcServer.extraVolumeMounts[3].subPath</td>
 			<td>string</td>
 			<td><pre lang="json">
-"AttributeToGroupMapper.py"
+"flag_to_group_mapping.json"
 </pre>
 </td>
 			<td></td>
@@ -4061,7 +4070,7 @@ true
 			<td>nubusStackDataUms.nubusUmcServer.extraVolumeMounts[4].mountPath</td>
 			<td>string</td>
 			<td><pre lang="json">
-"/usr/share/attribute-to-group-mapper/flag_to_group_mapping.json"
+"/usr/share/univention-management-console/modules/udm-portals-announcement.xml"
 </pre>
 </td>
 			<td></td>
@@ -4070,40 +4079,13 @@ true
 			<td>nubusStackDataUms.nubusUmcServer.extraVolumeMounts[4].name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"attribute-to-group-mapper-hook"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.extraVolumeMounts[4].subPath</td>
-			<td>string</td>
-			<td><pre lang="json">
-"flag_to_group_mapping.json"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.extraVolumeMounts[5].mountPath</td>
-			<td>string</td>
-			<td><pre lang="json">
-"/usr/share/univention-management-console/modules/udm-portals-announcement.xml"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.extraVolumeMounts[5].name</td>
-			<td>string</td>
-			<td><pre lang="json">
 "announcements-customization"
 </pre>
 </td>
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.extraVolumeMounts[5].subPath</td>
+			<td>nubusStackDataUms.nubusUmcServer.extraVolumeMounts[4].subPath</td>
 			<td>string</td>
 			<td><pre lang="json">
 "udm-portals-announcement.xml"
@@ -4157,34 +4139,7 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.extraVolumes[2].configMap.defaultMode</td>
-			<td>int</td>
-			<td><pre lang="json">
-292
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusStackDataUms.nubusUmcServer.extraVolumes[2].configMap.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-stack-data-swp-self-service-emails"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.extraVolumes[2].name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"self-service-emails"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.extraVolumes[3].configMap.name</td>
 			<td>string</td>
 			<td><pre lang="json">
 "{{ .Release.Name }}-stack-data-swp-attribute-to-group-mapper-hook"
@@ -4193,7 +4148,7 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.extraVolumes[3].name</td>
+			<td>nubusStackDataUms.nubusUmcServer.extraVolumes[2].name</td>
 			<td>string</td>
 			<td><pre lang="json">
 "attribute-to-group-mapper-hook"
@@ -4202,7 +4157,7 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.extraVolumes[4].configMap.defaultMode</td>
+			<td>nubusStackDataUms.nubusUmcServer.extraVolumes[3].configMap.defaultMode</td>
 			<td>int</td>
 			<td><pre lang="json">
 292
@@ -4211,7 +4166,7 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.extraVolumes[4].configMap.name</td>
+			<td>nubusStackDataUms.nubusUmcServer.extraVolumes[3].configMap.name</td>
 			<td>string</td>
 			<td><pre lang="json">
 "{{ .Release.Name }}-stack-data-swp-umc-server-announcements"
@@ -4220,7 +4175,7 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.extraVolumes[4].name</td>
+			<td>nubusStackDataUms.nubusUmcServer.extraVolumes[3].name</td>
 			<td>string</td>
 			<td><pre lang="json">
 "announcements-customization"
@@ -5159,7 +5114,7 @@ true
 			<td>nubusUmcServer.extraVolumeMounts[2].mountPath</td>
 			<td>string</td>
 			<td><pre lang="json">
-"/usr/share/univention-self-service/email_bodies"
+"/usr/lib/python3/dist-packages/univention/admin/hooks.d/AttributeToGroupMapper.py"
 </pre>
 </td>
 			<td></td>
@@ -5168,7 +5123,16 @@ true
 			<td>nubusUmcServer.extraVolumeMounts[2].name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"self-service-emails"
+"attribute-to-group-mapper-hook"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusUmcServer.extraVolumeMounts[2].subPath</td>
+			<td>string</td>
+			<td><pre lang="json">
+"AttributeToGroupMapper.py"
 </pre>
 </td>
 			<td></td>
@@ -5177,7 +5141,7 @@ true
 			<td>nubusUmcServer.extraVolumeMounts[3].mountPath</td>
 			<td>string</td>
 			<td><pre lang="json">
-"/usr/lib/python3/dist-packages/univention/admin/hooks.d/AttributeToGroupMapper.py"
+"/usr/share/attribute-to-group-mapper/flag_to_group_mapping.json"
 </pre>
 </td>
 			<td></td>
@@ -5195,7 +5159,7 @@ true
 			<td>nubusUmcServer.extraVolumeMounts[3].subPath</td>
 			<td>string</td>
 			<td><pre lang="json">
-"AttributeToGroupMapper.py"
+"flag_to_group_mapping.json"
 </pre>
 </td>
 			<td></td>
@@ -5204,7 +5168,7 @@ true
 			<td>nubusUmcServer.extraVolumeMounts[4].mountPath</td>
 			<td>string</td>
 			<td><pre lang="json">
-"/usr/share/attribute-to-group-mapper/flag_to_group_mapping.json"
+"/usr/share/univention-management-console/modules/udm-portals-announcement.xml"
 </pre>
 </td>
 			<td></td>
@@ -5213,40 +5177,13 @@ true
 			<td>nubusUmcServer.extraVolumeMounts[4].name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"attribute-to-group-mapper-hook"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUmcServer.extraVolumeMounts[4].subPath</td>
-			<td>string</td>
-			<td><pre lang="json">
-"flag_to_group_mapping.json"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUmcServer.extraVolumeMounts[5].mountPath</td>
-			<td>string</td>
-			<td><pre lang="json">
-"/usr/share/univention-management-console/modules/udm-portals-announcement.xml"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUmcServer.extraVolumeMounts[5].name</td>
-			<td>string</td>
-			<td><pre lang="json">
 "announcements-customization"
 </pre>
 </td>
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusUmcServer.extraVolumeMounts[5].subPath</td>
+			<td>nubusUmcServer.extraVolumeMounts[4].subPath</td>
 			<td>string</td>
 			<td><pre lang="json">
 "udm-portals-announcement.xml"
@@ -5300,34 +5237,7 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusUmcServer.extraVolumes[2].configMap.defaultMode</td>
-			<td>int</td>
-			<td><pre lang="json">
-292
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusUmcServer.extraVolumes[2].configMap.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-stack-data-swp-self-service-emails"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUmcServer.extraVolumes[2].name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"self-service-emails"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUmcServer.extraVolumes[3].configMap.name</td>
 			<td>string</td>
 			<td><pre lang="json">
 "{{ .Release.Name }}-stack-data-swp-attribute-to-group-mapper-hook"
@@ -5336,7 +5246,7 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusUmcServer.extraVolumes[3].name</td>
+			<td>nubusUmcServer.extraVolumes[2].name</td>
 			<td>string</td>
 			<td><pre lang="json">
 "attribute-to-group-mapper-hook"
@@ -5345,7 +5255,7 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusUmcServer.extraVolumes[4].configMap.defaultMode</td>
+			<td>nubusUmcServer.extraVolumes[3].configMap.defaultMode</td>
 			<td>int</td>
 			<td><pre lang="json">
 292
@@ -5354,7 +5264,7 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusUmcServer.extraVolumes[4].configMap.name</td>
+			<td>nubusUmcServer.extraVolumes[3].configMap.name</td>
 			<td>string</td>
 			<td><pre lang="json">
 "{{ .Release.Name }}-stack-data-swp-umc-server-announcements"
@@ -5363,7 +5273,7 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusUmcServer.extraVolumes[4].name</td>
+			<td>nubusUmcServer.extraVolumes[3].name</td>
 			<td>string</td>
 			<td><pre lang="json">
 "announcements-customization"

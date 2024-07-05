@@ -489,10 +489,6 @@ nubusUmcServer: &nubusUmcServer
       configMap:
         name: "{{ .Release.Name }}-stack-data-swp-umc-server-entrypoint"
         defaultMode: 0555
-    - name: "self-service-emails"
-      configMap:
-        name: "{{ .Release.Name }}-stack-data-swp-self-service-emails"
-        defaultMode: 0444
     - name: "attribute-to-group-mapper-hook"
       configMap:
         name: "{{ .Release.Name }}-stack-data-swp-attribute-to-group-mapper-hook"
@@ -506,8 +502,6 @@ nubusUmcServer: &nubusUmcServer
     - name: "entrypoint-swp-patches"
       mountPath: "/entrypoint.d/90-customization.sh"
       subPath: "90-customization.sh"
-    - name: "self-service-emails"
-      mountPath: "/usr/share/univention-self-service/email_bodies"
     - name: "attribute-to-group-mapper-hook"
       mountPath: "/usr/lib/python3/dist-packages/univention/admin/hooks.d/AttributeToGroupMapper.py"
       subPath: "AttributeToGroupMapper.py"
