@@ -7,16 +7,16 @@ dependencies:
   version: 12.12.10
 - name: minio
   repository: oci://registry-1.docker.io/bitnamicharts
-  version: 14.6.17
+  version: 14.6.19
 - name: guardian
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.6.0
 - name: ldap-notifier
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.19.0
+  version: 0.20.0
 - name: ldap-server
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.19.0
+  version: 0.20.0
 - name: notifications-api
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.26.3
@@ -58,12 +58,12 @@ dependencies:
   version: 15.14.2
 - name: udm-rest-api
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.17.4
+  version: 0.18.0
 - name: umc-gateway
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.15.1
+  version: 0.19.0
 - name: umc-server
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.15.1
-digest: sha256:01951dbc6f45156644af495d4db27290328a3c8eae0559da772d96ca483d824d
-generated: "2024-07-04T13:14:43.466103407+02:00"
+  version: 0.19.0
+digest: sha256:8c75963b92c308634dbf45d422e5feb1a03e56d08f2beb720276a099370e4275
+generated: "2024-07-05T12:35:13.03765+02:00"
