@@ -150,7 +150,7 @@ null
       "imagePullPolicy": "IfNotPresent",
       "registry": "artifacts.software-univention.de",
       "repository": "nubus/images/ox-extension",
-      "tag": "0.9.1"
+      "tag": "0.10.0"
     },
     "name": "ox"
   }

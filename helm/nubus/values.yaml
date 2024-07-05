@@ -48,7 +48,7 @@ global:
         registry: "artifacts.software-univention.de"
         repository: "nubus/images/ox-extension"
         imagePullPolicy: "IfNotPresent"
-        tag: "0.9.1"
+        tag: "0.10.0"
 
   # -- Allows to configure the system extensions to load. This is intended for
   # internal usage, prefer to use `global.extensions` for user configured
