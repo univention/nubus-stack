@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.21.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.20.0...v0.21.0) (2024-07-05)
+
+
+### Features
+
+* Update component charts to leverage extension configuration ([35e2ace](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/35e2acef04074966a04920fae4ebc4bcefa5c739))
+* Update ox extension to version 0.10.0 ([302daf1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/302daf1ead8765545fecb196f8151f5bbb5a01a8))
+* Update the Chart.lock file ([d5b3812](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/d5b3812803147b8b6d452a7a4fe2c56f0f57c923))
+
 ## [0.20.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.19.5...v0.20.0) (2024-07-05)
 
 
