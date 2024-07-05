@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.22.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.22.0...v0.22.1) (2024-07-05)
+
+
+### Bug Fixes
+
+* LDAP server version bump (uses UCS 5.2 sources) ([ec0c98a](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/ec0c98a348e216bfa5c0f7e89333a7b44f4ff5fd))
+
 ## [0.22.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.21.0...v0.22.0) (2024-07-05)
 
 
