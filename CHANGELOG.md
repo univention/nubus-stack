@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.20.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.19.5...v0.20.0) (2024-07-05)
+
+
+### Features
+
+* Configure portal and ox extensions ([561d019](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/561d019fa2c34c1cb13ea144c9c092ae0309de64))
+
 ## [0.19.5](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.19.4...v0.19.5) (2024-07-04)
 
 
