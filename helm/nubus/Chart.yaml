@@ -31,13 +31,13 @@ dependencies:
   - name: "ldap-notifier"
     alias: "nubusLdapNotifier"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.19.0"
+    version: "0.20.0"
     condition: "nubusLdapNotifier.enabled"
 
   - name: "ldap-server"
     alias: "nubusLdapServer"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.19.0"
+    version: "0.20.0"
     condition: "nubusLdapServer.enabled"
 
   # portal related chart(s)
@@ -130,18 +130,18 @@ dependencies:
   - name: "udm-rest-api"
     alias: "nubusUdmRestApi"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.17.4"
+    version: "0.18.0"
     condition: "nubusUdmRestApi.enabled"
 
   # umc related chart(s)
   - name: "umc-gateway"
     alias: "nubusUmcGateway"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.15.1"
+    version: "0.19.0"
     condition: "nubusUmcGateway.enabled"
 
   - name: "umc-server"
     alias: "nubusUmcServer"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.15.1"
+    version: "0.19.0"
     condition: "nubusUmcServer.enabled"
