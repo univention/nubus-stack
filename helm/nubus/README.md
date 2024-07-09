@@ -51,8 +51,8 @@ helm uninstall nubus
 | oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.52.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 0.28.7 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmRestApi(udm-rest-api) | 0.18.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.20.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUmcServer(umc-server) | 0.20.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.22.3 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUmcServer(umc-server) | 0.22.3 |
 | oci://registry-1.docker.io/bitnamicharts | common | ^2.x.x |
 | oci://registry-1.docker.io/bitnamicharts | minio | ^14.x.x |
 | oci://registry-1.docker.io/bitnamicharts | nubusStackGateway(nginx) | ^15.x.x |
@@ -4202,6 +4202,24 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusStackDataUms.nubusUmcServer.ingress.annotations."cert-manager.io/cluster-issuer"</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Values.global.certManagerIssuer }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusUmcServer.ingress.host</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusStackDataUms.nubusUmcServer.memcached.auth.credentialSecret.key</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -5003,6 +5021,24 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusUmcGateway.ingress.annotations."cert-manager.io/cluster-issuer"</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Values.global.certManagerIssuer }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusUmcGateway.ingress.host</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusUmcGateway.nameOverride</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -5295,6 +5331,24 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 "artifacts.software-univention.de"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusUmcServer.ingress.annotations."cert-manager.io/cluster-issuer"</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Values.global.certManagerIssuer }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusUmcServer.ingress.host</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
 </pre>
 </td>
 			<td></td>
