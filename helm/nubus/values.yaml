@@ -61,7 +61,7 @@ nubusDevelopment:
       cpu: 288
       memory: "1Gi"
     requests:
-      cpu: "100m"
+      cpu: "10m"
       memory: "16Mi"
   terminationGracePeriodSeconds: &nubusTerminationGracePeriodSeconds 5
 

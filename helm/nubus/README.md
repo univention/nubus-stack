@@ -415,7 +415,7 @@ true
 			<td>keycloak.resources.requests.cpu</td>
 			<td>string</td>
 			<td><pre lang="json">
-"100m"
+"10m"
 </pre>
 </td>
 			<td></td>
@@ -505,7 +505,7 @@ false
 			<td>minio.networkPolicy.resources.requests.cpu</td>
 			<td>string</td>
 			<td><pre lang="json">
-"100m"
+"10m"
 </pre>
 </td>
 			<td></td>
@@ -577,7 +577,7 @@ true
 			<td>minio.provisioning.cleanupAfterFinished.resources.requests.cpu</td>
 			<td>string</td>
 			<td><pre lang="json">
-"100m"
+"10m"
 </pre>
 </td>
 			<td></td>
@@ -694,7 +694,7 @@ true
 			<td>minio.provisioning.resources.requests.cpu</td>
 			<td>string</td>
 			<td><pre lang="json">
-"100m"
+"10m"
 </pre>
 </td>
 			<td></td>
@@ -739,7 +739,7 @@ true
 			<td>minio.resources.requests.cpu</td>
 			<td>string</td>
 			<td><pre lang="json">
-"100m"
+"10m"
 </pre>
 </td>
 			<td></td>
@@ -802,7 +802,7 @@ false
 			<td>minio.tls.resources.requests.cpu</td>
 			<td>string</td>
 			<td><pre lang="json">
-"100m"
+"10m"
 </pre>
 </td>
 			<td></td>
@@ -838,7 +838,7 @@ false
 			<td>nubusDevelopment.resources.requests.cpu</td>
 			<td>string</td>
 			<td><pre lang="json">
-"100m"
+"10m"
 </pre>
 </td>
 			<td></td>
@@ -1009,7 +1009,7 @@ true
 			<td>nubusGuardian.resources.requests.cpu</td>
 			<td>string</td>
 			<td><pre lang="json">
-"100m"
+"10m"
 </pre>
 </td>
 			<td></td>
@@ -1072,7 +1072,7 @@ true
 			<td>nubusKeycloakBootstrap.resources.requests.cpu</td>
 			<td>string</td>
 			<td><pre lang="json">
-"100m"
+"10m"
 </pre>
 </td>
 			<td></td>
@@ -1207,7 +1207,7 @@ true
 			<td>nubusKeycloakExtensions.resources.requests.cpu</td>
 			<td>string</td>
 			<td><pre lang="json">
-"100m"
+"10m"
 </pre>
 </td>
 			<td></td>
@@ -1297,7 +1297,7 @@ true
 			<td>nubusLdapNotifier.resources.requests.cpu</td>
 			<td>string</td>
 			<td><pre lang="json">
-"100m"
+"10m"
 </pre>
 </td>
 			<td></td>
@@ -1522,7 +1522,7 @@ true
 			<td>nubusLdapServer.resourcesPrimary.requests.cpu</td>
 			<td>string</td>
 			<td><pre lang="json">
-"100m"
+"10m"
 </pre>
 </td>
 			<td></td>
@@ -1558,7 +1558,7 @@ true
 			<td>nubusLdapServer.resourcesProxy.requests.cpu</td>
 			<td>string</td>
 			<td><pre lang="json">
-"100m"
+"10m"
 </pre>
 </td>
 			<td></td>
@@ -1594,7 +1594,7 @@ true
 			<td>nubusLdapServer.resourcesSecondary.requests.cpu</td>
 			<td>string</td>
 			<td><pre lang="json">
-"100m"
+"10m"
 </pre>
 </td>
 			<td></td>
@@ -1729,7 +1729,7 @@ false
 			<td>nubusNotificationsApi.resources.requests.cpu</td>
 			<td>string</td>
 			<td><pre lang="json">
-"100m"
+"10m"
 </pre>
 </td>
 			<td></td>
@@ -1990,7 +1990,7 @@ true
 			<td>nubusPortalFrontend.resources.requests.cpu</td>
 			<td>string</td>
 			<td><pre lang="json">
-"100m"
+"10m"
 </pre>
 </td>
 			<td></td>
@@ -2071,7 +2071,7 @@ true
 			<td>nubusPortalListener.resources.requests.cpu</td>
 			<td>string</td>
 			<td><pre lang="json">
-"100m"
+"10m"
 </pre>
 </td>
 			<td></td>
@@ -2161,7 +2161,7 @@ true
 			<td>nubusPortalServer.resources.requests.cpu</td>
 			<td>string</td>
 			<td><pre lang="json">
-"100m"
+"10m"
 </pre>
 </td>
 			<td></td>
@@ -2305,7 +2305,7 @@ true
 			<td>nubusProvisioning.nats.natsBox.resources.requests.cpu</td>
 			<td>string</td>
 			<td><pre lang="json">
-"100m"
+"10m"
 </pre>
 </td>
 			<td></td>
@@ -2341,7 +2341,7 @@ true
 			<td>nubusProvisioning.nats.reloader.resources.requests.cpu</td>
 			<td>string</td>
 			<td><pre lang="json">
-"100m"
+"10m"
 </pre>
 </td>
 			<td></td>
@@ -2377,7 +2377,7 @@ true
 			<td>nubusProvisioning.nats.resources.requests.cpu</td>
 			<td>string</td>
 			<td><pre lang="json">
-"100m"
+"10m"
 </pre>
 </td>
 			<td></td>
@@ -2449,7 +2449,7 @@ true
 			<td>nubusProvisioning.resources.api.requests.cpu</td>
 			<td>string</td>
 			<td><pre lang="json">
-"100m"
+"10m"
 </pre>
 </td>
 			<td></td>
@@ -2485,7 +2485,7 @@ true
 			<td>nubusProvisioning.resources.dispatcher.requests.cpu</td>
 			<td>string</td>
 			<td><pre lang="json">
-"100m"
+"10m"
 </pre>
 </td>
 			<td></td>
@@ -2521,7 +2521,7 @@ true
 			<td>nubusProvisioning.resources.prefill.requests.cpu</td>
 			<td>string</td>
 			<td><pre lang="json">
-"100m"
+"10m"
 </pre>
 </td>
 			<td></td>
@@ -2593,7 +2593,7 @@ true
 			<td>nubusSelfServiceListener.resources.requests.cpu</td>
 			<td>string</td>
 			<td><pre lang="json">
-"100m"
+"10m"
 </pre>
 </td>
 			<td></td>
@@ -2665,7 +2665,7 @@ true
 			<td>nubusStackDataSwp.resources.requests.cpu</td>
 			<td>string</td>
 			<td><pre lang="json">
-"100m"
+"10m"
 </pre>
 </td>
 			<td></td>
@@ -2773,7 +2773,7 @@ true
 			<td>nubusStackDataUms.nubusKeycloakBootstrap.resources.requests.cpu</td>
 			<td>string</td>
 			<td><pre lang="json">
-"100m"
+"10m"
 </pre>
 </td>
 			<td></td>
@@ -2908,7 +2908,7 @@ true
 			<td>nubusStackDataUms.nubusKeycloakExtensions.resources.requests.cpu</td>
 			<td>string</td>
 			<td><pre lang="json">
-"100m"
+"10m"
 </pre>
 </td>
 			<td></td>
@@ -3070,7 +3070,7 @@ false
 			<td>nubusStackDataUms.nubusNotificationsApi.resources.requests.cpu</td>
 			<td>string</td>
 			<td><pre lang="json">
-"100m"
+"10m"
 </pre>
 </td>
 			<td></td>
@@ -3151,7 +3151,7 @@ true
 			<td>nubusStackDataUms.nubusPortalListener.resources.requests.cpu</td>
 			<td>string</td>
 			<td><pre lang="json">
-"100m"
+"10m"
 </pre>
 </td>
 			<td></td>
@@ -3241,7 +3241,7 @@ true
 			<td>nubusStackDataUms.nubusPortalServer.resources.requests.cpu</td>
 			<td>string</td>
 			<td><pre lang="json">
-"100m"
+"10m"
 </pre>
 </td>
 			<td></td>
@@ -3385,7 +3385,7 @@ true
 			<td>nubusStackDataUms.nubusProvisioning.nats.natsBox.resources.requests.cpu</td>
 			<td>string</td>
 			<td><pre lang="json">
-"100m"
+"10m"
 </pre>
 </td>
 			<td></td>
@@ -3421,7 +3421,7 @@ true
 			<td>nubusStackDataUms.nubusProvisioning.nats.reloader.resources.requests.cpu</td>
 			<td>string</td>
 			<td><pre lang="json">
-"100m"
+"10m"
 </pre>
 </td>
 			<td></td>
@@ -3457,7 +3457,7 @@ true
 			<td>nubusStackDataUms.nubusProvisioning.nats.resources.requests.cpu</td>
 			<td>string</td>
 			<td><pre lang="json">
-"100m"
+"10m"
 </pre>
 </td>
 			<td></td>
@@ -3529,7 +3529,7 @@ true
 			<td>nubusStackDataUms.nubusProvisioning.resources.api.requests.cpu</td>
 			<td>string</td>
 			<td><pre lang="json">
-"100m"
+"10m"
 </pre>
 </td>
 			<td></td>
@@ -3565,7 +3565,7 @@ true
 			<td>nubusStackDataUms.nubusProvisioning.resources.dispatcher.requests.cpu</td>
 			<td>string</td>
 			<td><pre lang="json">
-"100m"
+"10m"
 </pre>
 </td>
 			<td></td>
@@ -3601,7 +3601,7 @@ true
 			<td>nubusStackDataUms.nubusProvisioning.resources.prefill.requests.cpu</td>
 			<td>string</td>
 			<td><pre lang="json">
-"100m"
+"10m"
 </pre>
 </td>
 			<td></td>
@@ -3673,7 +3673,7 @@ true
 			<td>nubusStackDataUms.nubusSelfServiceListener.resources.requests.cpu</td>
 			<td>string</td>
 			<td><pre lang="json">
-"100m"
+"10m"
 </pre>
 </td>
 			<td></td>
@@ -3745,7 +3745,7 @@ true
 			<td>nubusStackDataUms.nubusStackDataSwp.resources.requests.cpu</td>
 			<td>string</td>
 			<td><pre lang="json">
-"100m"
+"10m"
 </pre>
 </td>
 			<td></td>
@@ -3880,7 +3880,7 @@ true
 			<td>nubusStackDataUms.nubusUdmListener.resources.requests.cpu</td>
 			<td>string</td>
 			<td><pre lang="json">
-"100m"
+"10m"
 </pre>
 </td>
 			<td></td>
@@ -4069,7 +4069,7 @@ true
 			<td>nubusStackDataUms.nubusUdmRestApi.resources.requests.cpu</td>
 			<td>string</td>
 			<td><pre lang="json">
-"100m"
+"10m"
 </pre>
 </td>
 			<td></td>
@@ -4510,7 +4510,7 @@ false
 			<td>nubusStackDataUms.nubusUmcServer.resources.requests.cpu</td>
 			<td>string</td>
 			<td><pre lang="json">
-"100m"
+"10m"
 </pre>
 </td>
 			<td></td>
@@ -4573,7 +4573,7 @@ false
 			<td>nubusStackDataUms.resources.requests.cpu</td>
 			<td>string</td>
 			<td><pre lang="json">
-"100m"
+"10m"
 </pre>
 </td>
 			<td></td>
@@ -4699,7 +4699,7 @@ true
 			<td>nubusUdmListener.resources.requests.cpu</td>
 			<td>string</td>
 			<td><pre lang="json">
-"100m"
+"10m"
 </pre>
 </td>
 			<td></td>
@@ -4888,7 +4888,7 @@ true
 			<td>nubusUdmRestApi.resources.requests.cpu</td>
 			<td>string</td>
 			<td><pre lang="json">
-"100m"
+"10m"
 </pre>
 </td>
 			<td></td>
@@ -4969,7 +4969,7 @@ true
 			<td>nubusUmcGateway.resources.requests.cpu</td>
 			<td>string</td>
 			<td><pre lang="json">
-"100m"
+"10m"
 </pre>
 </td>
 			<td></td>
@@ -5410,7 +5410,7 @@ false
 			<td>nubusUmcServer.resources.requests.cpu</td>
 			<td>string</td>
 			<td><pre lang="json">
-"100m"
+"10m"
 </pre>
 </td>
 			<td></td>
@@ -5527,7 +5527,7 @@ true
 			<td>postgresql.primary.resources.requests.cpu</td>
 			<td>string</td>
 			<td><pre lang="json">
-"100m"
+"10m"
 </pre>
 </td>
 			<td></td>
@@ -5707,7 +5707,7 @@ true
 			<td>postgresql.resources.requests.cpu</td>
 			<td>string</td>
 			<td><pre lang="json">
-"100m"
+"10m"
 </pre>
 </td>
 			<td></td>
