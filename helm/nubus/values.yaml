@@ -38,28 +38,10 @@ global:
   configMapUcr: "{{ .Release.Name }}-stack-data-swp-ucr"
   configMapUcrForced: null
 
-  # -- Extensions to load. Add entries to load additional extensions into Nubus.
-  # Interim this value is pre-configured with the typical extensions loaded in
-  # the openDesk integration of Nubus to allow for a smooth transition. On the
-  # long run this value will become an empty list by default.
-  extensions:
-    - name: "ox"
-      image:
-        registry: "artifacts.software-univention.de"
-        repository: "nubus/images/ox-extension"
-        imagePullPolicy: "IfNotPresent"
-        tag: "0.10.0"
-
-  # -- Allows to configure the system extensions to load. This is intended for
-  # internal usage, prefer to use `global.extensions` for user configured
-  # extensions.
-  systemExtensions:
-    - name: "portal"
-      image:
-        registry: "artifacts.software-univention.de"
-        repository: "nubus/images/portal-extension"
-        imagePullPolicy: "IfNotPresent"
-        tag: "0.26.3"
+# Credentials that are primarily or exclusively used by the umbrella chart can be overridden in some cases. This is the place to do it.
+credentialOverride:
+  ldapServer:
+    adminPassword: ""
 
 # -- Load data to override ucr variables.
 # example:

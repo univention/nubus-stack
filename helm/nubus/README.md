@@ -86,6 +86,15 @@ helm uninstall nubus
 			<td>Additional custom labels to add to all objects deployed directly by the umbrella chart.</td>
 		</tr>
 		<tr>
+			<td>credentialOverride.ldapServer.adminPassword</td>
+			<td>string</td>
+			<td><pre lang="json">
+""
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>extraSecrets</td>
 			<td>list</td>
 			<td><pre lang="json">
