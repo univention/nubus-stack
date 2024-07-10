@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.23.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.22.1...v0.23.0) (2024-07-10)
+
+
+### Features
+
+* Update umc-server to ucs-520 image ([bd19ca6](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/bd19ca610b0a09554552469ea9a6fa0467d1b494))
+
+
+### Bug Fixes
+
+* Upstream umc-server ingress configuration ([066f542](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/066f542695b752498a6cca077cfbe3d3301de01f))
+
 ## [0.22.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.22.0...v0.22.1) (2024-07-05)
 
 
