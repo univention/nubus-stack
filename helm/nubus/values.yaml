@@ -445,11 +445,19 @@ nubusUmcGateway: &nubusUmcGateway
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   nameOverride: "umc-gateway"
   enabled: true
+  ingress:
+    host: "{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
+    annotations:
+      cert-manager.io/cluster-issuer: "{{ .Values.global.certManagerIssuer }}"
   resources: *nubusDevelopmentResources
 nubusUmcServer: &nubusUmcServer
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   nameOverride: "umc-server"
   enabled: true
+  ingress:
+    host: "{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
+    annotations:
+      cert-manager.io/cluster-issuer: "{{ .Values.global.certManagerIssuer }}"
   resources: *nubusDevelopmentResources
   postgresql:
     connection:
