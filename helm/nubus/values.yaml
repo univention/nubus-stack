@@ -66,6 +66,9 @@ global:
 credentialOverride:
   ldapServer:
     adminPassword: ""
+  defaultUsers:
+    defaultAdminPassword: ""
+    defaultUserPassword: ""
 
 # -- Load data to override ucr variables.
 # example:
