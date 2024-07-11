@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.24.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.23.0...v0.24.0) (2024-07-11)
+
+
+### Features
+
+* add credentialOverride functionality ([1d876dc](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/1d876dcd84c4ed2b5c6b52f8aeacfffe33b4a2a0))
+* replace stack-gateway with ingress definitions ([223fb0d](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/223fb0dae83a430288466156be5ce8f7a4fc988f))
+
+
+### Bug Fixes
+
+* **nubus:** Add further overridable ldap-server credentials ([08f136f](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/08f136fcdbfa30a5003cf5ff1f1383d8529fb3a4))
+* upstream change umc-server extra volumes ([b5887f9](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/b5887f9dc17402f551876363af50fc2adf3f2ae6))
+* upstream extension changes ([5dd4b25](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/5dd4b252c7139905cfcb86da8d9bcdc05bcebb9b))
+
 ## [0.23.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.22.1...v0.23.0) (2024-07-10)
 
 
