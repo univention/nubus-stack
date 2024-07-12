@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.25.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.24.1...v0.25.0) (2024-07-12)
+
+
+### Features
+
+* bump keycloak-extensions ([e64efe2](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/e64efe2c294474ecaf751a33e88930b34529a311))
+
 ## [0.24.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.24.0...v0.24.1) (2024-07-12)
 
 
