@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.24.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.24.0...v0.24.1) (2024-07-12)
+
+
+### Bug Fixes
+
+* Allow default users credentials to be overwritten ([670956d](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/670956dbcfb6bc8f44f7a738c9edd24349cfb88b))
+* make credentialOverride global to allow for use in subchart used template definitions ([3028da2](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/3028da21fbdc7af1a252f4bcc315e20ce307ffea))
+
 ## [0.24.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.23.0...v0.24.0) (2024-07-11)
 
 
