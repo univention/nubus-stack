@@ -18,7 +18,7 @@ dependencies:
 
   - name: "minio"
     repository: oci://registry-1.docker.io/bitnamicharts
-    version: "^14.x.x"
+    version: "14.6.19"
     condition: "minio.enabled"
 
   - name: "guardian"

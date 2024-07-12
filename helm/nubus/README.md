@@ -54,7 +54,7 @@ helm uninstall nubus
 | oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.22.2 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUmcServer(umc-server) | 0.22.2 |
 | oci://registry-1.docker.io/bitnamicharts | common | ^2.x.x |
-| oci://registry-1.docker.io/bitnamicharts | minio | ^14.x.x |
+| oci://registry-1.docker.io/bitnamicharts | minio | 14.6.19 |
 | oci://registry-1.docker.io/bitnamicharts | postgresql | ^12.x.x |
 
 ## Values
@@ -84,33 +84,6 @@ helm uninstall nubus
 </pre>
 </td>
 			<td>Additional custom labels to add to all objects deployed directly by the umbrella chart.</td>
-		</tr>
-		<tr>
-			<td>credentialOverride.defaultUsers.defaultAdminPassword</td>
-			<td>string</td>
-			<td><pre lang="json">
-""
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>credentialOverride.defaultUsers.defaultUserPassword</td>
-			<td>string</td>
-			<td><pre lang="json">
-""
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>credentialOverride.ldapServer.adminPassword</td>
-			<td>string</td>
-			<td><pre lang="json">
-""
-</pre>
-</td>
-			<td></td>
 		</tr>
 		<tr>
 			<td>extraSecrets</td>
@@ -153,6 +126,33 @@ helm uninstall nubus
 			<td>string</td>
 			<td><pre lang="json">
 null
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>global.credentialOverride.defaultUsers.defaultAdminPassword</td>
+			<td>string</td>
+			<td><pre lang="json">
+""
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>global.credentialOverride.defaultUsers.defaultUserPassword</td>
+			<td>string</td>
+			<td><pre lang="json">
+""
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>global.credentialOverride.ldapServer.adminPassword</td>
+			<td>string</td>
+			<td><pre lang="json">
+""
 </pre>
 </td>
 			<td></td>

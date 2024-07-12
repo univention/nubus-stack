@@ -62,13 +62,13 @@ global:
         tag: "0.26.3"
 
 
-# Credentials that are primarily or exclusively used by the umbrella chart can be overridden in some cases. This is the place to do it.
-credentialOverride:
-  ldapServer:
-    adminPassword: ""
-  defaultUsers:
-    defaultAdminPassword: ""
-    defaultUserPassword: ""
+  # Credentials that are primarily or exclusively used by the umbrella chart can be overridden in some cases. This is the place to do it.
+  credentialOverride:
+    ldapServer:
+      adminPassword: ""
+    defaultUsers:
+      defaultAdminPassword: ""
+      defaultUserPassword: ""
 
 # -- Load data to override ucr variables.
 # example:
