@@ -54,7 +54,7 @@ helm uninstall nubus
 | oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.24.1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUmcServer(umc-server) | 0.24.1 |
 | oci://registry-1.docker.io/bitnamicharts | common | ^2.x.x |
-| oci://registry-1.docker.io/bitnamicharts | minio | 14.6.19 |
+| oci://registry-1.docker.io/bitnamicharts | minio | ^14.6.19 |
 | oci://registry-1.docker.io/bitnamicharts | postgresql | ^12.x.x |
 
 ## Values
