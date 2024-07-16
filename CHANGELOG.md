@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.25.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.25.0...v0.25.1) (2024-07-16)
+
+
+### Bug Fixes
+
+* remove patch to set UMC page title ([cf8fb48](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/cf8fb480482ee683c8154eb9f53e5ed2d4d791c4))
+
 ## [0.25.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.24.1...v0.25.0) (2024-07-12)
 
 
