@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.25.2](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.25.1...v0.25.2) (2024-07-18)
+
+
+### Bug Fixes
+
+* **nubus:** bump stack-data version to drop email templates ([d4b8b45](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/d4b8b45b55b628da23660f03f6424c39614302b6))
+* **nubus:** bump univention-portal to fix missing logo animation ([f616dad](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/f616dadca6901e168f51568bee1afcc64e9c4e19))
+* **nubus:** bump univention-portal to support central navigation shared secret ([cfed78f](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/cfed78fbfc619a0e845d8ce01a28b3a22097b948))
+
 ## [0.25.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.25.0...v0.25.1) (2024-07-16)
 
 
