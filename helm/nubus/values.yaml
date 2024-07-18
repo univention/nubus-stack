@@ -328,7 +328,7 @@ nubusPortalListener: &nubusPortalListener
   #     credentialSecret:
   #       key: password
   portalListener:
-    ldapHost: "{{ .Release.Name }}-ldap-server-primary"
+    ldapHost: "{{ .Release.Name }}-ldap-server-secondary"
     objectStorageBucket: "nubus"
 nubusPortalServer: &nubusPortalServer
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
@@ -409,7 +409,7 @@ nubusUdmListener: &nubusUdmListener
       credentialSecret:
         key: password
   config:
-    ldapHost: "{{ .Release.Name }}-ldap-server-primary"
+    ldapHost: "{{ .Release.Name }}-ldap-server-secondary"
 nubusStackDataSwp: &nubusStackDataSwp
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   nameOverride: "stack-data-swp"
@@ -600,7 +600,7 @@ nubusStackDataUms:
   nubusUdmRestApi: *nubusUdmRestApi
   stackDataContext:
     ldapMasterHost: '{{ include "nubusTemplates.connections.ldap.primary.host" . }}'
-    ldapHost: '{{ include "nubusTemplates.connections.ldap.primary.host" . }}'
+    ldapHost: '{{ include "nubusTemplates.connections.ldap.secondary.host" . }}'
 
 # Allows for creation of additional secrets, for example containing credentials for third party services.
 extraSecrets: []
