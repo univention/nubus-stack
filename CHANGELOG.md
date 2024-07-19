@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.26.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.25.2...v0.26.0) (2024-07-19)
+
+
+### Features
+
+* Update stack-data-ums and stack-data-swp to version 0.55.1 ([7417548](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/74175486a93b947e3bf36f788881ed5a8661585b))
+* Use the secondary ldap server by default ([de4e6b8](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/de4e6b89139349e8544f50ccfc5c88cf563f1d26))
+
 ## [0.25.2](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.25.1...v0.25.2) (2024-07-18)
 
 
