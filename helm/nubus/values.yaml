@@ -59,7 +59,7 @@ global:
         registry: "artifacts.software-univention.de"
         repository: "nubus/images/portal-extension"
         imagePullPolicy: "IfNotPresent"
-        tag: "0.26.3"
+        tag: "0.28.0"
 
 
   # Credentials that are primarily or exclusively used by the umbrella chart can be overridden in some cases. This is the place to do it.
