@@ -279,29 +279,6 @@ nubusPortalFrontend: &nubusPortalFrontend
     host: "{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
     annotations:
       cert-manager.io/cluster-issuer: "{{ .Values.global.certManagerIssuer }}"
-  extraVolumes:
-    - name: "opendesk-branding"
-      configMap:
-        name: "{{ .Release.Name }}-stack-data-swp-branding"
-  extraVolumeMounts:
-    - name: "opendesk-branding"
-      mountPath: "/var/www/html/favicon.ico"
-      subPath: "favicon.ico"
-    - name: "opendesk-branding"
-      mountPath: "/var/www/html/css/custom.css"
-      subPath: "custom.css"
-    - name: "opendesk-branding"
-      mountPath: "/var/www/html/icons/logo.svg"
-      subPath: "logo.svg"
-    - name: "opendesk-branding"
-      mountPath: "/var/www/html/icons/logo_small_border.svg"
-      subPath: "logo_small_border.svg"
-    - name: "opendesk-branding"
-      mountPath: "/var/www/html/custom/portal_background_image.png"
-      subPath: "portal_background_image.png"
-    - name: "opendesk-branding"
-      mountPath: "/var/www/html/custom/portal_background_image.svg"
-      subPath: "portal_background_image.svg"
 nubusPortalListener: &nubusPortalListener
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   nameOverride: "portal-listener"
