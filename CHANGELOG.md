@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.27.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.26.0...v0.27.0) (2024-07-24)
+
+
+### Features
+
+* remove old branding configuration ([cb6a077](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/cb6a0771f7c7c22bfa662b8e67801eae82368675))
+* udpate chart versions for theme configuration ([a8aa0f4](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/a8aa0f4700da0fb115a18b35f4c8b3911f9eddb9))
+
 ## [0.26.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.25.2...v0.26.0) (2024-07-19)
 
 
