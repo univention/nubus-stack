@@ -51,7 +51,7 @@ dependencies:
   - name: "portal-frontend"
     alias: "nubusPortalFrontend"
     version: "0.29.0"
-    repository: "oci://artifacts.software-univention.de/nubus-dev/charts"
+    repository: "oci://artifacts.software-univention.de/nubus/charts"
     condition: "nubusPortalFrontend.enabled"
 
   - name: "portal-listener"
@@ -70,7 +70,7 @@ dependencies:
 
   - name: "selfservice-listener"
     alias: "nubusSelfServiceListener"
-    version: "0.6.2"
+    version: "0.6.5"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
     condition: "nubusSelfServiceListener.enabled"
 
@@ -109,13 +109,13 @@ dependencies:
   # stack-data related chart(s)
   - name: "stack-data-swp"
     alias: "nubusStackDataSwp"
-    repository: "oci://artifacts.software-univention.de/nubus-dev/charts"
-    version: "0.58.0"
+    repository: "oci://artifacts.software-univention.de/nubus/charts"
+    version: "0.58.1"
     condition: "nubusStackDataSwp.enabled"
 
   - name: "stack-data-ums"
     alias: "nubusStackDataUms"
-    repository: "oci://artifacts.software-univention.de/nubus-dev/charts"
+    repository: "oci://artifacts.software-univention.de/nubus/charts"
     version: "0.58.0"
     condition: "nubusStackDataUms.enabled"
 
