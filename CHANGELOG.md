@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.28.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.27.0...v0.28.0) (2024-07-30)
+
+
+### Features
+
+* update charts ([b803fd0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/b803fd08c572ec2c6f909bd8fb4a238ec0c91ab8))
+
+
+### Bug Fixes
+
+* add missing configuration for selfservice-listener ([228b13e](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/228b13e0959b6db11e66348eb6c90c20fc71d779))
+
 ## [0.27.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.26.0...v0.27.0) (2024-07-24)
 
 
