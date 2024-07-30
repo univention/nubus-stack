@@ -578,6 +578,7 @@ nubusStackDataUms:
   stackDataContext:
     ldapMasterHost: '{{ include "nubusTemplates.connections.ldap.primary.host" . }}'
     ldapHost: '{{ include "nubusTemplates.connections.ldap.secondary.host" . }}'
+    installUmcPolicies: true
 
 # Allows for creation of additional secrets, for example containing credentials for third party services.
 extraSecrets: []
