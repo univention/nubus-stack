@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.28.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.28.0...v0.28.1) (2024-07-30)
+
+
+### Bug Fixes
+
+* UMC policies ([8fb731e](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/8fb731e11ab8a368e5f200dd9e5f07bcfc2470a9))
+* Use ldap-server-primary since it shares the socket with ldap-notifier ([293dcfd](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/293dcfd0e46c95ea1dc68ac4821dffaab6088c30))
+
 ## [0.28.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.27.0...v0.28.0) (2024-07-30)
 
 
