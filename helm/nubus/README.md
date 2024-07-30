@@ -1873,7 +1873,7 @@ true
 			<td>nubusPortalListener.portalListener.ldapHost</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ .Release.Name }}-ldap-server-secondary"
+"{{ .Release.Name }}-ldap-server-primary"
 </pre>
 </td>
 			<td></td>
@@ -2953,7 +2953,7 @@ true
 			<td>nubusStackDataUms.nubusPortalListener.portalListener.ldapHost</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ .Release.Name }}-ldap-server-secondary"
+"{{ .Release.Name }}-ldap-server-primary"
 </pre>
 </td>
 			<td></td>
@@ -3637,7 +3637,7 @@ true
 			<td>nubusStackDataUms.nubusUdmListener.config.ldapHost</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ .Release.Name }}-ldap-server-secondary"
+"{{ .Release.Name }}-ldap-server-primary"
 </pre>
 </td>
 			<td></td>
@@ -4438,7 +4438,7 @@ true
 			<td>nubusStackDataUms.stackDataContext.ldapHost</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ include \"nubusTemplates.connections.ldap.secondary.host\" . }}"
+"{{ include \"nubusTemplates.connections.ldap.primary.host\" . }}"
 </pre>
 </td>
 			<td></td>
@@ -4465,7 +4465,7 @@ true
 			<td>nubusUdmListener.config.ldapHost</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ .Release.Name }}-ldap-server-secondary"
+"{{ .Release.Name }}-ldap-server-primary"
 </pre>
 </td>
 			<td></td>

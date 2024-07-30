@@ -305,7 +305,7 @@ nubusPortalListener: &nubusPortalListener
   #     credentialSecret:
   #       key: password
   portalListener:
-    ldapHost: "{{ .Release.Name }}-ldap-server-secondary"
+    ldapHost: "{{ .Release.Name }}-ldap-server-primary"
     objectStorageBucket: "nubus"
 nubusPortalServer: &nubusPortalServer
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
@@ -386,7 +386,7 @@ nubusUdmListener: &nubusUdmListener
       credentialSecret:
         key: password
   config:
-    ldapHost: "{{ .Release.Name }}-ldap-server-secondary"
+    ldapHost: "{{ .Release.Name }}-ldap-server-primary"
 nubusStackDataSwp: &nubusStackDataSwp
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   nameOverride: "stack-data-swp"
@@ -577,7 +577,7 @@ nubusStackDataUms:
   nubusUdmRestApi: *nubusUdmRestApi
   stackDataContext:
     ldapMasterHost: '{{ include "nubusTemplates.connections.ldap.primary.host" . }}'
-    ldapHost: '{{ include "nubusTemplates.connections.ldap.secondary.host" . }}'
+    ldapHost: '{{ include "nubusTemplates.connections.ldap.primary.host" . }}'
     installUmcPolicies: true
 
 # Allows for creation of additional secrets, for example containing credentials for third party services.
