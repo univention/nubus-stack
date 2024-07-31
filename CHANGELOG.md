@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.29.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.28.1...v0.29.0) (2024-07-31)
+
+
+### Features
+
+* **keycloak-extensions:** bump python-keycloak to support newer Keycloaks ([ddce8a2](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/ddce8a204e2b2c9564f6c74967b06fe5ee6b370f))
+
 ## [0.28.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.28.0...v0.28.1) (2024-07-30)
 
 
