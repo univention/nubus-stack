@@ -27,3 +27,8 @@ nubusStackDataUms:
   stackDataContext:
     # TODO: Fix in the subchart
     ldapSamlSpUrls: "https://{{ .Values.reviewPrefix }}.portal.{{ .Values.reviewBaseDomain }}/univention/saml/metadata"
+
+nubusKeycloakExtensions:
+  handler:
+    appConfig:
+      newDeviceLoginNotificationEnable: "False"
