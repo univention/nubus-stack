@@ -114,3 +114,274 @@ stop-deployment:
       when: manual
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
       when: manual
+
+update_opendesk_job:
+  stage: deploy
+  image: python:3.11-slim
+  variables:
+    START_BRANCH: "develop"
+    PROJECT_ID: "1317"
+    GITLAB_API_URL: "https://gitlab.opencode.de/api/v4"
+    OPENDESK_NAMESPACE: "uv-ci-${CI_COMMIT_REF_SLUG}"
+  before_script:
+    - cd $CI_PROJECT_DIR
+    - apt-get update && apt-get install -y git curl jq
+    - git config --global user.email "ci@univention.de"
+    - git config --global user.name "Univention CI"
+    - pip install gitpython pyyaml
+    - curl -O https://get.helm.sh/helm-v3.14.3-linux-amd64.tar.gz
+    - tar -zxvf helm-v3.14.3-linux-amd64.tar.gz
+    - mv linux-amd64/helm /usr/local/bin/helm
+    # install kubectl
+    - curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+    - chmod +x kubectl
+    - mv kubectl /usr/local/bin/
+  script:
+    - echo "Starting update_opendesk_job script"
+    - git clone https://gitlab.opencode.de/bmi/opendesk/deployment/opendesk.git
+    - cd opendesk
+    - |
+      BRANCH_NAME="uv-$CI_COMMIT_REF_NAME"
+      BRANCH_NAME_ENCODED=$(echo -n "$BRANCH_NAME" | jq -sRr @uri)
+
+      echo "Checking if branch $BRANCH_NAME exists"
+      BRANCH_EXISTS=$(curl --silent --header "PRIVATE-TOKEN: $OPENDESK_TOKEN" \
+        "$GITLAB_API_URL/projects/$PROJECT_ID/repository/branches/$BRANCH_NAME_ENCODED" | \
+        jq -r '.name // empty')
+
+      if [ -n "$BRANCH_EXISTS" ]; then
+        echo "Branch $BRANCH_NAME exists. Using it as base."
+        git checkout $BRANCH_NAME
+      else
+        echo "Branch $BRANCH_NAME does not exist. Using $START_BRANCH as base."
+        git checkout $START_BRANCH
+      fi
+    - echo "Running update_opendesk_dev.py script"
+    - ./../scripts/update_opendesk_dev.py $RELEASE_VERSION
+    - git diff | tee ../git_diff.txt
+    - |
+      FILES_TO_CHECK=(
+        "helmfile/environments/default/charts.yaml"
+        "helmfile/environments/default/images.yaml"
+      )
+
+      echo "Checking for changes in specified files"
+      CHANGES_DETECTED=false
+      ACTIONS=""
+      for file in "${FILES_TO_CHECK[@]}"; do
+        if git diff --exit-code --quiet "$file"; then
+          echo "No changes in $file"
+        else
+          echo "Changes detected in $file"
+          CHANGES_DETECTED=true
+          CONTENT=$(cat "$file" | base64 -w 0)
+          ACTIONS+=$(cat <<EOF
+            {
+              "action": "update",
+              "file_path": "$file",
+              "content": "$CONTENT",
+              "encoding": "base64"
+            },
+      EOF
+          )
+        fi
+      done
+
+      if [ "$CHANGES_DETECTED" = true ]; then
+        ACTIONS=${ACTIONS%,}
+
+        echo "Constructing curl command data"
+        CURL_DATA='{
+          "branch": "'"$BRANCH_NAME"'",
+          "commit_message": "feat(nubus): Update chart to version '"${RELEASE_VERSION}"'",
+          "actions": [
+            '"$ACTIONS"'
+          ]'
+
+        if [ -z "$BRANCH_EXISTS" ]; then
+          echo "Adding start_branch for new branch creation"
+          CURL_DATA+=',"start_branch": "'"$START_BRANCH"'"'
+        fi
+
+        CURL_DATA+='}'
+
+        echo "Executing curl command to update or create branch"
+        RESPONSE=$(curl --silent --request POST \
+          --header "PRIVATE-TOKEN: $OPENDESK_TOKEN" \
+          --header "Content-Type: application/json" \
+          --data "$CURL_DATA" \
+          "$GITLAB_API_URL/projects/$PROJECT_ID/repository/commits")
+
+        echo "GitLab API Response: $RESPONSE"
+
+        if echo "$RESPONSE" | jq -e '.id' > /dev/null; then
+          echo "Successfully updated or created branch $BRANCH_NAME"
+        else
+          echo "Error: $(echo "$RESPONSE" | jq -r '.message // "Unknown error"')"
+          exit 1
+        fi
+      else
+        echo "No changes detected in the specified files. Skipping commit."
+      fi
+
+      echo "Triggering pipeline deployment"
+      PIPELINE_RESPONSE=$(curl --silent --request POST \
+        --header "PRIVATE-TOKEN: $OPENDESK_TOKEN" \
+        --header "Content-Type: application/json" \
+        --data '{
+          "ref": "'"$BRANCH_NAME"'",
+          "variables": [
+            {"key": "CLUSTER", "value": "uv-gaia"},
+            {"key": "NAMESPACE", "value": "'"$OPENDESK_NAMESPACE"'"},
+            {"key": "ENV_STOP_BEFORE", "value": "no"},
+            {"key": "DEPLOY_ALL_COMPONENTS", "value": "no"},
+            {"key": "DEPLOY_SERVICES", "value": "yes"},
+            {"key": "DEPLOY_UMS", "value": "yes"},
+            {"key": "DEPLOY_PROVISIONING", "value": "no"},
+            {"key": "DEPLOY_COLLABORA", "value": "no"},
+            {"key": "DEPLOY_CRYPTPAD", "value": "no"},
+            {"key": "DEPLOY_ELEMENT", "value": "no"},
+            {"key": "DEPLOY_KEYCLOAK", "value": "no"},
+            {"key": "DEPLOY_OX", "value": "no"},
+            {"key": "DEPLOY_ICS", "value": "no"},
+            {"key": "DEPLOY_XWIKI", "value": "no"},
+            {"key": "DEPLOY_NEXTCLOUD", "value": "no"},
+            {"key": "DEPLOY_OPENPROJECT", "value": "no"},
+            {"key": "DEPLOY_JITSI", "value": "no"},
+            {"key": "RUN_TESTS", "value": "yes"}
+          ]
+        }' \
+        "$GITLAB_API_URL/projects/$PROJECT_ID/pipeline")
+    - |
+      echo "Pipeline API Response: $PIPELINE_RESPONSE"
+
+      if echo "$PIPELINE_RESPONSE" | jq -e '.id' > /dev/null; then
+        echo "Successfully triggered pipeline deployment"
+        PIPELINE_ID=$(echo "$PIPELINE_RESPONSE" | jq -r '.id')
+        echo "PIPELINE_ID=$PIPELINE_ID" >> ../opendesk_deploy.env
+        echo "PORTAL_BASE_URL=https://portal.${OPENDESK_NAMESPACE}.gaia.open-desk.cloud/univention/portal/" >> ../opendesk_deploy.env
+        echo "OPENDESK_NAMESPACE=${OPENDESK_NAMESPACE}" >> ../opendesk_deploy.env
+      else
+        echo "Error triggering pipeline: $(echo "$PIPELINE_RESPONSE" | jq -r '.message // "Unknown error"')"
+        exit 1
+      fi
+
+      echo "Commit URL: $(echo "$RESPONSE" | jq -r '.web_url // "N/A"')"
+      echo "Pipeline URL: $(echo "$PIPELINE_RESPONSE" | jq -r '.web_url // "N/A"')"
+      cat ../opendesk_deploy.env
+  artifacts:
+    paths:
+      - git_diff.txt
+      - opendesk_deploy.env
+    reports:
+      dotenv: opendesk_deploy.env
+  environment:
+    name: review-opendesk/$CI_COMMIT_REF_SLUG
+    url: $OPENDESK_PORTAL_BASE_URL
+    on_stop: opendesk-env-stop
+    auto_stop_in: 3 days
+  rules:
+    - if: $CI_COMMIT_REF_PROTECTED == "false"
+      when: on_success
+
+wait_for_opendesk_deployment:
+  stage: deploy
+  needs:
+    - job: update_opendesk_job
+      artifacts: true
+  image: alpine
+  variables:
+    GIT_STRATEGY: none
+    GITLAB_API_URL: "https://gitlab.opencode.de/api/v4"
+    PROJECT_ID: "1317"
+    RELEASE_NAME: "ums"
+  before_script:
+    - apk add --no-cache curl jq kubectl
+  script:
+    - |
+      if [ ! -f opendesk_deploy.env ]; then
+        echo "Error: opendesk_deploy.env file not found"
+        exit 1
+      fi
+      source opendesk_deploy.env
+      if [ -z "$PIPELINE_ID" ]; then
+        echo "Error: PIPELINE_ID not found in opendesk_deploy.env"
+        cat opendesk_deploy.env
+        exit 1
+      fi
+      echo "PIPELINE_ID: $PIPELINE_ID"
+      echo "Waiting for 'ums-deploy' job in pipeline $PIPELINE_ID to complete..."
+      MAX_ATTEMPTS=30
+      ATTEMPT=0
+      while [ $ATTEMPT -lt $MAX_ATTEMPTS ]; do
+        ATTEMPT=$((ATTEMPT+1))
+        echo "Attempt $ATTEMPT of $MAX_ATTEMPTS"
+        JOBS_RESPONSE=$(curl --silent --header "PRIVATE-TOKEN: $OPENDESK_TOKEN" \
+          "$GITLAB_API_URL/projects/$PROJECT_ID/pipelines/$PIPELINE_ID/jobs")
+        if [ -z "$JOBS_RESPONSE" ]; then
+          echo "Error: Empty response from GitLab API"
+          exit 1
+        fi
+        JOB_STATUS=$(echo "$JOBS_RESPONSE" | jq -r '.[] | select(.name == "ums-deploy") | .status')
+        echo "Current 'ums-deploy' job status: $JOB_STATUS"
+        if [ "$JOB_STATUS" = "success" ]; then
+          echo "'ums-deploy' job completed successfully. Waiting for 3 minutes to allow for provisioning..."
+          sleep 180
+          echo "Fetching passwords..."
+          echo "USER_PASSWORD=$(kubectl get cm $RELEASE_NAME-stack-data-swp-data -o jsonpath='{.data.dev-test-users\.yaml}' -n ${OPENDESK_NAMESPACE} | grep -A10 'username: "default.user"' | grep 'password:' | awk '{print $2}' | tr -d '"')" >> opendesk_deploy.env
+          echo "ADMIN_PASSWORD=$(kubectl get cm $RELEASE_NAME-stack-data-swp-data -o jsonpath='{.data.dev-test-users\.yaml}' -n ${OPENDESK_NAMESPACE} | grep -A10 'username: "default.admin"' | grep 'password:' | awk '{print $2}' | tr -d '"')" >> opendesk_deploy.env
+          echo "UDM_ADMIN_PASSWORD=$(kubectl get secret -n "${OPENDESK_NAMESPACE}" $RELEASE_NAME-udm-rest-api-credentials -o jsonpath="{.data['machine\.secret']}" | base64 -d)" >> opendesk_deploy.env
+          echo "Passwords fetched and stored in opendesk_deploy.env"
+          cat opendesk_deploy.env
+          break
+        elif [ "$JOB_STATUS" = "failed" ] || [ "$JOB_STATUS" = "canceled" ]; then
+          echo "'ums-deploy' job failed or was canceled. Aborting."
+          exit 1
+        elif [ -z "$JOB_STATUS" ]; then
+          echo "'ums-deploy' job not found or still running. Retrying..."
+        fi
+        if [ $ATTEMPT -eq $MAX_ATTEMPTS ]; then
+          echo "Max attempts reached. Aborting."
+          exit 1
+        fi
+        sleep 60
+      done
+  artifacts:
+    reports:
+      dotenv: opendesk_deploy.env
+  rules:
+    - if: $CI_COMMIT_REF_PROTECTED == "false"
+      when: on_success
+
+opendesk-e2e-tests:
+  stage: deploy
+  needs:
+    - job: update_opendesk_job
+    - job: wait_for_opendesk_deployment
+      artifacts: true
+  variables:
+    PORTAL_BASE_URL: $PORTAL_BASE_URL
+    USER_PASSWORD: $USER_PASSWORD
+    ADMIN_PASSWORD: $ADMIN_PASSWORD
+    UDM_ADMIN_PASSWORD: $UDM_ADMIN_PASSWORD
+  trigger:
+    project: "univention/customers/dataport/upx/e2e-tests"
+    strategy: depend
+  rules:
+    - if: $CI_COMMIT_REF_PROTECTED == "false"
+      when: on_success
+
+opendesk-env-stop:
+  stage: deploy
+  needs:
+    - job: update_opendesk_job
+      artifacts: true
+  image: "registry.opencode.de/bmi/opendesk/components/platform-development/images/helm:1.0.1@sha256:d38f41b88374e055332860018f2936db8807b763caf6089735db0484cbb2842a"
+  script:
+    - kubectl delete namespace "$OPENDESK_NAMESPACE" --wait
+  environment:
+    name: review-opendesk/$CI_COMMIT_REF_SLUG
+    action: stop
+  rules:
+    - if: $CI_COMMIT_REF_PROTECTED == "false"
+      when: manual
