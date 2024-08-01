@@ -286,9 +286,9 @@ nubusPortalFrontend: &nubusPortalFrontend
     host: "{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
     annotations:
       cert-manager.io/cluster-issuer: "{{ .Values.global.certManagerIssuer }}"
-nubusPortalListener: &nubusPortalListener
+nubusPortalConsumer: &nubusPortalConsumer
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
-  nameOverride: "portal-listener"
+  nameOverride: "portal-consumer"
   enabled: true
   resources: *nubusDevelopmentResources
   # Currently gets its configuration from UCR.
@@ -311,9 +311,12 @@ nubusPortalListener: &nubusPortalListener
   #     bindDn: cn=admin,dc=example,dc=org
   #     credentialSecret:
   #       key: password
-  portalListener:
+  portalConsumer:
     ldapHost: "{{ .Release.Name }}-ldap-server-primary"
     objectStorageBucket: "nubus"
+  provisioningApi:
+    auth:
+      username: "portal-consumer"
 nubusPortalServer: &nubusPortalServer
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   nameOverride: "portal-server"
@@ -379,6 +382,11 @@ nubusProvisioning: &nubusProvisioning
         password:
           secretKeyRef:
             key: password
+  udmTransformer:
+    ldap:
+      connection:
+        host: "{{ .Release.Name }}-ldap-server-primary"
+
 nubusUdmListener: &nubusUdmListener
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   nameOverride: "provisioning-listener"
@@ -550,7 +558,7 @@ nubusStackDataUms:
   nubusUmcServer: *nubusUmcServer
   nubusKeycloakExtensions: *nubusKeycloakExtensions
   nubusKeycloakBootstrap: *nubusKeycloakBootstrap
-  nubusPortalListener: *nubusPortalListener
+  nubusPortalConsumer: *nubusPortalConsumer
   nubusPortalServer: *nubusPortalServer
   nubusProvisioning: *nubusProvisioning
   nubusUdmListener: *nubusUdmListener
