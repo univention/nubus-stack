@@ -48,13 +48,13 @@ global:
         registry: "artifacts.software-univention.de"
         repository: "nubus/images/ox-extension"
         imagePullPolicy: "IfNotPresent"
-        tag: "0.10.0"
+        tag: "0.11.0"
     - name: "opendesk"
       image:
         registry: "registry.opencode.de"
         repository: "bmi/opendesk/components/platform-development/images/opendesk-nubus"
         imagePullPolicy: "IfNotPresent"
-        tag: "1.1.0"
+        tag: "1.2.0@sha256:88be278c7e3da0eeeef08510319c4997b8a62ecdb5e13491f8c4ca8d5640a258"
 
   # -- Allows to configure the system extensions to load. This is intended for
   # internal usage, prefer to use `global.extensions` for user configured
@@ -561,6 +561,45 @@ nubusStackDataUms:
     ldapMasterHost: '{{ include "nubusTemplates.connections.ldap.primary.host" . }}'
     ldapHost: '{{ include "nubusTemplates.connections.ldap.primary.host" . }}'
     installUmcPolicies: true
+
+  templateContext:
+    portaltileGroupUserStandard:
+      - 'cn=Domain Users,cn=groups,{{ include "stack-data-ums.ldapBaseDn" . }}'
+      - 'cn=Domain Users,cn=groups,{{ include "stack-data-ums.ldapBaseDn" . }}'
+    portaltileGroupUserAdmin:
+      - 'cn=Domain Admins,cn=groups,{{ include "stack-data-ums.ldapBaseDn" . }}'
+      - 'cn=Support,cn=groups,{{ include "stack-data-ums.ldapBaseDn" . }}'
+    portaltileGroupUserAll:
+      - 'cn=Domain Admins,cn=groups,{{ include "stack-data-ums.ldapBaseDn" . }}'
+      - 'cn=Domain Users,cn=groups,{{ include "stack-data-ums.ldapBaseDn" . }}'
+    portaltileGroupGroupware:
+      - 'cn=managed-by-attribute-Groupware,cn=groups,{{ include "stack-data-ums.ldapBaseDn" . }}'
+    portaltileGroupFileshare:
+      - 'cn=managed-by-attribute-Fileshare,cn=groups,{{ include "stack-data-ums.ldapBaseDn" . }}'
+    portaltileGroupManagementProject:
+      - 'cn=managed-by-attribute-Projectmanagement,cn=groups,{{ include "stack-data-ums.ldapBaseDn" . }}'
+    portaltileGroupManagementKnowledge:
+      - 'cn=managed-by-attribute-Knowledgemanagement,cn=groups,{{ include "stack-data-ums.ldapBaseDn" . }}'
+    portaltileGroupManagementLearn:
+      - 'cn=managed-by-attribute-Learnmanagement,cn=groups,{{ include "stack-data-ums.ldapBaseDn" . }}'
+    portaltileGroupLiveCollaboration:
+      - 'cn=managed-by-attribute-Livecollaboration,cn=groups,{{ include "stack-data-ums.ldapBaseDn" . }}'
+    portalGroupwareLinkBase: 'https://webmail.{{ include "stack-data-ums.domainName" . }}'
+    portalFileshareLinkBase: 'https://fs.{{ include "stack-data-ums.domainName" . }}'
+    portalRealtimeCollaborationLinkBase: 'https://chat.{{ include "stack-data-ums.domainName" . }}'
+    portalRealtimeVideoconferenceLinkBase: 'https://meet.{{ include "stack-data-ums.domainName" . }}'
+    portalManagementProjectLinkBase: 'https://project.{{ include "stack-data-ums.domainName" . }}'
+    portalManagementKnowledgeLinkBase: 'https://wiki.{{ include "stack-data-ums.domainName" . }}'
+    oxDefaultContext: "1"
+    # -- Portal title (Deutsch)
+    portalTitleDE: "nubus Portal"
+    # -- Portal title (English)
+    portalTitleEN: "nubus Portal"
+    ldapSearchUsers: [ ]
+    ldapSystemUsers:
+      - username: "readonly"
+        lastname: "LDAP-system-User"
+        password: '{{ include "nubusTemplates.credentials.ldap.users.readonly.password" . }}'
 
 # Allows for creation of additional secrets, for example containing credentials for third party services.
 extraSecrets: []

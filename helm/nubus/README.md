@@ -48,8 +48,8 @@ helm uninstall nubus
 | oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.27.2 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 0.28.3 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceListener(selfservice-listener) | 0.6.5 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataSwp(stack-data-swp) | 0.60.1 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.60.1 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataSwp(stack-data-swp) | 0.61.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.61.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 0.28.3 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmRestApi(udm-rest-api) | 0.19.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.26.0 |
@@ -176,7 +176,7 @@ null
       "imagePullPolicy": "IfNotPresent",
       "registry": "artifacts.software-univention.de",
       "repository": "nubus/images/ox-extension",
-      "tag": "0.10.0"
+      "tag": "0.11.0"
     },
     "name": "ox"
   },
@@ -185,7 +185,7 @@ null
       "imagePullPolicy": "IfNotPresent",
       "registry": "registry.opencode.de",
       "repository": "bmi/opendesk/components/platform-development/images/opendesk-nubus",
-      "tag": "1.1.0"
+      "tag": "1.2.0@sha256:88be278c7e3da0eeeef08510319c4997b8a62ecdb5e13491f8c4ca8d5640a258"
     },
     "name": "opendesk"
   }
@@ -4277,6 +4277,231 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 "{{ include \"nubusTemplates.connections.ldap.primary.host\" . }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.templateContext.ldapSearchUsers</td>
+			<td>list</td>
+			<td><pre lang="json">
+[]
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.templateContext.ldapSystemUsers[0].lastname</td>
+			<td>string</td>
+			<td><pre lang="json">
+"LDAP-system-User"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.templateContext.ldapSystemUsers[0].password</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ include \"nubusTemplates.credentials.ldap.users.readonly.password\" . }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.templateContext.ldapSystemUsers[0].username</td>
+			<td>string</td>
+			<td><pre lang="json">
+"readonly"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.templateContext.oxDefaultContext</td>
+			<td>string</td>
+			<td><pre lang="json">
+"1"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.templateContext.portalFileshareLinkBase</td>
+			<td>string</td>
+			<td><pre lang="json">
+"https://fs.{{ include \"stack-data-ums.domainName\" . }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.templateContext.portalGroupwareLinkBase</td>
+			<td>string</td>
+			<td><pre lang="json">
+"https://webmail.{{ include \"stack-data-ums.domainName\" . }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.templateContext.portalManagementKnowledgeLinkBase</td>
+			<td>string</td>
+			<td><pre lang="json">
+"https://wiki.{{ include \"stack-data-ums.domainName\" . }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.templateContext.portalManagementProjectLinkBase</td>
+			<td>string</td>
+			<td><pre lang="json">
+"https://project.{{ include \"stack-data-ums.domainName\" . }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.templateContext.portalRealtimeCollaborationLinkBase</td>
+			<td>string</td>
+			<td><pre lang="json">
+"https://chat.{{ include \"stack-data-ums.domainName\" . }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.templateContext.portalRealtimeVideoconferenceLinkBase</td>
+			<td>string</td>
+			<td><pre lang="json">
+"https://meet.{{ include \"stack-data-ums.domainName\" . }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.templateContext.portalTitleDE</td>
+			<td>string</td>
+			<td><pre lang="json">
+"nubus Portal"
+</pre>
+</td>
+			<td>Portal title (Deutsch)</td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.templateContext.portalTitleEN</td>
+			<td>string</td>
+			<td><pre lang="json">
+"nubus Portal"
+</pre>
+</td>
+			<td>Portal title (English)</td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.templateContext.portaltileGroupFileshare[0]</td>
+			<td>string</td>
+			<td><pre lang="json">
+"cn=managed-by-attribute-Fileshare,cn=groups,{{ include \"stack-data-ums.ldapBaseDn\" . }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.templateContext.portaltileGroupGroupware[0]</td>
+			<td>string</td>
+			<td><pre lang="json">
+"cn=managed-by-attribute-Groupware,cn=groups,{{ include \"stack-data-ums.ldapBaseDn\" . }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.templateContext.portaltileGroupLiveCollaboration[0]</td>
+			<td>string</td>
+			<td><pre lang="json">
+"cn=managed-by-attribute-Livecollaboration,cn=groups,{{ include \"stack-data-ums.ldapBaseDn\" . }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.templateContext.portaltileGroupManagementKnowledge[0]</td>
+			<td>string</td>
+			<td><pre lang="json">
+"cn=managed-by-attribute-Knowledgemanagement,cn=groups,{{ include \"stack-data-ums.ldapBaseDn\" . }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.templateContext.portaltileGroupManagementLearn[0]</td>
+			<td>string</td>
+			<td><pre lang="json">
+"cn=managed-by-attribute-Learnmanagement,cn=groups,{{ include \"stack-data-ums.ldapBaseDn\" . }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.templateContext.portaltileGroupManagementProject[0]</td>
+			<td>string</td>
+			<td><pre lang="json">
+"cn=managed-by-attribute-Projectmanagement,cn=groups,{{ include \"stack-data-ums.ldapBaseDn\" . }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.templateContext.portaltileGroupUserAdmin[0]</td>
+			<td>string</td>
+			<td><pre lang="json">
+"cn=Domain Admins,cn=groups,{{ include \"stack-data-ums.ldapBaseDn\" . }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.templateContext.portaltileGroupUserAdmin[1]</td>
+			<td>string</td>
+			<td><pre lang="json">
+"cn=Support,cn=groups,{{ include \"stack-data-ums.ldapBaseDn\" . }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.templateContext.portaltileGroupUserAll[0]</td>
+			<td>string</td>
+			<td><pre lang="json">
+"cn=Domain Admins,cn=groups,{{ include \"stack-data-ums.ldapBaseDn\" . }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.templateContext.portaltileGroupUserAll[1]</td>
+			<td>string</td>
+			<td><pre lang="json">
+"cn=Domain Users,cn=groups,{{ include \"stack-data-ums.ldapBaseDn\" . }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.templateContext.portaltileGroupUserStandard[0]</td>
+			<td>string</td>
+			<td><pre lang="json">
+"cn=Domain Users,cn=groups,{{ include \"stack-data-ums.ldapBaseDn\" . }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.templateContext.portaltileGroupUserStandard[1]</td>
+			<td>string</td>
+			<td><pre lang="json">
+"cn=Domain Users,cn=groups,{{ include \"stack-data-ums.ldapBaseDn\" . }}"
 </pre>
 </td>
 			<td></td>
