@@ -64,7 +64,7 @@ deploy-gaia:
     - echo "USER_PASSWORD=$(kubectl get secret -n "${DEPLOY_NAMESPACE}" nubus-nubus-credentials -o jsonpath='{.data.user_password}' | base64 -d)" >> deploy.env
     - echo "ADMIN_PASSWORD=$(kubectl get secret -n "${DEPLOY_NAMESPACE}" nubus-nubus-credentials -o jsonpath='{.data.admin_password}' | base64 -d)" >> deploy.env
     - echo "UDM_ADMIN_PASSWORD=$(kubectl get secret -n "${DEPLOY_NAMESPACE}" nubus-nubus-credentials -o jsonpath='{.data.udm_admin_password}' | base64 -d)" >> deploy.env
-    - echo "UDM_ADMIN_PASSWORD=$(kubectl get secret -n "${DEPLOY_NAMESPACE}" nubus-udm-rest-api-credentials -o jsonpath="{.data['machine\.secret']}" | base64 -d | base64 -d)" >> deploy.env
+    - echo "UDM_ADMIN_PASSWORD=$(kubectl get secret -n "${DEPLOY_NAMESPACE}" nubus-udm-rest-api-credentials -o jsonpath="{.data['machine\.secret']}" | base64 -d)" >> deploy.env
   environment:
     name: review/$CI_COMMIT_REF_SLUG
     url: https://${DEPLOY_SUBDOMAIN}.portal.review.gaia.open-desk.cloud
