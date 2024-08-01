@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.29.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.29.0...v0.29.1) (2024-08-01)
+
+
+### Bug Fixes
+
+* **keycloak-extensions:** mark emails as sent and better logging ([dec9b0a](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/dec9b0a4e19d26bff93a6cd6704f2688c018242d))
+
 ## [0.29.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.28.1...v0.29.0) (2024-07-31)
 
 
