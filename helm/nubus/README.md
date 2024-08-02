@@ -47,8 +47,8 @@ helm uninstall nubus
 | oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.27.2 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 0.28.3 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceListener(selfservice-listener) | 0.6.5 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataSwp(stack-data-swp) | 0.58.1 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.58.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataSwp(stack-data-swp) | 0.59.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.59.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 0.28.3 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmRestApi(udm-rest-api) | 0.19.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.24.1 |
@@ -179,6 +179,15 @@ null
       "tag": "0.10.0"
     },
     "name": "ox"
+  },
+  {
+    "image": {
+      "imagePullPolicy": "IfNotPresent",
+      "registry": "registry.opencode.de",
+      "repository": "bmi/opendesk/components/platform-development/images/opendesk-nubus",
+      "tag": "1.0.1"
+    },
+    "name": "opendesk"
   }
 ]
 </pre>
@@ -4039,33 +4048,6 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.extraVolumeMounts[4].mountPath</td>
-			<td>string</td>
-			<td><pre lang="json">
-"/usr/share/univention-management-console/modules/udm-portals-announcement.xml"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.extraVolumeMounts[4].name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"announcements-customization"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.extraVolumeMounts[4].subPath</td>
-			<td>string</td>
-			<td><pre lang="json">
-"udm-portals-announcement.xml"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusStackDataUms.nubusUmcServer.extraVolumes[0].name</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -4124,33 +4106,6 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 "attribute-to-group-mapper-hook"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.extraVolumes[3].configMap.defaultMode</td>
-			<td>int</td>
-			<td><pre lang="json">
-292
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.extraVolumes[3].configMap.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-stack-data-swp-umc-server-announcements"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.extraVolumes[3].name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"announcements-customization"
 </pre>
 </td>
 			<td></td>
@@ -4948,33 +4903,6 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusUmcServer.extraVolumeMounts[4].mountPath</td>
-			<td>string</td>
-			<td><pre lang="json">
-"/usr/share/univention-management-console/modules/udm-portals-announcement.xml"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUmcServer.extraVolumeMounts[4].name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"announcements-customization"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUmcServer.extraVolumeMounts[4].subPath</td>
-			<td>string</td>
-			<td><pre lang="json">
-"udm-portals-announcement.xml"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusUmcServer.extraVolumes[0].name</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -5033,33 +4961,6 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 "attribute-to-group-mapper-hook"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUmcServer.extraVolumes[3].configMap.defaultMode</td>
-			<td>int</td>
-			<td><pre lang="json">
-292
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUmcServer.extraVolumes[3].configMap.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-stack-data-swp-umc-server-announcements"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUmcServer.extraVolumes[3].name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"announcements-customization"
 </pre>
 </td>
 			<td></td>

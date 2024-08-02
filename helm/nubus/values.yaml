@@ -49,6 +49,12 @@ global:
         repository: "nubus/images/ox-extension"
         imagePullPolicy: "IfNotPresent"
         tag: "0.10.0"
+    - name: "opendesk"
+      image:
+        registry: "registry.opencode.de"
+        repository: "bmi/opendesk/components/platform-development/images/opendesk-nubus"
+        imagePullPolicy: "IfNotPresent"
+        tag: "1.0.1"
 
   # -- Allows to configure the system extensions to load. This is intended for
   # internal usage, prefer to use `global.extensions` for user configured
@@ -506,10 +512,6 @@ nubusUmcServer: &nubusUmcServer
     - name: "attribute-to-group-mapper-hook"
       configMap:
         name: "{{ .Release.Name }}-stack-data-swp-attribute-to-group-mapper-hook"
-    - name: "announcements-customization"
-      configMap:
-        name: "{{ .Release.Name }}-stack-data-swp-umc-server-announcements"
-        defaultMode: 0444
   extraVolumeMounts:
     - name: "certificates"
       mountPath: "/var/secrets/ssl"
@@ -522,9 +524,6 @@ nubusUmcServer: &nubusUmcServer
     - name: "attribute-to-group-mapper-hook"
       mountPath: "/usr/share/attribute-to-group-mapper/flag_to_group_mapping.json"
       subPath: "flag_to_group_mapping.json"
-    - name: "announcements-customization"
-      mountPath: "/usr/share/univention-management-console/modules/udm-portals-announcement.xml"
-      subPath: "udm-portals-announcement.xml"
 nubusKeycloakBootstrap: &nubusKeycloakBootstrap
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   nameOverride: "keycloak-bootstrap"
