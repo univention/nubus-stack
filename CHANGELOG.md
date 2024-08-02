@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.30.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.29.1...v0.30.0) (2024-08-02)
+
+
+### Features
+
+* migrate announcements to external extension ([370bb63](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/370bb63abcbd04d363fd3b14f3d759dfc8d9e7ed))
+
 ## [0.29.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.29.0...v0.29.1) (2024-08-01)
 
 
