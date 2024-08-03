@@ -31,4 +31,7 @@ nubusStackDataUms:
 nubusKeycloakExtensions:
   handler:
     appConfig:
+      # No email configured on CI deployments
       newDeviceLoginNotificationEnable: "False"
+      # We only cover tests for IP block in the CI
+      deviceProtectionEnable: "False"
