@@ -36,7 +36,7 @@ helm uninstall nubus
 | Repository | Name | Version |
 |------------|------|---------|
 | oci://artifacts.software-univention.de/nubus/charts | nubusGuardian(guardian) | 0.9.1 |
-| oci://artifacts.software-univention.de/nubus/charts | keycloak(keycloak) | 0.1.0 |
+| oci://artifacts.software-univention.de/nubus/charts | keycloak(keycloak) | 0.4.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakBootstrap(keycloak-bootstrap) | 0.1.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakExtensions(keycloak-extensions) | 0.9.1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusLdapNotifier(ldap-notifier) | 0.15.2 |
@@ -416,6 +416,15 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 ""
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>keycloak.replicaCount</td>
+			<td>int</td>
+			<td><pre lang="json">
+2
 </pre>
 </td>
 			<td></td>

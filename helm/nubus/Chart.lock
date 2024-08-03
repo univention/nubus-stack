@@ -7,7 +7,7 @@ dependencies:
   version: 12.12.10
 - name: minio
   repository: oci://registry-1.docker.io/bitnamicharts
-  version: 14.6.31
+  version: 14.6.32
 - name: guardian
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.9.1
@@ -40,7 +40,7 @@ dependencies:
   version: 0.28.3
 - name: keycloak
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.1.0
+  version: 0.4.0
 - name: keycloak-extensions
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.9.1
@@ -62,5 +62,5 @@ dependencies:
 - name: umc-server
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.24.1
-digest: sha256:99f1dc1cda61697a365f61c1d0239e2d7b36b6b13b59d7fdc7bfebe009c7f3c7
-generated: "2024-08-02T19:27:42.459684297+02:00"
+digest: sha256:37c1a970a0ce1e606adf6da12db6585dc4513f3c62427ed46085036e8e5aab90
+generated: "2024-08-04T11:28:59.992578373+02:00"

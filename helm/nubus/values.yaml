@@ -186,6 +186,7 @@ keycloak:
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   enabled: true
   resources: *nubusDevelopmentResources
+  replicaCount: 2
   postgresql:
     connection:
       host: ""
