@@ -47,8 +47,8 @@ helm uninstall nubus
 | oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.27.2 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 0.28.3 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceListener(selfservice-listener) | 0.6.5 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataSwp(stack-data-swp) | 0.59.1 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.59.1 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataSwp(stack-data-swp) | 0.60.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.60.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 0.28.3 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmRestApi(udm-rest-api) | 0.19.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.24.1 |
@@ -185,7 +185,7 @@ null
       "imagePullPolicy": "IfNotPresent",
       "registry": "registry.opencode.de",
       "repository": "bmi/opendesk/components/platform-development/images/opendesk-nubus",
-      "tag": "1.0.1"
+      "tag": "1.1.0"
     },
     "name": "opendesk"
   }
@@ -3769,78 +3769,6 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataUms.nubusUdmRestApi.extraVolumeMounts[0].mountPath</td>
-			<td>string</td>
-			<td><pre lang="json">
-"/usr/lib/python3/dist-packages/univention/admin/hooks.d/AttributeToGroupMapper.py"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUdmRestApi.extraVolumeMounts[0].name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"attribute-to-group-mapper-hook"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUdmRestApi.extraVolumeMounts[0].subPath</td>
-			<td>string</td>
-			<td><pre lang="json">
-"AttributeToGroupMapper.py"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUdmRestApi.extraVolumeMounts[1].mountPath</td>
-			<td>string</td>
-			<td><pre lang="json">
-"/usr/share/attribute-to-group-mapper/flag_to_group_mapping.json"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUdmRestApi.extraVolumeMounts[1].name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"attribute-to-group-mapper-hook"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUdmRestApi.extraVolumeMounts[1].subPath</td>
-			<td>string</td>
-			<td><pre lang="json">
-"flag_to_group_mapping.json"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUdmRestApi.extraVolumes[0].configMap.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-stack-data-swp-attribute-to-group-mapper-hook"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUdmRestApi.extraVolumes[0].name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"attribute-to-group-mapper-hook"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusStackDataUms.nubusUdmRestApi.ingress.annotations."cert-manager.io/cluster-issuer"</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -4003,60 +3931,6 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.extraVolumeMounts[2].mountPath</td>
-			<td>string</td>
-			<td><pre lang="json">
-"/usr/lib/python3/dist-packages/univention/admin/hooks.d/AttributeToGroupMapper.py"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.extraVolumeMounts[2].name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"attribute-to-group-mapper-hook"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.extraVolumeMounts[2].subPath</td>
-			<td>string</td>
-			<td><pre lang="json">
-"AttributeToGroupMapper.py"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.extraVolumeMounts[3].mountPath</td>
-			<td>string</td>
-			<td><pre lang="json">
-"/usr/share/attribute-to-group-mapper/flag_to_group_mapping.json"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.extraVolumeMounts[3].name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"attribute-to-group-mapper-hook"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.extraVolumeMounts[3].subPath</td>
-			<td>string</td>
-			<td><pre lang="json">
-"flag_to_group_mapping.json"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusStackDataUms.nubusUmcServer.extraVolumes[0].name</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -4097,24 +3971,6 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 "entrypoint-swp-patches"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.extraVolumes[2].configMap.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-stack-data-swp-attribute-to-group-mapper-hook"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.extraVolumes[2].name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"attribute-to-group-mapper-hook"
 </pre>
 </td>
 			<td></td>
@@ -4543,78 +4399,6 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusUdmRestApi.extraVolumeMounts[0].mountPath</td>
-			<td>string</td>
-			<td><pre lang="json">
-"/usr/lib/python3/dist-packages/univention/admin/hooks.d/AttributeToGroupMapper.py"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUdmRestApi.extraVolumeMounts[0].name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"attribute-to-group-mapper-hook"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUdmRestApi.extraVolumeMounts[0].subPath</td>
-			<td>string</td>
-			<td><pre lang="json">
-"AttributeToGroupMapper.py"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUdmRestApi.extraVolumeMounts[1].mountPath</td>
-			<td>string</td>
-			<td><pre lang="json">
-"/usr/share/attribute-to-group-mapper/flag_to_group_mapping.json"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUdmRestApi.extraVolumeMounts[1].name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"attribute-to-group-mapper-hook"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUdmRestApi.extraVolumeMounts[1].subPath</td>
-			<td>string</td>
-			<td><pre lang="json">
-"flag_to_group_mapping.json"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUdmRestApi.extraVolumes[0].configMap.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-stack-data-swp-attribute-to-group-mapper-hook"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUdmRestApi.extraVolumes[0].name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"attribute-to-group-mapper-hook"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusUdmRestApi.ingress.annotations."cert-manager.io/cluster-issuer"</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -4858,60 +4642,6 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusUmcServer.extraVolumeMounts[2].mountPath</td>
-			<td>string</td>
-			<td><pre lang="json">
-"/usr/lib/python3/dist-packages/univention/admin/hooks.d/AttributeToGroupMapper.py"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUmcServer.extraVolumeMounts[2].name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"attribute-to-group-mapper-hook"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUmcServer.extraVolumeMounts[2].subPath</td>
-			<td>string</td>
-			<td><pre lang="json">
-"AttributeToGroupMapper.py"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUmcServer.extraVolumeMounts[3].mountPath</td>
-			<td>string</td>
-			<td><pre lang="json">
-"/usr/share/attribute-to-group-mapper/flag_to_group_mapping.json"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUmcServer.extraVolumeMounts[3].name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"attribute-to-group-mapper-hook"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUmcServer.extraVolumeMounts[3].subPath</td>
-			<td>string</td>
-			<td><pre lang="json">
-"flag_to_group_mapping.json"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusUmcServer.extraVolumes[0].name</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -4952,24 +4682,6 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 "entrypoint-swp-patches"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUmcServer.extraVolumes[2].configMap.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-stack-data-swp-attribute-to-group-mapper-hook"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUmcServer.extraVolumes[2].name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"attribute-to-group-mapper-hook"
 </pre>
 </td>
 			<td></td>

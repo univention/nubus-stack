@@ -54,7 +54,7 @@ global:
         registry: "registry.opencode.de"
         repository: "bmi/opendesk/components/platform-development/images/opendesk-nubus"
         imagePullPolicy: "IfNotPresent"
-        tag: "1.0.1"
+        tag: "1.1.0"
 
   # -- Allows to configure the system extensions to load. This is intended for
   # internal usage, prefer to use `global.extensions` for user configured
@@ -443,17 +443,6 @@ nubusUdmRestApi: &nubusUdmRestApi
       bindDn: cn=admin,dc=example,dc=org
       credentialSecret:
         key: password
-  extraVolumes:
-    - name: "attribute-to-group-mapper-hook"
-      configMap:
-        name: "{{ .Release.Name }}-stack-data-swp-attribute-to-group-mapper-hook"
-  extraVolumeMounts:
-    - name: "attribute-to-group-mapper-hook"
-      mountPath: "/usr/lib/python3/dist-packages/univention/admin/hooks.d/AttributeToGroupMapper.py"
-      subPath: "AttributeToGroupMapper.py"
-    - name: "attribute-to-group-mapper-hook"
-      mountPath: "/usr/share/attribute-to-group-mapper/flag_to_group_mapping.json"
-      subPath: "flag_to_group_mapping.json"
 nubusUmcGateway: &nubusUmcGateway
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   nameOverride: "umc-gateway"
@@ -510,21 +499,12 @@ nubusUmcServer: &nubusUmcServer
       configMap:
         name: "{{ .Release.Name }}-stack-data-swp-umc-server-entrypoint"
         defaultMode: 0555
-    - name: "attribute-to-group-mapper-hook"
-      configMap:
-        name: "{{ .Release.Name }}-stack-data-swp-attribute-to-group-mapper-hook"
   extraVolumeMounts:
     - name: "certificates"
       mountPath: "/var/secrets/ssl"
     - name: "entrypoint-swp-patches"
       mountPath: "/entrypoint.d/90-customization.sh"
       subPath: "90-customization.sh"
-    - name: "attribute-to-group-mapper-hook"
-      mountPath: "/usr/lib/python3/dist-packages/univention/admin/hooks.d/AttributeToGroupMapper.py"
-      subPath: "AttributeToGroupMapper.py"
-    - name: "attribute-to-group-mapper-hook"
-      mountPath: "/usr/share/attribute-to-group-mapper/flag_to_group_mapping.json"
-      subPath: "flag_to_group_mapping.json"
 nubusKeycloakBootstrap: &nubusKeycloakBootstrap
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   nameOverride: "keycloak-bootstrap"
