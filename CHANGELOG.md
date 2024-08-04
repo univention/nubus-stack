@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.31.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.30.0...v0.31.0) (2024-08-04)
+
+
+### Features
+
+* high-availability Keycloak ([cd16f24](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/cd16f2449f11b93b37d8611e756aed6c6e13843a))
+
 ## [0.30.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.29.1...v0.30.0) (2024-08-02)
 
 
