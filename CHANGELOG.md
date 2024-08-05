@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.32.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.32.0...v0.32.1) (2024-08-05)
+
+
+### Bug Fixes
+
+* **keycloak:** missing proxy configuration ([03bcba0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/03bcba017f2d031ce6c19e979467a489502f76af))
+* **udm-rest-api:** Force udm-rest-api cache reload workaround from stack-data ([be08b85](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/be08b8561f2b74ea7e71ca36c00e04026a9ea8a2))
+
 ## [0.32.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.31.0...v0.32.0) (2024-08-05)
 
 
