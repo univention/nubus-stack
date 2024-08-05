@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.33.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.32.1...v0.33.0) (2024-08-05)
+
+
+### Features
+
+* migrate attribute-to-group mapper to external extension ([a2e5ec4](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/a2e5ec48c8881622d80e12b9546e5393c7257bdb))
+
 ## [0.32.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.32.0...v0.32.1) (2024-08-05)
 
 
