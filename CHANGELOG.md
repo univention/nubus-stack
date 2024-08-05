@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.32.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.31.0...v0.32.0) (2024-08-05)
+
+
+### Features
+
+* **keycloak-extensions:** proxy scaling ([e2a150d](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/e2a150d6f8b6025ba1b28b3090045f729d414117))
+
 ## [0.31.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.30.0...v0.31.0) (2024-08-04)
 
 
