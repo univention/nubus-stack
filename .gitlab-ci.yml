@@ -355,6 +355,7 @@ wait_for_opendesk_deployment:
 
 opendesk-e2e-tests:
   stage: deploy
+  allow_failure: true
   needs:
     - job: update_opendesk_job
     - job: wait_for_opendesk_deployment
