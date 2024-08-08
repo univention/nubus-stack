@@ -224,7 +224,7 @@ def main(new_version):
 
         # Download and extract charts
         old_tgz = download_chart(
-            "registry.opencode.de/bmi/opendesk/components/supplier/univention/charts-mirror",
+            "artifacts.software-univention.de/nubus/charts",
             "nubus",
             old_version,
             old_chart_dir,
