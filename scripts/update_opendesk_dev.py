@@ -211,7 +211,7 @@ def main(new_version):
         custom_values_file = create_custom_values_file(temp_dir)
 
         # get the current nubus value from the charts.yaml
-        pattern = f'nubus:(?:\s*#[^\n]*\n)*\s*(?:.*\n)*?\s*version:\s*"?(\d+\.\d+\.\d+)"?'
+        pattern = f'nubus:(?:\s*#[^\n]*\n)*\s*(?:.*\n)*?\s*version:\s*"?(\d+\.\d+\.\d+(-[a-z0-9-]+)?)"?'
         with open("helmfile/environments/default/charts.yaml", "r") as f:
             content = f.read()
         match = re.search(pattern, content)
