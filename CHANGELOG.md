@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.33.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.33.0...v0.33.1) (2024-08-09)
+
+
+### Bug Fixes
+
+* drop unused menu patches ([5e7695f](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/5e7695ffb30de4bb5edc996d3c7e9d304c5b585f))
+
 ## [0.33.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.32.1...v0.33.0) (2024-08-05)
 
 
