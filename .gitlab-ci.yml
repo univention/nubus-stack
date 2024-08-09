@@ -117,6 +117,7 @@ stop-deployment:
 
 update_opendesk_job:
   stage: deploy
+  allow_failure: true
   image: python:3.11-slim
   variables:
     START_BRANCH: "develop"
@@ -286,6 +287,7 @@ update_opendesk_job:
 
 wait_for_opendesk_deployment:
   stage: deploy
+  allow_failure: true
   needs:
     - job: update_opendesk_job
       artifacts: true
