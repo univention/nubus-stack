@@ -224,7 +224,7 @@ def main(new_version):
 
         # Download and extract charts
         old_tgz = download_chart(
-            "artifacts.software-univention.de/nubus/charts",
+            "artifacts.software-univention.de/nubus-dev/charts",
             "nubus",
             old_version,
             old_chart_dir,
