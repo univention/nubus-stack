@@ -377,9 +377,40 @@ opendesk-env-stop:
   needs:
     - job: update_opendesk_job
       artifacts: true
-  image: "registry.opencode.de/bmi/opendesk/components/platform-development/images/helm:1.0.1@sha256:d38f41b88374e055332860018f2936db8807b763caf6089735db0484cbb2842a"
+  image: alpine:3.18
+  variables:
+    GITLAB_API_URL: "https://gitlab.opencode.de/api/v4"
+    PROJECT_ID: "1317"
+  before_script:
+    - apk add --no-cache curl jq
   script:
-    - kubectl delete namespace "$OPENDESK_NAMESPACE" --wait
+    - |
+      if [ ! -f opendesk_deploy.env ]; then
+        echo "Error: opendesk_deploy.env file not found"
+        exit 1
+      fi
+      source opendesk_deploy.env
+      JOBS_RESPONSE=$(curl --silent --header "PRIVATE-TOKEN: $OPENDESK_TOKEN" \
+        "$GITLAB_API_URL/projects/$PROJECT_ID/pipelines/$PIPELINE_ID/jobs")
+
+      JOB_ID=$(echo "$JOBS_RESPONSE" | jq -r '.[] | select(.name == "env-stop") | .id')
+
+      echo "Triggering 'env-stop' job (id: $JOB_ID)"
+      JOB_RESPONSE=$(curl --silent --request POST \
+        --header "PRIVATE-TOKEN: $OPENDESK_TOKEN" \
+        "$GITLAB_API_URL/projects/$PROJECT_ID/jobs/$JOB_ID/play")
+
+      echo "Job URL: $(echo "$JOB_RESPONSE" | jq -r '.web_url // "N/A"')"
+
+      JOB_STATUS=$(echo "$JOB_RESPONSE" | jq -r '.status')
+
+      if [ "$JOB_STATUS" = "pending" ]; then
+        echo "Successfully triggered 'env-stop' job"
+      else
+        echo "Error triggering 'env-stop' job: $(echo "$JOB_RESPONSE" | jq -r .)"
+        exit 1
+      fi
+
   environment:
     name: review-opendesk/$CI_COMMIT_REF_SLUG
     action: stop
