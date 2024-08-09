@@ -348,6 +348,10 @@ nubusProvisioning: &nubusProvisioning
     prefill: *nubusDevelopmentResources
     api: *nubusDevelopmentResources
   nats:
+    config:
+      cluster:
+        # TODO: Set back to the default of 3 after nats clustering is solved.
+        replicas: 1
     global:
       imageRegistry: "docker.io"
     resources: *nubusDevelopmentResources

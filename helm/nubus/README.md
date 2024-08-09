@@ -2131,6 +2131,15 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusProvisioning.nats.config.cluster.replicas</td>
+			<td>int</td>
+			<td><pre lang="json">
+1
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusProvisioning.nats.global.imageRegistry</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -3206,6 +3215,15 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 "provisioning"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusProvisioning.nats.config.cluster.replicas</td>
+			<td>int</td>
+			<td><pre lang="json">
+1
 </pre>
 </td>
 			<td></td>
