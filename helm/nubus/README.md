@@ -35,7 +35,7 @@ helm uninstall nubus
 
 | Repository | Name | Version |
 |------------|------|---------|
-| oci://artifacts.software-univention.de/nubus/charts | nubusGuardian(guardian) | 0.9.1 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusGuardian(guardian) | 0.10.0 |
 | oci://artifacts.software-univention.de/nubus/charts | keycloak(keycloak) | 0.4.1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakBootstrap(keycloak-bootstrap) | 0.1.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakExtensions(keycloak-extensions) | 0.9.4 |
@@ -988,19 +988,19 @@ false
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusGuardian.provisioning.config.keycloak.admin</td>
+			<td>nubusGuardian.provisioning.config.keycloak.credentialSecret.key</td>
 			<td>string</td>
 			<td><pre lang="json">
-"kcadmin"
+"adminPassword"
 </pre>
 </td>
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusGuardian.provisioning.config.keycloak.credentialSecret.key</td>
+			<td>nubusGuardian.provisioning.config.keycloak.username</td>
 			<td>string</td>
 			<td><pre lang="json">
-"adminPassword"
+"kcadmin"
 </pre>
 </td>
 			<td></td>

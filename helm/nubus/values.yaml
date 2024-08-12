@@ -219,7 +219,7 @@ nubusGuardian: &nubusGuardian
     enabled: true
     config:
       keycloak:
-        admin: "kcadmin"
+        username: "kcadmin"
         credentialSecret:
           key: adminPassword
       managementApi:
