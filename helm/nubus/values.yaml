@@ -455,6 +455,8 @@ nubusUmcGateway: &nubusUmcGateway
 nubusUmcServer: &nubusUmcServer
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   nameOverride: "umc-server"
+  # TODO: Set back to 1
+  replicaCount: 2
   enabled: true
   ingress:
     host: "{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"

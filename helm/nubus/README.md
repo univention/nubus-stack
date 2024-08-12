@@ -35,6 +35,7 @@ helm uninstall nubus
 
 | Repository | Name | Version |
 |------------|------|---------|
+| oci://artifacts.software-univention.de/nubus-dev/charts | nubusUmcServer(umc-server) | 0.26.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusGuardian(guardian) | 0.10.0 |
 | oci://artifacts.software-univention.de/nubus/charts | keycloak(keycloak) | 0.4.1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakBootstrap(keycloak-bootstrap) | 0.1.0 |
@@ -51,8 +52,7 @@ helm uninstall nubus
 | oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.60.1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 0.28.3 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmRestApi(udm-rest-api) | 0.19.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.24.1 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUmcServer(umc-server) | 0.24.1 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.26.0 |
 | oci://registry-1.docker.io/bitnamicharts | common | ^2.x.x |
 | oci://registry-1.docker.io/bitnamicharts | minio | ^14.6.19 |
 | oci://registry-1.docker.io/bitnamicharts | postgresql | ^12.x.x |
@@ -4147,6 +4147,15 @@ false
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusStackDataUms.nubusUmcServer.replicaCount</td>
+			<td>int</td>
+			<td><pre lang="json">
+2
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusStackDataUms.nubusUmcServer.resources.limits.cpu</td>
 			<td>int</td>
 			<td><pre lang="json">
@@ -4853,6 +4862,15 @@ false
 			<td>string</td>
 			<td><pre lang="json">
 ""
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusUmcServer.replicaCount</td>
+			<td>int</td>
+			<td><pre lang="json">
+2
 </pre>
 </td>
 			<td></td>
