@@ -125,6 +125,7 @@ update_opendesk_job:
     GITLAB_API_URL: "https://gitlab.opencode.de/api/v4"
     OPENDESK_NAMESPACE: "uv-ci-${CI_COMMIT_REF_SLUG}"
   before_script:
+    - export OPENDESK_NAMESPACE=${OPENDESK_NAMESPACE::30} # truncate (max certname length is 64 chars)
     - cd $CI_PROJECT_DIR
     - apt-get update && apt-get install -y git curl jq
     - git config --global user.email "ci@univention.de"
