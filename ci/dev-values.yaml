@@ -3,32 +3,28 @@
 ---
 
 global:
-  configMapUcrForced: "ci-dev-ucr"
-
-ucrForcedValues: |-
-  directory/manager/rest/show-tracebacks: true
-  umc/http/show_tracebacks: true
-  password/quality/length/min: 8
-  password/quality/required/chars:
-  password/quality/forbidden/chars:
-  password/quality/credit/digits: 0
-  password/quality/credit/lower: 0
-  password/quality/credit/other: 0
-  password/quality/credit/upper: 0
-  password/quality/forbidden/chars: 
-  password/quality/length/min: 8
-  password/quality/mspolicy: false
-  password/quality/required/chars: 
-  umc/http/show_tracebacks: true
-  # TODO: Should be set by stack-data-ums
-  umc/self-service/passwordreset/email/server/port: 25
-  umc/self-service/passwordreset/email/server/starttls: false
-  umc/self-service/passwordreset/email/server/user: 
-  umc/self-service/passwordreset/email/server: maildev-smtp
-  # TODO: Should be set by some other place already?
-  umc/self-service/passwordreset/email/text_file: /usr/share/univention-self-service/email_bodies/passwordreset_email_body.txt
-  # TODO: Remove quotes in "stack-data-ums"
-  umc/self-service/passwordreset/email/sender_address: Password Reset Service <noreply@{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}>
+  configUcr:
+    directory:
+      manager:
+        rest:
+          show-tracebacks: true
+    umc:
+      http:
+        show_tracebacks: true
+    password:
+      quality:
+        length:
+          min: 8
+        required:
+          chars: ""
+        forbidden:
+          chars: ""
+        credit:
+          digits: 0
+          upper: 0
+          other: 0
+          lower: 0
+        mspolicy: false
 
 # This makes the entry for the UMC login visible again
 

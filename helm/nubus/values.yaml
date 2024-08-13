@@ -34,9 +34,9 @@ global:
   keycloak:
     realm: "nubus"
 
-  configMapUcrDefaults: "{{ .Release.Name }}-stack-data-ums-ucr"
-  configMapUcr: "{{ .Release.Name }}-stack-data-swp-ucr"
-  configMapUcrForced: null
+  configMapUcr: "{{ .Release.Name }}-stack-data-ums-ucr"
+
+  configUcr: {}
 
   # -- Extensions to load. Add entries to load additional extensions into Nubus.
   # Interim this value is pre-configured with the typical extensions loaded in
@@ -75,12 +75,6 @@ global:
     defaultUsers:
       defaultAdminPassword: ""
       defaultUserPassword: ""
-
-# -- Load data to override ucr variables.
-# example:
-# ucrForcedValues: |
-#   portal/auth-mode: ucs
-ucrForcedValues: {}
 
 # -- Additional custom annotations to add to all objects deployed directly by the umbrella chart.
 additionalAnnotations: {}

@@ -13,16 +13,16 @@ dependencies:
   version: 0.13.0
 - name: ldap-notifier
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.22.1
+  version: 0.23.0
 - name: ldap-server
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.22.1
+  version: 0.23.0
 - name: notifications-api
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.33.0
+  version: 0.35.0
 - name: portal-frontend
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.33.0
+  version: 0.35.0
 - name: portal-listener
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.24.2
@@ -30,8 +30,8 @@ dependencies:
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.32.0
 - name: portal-server
-  repository: oci://artifacts.software-univention.de/nubus-dev/charts
-  version: 0.33.1
+  repository: oci://artifacts.software-univention.de/nubus/charts
+  version: 0.35.0
 - name: selfservice-listener
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.6.5
@@ -40,10 +40,10 @@ dependencies:
   version: 0.7.1
 - name: provisioning
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.37.0
+  version: 0.38.0
 - name: udm-listener
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.36.0
+  version: 0.38.0
 - name: keycloak
   repository: oci://artifacts.software-univention.de/nubus-dev/charts
   version: 0.5.1
@@ -55,18 +55,18 @@ dependencies:
   version: 0.2.0
 - name: stack-data-swp
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.63.0
+  version: 0.64.1
 - name: stack-data-ums
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.63.0
+  version: 0.64.1
 - name: udm-rest-api
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.21.0
+  version: 0.22.0
 - name: umc-gateway
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.27.2
+  version: 0.28.0
 - name: umc-server
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.27.2
-digest: sha256:cb2cc801715a068fd9926c17ba1a2c2d34974d4d2a744e2ae6425eb5bdf7e7f6
-generated: "2024-08-30T13:09:07.083624742+02:00"
+  version: 0.28.0
+digest: sha256:e75fd5fb21e9403a9ceded6cabadddd823b806e993e1062f8452806bec789e69
+generated: "2024-08-30T15:51:18.953017077+02:00"

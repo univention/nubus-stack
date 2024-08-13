@@ -45,6 +45,11 @@ nubusStackDataUms:
   stackDataContext:
     # TODO: Fix in the subchart
     ldapSamlSpUrls: "https://{{ .Values.reviewPrefix }}.portal.{{ .Values.reviewBaseDomain }}/univention/saml/metadata"
+    smtpHost: maildev-smtp
+    smtpPort: 25
+    smtpUser: ""
+    smtpStartTls: false
+    portalFqdn: "{{ .Values.reviewPrefix }}.portal.{{ .Values.reviewBaseDomain }}"
 
 nubusKeycloakExtensions:
   handler:
