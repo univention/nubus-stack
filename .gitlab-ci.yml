@@ -154,9 +154,11 @@ update_opendesk_job:
       if [ -n "$BRANCH_EXISTS" ]; then
         echo "Branch $BRANCH_NAME exists. Using it as base."
         git checkout $BRANCH_NAME
+        DEPLOY_SERVICES_VALUE="no"
       else
         echo "Branch $BRANCH_NAME does not exist. Using $START_BRANCH as base."
         git checkout $START_BRANCH
+        DEPLOY_SERVICES_VALUE="yes"
       fi
     - echo "Running update_opendesk_dev.py script"
     - ./../scripts/update_opendesk_dev.py $RELEASE_VERSION
@@ -237,7 +239,7 @@ update_opendesk_job:
             {"key": "NAMESPACE", "value": "'"$OPENDESK_NAMESPACE"'"},
             {"key": "ENV_STOP_BEFORE", "value": "no"},
             {"key": "DEPLOY_ALL_COMPONENTS", "value": "no"},
-            {"key": "DEPLOY_SERVICES", "value": "yes"},
+            {"key": "DEPLOY_SERVICES", "value": "'"$DEPLOY_SERVICES_VALUE"'"},
             {"key": "DEPLOY_UMS", "value": "yes"},
             {"key": "DEPLOY_PROVISIONING", "value": "no"},
             {"key": "DEPLOY_COLLABORA", "value": "no"},
