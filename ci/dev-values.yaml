@@ -12,10 +12,14 @@ ucrForcedValues: |-
   password/quality/required/chars:
   password/quality/forbidden/chars:
   password/quality/credit/digits: 0
-  password/quality/credit/upper: 0
-  password/quality/credit/other: 0
   password/quality/credit/lower: 0
+  password/quality/credit/other: 0
+  password/quality/credit/upper: 0
+  password/quality/forbidden/chars:
+  password/quality/length/min: 8
   password/quality/mspolicy: false
+  password/quality/required/chars:
+  umc/http/show_tracebacks: true
 
 # This makes the entry for the UMC login visible again
 
