@@ -1,0 +1,32 @@
+---
+
+ingress:
+  enabled: true
+  className: nginx
+  hosts:
+    - host: "{{ .Values.reviewPrefix }}-maildev.test.{{ .Values.reviewBaseDomain }}"
+      paths:
+        - path: /
+          pathType: Prefix
+  tls:
+    - secretName: nubus-portal-tls
+      hosts:
+        - "{{ .Values.reviewPrefix }}-maildev.test.{{ .Values.reviewBaseDomain }}"
+
+maildev:
+  config:
+    smtp:
+      incoming:
+        secure: false
+    web:
+      # The web UI is potentially exposed in public, so we must always set a password.
+      password: {{ derivePassword 1 "long" .Values.secrets.masterPassword "maildev" "user" | sha1sum | quote }}
+      username: "user"
+
+# Service objects can without trouble listen on privileged ports. Using the
+# default port numbers.
+services:
+  web:
+    port: 80
+  smtp:
+    port: 25
