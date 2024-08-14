@@ -24,6 +24,7 @@ ucrForcedValues: |-
   umc/self-service/passwordreset/email/server/starttls: false
   umc/self-service/passwordreset/email/server/user:
   umc/self-service/passwordreset/email/server: maildev-smtp
+  umc/self-service/passwordreset/email/text_file: /usr/share/univention-self-service/email_bodies/passwordreset_email_body.txt
 
 # This makes the entry for the UMC login visible again
 
