@@ -23,6 +23,10 @@ nubusStackDataSwp:
     # TODO: Fix in the subchart
     portalFqdn: "{{ .Values.reviewPrefix }}.portal.{{ .Values.reviewBaseDomain }}"
 
+    smtpHost: "maildev-smtp"
+    smtpPort: "25"
+    smtpUser: ""
+
 nubusStackDataUms:
   stackDataContext:
     # TODO: Fix in the subchart
