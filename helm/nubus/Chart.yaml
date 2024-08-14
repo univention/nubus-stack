@@ -56,8 +56,8 @@ dependencies:
 
   - name: "portal-consumer"
     alias: "nubusPortalConsumer"
-    version: "0.31.1"
-    repository: "oci://artifacts.software-univention.de/nubus/charts"
+    version: "0.32.0-pre-dtroeder-log-time"
+    repository: "oci://artifacts.software-univention.de/nubus-dev/charts"
     condition: "nubusPortalConsumer.enabled"
 
   - name: "portal-server"
@@ -70,21 +70,21 @@ dependencies:
 
   - name: "selfservice-listener"
     alias: "nubusSelfServiceListener"
-    version: "0.7.0-pre-feat-provisioning"
-    repository: "oci://artifacts.software-univention.de/nubus-dev/charts"
+    version: "0.7.0"
+    repository: "oci://artifacts.software-univention.de/nubus/charts"
     condition: "nubusSelfServiceListener.enabled"
 
   # provisioning related chart(s)
   - name: "provisioning"
     alias: "nubusProvisioning"
     repository: "oci://artifacts.software-univention.de/nubus-dev/charts"
-    version: "0.35.0"
+    version: "0.36.0-pre-dtroeder-consumer-fixes"
     condition: "nubusProvisioning.enabled"
 
   - name: "udm-listener"
     alias: "nubusUdmListener"
-    repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.34.0"
+    repository: "oci://artifacts.software-univention.de/nubus-dev/charts"
+    version: "0.36.0-pre-dtroeder-consumer-fixes"
     condition: "nubusProvisioning.enabled"
 
   # keycloak related chart(s)
