@@ -20,6 +20,10 @@ ucrForcedValues: |-
   password/quality/mspolicy: false
   password/quality/required/chars:
   umc/http/show_tracebacks: true
+  umc/self-service/passwordreset/email/server/port: 25
+  umc/self-service/passwordreset/email/server/starttls: false
+  umc/self-service/passwordreset/email/server/user:
+  umc/self-service/passwordreset/email/server: maildev-smtp
 
 # This makes the entry for the UMC login visible again
 
