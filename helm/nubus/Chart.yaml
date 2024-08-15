@@ -31,38 +31,38 @@ dependencies:
   - name: "ldap-notifier"
     alias: "nubusLdapNotifier"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.15.2"
+    version: "0.22.1"
     condition: "nubusLdapNotifier.enabled"
 
   - name: "ldap-server"
     alias: "nubusLdapServer"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.17.1"
+    version: "0.22.1"
     condition: "nubusLdapServer.enabled"
 
   # portal related chart(s)
 
   - name: "notifications-api"
     alias: "nubusNotificationsApi"
-    version: "0.31.1"
+    version: "0.27.2"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
     condition: "nubusNotificationsApi.enabled"
 
   - name: "portal-frontend"
     alias: "nubusPortalFrontend"
-    version: "0.31.1"
+    version: "0.29.0"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
     condition: "nubusPortalFrontend.enabled"
 
   - name: "portal-consumer"
     alias: "nubusPortalConsumer"
-    version: "0.32.0-pre-dtroeder-log-time"
-    repository: "oci://artifacts.software-univention.de/nubus-dev/charts"
+    version: "0.32.0"
+    repository: "oci://artifacts.software-univention.de/nubus/charts"
     condition: "nubusPortalConsumer.enabled"
 
   - name: "portal-server"
     alias: "nubusPortalServer"
-    version: "0.31.1"
+    version: "0.27.2"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
     condition: "nubusPortalServer.enabled"
 
@@ -77,14 +77,14 @@ dependencies:
   # provisioning related chart(s)
   - name: "provisioning"
     alias: "nubusProvisioning"
-    repository: "oci://artifacts.software-univention.de/nubus-dev/charts"
-    version: "0.36.0-pre-dtroeder-consumer-fixes"
+    repository: "oci://artifacts.software-univention.de/nubus/charts"
+    version: "0.36.0"
     condition: "nubusProvisioning.enabled"
 
   - name: "udm-listener"
     alias: "nubusUdmListener"
-    repository: "oci://artifacts.software-univention.de/nubus-dev/charts"
-    version: "0.36.0-pre-dtroeder-consumer-fixes"
+    repository: "oci://artifacts.software-univention.de/nubus/charts"
+    version: "0.36.0"
     condition: "nubusProvisioning.enabled"
 
   # keycloak related chart(s)
