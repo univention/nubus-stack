@@ -45,8 +45,8 @@ lint-pre-commit:
 
 deploy-gaia:
   stage: "deploy"
-  image: "registry.opencode.de/bmi/opendesk/components/platform-development/images/helm:1.0.1\
-          @sha256:d38f41b88374e055332860018f2936db8807b763caf6089735db0484cbb2842a"
+  image: "ghcr.io/helmfile/helmfile:v0.167.1\
+          @sha256:414cb074a0da0f457129590c39d96575fbdcdb7ce75bf0d2b30f05e835947d76"
   # TODO: Make the job required once we did gain enough confidence
   allow_failure: true
   script:
