@@ -12,7 +12,11 @@ A small Helmfile is used as a wrapper for the deployment. It does deploy two thi
    prepared wildcard certificate. This way it is avoided that a new deployment
    does hit Letsencrypt. This avoids running into rate limits.
 
-2. `ums` is the Nubus chart itself.
+2. `maildev` is a utility which provides a stub SMTP server with a web interface
+   and API. The end-to-end tests use it to check that components which send
+   emails work as expected.
+
+3. `nubus` is the Nubus chart itself.
 
 A CI job `deploy-gaia` does deploy this setup into the Gaia cluster. It uses a
 namespace based on the branch name for the deployment and configured a subdomain
@@ -28,6 +32,9 @@ based on the following patterns:
   `jbornhold-ci-deploy.portal.review.gaia.open-desk.cloud`.
 - Keycloak: `{REVIEW_PREFIX}.id.{reviewBaseDomain}`, e.g.
   `jbornhold-ci-deploy.id.review.gaia.open-desk.cloud`.
+- Additional tooling for tests and development
+  - Maildev: `{REVIEW_PREFIX}-maildev.test.{reviewBaseDomain}`, e.g.
+    `jbornhold-ci-deploy-maildev.test.review.gaia.open-desk.cloud`.
 
 The `REVIEW_PREFIX` being the leftmost part of the domains should help to ensure
 that we have the best possible support for wildcard certificates during testing.
