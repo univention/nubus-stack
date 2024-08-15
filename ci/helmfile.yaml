@@ -15,6 +15,12 @@ environments:
       - reviewPrefix: {{ env "REVIEW_PREFIX" | default .Namespace }}
 
 ---
+helmDefaults:
+  # Do not set 'wait=true' or 'waitForJobs=true'. It lets the keycloak-bootstrap job vanish.
+
+  # time in seconds to wait for any individual Kubernetes operation (like Jobs for hooks, and waits on pod/pvc/svc/deployment readiness) (default 300)
+  timeout: 1200
+
 repositories:
   - name: nubus-dev
     url: artifacts.software-univention.de/nubus-dev/charts

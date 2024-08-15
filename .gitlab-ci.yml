@@ -58,7 +58,7 @@ deploy-gaia:
     #
     # See: https://github.com/databus23/helm-diff/issues/460
     # - helmfile -n "${DEPLOY_NAMESPACE}" apply --skip-diff-on-install
-    - helmfile -n "${DEPLOY_NAMESPACE}" sync
+    - helmfile --debug -n "${DEPLOY_NAMESPACE}" sync
     - cd ..
     - echo "PORTAL_BASE_URL=https://${DEPLOY_SUBDOMAIN}.portal.review.gaia.open-desk.cloud/univention/portal/" >> deploy.env
     - echo "USER_PASSWORD=$(kubectl get secret -n "${DEPLOY_NAMESPACE}" nubus-nubus-credentials -o jsonpath='{.data.user_password}' | base64 -d)" >> deploy.env
