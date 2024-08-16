@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.34.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.33.1...v0.34.0) (2024-08-16)
+
+
+### Features
+
+* use univention-keycloak for guardian provisioning ([c72a6a2](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/c72a6a2ab4723bc48fb903e75eee1626e1212bd9))
+
 ## [0.33.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.33.0...v0.33.1) (2024-08-09)
 
 
