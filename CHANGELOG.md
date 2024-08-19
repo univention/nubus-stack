@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.38.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.37.0...v0.38.0) (2024-08-19)
+
+
+### Features
+
+* update provisioning and add provisioning-based selfservice-consumer and portal-consumer ([9a60585](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/9a60585aed48795a4787b2fd4da872e01e6a0399))
+* upgrade only affected components ([28c5006](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/28c5006cb1f18aee47d932aa4db144ac19a56028))
+
+
+### Bug Fixes
+
+* bump selfservice-consumer and portal-consumer ([d1aaec0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/d1aaec014ee0a0676fac97190409330957bd949c))
+* set nats replicas back to 1 until nats clustering is stable ([9d46db6](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/9d46db6cc110e8fdb28131d6b6e9460eb6b11c4a))
+
 ## [0.37.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.36.0...v0.37.0) (2024-08-19)
 
 
