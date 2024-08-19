@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.37.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.36.0...v0.37.0) (2024-08-19)
+
+
+### Features
+
+* Use data-loader to load the ox-extension ([f75bea6](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/f75bea655607b05a65de3b162b7e7f4892fe027f))
+
 ## [0.36.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.35.0...v0.36.0) (2024-08-19)
 
 
