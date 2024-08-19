@@ -23,8 +23,12 @@ repos:
         exclude: "^helm/.+/templates/|^ci/"
       # "Trim Trailing Whitespace"
       - id: "trailing-whitespace"
+        # TODO: "ci/dev-values.yaml" does require a few trailing whitespaces
+        # until the UCR value handling has been refactored.
+        # See: https://git.knut.univention.de/univention/customers/dataport/team-souvap/-/issues/739
+        exclude: "^ci/dev-values\\.yaml$"
       - id: "end-of-file-fixer"
-        exclude: "^helm/.+/README.md$"
+        exclude: "^helm/.+/README\\.md$"
 
   # "Commit messages"
   - repo: "https://github.com/compilerla/conventional-pre-commit"
