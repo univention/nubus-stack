@@ -1,5 +1,6 @@
 # SPDX-License-Identifier: AGPL-3.0-only
 # SPDX-FileCopyrightText: 2024 Univention GmbH
+{{- if .Values.certificates.enabled }}
 ---
 apiVersion: cert-manager.io/v1
 kind: Issuer
@@ -8,7 +9,6 @@ metadata:
 spec:
   ca:
     secretName: {{ printf "%s-ecdsa-ca-secret" .Release.Name | quote }}
-
 ...
 ---
 apiVersion: cert-manager.io/v1
@@ -17,7 +17,6 @@ metadata:
   name: {{ printf "%s-ecdsa-ss-issuer" .Release.Name | quote }}
 spec:
   selfSigned: {}
-
 ...
 ---
 apiVersion: cert-manager.io/v1
@@ -67,5 +66,5 @@ spec:
   issuerRef:
     name: {{ printf "%s-ca-issuer" .Release.Name | quote }}
     kind: Issuer
-
 ...
+{{- end }}

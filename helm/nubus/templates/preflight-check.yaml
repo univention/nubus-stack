@@ -12,10 +12,7 @@
 {{- if not (index (default dict .Values.global.subDomains) "keycloak") -}}
 # {{- required "Variable .Values.global.subDomains.keycloak must be set" .Values.false -}}
 {{- end -}}
-{{- if not .Values.global.ingressClass -}}
-# {{- required "Variable .Values.global.ingressClass must be set" .Values.false -}}
-{{- end -}}
-{{- if not (or .Values.global.certManagerIssuer .Values.global.certManagerClusterIssuer) -}}
+{{- if and .Values.ingress.certManager.enabled (not (or .Values.global.certManagerIssuer .Values.global.certManagerClusterIssuer .Values.ingress.certManager.issuerRef.name)) -}}
 # {{- required "Either .Values.global.certManagerIssuer or .Values.global.certManagerClusterIssuer must be set" .Values.false -}}
 {{- end -}}
 {{- if not (index (default dict .Values.global.ldap) "baseDn") -}}

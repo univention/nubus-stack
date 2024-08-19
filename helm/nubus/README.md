@@ -35,26 +35,26 @@ helm uninstall nubus
 
 | Repository | Name | Version |
 |------------|------|---------|
-| oci://artifacts.software-univention.de/nubus-dev/charts | nubusUmcServer(umc-server) | 0.26.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusGuardian(guardian) | 0.10.0 |
+| oci://artifacts.software-univention.de/nubus-dev/charts | nubusPortalServer(portal-server) | 0.33.1 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusGuardian(guardian) | 0.11.0 |
 | oci://artifacts.software-univention.de/nubus/charts | keycloak(keycloak) | 0.4.1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakBootstrap(keycloak-bootstrap) | 0.1.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakExtensions(keycloak-extensions) | 0.9.4 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakExtensions(keycloak-extensions) | 0.10.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusLdapNotifier(ldap-notifier) | 0.20.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusLdapServer(ldap-server) | 0.20.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusNotificationsApi(notifications-api) | 0.27.2 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusNotificationsApi(notifications-api) | 0.33.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusPortalConsumer(portal-consumer) | 0.32.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalFrontend(portal-frontend) | 0.29.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalFrontend(portal-frontend) | 0.33.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusPortalListener(portal-listener) | 0.24.2 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.27.2 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 0.36.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceConsumer(selfservice-consumer) | 0.7.1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceListener(selfservice-listener) | 0.6.5 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusStackDataSwp(stack-data-swp) | 0.61.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.61.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 0.36.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUdmRestApi(udm-rest-api) | 0.19.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.26.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUdmRestApi(udm-rest-api) | 0.21.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.27.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUmcServer(umc-server) | 0.27.0 |
 | oci://registry-1.docker.io/bitnamicharts | common | ^2.x.x |
 | oci://registry-1.docker.io/bitnamicharts | minio | 14.7.0 |
 | oci://registry-1.docker.io/bitnamicharts | postgresql | ^12.x.x |
@@ -86,6 +86,15 @@ helm uninstall nubus
 </pre>
 </td>
 			<td>Additional custom labels to add to all objects deployed directly by the umbrella chart.</td>
+		</tr>
+		<tr>
+			<td>certificates.enabled</td>
+			<td>bool</td>
+			<td><pre lang="json">
+true
+</pre>
+</td>
+			<td>Enable SAML self-signed certificate generation. This required cert-manager.io</td>
 		</tr>
 		<tr>
 			<td>extraSecrets</td>
@@ -367,6 +376,107 @@ true
 </pre>
 </td>
 			<td>Allows to configure the system extensions to load. This is intended for internal usage, prefer to use `global.extensions` for user configured extensions.</td>
+		</tr>
+		<tr>
+			<td>ingress.annotations</td>
+			<td>object</td>
+			<td><pre lang="json">
+{
+  "nginx.ingress.kubernetes.io/proxy-body-size": "128k",
+  "nginx.ingress.kubernetes.io/proxy-buffer-size": "64k",
+  "nginx.ingress.kubernetes.io/proxy-buffers-number": "4",
+  "nginx.ingress.kubernetes.io/proxy-busy-buffers-size": "128k",
+  "nginx.ingress.kubernetes.io/proxy-http-version": "1.1",
+  "nginx.ingress.kubernetes.io/proxy-set-headers": "Host $http_host;\nX-Forwarded-For $proxy_add_x_forwarded_for;\nX-Forwarded-Host $http_x_forwarded_host;\nX-Forwarded-Port $http_x_forwarded_port;\nX-Forwarded-Proto $http_x_forwarded_proto;\n",
+  "nginx.ingress.kubernetes.io/use-regex": "true"
+}
+</pre>
+</td>
+			<td>Define custom ingress annotations. annotations:   nginx.ingress.kubernetes.io/rewrite-target: /</td>
+		</tr>
+		<tr>
+			<td>ingress.certManager.enabled</td>
+			<td>bool</td>
+			<td><pre lang="json">
+true
+</pre>
+</td>
+			<td>Enable cert-manager.io annotaion.</td>
+		</tr>
+		<tr>
+			<td>ingress.certManager.issuerRef.kind</td>
+			<td>string</td>
+			<td><pre lang="json">
+"ClusterIssuer"
+</pre>
+</td>
+			<td>Type of Issuer, f.e. "Issuer" or "ClusterIssuer".</td>
+		</tr>
+		<tr>
+			<td>ingress.certManager.issuerRef.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+""
+</pre>
+</td>
+			<td>Name of cert-manager.io Issuer resource.</td>
+		</tr>
+		<tr>
+			<td>ingress.enabled</td>
+			<td>bool</td>
+			<td><pre lang="json">
+true
+</pre>
+</td>
+			<td>Enable creation of Ingress.</td>
+		</tr>
+		<tr>
+			<td>ingress.host</td>
+			<td>string</td>
+			<td><pre lang="json">
+""
+</pre>
+</td>
+			<td>Define the Fully Qualified Domain Name (FQDN) where application should be reachable.</td>
+		</tr>
+		<tr>
+			<td>ingress.ingressClassName</td>
+			<td>string</td>
+			<td><pre lang="json">
+""
+</pre>
+</td>
+			<td>The Ingress controller class name.</td>
+		</tr>
+		<tr>
+			<td>ingress.tls</td>
+			<td>object</td>
+			<td><pre lang="json">
+{
+  "enabled": true,
+  "secretName": ""
+}
+</pre>
+</td>
+			<td>Secure an Ingress by specifying a Secret that contains a TLS private key and certificate.  Ref.: https://kubernetes.io/docs/concepts/services-networking/ingress/#tls</td>
+		</tr>
+		<tr>
+			<td>ingress.tls.enabled</td>
+			<td>bool</td>
+			<td><pre lang="json">
+true
+</pre>
+</td>
+			<td>Enable TLS/SSL/HTTPS for Ingress.</td>
+		</tr>
+		<tr>
+			<td>ingress.tls.secretName</td>
+			<td>string</td>
+			<td><pre lang="json">
+""
+</pre>
+</td>
+			<td>The name of the kubernetes secret which contains a TLS private key and certificate. Hint: This secret is not created by this chart and must be provided.</td>
 		</tr>
 		<tr>
 			<td>keycloak.enabled</td>
@@ -904,15 +1014,6 @@ false
 			<td>bool</td>
 			<td><pre lang="json">
 true
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusGuardian.ingress.annotations."cert-manager.io/cluster-issuer"</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Values.global.certManagerIssuer }}"
 </pre>
 </td>
 			<td></td>
@@ -1665,15 +1766,6 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusNotificationsApi.ingress.annotations."cert-manager.io/cluster-issuer"</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Values.global.certManagerIssuer }}"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusNotificationsApi.ingress.host</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -1890,15 +1982,6 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusPortalFrontend.ingress.annotations."cert-manager.io/cluster-issuer"</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Values.global.certManagerIssuer }}"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusPortalFrontend.ingress.host</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -2047,15 +2130,6 @@ true
 			<td>bool</td>
 			<td><pre lang="json">
 true
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusPortalServer.ingress.annotations."cert-manager.io/cluster-issuer"</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Values.global.certManagerIssuer }}"
 </pre>
 </td>
 			<td></td>
@@ -3015,15 +3089,6 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataUms.nubusNotificationsApi.ingress.annotations."cert-manager.io/cluster-issuer"</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Values.global.certManagerIssuer }}"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusStackDataUms.nubusNotificationsApi.ingress.host</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -3235,15 +3300,6 @@ false
 			<td>bool</td>
 			<td><pre lang="json">
 true
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusPortalServer.ingress.annotations."cert-manager.io/cluster-issuer"</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Values.global.certManagerIssuer }}"
 </pre>
 </td>
 			<td></td>
@@ -3987,15 +4043,6 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataUms.nubusUdmRestApi.ingress.annotations."cert-manager.io/cluster-issuer"</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Values.global.certManagerIssuer }}"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusStackDataUms.nubusUdmRestApi.ingress.host</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -4207,15 +4254,6 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 "artifacts.software-univention.de"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.ingress.annotations."cert-manager.io/cluster-issuer"</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Values.global.certManagerIssuer }}"
 </pre>
 </td>
 			<td></td>
@@ -4851,15 +4889,6 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusUdmRestApi.ingress.annotations."cert-manager.io/cluster-issuer"</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Values.global.certManagerIssuer }}"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusUdmRestApi.ingress.host</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -4963,15 +4992,6 @@ true
 			<td>bool</td>
 			<td><pre lang="json">
 true
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUmcGateway.ingress.annotations."cert-manager.io/cluster-issuer"</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Values.global.certManagerIssuer }}"
 </pre>
 </td>
 			<td></td>
@@ -5152,15 +5172,6 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 "artifacts.software-univention.de"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUmcServer.ingress.annotations."cert-manager.io/cluster-issuer"</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Values.global.certManagerIssuer }}"
 </pre>
 </td>
 			<td></td>

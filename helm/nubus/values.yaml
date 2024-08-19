@@ -88,6 +88,62 @@ additionalAnnotations: {}
 # -- Additional custom labels to add to all objects deployed directly by the umbrella chart.
 additionalLabels: {}
 
+# SAML certificates generation
+certificates:
+  # -- Enable SAML self-signed certificate generation. This required cert-manager.io
+  enabled: true
+
+# Define and create Kubernetes Ingress.
+# Ref.: https://kubernetes.io/docs/concepts/services-networking/ingress/
+ingress:
+  # -- Enable creation of Ingress.
+  enabled: true
+
+  # -- Define the Fully Qualified Domain Name (FQDN) where application should be reachable.
+  host: ""
+
+  # Request certificates via cert-manager.io annotation
+  certManager:
+    # -- Enable cert-manager.io annotaion.
+    enabled: true
+
+    # Issuer reference.
+    issuerRef:
+      # -- Name of cert-manager.io Issuer resource.
+      name: ""
+      # -- Type of Issuer, f.e. "Issuer" or "ClusterIssuer".
+      kind: "ClusterIssuer"
+
+  # -- The Ingress controller class name.
+  ingressClassName: ""
+  # -- Define custom ingress annotations.
+  # annotations:
+  #   nginx.ingress.kubernetes.io/rewrite-target: /
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: "128k"
+    nginx.ingress.kubernetes.io/proxy-buffer-size: "64k"
+    nginx.ingress.kubernetes.io/proxy-buffers-number: "4"
+    nginx.ingress.kubernetes.io/proxy-busy-buffers-size: "128k"
+    nginx.ingress.kubernetes.io/proxy-http-version: "1.1"
+    nginx.ingress.kubernetes.io/proxy-set-headers: |
+      Host $http_host;
+      X-Forwarded-For $proxy_add_x_forwarded_for;
+      X-Forwarded-Host $http_x_forwarded_host;
+      X-Forwarded-Port $http_x_forwarded_port;
+      X-Forwarded-Proto $http_x_forwarded_proto;
+    nginx.ingress.kubernetes.io/use-regex: "true"
+
+  # -- Secure an Ingress by specifying a Secret that contains a TLS private key and certificate.
+  #
+  # Ref.: https://kubernetes.io/docs/concepts/services-networking/ingress/#tls
+  tls:
+    # -- Enable TLS/SSL/HTTPS for Ingress.
+    enabled: true
+
+    # -- The name of the kubernetes secret which contains a TLS private key and certificate.
+    # Hint: This secret is not created by this chart and must be provided.
+    secretName: ""
+
 nubusDevelopment:
   resources: &nubusDevelopmentResources
     limits:
@@ -202,8 +258,6 @@ nubusGuardian: &nubusGuardian
   enabled: true
   ingress:
     host: "{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
-    annotations:
-      cert-manager.io/cluster-issuer: "{{ .Values.global.certManagerIssuer }}"
   resources: *nubusDevelopmentResources
   postgresql:
     bundled: false
@@ -265,8 +319,6 @@ nubusNotificationsApi: &nubusNotificationsApi
   resources: *nubusDevelopmentResources
   ingress:
     host: "{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
-    annotations:
-      cert-manager.io/cluster-issuer: "{{ .Values.global.certManagerIssuer }}"
   postgresql:
     bundled: false
     connection:
@@ -284,8 +336,6 @@ nubusPortalFrontend: &nubusPortalFrontend
   resources: *nubusDevelopmentResources
   ingress:
     host: "{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
-    annotations:
-      cert-manager.io/cluster-issuer: "{{ .Values.global.certManagerIssuer }}"
 
 nubusPortalListener: &nubusPortalListener
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
@@ -333,8 +383,6 @@ nubusPortalServer: &nubusPortalServer
   enabled: true
   ingress:
     host: "{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
-    annotations:
-      cert-manager.io/cluster-issuer: "{{ .Values.global.certManagerIssuer }}"
   resources: *nubusDevelopmentResources
   portalServer:
     objectStorageBucket: "nubus"
@@ -470,8 +518,6 @@ nubusUdmRestApi: &nubusUdmRestApi
   enabled: true
   ingress:
     host: "{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
-    annotations:
-      cert-manager.io/cluster-issuer: "{{ .Values.global.certManagerIssuer }}"
   resources: *nubusDevelopmentResources
   ldap:
     connection:
@@ -487,8 +533,6 @@ nubusUmcGateway: &nubusUmcGateway
   enabled: true
   ingress:
     host: "{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
-    annotations:
-      cert-manager.io/cluster-issuer: "{{ .Values.global.certManagerIssuer }}"
   resources: *nubusDevelopmentResources
 nubusUmcServer: &nubusUmcServer
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
@@ -498,8 +542,6 @@ nubusUmcServer: &nubusUmcServer
   enabled: true
   ingress:
     host: "{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
-    annotations:
-      cert-manager.io/cluster-issuer: "{{ .Values.global.certManagerIssuer }}"
   resources: *nubusDevelopmentResources
   postgresql:
     connection:

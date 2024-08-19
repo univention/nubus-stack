@@ -10,7 +10,7 @@ dependencies:
   version: 14.7.0
 - name: guardian
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.10.0
+  version: 0.11.0
 - name: ldap-notifier
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.20.0
@@ -19,10 +19,10 @@ dependencies:
   version: 0.20.0
 - name: notifications-api
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.27.2
+  version: 0.33.0
 - name: portal-frontend
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.29.0
+  version: 0.33.0
 - name: portal-listener
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.24.2
@@ -30,8 +30,8 @@ dependencies:
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.32.0
 - name: portal-server
-  repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.27.2
+  repository: oci://artifacts.software-univention.de/nubus-dev/charts
+  version: 0.33.1
 - name: selfservice-listener
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.6.5
@@ -49,7 +49,7 @@ dependencies:
   version: 0.4.1
 - name: keycloak-extensions
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.9.4
+  version: 0.10.0
 - name: keycloak-bootstrap
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.1.0
@@ -61,12 +61,12 @@ dependencies:
   version: 0.61.0
 - name: udm-rest-api
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.19.0
+  version: 0.21.0
 - name: umc-gateway
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.26.0
+  version: 0.27.0
 - name: umc-server
-  repository: oci://artifacts.software-univention.de/nubus-dev/charts
-  version: 0.26.0
-digest: sha256:f50352ab477cc96f2ba0fcc3265dfcf33184134d17f9c9541c9fb5894c1ecaf5
-generated: "2024-08-21T23:51:18.648715+02:00"
+  repository: oci://artifacts.software-univention.de/nubus/charts
+  version: 0.27.0
+digest: sha256:23fc10d754f13d3424e91fa3e65c3e669740f555c787a3f118f175db4e4c7ed1
+generated: "2024-08-21T23:55:41.599264+02:00"
