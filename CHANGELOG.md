@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.36.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.35.0...v0.36.0) (2024-08-19)
+
+
+### Features
+
+* Add maildev into the CI setup ([4ce07f6](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/4ce07f6fa83b9941ded0cbd5b5ea8afab1004a17))
+
+
+### Bug Fixes
+
+* Add trailing whitespace for the UCR configuration values which are empty ([942f403](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/942f4036e55b9d15c641d536743e8dda157fc4de))
+
 ## [0.35.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.34.0...v0.35.0) (2024-08-19)
 
 
