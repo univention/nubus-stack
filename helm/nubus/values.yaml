@@ -555,16 +555,9 @@ nubusUmcServer: &nubusUmcServer
     - name: "certificates"
       secret:
         secretName: "{{ .Release.Name }}-saml-tls"
-    - name: "entrypoint-swp-patches"
-      configMap:
-        name: "{{ .Release.Name }}-stack-data-swp-umc-server-entrypoint"
-        defaultMode: 0555
   extraVolumeMounts:
     - name: "certificates"
       mountPath: "/var/secrets/ssl"
-    - name: "entrypoint-swp-patches"
-      mountPath: "/entrypoint.d/90-customization.sh"
-      subPath: "90-customization.sh"
 nubusKeycloakBootstrap: &nubusKeycloakBootstrap
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   nameOverride: "keycloak-bootstrap"

@@ -53,8 +53,8 @@ helm uninstall nubus
 | oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.65.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 0.38.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmRestApi(udm-rest-api) | 0.22.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.28.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUmcServer(umc-server) | 0.28.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.29.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUmcServer(umc-server) | 0.29.0 |
 | oci://registry-1.docker.io/bitnamicharts | common | ^2.x.x |
 | oci://registry-1.docker.io/bitnamicharts | minio | 14.7.0 |
 | oci://registry-1.docker.io/bitnamicharts | postgresql | ^12.x.x |
@@ -4043,33 +4043,6 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.extraVolumeMounts[1].mountPath</td>
-			<td>string</td>
-			<td><pre lang="json">
-"/entrypoint.d/90-customization.sh"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.extraVolumeMounts[1].name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"entrypoint-swp-patches"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.extraVolumeMounts[1].subPath</td>
-			<td>string</td>
-			<td><pre lang="json">
-"90-customization.sh"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusStackDataUms.nubusUmcServer.extraVolumes[0].name</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -4083,33 +4056,6 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 "{{ .Release.Name }}-saml-tls"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.extraVolumes[1].configMap.defaultMode</td>
-			<td>int</td>
-			<td><pre lang="json">
-365
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.extraVolumes[1].configMap.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-stack-data-swp-umc-server-entrypoint"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.extraVolumes[1].name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"entrypoint-swp-patches"
 </pre>
 </td>
 			<td></td>
@@ -4988,33 +4934,6 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusUmcServer.extraVolumeMounts[1].mountPath</td>
-			<td>string</td>
-			<td><pre lang="json">
-"/entrypoint.d/90-customization.sh"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUmcServer.extraVolumeMounts[1].name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"entrypoint-swp-patches"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUmcServer.extraVolumeMounts[1].subPath</td>
-			<td>string</td>
-			<td><pre lang="json">
-"90-customization.sh"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusUmcServer.extraVolumes[0].name</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -5028,33 +4947,6 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 "{{ .Release.Name }}-saml-tls"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUmcServer.extraVolumes[1].configMap.defaultMode</td>
-			<td>int</td>
-			<td><pre lang="json">
-365
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUmcServer.extraVolumes[1].configMap.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-stack-data-swp-umc-server-entrypoint"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUmcServer.extraVolumes[1].name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"entrypoint-swp-patches"
 </pre>
 </td>
 			<td></td>
