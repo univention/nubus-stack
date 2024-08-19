@@ -15,15 +15,15 @@ ucrForcedValues: |-
   password/quality/credit/lower: 0
   password/quality/credit/other: 0
   password/quality/credit/upper: 0
-  password/quality/forbidden/chars:
+  password/quality/forbidden/chars: 
   password/quality/length/min: 8
   password/quality/mspolicy: false
-  password/quality/required/chars:
+  password/quality/required/chars: 
   umc/http/show_tracebacks: true
   # TODO: Should be set by stack-data-ums
   umc/self-service/passwordreset/email/server/port: 25
   umc/self-service/passwordreset/email/server/starttls: false
-  umc/self-service/passwordreset/email/server/user:
+  umc/self-service/passwordreset/email/server/user: 
   umc/self-service/passwordreset/email/server: maildev-smtp
   # TODO: Should be set by some other place already?
   umc/self-service/passwordreset/email/text_file: /usr/share/univention-self-service/email_bodies/passwordreset_email_body.txt
