@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.35.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.34.0...v0.35.0) (2024-08-19)
+
+
+### Features
+
+* **umc-server:** Session stickyness ([a769fdf](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/a769fdf0db5f68a0cbc0674103bdee1e7182769d))
+
 ## [0.34.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.33.1...v0.34.0) (2024-08-16)
 
 
