@@ -35,10 +35,12 @@ helm uninstall nubus
 
 | Repository | Name | Version |
 |------------|------|---------|
-| oci://artifacts.software-univention.de/nubus-dev/charts | nubusStackDataSwp(stack-data-swp) | 0.65.0-pre-uv-cgarcia-ucr-helm2 |
-| oci://artifacts.software-univention.de/nubus-dev/charts | nubusStackDataUms(stack-data-ums) | 0.65.0-pre-uv-cgarcia-ucr-helm2 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusGuardian(guardian) | 0.13.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakBootstrap(keycloak-bootstrap) | 0.2.0 |
+| oci://artifacts.software-univention.de/nubus-dev/charts | nubusPortalServer(portal-server) | 0.33.1 |
+| oci://artifacts.software-univention.de/nubus-dev/charts | nubusStackDataSwp(stack-data-swp) | 0.62.0-pre-jconde-migrate-users-creation |
+| oci://artifacts.software-univention.de/nubus-dev/charts | nubusStackDataUms(stack-data-ums) | 0.62.0-pre-jconde-migrate-users-creation |
+| oci://artifacts.software-univention.de/nubus/charts | nubusGuardian(guardian) | 0.11.0 |
+| oci://artifacts.software-univention.de/nubus/charts | keycloak(keycloak) | 0.4.1 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakBootstrap(keycloak-bootstrap) | 0.1.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakExtensions(keycloak-extensions) | 0.10.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusLdapNotifier(ldap-notifier) | 0.23.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusLdapServer(ldap-server) | 0.23.0 |
@@ -186,7 +188,7 @@ true
       "imagePullPolicy": "IfNotPresent",
       "registry": "registry.opencode.de",
       "repository": "bmi/opendesk/components/platform-development/images/opendesk-nubus",
-      "tag": "1.2.0@sha256:88be278c7e3da0eeeef08510319c4997b8a62ecdb5e13491f8c4ca8d5640a258"
+      "tag": "1.3.0-jconde-dev-users@sha256:9136d7ba1425eac5a94ab2f332a87350a260e16535fcade7319fcc15601d75de"
     },
     "name": "opendesk"
   }
@@ -725,6 +727,15 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 "16Mi"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>minio.provisioning.cleanupAfterFinished.seconds</td>
+			<td>int</td>
+			<td><pre lang="json">
+900
 </pre>
 </td>
 			<td></td>
