@@ -209,6 +209,7 @@ minio:
     resources: *nubusDevelopmentResources
     cleanupAfterFinished:
       enabled: true
+      seconds: 900
       resources: *nubusDevelopmentResources
     extraCommands:
       - "mc anonymous set download provisioning/nubus/portal-assets"
