@@ -49,8 +49,8 @@ helm uninstall nubus
 | oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 0.37.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceConsumer(selfservice-consumer) | 0.7.1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceListener(selfservice-listener) | 0.6.5 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataSwp(stack-data-swp) | 0.62.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.62.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataSwp(stack-data-swp) | 0.63.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.63.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 0.36.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmRestApi(udm-rest-api) | 0.21.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.27.2 |
@@ -4605,6 +4605,15 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 "cn=Domain Users,cn=groups,{{ include \"stack-data-ums.ldapBaseDn\" . }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.templateContext.readonlyUserPassword</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ include \"nubusTemplates.credentials.ldap.users.readonly.password\" . }}"
 </pre>
 </td>
 			<td></td>

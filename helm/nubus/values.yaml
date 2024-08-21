@@ -659,6 +659,7 @@ nubusStackDataUms:
       - username: "readonly"
         lastname: "LDAP-system-User"
         password: '{{ include "nubusTemplates.credentials.ldap.users.readonly.password" . }}'
+    readonlyUserPassword: '{{ include "nubusTemplates.credentials.ldap.users.readonly.password" . }}'
 
 # Allows for creation of additional secrets, for example containing credentials for third party services.
 extraSecrets: []
