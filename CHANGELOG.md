@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.38.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.38.0...v0.38.1) (2024-08-21)
+
+
+### Bug Fixes
+
+* **provisioning:** put provisioning consumers behind a feature-flag ([a031258](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/a031258cc2c912b1997fea9c422a5c64f17ed3fa))
+* **provisioning:** temporarily add old secrets to enable provisioning consumers feature-flag ([849a440](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/849a440d9f8b0364e697fcd01efe45465119d4b7))
+
 ## [0.38.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.37.0...v0.38.0) (2024-08-19)
 
 
