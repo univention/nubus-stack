@@ -54,6 +54,11 @@ dependencies:
     repository: "oci://artifacts.software-univention.de/nubus/charts"
     condition: "nubusPortalFrontend.enabled"
 
+  - name: "portal-listener"
+    alias: "nubusPortalListener"
+    version: "0.24.2"
+    repository: "oci://artifacts.software-univention.de/nubus/charts"
+    condition: "nubusPortalListener.enabled"
   - name: "portal-consumer"
     alias: "nubusPortalConsumer"
     version: "0.32.0"
@@ -70,9 +75,15 @@ dependencies:
 
   - name: "selfservice-listener"
     alias: "nubusSelfServiceListener"
-    version: "0.7.0"
+    version: "0.6.5"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
     condition: "nubusSelfServiceListener.enabled"
+
+  - name: "selfservice-listener"
+    alias: "nubusSelfServiceListenerNext"
+    version: "0.7.0"
+    repository: "oci://artifacts.software-univention.de/nubus/charts"
+    condition: "nubusSelfServiceListenerNext.enabled"
 
   # provisioning related chart(s)
   - name: "provisioning"

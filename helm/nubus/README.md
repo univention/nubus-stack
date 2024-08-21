@@ -45,9 +45,11 @@ helm uninstall nubus
 | oci://artifacts.software-univention.de/nubus/charts | nubusNotificationsApi(notifications-api) | 0.27.2 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusPortalConsumer(portal-consumer) | 0.32.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusPortalFrontend(portal-frontend) | 0.29.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalListener(portal-listener) | 0.24.2 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.27.2 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 0.36.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceListener(selfservice-listener) | 0.7.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceListener(selfservice-listener) | 0.6.5 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceListenerNext(selfservice-listener) | 0.7.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusStackDataSwp(stack-data-swp) | 0.61.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.61.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 0.36.0 |
@@ -1792,7 +1794,7 @@ false
 			<td>nubusPortalConsumer.enabled</td>
 			<td>bool</td>
 			<td><pre lang="json">
-true
+false
 </pre>
 </td>
 			<td></td>
@@ -1952,6 +1954,87 @@ true
 		</tr>
 		<tr>
 			<td>nubusPortalFrontend.terminationGracePeriodSeconds</td>
+			<td>int</td>
+			<td><pre lang="json">
+5
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusPortalListener.enabled</td>
+			<td>bool</td>
+			<td><pre lang="json">
+true
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusPortalListener.nameOverride</td>
+			<td>string</td>
+			<td><pre lang="json">
+"portal-listener"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusPortalListener.portalListener.ldapHost</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Release.Name }}-ldap-server-primary"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusPortalListener.portalListener.objectStorageBucket</td>
+			<td>string</td>
+			<td><pre lang="json">
+"nubus"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusPortalListener.resources.limits.cpu</td>
+			<td>int</td>
+			<td><pre lang="json">
+288
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusPortalListener.resources.limits.memory</td>
+			<td>string</td>
+			<td><pre lang="json">
+"1Gi"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusPortalListener.resources.requests.cpu</td>
+			<td>string</td>
+			<td><pre lang="json">
+"10m"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusPortalListener.resources.requests.memory</td>
+			<td>string</td>
+			<td><pre lang="json">
+"16Mi"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusPortalListener.terminationGracePeriodSeconds</td>
 			<td>int</td>
 			<td><pre lang="json">
 5
@@ -2509,6 +2592,87 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusSelfServiceListenerNext.enabled</td>
+			<td>bool</td>
+			<td><pre lang="json">
+false
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusSelfServiceListenerNext.nameOverride</td>
+			<td>string</td>
+			<td><pre lang="json">
+"selfservice-listener"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusSelfServiceListenerNext.provisioningApi.auth.username</td>
+			<td>string</td>
+			<td><pre lang="json">
+"selfservice"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusSelfServiceListenerNext.resources.limits.cpu</td>
+			<td>int</td>
+			<td><pre lang="json">
+288
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusSelfServiceListenerNext.resources.limits.memory</td>
+			<td>string</td>
+			<td><pre lang="json">
+"1Gi"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusSelfServiceListenerNext.resources.requests.cpu</td>
+			<td>string</td>
+			<td><pre lang="json">
+"10m"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusSelfServiceListenerNext.resources.requests.memory</td>
+			<td>string</td>
+			<td><pre lang="json">
+"16Mi"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusSelfServiceListenerNext.terminationGracePeriodSeconds</td>
+			<td>int</td>
+			<td><pre lang="json">
+5
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusSelfServiceListenerNext.umc.auth.username</td>
+			<td>string</td>
+			<td><pre lang="json">
+"Administrator"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusStackDataSwp.enabled</td>
 			<td>bool</td>
 			<td><pre lang="json">
@@ -2980,7 +3144,7 @@ false
 			<td>nubusStackDataUms.nubusPortalConsumer.enabled</td>
 			<td>bool</td>
 			<td><pre lang="json">
-true
+false
 </pre>
 </td>
 			<td></td>
