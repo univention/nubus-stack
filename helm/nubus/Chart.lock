@@ -13,10 +13,10 @@ dependencies:
   version: 0.10.0
 - name: ldap-notifier
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.22.1
+  version: 0.20.0
 - name: ldap-server
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.22.1
+  version: 0.20.0
 - name: notifications-api
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.27.2
@@ -68,5 +68,5 @@ dependencies:
 - name: umc-server
   repository: oci://artifacts.software-univention.de/nubus-dev/charts
   version: 0.26.0
-digest: sha256:e70c05f8c50181a269eb3d0ebdb13e071c5b8b16158363c209a7ae7e057e204a
-generated: "2024-08-21T21:35:39.994379+02:00"
+digest: sha256:f50352ab477cc96f2ba0fcc3265dfcf33184134d17f9c9541c9fb5894c1ecaf5
+generated: "2024-08-21T23:51:18.648715+02:00"
