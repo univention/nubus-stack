@@ -453,7 +453,7 @@ nubusSelfServiceListener: &nubusSelfServiceListener
     auth:
       username: "selfservice"
 
-nubusSelfServiceListenerNext: &nubusSelfServiceListenerNext
+nubusSelfServiceConsumer: &nubusSelfServiceConsumer
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   nameOverride: "selfservice-listener"
   enabled: false

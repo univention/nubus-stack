@@ -48,8 +48,8 @@ helm uninstall nubus
 | oci://artifacts.software-univention.de/nubus/charts | nubusPortalListener(portal-listener) | 0.24.2 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.27.2 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 0.36.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceConsumer(selfservice-consumer) | 0.7.1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceListener(selfservice-listener) | 0.6.5 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceListenerNext(selfservice-listener) | 0.7.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusStackDataSwp(stack-data-swp) | 0.61.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.61.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 0.36.0 |
@@ -2511,6 +2511,87 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusSelfServiceConsumer.enabled</td>
+			<td>bool</td>
+			<td><pre lang="json">
+false
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusSelfServiceConsumer.nameOverride</td>
+			<td>string</td>
+			<td><pre lang="json">
+"selfservice-listener"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusSelfServiceConsumer.provisioningApi.auth.username</td>
+			<td>string</td>
+			<td><pre lang="json">
+"selfservice"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusSelfServiceConsumer.resources.limits.cpu</td>
+			<td>int</td>
+			<td><pre lang="json">
+288
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusSelfServiceConsumer.resources.limits.memory</td>
+			<td>string</td>
+			<td><pre lang="json">
+"1Gi"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusSelfServiceConsumer.resources.requests.cpu</td>
+			<td>string</td>
+			<td><pre lang="json">
+"10m"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusSelfServiceConsumer.resources.requests.memory</td>
+			<td>string</td>
+			<td><pre lang="json">
+"16Mi"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusSelfServiceConsumer.terminationGracePeriodSeconds</td>
+			<td>int</td>
+			<td><pre lang="json">
+5
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusSelfServiceConsumer.umc.auth.username</td>
+			<td>string</td>
+			<td><pre lang="json">
+"Administrator"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusSelfServiceListener.enabled</td>
 			<td>bool</td>
 			<td><pre lang="json">
@@ -2584,87 +2665,6 @@ true
 		</tr>
 		<tr>
 			<td>nubusSelfServiceListener.umc.auth.username</td>
-			<td>string</td>
-			<td><pre lang="json">
-"Administrator"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusSelfServiceListenerNext.enabled</td>
-			<td>bool</td>
-			<td><pre lang="json">
-false
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusSelfServiceListenerNext.nameOverride</td>
-			<td>string</td>
-			<td><pre lang="json">
-"selfservice-listener"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusSelfServiceListenerNext.provisioningApi.auth.username</td>
-			<td>string</td>
-			<td><pre lang="json">
-"selfservice"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusSelfServiceListenerNext.resources.limits.cpu</td>
-			<td>int</td>
-			<td><pre lang="json">
-288
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusSelfServiceListenerNext.resources.limits.memory</td>
-			<td>string</td>
-			<td><pre lang="json">
-"1Gi"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusSelfServiceListenerNext.resources.requests.cpu</td>
-			<td>string</td>
-			<td><pre lang="json">
-"10m"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusSelfServiceListenerNext.resources.requests.memory</td>
-			<td>string</td>
-			<td><pre lang="json">
-"16Mi"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusSelfServiceListenerNext.terminationGracePeriodSeconds</td>
-			<td>int</td>
-			<td><pre lang="json">
-5
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusSelfServiceListenerNext.umc.auth.username</td>
 			<td>string</td>
 			<td><pre lang="json">
 "Administrator"

@@ -79,9 +79,9 @@ dependencies:
     repository: "oci://artifacts.software-univention.de/nubus/charts"
     condition: "nubusSelfServiceListener.enabled"
 
-  - name: "selfservice-listener"
-    alias: "nubusSelfServiceListenerNext"
-    version: "0.7.0"
+  - name: "selfservice-consumer"
+    alias: "nubusSelfServiceConsumer"
+    version: "0.7.1"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
     condition: "nubusSelfServiceListenerNext.enabled"
 
