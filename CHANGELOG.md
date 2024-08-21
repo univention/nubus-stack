@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.38.2](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.38.1...v0.38.2) (2024-08-21)
+
+
+### Bug Fixes
+
+* **selfservice-consumer:** rename selfservice-listener to selfservice-consumer to avoid helm package bug ([47bafb6](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/47bafb69cfed01d745849ac8f013a15c97a83268))
+
 ## [0.38.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.38.0...v0.38.1) (2024-08-21)
 
 
