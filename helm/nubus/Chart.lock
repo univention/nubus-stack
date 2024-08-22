@@ -13,10 +13,10 @@ dependencies:
   version: 0.11.0
 - name: ldap-notifier
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.20.0
+  version: 0.22.1
 - name: ldap-server
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.20.0
+  version: 0.22.1
 - name: notifications-api
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.33.0

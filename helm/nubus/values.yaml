@@ -292,26 +292,6 @@ nubusLdapServer: &nubusLdapServer
   resourcesPrimary: *nubusDevelopmentResources
   resourcesSecondary: *nubusDevelopmentResources
   resourcesProxy: *nubusDevelopmentResources
-  extraVolumes:
-    - name: "opendesk-schemas"
-      configMap:
-        name: "{{ .Release.Name }}-stack-data-swp-schemas"
-  extraVolumeMounts:
-    - name: "opendesk-schemas"
-      mountPath: "/var/lib/univention-ldap-local/local-schema/opendeskFileshare.schema"
-      subPath: "opendeskFileshare.schema"
-    - name: "opendesk-schemas"
-      mountPath: "/var/lib/univention-ldap-local/local-schema/opendeskKnowledgemanagement.schema"
-      subPath: "opendeskKnowledgemanagement.schema"
-    - name: "opendesk-schemas"
-      mountPath: "/var/lib/univention-ldap-local/local-schema/opendeskLearnmanagement.schema"
-      subPath: "opendeskLearnmanagement.schema"
-    - name: "opendesk-schemas"
-      mountPath: "/var/lib/univention-ldap-local/local-schema/opendeskLivecollaboration.schema"
-      subPath: "opendeskLivecollaboration.schema"
-    - name: "opendesk-schemas"
-      mountPath: "/var/lib/univention-ldap-local/local-schema/opendeskProjectmanagement.schema"
-      subPath: "opendeskProjectmanagement.schema"
 nubusNotificationsApi: &nubusNotificationsApi
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   nameOverride: "notifications-api"
@@ -537,7 +517,6 @@ nubusUmcGateway: &nubusUmcGateway
 nubusUmcServer: &nubusUmcServer
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   nameOverride: "umc-server"
-  # TODO: Set back to 1
   replicaCount: 2
   enabled: true
   ingress:
