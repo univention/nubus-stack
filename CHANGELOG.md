@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.39.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.39.0...v0.39.1) (2024-08-22)
+
+
+### Bug Fixes
+
+* **selfservice-consumer:** fix feature-flag typo ([3acdb20](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/3acdb2083c6f31d98db3817e8c87c49fe65a1c86))
+
 ## [0.39.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.38.2...v0.39.0) (2024-08-22)
 
 
