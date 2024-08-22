@@ -380,6 +380,7 @@ opendesk-e2e-tests:
 
 opendesk-env-stop:
   stage: deploy
+  allow_failure: true
   needs:
     - job: update_opendesk_job
       artifacts: true
