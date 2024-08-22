@@ -49,6 +49,7 @@ deploy-gaia:
           @sha256:414cb074a0da0f457129590c39d96575fbdcdb7ce75bf0d2b30f05e835947d76"
   # TODO: Make the job required once we did gain enough confidence
   allow_failure: true
+  when: manual
   script:
     - cd ci
     - export CHART_VERSION=${RELEASE_VERSION}
@@ -122,6 +123,7 @@ stop-deployment:
 
 update_opendesk_job:
   stage: deploy
+  when: manual
   allow_failure: true
   image: python:3.11-slim
   variables:
@@ -295,7 +297,7 @@ update_opendesk_job:
     auto_stop_in: 3 days
   rules:
     - if: $CI_COMMIT_REF_PROTECTED == "false"
-      when: on_success
+      when: manual
 
 wait_for_opendesk_deployment:
   stage: deploy
