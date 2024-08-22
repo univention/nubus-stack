@@ -161,8 +161,12 @@ update_opendesk_job:
         git checkout $START_BRANCH
         DEPLOY_SERVICES_VALUE="yes"
       fi
+
+      # Get the current chart version before checking out the branch
+      CURRENT_VERSION=$(grep -Pzo 'nubus:(?:\s*#[^\n]*\n)*\s*(?:.*\n)*?\s*version:\s*"\K[^"]+' helmfile/environments/default/charts.yaml)
+      echo "Current nubus version: $CURRENT_VERSION"
     - echo "Running update_opendesk_dev.py script"
-    - ./../scripts/update_opendesk_dev.py $RELEASE_VERSION
+    - ./../scripts/update_opendesk_dev.py --current-version $CURRENT_VERSION $RELEASE_VERSION
     - git diff | tee ../git_diff.txt
     - |
       FILES_TO_CHECK=(

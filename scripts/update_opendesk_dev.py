@@ -52,7 +52,23 @@ def create_custom_values_file(temp_dir):
 
 def template_chart_with_values(tgz_file, extract_dir, values_file):
     logging.info(f"Extracting chart from {tgz_file} to {extract_dir} with custom values")
-    run_helm_command(["helm", "template", tgz_file, "--output-dir", extract_dir, "-f", values_file])
+    run_helm_command(
+        [
+            "helm",
+            "template",
+            tgz_file,
+            "--output-dir",
+            extract_dir,
+            "-f",
+            values_file,
+            "--set",
+            "postgresql.enabled=false",
+            "--set",
+            "postgresql.provisioning.enabled=false",
+            "--set",
+            "minio.enabled=false",
+        ]
+    )
 
 
 def get_chart_yaml(tgz_file):
@@ -198,7 +214,17 @@ def update_images_yaml(file_path, changed_images):
         f.write(content)
 
 
-def main(new_version):
+def get_current_version_from_charts_yaml(file_path):
+    pattern = r'nubus:(?:\s*#[^\n]*\n)*\s*(?:.*\n)*?\s*version:\s*"?(\d+\.\d+\.\d+(-[a-z0-9-]+)?)"?'
+    with open(file_path, "r") as f:
+        content = f.read()
+    match = re.search(pattern, content)
+    if match:
+        return match.group(1)
+    return None
+
+
+def main(new_version, current_version=None):
     logging.info(f"Starting chart update process for version {new_version}")
     temp_dir = tempfile.mkdtemp()
     try:
@@ -210,17 +236,19 @@ def main(new_version):
         # Create custom values file
         custom_values_file = create_custom_values_file(temp_dir)
 
-        # get the current nubus value from the charts.yaml
-        pattern = f'nubus:(?:\s*#[^\n]*\n)*\s*(?:.*\n)*?\s*version:\s*"?(\d+\.\d+\.\d+(-[a-z0-9-]+)?)"?'
-        with open("helmfile/environments/default/charts.yaml", "r") as f:
-            content = f.read()
-        match = re.search(pattern, content)
-        if match:
-            old_version = match.group(1)
-            logging.info(f"Current nubus version is {old_version}")
+        # Use the provided current_version or get it from charts.yaml
+        if current_version:
+            old_version = current_version
+            logging.info(f"Using provided current nubus version: {old_version}")
         else:
-            logging.error("Could not find the current nubus version in charts.yaml")
-            raise Exception("Could not find the current nubus version in charts.yaml")
+            # Fallback to getting the version from charts.yaml
+            charts_yaml_path = "helmfile/environments/default/charts.yaml"
+            old_version = get_current_version_from_charts_yaml(charts_yaml_path)
+            if old_version:
+                logging.info(f"Current nubus version from charts.yaml: {old_version}")
+            else:
+                logging.error("Could not find the current nubus version in charts.yaml")
+                raise Exception("Could not find the current nubus version in charts.yaml")
 
         # Download and extract charts
         old_tgz = download_chart(
@@ -252,6 +280,7 @@ def main(new_version):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Upgrade Helm charts and Docker images")
     parser.add_argument("new_version", help="New version of the umbrella chart")
+    parser.add_argument("--current-version", help="Current version of the umbrella chart")
     args = parser.parse_args()
 
-    main(args.new_version)
+    main(args.new_version, args.current_version)
