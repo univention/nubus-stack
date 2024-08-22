@@ -62,6 +62,7 @@ deploy-gaia:
     - cd ..
     - echo "PORTAL_BASE_URL=https://${DEPLOY_SUBDOMAIN}.portal.review.gaia.open-desk.cloud/univention/portal/" >> deploy.env
     - echo "USER_PASSWORD=$(kubectl get secret -n "${DEPLOY_NAMESPACE}" nubus-nubus-credentials -o jsonpath='{.data.user_password}' | base64 -d)" >> deploy.env
+    - echo "PORTAL_CENTRAL_NAVIGATION_SECRET=$(kubectl get secret -n "${DEPLOY_NAMESPACE}" nubus-portal-server-central-navigation-shared-secret -o jsonpath="{.data['authenticator\.secret']}" | base64 -d)" >> deploy.env
     - echo "ADMIN_PASSWORD=$(kubectl get secret -n "${DEPLOY_NAMESPACE}" nubus-nubus-credentials -o jsonpath='{.data.admin_password}' | base64 -d)" >> deploy.env
     - echo "UDM_ADMIN_PASSWORD=$(kubectl get secret -n "${DEPLOY_NAMESPACE}" nubus-nubus-credentials -o jsonpath='{.data.udm_admin_password}' | base64 -d)" >> deploy.env
     - echo "UDM_ADMIN_PASSWORD=$(kubectl get secret -n "${DEPLOY_NAMESPACE}" nubus-udm-rest-api-credentials -o jsonpath="{.data['machine\.secret']}" | base64 -d)" >> deploy.env
