@@ -65,7 +65,8 @@ deploy-gaia:
     - echo "ADMIN_PASSWORD=$(kubectl get secret -n "${DEPLOY_NAMESPACE}" nubus-nubus-credentials -o jsonpath='{.data.admin_password}' | base64 -d)" >> deploy.env
     - echo "UDM_ADMIN_PASSWORD=$(kubectl get secret -n "${DEPLOY_NAMESPACE}" nubus-nubus-credentials -o jsonpath='{.data.udm_admin_password}' | base64 -d)" >> deploy.env
     - echo "UDM_ADMIN_PASSWORD=$(kubectl get secret -n "${DEPLOY_NAMESPACE}" nubus-udm-rest-api-credentials -o jsonpath="{.data['machine\.secret']}" | base64 -d)" >> deploy.env
-    - echo "MAILDEV_WEB_PASSWORD=$(kubectl get secret -n "${DEPLOY_NAMESPACE}" maildev-web -o jsonpath="{.data['web-password']}" | base64 -d)" >> deploy.env
+    - echo "EMAIL_TEST_API_PASSWORD=$(kubectl get secret -n "${DEPLOY_NAMESPACE}" maildev-web -o jsonpath="{.data['web-password']}" | base64 -d)" >> deploy.env
+    - echo "EMAIL_TEST_API_BASE_URL=https://$(kubectl get ingress -n "${DEPLOY_NAMESPACE}" maildev -o jsonpath='{.spec.rules[0].host}')" >> deploy.env
   environment:
     name: review/$CI_COMMIT_REF_SLUG
     url: https://${DEPLOY_SUBDOMAIN}.portal.review.gaia.open-desk.cloud
@@ -95,6 +96,8 @@ e2e-tests:
     USER_PASSWORD: $USER_PASSWORD
     ADMIN_PASSWORD: $ADMIN_PASSWORD
     UDM_ADMIN_PASSWORD: $UDM_ADMIN_PASSWORD
+    EMAIL_TEST_API_PASSWORD: $EMAIL_TEST_API_PASSWORD
+    EMAIL_TEST_API_BASE_URL: $EMAIL_TEST_API_BASE_URL
   allow_failure: true
   trigger:
     project: "univention/customers/dataport/upx/e2e-tests"
