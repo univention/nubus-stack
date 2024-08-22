@@ -83,7 +83,7 @@ dependencies:
     alias: "nubusSelfServiceConsumer"
     version: "0.7.1"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    condition: "nubusSelfServiceListenerNext.enabled"
+    condition: "nubusSelfServiceConsumer.enabled"
 
   # provisioning related chart(s)
   - name: "provisioning"
