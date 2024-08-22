@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.39.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.38.2...v0.39.0) (2024-08-22)
+
+
+### Features
+
+* **nubus:** Add certManager template for ingress ([4725259](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/47252590c055bf5a8ef876a574d6c2c647c2e204))
+
+
+### Bug Fixes
+
+* Downgrade ldap-server and ldap-notifier to version 0.20.0 ([ea32f16](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/ea32f163879c277919112f1b046aa3ed4d9e650d))
+* Pin the minio dependency to 14.7.0 ([1920e5d](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/1920e5dbe22c8d009bc76c14142b0803ec478a11))
+
 ## [0.38.2](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.38.1...v0.38.2) (2024-08-21)
 
 
