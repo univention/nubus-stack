@@ -35,10 +35,8 @@ helm uninstall nubus
 
 | Repository | Name | Version |
 |------------|------|---------|
-| oci://artifacts.software-univention.de/nubus-dev/charts | nubusPortalServer(portal-server) | 0.33.1 |
-| oci://artifacts.software-univention.de/nubus-dev/charts | nubusStackDataSwp(stack-data-swp) | 0.62.0-pre-jconde-migrate-users-creation |
-| oci://artifacts.software-univention.de/nubus-dev/charts | nubusStackDataUms(stack-data-ums) | 0.62.0-pre-jconde-migrate-users-creation |
-| oci://artifacts.software-univention.de/nubus/charts | nubusGuardian(guardian) | 0.11.0 |
+| oci://artifacts.software-univention.de/nubus-dev/charts | keycloak(keycloak) | 0.5.1 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusGuardian(guardian) | 0.13.0 |
 | oci://artifacts.software-univention.de/nubus/charts | keycloak(keycloak) | 0.4.1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakBootstrap(keycloak-bootstrap) | 0.1.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakExtensions(keycloak-extensions) | 0.10.0 |
@@ -52,6 +50,8 @@ helm uninstall nubus
 | oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 0.38.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceConsumer(selfservice-consumer) | 0.7.2 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceListener(selfservice-listener) | 0.6.5 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataSwp(stack-data-swp) | 0.65.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.65.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 0.38.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmRestApi(udm-rest-api) | 0.22.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.28.0 |
@@ -143,6 +143,15 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>global.credentialOverride.defaultUsers.defaultAdministratorPassword</td>
+			<td>string</td>
+			<td><pre lang="json">
+""
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>global.credentialOverride.defaultUsers.defaultUserPassword</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -188,7 +197,7 @@ true
       "imagePullPolicy": "IfNotPresent",
       "registry": "registry.opencode.de",
       "repository": "bmi/opendesk/components/platform-development/images/opendesk-nubus",
-      "tag": "1.3.0-jconde-dev-users@sha256:9136d7ba1425eac5a94ab2f332a87350a260e16535fcade7319fcc15601d75de"
+      "tag": "1.3.0@sha256:0185955075ecf91e5e5437537fbafc2bcca8cdad989e3ec8bb2558ef27eb45be"
     },
     "name": "opendesk"
   }
@@ -2577,6 +2586,15 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusSelfServiceListener.selfserviceListener.umcAdminPasswordSecret.key</td>
+			<td>string</td>
+			<td><pre lang="json">
+"administrator_password"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusSelfServiceListener.terminationGracePeriodSeconds</td>
 			<td>int</td>
 			<td><pre lang="json">
@@ -3666,6 +3684,15 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusStackDataUms.nubusSelfServiceListener.selfserviceListener.umcAdminPasswordSecret.key</td>
+			<td>string</td>
+			<td><pre lang="json">
+"administrator_password"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusStackDataUms.nubusSelfServiceListener.terminationGracePeriodSeconds</td>
 			<td>int</td>
 			<td><pre lang="json">
@@ -4384,6 +4411,24 @@ true
 </pre>
 </td>
 			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.templateContext.initialPasswordDefaultAdmin</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ include \"nubusTemplates.credentials.ldap.users.admin.password\" . }}"
+</pre>
+</td>
+			<td>The initial password for the development user "default.admin" It is only used if `loadDevData` is set to `true`.</td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.templateContext.initialPasswordDefaultUser</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ include \"nubusTemplates.credentials.ldap.users.idp.password\" . }}"
+</pre>
+</td>
+			<td>The initial password for the development user "default.user" It is only used if `loadDevData` is set to `true`.</td>
 		</tr>
 		<tr>
 			<td>nubusStackDataUms.templateContext.ldapSearchUsers</td>

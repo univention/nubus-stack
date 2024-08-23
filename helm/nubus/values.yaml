@@ -54,7 +54,7 @@ global:
         registry: "registry.opencode.de"
         repository: "bmi/opendesk/components/platform-development/images/opendesk-nubus"
         imagePullPolicy: "IfNotPresent"
-        tag: "1.3.0-jconde-dev-users@sha256:9136d7ba1425eac5a94ab2f332a87350a260e16535fcade7319fcc15601d75de"
+        tag: "1.3.0@sha256:0185955075ecf91e5e5437537fbafc2bcca8cdad989e3ec8bb2558ef27eb45be"
 
   # -- Allows to configure the system extensions to load. This is intended for
   # internal usage, prefer to use `global.extensions` for user configured
@@ -73,6 +73,7 @@ global:
     ldapServer:
       adminPassword: ""
     defaultUsers:
+      defaultAdministratorPassword: ""
       defaultAdminPassword: ""
       defaultUserPassword: ""
 
@@ -472,6 +473,9 @@ nubusSelfServiceListener: &nubusSelfServiceListener
   umc:
     auth:
       username: "Administrator"
+  selfserviceListener:
+    umcAdminPasswordSecret:
+      key: "administrator_password"
   provisioningApi:
     auth:
       username: "selfservice"
@@ -655,6 +659,13 @@ nubusStackDataUms:
         lastname: "LDAP-system-User"
         password: '{{ include "nubusTemplates.credentials.ldap.users.readonly.password" . }}'
     readonlyUserPassword: '{{ include "nubusTemplates.credentials.ldap.users.readonly.password" . }}'
+    # -- The initial password for the development user "default.user"
+    # It is only used if `loadDevData` is set to `true`.
+    initialPasswordDefaultUser: '{{ include "nubusTemplates.credentials.ldap.users.idp.password" . }}'
+    # -- The initial password for the development user "default.admin"
+    # It is only used if `loadDevData` is set to `true`.
+    initialPasswordDefaultAdmin: '{{ include "nubusTemplates.credentials.ldap.users.admin.password" . }}'
+
 
 # Allows for creation of additional secrets, for example containing credentials for third party services.
 extraSecrets: []

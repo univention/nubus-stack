@@ -54,11 +54,11 @@ dependencies:
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.2.0
 - name: stack-data-swp
-  repository: oci://artifacts.software-univention.de/nubus-dev/charts
-  version: 0.62.0-pre-jconde-migrate-users-creation
+  repository: oci://artifacts.software-univention.de/nubus/charts
+  version: 0.65.0
 - name: stack-data-ums
-  repository: oci://artifacts.software-univention.de/nubus-dev/charts
-  version: 0.62.0-pre-jconde-migrate-users-creation
+  repository: oci://artifacts.software-univention.de/nubus/charts
+  version: 0.65.0
 - name: udm-rest-api
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.22.0
@@ -68,5 +68,5 @@ dependencies:
 - name: umc-server
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.28.0
-digest: sha256:7c178eb9101e5d4af7acfa31974b63fcb7c9412063621d64290a4cecf0baea56
-generated: "2024-09-02T09:54:17.285258+02:00"
+digest: sha256:3509a9b1a53764b6e2cbc1bd3e2bdf2e904c4eecb1752bd3588a191d4e9eece5
+generated: "2024-09-02T23:39:59.802868445+02:00"
