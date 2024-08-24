@@ -11,12 +11,26 @@ global:
     portal: "{{ .Values.reviewPrefix }}.portal"
     keycloak: "{{ .Values.reviewPrefix }}.id"
 
-nubusStackGateway:
+ingress:
+  certManager:
+    enabled: false
+  tls:
+    secretName: {{ .Values.ingress.tls.secretName | quote }}
+
+nubusGuardian:
   ingress:
-    hostname: "{{ .Values.reviewPrefix }}.portal.{{ .Values.reviewBaseDomain }}"
-    ingressClassName: "nginx"
-    annotations:
-      cert-manager.io/cluster-issuer: null
+    certManager:
+      enabled: false
+    tls:
+      secretName: {{ .Values.ingress.tls.secretName | quote }}
+
+
+nubusNotificationsApi:
+  ingress:
+    certManager:
+      enabled: false
+    tls:
+      secretName: {{ .Values.ingress.tls.secretName | quote }}
 
 nubusStackDataSwp:
   stackDataContext:
@@ -39,6 +53,47 @@ nubusKeycloakExtensions:
       newDeviceLoginNotificationEnable: "False"
       # We only cover tests for IP block in the CI
       deviceProtectionEnable: "False"
+  proxy:
+    ingress:
+      certManager:
+        enabled: false
+      tls:
+        secretName: {{ .Values.ingress.tls.secretName | quote }}
   smtp:
     connection:
       host: "maildev-smtp"
+
+nubusPortalFrontend:
+  ingress:
+    certManager:
+      enabled: false
+    tls:
+      secretName: {{ .Values.ingress.tls.secretName | quote }}
+
+nubusPortalServer:
+  ingress:
+    certManager:
+      enabled: false
+    tls:
+      secretName: {{ .Values.ingress.tls.secretName | quote }}
+
+nubusUdmRestApi:
+  ingress:
+    certManager:
+      enabled: false
+    tls:
+      secretName: {{ .Values.ingress.tls.secretName | quote }}
+
+nubusUmcServer:
+  ingress:
+    certManager:
+      enabled: false
+    tls:
+      secretName: {{ .Values.ingress.tls.secretName | quote }}
+
+nubusUmcGateway:
+  ingress:
+    certManager:
+      enabled: false
+    tls:
+      secretName: {{ .Values.ingress.tls.secretName | quote }}
