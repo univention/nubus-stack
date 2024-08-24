@@ -6,6 +6,10 @@ cluster:
     # The namespace where things like the prepared TLS certificate can be found.
     ci: nubus-ci
 
+ingress:
+  tls:
+    secretName: "certificates-ci-tls"
+
 secrets:
   # Master password used to generate stable secrets for deployments.
   # Intentionally without a default value.
