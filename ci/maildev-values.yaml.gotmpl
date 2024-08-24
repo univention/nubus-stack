@@ -9,7 +9,7 @@ ingress:
         - path: /
           pathType: Prefix
   tls:
-    - secretName: nubus-portal-tls
+    - secretName: {{ .Values.ingress.tls.secretName | quote }}
       hosts:
         - "{{ .Values.reviewPrefix }}-maildev.test.{{ .Values.reviewBaseDomain }}"
 
