@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.39.2](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.39.1...v0.39.2) (2024-08-27)
+
+
+### Bug Fixes
+
+* **umc-server:** Update umc-gateway and umc-server to version 0.27.1 ([b5d125c](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/b5d125c14c09bcd31bf4a846144b3c5e0220e7d6))
+
 ## [0.39.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.39.0...v0.39.1) (2024-08-22)
 
 
