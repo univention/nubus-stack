@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.39.3](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.39.2...v0.39.3) (2024-08-28)
+
+
+### Bug Fixes
+
+* bump provisioning and stack-data ([b3da597](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/b3da597da304536f8f7e2870bb2fb507b7371561))
+
 ## [0.39.2](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.39.1...v0.39.2) (2024-08-27)
 
 
