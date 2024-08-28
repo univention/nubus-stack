@@ -24,7 +24,7 @@ dependencies:
   - name: "guardian"
     alias: "nubusGuardian"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.11.0"
+    version: "0.13.0"
     condition: "nubusGuardian.enabled"
 
   # ldap-server related chart(s)

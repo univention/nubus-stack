@@ -10,7 +10,7 @@ dependencies:
   version: 14.7.0
 - name: guardian
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.11.0
+  version: 0.13.0
 - name: ldap-notifier
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.22.1
@@ -68,5 +68,5 @@ dependencies:
 - name: umc-server
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.27.2
-digest: sha256:09c00b6907435dd604fa96eca4970c8fa7e8108a22962fe52f503f46c17f5539
-generated: "2024-08-29T11:30:44.726208912+02:00"
+digest: sha256:9a5b2c6e73d5db616e202c0521cd9f61daaede1b25297ac38347b5302d927321
+generated: "2024-08-29T12:43:55.244527427+02:00"

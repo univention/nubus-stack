@@ -36,7 +36,7 @@ helm uninstall nubus
 | Repository | Name | Version |
 |------------|------|---------|
 | oci://artifacts.software-univention.de/nubus-dev/charts | nubusPortalServer(portal-server) | 0.33.1 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusGuardian(guardian) | 0.11.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusGuardian(guardian) | 0.13.0 |
 | oci://artifacts.software-univention.de/nubus/charts | keycloak(keycloak) | 0.4.1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakBootstrap(keycloak-bootstrap) | 0.1.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakExtensions(keycloak-extensions) | 0.10.0 |
