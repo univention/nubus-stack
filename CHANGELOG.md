@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.40.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.39.3...v0.40.0) (2024-08-28)
+
+
+### Features
+
+* Bump ldap-server to UCS 5.2 and ldap-notifier ([97adfdc](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/97adfdc2d63d0e6ed948f9537f2fe7eca03b66b8))
+* Bump umc-server and gateway ([b859298](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/b859298fa74683705f53db33a985dab75be2ceec))
+
 ## [0.39.3](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.39.2...v0.39.3) (2024-08-28)
 
 
