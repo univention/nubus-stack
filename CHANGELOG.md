@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.41.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.40.0...v0.41.0) (2024-08-29)
+
+
+### Features
+
+* create readonly user for ldap federation on plain nubus ([39d9619](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/39d9619fc68eec38badfe6e31db458b42700cfea))
+
 ## [0.40.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.39.3...v0.40.0) (2024-08-28)
 
 
