@@ -31,13 +31,13 @@ dependencies:
   - name: "ldap-notifier"
     alias: "nubusLdapNotifier"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.23.0"
+    version: "0.24.0"
     condition: "nubusLdapNotifier.enabled"
 
   - name: "ldap-server"
     alias: "nubusLdapServer"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.23.0"
+    version: "0.24.0"
     condition: "nubusLdapServer.enabled"
 
   # portal related chart(s)
@@ -63,7 +63,7 @@ dependencies:
   - name: "portal-consumer"
     alias: "nubusPortalConsumer"
     version: "0.36.0"
-    repository: "oci://artifacts.software-univention.de/nubus-dev/charts"
+    repository: "oci://artifacts.software-univention.de/nubus/charts"
     condition: "nubusPortalConsumer.enabled"
 
   - name: "portal-server"
