@@ -54,11 +54,11 @@ dependencies:
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.2.0
 - name: stack-data-swp
-  repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.64.1
+  repository: oci://artifacts.software-univention.de/nubus-dev/charts
+  version: 0.65.0-pre-uv-cgarcia-ucr-helm2
 - name: stack-data-ums
-  repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.64.1
+  repository: oci://artifacts.software-univention.de/nubus-dev/charts
+  version: 0.65.0-pre-uv-cgarcia-ucr-helm2
 - name: udm-rest-api
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.22.0
