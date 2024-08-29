@@ -1615,7 +1615,7 @@ true
 			<td>nubusLdapServer.highAvailabilityMode</td>
 			<td>bool</td>
 			<td><pre lang="json">
-true
+false
 </pre>
 </td>
 			<td></td>
@@ -1625,6 +1625,33 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 "ldap-server"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusLdapServer.replicaCountPrimary</td>
+			<td>int</td>
+			<td><pre lang="json">
+1
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusLdapServer.replicaCountProxy</td>
+			<td>int</td>
+			<td><pre lang="json">
+3
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusLdapServer.replicaCountSecondary</td>
+			<td>int</td>
+			<td><pre lang="json">
+2
 </pre>
 </td>
 			<td></td>

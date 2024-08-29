@@ -312,7 +312,10 @@ nubusLdapServer: &nubusLdapServer
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   nameOverride: "ldap-server"
   enabled: true
-  highAvailabilityMode: true
+  highAvailabilityMode: false
+  replicaCountPrimary: 1
+  replicaCountSecondary: 2
+  replicaCountProxy: 3
   resourcesPrimary: *nubusDevelopmentResources
   resourcesSecondary: *nubusDevelopmentResources
   resourcesProxy: *nubusDevelopmentResources
