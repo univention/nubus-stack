@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.41.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.41.0...v0.41.1) (2024-08-29)
+
+
+### Bug Fixes
+
+* fix Keycloak init race condition ([be3e83b](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/be3e83ba5781298a323e9d152ade323ed89bf578))
+
 ## [0.41.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.40.0...v0.41.0) (2024-08-29)
 
 
