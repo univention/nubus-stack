@@ -44,13 +44,13 @@ dependencies:
 
   - name: "notifications-api"
     alias: "nubusNotificationsApi"
-    version: "0.35.0"
+    version: "0.35.1"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
     condition: "nubusNotificationsApi.enabled"
 
   - name: "portal-frontend"
     alias: "nubusPortalFrontend"
-    version: "0.35.0"
+    version: "0.35.1"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
     condition: "nubusPortalFrontend.enabled"
 
@@ -62,13 +62,13 @@ dependencies:
 
   - name: "portal-consumer"
     alias: "nubusPortalConsumer"
-    version: "0.32.0"
+    version: "0.35.1"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
     condition: "nubusPortalConsumer.enabled"
 
   - name: "portal-server"
     alias: "nubusPortalServer"
-    version: "0.35.0"
+    version: "0.35.1"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
     condition: "nubusPortalServer.enabled"
 
@@ -82,7 +82,7 @@ dependencies:
 
   - name: "selfservice-consumer"
     alias: "nubusSelfServiceConsumer"
-    version: "0.7.1"
+    version: "0.7.2"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
     condition: "nubusSelfServiceConsumer.enabled"
 
