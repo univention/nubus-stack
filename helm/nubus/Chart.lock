@@ -46,7 +46,7 @@ dependencies:
   version: 0.36.0
 - name: keycloak
   repository: oci://artifacts.software-univention.de/nubus-dev/charts
-  version: 0.5.1-pre-jtorres-fixup-upgrade-kc-25
+  version: 0.5.1
 - name: keycloak-extensions
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.10.0
@@ -68,5 +68,5 @@ dependencies:
 - name: umc-server
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.27.2
-digest: sha256:5de147041c1e4408d430dd7cb88caac843a04de03d8e6a2e2d1f00763dcf7fb4
-generated: "2024-08-29T17:10:47.029848527+02:00"
+digest: sha256:cb2cc801715a068fd9926c17ba1a2c2d34974d4d2a744e2ae6425eb5bdf7e7f6
+generated: "2024-08-30T13:09:07.083624742+02:00"

@@ -102,7 +102,7 @@ dependencies:
   - name: "keycloak"
     alias: "keycloak"
     repository: "oci://artifacts.software-univention.de/nubus-dev/charts"
-    version: "0.5.1-pre-jtorres-fixup-upgrade-kc-25"
+    version: "0.5.1"
     condition: "keycloak.enabled"
 
   - name: "keycloak-extensions"
