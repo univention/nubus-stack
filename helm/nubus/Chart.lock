@@ -66,4 +66,4 @@ dependencies:
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.29.0
 digest: sha256:13a30c7ea371e30018fa1bbb1845fb4ce3d7edb44393d88fc3ea696f0803128d
-generated: "2024-09-09T17:33:35.008277084+02:00"
+generated: "2024-09-10T09:30:06.744264799+02:00"

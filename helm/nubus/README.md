@@ -1903,7 +1903,7 @@ false
 			<td>nubusPortalConsumer.enabled</td>
 			<td>bool</td>
 			<td><pre lang="json">
-false
+true
 </pre>
 </td>
 			<td></td>
@@ -2065,7 +2065,7 @@ true
 			<td>nubusPortalListener.enabled</td>
 			<td>bool</td>
 			<td><pre lang="json">
-true
+false
 </pre>
 </td>
 			<td></td>
@@ -2605,7 +2605,7 @@ true
 			<td>nubusSelfServiceConsumer.enabled</td>
 			<td>bool</td>
 			<td><pre lang="json">
-false
+true
 </pre>
 </td>
 			<td></td>
@@ -2686,7 +2686,7 @@ false
 			<td>nubusSelfServiceListener.enabled</td>
 			<td>bool</td>
 			<td><pre lang="json">
-true
+false
 </pre>
 </td>
 			<td></td>
@@ -3145,7 +3145,7 @@ false
 			<td>nubusStackDataUms.nubusPortalConsumer.enabled</td>
 			<td>bool</td>
 			<td><pre lang="json">
-false
+true
 </pre>
 </td>
 			<td></td>
@@ -3691,7 +3691,7 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataUms.nubusSelfServiceListener.enabled</td>
+			<td>nubusStackDataUms.nubusSelfServiceConsumer.enabled</td>
 			<td>bool</td>
 			<td><pre lang="json">
 true
@@ -3700,7 +3700,7 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataUms.nubusSelfServiceListener.nameOverride</td>
+			<td>nubusStackDataUms.nubusSelfServiceConsumer.nameOverride</td>
 			<td>string</td>
 			<td><pre lang="json">
 "selfservice-listener"
@@ -3709,7 +3709,7 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataUms.nubusSelfServiceListener.provisioningApi.auth.username</td>
+			<td>nubusStackDataUms.nubusSelfServiceConsumer.provisioningApi.auth.username</td>
 			<td>string</td>
 			<td><pre lang="json">
 "selfservice"
@@ -3718,7 +3718,7 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataUms.nubusSelfServiceListener.resources.limits.cpu</td>
+			<td>nubusStackDataUms.nubusSelfServiceConsumer.resources.limits.cpu</td>
 			<td>int</td>
 			<td><pre lang="json">
 288
@@ -3727,7 +3727,7 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataUms.nubusSelfServiceListener.resources.limits.memory</td>
+			<td>nubusStackDataUms.nubusSelfServiceConsumer.resources.limits.memory</td>
 			<td>string</td>
 			<td><pre lang="json">
 "1Gi"
@@ -3736,7 +3736,7 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataUms.nubusSelfServiceListener.resources.requests.cpu</td>
+			<td>nubusStackDataUms.nubusSelfServiceConsumer.resources.requests.cpu</td>
 			<td>string</td>
 			<td><pre lang="json">
 "10m"
@@ -3745,7 +3745,7 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataUms.nubusSelfServiceListener.resources.requests.memory</td>
+			<td>nubusStackDataUms.nubusSelfServiceConsumer.resources.requests.memory</td>
 			<td>string</td>
 			<td><pre lang="json">
 "16Mi"
@@ -3754,16 +3754,7 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataUms.nubusSelfServiceListener.selfserviceListener.umcAdminPasswordSecret.key</td>
-			<td>string</td>
-			<td><pre lang="json">
-"administrator_password"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusSelfServiceListener.terminationGracePeriodSeconds</td>
+			<td>nubusStackDataUms.nubusSelfServiceConsumer.terminationGracePeriodSeconds</td>
 			<td>int</td>
 			<td><pre lang="json">
 5
@@ -3772,7 +3763,7 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataUms.nubusSelfServiceListener.umc.auth.username</td>
+			<td>nubusStackDataUms.nubusSelfServiceConsumer.umc.auth.username</td>
 			<td>string</td>
 			<td><pre lang="json">
 "Administrator"

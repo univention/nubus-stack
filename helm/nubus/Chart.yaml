@@ -41,7 +41,6 @@ dependencies:
     condition: "nubusLdapServer.enabled"
 
   # portal related chart(s)
-
   - name: "notifications-api"
     alias: "nubusNotificationsApi"
     version: "0.36.0"

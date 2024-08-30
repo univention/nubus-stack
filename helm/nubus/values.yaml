@@ -347,7 +347,7 @@ nubusPortalFrontend: &nubusPortalFrontend
 nubusPortalListener: &nubusPortalListener
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   nameOverride: "portal-listener"
-  enabled: true
+  enabled: false
   resources: *nubusDevelopmentResources
   portalListener:
     ldapHost: "{{ .Release.Name }}-ldap-server-primary"
@@ -356,7 +356,7 @@ nubusPortalListener: &nubusPortalListener
 nubusPortalConsumer: &nubusPortalConsumer
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   nameOverride: "portal-consumer"
-  enabled: false
+  enabled: true
   resources: *nubusDevelopmentResources
   # Currently gets its configuration from UCR.
   # minio:
@@ -478,7 +478,7 @@ nubusUdmListener: &nubusUdmListener
 nubusSelfServiceListener: &nubusSelfServiceListener
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   nameOverride: "selfservice-listener"
-  enabled: true
+  enabled: false
   resources: *nubusDevelopmentResources
   umc:
     auth:
@@ -493,7 +493,7 @@ nubusSelfServiceListener: &nubusSelfServiceListener
 nubusSelfServiceConsumer: &nubusSelfServiceConsumer
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   nameOverride: "selfservice-listener"
-  enabled: false
+  enabled: true
   resources: *nubusDevelopmentResources
   umc:
     auth:
@@ -615,7 +615,7 @@ nubusStackDataUms:
   nubusPortalServer: *nubusPortalServer
   nubusProvisioning: *nubusProvisioning
   nubusUdmListener: *nubusUdmListener
-  nubusSelfServiceListener: *nubusSelfServiceListener
+  nubusSelfServiceConsumer: *nubusSelfServiceConsumer
   nubusUdmRestApi: *nubusUdmRestApi
   stackDataContext:
     ldapMasterHost: '{{ include "nubusTemplates.connections.ldap.primary.host" . }}'
