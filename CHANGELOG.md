@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.42.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.41.1...v0.42.0) (2024-08-30)
+
+
+### Features
+
+* upgrade to keycloak 25 ([3242927](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/3242927aebf715c8dd2282dc210e12d65e591348))
+
 ## [0.41.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.41.0...v0.41.1) (2024-08-29)
 
 
