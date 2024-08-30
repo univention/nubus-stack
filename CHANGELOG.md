@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.42.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.42.0...v0.42.1) (2024-08-30)
+
+
+### Bug Fixes
+
+* **keycloak:** update accidentally merged branch version of the keycloak chart ([59a40bc](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/59a40bc9647c0228fb0ae520548b901a3f64824e))
+
 ## [0.42.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.41.1...v0.42.0) (2024-08-30)
 
 
