@@ -64,6 +64,12 @@ dependencies:
   version: 0.30.0
 - name: umc-server
   repository: oci://artifacts.software-univention.de/nubus/charts
+<<<<<<< HEAD
   version: 0.30.0
 digest: sha256:fc5a86b7225e916f574686c4784d9b765f36ddba4ae4290dd054a5498f89302b
 generated: "2024-09-12T09:01:59.04807+02:00"
+=======
+  version: 0.28.0
+digest: sha256:7c178eb9101e5d4af7acfa31974b63fcb7c9412063621d64290a4cecf0baea56
+generated: "2024-09-02T21:57:12.595524314+02:00"
+>>>>>>> 8c28a88 (feat(provisioning): activate provisioning and consumers instead of listeners)
