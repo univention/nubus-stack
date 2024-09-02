@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.43.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.42.1...v0.43.0) (2024-09-02)
+
+
+### Features
+
+* configure UCR from Helm ([7f3d653](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/7f3d6531447d11823c055c1968ee28c094bcbf92))
+
 ## [0.42.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.42.0...v0.42.1) (2024-08-30)
 
 
