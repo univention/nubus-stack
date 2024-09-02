@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.44.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.43.0...v0.44.0) (2024-09-02)
+
+
+### Features
+
+* bump portal and selfservice-listener ([aa90003](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/aa90003969f76ed760b107a8f7a1097db271fde9))
+
 ## [0.43.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.42.1...v0.43.0) (2024-09-02)
 
 
