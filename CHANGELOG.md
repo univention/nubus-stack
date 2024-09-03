@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.47.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.46.0...v0.47.0) (2024-09-03)
+
+
+### Features
+
+* update umc-server subchart (BSI compliance) ([e55f9a5](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/e55f9a5253b856a7a42ef55d917db7c5ea8b8d71))
+
 ## [0.46.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.45.0...v0.46.0) (2024-09-03)
 
 
