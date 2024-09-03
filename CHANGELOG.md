@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.46.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.45.0...v0.46.0) (2024-09-03)
+
+
+### Features
+
+* **keycloak:** Use StatefulSets ([59d958f](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/59d958f1cbbf718adeb18feefe1a6b06d341c3d9))
+
 ## [0.45.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.44.0...v0.45.0) (2024-09-03)
 
 
