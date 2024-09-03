@@ -339,9 +339,7 @@ wait_for_opendesk_deployment:
           echo "'ums-deploy' job completed successfully. Waiting for 3 minutes to allow for provisioning..."
           sleep 180
           echo "Fetching passwords..."
-          echo "USER_PASSWORD=$(kubectl get cm $RELEASE_NAME-stack-data-swp-data -o jsonpath='{.data.dev-test-users\.yaml}' -n ${OPENDESK_NAMESPACE} | grep -A10 'username: "default.user"' | grep 'password:' | awk '{print $2}' | tr -d '"')" >> opendesk_deploy.env
-          echo "ADMIN_PASSWORD=$(kubectl get cm $RELEASE_NAME-stack-data-swp-data -o jsonpath='{.data.dev-test-users\.yaml}' -n ${OPENDESK_NAMESPACE} | grep -A10 'username: "default.admin"' | grep 'password:' | awk '{print $2}' | tr -d '"')" >> opendesk_deploy.env
-          echo "UDM_ADMIN_PASSWORD=$(kubectl get secret -n "${OPENDESK_NAMESPACE}" $RELEASE_NAME-udm-rest-api-credentials -o jsonpath="{.data['machine\.secret']}" | base64 -d)" >> opendesk_deploy.env
+          echo "ADMIN_PASSWORD=$(kubectl get secret -n "${OPENDESK_NAMESPACE}" $RELEASE_NAME-nubus-credentials -o jsonpath="{.data.administrator_password}" | base64 -d)" >> opendesk_deploy.env
           echo "Passwords fetched and stored in opendesk_deploy.env"
           cat opendesk_deploy.env
           break
@@ -373,9 +371,7 @@ opendesk-e2e-tests:
       artifacts: true
   variables:
     PORTAL_BASE_URL: $PORTAL_BASE_URL
-    USER_PASSWORD: $USER_PASSWORD
     ADMIN_PASSWORD: $ADMIN_PASSWORD
-    UDM_ADMIN_PASSWORD: $UDM_ADMIN_PASSWORD
   trigger:
     project: "univention/customers/dataport/upx/e2e-tests"
     strategy: depend
