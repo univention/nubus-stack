@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.45.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.44.0...v0.45.0) (2024-09-03)
+
+
+### Features
+
+* configure UCR from Helm ([aacbeb8](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/aacbeb81fe0dc40b8f63018e38879cb22134ca15))
+* migrate dev users to external extension ([5235a87](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/5235a879ba6c5ae9b09da2d5a9effa74954327c0))
+* upgrade stack-data chart ([9b7aac0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/9b7aac071821fa30b1f06a8b902b578f59ad3c72))
+
+
+### Bug Fixes
+
+* Add secret for Administrator user ([be83f5b](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/be83f5bdde20530f704b9c022df00b059d9b9f61))
+* set minio version ([48b26a8](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/48b26a8114261cebbfcb8fc90da6d99ef39be165))
+
 ## [0.44.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.43.0...v0.44.0) (2024-09-02)
 
 
