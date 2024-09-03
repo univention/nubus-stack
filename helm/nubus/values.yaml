@@ -443,27 +443,6 @@ nubusUdmListener: &nubusUdmListener
         key: password
   config:
     ldapHost: "{{ .Release.Name }}-ldap-server-primary"
-nubusStackDataSwp: &nubusStackDataSwp
-  terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
-  nameOverride: "stack-data-swp"
-  enabled: true
-  resources: *nubusDevelopmentResources
-  stackDataSwp:
-    loadDevData: true
-  stackDataContext:
-    ldapSystemUsers:
-      - username: "readonly"
-        password: '{{ include "nubusTemplates.credentials.ldap.users.readonly.password" . }}'
-  # Currently gets its configuration from UCR.
-  # ldap:
-  #   connection:
-  #     host: ""
-  #     port: ""
-  #   auth:
-  #     bindDn: cn=admin,dc=example,dc=org
-  #     credentialSecret:
-  #       key: password
-  #       name: stack-data-swp-ldap-credentials
 
 nubusSelfServiceListener: &nubusSelfServiceListener
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
@@ -605,7 +584,6 @@ nubusStackDataUms:
   nubusPortalServer: *nubusPortalServer
   nubusProvisioning: *nubusProvisioning
   nubusUdmListener: *nubusUdmListener
-  nubusStackDataSwp: *nubusStackDataSwp
   nubusSelfServiceListener: *nubusSelfServiceListener
   nubusUdmRestApi: *nubusUdmRestApi
   stackDataContext:

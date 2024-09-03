@@ -49,8 +49,7 @@ helm uninstall nubus
 | oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 0.38.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceConsumer(selfservice-consumer) | 0.7.2 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceListener(selfservice-listener) | 0.6.5 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataSwp(stack-data-swp) | 0.66.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.66.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.67.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 0.38.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmRestApi(udm-rest-api) | 0.22.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.29.0 |
@@ -2612,96 +2611,6 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataSwp.enabled</td>
-			<td>bool</td>
-			<td><pre lang="json">
-true
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataSwp.nameOverride</td>
-			<td>string</td>
-			<td><pre lang="json">
-"stack-data-swp"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataSwp.resources.limits.cpu</td>
-			<td>int</td>
-			<td><pre lang="json">
-288
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataSwp.resources.limits.memory</td>
-			<td>string</td>
-			<td><pre lang="json">
-"1Gi"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataSwp.resources.requests.cpu</td>
-			<td>string</td>
-			<td><pre lang="json">
-"10m"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataSwp.resources.requests.memory</td>
-			<td>string</td>
-			<td><pre lang="json">
-"16Mi"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataSwp.stackDataContext.ldapSystemUsers[0].password</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ include \"nubusTemplates.credentials.ldap.users.readonly.password\" . }}"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataSwp.stackDataContext.ldapSystemUsers[0].username</td>
-			<td>string</td>
-			<td><pre lang="json">
-"readonly"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataSwp.stackDataSwp.loadDevData</td>
-			<td>bool</td>
-			<td><pre lang="json">
-true
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataSwp.terminationGracePeriodSeconds</td>
-			<td>int</td>
-			<td><pre lang="json">
-5
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusStackDataUms.enabled</td>
 			<td>bool</td>
 			<td><pre lang="json">
@@ -3705,96 +3614,6 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 "Administrator"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusStackDataSwp.enabled</td>
-			<td>bool</td>
-			<td><pre lang="json">
-true
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusStackDataSwp.nameOverride</td>
-			<td>string</td>
-			<td><pre lang="json">
-"stack-data-swp"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusStackDataSwp.resources.limits.cpu</td>
-			<td>int</td>
-			<td><pre lang="json">
-288
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusStackDataSwp.resources.limits.memory</td>
-			<td>string</td>
-			<td><pre lang="json">
-"1Gi"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusStackDataSwp.resources.requests.cpu</td>
-			<td>string</td>
-			<td><pre lang="json">
-"10m"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusStackDataSwp.resources.requests.memory</td>
-			<td>string</td>
-			<td><pre lang="json">
-"16Mi"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusStackDataSwp.stackDataContext.ldapSystemUsers[0].password</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ include \"nubusTemplates.credentials.ldap.users.readonly.password\" . }}"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusStackDataSwp.stackDataContext.ldapSystemUsers[0].username</td>
-			<td>string</td>
-			<td><pre lang="json">
-"readonly"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusStackDataSwp.stackDataSwp.loadDevData</td>
-			<td>bool</td>
-			<td><pre lang="json">
-true
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusStackDataSwp.terminationGracePeriodSeconds</td>
-			<td>int</td>
-			<td><pre lang="json">
-5
 </pre>
 </td>
 			<td></td>
