@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.48.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.47.0...v0.48.0) (2024-09-03)
+
+
+### Features
+
+* remove default portal tile on plain nubus ([cec1f87](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/cec1f87d0c5b0677c36ba4adfaaa8e8ae73a9d41))
+
 ## [0.47.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.46.0...v0.47.0) (2024-09-03)
 
 
