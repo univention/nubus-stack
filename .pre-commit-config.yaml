@@ -42,12 +42,6 @@ repos:
     hooks:
       - id: docker-compose-check
 
-  # "Helm chart linter"
-  - repo: "https://github.com/gruntwork-io/pre-commit"
-    rev: "v0.1.23"
-    hooks:
-      - id: "helmlint"
-
   - repo: "https://github.com/norwoodj/helm-docs"
     rev: "v1.11.0"
     hooks:
@@ -55,6 +49,12 @@ repos:
         args:
           - "--chart-search-root=helm"
           - "--template-files=README.md.gotmpl"
+
+  # "Helm chart linter"
+  - repo: "https://github.com/gruntwork-io/pre-commit"
+    rev: "v0.1.23"
+    hooks:
+      - id: "helmlint"
 
   - repo: "https://git.knut.univention.de/univention/dist/pre-commit-hooks/addlicense"
     rev: "v1.0.1"
