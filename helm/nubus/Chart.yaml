@@ -120,7 +120,7 @@ dependencies:
   - name: "stack-data-ums"
     alias: "nubusStackDataUms"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.73.0"
+    version: "0.73.1"
     condition: "nubusStackDataUms.enabled"
 
   # udm-rest-api related chart(s)
