@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.49.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.48.0...v0.49.0) (2024-09-04)
+
+
+### Features
+
+* BSI compliance portal-consumer ([676aaa5](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/676aaa56ed778f35aa133acb542e9607705cfc23))
+
 ## [0.48.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.47.0...v0.48.0) (2024-09-03)
 
 
