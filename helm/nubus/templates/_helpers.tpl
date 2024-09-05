@@ -68,3 +68,11 @@ http
 {{- printf "%s://%s:%s" $protocol $host $port -}}
 {{- end -}}
 {{- end -}}
+
+{{- define "nubusTemplates.enablePlainUmcLogin" -}}
+{{- if .Values.global.enablePlainUmcLogin -}}
+{{- .Values.global.enablePlainUmcLogin -}}
+{{- else -}}
+false
+{{- end -}}
+{{- end -}}

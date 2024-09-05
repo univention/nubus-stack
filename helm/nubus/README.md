@@ -41,19 +41,19 @@ helm uninstall nubus
 | oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakExtensions(keycloak-extensions) | 0.10.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusLdapNotifier(ldap-notifier) | 0.24.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusLdapServer(ldap-server) | 0.24.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusNotificationsApi(notifications-api) | 0.36.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalConsumer(portal-consumer) | 0.36.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalFrontend(portal-frontend) | 0.36.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusNotificationsApi(notifications-api) | 0.38.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalConsumer(portal-consumer) | 0.38.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalFrontend(portal-frontend) | 0.38.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusPortalListener(portal-listener) | 0.24.2 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.36.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.38.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 0.38.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceConsumer(selfservice-consumer) | 0.7.2 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceListener(selfservice-listener) | 0.6.5 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.68.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.69.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 0.38.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmRestApi(udm-rest-api) | 0.22.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.29.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUmcServer(umc-server) | 0.29.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.30.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUmcServer(umc-server) | 0.30.0 |
 | oci://registry-1.docker.io/bitnamicharts | common | ^2.x.x |
 | oci://registry-1.docker.io/bitnamicharts | minio | 14.7.0 |
 | oci://registry-1.docker.io/bitnamicharts | postgresql | ^12.x.x |
@@ -312,6 +312,15 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>global.enablePlainUmcLogin</td>
+			<td>bool</td>
+			<td><pre lang="json">
+false
+</pre>
+</td>
+			<td>Allow plain UMC login (otherwise only SAML login is possible) Be aware this will expose the UMC login page to the public, which can circumvent 2FA and other security measures placed in the IdP.</td>
+		</tr>
+		<tr>
 			<td>global.extensions</td>
 			<td>list</td>
 			<td><pre lang="json">
@@ -330,7 +339,7 @@ true
       "imagePullPolicy": "IfNotPresent",
       "registry": "registry.opencode.de",
       "repository": "bmi/opendesk/components/platform-development/images/opendesk-nubus",
-      "tag": "1.3.0@sha256:0185955075ecf91e5e5437537fbafc2bcca8cdad989e3ec8bb2558ef27eb45be"
+      "tag": "1.4.0@sha256:8f3a278c41b799f23f0559e6bc4ebfe9a3ee3d70a906205ea84597a5411af5d5"
     },
     "name": "opendesk"
   }
@@ -502,7 +511,7 @@ true
       "imagePullPolicy": "IfNotPresent",
       "registry": "artifacts.software-univention.de",
       "repository": "nubus/images/portal-extension",
-      "tag": "0.36.0"
+      "tag": "0.38.0@sha256:aa6ec6b99810e05655d98fa1192bc2eabb855335f7a04aa4cd96ed5b5645d736"
     },
     "name": "portal"
   }

@@ -33,6 +33,10 @@ global:
       username: ""
   keycloak:
     realm: "nubus"
+  # -- Allow plain UMC login (otherwise only SAML login is possible)
+  # Be aware this will expose the UMC login page to the public, which can
+  # circumvent 2FA and other security measures placed in the IdP.
+  enablePlainUmcLogin: false
 
   configMapUcr: "{{ .Release.Name }}-stack-data-ums-ucr"
 
@@ -54,7 +58,7 @@ global:
         registry: "registry.opencode.de"
         repository: "bmi/opendesk/components/platform-development/images/opendesk-nubus"
         imagePullPolicy: "IfNotPresent"
-        tag: "1.3.0@sha256:0185955075ecf91e5e5437537fbafc2bcca8cdad989e3ec8bb2558ef27eb45be"
+        tag: "1.4.0@sha256:8f3a278c41b799f23f0559e6bc4ebfe9a3ee3d70a906205ea84597a5411af5d5"
 
   # -- Allows to configure the system extensions to load. This is intended for
   # internal usage, prefer to use `global.extensions` for user configured
@@ -65,7 +69,7 @@ global:
         registry: "artifacts.software-univention.de"
         repository: "nubus/images/portal-extension"
         imagePullPolicy: "IfNotPresent"
-        tag: "0.36.0"
+        tag: "0.38.0@sha256:aa6ec6b99810e05655d98fa1192bc2eabb855335f7a04aa4cd96ed5b5645d736"
 
   # Credentials that are primarily or exclusively used by the umbrella chart can be overridden in some cases. This is the place to do it.
   credentialOverride:
