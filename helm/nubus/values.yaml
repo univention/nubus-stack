@@ -67,15 +67,43 @@ global:
         imagePullPolicy: "IfNotPresent"
         tag: "0.36.0"
 
-
   # Credentials that are primarily or exclusively used by the umbrella chart can be overridden in some cases. This is the place to do it.
   credentialOverride:
-    ldapServer:
-      adminPassword: ""
     defaultUsers:
       defaultAdministratorPassword: ""
       defaultAdminPassword: ""
       defaultUserPassword: ""
+    ldapServer:
+      adminPassword: ""
+    portalConsumer:
+      minio:
+        accessKey: ""
+        secretKey: ""
+      provisioningApi:
+        password: ""
+    portalListener:
+      minio:
+        secretKey: ""
+    provisioning:
+      api:
+        adminPassword: ""
+        natsPassword: ""
+        prefillPassword: ""
+        udmTransformerPassword: ""
+      dispatcher:
+        natsPassword: ""
+      nats:
+        adminPassword: ""
+      prefill:
+        natsPassword: ""
+      udmListener:
+        natsPassword: ""
+      udmTransformer:
+        natsPassword: ""
+    selfserviceConsumer:
+      natsPassword: ""
+      provisioningApi:
+        password: ""
 
 # -- Additional custom annotations to add to all objects deployed directly by the umbrella chart.
 additionalAnnotations: {}
