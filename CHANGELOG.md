@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.50.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.50.0...v0.50.1) (2024-09-05)
+
+
+### Bug Fixes
+
+* **provisioning:** add credentialOverride for all provisioning secrets ([e533400](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/e5334001c0ef55a935abdfbffaa2b641369cac60))
+
 ## [0.50.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.49.0...v0.50.0) (2024-09-05)
 
 
