@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.50.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.49.0...v0.50.0) (2024-09-05)
+
+
+### Features
+
+* **stack-data-swp:** Remove stack-data-swp chart ([d705260](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/d705260c44e92407c46e3e2b34c38ff801ab36e8))
+
 ## [0.49.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.48.0...v0.49.0) (2024-09-04)
 
 
