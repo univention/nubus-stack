@@ -52,7 +52,7 @@ dependencies:
   version: 0.10.0
 - name: keycloak-bootstrap
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.2.0
+  version: 0.2.1
 - name: stack-data-ums
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.69.3
@@ -65,5 +65,5 @@ dependencies:
 - name: umc-server
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.30.0
-digest: sha256:8657f8a22f8ff5e4e6e37222e726c6335efc81d5f4f555e575e1f8081333f5d4
-generated: "2024-09-11T16:24:17.683389+02:00"
+digest: sha256:fc5a86b7225e916f574686c4784d9b765f36ddba4ae4290dd054a5498f89302b
+generated: "2024-09-12T09:01:59.04807+02:00"
