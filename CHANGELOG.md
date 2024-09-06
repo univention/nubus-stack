@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.51.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.50.1...v0.51.0) (2024-09-06)
+
+
+### Features
+
+* update ldap subchart (BSI compliant notifier) ([de2519a](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/de2519a5316ddf1e8d8b94ac5bda97d53fa3a161))
+
 ## [0.50.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.50.0...v0.50.1) (2024-09-05)
 
 
