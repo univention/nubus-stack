@@ -620,7 +620,6 @@ nubusStackDataUms:
   stackDataContext:
     ldapMasterHost: '{{ include "nubusTemplates.connections.ldap.primary.host" . }}'
     ldapHost: '{{ include "nubusTemplates.connections.ldap.primary.host" . }}'
-    installUmcPolicies: true
 
   templateContext:
     portaltileGroupUserStandard:

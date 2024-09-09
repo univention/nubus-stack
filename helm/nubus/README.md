@@ -4312,15 +4312,6 @@ false
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataUms.stackDataContext.installUmcPolicies</td>
-			<td>bool</td>
-			<td><pre lang="json">
-true
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusStackDataUms.stackDataContext.ldapHost</td>
 			<td>string</td>
 			<td><pre lang="json">
