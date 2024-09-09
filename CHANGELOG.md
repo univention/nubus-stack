@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.51.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.51.0...v0.51.1) (2024-09-09)
+
+
+### Bug Fixes
+
+* **ldap:** Configure LDAP Server Chart to only deploy one primary by default ([198953f](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/198953f2b8ec755c623a96337aa562032a268b00))
+
 ## [0.51.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.50.1...v0.51.0) (2024-09-06)
 
 
