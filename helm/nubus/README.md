@@ -622,6 +622,15 @@ true
 			<td>The name of the kubernetes secret which contains a TLS private key and certificate. Hint: This secret is not created by this chart and must be provided.</td>
 		</tr>
 		<tr>
+			<td>keycloak.config.logLevel</td>
+			<td>string</td>
+			<td><pre lang="json">
+"INFO"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>keycloak.enabled</td>
 			<td>bool</td>
 			<td><pre lang="json">
@@ -1396,6 +1405,15 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusKeycloakExtensions.handler.appConfig.logLevel</td>
+			<td>string</td>
+			<td><pre lang="json">
+"INFO"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusKeycloakExtensions.keycloak.auth.credentialSecret.key</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -1472,6 +1490,15 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 ""
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusKeycloakExtensions.proxy.appConfig.logLevel</td>
+			<td>string</td>
+			<td><pre lang="json">
+"info"
 </pre>
 </td>
 			<td></td>
@@ -2872,6 +2899,15 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusStackDataUms.nubusKeycloakExtensions.handler.appConfig.logLevel</td>
+			<td>string</td>
+			<td><pre lang="json">
+"INFO"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusStackDataUms.nubusKeycloakExtensions.keycloak.auth.credentialSecret.key</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -2948,6 +2984,15 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 ""
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusKeycloakExtensions.proxy.appConfig.logLevel</td>
+			<td>string</td>
+			<td><pre lang="json">
+"info"
 </pre>
 </td>
 			<td></td>

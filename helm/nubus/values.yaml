@@ -280,6 +280,9 @@ keycloak:
       database: keycloak
       credentialSecret:
         key: password
+  config:
+    logLevel: "INFO" # default loglevel (subchart): INFO
+
 nubusGuardian: &nubusGuardian
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   nameOverride: "guardian"
@@ -605,6 +608,12 @@ nubusKeycloakExtensions: &nubusKeycloakExtensions
       username: keycloak_extensions
       credentialSecret:
         key: password
+  handler:
+    appConfig:
+      logLevel: "INFO"  # default loglevel (subchart): DEBUG
+  proxy:
+    appConfig:
+      logLevel: "info" # default loglevel (subchart): debug
 
 nubusStackDataUms:
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
