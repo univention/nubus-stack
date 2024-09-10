@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.53.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.52.0...v0.53.0) (2024-09-10)
+
+
+### Features
+
+* **provisioning:** activate provisioning and consumers instead of listeners ([5ead0b2](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/5ead0b229f7528fb016f54e0dc58e2af8d155a82))
+
 ## [0.52.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.51.1...v0.52.0) (2024-09-10)
 
 
