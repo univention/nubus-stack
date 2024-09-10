@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.54.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.53.0...v0.54.0) (2024-09-10)
+
+
+### Features
+
+* Plain UMC login configurable ([31ea347](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/31ea3472b37ed97115a5acf8486acc230f006f01))
+
 ## [0.53.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.52.0...v0.53.0) (2024-09-10)
 
 
