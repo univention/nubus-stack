@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.52.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.51.1...v0.52.0) (2024-09-10)
+
+
+### Features
+
+* remove installUmcpolicies parameter ([6c94541](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/6c945412ee8d0b463a4367a8a3d49003f1b4b3ca))
+* upgrade stack-data-ums version ([6725ee7](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/6725ee74ce74ad78878820347dd87ece5c851bb4))
+
 ## [0.51.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.51.0...v0.51.1) (2024-09-09)
 
 
