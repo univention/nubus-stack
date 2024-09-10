@@ -40,7 +40,16 @@ global:
 
   configMapUcr: "{{ .Release.Name }}-stack-data-ums-ucr"
 
-  configUcr: {}
+  configUcr:
+    umc:
+      module:
+        debug:
+          level: 2 # default loglevel (subchart): 5
+      server:
+        debug:
+          level: 2 # default loglevel (subchart): 5
+    apache2:
+      loglevel: "info" # default loglevel (subchart): warn
 
   # -- Extensions to load. Add entries to load additional extensions into Nubus.
   # Interim this value is pre-configured with the typical extensions loaded in
@@ -343,6 +352,8 @@ nubusNotificationsApi: &nubusNotificationsApi
       database: notificationsapi
       credentialSecret:
         key: password
+  notificationsApi:
+    logLevel: "INFO" # default loglevel (subchart): WARNING
 nubusPortalFrontend: &nubusPortalFrontend
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   nameOverride: "portal-frontend"
@@ -350,6 +361,8 @@ nubusPortalFrontend: &nubusPortalFrontend
   resources: *nubusDevelopmentResources
   ingress:
     host: "{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
+  portalFrontend:
+    logLevel: "INFO" # default loglevel (subchart): WARNING
 
 nubusPortalListener: &nubusPortalListener
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
@@ -400,6 +413,7 @@ nubusPortalServer: &nubusPortalServer
   resources: *nubusDevelopmentResources
   portalServer:
     objectStorageBucket: "nubus"
+    logLevel: "INFO" # default loglevel (subchart): WARNING
   # Currently gets its configuration from UCR.
   # minio:
   #
@@ -443,6 +457,8 @@ nubusProvisioning: &nubusProvisioning
         password:
           secretKeyRef:
             key: password
+    config:
+      LOG_LEVEL: "INFO" # default loglevel (subchart): INFO
   dispatcher:
     nats:
       connection:
@@ -452,6 +468,8 @@ nubusProvisioning: &nubusProvisioning
         password:
           secretKeyRef:
             key: password
+    config:
+      LOG_LEVEL: "INFO" # default loglevel (subchart): INFO
   prefill:
     nats:
       connection:
@@ -461,10 +479,14 @@ nubusProvisioning: &nubusProvisioning
         password:
           secretKeyRef:
             key: password
+    config:
+      LOG_LEVEL: "INFO" # default loglevel (subchart): INFO
   udmTransformer:
     ldap:
       connection:
         host: "{{ .Release.Name }}-ldap-server-primary"
+    config:
+      LOG_LEVEL: "INFO" # default loglevel (subchart): INFO
 
 nubusUdmListener: &nubusUdmListener
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
@@ -481,6 +503,7 @@ nubusUdmListener: &nubusUdmListener
         key: password
   config:
     ldapHost: "{{ .Release.Name }}-ldap-server-primary"
+    debugLevel: "2" # default loglevel (subchart): 2
 
 nubusSelfServiceListener: &nubusSelfServiceListener
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
@@ -568,6 +591,8 @@ nubusUmcServer: &nubusUmcServer
   umcServer:
     certPemFile: "/var/secrets/ssl/tls.crt"
     privateKeyFile: "/var/secrets/ssl/tls.key"
+  proxy:
+    logLevel: "INFO" # default loglevel (subchart): INFO
   extraVolumes:
     - name: "certificates"
       secret:

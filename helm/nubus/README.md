@@ -123,10 +123,28 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>global.configUcr</td>
-			<td>object</td>
+			<td>global.configUcr.apache2.loglevel</td>
+			<td>string</td>
 			<td><pre lang="json">
-{}
+"info"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>global.configUcr.umc.module.debug.level</td>
+			<td>int</td>
+			<td><pre lang="json">
+2
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>global.configUcr.umc.server.debug.level</td>
+			<td>int</td>
+			<td><pre lang="json">
+2
 </pre>
 </td>
 			<td></td>
@@ -1837,6 +1855,15 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusNotificationsApi.notificationsApi.logLevel</td>
+			<td>string</td>
+			<td><pre lang="json">
+"INFO"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusNotificationsApi.postgresql.auth.credentialSecret.key</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -2053,6 +2080,15 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusPortalFrontend.portalFrontend.logLevel</td>
+			<td>string</td>
+			<td><pre lang="json">
+"INFO"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusPortalFrontend.resources.limits.cpu</td>
 			<td>int</td>
 			<td><pre lang="json">
@@ -2206,6 +2242,15 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusPortalServer.portalServer.logLevel</td>
+			<td>string</td>
+			<td><pre lang="json">
+"INFO"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusPortalServer.portalServer.objectStorageBucket</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -2260,6 +2305,15 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusProvisioning.api.config.LOG_LEVEL</td>
+			<td>string</td>
+			<td><pre lang="json">
+"INFO"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusProvisioning.api.nats.connection.host</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -2291,6 +2345,15 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 "events_and_consumer_api"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusProvisioning.dispatcher.config.LOG_LEVEL</td>
+			<td>string</td>
+			<td><pre lang="json">
+"INFO"
 </pre>
 </td>
 			<td></td>
@@ -2476,6 +2539,15 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusProvisioning.prefill.config.LOG_LEVEL</td>
+			<td>string</td>
+			<td><pre lang="json">
+"INFO"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusProvisioning.prefill.nats.connection.host</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -2624,6 +2696,15 @@ true
 			<td>int</td>
 			<td><pre lang="json">
 5
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusProvisioning.udmTransformer.config.LOG_LEVEL</td>
+			<td>string</td>
+			<td><pre lang="json">
+"INFO"
 </pre>
 </td>
 			<td></td>
@@ -3097,6 +3178,15 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusStackDataUms.nubusNotificationsApi.notificationsApi.logLevel</td>
+			<td>string</td>
+			<td><pre lang="json">
+"INFO"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusStackDataUms.nubusNotificationsApi.postgresql.auth.credentialSecret.key</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -3313,6 +3403,15 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusStackDataUms.nubusPortalServer.portalServer.logLevel</td>
+			<td>string</td>
+			<td><pre lang="json">
+"INFO"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusStackDataUms.nubusPortalServer.portalServer.objectStorageBucket</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -3367,6 +3466,15 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusStackDataUms.nubusProvisioning.api.config.LOG_LEVEL</td>
+			<td>string</td>
+			<td><pre lang="json">
+"INFO"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusStackDataUms.nubusProvisioning.api.nats.connection.host</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -3398,6 +3506,15 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 "events_and_consumer_api"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusProvisioning.dispatcher.config.LOG_LEVEL</td>
+			<td>string</td>
+			<td><pre lang="json">
+"INFO"
 </pre>
 </td>
 			<td></td>
@@ -3583,6 +3700,15 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusStackDataUms.nubusProvisioning.prefill.config.LOG_LEVEL</td>
+			<td>string</td>
+			<td><pre lang="json">
+"INFO"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusStackDataUms.nubusProvisioning.prefill.nats.connection.host</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -3736,6 +3862,15 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusStackDataUms.nubusProvisioning.udmTransformer.config.LOG_LEVEL</td>
+			<td>string</td>
+			<td><pre lang="json">
+"INFO"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusStackDataUms.nubusProvisioning.udmTransformer.ldap.connection.host</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -3821,6 +3956,15 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 "Administrator"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusUdmListener.config.debugLevel</td>
+			<td>string</td>
+			<td><pre lang="json">
+"2"
 </pre>
 </td>
 			<td></td>
@@ -4249,6 +4393,15 @@ false
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusStackDataUms.nubusUmcServer.proxy.logLevel</td>
+			<td>string</td>
+			<td><pre lang="json">
+"INFO"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusStackDataUms.nubusUmcServer.replicaCount</td>
 			<td>int</td>
 			<td><pre lang="json">
@@ -4631,6 +4784,15 @@ false
 			<td>int</td>
 			<td><pre lang="json">
 5
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusUdmListener.config.debugLevel</td>
+			<td>string</td>
+			<td><pre lang="json">
+"2"
 </pre>
 </td>
 			<td></td>
@@ -5126,6 +5288,15 @@ false
 			<td>string</td>
 			<td><pre lang="json">
 ""
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusUmcServer.proxy.logLevel</td>
+			<td>string</td>
+			<td><pre lang="json">
+"INFO"
 </pre>
 </td>
 			<td></td>
