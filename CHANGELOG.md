@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.55.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.55.0...v0.55.1) (2024-09-11)
+
+
+### Bug Fixes
+
+* **portal-consumer:** bump portal consumer version to integrate initial-values race-condition ([8bc6caf](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/8bc6caf85759612139db462c545d7cba4f1b3695))
+
 ## [0.55.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.54.0...v0.55.0) (2024-09-11)
 
 
