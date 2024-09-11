@@ -321,7 +321,7 @@ wait_for_opendesk_deployment:
         exit 1
       fi
       echo "PIPELINE_ID: $PIPELINE_ID"
-      echo "Waiting for 'ums-deploy' job in pipeline $PIPELINE_ID to complete..."
+      echo "Waiting for 'nubus-deploy' job in pipeline $PIPELINE_ID to complete..."
       MAX_ATTEMPTS=30
       ATTEMPT=0
       while [ $ATTEMPT -lt $MAX_ATTEMPTS ]; do
@@ -333,10 +333,10 @@ wait_for_opendesk_deployment:
           echo "Error: Empty response from GitLab API"
           exit 1
         fi
-        JOB_STATUS=$(echo "$JOBS_RESPONSE" | jq -r '.[] | select(.name == "ums-deploy") | .status')
-        echo "Current 'ums-deploy' job status: $JOB_STATUS"
+        JOB_STATUS=$(echo "$JOBS_RESPONSE" | jq -r '.[] | select(.name == "nubus-deploy") | .status')
+        echo "Current 'nubus-deploy' job status: $JOB_STATUS"
         if [ "$JOB_STATUS" = "success" ]; then
-          echo "'ums-deploy' job completed successfully. Waiting for 3 minutes to allow for provisioning..."
+          echo "'nubus-deploy' job completed successfully. Waiting for 3 minutes to allow for provisioning..."
           sleep 180
           echo "Fetching passwords..."
           echo "ADMIN_PASSWORD=$(kubectl get secret -n "${OPENDESK_NAMESPACE}" $RELEASE_NAME-nubus-credentials -o jsonpath="{.data.administrator_password}" | base64 -d)" >> opendesk_deploy.env
@@ -344,10 +344,10 @@ wait_for_opendesk_deployment:
           cat opendesk_deploy.env
           break
         elif [ "$JOB_STATUS" = "failed" ] || [ "$JOB_STATUS" = "canceled" ]; then
-          echo "'ums-deploy' job failed or was canceled. Aborting."
+          echo "'nubus-deploy' job failed or was canceled. Aborting."
           exit 1
         elif [ -z "$JOB_STATUS" ]; then
-          echo "'ums-deploy' job not found or still running. Retrying..."
+          echo "'nubus-deploy' job not found or still running. Retrying..."
         fi
         if [ $ATTEMPT -eq $MAX_ATTEMPTS ]; then
           echo "Max attempts reached. Aborting."
