@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.55.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.54.0...v0.55.0) (2024-09-11)
+
+
+### Features
+
+* **stack-data:** reload udm-rest-api cache ([97ee9b9](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/97ee9b9fea0ce52326b6aa1c9dfcc096565de50c))
+
 ## [0.54.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.53.0...v0.54.0) (2024-09-10)
 
 
