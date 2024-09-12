@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.57.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.57.0...v0.57.1) (2024-09-12)
+
+
+### Bug Fixes
+
+* set all log/debug levels to INFO or equivalent ([d06b201](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/d06b201d736e44190b60296c6fe496e2ad82ca7d))
+* set default service loglevels to INFO or equivalent ([7a602aa](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/7a602aad9a150e391d6f0fcfdcd7f7740d03d453))
+
 ## [0.57.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.56.1...v0.57.0) (2024-09-12)
 
 
