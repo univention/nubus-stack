@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.56.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.56.0...v0.56.1) (2024-09-12)
+
+
+### Bug Fixes
+
+* disable logging of credentials during set_facts ([95fff96](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/95fff968ff4940cf6d7feb6695f1fc8b72576fad))
+
 ## [0.56.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.55.1...v0.56.0) (2024-09-11)
 
 
