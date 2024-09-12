@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.57.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.56.1...v0.57.0) (2024-09-12)
+
+
+### Features
+
+* **provisioning:** activate provisioning and consumers instead of listeners ([c8bef31](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/c8bef315e0b83b92a26d92cc27926f245f478280))
+* update udm-listener (BSI compliance) ([174d4f5](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/174d4f50bcf4ba5ef14468bb0247cde3ce91f589))
+
 ## [0.56.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.56.0...v0.56.1) (2024-09-12)
 
 
