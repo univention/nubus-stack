@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.57.2](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.57.1...v0.57.2) (2024-09-12)
+
+
+### Bug Fixes
+
+* **provisioning-consumers:** make consumers wait until the subscriptions are created by the register-consumers job ([f97962c](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/f97962cad4e9aae5ad1c105da89c94efbf7d76cd))
+
 ## [0.57.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.57.0...v0.57.1) (2024-09-12)
 
 
