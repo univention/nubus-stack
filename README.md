@@ -58,8 +58,17 @@ helm template --set example.key=value nubus ./helm/nubus
 ### Deployment into a Kubernetes cluster
 
 If you want to verify changes in a real deployment, then you have to first make
-sure to have a Kubernetes cluster available. Typically you would work with the
-sub-commands `install`, `upgrade` and `uninstall`:
+sure to have a Kubernetes cluster available.
+
+Deployments can be made with plain Helm or by using the CI setup via Helmfile in
+the subfolder `./ci`. The CI setup is documented in
+[./ci/README.md](./ci/README.md).
+
+
+#### Plain Helm usage
+
+Typically you would work with the sub-commands `install`, `upgrade` and
+`uninstall`:
 
 ```sh
 # Often the use of "upgrade" with the argument "--install" is useful
