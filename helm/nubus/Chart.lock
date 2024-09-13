@@ -28,10 +28,10 @@ dependencies:
   version: 0.24.2
 - name: portal-consumer
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.38.5
+  version: 0.39.0
 - name: portal-server
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.38.5
+  version: 0.39.0
 - name: selfservice-listener
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.6.5
@@ -65,5 +65,5 @@ dependencies:
 - name: umc-server
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.32.0
-digest: sha256:383516a3becffe8298f1961524e442a181cef183b32bdfd4a77b1c96c37c945c
-generated: "2024-09-24T15:04:19.51839211+02:00"
+digest: sha256:83bd5de760e451e64a530825ee63d297f2a7cf32b3f593343ff1792dac00c58c
+generated: "2024-09-25T16:23:21.304179972+02:00"
