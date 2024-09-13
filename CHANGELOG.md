@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.57.3](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.57.2...v0.57.3) (2024-09-13)
+
+
+### Bug Fixes
+
+* Update portal components to version 0.38.3 ([3145fd2](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/3145fd2818dec38d22bdda5e50fc1a76f47dc6d4))
+
 ## [0.57.2](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.57.1...v0.57.2) (2024-09-12)
 
 
