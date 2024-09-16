@@ -13,6 +13,18 @@ environments:
     values:
       - gaia-values.yaml.gotmpl
       - reviewPrefix: {{ env "REVIEW_PREFIX" | default .Namespace }}
+
+
+  # The plain configuration is a Nubus deployed without the openDesk
+  # customization. The deployment is configured for the Gaia cluster.
+  #
+  # This will become the default once it is stable and has passing e2e tests.
+  plain:
+    values:
+      - gaia-values.yaml.gotmpl
+      - gaia-plain-values.yaml.gotmpl
+      - reviewPrefix: {{ env "REVIEW_PREFIX" | default .Namespace }}
+
   # Configuration for a local or custom deployment.
   #
   # Copy "gaia-values.yaml" to "local-values.yaml" and run helmfile with "-e
