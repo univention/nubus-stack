@@ -15,6 +15,9 @@ secrets:
   # Intentionally without a default value.
   masterPassword: {{ requiredEnv "MASTER_PASSWORD" }}
 
+toggles:
+  opendeskCustomization: true
+
 # Flags useful for development
 dev:
   # Allows to select the local chart instead of a packaged one
