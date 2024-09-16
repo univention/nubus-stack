@@ -10,6 +10,9 @@ global:
   subDomains:
     portal: "{{ .Values.reviewPrefix }}.portal"
     keycloak: "{{ .Values.reviewPrefix }}.id"
+  {{- if not .Values.toggles.opendeskCustomization }}
+  extensions: []
+  {{- end }}
 
 ingress:
   certManager:
