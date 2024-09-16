@@ -1,0 +1,17 @@
+# SPDX-License-Identifier: AGPL-3.0-only
+# SPDX-FileCopyrightText: 2024 Univention GmbH
+
+---
+nubusStackDataUms:
+  stackDataUms:
+    extraDataFiles:
+      # TODO: These workarounds should be removed over time.
+      99-plain-nubus-workarounds.yaml: |
+        {{ with .Values.stackDataContext }}
+        ---
+        action: "modify"
+        module: "portals/entry"
+        position: "cn=login-saml,cn=entry,cn=portals,cn=univention,{{ include "stack-data-ums.ldapBaseDn" $ }}"
+        properties:
+          activated: true
+        {{ end }}

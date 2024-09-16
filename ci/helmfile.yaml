@@ -32,6 +32,7 @@ environments:
   local:
     values:
       - local-values.yaml.gotmpl
+      - gaia-plain-values.yaml.gotmpl
       - reviewPrefix: {{ env "REVIEW_PREFIX" | default .Namespace }}
 
 ---
@@ -60,6 +61,9 @@ releases:
     version: {{ env "CHART_VERSION" | default "*" | quote }}
     values:
       - ./ci-values.yaml.gotmpl
+      {{- if not .Values.toggles.opendeskCustomization }}
+      - ./ci-plain-values.yaml
+      {{- end }}
       - ./dev-values.yaml
 
   - name: maildev
