@@ -26,11 +26,7 @@ repositories:
     url: artifacts.software-univention.de/nubus-dev/charts
     oci: true
   - name: maildev
-    # TODO: Depends on the following Pull Request to be merged before the upstream Helm repository
-    # can be used. Note that "helm-git" is required.
-    #
-    # See: https://github.com/christianhuth/helm-charts/pull/1109
-    url: git+https://github.com/m0wer/helm-charts.git@charts/maildev?ref=feat/support_incoming_tls
+    url: https://christianhuth.github.io/helm-charts
 
 releases:
   - name: certificate
@@ -48,5 +44,6 @@ releases:
 
   - name: maildev
     chart: maildev/maildev
+    version: 1.2.2
     values:
       - ./maildev-values.yaml.gotmpl

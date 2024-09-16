@@ -15,9 +15,6 @@ ingress:
 
 maildev:
   config:
-    smtp:
-      incoming:
-        secure: false
     web:
       # The web UI is potentially exposed in public, so we must always set a password.
       password: {{ derivePassword 1 "long" .Values.secrets.masterPassword "maildev" "user" | sha1sum | quote }}
