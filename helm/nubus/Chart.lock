@@ -37,7 +37,7 @@ dependencies:
   version: 0.6.5
 - name: selfservice-consumer
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.8.0
+  version: 0.9.0
 - name: provisioning
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.40.0
@@ -65,5 +65,5 @@ dependencies:
 - name: umc-server
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.31.0
-digest: sha256:a3be76d3d10e4cf3f8bd4316629c8652e787b66b64fa101c6f575db5d74b39ec
-generated: "2024-09-18T10:21:46.369993793+02:00"
+digest: sha256:39dc2f6deb4c207e412329c972deb3375606b3a9531e5a7e562c9002b66915d6
+generated: "2024-09-18T18:23:41.89411064+02:00"
