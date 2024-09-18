@@ -52,13 +52,6 @@ deploy-gaia:
     # - helmfile -n "${DEPLOY_NAMESPACE}" apply --skip-diff-on-install
     - helmfile --debug -n "${DEPLOY_NAMESPACE}" sync
     - popd
-
-    # TODO: Remove the below part once e2e-tests-legacy has been removed
-    - echo "PORTAL_BASE_URL=https://${DEPLOY_SUBDOMAIN}.portal.review.gaia.open-desk.cloud/univention/portal/" >> deploy.env
-    - echo "PORTAL_CENTRAL_NAVIGATION_SECRET=$(kubectl get secret -n "${DEPLOY_NAMESPACE}" nubus-portal-server-central-navigation-shared-secret -o jsonpath="{.data['authenticator\.secret']}" | base64 -d)" >> deploy.env
-    - echo "ADMIN_PASSWORD=$(kubectl get secret -n "${DEPLOY_NAMESPACE}" nubus-nubus-credentials -o jsonpath='{.data.administrator_password}' | base64 -d)" >> deploy.env
-    - echo "EMAIL_TEST_API_PASSWORD=$(kubectl get secret -n "${DEPLOY_NAMESPACE}" maildev-web -o jsonpath="{.data['web-password']}" | base64 -d)" >> deploy.env
-    - echo "EMAIL_TEST_API_BASE_URL=https://$(kubectl get ingress -n "${DEPLOY_NAMESPACE}" maildev -o jsonpath='{.spec.rules[0].host}')" >> deploy.env
   environment:
     name: ${CI_COMMIT_REF_SLUG}/nubus-with-extensions
     url: https://${DEPLOY_SUBDOMAIN}.portal.review.gaia.open-desk.cloud
@@ -150,25 +143,6 @@ e2e-tests:
     - "docker"
   variables:
     TESTRUNNER_VERSION: "latest"
-
-
-e2e-tests-legacy:
-  stage: test
-  needs:
-    - job: deploy-gaia
-      artifacts: true
-  when: manual
-  variables:
-    PORTAL_BASE_URL: $PORTAL_BASE_URL
-    ADMIN_PASSWORD: $ADMIN_PASSWORD
-    EMAIL_TEST_API_PASSWORD: $EMAIL_TEST_API_PASSWORD
-    EMAIL_TEST_API_BASE_URL: $EMAIL_TEST_API_BASE_URL
-  allow_failure: true
-  trigger:
-    project: "univention/customers/dataport/upx/e2e-tests"
-    strategy: depend
-  rules:
-    - when: manual
 
 
 stop-deployment:
