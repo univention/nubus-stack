@@ -3,6 +3,11 @@
 
 ---
 nubusStackDataUms:
+  templateContext:
+    loadDevData: true
+    initialPasswordDefaultUser: '{{ include "nubusTemplates.credentials.ldap.users.idp.password" . }}'
+    initialPasswordDefaultAdmin: '{{ include "nubusTemplates.credentials.ldap.users.admin.password" . }}'
+
   stackDataUms:
     extraDataFiles:
       # TODO: These workarounds should be removed over time.
@@ -15,3 +20,35 @@ nubusStackDataUms:
         properties:
           activated: true
         {{ end }}
+      99-dev-users.yaml: |
+        {{`
+        {% if loadDevData %}
+        ---
+        action: "create"
+        module: "users/user"
+        position: 'cn=users,{{ ldapBaseDn }}'
+        properties:
+          username: "default.user"
+          firstname: "Default"
+          lastname: "User"
+          password: "{{ initialPasswordDefaultUser }}"
+          mailPrimaryAddress: "default.user@{{ externalMailDomain }}"
+          overridePWHistory: true
+          overridePWLength: true
+        ---
+        action: "create"
+        module: "users/user"
+        position: 'cn=users,{{ ldapBaseDn }}'
+        properties:
+          username: "default.admin"
+          firstname: "Default"
+          lastname: "Admin"
+          primaryGroup: 'cn=Domain Admins,cn=groups,{{ ldapBaseDn }}'
+          password: "{{ initialPasswordDefaultAdmin }}"
+          guardianRoles:
+            - "guardian:builtin:super-admin"
+          mailPrimaryAddress: "default.admin@{{ externalMailDomain }}"
+          overridePWHistory: true
+          overridePWLength: true
+        {% endif %}
+        `}}
