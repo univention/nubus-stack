@@ -67,7 +67,7 @@ deploy-gaia:
     - echo "EMAIL_TEST_API_PASSWORD=$(kubectl get secret -n "${DEPLOY_NAMESPACE}" maildev-web -o jsonpath="{.data['web-password']}" | base64 -d)" >> deploy.env
     - echo "EMAIL_TEST_API_BASE_URL=https://$(kubectl get ingress -n "${DEPLOY_NAMESPACE}" maildev -o jsonpath='{.spec.rules[0].host}')" >> deploy.env
   environment:
-    name: review/${CI_COMMIT_REF_SLUG}
+    name: ${CI_COMMIT_REF_SLUG}/nubus-with-extensions
     url: https://${DEPLOY_SUBDOMAIN}.portal.review.gaia.open-desk.cloud
     on_stop: stop-deployment
     auto_stop_in: 1 day
@@ -88,7 +88,7 @@ deploy-gaia:
 deploy-gaia-plain:
   extends: deploy-gaia
   environment:
-    name: review/${CI_COMMIT_REF_SLUG}-plain
+    name: ${CI_COMMIT_REF_SLUG}/nubus-plain
     url: https://${DEPLOY_SUBDOMAIN}-plain.portal.review.gaia.open-desk.cloud
     on_stop: stop-deployment-plain
     auto_stop_in: 1 day
@@ -123,7 +123,7 @@ stop-deployment:
   script:
     - kubectl delete namespace "ci-${CI_COMMIT_REF_SLUG}" --wait
   environment:
-    name: review/${CI_COMMIT_REF_SLUG}
+    name: ${CI_COMMIT_REF_SLUG}/nubus-with-extensions
     action: stop
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
@@ -134,7 +134,7 @@ stop-deployment:
 stop-deployment-plain:
   extends: stop-deployment
   environment:
-    name: review/${CI_COMMIT_REF_SLUG}-plain
+    name: ${CI_COMMIT_REF_SLUG}/nubus-plain
     action: stop
   before_script:
     - export DEPLOY_NAMESPACE="${DEPLOY_NAMESPACE}-plain"
@@ -310,7 +310,7 @@ update_opendesk_job:
     reports:
       dotenv: opendesk_deploy.env
   environment:
-    name: review-opendesk/$CI_COMMIT_REF_SLUG
+    name: $CI_COMMIT_REF_SLUG/opendesk-pipeline
     url: $OPENDESK_PORTAL_BASE_URL
     on_stop: opendesk-env-stop
     auto_stop_in: 3 days
@@ -444,7 +444,7 @@ opendesk-env-stop:
       fi
 
   environment:
-    name: review-opendesk/$CI_COMMIT_REF_SLUG
+    name: $CI_COMMIT_REF_SLUG/opendesk-pipeline
     action: stop
   rules:
     - if: $CI_COMMIT_REF_PROTECTED == "false"
