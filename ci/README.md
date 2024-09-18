@@ -69,6 +69,25 @@ helmfile -n your-namespace -e local apply
 - `MASTER_PASSWORD` - has to be provided as a seed for the password derivation.
 
 
+## Transitioning to plain Nubus deployments
+
+The configuration in the file `helmfile.yaml` does contain an environment
+`plain` which allows to deploy Nubus without the openDesk specific customization
+and extensions. This shall over time become the default CI deployment.
+
+The main difference in this environment is that the toggle
+`toggles.opendeskCustomization` is disabled. The value of this toggle is
+influencing the deployment.
+
+```
+helmfile -n your-namespace -e plain template
+helmfile -n your-namespace -e plain apply
+```
+
+If you want to do a plain deployment in your local environment, then you have to
+set the toggle `toggles.opendeskCustomization` to `false`.
+
+
 ## Dependencies and requirements
 
 The requirements can be met via the setup in
