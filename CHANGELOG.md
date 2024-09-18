@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.58.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.58.0...v0.58.1) (2024-09-18)
+
+
+### Bug Fixes
+
+* remove admin credentials ([9fdb1fc](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/9fdb1fc2f42660c62bb2c14e84242161234a7036))
+
 ## [0.58.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.57.3...v0.58.0) (2024-09-18)
 
 
