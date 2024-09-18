@@ -11,15 +11,20 @@ nubusStackDataUms:
   stackDataUms:
     extraDataFiles:
       # TODO: These workarounds should be removed over time.
+
+      # TODO: The "{{` `}}" avoids the templating via Helm. We need a
+      # "extraDataFiles" which does not run the content through "tpl" anymore.
+
       99-plain-nubus-workarounds.yaml: |
-        {{ with .Values.stackDataContext }}
+        {{`
         ---
         action: "modify"
         module: "portals/entry"
-        position: "cn=login-saml,cn=entry,cn=portals,cn=univention,{{ include "stack-data-ums.ldapBaseDn" $ }}"
+        position: "cn=login-saml,cn=entry,cn=portals,cn=univention,{{ ldapBaseDn }}"
         properties:
           activated: true
-        {{ end }}
+        `}}
+
       99-dev-users.yaml: |
         {{`
         {% if loadDevData %}
