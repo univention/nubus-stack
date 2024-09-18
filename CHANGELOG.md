@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.58.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.57.3...v0.58.0) (2024-09-18)
+
+
+### Features
+
+* upgrade ucs base image in all subcharts ([3fe53fc](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/3fe53fc85f8e3c75f40313f5d81f2d494deb7ee4))
+
 ## [0.57.3](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.57.2...v0.57.3) (2024-09-13)
 
 
