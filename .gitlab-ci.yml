@@ -67,12 +67,12 @@ deploy-gaia:
     - echo "EMAIL_TEST_API_PASSWORD=$(kubectl get secret -n "${DEPLOY_NAMESPACE}" maildev-web -o jsonpath="{.data['web-password']}" | base64 -d)" >> deploy.env
     - echo "EMAIL_TEST_API_BASE_URL=https://$(kubectl get ingress -n "${DEPLOY_NAMESPACE}" maildev -o jsonpath='{.spec.rules[0].host}')" >> deploy.env
   environment:
-    name: review/$CI_COMMIT_REF_SLUG
+    name: review/${CI_COMMIT_REF_SLUG}
     url: https://${DEPLOY_SUBDOMAIN}.portal.review.gaia.open-desk.cloud
     on_stop: stop-deployment
     auto_stop_in: 1 day
     deployment_tier: development
-  resource_group: review-${CI_COMMIT_REF_SLUG}
+  resource_group: gaia-${DEPLOY_NAMESPACE}
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
       when: manual
@@ -84,6 +84,21 @@ deploy-gaia:
   artifacts:
     reports:
       dotenv: deploy.env
+
+deploy-gaia-plain:
+  extends: deploy-gaia
+  environment:
+    name: review/${CI_COMMIT_REF_SLUG}-plain
+    url: https://${DEPLOY_SUBDOMAIN}-plain.portal.review.gaia.open-desk.cloud
+    on_stop: stop-deployment-plain
+    auto_stop_in: 1 day
+    deployment_tier: development
+  resource_group: gaia-${DEPLOY_NAMESPACE}-plain
+  variables:
+    HELMFILE_ENVIRONMENT: plain
+  before_script:
+    - export DEPLOY_NAMESPACE="${DEPLOY_NAMESPACE}-plain"
+    - export DEPLOY_SUBDOMAIN="${DEPLOY_SUBDOMAIN}-plain"
 
 e2e-tests:
   stage: deploy
@@ -103,18 +118,27 @@ e2e-tests:
 stop-deployment:
   stage: "deploy"
   when: manual
-  image: "registry.opencode.de/bmi/opendesk/components/platform-development/images/helm:1.0.1\
-          @sha256:d38f41b88374e055332860018f2936db8807b763caf6089735db0484cbb2842a"
+  image: "ghcr.io/helmfile/helmfile:v0.167.1\
+          @sha256:414cb074a0da0f457129590c39d96575fbdcdb7ce75bf0d2b30f05e835947d76"
   script:
     - kubectl delete namespace "ci-${CI_COMMIT_REF_SLUG}" --wait
   environment:
-    name: review/$CI_COMMIT_REF_SLUG
+    name: review/${CI_COMMIT_REF_SLUG}
     action: stop
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
       when: manual
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
       when: manual
+
+stop-deployment-plain:
+  extends: stop-deployment
+  environment:
+    name: review/${CI_COMMIT_REF_SLUG}-plain
+    action: stop
+  before_script:
+    - export DEPLOY_NAMESPACE="${DEPLOY_NAMESPACE}-plain"
+
 
 update_opendesk_job:
   stage: deploy
