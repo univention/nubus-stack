@@ -1,0 +1,199 @@
+# SPDX-License-Identifier: AGPL-3.0-only
+# SPDX-FileCopyrightText: 2024 Univention GmbH
+
+---
+include:
+  - project: "univention/customers/dataport/upx/common-ci"
+    ref: "v1.32.0"
+    file:
+      - "defaults/nubus-workflow.yaml"
+
+
+stages:
+  - prepare
+  - deploy
+  - test
+  - cleanup
+
+
+pipline-configuration:
+  stage: prepare
+  script:
+    - echo "${DEPLOY_NAMESPACE}"
+    - echo "${DEPLOY_SUBDOMAIN}"
+    - echo "${RELEASE_VERSION}"
+    - echo "${SEMANTIC_VERSION}"
+  variables:
+    GIT_STRATEGY: none
+
+
+deploy-gaia:
+  stage: "deploy"
+  image: "ghcr.io/helmfile/helmfile:v0.167.1\
+          @sha256:414cb074a0da0f457129590c39d96575fbdcdb7ce75bf0d2b30f05e835947d76"
+  script:
+    # Prepare
+    - export CHART_VERSION=${RELEASE_VERSION}
+    - export REVIEW_PREFIX=${DEPLOY_SUBDOMAIN}
+
+    # Ensure cleanup
+    - >
+      kubectl delete namespace "${DEPLOY_NAMESPACE}"
+      --wait
+      --timeout=600s
+      --ignore-not-found
+
+    # Deploy via ci/helmfile
+    - pushd ci
+    # TODO: There is an issue around the call to "helm diff". Using "apply"
+    # would be preferred since it gives a nice diff of the changes.
+    #
+    # See: https://github.com/databus23/helm-diff/issues/460
+    # - helmfile -n "${DEPLOY_NAMESPACE}" apply --skip-diff-on-install
+    - helmfile --debug -n "${DEPLOY_NAMESPACE}" sync
+    - popd
+
+    # TODO: Remove the below part once e2e-tests-legacy has been removed
+    - echo "PORTAL_BASE_URL=https://${DEPLOY_SUBDOMAIN}.portal.review.gaia.open-desk.cloud/univention/portal/" >> deploy.env
+    - echo "PORTAL_CENTRAL_NAVIGATION_SECRET=$(kubectl get secret -n "${DEPLOY_NAMESPACE}" nubus-portal-server-central-navigation-shared-secret -o jsonpath="{.data['authenticator\.secret']}" | base64 -d)" >> deploy.env
+    - echo "ADMIN_PASSWORD=$(kubectl get secret -n "${DEPLOY_NAMESPACE}" nubus-nubus-credentials -o jsonpath='{.data.administrator_password}' | base64 -d)" >> deploy.env
+    - echo "EMAIL_TEST_API_PASSWORD=$(kubectl get secret -n "${DEPLOY_NAMESPACE}" maildev-web -o jsonpath="{.data['web-password']}" | base64 -d)" >> deploy.env
+    - echo "EMAIL_TEST_API_BASE_URL=https://$(kubectl get ingress -n "${DEPLOY_NAMESPACE}" maildev -o jsonpath='{.spec.rules[0].host}')" >> deploy.env
+  environment:
+    name: ${CI_COMMIT_REF_SLUG}/nubus-with-extensions
+    url: https://${DEPLOY_SUBDOMAIN}.portal.review.gaia.open-desk.cloud
+    on_stop: stop-deployment
+    auto_stop_in: 3 hours
+    deployment_tier: development
+  resource_group: gaia-${DEPLOY_NAMESPACE}
+  artifacts:
+    reports:
+      dotenv: deploy.env
+
+
+wait-for-bootstrap:
+  stage: deploy
+  needs:
+    - deploy-gaia
+  script:
+    - echo "Waiting for bootstrap to finish"
+    - sleep ${SLEEP_AFTER_DEPLOY}
+  variables:
+    SLEEP_AFTER_DEPLOY: 400
+
+
+configure-tests:
+  stage: test
+  image: "ghcr.io/helmfile/helmfile:v0.167.1\
+          @sha256:414cb074a0da0f457129590c39d96575fbdcdb7ce75bf0d2b30f05e835947d76"
+  script:
+    # Grab the e2e-tests sources to use the discovery script
+    - "[ ! -e e2e-tests ]"
+    - >
+      git clone
+      --depth 1
+      --branch "${TESTRUNNER_CONFIGURATION_BRANCH}"
+      https://git.knut.univention.de/univention/customers/dataport/upx/e2e-tests.git
+
+    # Grab the pytest configuration
+    - pushd ./e2e-tests
+    - source ./discover-env-from-cluster.sh
+    - popd
+    - echo "PYTEST_ADDOPTS=$PYTEST_ADDOPTS" > deploy.env
+  artifacts:
+    reports:
+      dotenv: deploy.env
+  variables:
+    TESTRUNNER_CONFIGURATION_BRANCH: main
+
+
+e2e-tests:
+  stage: test
+  needs:
+    - configure-tests
+  image: "gitregistry.knut.univention.de/univention/customers/dataport/upx/\
+          e2e-tests/e2e-tests-runner:${TESTRUNNER_VERSION}"
+  script:
+    - pushd /e2e
+    - >
+      pytest
+      -m acceptance_environment
+      --showlocals
+      --junitxml=test_results.xml
+      --html=report.html
+      --self-contained-html
+      --verbose
+      --video=retain-on-failure
+      --tracing=retain-on-failure
+      --screenshot=only-on-failure
+      || exit_code=$?
+    - popd
+    # NOTE: This is a workaround. Our testrunner image does not yet support to
+    # run the tests in a different directory than "/e2e". So we copy the reports
+    # back into the CI_PROJECT_DIR for Gitlab to accept them as artifacts.
+    - mkdir -p /e2e/test-results
+    - cp -a /e2e/test-results .
+    - cp -a /e2e/report.html .
+    - cp -a /e2e/test_results.xml .
+    - exit $exit_code
+  artifacts:
+    expose_as: "report"
+    paths:
+      - "${CI_PROJECT_DIR}/report.html"
+      - "${CI_PROJECT_DIR}/test_results.xml"
+      - "${CI_PROJECT_DIR}/test-results/"
+    when: "always"
+    reports:
+      junit: "test_results.xml"
+    expire_in: "1 week"
+  tags:
+    - "docker"
+  variables:
+    TESTRUNNER_VERSION: "latest"
+
+
+e2e-tests-legacy:
+  stage: test
+  needs:
+    - job: deploy-gaia
+      artifacts: true
+  when: manual
+  variables:
+    PORTAL_BASE_URL: $PORTAL_BASE_URL
+    ADMIN_PASSWORD: $ADMIN_PASSWORD
+    EMAIL_TEST_API_PASSWORD: $EMAIL_TEST_API_PASSWORD
+    EMAIL_TEST_API_BASE_URL: $EMAIL_TEST_API_BASE_URL
+  allow_failure: true
+  trigger:
+    project: "univention/customers/dataport/upx/e2e-tests"
+    strategy: depend
+  rules:
+    - when: manual
+
+
+stop-deployment:
+  stage: cleanup
+  allow_failure: true
+  needs:
+    - deploy-gaia
+  image: "ghcr.io/helmfile/helmfile:v0.167.1\
+          @sha256:414cb074a0da0f457129590c39d96575fbdcdb7ce75bf0d2b30f05e835947d76"
+  script:
+    - >
+      kubectl delete namespace "${DEPLOY_NAMESPACE}"
+      --wait
+      --timeout=600s
+      --ignore-not-found
+  variables:
+    GIT_STRATEGY: none
+  environment:
+    name: ${CI_COMMIT_REF_SLUG}/nubus-with-extensions
+    action: stop
+  rules:
+    - when: manual
+
+
+cleanup-failed-deployment:
+  extends: stop-deployment
+  rules:
+    - when: on_failure
