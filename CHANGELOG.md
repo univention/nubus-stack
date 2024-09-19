@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.59.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.58.1...v0.59.0) (2024-09-19)
+
+
+### Features
+
+* **register-consumer:** register ox-connector in the provisioning ([82a9515](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/82a951580f961e5118cfe4b825711315008fe542))
+
 ## [0.58.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.58.0...v0.58.1) (2024-09-18)
 
 
