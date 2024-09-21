@@ -31,71 +31,71 @@ dependencies:
   - name: "ldap-notifier"
     alias: "nubusLdapNotifier"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.25.0"
+    version: "0.25.1"
     condition: "nubusLdapNotifier.enabled"
 
   - name: "ldap-server"
     alias: "nubusLdapServer"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.25.0"
+    version: "0.25.1"
     condition: "nubusLdapServer.enabled"
 
   # portal related chart(s)
   - name: "notifications-api"
     alias: "nubusNotificationsApi"
-    version: "0.38.3"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
+    version: "0.38.3"
     condition: "nubusNotificationsApi.enabled"
 
   - name: "portal-frontend"
     alias: "nubusPortalFrontend"
-    version: "0.38.3"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
+    version: "0.38.3"
     condition: "nubusPortalFrontend.enabled"
 
   - name: "portal-listener"
     alias: "nubusPortalListener"
-    version: "0.24.2"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
+    version: "0.24.2"
     condition: "nubusPortalListener.enabled"
 
   - name: "portal-consumer"
     alias: "nubusPortalConsumer"
-    version: "0.38.3"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
+    version: "0.38.4"
     condition: "nubusPortalConsumer.enabled"
 
   - name: "portal-server"
     alias: "nubusPortalServer"
-    version: "0.38.3"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
+    version: "0.38.4"
     condition: "nubusPortalServer.enabled"
 
   # selfservice related chart(s)
 
   - name: "selfservice-listener"
     alias: "nubusSelfServiceListener"
-    version: "0.6.5"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
+    version: "0.6.5"
     condition: "nubusSelfServiceListener.enabled"
 
   - name: "selfservice-consumer"
     alias: "nubusSelfServiceConsumer"
-    version: "0.9.0"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
+    version: "0.9.1"
     condition: "nubusSelfServiceConsumer.enabled"
 
   # provisioning related chart(s)
   - name: "provisioning"
     alias: "nubusProvisioning"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.40.0"
+    version: 0.40.2
     condition: "nubusProvisioning.enabled"
 
   - name: "udm-listener"
     alias: "nubusUdmListener"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.40.0"
+    version: 0.40.2
     condition: "nubusProvisioning.enabled"
 
   # keycloak related chart(s)

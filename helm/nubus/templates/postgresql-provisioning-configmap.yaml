@@ -27,7 +27,7 @@ data:
     done
   provision-users.sh: |
     #!/usr/bin/env sh
-    set -eux
+    set -eu
     echo "Provisioning users ..."
     for user in $(cat /provisioning-scripts/users.list | sort | uniq); do
       USER_PASSWORD=$(cat /provisioning/passwords/$user)
