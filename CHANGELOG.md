@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.59.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.59.0...v0.59.1) (2024-09-23)
+
+
+### Bug Fixes
+
+* Don't leak secrets in bash scripts ([70adcd6](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/70adcd6573d4e514a4e391cec80434a29fcf2056)), closes [univention/customers/dataport/team-souvap#843](https://git.knut.univention.de/univention/customers/dataport/team-souvap/issues/843)
+
 ## [0.59.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.58.1...v0.59.0) (2024-09-19)
 
 
