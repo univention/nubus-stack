@@ -13,37 +13,37 @@ dependencies:
   version: 0.14.0
 - name: ldap-notifier
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.25.1
+  version: 0.25.2
 - name: ldap-server
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.25.1
+  version: 0.25.2
 - name: notifications-api
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.38.3
+  version: 0.38.5
 - name: portal-frontend
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.38.3
+  version: 0.38.5
 - name: portal-listener
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.24.2
 - name: portal-consumer
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.38.4
+  version: 0.38.5
 - name: portal-server
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.38.4
+  version: 0.38.5
 - name: selfservice-listener
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.6.5
 - name: selfservice-consumer
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.9.1
+  version: 0.10.0
 - name: provisioning
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.40.2
+  version: 0.41.0
 - name: udm-listener
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.40.2
+  version: 0.41.0
 - name: keycloak
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.5.2
@@ -65,5 +65,5 @@ dependencies:
 - name: umc-server
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.31.0
-digest: sha256:47e99603f71b79f7ff040ef4a832d410fcd33993361956f602a9131059973753
-generated: "2024-09-23T14:21:11.551662307+02:00"
+digest: sha256:3579302a1db2a63f1bb23321da377a078707e493549e3aca84abf92182d17162
+generated: "2024-09-24T13:26:15.781842669+02:00"
