@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.61.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.60.0...v0.61.0) (2024-09-24)
+
+
+### Features
+
+* upgrade umc-server chart ([606e07f](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/606e07f7f15c5256581828dd4bd54108eb0479e4))
+
 ## [0.60.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.59.1...v0.60.0) (2024-09-24)
 
 
