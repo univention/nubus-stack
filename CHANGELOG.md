@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.60.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.59.1...v0.60.0) (2024-09-24)
+
+
+### Features
+
+* rename endpoints of Provisioning API ([760939b](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/760939b91026e480cd6b07e91505fd83becfd1ba))
+
 ## [0.59.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.59.0...v0.59.1) (2024-09-23)
 
 
