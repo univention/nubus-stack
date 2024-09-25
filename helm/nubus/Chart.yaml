@@ -44,13 +44,13 @@ dependencies:
   - name: "notifications-api"
     alias: "nubusNotificationsApi"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.38.5"
+    version: "0.40.1"
     condition: "nubusNotificationsApi.enabled"
 
   - name: "portal-frontend"
     alias: "nubusPortalFrontend"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.38.5"
+    version: "0.40.1"
     condition: "nubusPortalFrontend.enabled"
 
   - name: "portal-listener"
@@ -62,13 +62,13 @@ dependencies:
   - name: "portal-consumer"
     alias: "nubusPortalConsumer"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.39.0"
+    version: "0.40.1"
     condition: "nubusPortalConsumer.enabled"
 
   - name: "portal-server"
     alias: "nubusPortalServer"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.39.0"
+    version: "0.40.1"
     condition: "nubusPortalServer.enabled"
 
   # selfservice related chart(s)
@@ -82,20 +82,20 @@ dependencies:
   - name: "selfservice-consumer"
     alias: "nubusSelfServiceConsumer"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.10.0"
+    version: "0.11.1"
     condition: "nubusSelfServiceConsumer.enabled"
 
   # provisioning related chart(s)
   - name: "provisioning"
     alias: "nubusProvisioning"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.41.0"
+    version: "0.42.0"
     condition: "nubusProvisioning.enabled"
 
   - name: "udm-listener"
     alias: "nubusUdmListener"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.41.0"
+    version: "0.42.0"
     condition: "nubusProvisioning.enabled"
 
   # keycloak related chart(s)
