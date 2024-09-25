@@ -90,16 +90,16 @@ deploy-gaia-plain:
   extends: deploy-gaia
   environment:
     name: ${CI_COMMIT_REF_SLUG}/nubus-plain
-    url: https://${DEPLOY_SUBDOMAIN}-plain.portal.review.gaia.open-desk.cloud
+    url: https://plain-${DEPLOY_SUBDOMAIN}.portal.review.gaia.open-desk.cloud
     on_stop: stop-deployment-plain
     auto_stop_in: 1 day
     deployment_tier: development
-  resource_group: gaia-${DEPLOY_NAMESPACE}-plain
+  resource_group: gaia-ci-plain-${CI_COMMIT_REF_SLUG}
   variables:
     HELMFILE_ENVIRONMENT: plain
   before_script:
-    - export DEPLOY_NAMESPACE="${DEPLOY_NAMESPACE}-plain"
-    - export DEPLOY_SUBDOMAIN="${DEPLOY_SUBDOMAIN}-plain"
+    - export DEPLOY_NAMESPACE="ci-plain-${CI_COMMIT_REF_SLUG}"
+    - export DEPLOY_SUBDOMAIN="plain-${DEPLOY_SUBDOMAIN}"
 
 e2e-tests:
   stage: deploy
@@ -142,7 +142,7 @@ stop-deployment-plain:
     name: ${CI_COMMIT_REF_SLUG}/nubus-plain
     action: stop
   before_script:
-    - export DEPLOY_NAMESPACE="${DEPLOY_NAMESPACE}-plain"
+    - export DEPLOY_NAMESPACE="ci-plain-${CI_COMMIT_REF_SLUG}"
 
 
 update_opendesk_job:
