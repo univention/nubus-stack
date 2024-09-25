@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.62.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.61.0...v0.62.0) (2024-09-25)
+
+
+### Features
+
+* remove cache http from portal ([b802dff](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/b802dff6c457af311de7d0da43bb1a9225f32cf0))
+
 ## [0.61.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.60.0...v0.61.0) (2024-09-24)
 
 
