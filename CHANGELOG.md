@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.62.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.62.0...v0.62.1) (2024-09-26)
+
+
+### Bug Fixes
+
+* provisioning subscriptions format consistency and persistence ([90d34c6](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/90d34c6cfc75beae6bfedab7f23db88a1e470317))
+
 ## [0.62.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.61.0...v0.62.0) (2024-09-25)
 
 
