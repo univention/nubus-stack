@@ -40,7 +40,7 @@ dependencies:
   version: 0.11.1
 - name: provisioning
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.42.0
+  version: 0.43.1
 - name: udm-listener
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.42.0
@@ -65,5 +65,5 @@ dependencies:
 - name: umc-server
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.32.0
-digest: sha256:9a7fa8c48e27d7d441d69e4ddcc616b1e90191fcd50001c025d841b5b0fd750c
-generated: "2024-09-26T12:22:05.758449585+02:00"
+digest: sha256:3cca0d26ae2a56f25ab17b5cf9540da8d4783d24b5326ce72000461c7ef7c211
+generated: "2024-09-26T14:11:19.713487506+02:00"

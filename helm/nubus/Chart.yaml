@@ -89,7 +89,7 @@ dependencies:
   - name: "provisioning"
     alias: "nubusProvisioning"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.42.0"
+    version: "0.43.1"
     condition: "nubusProvisioning.enabled"
 
   - name: "udm-listener"
