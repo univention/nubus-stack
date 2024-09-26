@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.62.2](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.62.1...v0.62.2) (2024-09-26)
+
+
+### Bug Fixes
+
+* **provisioning:** Bump provisioning to 0.43.1 ([e71eaa4](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/e71eaa4b7d9a9043da71167e6b90d128f62dcd62))
+
 ## [0.62.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.62.0...v0.62.1) (2024-09-26)
 
 
