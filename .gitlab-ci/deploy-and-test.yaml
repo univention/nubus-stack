@@ -66,13 +66,17 @@ deploy-gaia:
 
 wait-for-bootstrap:
   stage: deploy
+  image: "ghcr.io/helmfile/helmfile:v0.167.1\
+          @sha256:414cb074a0da0f457129590c39d96575fbdcdb7ce75bf0d2b30f05e835947d76"
   needs:
     - deploy-gaia
   script:
-    - echo "Waiting for bootstrap to finish"
-    - sleep ${SLEEP_AFTER_DEPLOY}
-  variables:
-    SLEEP_AFTER_DEPLOY: 400
+    # portal-tiles depend on portal-consumer depends on provisioning-register-consumers depends on stack-data-ums.
+    # the portal-consumer and the portal-tiles are up seconds after the provisioning-register-consumers job is done.
+    # It's easier to wait for a job than a container, that's why we wait for the portal-tiles a bit more implicitly.
+    - echo "Waiting for the bootstrapping of the deployment to finish"
+    - echo "Waiting for the creation of the provisioning subscriptions"
+    - kubectl -n "$DEPLOY_NAMESPACE" wait --for=condition=complete jobs.batch "${RELEASE_NAME:=nubus}-provisioning-register-consumers" --timeout 10m
 
 
 configure-tests:
