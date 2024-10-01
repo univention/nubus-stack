@@ -25,8 +25,8 @@ spec:
     - host: {{ printf "%s.%s" .Values.global.subDomains.portal .Values.global.domain | quote }}
       http:
         paths:
-          - path: /favicon.ico
-            pathType: Prefix
+          - path: /favicon.ico$
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: {{ .Release.Name }}-portal-frontend
@@ -57,7 +57,7 @@ spec:
     - host: {{ printf "%s.%s" .Values.global.subDomains.portal .Values.global.domain | quote }}
       {{ .Values.global.objectStorage.connection.protocol | default "http" }}:
         paths:
-          - path: /univention/(portal|selfservice)/icons/(logos|entries)/(.*)
+          - path: /univention/(portal|selfservice)/icons/(logos|entries)/(.*)$
             pathType: ImplementationSpecific
             backend:
               service:
