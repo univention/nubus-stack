@@ -19,6 +19,11 @@ deploy-gaia:
     - export DEPLOY_NAMESPACE="ci-plain-${CI_COMMIT_REF_SLUG}"
     - export DEPLOY_SUBDOMAIN="plain-${DEPLOY_SUBDOMAIN}"
 
+wait-for-bootstrap:
+  before_script:
+    - export DEPLOY_NAMESPACE="ci-plain-${CI_COMMIT_REF_SLUG}"
+    - export DEPLOY_SUBDOMAIN="plain-${DEPLOY_SUBDOMAIN}"
+
 stop-deployment:
   environment:
     name: ${CI_COMMIT_REF_SLUG}/nubus-plain
