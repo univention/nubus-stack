@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.62.3](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.62.2...v0.62.3) (2024-10-02)
+
+
+### Bug Fixes
+
+* **provisioning:** safe KV updates ([2476e6f](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/2476e6f7f6d8e145506d3d868e62c03c937e5702))
+
 ## [0.62.2](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.62.1...v0.62.2) (2024-09-26)
 
 
