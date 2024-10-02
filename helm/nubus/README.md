@@ -47,7 +47,7 @@ helm uninstall nubus
 | oci://artifacts.software-univention.de/nubus/charts | nubusPortalListener(portal-listener) | 0.24.2 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.41.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 0.44.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceConsumer(selfservice-consumer) | 0.11.1 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceConsumer(selfservice-consumer) | 0.11.2 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceListener(selfservice-listener) | 0.6.5 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.70.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 0.44.0 |
@@ -2791,15 +2791,6 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusSelfServiceConsumer.umc.auth.username</td>
-			<td>string</td>
-			<td><pre lang="json">
-"Administrator"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusSelfServiceListener.enabled</td>
 			<td>bool</td>
 			<td><pre lang="json">
@@ -3947,15 +3938,6 @@ true
 			<td>int</td>
 			<td><pre lang="json">
 5
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusSelfServiceConsumer.umc.auth.username</td>
-			<td>string</td>
-			<td><pre lang="json">
-"Administrator"
 </pre>
 </td>
 			<td></td>

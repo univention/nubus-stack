@@ -525,9 +525,6 @@ nubusSelfServiceConsumer: &nubusSelfServiceConsumer
   nameOverride: "selfservice-listener"
   enabled: true
   resources: *nubusDevelopmentResources
-  umc:
-    auth:
-      username: "Administrator"
   provisioningApi:
     auth:
       username: "selfservice"
