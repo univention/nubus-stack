@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.63.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.62.3...v0.63.0) (2024-10-02)
+
+
+### Features
+
+* **nubus:** Update portal charts to version 0.41.0 ([b751d37](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/b751d377014cdac56dc89d3a0209d9a0701e1fbc))
+
 ## [0.62.3](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.62.2...v0.62.3) (2024-10-02)
 
 
