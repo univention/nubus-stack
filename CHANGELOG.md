@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.63.2](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.63.1...v0.63.2) (2024-10-03)
+
+
+### Bug Fixes
+
+* cleanup selfservice values ([035847e](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/035847ee61fd5c8f3e39d206fb87070d9b2e2586))
+
 ## [0.63.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.63.0...v0.63.1) (2024-10-03)
 
 
