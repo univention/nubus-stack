@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.64.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.63.2...v0.64.0) (2024-10-05)
+
+
+### Features
+
+* Plain nubus theming parity with UCS ([de5c802](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/de5c8025ac04c3c67f1c6a52f96ae58a6f8b4366))
+
 ## [0.63.2](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.63.1...v0.63.2) (2024-10-03)
 
 
