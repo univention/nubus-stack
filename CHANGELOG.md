@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.64.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.64.0...v0.64.1) (2024-10-09)
+
+
+### Bug Fixes
+
+* fix ingress paths ([3557114](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/3557114e17419ed67188271ffc74914c0c2d3902))
+
 ## [0.64.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.63.2...v0.64.0) (2024-10-05)
 
 
