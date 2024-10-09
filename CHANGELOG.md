@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.64.2](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.64.1...v0.64.2) (2024-10-09)
+
+
+### Bug Fixes
+
+* fix YAML charts ([e30f795](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/e30f79508ab7f254a428912fa4ab3747145a869f))
+
 ## [0.64.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.64.0...v0.64.1) (2024-10-09)
 
 
