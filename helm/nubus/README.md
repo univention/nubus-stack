@@ -1039,7 +1039,7 @@ true
 			<td>minio.provisioning.usersExistingSecrets[0]</td>
 			<td>string</td>
 			<td><pre lang="json">
-"nubus-minio-provisioning"
+"{{ .Release.Name }}-minio-provisioning"
 </pre>
 </td>
 			<td></td>
