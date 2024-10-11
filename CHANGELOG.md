@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.64.4](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.64.3...v0.64.4) (2024-10-11)
+
+
+### Bug Fixes
+
+* don't hard-code the release name of the minioProvisioning secret ([ef42e84](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/ef42e846479a3f63d8cb2a1b596c6ca729ab2a4e))
+
 ## [0.64.3](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.64.2...v0.64.3) (2024-10-11)
 
 
