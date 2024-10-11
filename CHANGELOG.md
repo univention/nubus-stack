@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.64.3](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.64.2...v0.64.3) (2024-10-11)
+
+
+### Bug Fixes
+
+* remove legacy unused user sys-idp-user ([a662740](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/a66274018398f3f0eec11518e4d83e3a339fe7b4)), closes [univention/customers/dataport/team-souvap#838](https://git.knut.univention.de/univention/customers/dataport/team-souvap/issues/838)
+
 ## [0.64.2](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.64.1...v0.64.2) (2024-10-09)
 
 
