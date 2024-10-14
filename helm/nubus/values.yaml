@@ -273,7 +273,7 @@ minio:
             actions:
               - "s3:*"
     usersExistingSecrets:
-      - "{{ .Release.Name }}-minio-provisioning"
+      - nubus-minio-provisioning
 
 keycloak:
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
