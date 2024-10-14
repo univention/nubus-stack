@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.65.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.64.6...v0.65.0) (2024-10-14)
+
+
+### Features
+
+* enable showUmc for the portal and configure default modules ([be9e856](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/be9e8569c3e831c23394af594f4448a59b9c2cd2)), closes [univention/customers/dataport/team-souvap#862](https://git.knut.univention.de/univention/customers/dataport/team-souvap/issues/862)
+
 ## [0.64.6](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.64.5...v0.64.6) (2024-10-14)
 
 
