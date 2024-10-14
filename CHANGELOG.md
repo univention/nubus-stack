@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.64.6](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.64.5...v0.64.6) (2024-10-14)
+
+
+### Bug Fixes
+
+* remove newlines from nubus-minio-provisioning secret ([13faa72](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/13faa7253d49fc6b3dd8d658d09650d8d656ba7e))
+
 ## [0.64.5](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.64.4...v0.64.5) (2024-10-14)
 
 
