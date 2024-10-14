@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.64.5](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.64.4...v0.64.5) (2024-10-14)
+
+
+### Bug Fixes
+
+* .Release.Name can't be used in yaml keys ([17d9215](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/17d92158052e4ae5501f0ce4ddfa4a3c1a257f0b))
+
 ## [0.64.4](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.64.3...v0.64.4) (2024-10-11)
 
 
