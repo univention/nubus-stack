@@ -285,6 +285,8 @@ keycloak:
         key: password
   config:
     logLevel: "INFO" # default loglevel (subchart): INFO
+  ingress:
+    enabled: true
 
 nubusGuardian: &nubusGuardian
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
@@ -599,7 +601,7 @@ nubusKeycloakBootstrap: &nubusKeycloakBootstrap
 nubusKeycloakExtensions: &nubusKeycloakExtensions
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   nameOverride: "keycloak-extensions"
-  enabled: true
+  enabled: false
   resources: *nubusDevelopmentResources
   smtp:
     connection:

@@ -36,7 +36,7 @@ helm uninstall nubus
 | Repository | Name | Version |
 |------------|------|---------|
 | oci://artifacts.software-univention.de/nubus/charts | nubusGuardian(guardian) | 0.14.0 |
-| oci://artifacts.software-univention.de/nubus/charts | keycloak(keycloak) | 0.5.2 |
+| oci://artifacts.software-univention.de/nubus/charts | keycloak(keycloak) | 0.6.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakBootstrap(keycloak-bootstrap) | 0.6.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakExtensions(keycloak-extensions) | 0.11.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusLdapNotifier(ldap-notifier) | 0.25.2 |
@@ -641,6 +641,15 @@ true
 		</tr>
 		<tr>
 			<td>keycloak.enabled</td>
+			<td>bool</td>
+			<td><pre lang="json">
+true
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>keycloak.ingress.enabled</td>
 			<td>bool</td>
 			<td><pre lang="json">
 true
@@ -1408,7 +1417,7 @@ true
 			<td>nubusKeycloakExtensions.enabled</td>
 			<td>bool</td>
 			<td><pre lang="json">
-true
+false
 </pre>
 </td>
 			<td></td>
@@ -2956,7 +2965,7 @@ true
 			<td>nubusStackDataUms.nubusKeycloakExtensions.enabled</td>
 			<td>bool</td>
 			<td><pre lang="json">
-true
+false
 </pre>
 </td>
 			<td></td>

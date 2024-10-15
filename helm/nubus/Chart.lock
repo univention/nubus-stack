@@ -46,7 +46,7 @@ dependencies:
   version: 0.44.0
 - name: keycloak
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.5.2
+  version: 0.6.0
 - name: keycloak-extensions
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.11.0
@@ -65,5 +65,5 @@ dependencies:
 - name: umc-server
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.34.2
-digest: sha256:cf30189bead1c7a200fd02417976bb871bd3403f628dd7f6c4cf496b884c646a
-generated: "2024-10-22T17:21:48.060730438+02:00"
+digest: sha256:b73c13065c204154e74e855a7907ef32c09f5897a5c241225c7056ce7469214c
+generated: "2024-10-23T10:25:18.066084083+02:00"

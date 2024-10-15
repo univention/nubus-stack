@@ -54,6 +54,13 @@ nubusStackDataUms:
     smtpStartTls: false
     portalFqdn: "{{ .Values.reviewPrefix }}.portal.{{ .Values.reviewBaseDomain }}"
 
+keycloak:
+  ingress:
+    certManager:
+      enabled: false
+    tls:
+      secretName: {{ .Values.ingress.tls.secretName | quote }}
+
 nubusKeycloakExtensions:
   handler:
     appConfig:
