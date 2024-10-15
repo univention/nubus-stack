@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.65.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.65.0...v0.65.1) (2024-10-15)
+
+
+### Bug Fixes
+
+* Integrate self-service DoS fix from upstream ([d97c98d](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/d97c98d6104985583f2e155b72c56c7b1e55cc67)), closes [univention/customers/dataport/team-souvap#880](https://git.knut.univention.de/univention/customers/dataport/team-souvap/issues/880)
+
 ## [0.65.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.64.6...v0.65.0) (2024-10-14)
 
 
