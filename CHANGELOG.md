@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.66.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.65.1...v0.66.0) (2024-10-16)
+
+
+### Features
+
+* enable keycloak events ([04bb72d](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/04bb72de89c1420e4d5e00be393c01fbe5b5500e))
+
 ## [0.65.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.65.0...v0.65.1) (2024-10-15)
 
 
