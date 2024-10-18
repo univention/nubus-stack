@@ -351,15 +351,6 @@ false
       "tag": "0.11.0"
     },
     "name": "ox"
-  },
-  {
-    "image": {
-      "imagePullPolicy": "IfNotPresent",
-      "registry": "registry.opencode.de",
-      "repository": "bmi/opendesk/components/platform-development/images/opendesk-nubus",
-      "tag": "1.4.0@sha256:8f3a278c41b799f23f0559e6bc4ebfe9a3ee3d70a906205ea84597a5411af5d5"
-    },
-    "name": "opendesk"
   }
 ]
 </pre>
@@ -528,8 +519,8 @@ true
     "image": {
       "imagePullPolicy": "IfNotPresent",
       "registry": "artifacts.software-univention.de",
-      "repository": "nubus/images/portal-extension",
-      "tag": "0.42.3@sha256:10283ae8a1cd5229337ee9b5825927dd3289c5dbb1a2c6ecd7704d7756691dd9"
+      "repository": "nubus-dev/images/portal-extension",
+      "tag": "0.43.0-pre-cgarcia-portal-tiles@sha256:bd93b9c3f02358dcbe294fd2d59b0199b2f235b8775ae55ba19a60a83fc914fb"
     },
     "name": "portal"
   }

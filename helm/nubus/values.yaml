@@ -62,12 +62,6 @@ global:
         repository: "nubus/images/ox-extension"
         imagePullPolicy: "IfNotPresent"
         tag: "0.11.0"
-    - name: "opendesk"
-      image:
-        registry: "registry.opencode.de"
-        repository: "bmi/opendesk/components/platform-development/images/opendesk-nubus"
-        imagePullPolicy: "IfNotPresent"
-        tag: "1.4.0@sha256:8f3a278c41b799f23f0559e6bc4ebfe9a3ee3d70a906205ea84597a5411af5d5"
 
   # -- Allows to configure the system extensions to load. This is intended for
   # internal usage, prefer to use `global.extensions` for user configured
@@ -76,9 +70,9 @@ global:
     - name: "portal"
       image:
         registry: "artifacts.software-univention.de"
-        repository: "nubus/images/portal-extension"
+        repository: "nubus-dev/images/portal-extension"
         imagePullPolicy: "IfNotPresent"
-        tag: "0.42.3@sha256:10283ae8a1cd5229337ee9b5825927dd3289c5dbb1a2c6ecd7704d7756691dd9"
+        tag: "0.43.0-pre-cgarcia-portal-tiles@sha256:bd93b9c3f02358dcbe294fd2d59b0199b2f235b8775ae55ba19a60a83fc914fb"
 
   # Credentials that are primarily or exclusively used by the umbrella chart can be overridden in some cases. This is the place to do it.
   credentialOverride:
