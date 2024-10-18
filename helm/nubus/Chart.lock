@@ -31,7 +31,7 @@ dependencies:
   version: 0.42.3
 - name: portal-server
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.42.3
+  version: 0.43.0
 - name: selfservice-listener
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.6.5
@@ -55,7 +55,7 @@ dependencies:
   version: 0.6.0
 - name: stack-data-ums
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.74.0
+  version: 0.75.0
 - name: udm-rest-api
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.25.1
@@ -65,5 +65,5 @@ dependencies:
 - name: umc-server
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.34.2
-digest: sha256:b54560dc957e68f68bf36298eb22f93b4afa13ed534b5eec743155a9436eee54
-generated: "2024-10-22T10:43:50.49779333+02:00"
+digest: sha256:cf30189bead1c7a200fd02417976bb871bd3403f628dd7f6c4cf496b884c646a
+generated: "2024-10-22T17:21:48.060730438+02:00"
