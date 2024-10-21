@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.66.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.66.0...v0.66.1) (2024-10-21)
+
+
+### Bug Fixes
+
+* Bump portal related charts ([5acf85e](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/5acf85ebcd6f8bd7c43a0ff67890b075251ebab6))
+
 ## [0.66.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.65.1...v0.66.0) (2024-10-16)
 
 
