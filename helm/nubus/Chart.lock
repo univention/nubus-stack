@@ -1,7 +1,7 @@
 dependencies:
 - name: common
   repository: oci://registry-1.docker.io/bitnamicharts
-  version: 2.24.0
+  version: 2.26.0
 - name: postgresql
   repository: oci://registry-1.docker.io/bitnamicharts
   version: 12.12.10
@@ -19,19 +19,19 @@ dependencies:
   version: 0.25.2
 - name: notifications-api
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.42.2
+  version: 0.42.3
 - name: portal-frontend
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.42.2
+  version: 0.42.3
 - name: portal-listener
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.24.2
 - name: portal-consumer
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.42.2
+  version: 0.42.3
 - name: portal-server
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.42.2
+  version: 0.42.3
 - name: selfservice-listener
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.6.5
@@ -65,5 +65,5 @@ dependencies:
 - name: umc-server
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.34.2
-digest: sha256:8981965c66e351b95e9eaf367be698e2458a5bf3122814fadf09ec706861986e
-generated: "2024-10-16T09:47:29.788361463+02:00"
+digest: sha256:6e19339cb89e3af4d8ef721451b866cccf7c695f075d911038759a63476ce8ac
+generated: "2024-10-21T09:40:51.824717395+02:00"
