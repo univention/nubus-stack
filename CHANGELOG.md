@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.68.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.67.0...v0.68.0) (2024-10-22)
+
+
+### Features
+
+* add missing portal tiles ([cb99dc8](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/cb99dc8c3aa9339225d5d12f68523ad6938badc6)), closes [univention/customers/dataport/team-souvap#821](https://git.knut.univention.de/univention/customers/dataport/team-souvap/issues/821)
+* upgrade portal extension image ([c338f54](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/c338f54bd6ac6954804044e0fb5d8c8ba383024d))
+
 ## [0.67.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.66.1...v0.67.0) (2024-10-22)
 
 
