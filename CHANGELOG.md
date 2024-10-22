@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.67.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.66.1...v0.67.0) (2024-10-22)
+
+
+### Features
+
+* use new univention-keycloak to configure CORS headers for Keycloak ([f2e9b1b](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/f2e9b1be9d7e6fba1aa44c4090ee41c9c0d57051))
+
 ## [0.66.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.66.0...v0.66.1) (2024-10-21)
 
 
