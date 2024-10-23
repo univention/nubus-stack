@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.68.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.68.0...v0.68.1) (2024-10-23)
+
+
+### Bug Fixes
+
+* release notes typo and missing namespaces ([37d1433](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/37d1433adf007dfc0b6b1aa08a777d9c12b97de4))
+
 ## [0.68.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.67.0...v0.68.0) (2024-10-22)
 
 
