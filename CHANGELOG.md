@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.69.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.68.1...v0.69.0) (2024-10-23)
+
+
+### Features
+
+* disable keycloak-extensions by default ([81fa3f1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/81fa3f1048f1062db39c931dfc8cef06748c510b))
+
 ## [0.68.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.68.0...v0.68.1) (2024-10-23)
 
 
