@@ -4630,7 +4630,7 @@ false
 			<td>nubusStackDataUms.templateContext.portalTitleDE</td>
 			<td>string</td>
 			<td><pre lang="json">
-"nubus Portal"
+"Nubus Portal"
 </pre>
 </td>
 			<td>Portal title (Deutsch)</td>
@@ -4639,7 +4639,7 @@ false
 			<td>nubusStackDataUms.templateContext.portalTitleEN</td>
 			<td>string</td>
 			<td><pre lang="json">
-"nubus Portal"
+"Nubus Portal"
 </pre>
 </td>
 			<td>Portal title (English)</td>

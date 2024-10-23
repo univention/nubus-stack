@@ -682,9 +682,9 @@ nubusStackDataUms:
     portalManagementKnowledgeLinkBase: 'https://wiki.{{ include "stack-data-ums.domainName" . }}'
     oxDefaultContext: "1"
     # -- Portal title (Deutsch)
-    portalTitleDE: "nubus Portal"
+    portalTitleDE: "Nubus Portal"
     # -- Portal title (English)
-    portalTitleEN: "nubus Portal"
+    portalTitleEN: "Nubus Portal"
     ldapSearchUsers: [ ]
     ldapSystemUsers:
       - username: "readonly"
