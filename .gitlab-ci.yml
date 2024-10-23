@@ -60,17 +60,3 @@ deploy-and-test:
     strategy: depend
   rules:
     - when: manual
-
-
-deploy-and-test-plain:
-  extends: deploy-and-test
-  trigger:
-    include:
-      - local: .gitlab-ci/deploy-and-test-plain.yaml
-
-
-deploy-and-test-opendesk:
-  extends: deploy-and-test
-  trigger:
-    include:
-      - local: .gitlab-ci/deploy-and-test-opendesk.yaml
