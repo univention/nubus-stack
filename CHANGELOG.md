@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.70.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.69.0...v0.70.0) (2024-10-23)
+
+
+### Features
+
+* upgrade stack-data chart ([fc697c5](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/fc697c5addff0e83ad5653ef065d7d2aa2969cd5))
+
 ## [0.69.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.68.1...v0.69.0) (2024-10-23)
 
 
