@@ -647,50 +647,12 @@ nubusStackDataUms:
     ldapHost: '{{ include "nubusTemplates.connections.ldap.primary.host" . }}'
 
   templateContext:
-    portaltileGroupUserStandard:
-      - 'cn=Domain Users,cn=groups,{{ include "stack-data-ums.ldapBaseDn" . }}'
-      - 'cn=Domain Users,cn=groups,{{ include "stack-data-ums.ldapBaseDn" . }}'
-    portaltileGroupUserAdmin:
-      - 'cn=Domain Admins,cn=groups,{{ include "stack-data-ums.ldapBaseDn" . }}'
-      - 'cn=Support,cn=groups,{{ include "stack-data-ums.ldapBaseDn" . }}'
-    portaltileGroupUserAll:
-      - 'cn=Domain Admins,cn=groups,{{ include "stack-data-ums.ldapBaseDn" . }}'
-      - 'cn=Domain Users,cn=groups,{{ include "stack-data-ums.ldapBaseDn" . }}'
-    portaltileGroupGroupware:
-      - 'cn=managed-by-attribute-Groupware,cn=groups,{{ include "stack-data-ums.ldapBaseDn" . }}'
-    portaltileGroupFileshare:
-      - 'cn=managed-by-attribute-Fileshare,cn=groups,{{ include "stack-data-ums.ldapBaseDn" . }}'
-    portaltileGroupManagementProject:
-      - 'cn=managed-by-attribute-Projectmanagement,cn=groups,{{ include "stack-data-ums.ldapBaseDn" . }}'
-    portaltileGroupManagementKnowledge:
-      - 'cn=managed-by-attribute-Knowledgemanagement,cn=groups,{{ include "stack-data-ums.ldapBaseDn" . }}'
-    portaltileGroupManagementLearn:
-      - 'cn=managed-by-attribute-Learnmanagement,cn=groups,{{ include "stack-data-ums.ldapBaseDn" . }}'
-    portaltileGroupLiveCollaboration:
-      - 'cn=managed-by-attribute-Livecollaboration,cn=groups,{{ include "stack-data-ums.ldapBaseDn" . }}'
-    portalGroupwareLinkBase: 'https://webmail.{{ include "stack-data-ums.domainName" . }}'
-    portalFileshareLinkBase: 'https://fs.{{ include "stack-data-ums.domainName" . }}'
-    portalRealtimeCollaborationLinkBase: 'https://chat.{{ include "stack-data-ums.domainName" . }}'
-    portalRealtimeVideoconferenceLinkBase: 'https://meet.{{ include "stack-data-ums.domainName" . }}'
-    portalManagementProjectLinkBase: 'https://project.{{ include "stack-data-ums.domainName" . }}'
-    portalManagementKnowledgeLinkBase: 'https://wiki.{{ include "stack-data-ums.domainName" . }}'
-    oxDefaultContext: "1"
-    # -- Portal title (Deutsch)
-    portalTitleDE: "Nubus Portal"
-    # -- Portal title (English)
-    portalTitleEN: "Nubus Portal"
     ldapSearchUsers: [ ]
     ldapSystemUsers:
       - username: "readonly"
         lastname: "LDAP-system-User"
         password: '{{ include "nubusTemplates.credentials.ldap.users.readonly.password" . }}'
     readonlyUserPassword: '{{ include "nubusTemplates.credentials.ldap.users.readonly.password" . }}'
-    # -- The initial password for the development user "default.user"
-    # It is only used if `loadDevData` is set to `true`.
-    initialPasswordDefaultUser: '{{ include "nubusTemplates.credentials.ldap.users.idp.password" . }}'
-    # -- The initial password for the development user "default.admin"
-    # It is only used if `loadDevData` is set to `true`.
-    initialPasswordDefaultAdmin: '{{ include "nubusTemplates.credentials.ldap.users.admin.password" . }}'
 
 
 # Allows for creation of additional secrets, for example containing credentials for third party services.

@@ -55,7 +55,7 @@ dependencies:
   version: 0.6.0
 - name: stack-data-ums
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.76.0
+  version: 0.78.0
 - name: udm-rest-api
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.25.1
@@ -65,5 +65,5 @@ dependencies:
 - name: umc-server
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.34.2
-digest: sha256:b8a69455aa66e665022ee264296447284fdd99afc8ed0775406300984e1d609f
-generated: "2024-10-23T15:26:57.926124485+02:00"
+digest: sha256:e757128e0763b46a9d2407ca8bd4350d4cc181df9d398667228a877a5dd7fdf5
+generated: "2024-10-26T10:22:12.197016485+02:00"
