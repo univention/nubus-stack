@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.70.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.70.0...v0.70.1) (2024-10-24)
+
+
+### Bug Fixes
+
+* change product name to proper capitalization ([fbacefd](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/fbacefd4e961f359c701eaafe545fe68c20cf8df))
+
 ## [0.70.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.69.0...v0.70.0) (2024-10-23)
 
 
