@@ -509,8 +509,8 @@ true
     "image": {
       "imagePullPolicy": "IfNotPresent",
       "registry": "artifacts.software-univention.de",
-      "repository": "nubus-dev/images/portal-extension",
-      "tag": "0.43.0-pre-cgarcia-portal-tiles@sha256:bd93b9c3f02358dcbe294fd2d59b0199b2f235b8775ae55ba19a60a83fc914fb"
+      "repository": "nubus/images/portal-extension",
+      "tag": "0.43.0@sha256:140309be03b1021693bd9781453e36c14fab6d0ad21448be8bf251342c86695b"
     },
     "name": "portal"
   }
