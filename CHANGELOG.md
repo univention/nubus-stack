@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.70.2](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.70.1...v0.70.2) (2024-10-25)
+
+
+### Bug Fixes
+
+* temporarily disable guardian ([e8e862a](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/e8e862a3c97922ffa208b6d3f88ba763bf09f3ab))
+
 ## [0.70.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.70.0...v0.70.1) (2024-10-24)
 
 
