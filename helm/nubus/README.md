@@ -342,17 +342,7 @@ false
 			<td>global.extensions</td>
 			<td>list</td>
 			<td><pre lang="json">
-[
-  {
-    "image": {
-      "imagePullPolicy": "IfNotPresent",
-      "registry": "artifacts.software-univention.de",
-      "repository": "nubus/images/ox-extension",
-      "tag": "0.11.0"
-    },
-    "name": "ox"
-  }
-]
+[]
 </pre>
 </td>
 			<td>Extensions to load. Add entries to load additional extensions into Nubus. Interim this value is pre-configured with the typical extensions loaded in the openDesk integration of Nubus to allow for a smooth transition. On the long run this value will become an empty list by default.</td>
