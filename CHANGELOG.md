@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.71.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.70.2...v0.71.0) (2024-10-25)
+
+
+### Features
+
+* remove OX extension by default ([a155859](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/a1558590ab70151cc3afd23d3be88e10ced24470))
+
 ## [0.70.2](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.70.1...v0.70.2) (2024-10-25)
 
 
