@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.71.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.71.0...v0.71.1) (2024-10-25)
+
+
+### Bug Fixes
+
+* image name for the portal extension ([41d516c](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/41d516c8f7a72c4d046b8d2ab7e0cbcdbfb36ea1))
+
 ## [0.71.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.70.2...v0.71.0) (2024-10-25)
 
 
