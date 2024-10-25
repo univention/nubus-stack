@@ -291,7 +291,7 @@ keycloak:
 nubusGuardian: &nubusGuardian
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   nameOverride: "guardian"
-  enabled: true
+  enabled: false
   ingress:
     host: "{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
   resources: *nubusDevelopmentResources

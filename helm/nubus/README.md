@@ -1192,7 +1192,7 @@ false
 			<td>nubusGuardian.enabled</td>
 			<td>bool</td>
 			<td><pre lang="json">
-true
+false
 </pre>
 </td>
 			<td></td>
