@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.72.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.71.1...v0.72.0) (2024-10-26)
+
+
+### Features
+
+* Migrate stack-data to jinja2 templates ([efcf37f](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/efcf37fe67eff1307a3e1a1de70d6627ef7fb52b))
+
 ## [0.71.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.71.0...v0.71.1) (2024-10-25)
 
 
