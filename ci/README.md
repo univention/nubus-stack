@@ -6,7 +6,8 @@ prepared environment.
 
 ## Approach
 
-A small Helmfile is used as a wrapper for the deployment. It does deploy two things:
+A small Helmfile is used as a wrapper for the deployment. It does deploys the
+following things:
 
 1. `certificates` is a utility Helm chart which is used to deploy a copy of the
    prepared wildcard certificate. This way it is avoided that a new deployment
@@ -19,7 +20,7 @@ A small Helmfile is used as a wrapper for the deployment. It does deploy two thi
 3. `nubus` is the Nubus chart itself.
 
 A CI job `deploy-gaia` does deploy this setup into the Gaia cluster. It uses a
-namespace based on the branch name for the deployment and configured a subdomain
+namespace based on the branch name for the deployment and configures a subdomain
 prefix also based on the branch name:
 
 - Namespace: `ci-{$CI_COMMIT_REF_SLUG}`, e.g. `ci-example`
@@ -67,25 +68,6 @@ helmfile -n your-namespace -e local apply
   latest available version will be deployed.
 
 - `MASTER_PASSWORD` - has to be provided as a seed for the password derivation.
-
-
-## Transitioning to plain Nubus deployments
-
-The configuration in the file `helmfile.yaml` does contain an environment
-`plain` which allows to deploy Nubus without the openDesk specific customization
-and extensions. This shall over time become the default CI deployment.
-
-The main difference in this environment is that the toggle
-`toggles.opendeskCustomization` is disabled. The value of this toggle is
-influencing the deployment.
-
-```
-helmfile -n your-namespace -e plain template
-helmfile -n your-namespace -e plain apply
-```
-
-If you want to do a plain deployment in your local environment, then you have to
-set the toggle `toggles.opendeskCustomization` to `false`.
 
 
 ## Dependencies and requirements
