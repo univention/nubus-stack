@@ -213,6 +213,24 @@ null
 			<td></td>
 		</tr>
 		<tr>
+			<td>global.ldap.auth.cnAdmin.password.key</td>
+			<td>string</td>
+			<td><pre lang="json">
+"adminPassword"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>global.ldap.auth.cnAdmin.password.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+null
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>global.ldap.baseDn</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -244,6 +262,105 @@ null
 			<td>string</td>
 			<td><pre lang="json">
 ""
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>global.nats.auth.admin.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Release.Name }}-provisioning-nats-credentials"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>global.nats.auth.dispatcher.existingSecret.keyMapping.dispatcherPassword</td>
+			<td>string</td>
+			<td><pre lang="json">
+"NATS_PASSWORD"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>global.nats.auth.dispatcher.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Release.Name }}-provisioning-dispatcher-credentials"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>global.nats.auth.prefill.existingSecret.keyMapping.prefillPassword</td>
+			<td>string</td>
+			<td><pre lang="json">
+"NATS_PASSWORD"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>global.nats.auth.prefill.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Release.Name }}-provisioning-prefill-credentials"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>global.nats.auth.provisioningApi.existingSecret.keyMapping.provisioningApiPassword</td>
+			<td>string</td>
+			<td><pre lang="json">
+"NATS_PASSWORD"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>global.nats.auth.provisioningApi.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Release.Name }}-provisioning-api-credentials"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>global.nats.auth.udmListener.existingSecret.keyMapping.udmListenerPassword</td>
+			<td>string</td>
+			<td><pre lang="json">
+"NATS_PASSWORD"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>global.nats.auth.udmListener.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Release.Name }}-provisioning-udm-listener-credentials"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>global.nats.auth.udmTransformer.existingSecret.keyMapping.udmTransformerPassword</td>
+			<td>string</td>
+			<td><pre lang="json">
+"NATS_PASSWORD"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>global.nats.auth.udmTransformer.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Release.Name }}-provisioning-udm-transformer-credentials"
 </pre>
 </td>
 			<td></td>
@@ -2307,6 +2424,24 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusProvisioning.ldap.auth.cnAdmin.password.key</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Values.global.ldap.auth.cnAdmin.password.key }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusProvisioning.ldap.auth.cnAdmin.password.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ include \"nubus.ldap.auth.cnAdmin.password.name\" . }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusProvisioning.nameOverride</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -2500,6 +2635,42 @@ null
 			<td>string</td>
 			<td><pre lang="json">
 "prefill"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusProvisioning.registerConsumers.createUsers.portalConsumer.existingSecret.keyMapping.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+"portal-consumer.json"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusProvisioning.registerConsumers.createUsers.portalConsumer.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ include \"nubus.provisioning.registerConsumer.auth.portalConsumer.name\" . }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusProvisioning.registerConsumers.createUsers.portalConsumer.selfserviceConsumer.keyMapping.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+"selfservice.json"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusProvisioning.registerConsumers.createUsers.portalConsumer.selfserviceConsumer.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ include \"nubus.provisioning.registerConsumer.auth.selfserviceConsumer.name\" . }}"
 </pre>
 </td>
 			<td></td>
@@ -3531,6 +3702,24 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusStackDataUms.nubusProvisioning.ldap.auth.cnAdmin.password.key</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Values.global.ldap.auth.cnAdmin.password.key }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusProvisioning.ldap.auth.cnAdmin.password.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ include \"nubus.ldap.auth.cnAdmin.password.name\" . }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusStackDataUms.nubusProvisioning.nameOverride</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -3724,6 +3913,42 @@ null
 			<td>string</td>
 			<td><pre lang="json">
 "prefill"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusProvisioning.registerConsumers.createUsers.portalConsumer.existingSecret.keyMapping.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+"portal-consumer.json"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusProvisioning.registerConsumers.createUsers.portalConsumer.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ include \"nubus.provisioning.registerConsumer.auth.portalConsumer.name\" . }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusProvisioning.registerConsumers.createUsers.portalConsumer.selfserviceConsumer.keyMapping.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+"selfservice.json"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusProvisioning.registerConsumers.createUsers.portalConsumer.selfserviceConsumer.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ include \"nubus.provisioning.registerConsumer.auth.selfserviceConsumer.name\" . }}"
 </pre>
 </td>
 			<td></td>

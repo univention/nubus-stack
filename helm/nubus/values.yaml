@@ -12,11 +12,15 @@ global:
     auth:
       cnAdmin:
         password: ~
+        password:
+          name: null
+          key: "adminPassword"
 
   domain: ""
   subDomains:
     portal: portal
     keycloak: id
+
   ingressClass: ""
   certManagerIssuer: ""
   postgresql:
@@ -58,7 +62,7 @@ global:
   # -- Extensions to load. Add entries to load additional extensions into Nubus.
   extensions: []
 
-  # -- Allows to configure the system extensions to load. This is intended for
+# -- Allows to configure the system extensions to load. This is intended for
   # internal usage, prefer to use `global.extensions` for user configured
   # extensions.
   systemExtensions:
@@ -68,6 +72,37 @@ global:
         repository: "nubus/images/portal-extension"
         imagePullPolicy: "IfNotPresent"
         tag: "0.44.3@sha256:734efc0adda680526dde09387db964612f9e0ab020382580984488cc993c68f0"
+
+  nats:
+    auth:
+      admin:
+        existingSecret:
+          name: "{{ .Release.Name }}-provisioning-nats-credentials"
+      provisioningApi:
+        existingSecret:
+          name: "{{ .Release.Name }}-provisioning-api-credentials"
+          keyMapping:
+            provisioningApiPassword: NATS_PASSWORD
+      prefill:
+        existingSecret:
+          name: "{{ .Release.Name }}-provisioning-prefill-credentials"
+          keyMapping:
+            prefillPassword: NATS_PASSWORD
+      dispatcher:
+        existingSecret:
+          name: "{{ .Release.Name }}-provisioning-dispatcher-credentials"
+          keyMapping:
+            dispatcherPassword: NATS_PASSWORD
+      udmTransformer:
+        existingSecret:
+          name: "{{ .Release.Name }}-provisioning-udm-transformer-credentials"
+          keyMapping:
+            udmTransformerPassword: NATS_PASSWORD
+      udmListener:
+        existingSecret:
+          name: "{{ .Release.Name }}-provisioning-udm-listener-credentials"
+          keyMapping:
+            udmListenerPassword: NATS_PASSWORD
 
 # -- Additional custom annotations to add to all objects deployed directly by the umbrella chart.
 additionalAnnotations: {}
@@ -368,6 +403,12 @@ nubusProvisioning: &nubusProvisioning
     dispatcher: *nubusDevelopmentResources
     prefill: *nubusDevelopmentResources
     api: *nubusDevelopmentResources
+  ldap:
+    auth:
+      cnAdmin:
+        password:
+          name: '{{ include "nubus.ldap.auth.cnAdmin.password.name" . }}'
+          key: '{{ .Values.global.ldap.auth.cnAdmin.password.key }}'
   nats:
     config:
       cluster:
@@ -382,6 +423,21 @@ nubusProvisioning: &nubusProvisioning
       resources: *nubusDevelopmentResources
     natsBox:
       resources: *nubusDevelopmentResources
+  registerConsumers:
+    createUsers:
+      portalConsumer:
+        # TODO: not yet supported
+        # username: null
+        # password: null
+        existingSecret:
+          name: '{{ include "nubus.provisioning.registerConsumer.auth.portalConsumer.name" . }}'
+          keyMapping:
+            password: "portal-consumer.json"
+        selfserviceConsumer:
+          name: '{{ include "nubus.provisioning.registerConsumer.auth.selfserviceConsumer.name" . }}'
+          keyMapping:
+            password: "selfservice.json"
+
   api:
     auth:
       adminPassword: null
