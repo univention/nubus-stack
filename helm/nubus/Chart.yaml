@@ -77,13 +77,13 @@ dependencies:
   - name: "provisioning"
     alias: "nubusProvisioning"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.44.1"
+    version: "0.45.0"
     condition: "nubusProvisioning.enabled"
 
   - name: "udm-listener"
     alias: "nubusUdmListener"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.44.1"
+    version: "0.45.0"
     condition: "nubusProvisioning.enabled"
 
   # keycloak related chart(s)
