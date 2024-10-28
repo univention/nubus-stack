@@ -354,15 +354,6 @@ nubusPortalFrontend: &nubusPortalFrontend
   portalFrontend:
     logLevel: "INFO" # default loglevel (subchart): WARNING
 
-nubusPortalListener: &nubusPortalListener
-  terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
-  nameOverride: "portal-listener"
-  enabled: false
-  resources: *nubusDevelopmentResources
-  portalListener:
-    ldapHost: "{{ .Release.Name }}-ldap-server-primary"
-    objectStorageBucket: "nubus"
-
 nubusPortalConsumer: &nubusPortalConsumer
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   nameOverride: "portal-consumer"
@@ -494,21 +485,6 @@ nubusUdmListener: &nubusUdmListener
   config:
     ldapHost: "{{ .Release.Name }}-ldap-server-primary"
     debugLevel: "2" # default loglevel (subchart): 2
-
-nubusSelfServiceListener: &nubusSelfServiceListener
-  terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
-  nameOverride: "selfservice-listener"
-  enabled: false
-  resources: *nubusDevelopmentResources
-  umc:
-    auth:
-      username: "Administrator"
-  selfserviceListener:
-    umcAdminPasswordSecret:
-      key: "administrator_password"
-  provisioningApi:
-    auth:
-      username: "selfservice"
 
 nubusSelfServiceConsumer: &nubusSelfServiceConsumer
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
