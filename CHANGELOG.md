@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.72.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.72.0...v0.72.1) (2024-10-28)
+
+
+### Bug Fixes
+
+* remove unused old listeners ([3fb17c2](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/3fb17c299e3721d6432ab90f6619855c50efe2a5))
+
 ## [0.72.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.71.1...v0.72.0) (2024-10-26)
 
 
