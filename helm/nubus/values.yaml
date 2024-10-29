@@ -77,10 +77,6 @@ global:
       defaultAdminPassword: ""
       defaultUserPassword: ""
     provisioning:
-      api:
-        adminPassword: ""
-        prefillPassword: ""
-        udmTransformerPassword: ""
       nats:
         adminPassword: ""
     selfserviceConsumer:
@@ -392,6 +388,10 @@ nubusProvisioning: &nubusProvisioning
     natsBox:
       resources: *nubusDevelopmentResources
   api:
+    auth:
+      adminPassword: null
+      prefillPassword: null
+      udmTransformerPassword: null
     nats:
       connection:
         host: ""
