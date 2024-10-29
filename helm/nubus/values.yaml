@@ -384,23 +384,14 @@ nubusPortalServer: &nubusPortalServer
   enabled: true
   ingress:
     host: "{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
+  objectStorage:
+    auth:
+      accessKey: null
+      secretKey: null
   resources: *nubusDevelopmentResources
   portalServer:
     objectStorageBucket: "nubus"
     logLevel: "INFO" # default loglevel (subchart): WARNING
-  # Currently gets its configuration from UCR.
-  # minio:
-  #
-  #   connection:
-  #     host: ""
-  #     port: ""
-  #     accessKey:
-  #       secretKeyRef:
-  #         key: accessKey
-  #
-  #     secretKey:
-  #       secretKeyRef:
-  #         key: secretKey
 nubusProvisioning: &nubusProvisioning
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   nameOverride: "provisioning"
