@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.72.2](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.72.1...v0.72.2) (2024-10-29)
+
+
+### Bug Fixes
+
+* Correct doc comment syntax in values file ([7281f93](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/7281f93b56564f192287531410e82dbbbf2fbdeb))
+* Correct outdated comment around "global.extensions" ([c93bad4](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/c93bad49ef994c4ea8ded5fa450a1287e4b162b5))
+
 ## [0.72.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.72.0...v0.72.1) (2024-10-28)
 
 
