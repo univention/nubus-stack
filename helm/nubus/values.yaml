@@ -76,9 +76,6 @@ global:
       defaultAdministratorPassword: ""
       defaultAdminPassword: ""
       defaultUserPassword: ""
-    selfserviceConsumer:
-      provisioningApi:
-        password: ""
 
 # -- Additional custom annotations to add to all objects deployed directly by the umbrella chart.
 additionalAnnotations: {}
@@ -471,6 +468,10 @@ nubusSelfServiceConsumer: &nubusSelfServiceConsumer
   provisioningApi:
     auth:
       username: "selfservice"
+      # TODO: This needs another iteration, it shows that we set the password,
+      # but we also have the existingSecret. Most likely this does belong in the
+      # user provisioning configuration around provisioning.
+      password: null
       existingSecret:
         name: '{{ include "nubus.provisioning.selfserviceConsumer.auth.existingSecret.name" . }}'
         keyMapping:
