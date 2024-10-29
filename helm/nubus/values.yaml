@@ -77,9 +77,6 @@ global:
       defaultAdminPassword: ""
       defaultUserPassword: ""
     portalConsumer:
-      minio:
-        accessKey: ""
-        secretKey: ""
       provisioningApi:
         password: ""
     portalListener:
@@ -359,19 +356,10 @@ nubusPortalConsumer: &nubusPortalConsumer
   nameOverride: "portal-consumer"
   enabled: true
   resources: *nubusDevelopmentResources
-  # Currently gets its configuration from UCR.
-  # objectStorage:
-  #   connection:
-  #     host: ""
-  #     port: ""
-  #     auth:
-  #       accessKey: ~
-  #       secretKey: ~
-  #       existingSecret:
-  #         name: ~
-  #         keyMapping:
-  #           access_key: ~
-  #           secret_key: ~
+  objectStorage:
+    auth:
+      accessKey: null
+      secretKey: null
   # Currently gets its configuration from UCR.
   # ldap:
   #   connection:
