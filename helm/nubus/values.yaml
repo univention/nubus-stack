@@ -376,8 +376,11 @@ nubusPortalConsumer: &nubusPortalConsumer
   #     port: ""
   #   auth:
   #     bindDn: cn=admin,dc=example,dc=org
-  #     credentialSecret:
-  #       key: password
+  #     password: ~
+  #     existingSecret:
+  #       name: ~
+  #       keyMapping:
+  #         password: ~
   portalConsumer:
     ldapHost: "{{ .Release.Name }}-ldap-server-primary"
     objectStorageBucket: "nubus"
