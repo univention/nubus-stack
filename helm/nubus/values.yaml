@@ -52,9 +52,6 @@ global:
       loglevel: "info" # default loglevel (subchart): warn
 
   # -- Extensions to load. Add entries to load additional extensions into Nubus.
-  # Interim this value is pre-configured with the typical extensions loaded in
-  # the openDesk integration of Nubus to allow for a smooth transition. On the
-  # long run this value will become an empty list by default.
   extensions: []
 
   # -- Allows to configure the system extensions to load. This is intended for
