@@ -79,19 +79,10 @@ global:
     provisioning:
       api:
         adminPassword: ""
-        natsPassword: ""
         prefillPassword: ""
         udmTransformerPassword: ""
-      dispatcher:
-        natsPassword: ""
       nats:
         adminPassword: ""
-      prefill:
-        natsPassword: ""
-      udmListener:
-        natsPassword: ""
-      udmTransformer:
-        natsPassword: ""
     selfserviceConsumer:
       natsPassword: ""
       provisioningApi:
@@ -409,6 +400,8 @@ nubusProvisioning: &nubusProvisioning
         password:
           secretKeyRef:
             key: password
+      auth:
+        password: null
     config:
       LOG_LEVEL: "INFO" # default loglevel (subchart): INFO
   dispatcher:
@@ -420,6 +413,8 @@ nubusProvisioning: &nubusProvisioning
         password:
           secretKeyRef:
             key: password
+      auth:
+        password: null
     config:
       LOG_LEVEL: "INFO" # default loglevel (subchart): INFO
   prefill:
@@ -431,12 +426,17 @@ nubusProvisioning: &nubusProvisioning
         password:
           secretKeyRef:
             key: password
+      auth:
+        password: null
     config:
       LOG_LEVEL: "INFO" # default loglevel (subchart): INFO
   udmTransformer:
     ldap:
       connection:
         host: "{{ .Release.Name }}-ldap-server-primary"
+    nats:
+      auth:
+        password: null
     config:
       LOG_LEVEL: "INFO" # default loglevel (subchart): INFO
 
@@ -454,6 +454,9 @@ nubusUdmListener: &nubusUdmListener
       # TODO: Needs adjustment together with the sub-chart
       credentialSecret:
         key: password
+  nats:
+    auth:
+      password: null
   config:
     ldapHost: "{{ .Release.Name }}-ldap-server-primary"
     debugLevel: "2" # default loglevel (subchart): 2
