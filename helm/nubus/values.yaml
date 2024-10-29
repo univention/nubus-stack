@@ -357,18 +357,10 @@ nubusPortalConsumer: &nubusPortalConsumer
     auth:
       accessKey: null
       secretKey: null
-  # Currently gets its configuration from UCR.
-  # ldap:
-  #   connection:
-  #     host: ""
-  #     port: ""
+  # TODO: Not yet supported
+  # udm:
   #   auth:
-  #     bindDn: cn=admin,dc=example,dc=org
-  #     password: ~
-  #     existingSecret:
-  #       name: ~
-  #       keyMapping:
-  #         password: ~
+  #     password: null
   portalConsumer:
     ldapHost: "{{ .Release.Name }}-ldap-server-primary"
     objectStorageBucket: "nubus"
