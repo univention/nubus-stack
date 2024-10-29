@@ -2703,6 +2703,24 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusSelfServiceConsumer.provisioningApi.auth.existingSecret.keyMapping.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+"PROVISIONING_API_PASSWORD"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusSelfServiceConsumer.provisioningApi.auth.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ include \"nubus.provisioning.selfserviceConsumer.auth.existingSecret.name\" . }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusSelfServiceConsumer.provisioningApi.auth.username</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -3760,6 +3778,24 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 "selfservice-listener"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusSelfServiceConsumer.provisioningApi.auth.existingSecret.keyMapping.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+"PROVISIONING_API_PASSWORD"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusSelfServiceConsumer.provisioningApi.auth.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ include \"nubus.provisioning.selfserviceConsumer.auth.existingSecret.name\" . }}"
 </pre>
 </td>
 			<td></td>

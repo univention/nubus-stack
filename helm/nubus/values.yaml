@@ -491,6 +491,10 @@ nubusSelfServiceConsumer: &nubusSelfServiceConsumer
   provisioningApi:
     auth:
       username: "selfservice"
+      existingSecret:
+        name: '{{ include "nubus.provisioning.selfserviceConsumer.auth.existingSecret.name" . }}'
+        keyMapping:
+          password: "PROVISIONING_API_PASSWORD"
 nubusUdmRestApi: &nubusUdmRestApi
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   nameOverride: "udm-rest-api"
