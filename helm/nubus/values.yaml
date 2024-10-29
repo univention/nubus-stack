@@ -485,6 +485,7 @@ nubusUdmListener: &nubusUdmListener
       port: ""
     auth:
       bindDn: cn=admin,dc=example,dc=org
+      # TODO: Needs adjustment together with the sub-chart
       credentialSecret:
         key: password
   config:
@@ -516,6 +517,7 @@ nubusUdmRestApi: &nubusUdmRestApi
       port: ""
     auth:
       bindDn: cn=admin,dc=example,dc=org
+      # TODO: Needs adjustment together with the component chart
       credentialSecret:
         key: password
 nubusUmcGateway: &nubusUmcGateway
