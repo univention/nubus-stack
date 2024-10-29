@@ -357,16 +357,18 @@ nubusPortalConsumer: &nubusPortalConsumer
   enabled: true
   resources: *nubusDevelopmentResources
   # Currently gets its configuration from UCR.
-  # minio:
+  # objectStorage:
   #   connection:
   #     host: ""
   #     port: ""
-  #     accessKey:
-  #       secretKeyRef:
-  #         key: accessKey
-  #     secretKey:
-  #       secretKeyRef:
-  #         key: secretKey
+  #     auth:
+  #       accessKey: ~
+  #       secretKey: ~
+  #       existingSecret:
+  #         name: ~
+  #         keyMapping:
+  #           access_key: ~
+  #           secret_key: ~
   # Currently gets its configuration from UCR.
   # ldap:
   #   connection:
