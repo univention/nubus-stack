@@ -109,12 +109,12 @@ additionalAnnotations: {}
 # -- Additional custom labels to add to all objects deployed directly by the umbrella chart.
 additionalLabels: {}
 
-# SAML certificates generation
+# -- SAML certificates generation
 certificates:
   # -- Enable SAML self-signed certificate generation. This required cert-manager.io
   enabled: true
 
-# Define and create Kubernetes Ingress.
+# -- Define and create Kubernetes Ingress.
 # Ref.: https://kubernetes.io/docs/concepts/services-networking/ingress/
 ingress:
   # -- Enable creation of Ingress.
@@ -123,7 +123,7 @@ ingress:
   # -- Define the Fully Qualified Domain Name (FQDN) where application should be reachable.
   host: ""
 
-  # Request certificates via cert-manager.io annotation
+  # -- Request certificates via cert-manager.io annotation
   certManager:
     # -- Enable cert-manager.io annotaion.
     enabled: true

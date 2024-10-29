@@ -85,6 +85,17 @@ helm uninstall nubus
 			<td>Additional custom labels to add to all objects deployed directly by the umbrella chart.</td>
 		</tr>
 		<tr>
+			<td>certificates</td>
+			<td>object</td>
+			<td><pre lang="json">
+{
+  "enabled": true
+}
+</pre>
+</td>
+			<td>SAML certificates generation</td>
+		</tr>
+		<tr>
 			<td>certificates.enabled</td>
 			<td>bool</td>
 			<td><pre lang="json">
@@ -343,7 +354,7 @@ false
 []
 </pre>
 </td>
-			<td>Extensions to load. Add entries to load additional extensions into Nubus. Interim this value is pre-configured with the typical extensions loaded in the openDesk integration of Nubus to allow for a smooth transition. On the long run this value will become an empty list by default.</td>
+			<td>Extensions to load. Add entries to load additional extensions into Nubus.</td>
 		</tr>
 		<tr>
 			<td>global.ingressClass</td>
@@ -518,6 +529,39 @@ true
 			<td>Allows to configure the system extensions to load. This is intended for internal usage, prefer to use `global.extensions` for user configured extensions.</td>
 		</tr>
 		<tr>
+			<td>ingress</td>
+			<td>object</td>
+			<td><pre lang="json">
+{
+  "annotations": {
+    "nginx.ingress.kubernetes.io/proxy-body-size": "128k",
+    "nginx.ingress.kubernetes.io/proxy-buffer-size": "64k",
+    "nginx.ingress.kubernetes.io/proxy-buffers-number": "4",
+    "nginx.ingress.kubernetes.io/proxy-busy-buffers-size": "128k",
+    "nginx.ingress.kubernetes.io/proxy-http-version": "1.1",
+    "nginx.ingress.kubernetes.io/proxy-set-headers": "Host $http_host;\nX-Forwarded-For $proxy_add_x_forwarded_for;\nX-Forwarded-Host $http_x_forwarded_host;\nX-Forwarded-Port $http_x_forwarded_port;\nX-Forwarded-Proto $http_x_forwarded_proto;\n",
+    "nginx.ingress.kubernetes.io/use-regex": "true"
+  },
+  "certManager": {
+    "enabled": true,
+    "issuerRef": {
+      "kind": "ClusterIssuer",
+      "name": ""
+    }
+  },
+  "enabled": true,
+  "host": "",
+  "ingressClassName": "",
+  "tls": {
+    "enabled": true,
+    "secretName": ""
+  }
+}
+</pre>
+</td>
+			<td>Define and create Kubernetes Ingress. Ref.: https://kubernetes.io/docs/concepts/services-networking/ingress/</td>
+		</tr>
+		<tr>
 			<td>ingress.annotations</td>
 			<td>object</td>
 			<td><pre lang="json">
@@ -533,6 +577,21 @@ true
 </pre>
 </td>
 			<td>Define custom ingress annotations. annotations:   nginx.ingress.kubernetes.io/rewrite-target: /</td>
+		</tr>
+		<tr>
+			<td>ingress.certManager</td>
+			<td>object</td>
+			<td><pre lang="json">
+{
+  "enabled": true,
+  "issuerRef": {
+    "kind": "ClusterIssuer",
+    "name": ""
+  }
+}
+</pre>
+</td>
+			<td>Request certificates via cert-manager.io annotation</td>
 		</tr>
 		<tr>
 			<td>ingress.certManager.enabled</td>
