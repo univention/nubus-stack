@@ -76,9 +76,6 @@ global:
       defaultAdministratorPassword: ""
       defaultAdminPassword: ""
       defaultUserPassword: ""
-    provisioning:
-      nats:
-        adminPassword: ""
     selfserviceConsumer:
       natsPassword: ""
       provisioningApi:
@@ -366,6 +363,7 @@ nubusPortalServer: &nubusPortalServer
   portalServer:
     objectStorageBucket: "nubus"
     logLevel: "INFO" # default loglevel (subchart): WARNING
+
 nubusProvisioning: &nubusProvisioning
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   nameOverride: "provisioning"
@@ -380,6 +378,8 @@ nubusProvisioning: &nubusProvisioning
       cluster:
         # TODO: Set back to the default of 3 after nats clustering is solved.
         replicas: 1
+    auth:
+      adminPassword: null
     global:
       imageRegistry: "docker.io"
     resources: *nubusDevelopmentResources
