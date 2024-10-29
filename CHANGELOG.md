@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.73.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.72.2...v0.73.0) (2024-10-29)
+
+
+### Features
+
+* **selfservice:** Integrate selfservice consumer secrets refactoring ([b27fe95](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/b27fe951c071838fa814164ce7ee3ff288b0ba44))
+
+
+### Bug Fixes
+
+* **selfservice:** update selfservice consumer component chart ([8f64a19](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/8f64a19f368d4822c90fa62c07228b7063868cdc)), closes [univention/customers/dataport/team-souvap#891](https://git.knut.univention.de/univention/customers/dataport/team-souvap/issues/891)
+
 ## [0.72.2](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.72.1...v0.72.2) (2024-10-29)
 
 
