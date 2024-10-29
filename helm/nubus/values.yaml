@@ -76,9 +76,6 @@ global:
       defaultAdministratorPassword: ""
       defaultAdminPassword: ""
       defaultUserPassword: ""
-    portalConsumer:
-      provisioningApi:
-        password: ""
     portalListener:
       minio:
         secretKey: ""
@@ -378,6 +375,7 @@ nubusPortalConsumer: &nubusPortalConsumer
   provisioningApi:
     auth:
       username: "portal-consumer"
+      password: null
 nubusPortalServer: &nubusPortalServer
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   nameOverride: "portal-server"
