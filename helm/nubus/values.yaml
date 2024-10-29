@@ -76,9 +76,6 @@ global:
       defaultAdministratorPassword: ""
       defaultAdminPassword: ""
       defaultUserPassword: ""
-    portalListener:
-      minio:
-        secretKey: ""
     provisioning:
       api:
         adminPassword: ""
