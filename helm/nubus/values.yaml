@@ -337,6 +337,8 @@ nubusPortalConsumer: &nubusPortalConsumer
     auth:
       username: "portal-consumer"
       password: null
+      existingSecret:
+        name: null
 nubusPortalServer: &nubusPortalServer
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   nameOverride: "portal-server"

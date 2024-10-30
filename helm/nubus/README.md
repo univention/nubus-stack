@@ -42,7 +42,7 @@ helm uninstall nubus
 | oci://artifacts.software-univention.de/nubus/charts | nubusLdapNotifier(ldap-notifier) | 0.25.2 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusLdapServer(ldap-server) | 0.25.2 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusNotificationsApi(notifications-api) | 0.42.3 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalConsumer(portal-consumer) | 0.42.3 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalConsumer(portal-consumer) | 0.44.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusPortalFrontend(portal-frontend) | 0.42.3 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.43.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 0.44.0 |
@@ -1902,6 +1902,15 @@ null
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusPortalConsumer.provisioningApi.auth.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+null
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusPortalConsumer.provisioningApi.auth.password</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -1960,15 +1969,6 @@ null
 			<td>int</td>
 			<td><pre lang="json">
 5
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusPortalConsumer.udm.auth.password</td>
-			<td>string</td>
-			<td><pre lang="json">
-null
 </pre>
 </td>
 			<td></td>
@@ -3207,6 +3207,15 @@ null
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusStackDataUms.nubusPortalConsumer.provisioningApi.auth.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+null
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusStackDataUms.nubusPortalConsumer.provisioningApi.auth.password</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -3265,15 +3274,6 @@ null
 			<td>int</td>
 			<td><pre lang="json">
 5
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusPortalConsumer.udm.auth.password</td>
-			<td>string</td>
-			<td><pre lang="json">
-null
 </pre>
 </td>
 			<td></td>
