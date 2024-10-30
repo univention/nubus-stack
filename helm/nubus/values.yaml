@@ -272,11 +272,13 @@ nubusGuardian: &nubusGuardian
       managementApi:
         credentialSecret:
           key: managementApiClientSecret
+
 nubusLdapNotifier: &nubusLdapNotifier
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   nameOverride: "ldap-notifier"
   enabled: true
   resources: *nubusDevelopmentResources
+
 nubusLdapServer: &nubusLdapServer
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   nameOverride: "ldap-server"
@@ -288,6 +290,7 @@ nubusLdapServer: &nubusLdapServer
   resourcesPrimary: *nubusDevelopmentResources
   resourcesSecondary: *nubusDevelopmentResources
   resourcesProxy: *nubusDevelopmentResources
+
 nubusNotificationsApi: &nubusNotificationsApi
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   nameOverride: "notifications-api"
@@ -307,6 +310,7 @@ nubusNotificationsApi: &nubusNotificationsApi
         key: password
   notificationsApi:
     logLevel: "INFO" # default loglevel (subchart): WARNING
+
 nubusPortalFrontend: &nubusPortalFrontend
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   nameOverride: "portal-frontend"
@@ -339,6 +343,7 @@ nubusPortalConsumer: &nubusPortalConsumer
       password: null
       existingSecret:
         name: null
+
 nubusPortalServer: &nubusPortalServer
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   nameOverride: "portal-server"
@@ -470,6 +475,7 @@ nubusSelfServiceConsumer: &nubusSelfServiceConsumer
         name: '{{ include "nubus.provisioning.selfserviceConsumer.auth.existingSecret.name" . }}'
         keyMapping:
           password: "PROVISIONING_API_PASSWORD"
+
 nubusUdmRestApi: &nubusUdmRestApi
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   nameOverride: "udm-rest-api"
@@ -486,6 +492,7 @@ nubusUdmRestApi: &nubusUdmRestApi
       # TODO: Needs adjustment together with the component chart
       credentialSecret:
         key: password
+
 nubusUmcGateway: &nubusUmcGateway
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   nameOverride: "umc-gateway"
@@ -493,6 +500,7 @@ nubusUmcGateway: &nubusUmcGateway
   ingress:
     host: "{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
   resources: *nubusDevelopmentResources
+
 nubusUmcServer: &nubusUmcServer
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   nameOverride: "umc-server"
@@ -540,11 +548,13 @@ nubusUmcServer: &nubusUmcServer
   extraVolumeMounts:
     - name: "certificates"
       mountPath: "/var/secrets/ssl"
+
 nubusKeycloakBootstrap: &nubusKeycloakBootstrap
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   nameOverride: "keycloak-bootstrap"
   enabled: true
   resources: *nubusDevelopmentResources
+
 nubusKeycloakExtensions: &nubusKeycloakExtensions
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   nameOverride: "keycloak-extensions"
