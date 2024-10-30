@@ -69,12 +69,6 @@ global:
         imagePullPolicy: "IfNotPresent"
         tag: "0.43.0@sha256:140309be03b1021693bd9781453e36c14fab6d0ad21448be8bf251342c86695b"
 
-  # TODO: Remove when done
-  # Credentials that are primarily or exclusively used by the umbrella chart can be overridden in some cases. This is the place to do it.
-  credentialOverride:
-    defaultUsers:
-      defaultAdministratorPassword: ""
-
 # -- Additional custom annotations to add to all objects deployed directly by the umbrella chart.
 additionalAnnotations: {}
 
@@ -604,6 +598,7 @@ nubusStackDataUms:
     ldapHost: '{{ include "nubusTemplates.connections.ldap.primary.host" . }}'
 
   templateContext:
+    initialPasswordAdministrator: '{{ include "nubusTemplates.credentials.administrator.password" . }}'
     ldapSearchUsers: [ ]
     ldapSystemUsers:
       - username: "readonly"
