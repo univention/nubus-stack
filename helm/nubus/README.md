@@ -159,177 +159,6 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>global.credentialOverride.defaultUsers.defaultAdminPassword</td>
-			<td>string</td>
-			<td><pre lang="json">
-""
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>global.credentialOverride.defaultUsers.defaultAdministratorPassword</td>
-			<td>string</td>
-			<td><pre lang="json">
-""
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>global.credentialOverride.defaultUsers.defaultUserPassword</td>
-			<td>string</td>
-			<td><pre lang="json">
-""
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>global.credentialOverride.ldapServer.adminPassword</td>
-			<td>string</td>
-			<td><pre lang="json">
-""
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>global.credentialOverride.portalConsumer.minio.accessKey</td>
-			<td>string</td>
-			<td><pre lang="json">
-""
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>global.credentialOverride.portalConsumer.minio.secretKey</td>
-			<td>string</td>
-			<td><pre lang="json">
-""
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>global.credentialOverride.portalConsumer.provisioningApi.password</td>
-			<td>string</td>
-			<td><pre lang="json">
-""
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>global.credentialOverride.portalListener.minio.secretKey</td>
-			<td>string</td>
-			<td><pre lang="json">
-""
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>global.credentialOverride.provisioning.api.adminPassword</td>
-			<td>string</td>
-			<td><pre lang="json">
-""
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>global.credentialOverride.provisioning.api.natsPassword</td>
-			<td>string</td>
-			<td><pre lang="json">
-""
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>global.credentialOverride.provisioning.api.prefillPassword</td>
-			<td>string</td>
-			<td><pre lang="json">
-""
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>global.credentialOverride.provisioning.api.udmTransformerPassword</td>
-			<td>string</td>
-			<td><pre lang="json">
-""
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>global.credentialOverride.provisioning.dispatcher.natsPassword</td>
-			<td>string</td>
-			<td><pre lang="json">
-""
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>global.credentialOverride.provisioning.nats.adminPassword</td>
-			<td>string</td>
-			<td><pre lang="json">
-""
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>global.credentialOverride.provisioning.prefill.natsPassword</td>
-			<td>string</td>
-			<td><pre lang="json">
-""
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>global.credentialOverride.provisioning.udmListener.natsPassword</td>
-			<td>string</td>
-			<td><pre lang="json">
-""
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>global.credentialOverride.provisioning.udmTransformer.natsPassword</td>
-			<td>string</td>
-			<td><pre lang="json">
-""
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>global.credentialOverride.selfserviceConsumer.natsPassword</td>
-			<td>string</td>
-			<td><pre lang="json">
-""
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>global.credentialOverride.selfserviceConsumer.provisioningApi.password</td>
-			<td>string</td>
-			<td><pre lang="json">
-""
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>global.domain</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -370,6 +199,15 @@ false
 			<td>string</td>
 			<td><pre lang="json">
 "nubus"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>global.ldap.auth.cnAdmin.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+null
 </pre>
 </td>
 			<td></td>
@@ -2028,6 +1866,24 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusPortalConsumer.objectStorage.auth.accessKey</td>
+			<td>string</td>
+			<td><pre lang="json">
+null
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusPortalConsumer.objectStorage.auth.secretKey</td>
+			<td>string</td>
+			<td><pre lang="json">
+null
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusPortalConsumer.portalConsumer.ldapHost</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -2041,6 +1897,15 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 "nubus"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusPortalConsumer.provisioningApi.auth.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+null
 </pre>
 </td>
 			<td></td>
@@ -2095,6 +1960,15 @@ true
 			<td>int</td>
 			<td><pre lang="json">
 5
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusPortalConsumer.udm.auth.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+null
 </pre>
 </td>
 			<td></td>
@@ -2208,6 +2082,24 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusPortalServer.objectStorage.auth.accessKey</td>
+			<td>string</td>
+			<td><pre lang="json">
+null
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusPortalServer.objectStorage.auth.secretKey</td>
+			<td>string</td>
+			<td><pre lang="json">
+null
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusPortalServer.portalServer.logLevel</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -2271,10 +2163,46 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusProvisioning.api.auth.adminPassword</td>
+			<td>string</td>
+			<td><pre lang="json">
+null
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusProvisioning.api.auth.prefillPassword</td>
+			<td>string</td>
+			<td><pre lang="json">
+null
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusProvisioning.api.auth.udmTransformerPassword</td>
+			<td>string</td>
+			<td><pre lang="json">
+null
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusProvisioning.api.config.LOG_LEVEL</td>
 			<td>string</td>
 			<td><pre lang="json">
 "INFO"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusProvisioning.api.nats.auth.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+null
 </pre>
 </td>
 			<td></td>
@@ -2320,6 +2248,15 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 "INFO"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusProvisioning.dispatcher.nats.auth.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+null
 </pre>
 </td>
 			<td></td>
@@ -2374,6 +2311,15 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 "provisioning"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusProvisioning.nats.auth.adminPassword</td>
+			<td>string</td>
+			<td><pre lang="json">
+null
 </pre>
 </td>
 			<td></td>
@@ -2509,6 +2455,15 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 "INFO"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusProvisioning.prefill.nats.auth.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+null
 </pre>
 </td>
 			<td></td>
@@ -2685,6 +2640,15 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusProvisioning.udmTransformer.nats.auth.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+null
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusSelfServiceConsumer.enabled</td>
 			<td>bool</td>
 			<td><pre lang="json">
@@ -2703,6 +2667,15 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusSelfServiceConsumer.nats.auth.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+null
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusSelfServiceConsumer.provisioningApi.auth.existingSecret.keyMapping.password</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -2716,6 +2689,15 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 "{{ include \"nubus.provisioning.selfserviceConsumer.auth.existingSecret.name\" . }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusSelfServiceConsumer.provisioningApi.auth.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+null
 </pre>
 </td>
 			<td></td>
@@ -3189,6 +3171,24 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusStackDataUms.nubusPortalConsumer.objectStorage.auth.accessKey</td>
+			<td>string</td>
+			<td><pre lang="json">
+null
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusPortalConsumer.objectStorage.auth.secretKey</td>
+			<td>string</td>
+			<td><pre lang="json">
+null
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusStackDataUms.nubusPortalConsumer.portalConsumer.ldapHost</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -3202,6 +3202,15 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 "nubus"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusPortalConsumer.provisioningApi.auth.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+null
 </pre>
 </td>
 			<td></td>
@@ -3261,6 +3270,15 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusStackDataUms.nubusPortalConsumer.udm.auth.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+null
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusStackDataUms.nubusPortalServer.enabled</td>
 			<td>bool</td>
 			<td><pre lang="json">
@@ -3283,6 +3301,24 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 "portal-server"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusPortalServer.objectStorage.auth.accessKey</td>
+			<td>string</td>
+			<td><pre lang="json">
+null
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusPortalServer.objectStorage.auth.secretKey</td>
+			<td>string</td>
+			<td><pre lang="json">
+null
 </pre>
 </td>
 			<td></td>
@@ -3351,10 +3387,46 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusStackDataUms.nubusProvisioning.api.auth.adminPassword</td>
+			<td>string</td>
+			<td><pre lang="json">
+null
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusProvisioning.api.auth.prefillPassword</td>
+			<td>string</td>
+			<td><pre lang="json">
+null
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusProvisioning.api.auth.udmTransformerPassword</td>
+			<td>string</td>
+			<td><pre lang="json">
+null
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusStackDataUms.nubusProvisioning.api.config.LOG_LEVEL</td>
 			<td>string</td>
 			<td><pre lang="json">
 "INFO"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusProvisioning.api.nats.auth.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+null
 </pre>
 </td>
 			<td></td>
@@ -3400,6 +3472,15 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 "INFO"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusProvisioning.dispatcher.nats.auth.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+null
 </pre>
 </td>
 			<td></td>
@@ -3454,6 +3535,15 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 "provisioning"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusProvisioning.nats.auth.adminPassword</td>
+			<td>string</td>
+			<td><pre lang="json">
+null
 </pre>
 </td>
 			<td></td>
@@ -3589,6 +3679,15 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 "INFO"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusProvisioning.prefill.nats.auth.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+null
 </pre>
 </td>
 			<td></td>
@@ -3765,6 +3864,15 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusStackDataUms.nubusProvisioning.udmTransformer.nats.auth.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+null
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusStackDataUms.nubusSelfServiceConsumer.enabled</td>
 			<td>bool</td>
 			<td><pre lang="json">
@@ -3783,6 +3891,15 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusStackDataUms.nubusSelfServiceConsumer.nats.auth.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+null
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusStackDataUms.nubusSelfServiceConsumer.provisioningApi.auth.existingSecret.keyMapping.password</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -3796,6 +3913,15 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 "{{ include \"nubus.provisioning.selfserviceConsumer.auth.existingSecret.name\" . }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusSelfServiceConsumer.provisioningApi.auth.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+null
 </pre>
 </td>
 			<td></td>
@@ -3922,6 +4048,15 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 "provisioning-listener"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusUdmListener.nats.auth.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+null
 </pre>
 </td>
 			<td></td>
@@ -4422,6 +4557,15 @@ false
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusStackDataUms.templateContext.initialPasswordAdministrator</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ include \"nubusTemplates.credentials.administrator.password\" . }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusStackDataUms.templateContext.ldapSearchUsers</td>
 			<td>list</td>
 			<td><pre lang="json">
@@ -4543,6 +4687,15 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 "provisioning-listener"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusUdmListener.nats.auth.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+null
 </pre>
 </td>
 			<td></td>
