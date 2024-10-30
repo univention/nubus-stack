@@ -74,8 +74,6 @@ global:
   credentialOverride:
     defaultUsers:
       defaultAdministratorPassword: ""
-      defaultAdminPassword: ""
-      defaultUserPassword: ""
 
 # -- Additional custom annotations to add to all objects deployed directly by the umbrella chart.
 additionalAnnotations: {}

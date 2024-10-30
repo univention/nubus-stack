@@ -6,16 +6,6 @@ SPDX-License-Identifier: AGPL-3.0-only
 {{- .Values.global.nubusMasterPassword | default (randAlphaNum 10 | sha1sum) -}}
 {{- end -}}
 
-{{- define "nubusTemplates.credentials.ldap.users.admin.password" -}}
-{{- $nubusMasterPassword := include "nubusTemplates.masterPassword" . -}}
-{{- (coalesce .Values.global.credentialOverride.defaultUsers.defaultAdminPassword (print (derivePassword 1 "long" $nubusMasterPassword "nubus" "nubus-admin") | sha1sum) )  -}}
-{{- end -}}
-
-{{- define "nubusTemplates.credentials.ldap.users.idp.password" -}}
-{{- $nubusMasterPassword := include "nubusTemplates.masterPassword" . -}}
-{{- (coalesce .Values.global.credentialOverride.defaultUsers.defaultUserPassword (print (derivePassword 1 "long" $nubusMasterPassword "nubus" "nubus-user") | sha1sum) )  -}}
-{{- end -}}
-
 {{- define "nubusTemplates.credentials.administrator.password" -}}
 {{- $nubusMasterPassword := include "nubusTemplates.masterPassword" . -}}
 {{- (coalesce .Values.global.credentialOverride.defaultUsers.defaultAdministratorPassword (print (derivePassword 1 "long" $nubusMasterPassword "nubus" "nubus-administrator") | sha1sum) )  -}}
