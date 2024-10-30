@@ -243,8 +243,15 @@ keycloak:
     auth:
       username: keycloak_user
       database: keycloak
-      credentialSecret:
-        key: password
+      existingSecret:
+        name: '{{ include "nubus.keycloak.postgresql.auth.existingSecret.name" . }}'
+  keycloak:
+    auth:
+      username: "kcadmin"
+      existingSecret:
+        name: '{{ include "nubus.keycloak.auth.existingSecret.name" . }}'
+        keyMapping:
+          adminPassword: "admin_password"
   config:
     logLevel: "INFO" # default loglevel (subchart): INFO
   ingress:

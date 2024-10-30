@@ -36,7 +36,7 @@ helm uninstall nubus
 | Repository | Name | Version |
 |------------|------|---------|
 | oci://artifacts.software-univention.de/nubus/charts | nubusGuardian(guardian) | 0.14.0 |
-| oci://artifacts.software-univention.de/nubus/charts | keycloak(keycloak) | 0.6.0 |
+| oci://artifacts.software-univention.de/nubus/charts | keycloak(keycloak) | 0.7.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakBootstrap(keycloak-bootstrap) | 0.6.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakExtensions(keycloak-extensions) | 0.11.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusLdapNotifier(ldap-notifier) | 0.26.3 |
@@ -561,10 +561,28 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>keycloak.postgresql.auth.credentialSecret.key</td>
+			<td>keycloak.keycloak.auth.existingSecret.keyMapping.adminPassword</td>
 			<td>string</td>
 			<td><pre lang="json">
-"password"
+"admin_password"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>keycloak.keycloak.auth.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ include \"nubus.keycloak.auth.existingSecret.name\" . }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>keycloak.keycloak.auth.username</td>
+			<td>string</td>
+			<td><pre lang="json">
+"kcadmin"
 </pre>
 </td>
 			<td></td>
@@ -574,6 +592,15 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 "keycloak"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>keycloak.postgresql.auth.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ include \"nubus.keycloak.postgresql.auth.existingSecret.name\" . }}"
 </pre>
 </td>
 			<td></td>

@@ -153,9 +153,9 @@ spec:
               path: {{ .Values.nubusNotificationsApi.postgresql.auth.username | quote }}
       - name: "keycloak-postgresql-credentials"
         secret:
-          secretName: {{ (printf "%s-keycloak-postgresql-credentials" .Release.Name) | quote }}
+          secretName: {{ tpl .Values.keycloak.postgresql.auth.existingSecret.name . }}
           items:
-            - key: {{ .Values.keycloak.postgresql.auth.credentialSecret.key | quote }}
+            - key: '{{ include "common.secrets.key" (dict "existingSecret" .Values.keycloak.postgresql.auth.existingSecret.name "key" "password") }}'
               path: {{ .Values.keycloak.postgresql.auth.username | quote }}
       - name: "keycloak-extensions-postgresql-credentials"
         secret:
