@@ -267,105 +267,6 @@ null
 			<td></td>
 		</tr>
 		<tr>
-			<td>global.nats.auth.admin.existingSecret.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-provisioning-nats-credentials"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>global.nats.auth.dispatcher.existingSecret.keyMapping.dispatcherPassword</td>
-			<td>string</td>
-			<td><pre lang="json">
-"NATS_PASSWORD"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>global.nats.auth.dispatcher.existingSecret.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-provisioning-dispatcher-credentials"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>global.nats.auth.prefill.existingSecret.keyMapping.prefillPassword</td>
-			<td>string</td>
-			<td><pre lang="json">
-"NATS_PASSWORD"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>global.nats.auth.prefill.existingSecret.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-provisioning-prefill-credentials"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>global.nats.auth.provisioningApi.existingSecret.keyMapping.provisioningApiPassword</td>
-			<td>string</td>
-			<td><pre lang="json">
-"NATS_PASSWORD"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>global.nats.auth.provisioningApi.existingSecret.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-provisioning-api-credentials"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>global.nats.auth.udmListener.existingSecret.keyMapping.udmListenerPassword</td>
-			<td>string</td>
-			<td><pre lang="json">
-"NATS_PASSWORD"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>global.nats.auth.udmListener.existingSecret.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-provisioning-udm-listener-credentials"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>global.nats.auth.udmTransformer.existingSecret.keyMapping.udmTransformerPassword</td>
-			<td>string</td>
-			<td><pre lang="json">
-"NATS_PASSWORD"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>global.nats.auth.udmTransformer.existingSecret.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-provisioning-udm-transformer-credentials"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>global.nubusDeployment</td>
 			<td>bool</td>
 			<td><pre lang="json">
@@ -2280,10 +2181,64 @@ null
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusProvisioning.api.auth.admin.existingSecret.keyMapping.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+"ADMIN_PASSWORD"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusProvisioning.api.auth.admin.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Release.Name }}-provisioning-api-credentials"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusProvisioning.api.auth.adminPassword</td>
 			<td>string</td>
 			<td><pre lang="json">
 null
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusProvisioning.api.auth.eventsUdm.existingSecret.keyMapping.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+"EVENTS_PASSWORD_UDM"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusProvisioning.api.auth.eventsUdm.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Release.Name }}-provisioning-api-credentials"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusProvisioning.api.auth.prefill.existingSecret.keyMapping.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+"PREFILL_PASSWORD"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusProvisioning.api.auth.prefill.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Release.Name }}-provisioning-api-credentials"
 </pre>
 </td>
 			<td></td>
@@ -2311,6 +2266,24 @@ null
 			<td>string</td>
 			<td><pre lang="json">
 "INFO"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusProvisioning.api.nats.auth.existingSecret.keyMapping.provisioningApiPassword</td>
+			<td>string</td>
+			<td><pre lang="json">
+"NATS_PASSWORD"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusProvisioning.api.nats.auth.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Release.Name }}-provisioning-api-credentials"
 </pre>
 </td>
 			<td></td>
@@ -2370,6 +2343,24 @@ null
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusProvisioning.dispatcher.nats.auth.existingSecret.keyMapping.dispatcherPassword</td>
+			<td>string</td>
+			<td><pre lang="json">
+"NATS_PASSWORD"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusProvisioning.dispatcher.nats.auth.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Release.Name }}-provisioning-dispatcher-credentials"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusProvisioning.dispatcher.nats.auth.password</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -2388,28 +2379,10 @@ null
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusProvisioning.dispatcher.nats.connection.password.secretKeyRef.key</td>
-			<td>string</td>
-			<td><pre lang="json">
-"password"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusProvisioning.dispatcher.nats.connection.port</td>
 			<td>string</td>
 			<td><pre lang="json">
 ""
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.dispatcher.nats.connection.username</td>
-			<td>string</td>
-			<td><pre lang="json">
-"dispatcher"
 </pre>
 </td>
 			<td></td>
@@ -2424,7 +2397,7 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusProvisioning.ldap.auth.cnAdmin.password.key</td>
+			<td>nubusProvisioning.ldap.auth.existingSecret.keyMapping.password</td>
 			<td>string</td>
 			<td><pre lang="json">
 "{{ .Values.global.ldap.auth.cnAdmin.password.key }}"
@@ -2433,7 +2406,7 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusProvisioning.ldap.auth.cnAdmin.password.name</td>
+			<td>nubusProvisioning.ldap.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
 "{{ include \"nubus.ldap.auth.cnAdmin.password.name\" . }}"
@@ -2464,6 +2437,204 @@ null
 			<td>int</td>
 			<td><pre lang="json">
 1
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusProvisioning.nats.config.createUsers.udmListener.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+"$NATS_UDM_LISTENER_PASSWORD"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusProvisioning.nats.config.createUsers.udmListener.permissions.publish</td>
+			<td>string</td>
+			<td><pre lang="json">
+"\u003e"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusProvisioning.nats.config.createUsers.udmListener.permissions.subscribe</td>
+			<td>string</td>
+			<td><pre lang="json">
+"\u003e"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusProvisioning.nats.config.createUsers.udmListener.user</td>
+			<td>string</td>
+			<td><pre lang="json">
+"udmlistener"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusProvisioning.nats.extraEnvVars[0].name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"NATS_UDM_LISTENER_PASSWORD"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusProvisioning.nats.extraEnvVars[0].valueFrom.secretKeyRef.key</td>
+			<td>string</td>
+			<td><pre lang="json">
+"NATS_PASSWORD"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusProvisioning.nats.extraEnvVars[0].valueFrom.secretKeyRef.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Release.Name }}-provisioning-udm-listener-credentials"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusProvisioning.nats.extraEnvVars[1].name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"NATS_PASSWORD"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusProvisioning.nats.extraEnvVars[1].valueFrom.secretKeyRef.key</td>
+			<td>string</td>
+			<td><pre lang="json">
+"admin_password"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusProvisioning.nats.extraEnvVars[1].valueFrom.secretKeyRef.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Release.Name }}-provisioning-nats-credentials"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusProvisioning.nats.extraEnvVars[2].name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"NATS_PROVISIONING_API_PASSWORD"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusProvisioning.nats.extraEnvVars[2].valueFrom.secretKeyRef.key</td>
+			<td>string</td>
+			<td><pre lang="json">
+"NATS_PASSWORD"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusProvisioning.nats.extraEnvVars[2].valueFrom.secretKeyRef.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Release.Name }}-provisioning-api-credentials"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusProvisioning.nats.extraEnvVars[3].name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"NATS_DISPATCHER_PASSWORD"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusProvisioning.nats.extraEnvVars[3].valueFrom.secretKeyRef.key</td>
+			<td>string</td>
+			<td><pre lang="json">
+"NATS_PASSWORD"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusProvisioning.nats.extraEnvVars[3].valueFrom.secretKeyRef.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Release.Name }}-provisioning-dispatcher-credentials"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusProvisioning.nats.extraEnvVars[4].name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"NATS_UDM_TRANSFORMER_PASSWORD"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusProvisioning.nats.extraEnvVars[4].valueFrom.secretKeyRef.key</td>
+			<td>string</td>
+			<td><pre lang="json">
+"NATS_PASSWORD"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusProvisioning.nats.extraEnvVars[4].valueFrom.secretKeyRef.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Release.Name }}-provisioning-udm-transformer-credentials"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusProvisioning.nats.extraEnvVars[5].name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"NATS_PREFILL_PASSWORD"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusProvisioning.nats.extraEnvVars[5].valueFrom.secretKeyRef.key</td>
+			<td>string</td>
+			<td><pre lang="json">
+"NATS_PASSWORD"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusProvisioning.nats.extraEnvVars[5].valueFrom.secretKeyRef.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Release.Name }}-provisioning-prefill-credentials"
 </pre>
 </td>
 			<td></td>
@@ -2595,6 +2766,24 @@ null
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusProvisioning.prefill.nats.auth.existingSecret.keyMapping.prefillPassword</td>
+			<td>string</td>
+			<td><pre lang="json">
+"NATS_PASSWORD"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusProvisioning.prefill.nats.auth.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Release.Name }}-provisioning-prefill-credentials"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusProvisioning.prefill.nats.auth.password</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -2613,28 +2802,10 @@ null
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusProvisioning.prefill.nats.connection.password.secretKeyRef.key</td>
-			<td>string</td>
-			<td><pre lang="json">
-"password"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusProvisioning.prefill.nats.connection.port</td>
 			<td>string</td>
 			<td><pre lang="json">
 ""
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.prefill.nats.connection.username</td>
-			<td>string</td>
-			<td><pre lang="json">
-"prefill"
 </pre>
 </td>
 			<td></td>
@@ -2658,7 +2829,7 @@ null
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusProvisioning.registerConsumers.createUsers.portalConsumer.selfserviceConsumer.keyMapping.password</td>
+			<td>nubusProvisioning.registerConsumers.createUsers.selfserviceConsumer.existingSecret.keyMapping.password</td>
 			<td>string</td>
 			<td><pre lang="json">
 "selfservice.json"
@@ -2667,7 +2838,7 @@ null
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusProvisioning.registerConsumers.createUsers.portalConsumer.selfserviceConsumer.name</td>
+			<td>nubusProvisioning.registerConsumers.createUsers.selfserviceConsumer.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
 "{{ include \"nubus.provisioning.registerConsumer.auth.selfserviceConsumer.name\" . }}"
@@ -2811,6 +2982,24 @@ null
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusProvisioning.udmTransformer.nats.auth.existingSecret.keyMapping.udmTransformerPassword</td>
+			<td>string</td>
+			<td><pre lang="json">
+"NATS_PASSWORD"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusProvisioning.udmTransformer.nats.auth.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Release.Name }}-provisioning-udm-transformer-credentials"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusProvisioning.udmTransformer.nats.auth.password</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -2859,7 +3048,7 @@ null
 			<td>nubusSelfServiceConsumer.provisioningApi.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ include \"nubus.provisioning.selfserviceConsumer.auth.existingSecret.name\" . }}"
+"{{ .Release.Name }}-selfservice-listener-credentials"
 </pre>
 </td>
 			<td></td>
@@ -3558,10 +3747,64 @@ null
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusStackDataUms.nubusProvisioning.api.auth.admin.existingSecret.keyMapping.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+"ADMIN_PASSWORD"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusProvisioning.api.auth.admin.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Release.Name }}-provisioning-api-credentials"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusStackDataUms.nubusProvisioning.api.auth.adminPassword</td>
 			<td>string</td>
 			<td><pre lang="json">
 null
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusProvisioning.api.auth.eventsUdm.existingSecret.keyMapping.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+"EVENTS_PASSWORD_UDM"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusProvisioning.api.auth.eventsUdm.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Release.Name }}-provisioning-api-credentials"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusProvisioning.api.auth.prefill.existingSecret.keyMapping.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+"PREFILL_PASSWORD"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusProvisioning.api.auth.prefill.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Release.Name }}-provisioning-api-credentials"
 </pre>
 </td>
 			<td></td>
@@ -3589,6 +3832,24 @@ null
 			<td>string</td>
 			<td><pre lang="json">
 "INFO"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusProvisioning.api.nats.auth.existingSecret.keyMapping.provisioningApiPassword</td>
+			<td>string</td>
+			<td><pre lang="json">
+"NATS_PASSWORD"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusProvisioning.api.nats.auth.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Release.Name }}-provisioning-api-credentials"
 </pre>
 </td>
 			<td></td>
@@ -3648,6 +3909,24 @@ null
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusStackDataUms.nubusProvisioning.dispatcher.nats.auth.existingSecret.keyMapping.dispatcherPassword</td>
+			<td>string</td>
+			<td><pre lang="json">
+"NATS_PASSWORD"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusProvisioning.dispatcher.nats.auth.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Release.Name }}-provisioning-dispatcher-credentials"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusStackDataUms.nubusProvisioning.dispatcher.nats.auth.password</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -3666,28 +3945,10 @@ null
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataUms.nubusProvisioning.dispatcher.nats.connection.password.secretKeyRef.key</td>
-			<td>string</td>
-			<td><pre lang="json">
-"password"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusStackDataUms.nubusProvisioning.dispatcher.nats.connection.port</td>
 			<td>string</td>
 			<td><pre lang="json">
 ""
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusProvisioning.dispatcher.nats.connection.username</td>
-			<td>string</td>
-			<td><pre lang="json">
-"dispatcher"
 </pre>
 </td>
 			<td></td>
@@ -3702,7 +3963,7 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataUms.nubusProvisioning.ldap.auth.cnAdmin.password.key</td>
+			<td>nubusStackDataUms.nubusProvisioning.ldap.auth.existingSecret.keyMapping.password</td>
 			<td>string</td>
 			<td><pre lang="json">
 "{{ .Values.global.ldap.auth.cnAdmin.password.key }}"
@@ -3711,7 +3972,7 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataUms.nubusProvisioning.ldap.auth.cnAdmin.password.name</td>
+			<td>nubusStackDataUms.nubusProvisioning.ldap.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
 "{{ include \"nubus.ldap.auth.cnAdmin.password.name\" . }}"
@@ -3742,6 +4003,204 @@ null
 			<td>int</td>
 			<td><pre lang="json">
 1
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusProvisioning.nats.config.createUsers.udmListener.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+"$NATS_UDM_LISTENER_PASSWORD"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusProvisioning.nats.config.createUsers.udmListener.permissions.publish</td>
+			<td>string</td>
+			<td><pre lang="json">
+"\u003e"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusProvisioning.nats.config.createUsers.udmListener.permissions.subscribe</td>
+			<td>string</td>
+			<td><pre lang="json">
+"\u003e"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusProvisioning.nats.config.createUsers.udmListener.user</td>
+			<td>string</td>
+			<td><pre lang="json">
+"udmlistener"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusProvisioning.nats.extraEnvVars[0].name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"NATS_UDM_LISTENER_PASSWORD"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusProvisioning.nats.extraEnvVars[0].valueFrom.secretKeyRef.key</td>
+			<td>string</td>
+			<td><pre lang="json">
+"NATS_PASSWORD"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusProvisioning.nats.extraEnvVars[0].valueFrom.secretKeyRef.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Release.Name }}-provisioning-udm-listener-credentials"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusProvisioning.nats.extraEnvVars[1].name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"NATS_PASSWORD"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusProvisioning.nats.extraEnvVars[1].valueFrom.secretKeyRef.key</td>
+			<td>string</td>
+			<td><pre lang="json">
+"admin_password"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusProvisioning.nats.extraEnvVars[1].valueFrom.secretKeyRef.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Release.Name }}-provisioning-nats-credentials"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusProvisioning.nats.extraEnvVars[2].name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"NATS_PROVISIONING_API_PASSWORD"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusProvisioning.nats.extraEnvVars[2].valueFrom.secretKeyRef.key</td>
+			<td>string</td>
+			<td><pre lang="json">
+"NATS_PASSWORD"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusProvisioning.nats.extraEnvVars[2].valueFrom.secretKeyRef.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Release.Name }}-provisioning-api-credentials"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusProvisioning.nats.extraEnvVars[3].name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"NATS_DISPATCHER_PASSWORD"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusProvisioning.nats.extraEnvVars[3].valueFrom.secretKeyRef.key</td>
+			<td>string</td>
+			<td><pre lang="json">
+"NATS_PASSWORD"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusProvisioning.nats.extraEnvVars[3].valueFrom.secretKeyRef.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Release.Name }}-provisioning-dispatcher-credentials"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusProvisioning.nats.extraEnvVars[4].name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"NATS_UDM_TRANSFORMER_PASSWORD"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusProvisioning.nats.extraEnvVars[4].valueFrom.secretKeyRef.key</td>
+			<td>string</td>
+			<td><pre lang="json">
+"NATS_PASSWORD"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusProvisioning.nats.extraEnvVars[4].valueFrom.secretKeyRef.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Release.Name }}-provisioning-udm-transformer-credentials"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusProvisioning.nats.extraEnvVars[5].name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"NATS_PREFILL_PASSWORD"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusProvisioning.nats.extraEnvVars[5].valueFrom.secretKeyRef.key</td>
+			<td>string</td>
+			<td><pre lang="json">
+"NATS_PASSWORD"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusProvisioning.nats.extraEnvVars[5].valueFrom.secretKeyRef.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Release.Name }}-provisioning-prefill-credentials"
 </pre>
 </td>
 			<td></td>
@@ -3873,6 +4332,24 @@ null
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusStackDataUms.nubusProvisioning.prefill.nats.auth.existingSecret.keyMapping.prefillPassword</td>
+			<td>string</td>
+			<td><pre lang="json">
+"NATS_PASSWORD"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusProvisioning.prefill.nats.auth.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Release.Name }}-provisioning-prefill-credentials"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusStackDataUms.nubusProvisioning.prefill.nats.auth.password</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -3891,28 +4368,10 @@ null
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataUms.nubusProvisioning.prefill.nats.connection.password.secretKeyRef.key</td>
-			<td>string</td>
-			<td><pre lang="json">
-"password"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusStackDataUms.nubusProvisioning.prefill.nats.connection.port</td>
 			<td>string</td>
 			<td><pre lang="json">
 ""
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusProvisioning.prefill.nats.connection.username</td>
-			<td>string</td>
-			<td><pre lang="json">
-"prefill"
 </pre>
 </td>
 			<td></td>
@@ -3936,7 +4395,7 @@ null
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataUms.nubusProvisioning.registerConsumers.createUsers.portalConsumer.selfserviceConsumer.keyMapping.password</td>
+			<td>nubusStackDataUms.nubusProvisioning.registerConsumers.createUsers.selfserviceConsumer.existingSecret.keyMapping.password</td>
 			<td>string</td>
 			<td><pre lang="json">
 "selfservice.json"
@@ -3945,7 +4404,7 @@ null
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataUms.nubusProvisioning.registerConsumers.createUsers.portalConsumer.selfserviceConsumer.name</td>
+			<td>nubusStackDataUms.nubusProvisioning.registerConsumers.createUsers.selfserviceConsumer.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
 "{{ include \"nubus.provisioning.registerConsumer.auth.selfserviceConsumer.name\" . }}"
@@ -4089,6 +4548,24 @@ null
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusStackDataUms.nubusProvisioning.udmTransformer.nats.auth.existingSecret.keyMapping.udmTransformerPassword</td>
+			<td>string</td>
+			<td><pre lang="json">
+"NATS_PASSWORD"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusProvisioning.udmTransformer.nats.auth.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Release.Name }}-provisioning-udm-transformer-credentials"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusStackDataUms.nubusProvisioning.udmTransformer.nats.auth.password</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -4137,7 +4614,7 @@ null
 			<td>nubusStackDataUms.nubusSelfServiceConsumer.provisioningApi.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ include \"nubus.provisioning.selfserviceConsumer.auth.existingSecret.name\" . }}"
+"{{ .Release.Name }}-selfservice-listener-credentials"
 </pre>
 </td>
 			<td></td>

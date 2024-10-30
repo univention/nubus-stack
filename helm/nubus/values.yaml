@@ -73,37 +73,6 @@ global:
         imagePullPolicy: "IfNotPresent"
         tag: "0.44.3@sha256:734efc0adda680526dde09387db964612f9e0ab020382580984488cc993c68f0"
 
-  nats:
-    auth:
-      admin:
-        existingSecret:
-          name: "{{ .Release.Name }}-provisioning-nats-credentials"
-      provisioningApi:
-        existingSecret:
-          name: "{{ .Release.Name }}-provisioning-api-credentials"
-          keyMapping:
-            provisioningApiPassword: NATS_PASSWORD
-      prefill:
-        existingSecret:
-          name: "{{ .Release.Name }}-provisioning-prefill-credentials"
-          keyMapping:
-            prefillPassword: NATS_PASSWORD
-      dispatcher:
-        existingSecret:
-          name: "{{ .Release.Name }}-provisioning-dispatcher-credentials"
-          keyMapping:
-            dispatcherPassword: NATS_PASSWORD
-      udmTransformer:
-        existingSecret:
-          name: "{{ .Release.Name }}-provisioning-udm-transformer-credentials"
-          keyMapping:
-            udmTransformerPassword: NATS_PASSWORD
-      udmListener:
-        existingSecret:
-          name: "{{ .Release.Name }}-provisioning-udm-listener-credentials"
-          keyMapping:
-            udmListenerPassword: NATS_PASSWORD
-
 # -- Additional custom annotations to add to all objects deployed directly by the umbrella chart.
 additionalAnnotations: {}
 
@@ -405,17 +374,55 @@ nubusProvisioning: &nubusProvisioning
     api: *nubusDevelopmentResources
   ldap:
     auth:
-      cnAdmin:
-        password:
-          name: '{{ include "nubus.ldap.auth.cnAdmin.password.name" . }}'
-          key: '{{ .Values.global.ldap.auth.cnAdmin.password.key }}'
+      existingSecret:
+        name: '{{ include "nubus.ldap.auth.cnAdmin.password.name" . }}'
+        keyMapping:
+          password: '{{ .Values.global.ldap.auth.cnAdmin.password.key }}'
   nats:
+    auth:
+      adminPassword: null
     config:
       cluster:
         # TODO: Set back to the default of 3 after nats clustering is solved.
         replicas: 1
-    auth:
-      adminPassword: null
+      createUsers:
+        udmListener:
+          user: "udmlistener"
+          password: "$NATS_UDM_LISTENER_PASSWORD"
+          permissions:
+            publish: ">"
+            subscribe: ">"
+    extraEnvVars:
+      - name: NATS_UDM_LISTENER_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: "{{ .Release.Name }}-provisioning-udm-listener-credentials"
+            key: NATS_PASSWORD
+      - name: NATS_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: "{{ .Release.Name }}-provisioning-nats-credentials"
+            key: admin_password
+      - name: NATS_PROVISIONING_API_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: "{{ .Release.Name }}-provisioning-api-credentials"
+            key: NATS_PASSWORD
+      - name: NATS_DISPATCHER_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: "{{ .Release.Name }}-provisioning-dispatcher-credentials"
+            key: NATS_PASSWORD
+      - name: NATS_UDM_TRANSFORMER_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: "{{ .Release.Name }}-provisioning-udm-transformer-credentials"
+            key: NATS_PASSWORD
+      - name: NATS_PREFILL_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: "{{ .Release.Name }}-provisioning-prefill-credentials"
+            key: NATS_PASSWORD
     global:
       imageRegistry: "docker.io"
     resources: *nubusDevelopmentResources
@@ -433,7 +440,11 @@ nubusProvisioning: &nubusProvisioning
           name: '{{ include "nubus.provisioning.registerConsumer.auth.portalConsumer.name" . }}'
           keyMapping:
             password: "portal-consumer.json"
-        selfserviceConsumer:
+      selfserviceConsumer:
+        # TODO: not yet supported
+        # username: null
+        # password: null
+        existingSecret:
           name: '{{ include "nubus.provisioning.registerConsumer.auth.selfserviceConsumer.name" . }}'
           keyMapping:
             password: "selfservice.json"
@@ -443,7 +454,28 @@ nubusProvisioning: &nubusProvisioning
       adminPassword: null
       prefillPassword: null
       udmTransformerPassword: null
+      admin:
+        existingSecret:
+          name: "{{ .Release.Name }}-provisioning-api-credentials"
+          keyMapping:
+            password: ADMIN_PASSWORD
+      eventsUdm:
+        existingSecret:
+          name: "{{ .Release.Name }}-provisioning-api-credentials"
+          keyMapping:
+            password: EVENTS_PASSWORD_UDM
+      prefill:
+        existingSecret:
+          name: "{{ .Release.Name }}-provisioning-api-credentials"
+          keyMapping:
+            password: PREFILL_PASSWORD
     nats:
+      auth:
+        password: null
+        existingSecret:
+          name: "{{ .Release.Name }}-provisioning-api-credentials"
+          keyMapping:
+            provisioningApiPassword: "NATS_PASSWORD"
       connection:
         host: ""
         port: ""
@@ -451,21 +483,20 @@ nubusProvisioning: &nubusProvisioning
         password:
           secretKeyRef:
             key: password
-      auth:
-        password: null
     config:
       LOG_LEVEL: "INFO" # default loglevel (subchart): INFO
   dispatcher:
     nats:
+      auth:
+        password: null
+        existingSecret:
+          name: "{{ .Release.Name }}-provisioning-dispatcher-credentials"
+          keyMapping:
+            dispatcherPassword: "NATS_PASSWORD"
+
       connection:
         host: ""
         port: ""
-        username: dispatcher
-        password:
-          secretKeyRef:
-            key: password
-      auth:
-        password: null
     config:
       LOG_LEVEL: "INFO" # default loglevel (subchart): INFO
   prefill:
@@ -473,12 +504,12 @@ nubusProvisioning: &nubusProvisioning
       connection:
         host: ""
         port: ""
-        username: prefill
-        password:
-          secretKeyRef:
-            key: password
       auth:
         password: null
+        existingSecret:
+          name: "{{ .Release.Name }}-provisioning-prefill-credentials"
+          keyMapping:
+            prefillPassword: "NATS_PASSWORD"
     config:
       LOG_LEVEL: "INFO" # default loglevel (subchart): INFO
   udmTransformer:
@@ -488,6 +519,10 @@ nubusProvisioning: &nubusProvisioning
     nats:
       auth:
         password: null
+        existingSecret:
+          name: "{{ .Release.Name }}-provisioning-udm-transformer-credentials"
+          keyMapping:
+            udmTransformerPassword: "NATS_PASSWORD"
     config:
       LOG_LEVEL: "INFO" # default loglevel (subchart): INFO
 
@@ -528,7 +563,7 @@ nubusSelfServiceConsumer: &nubusSelfServiceConsumer
       # user provisioning configuration around provisioning.
       password: null
       existingSecret:
-        name: '{{ include "nubus.provisioning.selfserviceConsumer.auth.existingSecret.name" . }}'
+        name: "{{ .Release.Name }}-selfservice-listener-credentials"
         keyMapping:
           password: "PROVISIONING_API_PASSWORD"
 
