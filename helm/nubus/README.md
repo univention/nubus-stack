@@ -753,7 +753,7 @@ true
 			<td>keycloak.replicaCount</td>
 			<td>int</td>
 			<td><pre lang="json">
-2
+1
 </pre>
 </td>
 			<td></td>
@@ -1743,7 +1743,7 @@ false
 			<td>nubusLdapServer.replicaCountProxy</td>
 			<td>int</td>
 			<td><pre lang="json">
-3
+1
 </pre>
 </td>
 			<td></td>
@@ -1752,7 +1752,7 @@ false
 			<td>nubusLdapServer.replicaCountSecondary</td>
 			<td>int</td>
 			<td><pre lang="json">
-2
+1
 </pre>
 </td>
 			<td></td>
@@ -4299,7 +4299,7 @@ false
 			<td>nubusStackDataUms.nubusUmcServer.replicaCount</td>
 			<td>int</td>
 			<td><pre lang="json">
-2
+1
 </pre>
 </td>
 			<td></td>
@@ -4992,7 +4992,7 @@ false
 			<td>nubusUmcServer.replicaCount</td>
 			<td>int</td>
 			<td><pre lang="json">
-2
+1
 </pre>
 </td>
 			<td></td>

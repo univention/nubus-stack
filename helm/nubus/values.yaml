@@ -264,7 +264,7 @@ keycloak:
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   enabled: true
   resources: *nubusDevelopmentResources
-  replicaCount: 2
+  replicaCount: 1
   postgresql:
     connection:
       host: ""
@@ -317,8 +317,8 @@ nubusLdapServer: &nubusLdapServer
   enabled: true
   highAvailabilityMode: false
   replicaCountPrimary: 1
-  replicaCountSecondary: 2
-  replicaCountProxy: 3
+  replicaCountSecondary: 1
+  replicaCountProxy: 1
   resourcesPrimary: *nubusDevelopmentResources
   resourcesSecondary: *nubusDevelopmentResources
   resourcesProxy: *nubusDevelopmentResources
@@ -520,7 +520,7 @@ nubusUmcGateway: &nubusUmcGateway
 nubusUmcServer: &nubusUmcServer
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   nameOverride: "umc-server"
-  replicaCount: 2
+  replicaCount: 1
   enabled: true
   ingress:
     host: "{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
