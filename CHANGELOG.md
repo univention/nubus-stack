@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.73.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.73.0...v0.73.1) (2024-10-30)
+
+
+### Bug Fixes
+
+* Set keycloak umc-server and ldap-server replicas ([20b91eb](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/20b91ebed7d61597f5531233d6281637b2bac94a))
+
 ## [0.73.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.72.2...v0.73.0) (2024-10-29)
 
 
