@@ -102,7 +102,7 @@ dependencies:
   - name: "keycloak-bootstrap"
     alias: "nubusKeycloakBootstrap"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.6.0"
+    version: "0.7.0"
     condition: "nubusKeycloakBootstrap.enabled"
 
   - name: "stack-data-ums"

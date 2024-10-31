@@ -10,3 +10,13 @@ Keycloak secrets
 {{- $namePrefix := default .Release.Name .Values.global.releaseNameOverride | trunc 63 | trimSuffix "-" -}}
 {{- printf "%s-keycloak-credentials" $namePrefix -}}
 {{- end -}}
+
+{{- define "nubus.keycloak.ldap.auth.existingSecret.name" -}}
+{{- $namePrefix := default .Release.Name .Values.global.releaseNameOverride | trunc 63 | trimSuffix "-" -}}
+{{- printf "%s-keycloak-bootstrap-ldap-credentials" $namePrefix -}}
+{{- end -}}
+
+{{- define "nubus.keycloak.ldap.auth.bindDn" -}}
+{{- $baseDn := include "nubusTemplates.ldapServer.ldap.baseDn" . -}}
+{{ printf "uid=%s,cn=users,%s" "readonly" $baseDn }}
+{{- end -}}

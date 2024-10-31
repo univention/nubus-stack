@@ -653,6 +653,18 @@ nubusKeycloakBootstrap: &nubusKeycloakBootstrap
   nameOverride: "keycloak-bootstrap"
   enabled: true
   resources: *nubusDevelopmentResources
+  ldap:
+    auth:
+      bindDn: '{{ include "nubus.keycloak.ldap.auth.bindDn" . }}'
+      existingSecret:
+        name: '{{ include "nubus.keycloak.ldap.auth.existingSecret.name" . }}'
+  keycloak:
+    auth:
+      username: "kcadmin"
+      existingSecret:
+        name: '{{ include "nubus.keycloak.auth.existingSecret.name" . }}'
+        keyMapping:
+          adminPassword: "admin_password"
 
 nubusKeycloakExtensions: &nubusKeycloakExtensions
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds

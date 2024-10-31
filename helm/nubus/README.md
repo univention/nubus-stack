@@ -37,7 +37,7 @@ helm uninstall nubus
 |------------|------|---------|
 | oci://artifacts.software-univention.de/nubus/charts | nubusGuardian(guardian) | 0.14.0 |
 | oci://artifacts.software-univention.de/nubus/charts | keycloak(keycloak) | 0.7.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakBootstrap(keycloak-bootstrap) | 0.6.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakBootstrap(keycloak-bootstrap) | 0.7.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakExtensions(keycloak-extensions) | 0.11.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusLdapNotifier(ldap-notifier) | 0.26.3 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusLdapServer(ldap-server) | 0.26.3 |
@@ -1285,6 +1285,51 @@ true
 			<td>bool</td>
 			<td><pre lang="json">
 true
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusKeycloakBootstrap.keycloak.auth.existingSecret.keyMapping.adminPassword</td>
+			<td>string</td>
+			<td><pre lang="json">
+"admin_password"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusKeycloakBootstrap.keycloak.auth.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ include \"nubus.keycloak.auth.existingSecret.name\" . }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusKeycloakBootstrap.keycloak.auth.username</td>
+			<td>string</td>
+			<td><pre lang="json">
+"kcadmin"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusKeycloakBootstrap.ldap.auth.bindDn</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ include \"nubus.keycloak.ldap.auth.bindDn\" . }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusKeycloakBootstrap.ldap.auth.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ include \"nubus.keycloak.ldap.auth.existingSecret.name\" . }}"
 </pre>
 </td>
 			<td></td>
@@ -3166,6 +3211,51 @@ true
 			<td>bool</td>
 			<td><pre lang="json">
 true
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusKeycloakBootstrap.keycloak.auth.existingSecret.keyMapping.adminPassword</td>
+			<td>string</td>
+			<td><pre lang="json">
+"admin_password"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusKeycloakBootstrap.keycloak.auth.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ include \"nubus.keycloak.auth.existingSecret.name\" . }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusKeycloakBootstrap.keycloak.auth.username</td>
+			<td>string</td>
+			<td><pre lang="json">
+"kcadmin"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusKeycloakBootstrap.ldap.auth.bindDn</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ include \"nubus.keycloak.ldap.auth.bindDn\" . }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusKeycloakBootstrap.ldap.auth.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ include \"nubus.keycloak.ldap.auth.existingSecret.name\" . }}"
 </pre>
 </td>
 			<td></td>
