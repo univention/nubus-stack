@@ -31,13 +31,13 @@ dependencies:
   - name: "ldap-notifier"
     alias: "nubusLdapNotifier"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.25.2"
+    version: "0.26.3"
     condition: "nubusLdapNotifier.enabled"
 
   - name: "ldap-server"
     alias: "nubusLdapServer"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.25.2"
+    version: "0.26.3"
     condition: "nubusLdapServer.enabled"
 
   # portal related chart(s)
@@ -56,7 +56,7 @@ dependencies:
   - name: "portal-consumer"
     alias: "nubusPortalConsumer"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.44.0"
+    version: "0.44.1"
     condition: "nubusPortalConsumer.enabled"
 
   - name: "portal-server"
@@ -70,20 +70,20 @@ dependencies:
   - name: "selfservice-consumer"
     alias: "nubusSelfServiceConsumer"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.12.0"
+    version: "0.12.1"
     condition: "nubusSelfServiceConsumer.enabled"
 
   # provisioning related chart(s)
   - name: "provisioning"
     alias: "nubusProvisioning"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.44.0"
+    version: "0.44.1"
     condition: "nubusProvisioning.enabled"
 
   - name: "udm-listener"
     alias: "nubusUdmListener"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.44.0"
+    version: "0.44.1"
     condition: "nubusProvisioning.enabled"
 
   # keycloak related chart(s)
