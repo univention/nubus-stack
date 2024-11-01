@@ -1,5 +1,33 @@
 # Changelog
 
+## [0.74.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.73.1...v0.74.0) (2024-11-01)
+
+
+### Features
+
+* Adjust ldap related configuration comment in portalConsumer ([b041287](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/b041287920aeefe9bb62d955586024db813efda3))
+* Adjust objectStorage related configuration commen for portalConsumer ([a58368e](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/a58368e0ee1e09e642a1fecaf2fb40ec891af79e))
+* Auth configuration for API users in provisioningApi ([0069e88](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/0069e884aed2a4e4ba003f2a29483bd9fcf712a7))
+* Auth configuration for minio provisioning does respect configured credentials ([2961507](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/29615074c3e7ec444eeca01597a08aaca5ac06a3))
+* Auth configuration for NATS access in provisioning components ([365238c](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/365238c88a052dab805750f742c6067348994593))
+* Auth configuration for NATS in selfservice-consumer ([d1acc0c](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/d1acc0c435fb716a09db5bcedbe41e6c6719d39a))
+* Auth configuration for provisioningApi in selfservice-consumer ([52051cc](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/52051cc93b7f62f9b4860e21f3d68dd8bfc46e97))
+* Auth configuration of initial administrator password into templateContext of stack-data ([09a4c06](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/09a4c061e9622c585b7942689662a10508479a6d))
+* Auth configuration of NATS admin password via provisioning.nats ([f945dbd](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/f945dbd56155749d22f424e5cd9e09812350018d))
+* Auth configuration of objectStorage for portal-consumer ([5e360b2](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/5e360b218a977935c436e9fef5c10e2e46d28185))
+* Auth configuration of objectStorage for portal-server ([cde75df](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/cde75df8ee7ce482b7ca363e68688577bfc9615f))
+* Auth configuration of provisioningApi for portal-consumer ([cb80745](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/cb8074535ba40d142e17a397e99c3a335385d409))
+* Auth configuration of UDM API for portal-consumer ([a488b5b](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/a488b5be4440957ea175050136eb5682964b071e))
+* Remove "credentialOverride.defaultAdminPassword" and "defaultUserPassword" ([07b0e27](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/07b0e278450ae944e256e0230c0e5f40e578142b))
+* Remove obsolete auth configuration for portalListener ([402ddcd](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/402ddcd43295b37dc8dbc44e7cef4526c647a6a6))
+* Update portal-consumer sub-chart to version 0.44.0 ([6bd0d0e](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/6bd0d0e2d4098a41d67a05c1b0e7f019819eb287))
+* Use "global.ldap.auth" in Secret generation ([b7fccf6](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/b7fccf6953d43a456720a184495ca686510a6936))
+
+
+### Bug Fixes
+
+* Mark ldap related places which need a refactoring together with the sub-chart ([398ff0d](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/398ff0de2db7ecf73910b28bf7064ff95c2b59d4))
+
 ## [0.73.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.73.0...v0.73.1) (2024-10-30)
 
 
