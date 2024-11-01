@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.0.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.74.0...v1.0.0) (2024-11-01)
+
+
+### ⚠ BREAKING CHANGES
+
+* trigger the nubus 1.0.0 version bump
+
+### Features
+
+* Release nubus version 1.0.0 ([1762b82](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/1762b827308ed6446ba26766ec54e49c05c11c19))
+
+
+### Bug Fixes
+
+* add digest to wait-for-dependency image ([9c1d700](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/9c1d700914e64b45edca702ee813bb5affbbaf6b)), closes [univention/customers/dataport/team-souvap#915](https://git.knut.univention.de/univention/customers/dataport/team-souvap/issues/915)
+* Add license information for trademarked logos ([f86e7dc](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/f86e7dc072b232e1e5e06ac42d06103ed9a518e8)), closes [univention/customers/dataport/team-souvap#915](https://git.knut.univention.de/univention/customers/dataport/team-souvap/issues/915)
+* Fix umc tile link ([1287eb7](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/1287eb761ea57e3726b83b46f9d8d3bc7fb633f8))
+
 ## [0.74.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.73.1...v0.74.0) (2024-11-01)
 
 
