@@ -10,8 +10,3 @@ global:
   ingressClass: "nginx"
   certManagerIssuer: "letsencrypt"
   nubusMasterPassword: "nubus"
-
-nubusStackGateway:
-  ingress:
-    hostname: "portal.example.com"
-    ingressClassName: "nginx"
