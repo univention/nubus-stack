@@ -4,7 +4,7 @@ apiVersion: "v2"
 name: "nubus"
 description: "Univention Nubus"
 type: "application"
-version: "0.0.1"
+version: "1.0.0"
 
 dependencies:
   - name: "common"
