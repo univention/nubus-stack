@@ -11,10 +11,11 @@ global:
     domainName: ""
     auth:
       cnAdmin:
-        password: ~
-        password:
+        password: null
+        existingSecret:
           name: null
-          key: "adminPassword"
+          keyMapping:
+            password: "adminPassword"
 
   domain: ""
   subDomains:
@@ -375,9 +376,9 @@ nubusProvisioning: &nubusProvisioning
   ldap:
     auth:
       existingSecret:
-        name: '{{ include "nubus.ldap.auth.cnAdmin.password.name" . }}'
+        name: '{{ include "nubus.ldap.auth.cnAdmin.existingSecret.name" . }}'
         keyMapping:
-          password: '{{ .Values.global.ldap.auth.cnAdmin.password.key }}'
+          password: '{{ .Values.global.ldap.auth.cnAdmin.existingSecret.keyMapping.password }}'
   nats:
     auth:
       adminPassword: null

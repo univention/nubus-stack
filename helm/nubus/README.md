@@ -204,16 +204,7 @@ false
 			<td></td>
 		</tr>
 		<tr>
-			<td>global.ldap.auth.cnAdmin.password</td>
-			<td>string</td>
-			<td><pre lang="json">
-null
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>global.ldap.auth.cnAdmin.password.key</td>
+			<td>global.ldap.auth.cnAdmin.existingSecret.keyMapping.password</td>
 			<td>string</td>
 			<td><pre lang="json">
 "adminPassword"
@@ -222,7 +213,16 @@ null
 			<td></td>
 		</tr>
 		<tr>
-			<td>global.ldap.auth.cnAdmin.password.name</td>
+			<td>global.ldap.auth.cnAdmin.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+null
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>global.ldap.auth.cnAdmin.password</td>
 			<td>string</td>
 			<td><pre lang="json">
 null
@@ -2400,7 +2400,7 @@ true
 			<td>nubusProvisioning.ldap.auth.existingSecret.keyMapping.password</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ .Values.global.ldap.auth.cnAdmin.password.key }}"
+"{{ .Values.global.ldap.auth.cnAdmin.existingSecret.keyMapping.password }}"
 </pre>
 </td>
 			<td></td>
@@ -2409,7 +2409,7 @@ true
 			<td>nubusProvisioning.ldap.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ include \"nubus.ldap.auth.cnAdmin.password.name\" . }}"
+"{{ include \"nubus.ldap.auth.cnAdmin.existingSecret.name\" . }}"
 </pre>
 </td>
 			<td></td>
@@ -3966,7 +3966,7 @@ true
 			<td>nubusStackDataUms.nubusProvisioning.ldap.auth.existingSecret.keyMapping.password</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ .Values.global.ldap.auth.cnAdmin.password.key }}"
+"{{ .Values.global.ldap.auth.cnAdmin.existingSecret.keyMapping.password }}"
 </pre>
 </td>
 			<td></td>
@@ -3975,7 +3975,7 @@ true
 			<td>nubusStackDataUms.nubusProvisioning.ldap.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ include \"nubus.ldap.auth.cnAdmin.password.name\" . }}"
+"{{ include \"nubus.ldap.auth.cnAdmin.existingSecret.name\" . }}"
 </pre>
 </td>
 			<td></td>
