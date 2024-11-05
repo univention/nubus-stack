@@ -2823,7 +2823,7 @@ null
 			<td>nubusProvisioning.registerConsumers.createUsers.portalConsumer.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ include \"nubus.provisioning.registerConsumer.auth.portalConsumer.name\" . }}"
+"{{ include \"nubus.provisioning.registerConsumer.auth.portalConsumer.existingSecret.name\" . }}"
 </pre>
 </td>
 			<td></td>
@@ -2841,7 +2841,7 @@ null
 			<td>nubusProvisioning.registerConsumers.createUsers.selfserviceConsumer.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ include \"nubus.provisioning.registerConsumer.auth.selfserviceConsumer.name\" . }}"
+"{{ include \"nubus.provisioning.registerConsumer.auth.selfserviceConsumer.existingSecret.name\" . }}"
 </pre>
 </td>
 			<td></td>
@@ -4389,7 +4389,7 @@ null
 			<td>nubusStackDataUms.nubusProvisioning.registerConsumers.createUsers.portalConsumer.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ include \"nubus.provisioning.registerConsumer.auth.portalConsumer.name\" . }}"
+"{{ include \"nubus.provisioning.registerConsumer.auth.portalConsumer.existingSecret.name\" . }}"
 </pre>
 </td>
 			<td></td>
@@ -4407,7 +4407,7 @@ null
 			<td>nubusStackDataUms.nubusProvisioning.registerConsumers.createUsers.selfserviceConsumer.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ include \"nubus.provisioning.registerConsumer.auth.selfserviceConsumer.name\" . }}"
+"{{ include \"nubus.provisioning.registerConsumer.auth.selfserviceConsumer.existingSecret.name\" . }}"
 </pre>
 </td>
 			<td></td>

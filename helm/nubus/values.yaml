@@ -438,7 +438,7 @@ nubusProvisioning: &nubusProvisioning
         # username: null
         # password: null
         existingSecret:
-          name: '{{ include "nubus.provisioning.registerConsumer.auth.portalConsumer.name" . }}'
+          name: '{{ include "nubus.provisioning.registerConsumer.auth.portalConsumer.existingSecret.name" . }}'
           keyMapping:
             password: "portal-consumer.json"
       selfserviceConsumer:
@@ -446,7 +446,7 @@ nubusProvisioning: &nubusProvisioning
         # username: null
         # password: null
         existingSecret:
-          name: '{{ include "nubus.provisioning.registerConsumer.auth.selfserviceConsumer.name" . }}'
+          name: '{{ include "nubus.provisioning.registerConsumer.auth.selfserviceConsumer.existingSecret.name" . }}'
           keyMapping:
             password: "selfservice.json"
 
