@@ -76,7 +76,7 @@ wait-for-bootstrap:
     # It's easier to wait for a job than a container, that's why we wait for the portal-tiles a bit more implicitly.
     - echo "Waiting for the bootstrapping of the deployment to finish"
     - echo "Waiting for the creation of the provisioning subscriptions"
-    - kubectl -n "$DEPLOY_NAMESPACE" wait --for=condition=complete jobs.batch "${RELEASE_NAME:=nubus}-provisioning-register-consumers" --timeout 10m
+    - kubectl -n "$DEPLOY_NAMESPACE" wait --for=condition=complete jobs.batch "${RELEASE_NAME:=nubus}-provisioning-register-consumers-1" --timeout 10m
 
 
 configure-tests:
