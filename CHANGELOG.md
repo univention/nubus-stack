@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.1.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v1.0.0...v1.1.0) (2024-11-05)
+
+
+### Features
+
+* **provisioning:** Add "existingSecret" into template names ([195c10f](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/195c10ffbc7d00b5f3a1e6cb6c45385f0f788a2f))
+* **provisioning:** integrate the secrets refactoring in the provisioning chart ([92e21f8](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/92e21f8b36ef6c187546ea79542733ee062e9828))
+* **provisioning:** Use "existingSecret" pattern in "global.ldap.cnAdmin" configuration ([d0a35d7](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/d0a35d772f0a02c409497989754a496afe1ccf17))
+
+
+### Bug Fixes
+
+* **provisioning:** Update provisioning charts to version 0.45.0 ([70a4d45](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/70a4d45ce94560e2563797dd80bda14d06eb3272))
+
 ## [1.0.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v0.74.0...v1.0.0) (2024-11-01)
 
 
