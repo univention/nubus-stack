@@ -582,15 +582,15 @@ nubusUdmRestApi: &nubusUdmRestApi
   ingress:
     host: "{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
   resources: *nubusDevelopmentResources
-  ldap:
-    connection:
-      host: ""
-      port: ""
-    auth:
-      bindDn: cn=admin,dc=example,dc=org
-      # TODO: Needs adjustment together with the component chart
-      credentialSecret:
-        key: password
+  udmRestApi:
+    ldap:
+      uri: ""
+      baseDn: ""
+      auth:
+        existingSecret:
+          name: '{{ include "nubus.ldap.auth.cnAdmin.existingSecret.name" . }}'
+          keyMapping:
+            password: '{{ .Values.global.ldap.auth.cnAdmin.existingSecret.keyMapping.password }}'
 
 nubusUmcGateway: &nubusUmcGateway
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds

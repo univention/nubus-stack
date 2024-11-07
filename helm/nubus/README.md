@@ -35,6 +35,7 @@ helm uninstall nubus
 
 | Repository | Name | Version |
 |------------|------|---------|
+| oci://artifacts.software-univention.de/nubus-dev/charts | nubusUdmRestApi(udm-rest-api) | 0.26.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusGuardian(guardian) | 0.14.0 |
 | oci://artifacts.software-univention.de/nubus/charts | keycloak(keycloak) | 0.7.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakBootstrap(keycloak-bootstrap) | 0.7.0 |
@@ -49,7 +50,6 @@ helm uninstall nubus
 | oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceConsumer(selfservice-consumer) | 0.12.1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.78.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 0.45.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUdmRestApi(udm-rest-api) | 0.25.1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.34.3 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUmcServer(umc-server) | 0.34.3 |
 | oci://registry-1.docker.io/bitnamicharts | common | ^2.x.x |
@@ -4944,42 +4944,6 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataUms.nubusUdmRestApi.ldap.auth.bindDn</td>
-			<td>string</td>
-			<td><pre lang="json">
-"cn=admin,dc=example,dc=org"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUdmRestApi.ldap.auth.credentialSecret.key</td>
-			<td>string</td>
-			<td><pre lang="json">
-"password"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUdmRestApi.ldap.connection.host</td>
-			<td>string</td>
-			<td><pre lang="json">
-""
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUdmRestApi.ldap.connection.port</td>
-			<td>string</td>
-			<td><pre lang="json">
-""
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusStackDataUms.nubusUdmRestApi.nameOverride</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -5029,6 +4993,42 @@ true
 			<td>int</td>
 			<td><pre lang="json">
 5
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusUdmRestApi.udmRestApi.ldap.auth.existingSecret.keyMapping.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Values.global.ldap.auth.cnAdmin.existingSecret.keyMapping.password }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusUdmRestApi.udmRestApi.ldap.auth.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ include \"nubus.ldap.auth.cnAdmin.existingSecret.name\" . }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusUdmRestApi.udmRestApi.ldap.baseDn</td>
+			<td>string</td>
+			<td><pre lang="json">
+""
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusUdmRestApi.udmRestApi.ldap.uri</td>
+			<td>string</td>
+			<td><pre lang="json">
+""
 </pre>
 </td>
 			<td></td>
@@ -5583,42 +5583,6 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusUdmRestApi.ldap.auth.bindDn</td>
-			<td>string</td>
-			<td><pre lang="json">
-"cn=admin,dc=example,dc=org"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUdmRestApi.ldap.auth.credentialSecret.key</td>
-			<td>string</td>
-			<td><pre lang="json">
-"password"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUdmRestApi.ldap.connection.host</td>
-			<td>string</td>
-			<td><pre lang="json">
-""
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUdmRestApi.ldap.connection.port</td>
-			<td>string</td>
-			<td><pre lang="json">
-""
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusUdmRestApi.nameOverride</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -5668,6 +5632,42 @@ true
 			<td>int</td>
 			<td><pre lang="json">
 5
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusUdmRestApi.udmRestApi.ldap.auth.existingSecret.keyMapping.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Values.global.ldap.auth.cnAdmin.existingSecret.keyMapping.password }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusUdmRestApi.udmRestApi.ldap.auth.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ include \"nubus.ldap.auth.cnAdmin.existingSecret.name\" . }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusUdmRestApi.udmRestApi.ldap.baseDn</td>
+			<td>string</td>
+			<td><pre lang="json">
+""
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusUdmRestApi.udmRestApi.ldap.uri</td>
+			<td>string</td>
+			<td><pre lang="json">
+""
 </pre>
 </td>
 			<td></td>
