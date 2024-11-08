@@ -4,7 +4,7 @@
 ---
 include:
   - project: "univention/customers/dataport/upx/common-ci"
-    ref: "v1.32.0"
+    ref: "v1.33.1"
     file:
       - "defaults/nubus-workflow.yaml"
       - "defaults/stages.yaml"
@@ -59,4 +59,6 @@ deploy-and-test:
       pipeline_variables: true
     strategy: depend
   rules:
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+      when: never
     - when: manual
