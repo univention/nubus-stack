@@ -38,7 +38,7 @@ helm uninstall nubus
 | oci://artifacts.software-univention.de/nubus/charts | nubusGuardian(guardian) | 0.14.0 |
 | oci://artifacts.software-univention.de/nubus/charts | keycloak(keycloak) | 0.7.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakBootstrap(keycloak-bootstrap) | 0.7.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakExtensions(keycloak-extensions) | 0.11.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakExtensions(keycloak-extensions) | 0.13.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusLdapNotifier(ldap-notifier) | 0.26.3 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusLdapServer(ldap-server) | 0.26.3 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusNotificationsApi(notifications-api) | 0.46.0 |
@@ -1407,10 +1407,19 @@ false
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusKeycloakExtensions.keycloak.auth.credentialSecret.key</td>
+			<td>nubusKeycloakExtensions.keycloak.auth.existingSecret.keyMapping.adminPassword</td>
 			<td>string</td>
 			<td><pre lang="json">
-"password"
+"admin_password"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusKeycloakExtensions.keycloak.auth.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ include \"nubus.keycloak.auth.existingSecret.name\" . }}"
 </pre>
 </td>
 			<td></td>
@@ -1443,19 +1452,19 @@ false
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusKeycloakExtensions.postgresql.auth.credentialSecret.key</td>
+			<td>nubusKeycloakExtensions.postgresql.auth.database</td>
 			<td>string</td>
 			<td><pre lang="json">
-"password"
+"keycloak_extensions"
 </pre>
 </td>
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusKeycloakExtensions.postgresql.auth.database</td>
+			<td>nubusKeycloakExtensions.postgresql.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"keycloak_extensions"
+"{{ include \"nubus.keycloak-extensions.postgresql.auth.existingSecret.name\" . }}"
 </pre>
 </td>
 			<td></td>
@@ -1533,10 +1542,10 @@ false
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusKeycloakExtensions.smtp.auth.credentialSecret.key</td>
+			<td>nubusKeycloakExtensions.smtp.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"password"
+"{{ include \"nubus.keycloak-extensions.smtp.auth.existingSecret.name\" . }}"
 </pre>
 </td>
 			<td></td>
@@ -3333,10 +3342,19 @@ false
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataUms.nubusKeycloakExtensions.keycloak.auth.credentialSecret.key</td>
+			<td>nubusStackDataUms.nubusKeycloakExtensions.keycloak.auth.existingSecret.keyMapping.adminPassword</td>
 			<td>string</td>
 			<td><pre lang="json">
-"password"
+"admin_password"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusKeycloakExtensions.keycloak.auth.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ include \"nubus.keycloak.auth.existingSecret.name\" . }}"
 </pre>
 </td>
 			<td></td>
@@ -3369,19 +3387,19 @@ false
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataUms.nubusKeycloakExtensions.postgresql.auth.credentialSecret.key</td>
+			<td>nubusStackDataUms.nubusKeycloakExtensions.postgresql.auth.database</td>
 			<td>string</td>
 			<td><pre lang="json">
-"password"
+"keycloak_extensions"
 </pre>
 </td>
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataUms.nubusKeycloakExtensions.postgresql.auth.database</td>
+			<td>nubusStackDataUms.nubusKeycloakExtensions.postgresql.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"keycloak_extensions"
+"{{ include \"nubus.keycloak-extensions.postgresql.auth.existingSecret.name\" . }}"
 </pre>
 </td>
 			<td></td>
@@ -3459,10 +3477,10 @@ false
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataUms.nubusKeycloakExtensions.smtp.auth.credentialSecret.key</td>
+			<td>nubusStackDataUms.nubusKeycloakExtensions.smtp.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"password"
+"{{ include \"nubus.keycloak-extensions.smtp.auth.existingSecret.name\" . }}"
 </pre>
 </td>
 			<td></td>

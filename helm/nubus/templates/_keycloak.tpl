@@ -20,3 +20,13 @@ Keycloak secrets
 {{- $baseDn := include "nubusTemplates.ldapServer.ldap.baseDn" . -}}
 {{ printf "uid=%s,cn=users,%s" "readonly" $baseDn }}
 {{- end -}}
+
+{{- define "nubus.keycloak-extensions.postgresql.auth.existingSecret.name" -}}
+{{- $namePrefix := default .Release.Name .Values.global.releaseNameOverride | trunc 63 | trimSuffix "-" -}}
+{{- printf "%s-keycloak-extensions-postgresql-credentials" $namePrefix -}}
+{{- end -}}
+
+{{- define "nubus.keycloak-extensions.smtp.auth.existingSecret.name" -}}
+{{- $namePrefix := default .Release.Name .Values.global.releaseNameOverride | trunc 63 | trimSuffix "-" -}}
+{{- printf "%s-keycloak-extensions-smtp-credentials" $namePrefix -}}
+{{- end -}}

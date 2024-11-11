@@ -676,15 +676,17 @@ nubusKeycloakExtensions: &nubusKeycloakExtensions
       host: ""
     auth:
       username: "keycloak-extensions"
-      credentialSecret:
-        key: password
+      existingSecret:
+        name: '{{ include "nubus.keycloak-extensions.smtp.auth.existingSecret.name" . }}'
   keycloak:
     connection:
       host: ""
     auth:
       username: "kcadmin"
-      credentialSecret:
-        key: password
+      existingSecret:
+        name: '{{ include "nubus.keycloak.auth.existingSecret.name" . }}'
+        keyMapping:
+          adminPassword: "admin_password"
   postgresql:
     connection:
       host: ""
@@ -692,8 +694,8 @@ nubusKeycloakExtensions: &nubusKeycloakExtensions
     auth:
       database: keycloak_extensions
       username: keycloak_extensions
-      credentialSecret:
-        key: password
+      existingSecret:
+        name: '{{ include "nubus.keycloak-extensions.postgresql.auth.existingSecret.name" . }}'
   handler:
     appConfig:
       logLevel: "INFO"  # default loglevel (subchart): DEBUG
