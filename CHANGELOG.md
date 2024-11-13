@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v1.1.0...v1.2.0) (2024-11-13)
+
+
+### Features
+
+* **keycloak:** Integrate keycloak secrets refactor ([52d0cd4](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/52d0cd44cbc0ae3c2553b242a10f2eb351bf7373))
+
 ## [1.1.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v1.0.0...v1.1.0) (2024-11-05)
 
 
