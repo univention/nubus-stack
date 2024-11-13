@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v1.2.0...v1.3.0) (2024-11-13)
+
+
+### Features
+
+* **keycloak-bootstrap:** Integrate keycloak-bootstrap secrets refactor ([5895308](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/58953088d4cb9ba7792b2cb2d89ab44e8c1b95a2))
+
 ## [1.2.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v1.1.0...v1.2.0) (2024-11-13)
 
 
