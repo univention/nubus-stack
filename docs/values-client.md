@@ -39,3 +39,69 @@ Be aware: The umbrella chart does in some cases add further elements into
 `global.{clientKey}.auth` in order to be able to pass values into the
 sub-charts. Those are not part of a common "API" like contract between the
 umbrella chart and its sub-charts.
+
+## Password and `Secret` configuration
+
+We aim to adhere to a structure which is inspired by
+[Bitnami's `common` chart](https://github.com/bitnami/charts/tree/main/bitnami/common#existingsecret).
+
+With this structure we want to support the following use cases:
+
+- Provide plain values.
+- Provide an existing Kubernetes `Secret`.
+
+Charts which provide the server-side of a component also support a third use
+case which allows to provide no configuration at all. In this case a random
+value will be generated and used so that also evaluation deployments are secure
+by default.
+
+### Full example
+
+The full structure looks as follows for a case where both `username` and
+`password` can be configured through a Kubernetes `Secret`:
+
+```yaml
+{clientKey}:
+  auth:
+    username: "username-value"
+    password: "password-value"
+    existingSecret:
+      name: "existing-secret-name"
+      keyMapping:
+        username: "custom_username_key_value"
+        password: "custom_password_key_value"
+```
+
+### Example providing plain values
+
+The following example shows the configuration of the username and password as
+regular values:
+
+```yaml
+smtp:
+  auth:
+    username: "example-smtp-username"
+    password: "example-smtp-password"
+```
+
+A chart which is configured in this way will deploy its own `Secret` object to
+hold the information about the password to use.
+
+### Example using an existing Kubernetes `Secret`
+
+The following example shows the configuration via an existing Kubernetes
+`Secret`:
+
+```yaml
+smtp:
+  auth:
+    username: "example-username"
+    existingSecret:
+      name: "existing-secret-name"
+```
+
+The chart will expect that the `Secret` has been created already by the user.
+
+The keys to use from the existing `Secret` can be customized via additional
+parameters in `keyMapping` as shown above.
+
