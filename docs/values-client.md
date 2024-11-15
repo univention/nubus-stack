@@ -2,9 +2,11 @@
 
 ## Overview of common keys
 
+- `keycloak`: Client access for Keycloak.
 - `ldap`: Client access for LDAP.
 - `nats`: NATS related configuration, mainly around the `provisioning` sub-chart.
 - `objectStorage`: Client access for S3.
+- `postgresql`: Client access for PostgreSQL.
 - `provisioningApi`: Client access into the Provisioning API.
 - `udm`: Client access for the UDM Rest API.
 
