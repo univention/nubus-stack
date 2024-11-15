@@ -105,3 +105,42 @@ The chart will expect that the `Secret` has been created already by the user.
 The keys to use from the existing `Secret` can be customized via additional
 parameters in `keyMapping` as shown above.
 
+
+### Client configuration regarding PostgreSQL
+
+The Nubus chart does offer to deploy a bundled sub-chart called `postgresql`
+which is using the Bitnami chart. The secret configuration for this sub-chart is
+not following the pattern from above. Compare the
+[values.yaml file](https://github.com/bitnami/charts/blob/1bacd1a01f6b799e0dd908ebe86f3fcbcb5084a6/bitnami/postgresql/values.yaml#L135).
+
+The following excerpt shows the relevant subset:
+
+```yaml
+auth:
+  postgresPassword: ""
+  username: ""
+  password: ""
+  existingSecret: ""
+  secretKeys:
+    adminPasswordKey: postgres-password
+    userPasswordKey: password
+```
+
+This means the values inside of `postgresql.*` follow the pattern of this
+sub-chart.
+
+Our own sub-charts use the structure as documented above to configure the client
+side access to PostgreSQL:
+
+```yaml
+postgresql:
+  connection:
+    # ...
+  auth:
+    username: "username-to-use"
+    database: "database-to-use"
+    existingSecret:
+      name: "existing-secret-to-use"
+      keyMapping:
+        # ...
+```
