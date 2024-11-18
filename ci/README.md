@@ -30,12 +30,12 @@ The full domain of the deployment is based on the value `reviewBaseDomain` and
 based on the following patterns:
 
 - Portal: `{REVIEW_PREFIX}.portal.{reviewBaseDomain}`, e.g.
-  `jbornhold-ci-deploy.portal.review.gaia.open-desk.cloud`.
+  `jbornhold-ci-deploy.portal.review.univention.dev`.
 - Keycloak: `{REVIEW_PREFIX}.id.{reviewBaseDomain}`, e.g.
-  `jbornhold-ci-deploy.id.review.gaia.open-desk.cloud`.
+  `jbornhold-ci-deploy.id.review.univention.dev`.
 - Additional tooling for tests and development
   - Maildev: `{REVIEW_PREFIX}-maildev.test.{reviewBaseDomain}`, e.g.
-    `jbornhold-ci-deploy-maildev.test.review.gaia.open-desk.cloud`.
+    `jbornhold-ci-deploy-maildev.test.review.univention.dev`.
 
 The `REVIEW_PREFIX` being the leftmost part of the domains should help to ensure
 that we have the best possible support for wildcard certificates during testing.

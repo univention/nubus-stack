@@ -54,7 +54,7 @@ deploy-gaia:
     - popd
   environment:
     name: ${CI_COMMIT_REF_SLUG}/nubus-with-extensions
-    url: https://${DEPLOY_SUBDOMAIN}.portal.review.gaia.open-desk.cloud
+    url: https://${DEPLOY_SUBDOMAIN}.portal.review.univention.dev
     on_stop: stop-deployment
     auto_stop_in: 3 hours
     deployment_tier: development
