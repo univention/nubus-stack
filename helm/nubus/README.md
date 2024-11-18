@@ -1839,19 +1839,19 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusNotificationsApi.postgresql.auth.credentialSecret.key</td>
+			<td>nubusNotificationsApi.postgresql.auth.database</td>
 			<td>string</td>
 			<td><pre lang="json">
-"password"
+"notificationsapi"
 </pre>
 </td>
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusNotificationsApi.postgresql.auth.database</td>
+			<td>nubusNotificationsApi.postgresql.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"notificationsapi"
+"{{ .Release.Name }}-notifications-api-postgresql-credentials"
 </pre>
 </td>
 			<td></td>
@@ -3531,19 +3531,19 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataUms.nubusNotificationsApi.postgresql.auth.credentialSecret.key</td>
+			<td>nubusStackDataUms.nubusNotificationsApi.postgresql.auth.database</td>
 			<td>string</td>
 			<td><pre lang="json">
-"password"
+"notificationsapi"
 </pre>
 </td>
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataUms.nubusNotificationsApi.postgresql.auth.database</td>
+			<td>nubusStackDataUms.nubusNotificationsApi.postgresql.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"notificationsapi"
+"{{ .Release.Name }}-notifications-api-postgresql-credentials"
 </pre>
 </td>
 			<td></td>

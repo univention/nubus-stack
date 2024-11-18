@@ -318,8 +318,8 @@ nubusNotificationsApi: &nubusNotificationsApi
     auth:
       username: notificationsapi_user
       database: notificationsapi
-      credentialSecret:
-        key: password
+      existingSecret:
+        name: "{{ .Release.Name }}-notifications-api-postgresql-credentials"
   notificationsApi:
     logLevel: "INFO" # default loglevel (subchart): WARNING
 
