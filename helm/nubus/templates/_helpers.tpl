@@ -66,3 +66,8 @@ http
 false
 {{- end -}}
 {{- end -}}
+
+{{- define "nubus.keycloak.ldap.auth.bindDn" -}}
+{{- $baseDn := include "nubusTemplates.ldapServer.ldap.baseDn" . -}}
+{{ printf "uid=%s,cn=users,%s" "readonly" $baseDn }}
+{{- end -}}

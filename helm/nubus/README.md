@@ -573,7 +573,7 @@ true
 			<td>keycloak.keycloak.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ include \"nubus.keycloak.auth.existingSecret.name\" . }}"
+"{{- printf \"%s-keycloak-credentials\" .Release.Name -}}"
 </pre>
 </td>
 			<td></td>
@@ -600,7 +600,7 @@ true
 			<td>keycloak.postgresql.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ include \"nubus.keycloak.postgresql.auth.existingSecret.name\" . }}"
+"{{- printf \"%s-keycloak-postgresql-credentials\" .Release.Name -}}"
 </pre>
 </td>
 			<td></td>
@@ -1302,7 +1302,7 @@ true
 			<td>nubusKeycloakBootstrap.keycloak.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ include \"nubus.keycloak.auth.existingSecret.name\" . }}"
+"{{- printf \"%s-keycloak-credentials\" .Release.Name -}}"
 </pre>
 </td>
 			<td></td>
@@ -1329,7 +1329,7 @@ true
 			<td>nubusKeycloakBootstrap.ldap.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ include \"nubus.keycloak.ldap.auth.existingSecret.name\" . }}"
+"{{- printf \"%s-keycloak-bootstrap-ldap-credentials\" .Release.Name -}}"
 </pre>
 </td>
 			<td></td>
@@ -1419,7 +1419,7 @@ false
 			<td>nubusKeycloakExtensions.keycloak.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ include \"nubus.keycloak.auth.existingSecret.name\" . }}"
+"{{- printf \"%s-keycloak-credentials\" .Release.Name -}}"
 </pre>
 </td>
 			<td></td>
@@ -1464,7 +1464,7 @@ false
 			<td>nubusKeycloakExtensions.postgresql.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ include \"nubus.keycloak-extensions.postgresql.auth.existingSecret.name\" . }}"
+"{{- printf \"%s-keycloak-extensions-postgresql-credentials\" .Release.Name -}}"
 </pre>
 </td>
 			<td></td>
@@ -1545,7 +1545,7 @@ false
 			<td>nubusKeycloakExtensions.smtp.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ include \"nubus.keycloak-extensions.smtp.auth.existingSecret.name\" . }}"
+"{{- printf \"%s-keycloak-extensions-smtp-credentials\" .Release.Name -}}"
 </pre>
 </td>
 			<td></td>
@@ -2490,7 +2490,7 @@ true
 			<td>nubusProvisioning.ldap.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ include \"nubus.ldap.auth.cnAdmin.existingSecret.name\" . }}"
+"{{- printf \"%s-ldap-server-credentials\" .Release.Name -}}"
 </pre>
 </td>
 			<td></td>
@@ -2904,7 +2904,7 @@ null
 			<td>nubusProvisioning.registerConsumers.createUsers.portalConsumer.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ include \"nubus.provisioning.registerConsumer.auth.portalConsumer.existingSecret.name\" . }}"
+"{{- printf \"%s-provisioning-register-consumers-json-secrets\" .Release.Name -}}"
 </pre>
 </td>
 			<td></td>
@@ -2922,7 +2922,7 @@ null
 			<td>nubusProvisioning.registerConsumers.createUsers.selfserviceConsumer.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ include \"nubus.provisioning.registerConsumer.auth.selfserviceConsumer.existingSecret.name\" . }}"
+"{{- printf \"%s-provisioning-register-consumers-json-secrets\" .Release.Name -}}"
 </pre>
 </td>
 			<td></td>
@@ -3237,7 +3237,7 @@ true
 			<td>nubusStackDataUms.nubusKeycloakBootstrap.keycloak.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ include \"nubus.keycloak.auth.existingSecret.name\" . }}"
+"{{- printf \"%s-keycloak-credentials\" .Release.Name -}}"
 </pre>
 </td>
 			<td></td>
@@ -3264,7 +3264,7 @@ true
 			<td>nubusStackDataUms.nubusKeycloakBootstrap.ldap.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ include \"nubus.keycloak.ldap.auth.existingSecret.name\" . }}"
+"{{- printf \"%s-keycloak-bootstrap-ldap-credentials\" .Release.Name -}}"
 </pre>
 </td>
 			<td></td>
@@ -3354,7 +3354,7 @@ false
 			<td>nubusStackDataUms.nubusKeycloakExtensions.keycloak.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ include \"nubus.keycloak.auth.existingSecret.name\" . }}"
+"{{- printf \"%s-keycloak-credentials\" .Release.Name -}}"
 </pre>
 </td>
 			<td></td>
@@ -3399,7 +3399,7 @@ false
 			<td>nubusStackDataUms.nubusKeycloakExtensions.postgresql.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ include \"nubus.keycloak-extensions.postgresql.auth.existingSecret.name\" . }}"
+"{{- printf \"%s-keycloak-extensions-postgresql-credentials\" .Release.Name -}}"
 </pre>
 </td>
 			<td></td>
@@ -3480,7 +3480,7 @@ false
 			<td>nubusStackDataUms.nubusKeycloakExtensions.smtp.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ include \"nubus.keycloak-extensions.smtp.auth.existingSecret.name\" . }}"
+"{{- printf \"%s-keycloak-extensions-smtp-credentials\" .Release.Name -}}"
 </pre>
 </td>
 			<td></td>
@@ -4110,7 +4110,7 @@ true
 			<td>nubusStackDataUms.nubusProvisioning.ldap.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ include \"nubus.ldap.auth.cnAdmin.existingSecret.name\" . }}"
+"{{- printf \"%s-ldap-server-credentials\" .Release.Name -}}"
 </pre>
 </td>
 			<td></td>
@@ -4524,7 +4524,7 @@ null
 			<td>nubusStackDataUms.nubusProvisioning.registerConsumers.createUsers.portalConsumer.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ include \"nubus.provisioning.registerConsumer.auth.portalConsumer.existingSecret.name\" . }}"
+"{{- printf \"%s-provisioning-register-consumers-json-secrets\" .Release.Name -}}"
 </pre>
 </td>
 			<td></td>
@@ -4542,7 +4542,7 @@ null
 			<td>nubusStackDataUms.nubusProvisioning.registerConsumers.createUsers.selfserviceConsumer.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ include \"nubus.provisioning.registerConsumer.auth.selfserviceConsumer.existingSecret.name\" . }}"
+"{{- printf \"%s-provisioning-register-consumers-json-secrets\" .Release.Name -}}"
 </pre>
 </td>
 			<td></td>
@@ -5028,7 +5028,7 @@ true
 			<td>nubusStackDataUms.nubusUdmRestApi.udmRestApi.ldap.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ include \"nubus.ldap.auth.cnAdmin.existingSecret.name\" . }}"
+"{{- printf \"%s-ldap-server-credentials\" .Release.Name -}}"
 </pre>
 </td>
 			<td></td>
@@ -5667,7 +5667,7 @@ true
 			<td>nubusUdmRestApi.udmRestApi.ldap.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ include \"nubus.ldap.auth.cnAdmin.existingSecret.name\" . }}"
+"{{- printf \"%s-ldap-server-credentials\" .Release.Name -}}"
 </pre>
 </td>
 			<td></td>

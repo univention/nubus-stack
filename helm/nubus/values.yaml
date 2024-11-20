@@ -244,12 +244,12 @@ keycloak:
       username: keycloak_user
       database: keycloak
       existingSecret:
-        name: '{{ include "nubus.keycloak.postgresql.auth.existingSecret.name" . }}'
+        name: '{{- printf "%s-keycloak-postgresql-credentials" .Release.Name -}}'
   keycloak:
     auth:
       username: "kcadmin"
       existingSecret:
-        name: '{{ include "nubus.keycloak.auth.existingSecret.name" . }}'
+        name: '{{- printf "%s-keycloak-credentials" .Release.Name -}}'
         keyMapping:
           adminPassword: "admin_password"
   config:
@@ -383,7 +383,7 @@ nubusProvisioning: &nubusProvisioning
   ldap:
     auth:
       existingSecret:
-        name: '{{ include "nubus.ldap.auth.cnAdmin.existingSecret.name" . }}'
+        name: '{{- printf "%s-ldap-server-credentials" .Release.Name -}}'
         keyMapping:
           password: '{{ .Values.global.ldap.auth.cnAdmin.existingSecret.keyMapping.password }}'
   nats:
@@ -445,7 +445,7 @@ nubusProvisioning: &nubusProvisioning
         # username: null
         # password: null
         existingSecret:
-          name: '{{ include "nubus.provisioning.registerConsumer.auth.portalConsumer.existingSecret.name" . }}'
+          name: '{{- printf "%s-provisioning-register-consumers-json-secrets" .Release.Name -}}'
           keyMapping:
             password: "portal-consumer.json"
       selfserviceConsumer:
@@ -453,7 +453,7 @@ nubusProvisioning: &nubusProvisioning
         # username: null
         # password: null
         existingSecret:
-          name: '{{ include "nubus.provisioning.registerConsumer.auth.selfserviceConsumer.existingSecret.name" . }}'
+          name: '{{- printf "%s-provisioning-register-consumers-json-secrets" .Release.Name -}}'
           keyMapping:
             password: "selfservice.json"
 
@@ -588,7 +588,7 @@ nubusUdmRestApi: &nubusUdmRestApi
       baseDn: ""
       auth:
         existingSecret:
-          name: '{{ include "nubus.ldap.auth.cnAdmin.existingSecret.name" . }}'
+          name: '{{- printf "%s-ldap-server-credentials" .Release.Name -}}'
           keyMapping:
             password: '{{ .Values.global.ldap.auth.cnAdmin.existingSecret.keyMapping.password }}'
 
@@ -657,12 +657,12 @@ nubusKeycloakBootstrap: &nubusKeycloakBootstrap
     auth:
       bindDn: '{{ include "nubus.keycloak.ldap.auth.bindDn" . }}'
       existingSecret:
-        name: '{{ include "nubus.keycloak.ldap.auth.existingSecret.name" . }}'
+        name: '{{- printf "%s-keycloak-bootstrap-ldap-credentials" .Release.Name -}}'
   keycloak:
     auth:
       username: "kcadmin"
       existingSecret:
-        name: '{{ include "nubus.keycloak.auth.existingSecret.name" . }}'
+        name: '{{- printf "%s-keycloak-credentials" .Release.Name -}}'
         keyMapping:
           adminPassword: "admin_password"
 
@@ -677,14 +677,14 @@ nubusKeycloakExtensions: &nubusKeycloakExtensions
     auth:
       username: "keycloak-extensions"
       existingSecret:
-        name: '{{ include "nubus.keycloak-extensions.smtp.auth.existingSecret.name" . }}'
+        name: '{{- printf "%s-keycloak-extensions-smtp-credentials" .Release.Name -}}'
   keycloak:
     connection:
       host: ""
     auth:
       username: "kcadmin"
       existingSecret:
-        name: '{{ include "nubus.keycloak.auth.existingSecret.name" . }}'
+        name: '{{- printf "%s-keycloak-credentials" .Release.Name -}}'
         keyMapping:
           adminPassword: "admin_password"
   postgresql:
@@ -695,7 +695,7 @@ nubusKeycloakExtensions: &nubusKeycloakExtensions
       database: keycloak_extensions
       username: keycloak_extensions
       existingSecret:
-        name: '{{ include "nubus.keycloak-extensions.postgresql.auth.existingSecret.name" . }}'
+        name: '{{- printf "%s-keycloak-extensions-postgresql-credentials" .Release.Name -}}'
   handler:
     appConfig:
       logLevel: "INFO"  # default loglevel (subchart): DEBUG
