@@ -615,12 +615,21 @@ nubusUmcServer: &nubusUmcServer
     auth:
       username: selfservice
       database: selfservice
-      credentialSecret:
-        key: password
+      existingSecret:
+        name: '{{ printf "%s-umc-server-postgresql-credentials" .Release.Name }}'
   global:
     imageRegistry: "docker.io"
   image:
     registry: "artifacts.software-univention.de"
+  ldap:
+    existingSecret:
+      name: '{{ printf "%s-umc-server-ldap-credentials" .Release.Name }}'
+      keyMapping:
+        ldapPasswordKey: "ldap.secret"
+        machinePasswordKey: "machine.secret"
+  smtp:
+    existingSecret:
+      name: '{{ printf "%s-umc-server-smtp-credentials" .Release.Name }}'
   memcached:
     nameOverride: "umc-server-memcached"
     containerSecurityContext:
@@ -628,9 +637,8 @@ nubusUmcServer: &nubusUmcServer
     auth:
       username: selfservice
       existingPasswordSecret: '{{ printf "%s-umc-server-memcached-credentials" .Release.Name }}'
-      credentialSecret:
-        key: "memcached-password"
-        name: ""
+      existingSecret:
+        name: '{{ printf "%s-umc-server-memcached-credentials" .Release.Name }}'
     connection:
       host: ""
       port: ""

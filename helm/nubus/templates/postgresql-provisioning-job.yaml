@@ -141,9 +141,9 @@ spec:
           name: {{ printf "%s-postgresql-provisioning" .Release.Name | quote }}
       - name: "umc-server-postgresql-credentials"
         secret:
-          secretName: {{ (printf "%s-umc-server-postgresql-credentials" .Release.Name) | quote }}
+          secretName: {{ tpl .Values.nubusUmcServer.postgresql.auth.existingSecret.name . }}
           items:
-            - key: {{ .Values.nubusUmcServer.postgresql.auth.credentialSecret.key | quote }}
+            - key: '{{ include "common.secrets.key" (dict "existingSecret" .Values.nubusUmcServer.postgresql.auth.existingSecret.name "key" "password") }}'
               path: {{ .Values.nubusUmcServer.postgresql.auth.username | quote }}
       - name: "notifications-api-postgresql-credentials"
         secret:

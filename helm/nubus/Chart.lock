@@ -55,9 +55,9 @@ dependencies:
   version: 0.26.0
 - name: umc-gateway
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.34.3
+  version: 0.35.0
 - name: umc-server
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.34.3
-digest: sha256:9293e583163d7b94becf50e16f0bd72340cd32ada93ce893b91aacf7a94e42e5
-generated: "2024-11-20T10:35:18.232281496+01:00"
+  version: 0.35.0
+digest: sha256:df2a24c9a51fa7ac4a103ed6039370637cde9c0a884d610b0aca01d4c4466a9c
+generated: "2024-11-21T11:10:04.874501068+01:00"

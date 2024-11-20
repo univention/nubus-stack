@@ -50,8 +50,8 @@ helm uninstall nubus
 | oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.78.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 0.45.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmRestApi(udm-rest-api) | 0.26.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.34.3 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUmcServer(umc-server) | 0.34.3 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.35.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUmcServer(umc-server) | 0.35.0 |
 | oci://registry-1.docker.io/bitnamicharts | common | ^2.x.x |
 | oci://registry-1.docker.io/bitnamicharts | minio | 14.7.0 |
 | oci://registry-1.docker.io/bitnamicharts | postgresql | ^12.x.x |
@@ -5124,25 +5124,43 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.memcached.auth.credentialSecret.key</td>
+			<td>nubusStackDataUms.nubusUmcServer.ldap.existingSecret.keyMapping.ldapPasswordKey</td>
 			<td>string</td>
 			<td><pre lang="json">
-"memcached-password"
+"ldap.secret"
 </pre>
 </td>
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.memcached.auth.credentialSecret.name</td>
+			<td>nubusStackDataUms.nubusUmcServer.ldap.existingSecret.keyMapping.machinePasswordKey</td>
 			<td>string</td>
 			<td><pre lang="json">
-""
+"machine.secret"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusUmcServer.ldap.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ printf \"%s-umc-server-ldap-credentials\" .Release.Name }}"
 </pre>
 </td>
 			<td></td>
 		</tr>
 		<tr>
 			<td>nubusStackDataUms.nubusUmcServer.memcached.auth.existingPasswordSecret</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ printf \"%s-umc-server-memcached-credentials\" .Release.Name }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusUmcServer.memcached.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
 "{{ printf \"%s-umc-server-memcached-credentials\" .Release.Name }}"
@@ -5214,19 +5232,19 @@ false
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.postgresql.auth.credentialSecret.key</td>
+			<td>nubusStackDataUms.nubusUmcServer.postgresql.auth.database</td>
 			<td>string</td>
 			<td><pre lang="json">
-"password"
+"selfservice"
 </pre>
 </td>
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.postgresql.auth.database</td>
+			<td>nubusStackDataUms.nubusUmcServer.postgresql.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"selfservice"
+"{{ printf \"%s-umc-server-postgresql-credentials\" .Release.Name }}"
 </pre>
 </td>
 			<td></td>
@@ -5308,6 +5326,15 @@ false
 			<td>string</td>
 			<td><pre lang="json">
 "16Mi"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusUmcServer.smtp.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ printf \"%s-umc-server-smtp-credentials\" .Release.Name }}"
 </pre>
 </td>
 			<td></td>
@@ -5835,25 +5862,43 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusUmcServer.memcached.auth.credentialSecret.key</td>
+			<td>nubusUmcServer.ldap.existingSecret.keyMapping.ldapPasswordKey</td>
 			<td>string</td>
 			<td><pre lang="json">
-"memcached-password"
+"ldap.secret"
 </pre>
 </td>
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusUmcServer.memcached.auth.credentialSecret.name</td>
+			<td>nubusUmcServer.ldap.existingSecret.keyMapping.machinePasswordKey</td>
 			<td>string</td>
 			<td><pre lang="json">
-""
+"machine.secret"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusUmcServer.ldap.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ printf \"%s-umc-server-ldap-credentials\" .Release.Name }}"
 </pre>
 </td>
 			<td></td>
 		</tr>
 		<tr>
 			<td>nubusUmcServer.memcached.auth.existingPasswordSecret</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ printf \"%s-umc-server-memcached-credentials\" .Release.Name }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusUmcServer.memcached.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
 "{{ printf \"%s-umc-server-memcached-credentials\" .Release.Name }}"
@@ -5925,19 +5970,19 @@ false
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusUmcServer.postgresql.auth.credentialSecret.key</td>
+			<td>nubusUmcServer.postgresql.auth.database</td>
 			<td>string</td>
 			<td><pre lang="json">
-"password"
+"selfservice"
 </pre>
 </td>
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusUmcServer.postgresql.auth.database</td>
+			<td>nubusUmcServer.postgresql.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"selfservice"
+"{{ printf \"%s-umc-server-postgresql-credentials\" .Release.Name }}"
 </pre>
 </td>
 			<td></td>
@@ -6019,6 +6064,15 @@ false
 			<td>string</td>
 			<td><pre lang="json">
 "16Mi"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusUmcServer.smtp.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ printf \"%s-umc-server-smtp-credentials\" .Release.Name }}"
 </pre>
 </td>
 			<td></td>
