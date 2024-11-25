@@ -551,7 +551,6 @@ nubusUdmListener: &nubusUdmListener
     auth:
       password: null
   config:
-    ldapHost: "{{ .Release.Name }}-ldap-server-primary"
     debugLevel: "2" # default loglevel (subchart): 2
 
 nubusSelfServiceConsumer: &nubusSelfServiceConsumer

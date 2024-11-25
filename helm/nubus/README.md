@@ -39,16 +39,16 @@ helm uninstall nubus
 | oci://artifacts.software-univention.de/nubus/charts | keycloak(keycloak) | 0.7.1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakBootstrap(keycloak-bootstrap) | 0.7.1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakExtensions(keycloak-extensions) | 0.14.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusLdapNotifier(ldap-notifier) | 0.26.5 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusLdapServer(ldap-server) | 0.27.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusLdapNotifier(ldap-notifier) | 0.28.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusLdapServer(ldap-server) | 0.28.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusNotificationsApi(notifications-api) | 0.48.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusPortalConsumer(portal-consumer) | 0.48.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusPortalFrontend(portal-frontend) | 0.48.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.48.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 0.45.1 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 0.46.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceConsumer(selfservice-consumer) | 0.12.2 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.80.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 0.45.1 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.80.1 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 0.46.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmRestApi(udm-rest-api) | 0.26.1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.35.4 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUmcServer(umc-server) | 0.35.4 |
@@ -4818,15 +4818,6 @@ null
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataUms.nubusUdmListener.config.ldapHost</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-ldap-server-primary"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusStackDataUms.nubusUdmListener.enabled</td>
 			<td>bool</td>
 			<td><pre lang="json">
@@ -5479,15 +5470,6 @@ false
 			<td>string</td>
 			<td><pre lang="json">
 "2"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUdmListener.config.ldapHost</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-ldap-server-primary"
 </pre>
 </td>
 			<td></td>
