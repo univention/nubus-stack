@@ -292,7 +292,6 @@ nubusLdapNotifier: &nubusLdapNotifier
   resources: *nubusDevelopmentResources
 
 nubusLdapServer: &nubusLdapServer
-  terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   nameOverride: "ldap-server"
   enabled: true
   highAvailabilityMode: false
