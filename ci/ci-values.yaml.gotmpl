@@ -28,7 +28,7 @@ nubusGuardian:
       secretName: {{ .Values.ingress.tls.secretName | quote }}
 
 nubusLdapServer:
-  replicaCountPrimary: 1
+  replicaCountPrimary: 2
   replicaCountSecondary: 2
   replicaCountProxy: 3
 
