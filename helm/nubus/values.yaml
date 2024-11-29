@@ -728,16 +728,7 @@ nubusStackDataUms:
   nameOverride: "stack-data-ums"
   enabled: true
   resources: *nubusDevelopmentResources
-  nubusNotificationsApi: *nubusNotificationsApi
   nubusUmcServer: *nubusUmcServer
-  nubusKeycloakExtensions: *nubusKeycloakExtensions
-  nubusKeycloakBootstrap: *nubusKeycloakBootstrap
-  nubusPortalConsumer: *nubusPortalConsumer
-  nubusPortalServer: *nubusPortalServer
-  nubusProvisioning: *nubusProvisioning
-  nubusUdmListener: *nubusUdmListener
-  nubusSelfServiceConsumer: *nubusSelfServiceConsumer
-  nubusUdmRestApi: *nubusUdmRestApi
   stackDataContext:
     ldapMasterHost: '{{ include "nubusTemplates.connections.ldap.primary.host" . }}'
     ldapHost: '{{ include "nubusTemplates.connections.ldap.primary.host" . }}'
