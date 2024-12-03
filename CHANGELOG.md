@@ -1,5 +1,32 @@
 # Changelog
 
+## [1.4.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v1.3.0...v1.4.0) (2024-12-03)
+
+
+### Features
+
+* Adjust "postgresql.auth" for notifications-api to new structure ([c8a7cc6](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/c8a7cc6dcaf23396d5e72ce778560f6bf220a83c))
+* **keycloak-extension:** Integrate keycloak-extension secrets refactor ([8dd60d1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/8dd60d174532f2d671b0498990d8f0065506f920))
+* **keycloak-extensions:** added ssl support to the database connection on the proxy. ([04072a6](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/04072a6fd3c83f3d7e11b1d2790ccf210d69d7b7))
+* LDAP server leader elector ([257929f](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/257929f747774e578a9e42dfb2fe74083abbbdc8))
+* new defaults for the Users module ([8c71b85](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/8c71b857e34e5e8598bc1c3c60d00114cc086503))
+* **portal-frontend:** Flag to deactivate IPv6 support ([ec96ca8](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/ec96ca86febfc44a515ee670dfdce11482e243c2))
+* **portal:** sync with ucs 5.2 ([b50683f](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/b50683ffe214bd701396618a06b38e2b48fd3a2c))
+* **udm-rest-api:** integrate secret-refactoring ([a239624](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/a239624759d450a2d28f29b188a62deebec963d5))
+* **umc-server:** Integrate umc-server secrets refactor ([d71e114](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/d71e1143c3fc3640e9fb46cae1c57d16f51e08e0))
+* Update notifications-api to version 0.46.0 ([7c0ea4e](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/7c0ea4e0818f225376f8fbdd4caa370ac3d0e969))
+* update umc-server and umc-gateway to 0.35.4 ([b227452](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/b22745294db00ec888a6254b73e63bc3445eefe5))
+* Update umc-server and umc-gateway to version 0.35.3 ([23b3865](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/23b38659f4c322484c8d2743e431916cc1603c7e))
+
+
+### Bug Fixes
+
+* kyverno lint errors ([b63e375](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/b63e3753b20176a3a8608b66030309248ee1b5ff))
+* **ldap-server:** remove file ownership errors in the univention-compatibility initContainer ([04fe4c2](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/04fe4c2eaf1a909056b57afeee612141be4e0a74))
+* **portal-frontend:** reload portal on branding changes. ([bea723c](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/bea723cef902aeb754a34c580b2d3348b77a8d7f))
+* simplify umbrella chart by removing releaseNameOverride ([0aa2693](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/0aa2693db7cc7311110b76d1dc0fc3a1409b41b7))
+* **udm-rest-api:** use public artifacts instead of development ([3de241f](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/3de241f6fddfe86882616c2d9bce3300b9310693))
+
 ## [1.3.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v1.2.0...v1.3.0) (2024-11-13)
 
 
