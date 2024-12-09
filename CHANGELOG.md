@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.5.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v1.4.0...v1.5.0) (2024-12-09)
+
+
+### Features
+
+* **ldap-notifier:** couple provisioning-udm-listener to ldap-server-primary-0 ([eb20005](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/eb200057290e8e2180cc4e1096bc5411acc67003))
+* **ldap-server:** Improve database initialization logic to avoid data loss in specific failure scenarios ([6abcd30](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/6abcd3021137c7398a58f5f049f29c285c349c60))
+
+
+### Bug Fixes
+
+* **portal-consumer:** Fix small secrets templating bug in the portal-consumer ([70569b2](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/70569b2cc089a84a94c7e40a926b0426f574e7fe))
+
 ## [1.4.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v1.3.0...v1.4.0) (2024-12-03)
 
 
