@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.5.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v1.5.0...v1.5.1) (2024-12-11)
+
+
+### Bug Fixes
+
+* kyverno lint fixes in subcharts ([5e2d334](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/5e2d334ad1c49b46cb52dff32067e61c260b07eb))
+* kyverno lint revert portal-consumer changes ([801b571](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/801b57187ccf7e226e1105819347b1483c9d901f))
+
 ## [1.5.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v1.4.0...v1.5.0) (2024-12-09)
 
 
