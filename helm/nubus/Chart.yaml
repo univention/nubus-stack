@@ -37,7 +37,7 @@ dependencies:
   - name: "ldap-server"
     alias: "nubusLdapServer"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.29.1"
+    version: "0.31.1"
     condition: "nubusLdapServer.enabled"
 
   # portal related chart(s)
