@@ -1,7 +1,7 @@
 dependencies:
 - name: common
   repository: oci://registry-1.docker.io/bitnamicharts
-  version: 2.28.0
+  version: 2.29.0
 - name: postgresql
   repository: oci://registry-1.docker.io/bitnamicharts
   version: 12.12.10
@@ -10,7 +10,7 @@ dependencies:
   version: 14.7.0
 - name: guardian
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.15.0
+  version: 0.16.0
 - name: ldap-notifier
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.32.0
@@ -59,5 +59,5 @@ dependencies:
 - name: umc-server
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.36.0
-digest: sha256:31e4b2428e29bc93e12260731c927167c74885e4328fbd77ff6acd3e42ddcbb2
-generated: "2024-12-20T17:45:27.831193336+01:00"
+digest: sha256:61589365ec752d2b49dd2166c6b35c68d38bbed975e756e198001e72c7b4a474
+generated: "2025-01-08T08:43:05.131648881+01:00"
