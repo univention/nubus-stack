@@ -535,7 +535,7 @@ nubusProvisioning: &nubusProvisioning
 
 nubusUdmListener: &nubusUdmListener
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
-  nameOverride: "provisioning-listener"
+  nameOverride: "provisioning-udm-listener"
   enabled: true
   resources: *nubusDevelopmentResources
   ldap:
