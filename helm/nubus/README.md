@@ -405,9 +405,14 @@ true
       "name": ""
     }
   },
-  "enabled": true,
+  "favicon": {
+    "enabled": true
+  },
   "host": "",
   "ingressClassName": "",
+  "minio": {
+    "enabled": true
+  },
   "tls": {
     "enabled": true,
     "secretName": ""
@@ -415,7 +420,7 @@ true
 }
 </pre>
 </td>
-			<td>Define and create Kubernetes Ingress. Ref.: https://kubernetes.io/docs/concepts/services-networking/ingress/</td>
+			<td>Configure supporting Ingress resources created directly by the umbrella chart.  The "enabled" attribute has been split, so that it is easier to enabled or disable individual resources. They are organized according to the pattern "{purpose}.enabled".  Ref.: https://kubernetes.io/docs/concepts/services-networking/ingress/</td>
 		</tr>
 		<tr>
 			<td>ingress.annotations</td>
@@ -477,13 +482,15 @@ true
 			<td>Name of cert-manager.io Issuer resource.</td>
 		</tr>
 		<tr>
-			<td>ingress.enabled</td>
-			<td>bool</td>
+			<td>ingress.favicon</td>
+			<td>object</td>
 			<td><pre lang="json">
-true
+{
+  "enabled": true
+}
 </pre>
 </td>
-			<td>Enable creation of Ingress.</td>
+			<td>Serve an icon on the path "/favicon.ico" if enabled.</td>
 		</tr>
 		<tr>
 			<td>ingress.host</td>
@@ -502,6 +509,17 @@ true
 </pre>
 </td>
 			<td>The Ingress controller class name.</td>
+		</tr>
+		<tr>
+			<td>ingress.minio</td>
+			<td>object</td>
+			<td><pre lang="json">
+{
+  "enabled": true
+}
+</pre>
+</td>
+			<td>Serve dynamic portal assets (icons, logos, background images) out of the MinIO bucket "portal-assets".  This is intended to be used together with the bundled minio. If an external S3-compatible store is used then a potentially needed Ingress resource as to be set up by the operator.</td>
 		</tr>
 		<tr>
 			<td>ingress.tls</td>
@@ -4866,7 +4884,7 @@ true
 			<td>nubusStackDataUms.nubusUdmListener.nameOverride</td>
 			<td>string</td>
 			<td><pre lang="json">
-"provisioning-listener"
+"provisioning-udm-listener"
 </pre>
 </td>
 			<td></td>
@@ -5523,7 +5541,7 @@ true
 			<td>nubusUdmListener.nameOverride</td>
 			<td>string</td>
 			<td><pre lang="json">
-"provisioning-listener"
+"provisioning-udm-listener"
 </pre>
 </td>
 			<td></td>
