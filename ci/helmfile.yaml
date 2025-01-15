@@ -52,7 +52,7 @@ releases:
       {{- if not .Values.toggles.opendeskCustomization }}
       - ./ci-plain-values.yaml
       {{- end }}
-      - ./dev-values.yaml
+      - ./dev-values.yaml.gotmpl
 
   - name: maildev
     chart: maildev/maildev
