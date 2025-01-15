@@ -1992,19 +1992,28 @@ null
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusPortalConsumer.portalConsumer.ldapHost</td>
+			<td>nubusPortalConsumer.objectStorage.bucketName</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ .Release.Name }}-ldap-server-primary"
+"nubus"
 </pre>
 </td>
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusPortalConsumer.portalConsumer.objectStorageBucket</td>
+			<td>nubusPortalConsumer.objectStorage.endpoint</td>
 			<td>string</td>
 			<td><pre lang="json">
-"nubus"
+"{{ printf \"http://%s-minio:9000\" .Release.Name }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusPortalConsumer.portalConsumer.ldapHost</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Release.Name }}-ldap-server-primary"
 </pre>
 </td>
 			<td></td>
@@ -2208,19 +2217,28 @@ null
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusPortalServer.portalServer.logLevel</td>
+			<td>nubusPortalServer.objectStorage.bucketName</td>
 			<td>string</td>
 			<td><pre lang="json">
-"INFO"
+"nubus"
 </pre>
 </td>
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusPortalServer.portalServer.objectStorageBucket</td>
+			<td>nubusPortalServer.objectStorage.endpoint</td>
 			<td>string</td>
 			<td><pre lang="json">
-"nubus"
+"{{ printf \"http://%s-minio:9000\" .Release.Name }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusPortalServer.portalServer.logLevel</td>
+			<td>string</td>
+			<td><pre lang="json">
+"INFO"
 </pre>
 </td>
 			<td></td>
@@ -3693,19 +3711,28 @@ null
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataUms.nubusPortalConsumer.portalConsumer.ldapHost</td>
+			<td>nubusStackDataUms.nubusPortalConsumer.objectStorage.bucketName</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ .Release.Name }}-ldap-server-primary"
+"nubus"
 </pre>
 </td>
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataUms.nubusPortalConsumer.portalConsumer.objectStorageBucket</td>
+			<td>nubusStackDataUms.nubusPortalConsumer.objectStorage.endpoint</td>
 			<td>string</td>
 			<td><pre lang="json">
-"nubus"
+"{{ printf \"http://%s-minio:9000\" .Release.Name }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusPortalConsumer.portalConsumer.ldapHost</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Release.Name }}-ldap-server-primary"
 </pre>
 </td>
 			<td></td>
@@ -3828,19 +3855,28 @@ null
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataUms.nubusPortalServer.portalServer.logLevel</td>
+			<td>nubusStackDataUms.nubusPortalServer.objectStorage.bucketName</td>
 			<td>string</td>
 			<td><pre lang="json">
-"INFO"
+"nubus"
 </pre>
 </td>
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataUms.nubusPortalServer.portalServer.objectStorageBucket</td>
+			<td>nubusStackDataUms.nubusPortalServer.objectStorage.endpoint</td>
 			<td>string</td>
 			<td><pre lang="json">
-"nubus"
+"{{ printf \"http://%s-minio:9000\" .Release.Name }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusPortalServer.portalServer.logLevel</td>
+			<td>string</td>
+			<td><pre lang="json">
+"INFO"
 </pre>
 </td>
 			<td></td>

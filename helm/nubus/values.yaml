@@ -356,13 +356,14 @@ nubusPortalConsumer: &nubusPortalConsumer
     auth:
       accessKey: null
       secretKey: null
+    endpoint: '{{ printf "http://%s-minio:9000" .Release.Name }}'
+    bucketName: "nubus"
   # TODO: Not yet supported
   # udm:
   #   auth:
   #     password: null
   portalConsumer:
     ldapHost: "{{ .Release.Name }}-ldap-server-primary"
-    objectStorageBucket: "nubus"
   provisioningApi:
     auth:
       username: "portal-consumer"
@@ -380,9 +381,10 @@ nubusPortalServer: &nubusPortalServer
     auth:
       accessKey: null
       secretKey: null
+    endpoint: '{{ printf "http://%s-minio:9000" .Release.Name }}'
+    bucketName: "nubus"
   resources: *nubusDevelopmentResources
   portalServer:
-    objectStorageBucket: "nubus"
     logLevel: "INFO" # default loglevel (subchart): WARNING
 
 nubusProvisioning: &nubusProvisioning
