@@ -285,51 +285,6 @@ true
 			<td>Master password from which other passwords are derived.</td>
 		</tr>
 		<tr>
-			<td>global.objectStorage.bucket</td>
-			<td>string</td>
-			<td><pre lang="json">
-"nubus"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>global.objectStorage.connection.endpoint</td>
-			<td>string</td>
-			<td><pre lang="json">
-""
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>global.objectStorage.connection.host</td>
-			<td>string</td>
-			<td><pre lang="json">
-""
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>global.objectStorage.connection.port</td>
-			<td>string</td>
-			<td><pre lang="json">
-""
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>global.objectStorage.connection.protocol</td>
-			<td>string</td>
-			<td><pre lang="json">
-""
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>global.postgresql.connection.host</td>
 			<td>string</td>
 			<td><pre lang="json">

@@ -24,41 +24,6 @@ SPDX-License-Identifier: AGPL-3.0-only
 {{- printf "%s-ldap-server-secondary" .Release.Name -}}
 {{- end -}}
 
-{{- define "nubusTemplates.connections.objectStorage.host" -}}
-{{- if .Values.global.objectStorage.connection.host -}}
-{{- tpl .Values.global.objectStorage.connection.host . -}}
-{{- else -}}
-{{- printf "%s-minio" .Release.Name -}}
-{{- end -}}
-{{- end -}}
-
-{{- define "nubusTemplates.connections.objectStorage.port" -}}
-{{- if .Values.global.objectStorage.connection.port -}}
-{{- tpl .Values.global.objectStorage.connection.port . -}}
-{{- else -}}
-9000
-{{- end -}}
-{{- end -}}
-
-{{- define "nubusTemplates.connections.objectStorage.protocol" -}}
-{{- if .Values.global.objectStorage.connection.protocol -}}
-{{- tpl .Values.global.objectStorage.connection.protocol . -}}
-{{- else -}}
-http
-{{- end -}}
-{{- end -}}
-
-{{- define "nubusTemplates.connections.objectStorage.endpoint" -}}
-{{- if .Values.global.objectStorage.connection.endpoint -}}
-{{- tpl .Values.global.objectStorage.connection.endpoint . -}}
-{{- else -}}
-{{- $protocol := include "nubusTemplates.connections.objectStorage.protocol" . -}}
-{{- $host := include "nubusTemplates.connections.objectStorage.host" . -}}
-{{- $port := include "nubusTemplates.connections.objectStorage.port" . -}}
-{{- printf "%s://%s:%s" $protocol $host $port -}}
-{{- end -}}
-{{- end -}}
-
 {{- define "nubusTemplates.enablePlainUmcLogin" -}}
 {{- if .Values.global.enablePlainUmcLogin -}}
 {{- .Values.global.enablePlainUmcLogin -}}

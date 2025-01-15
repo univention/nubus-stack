@@ -28,13 +28,6 @@ global:
     connection:
       host: ""
       port: ""
-  objectStorage:
-    bucket: "nubus"
-    connection:
-      host: ""
-      port: ""
-      protocol: ""
-      endpoint: ""
   memcached:
     connection:
       host: ""
