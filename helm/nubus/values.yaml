@@ -224,7 +224,7 @@ minio:
         versioning: false
         withLock: false
     policies:
-      - name: "nubus-bucket-policy"
+      - name: "nubus-readwrite"
         statements:
           - resources:
               - "arn:aws:s3:::nubus"
@@ -232,6 +232,15 @@ minio:
             effect: "Allow"
             actions:
               - "s3:*"
+      - name: "nubus-read"
+        statements:
+          - resources:
+              - "arn:aws:s3:::nubus"
+              - "arn:aws:s3:::nubus/*"
+            effect: "Allow"
+            actions:
+              - "s3:GetBucketLocation"
+              - "s3:GetObject"
     usersExistingSecrets:
       - nubus-minio-provisioning
 
