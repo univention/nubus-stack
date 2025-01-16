@@ -10,7 +10,7 @@ dependencies:
   version: 14.7.0
 - name: guardian
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.16.0
+  version: 0.16.1
 - name: ldap-notifier
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.32.0
@@ -46,7 +46,7 @@ dependencies:
   version: 0.15.0
 - name: keycloak-bootstrap
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.8.0
+  version: 0.9.0
 - name: stack-data-ums
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.82.0
@@ -59,5 +59,5 @@ dependencies:
 - name: umc-server
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.36.0
-digest: sha256:feccd38001807b3124801df4e8b423bc2fc86c2c147222cc096f284132b64ced
-generated: "2025-01-13T11:50:56.50954219+01:00"
+digest: sha256:50ad699007f2ad5040221db879f00d45bf22b09e5c79d68e7b4a9c658e1b841c
+generated: "2025-01-16T15:29:53.224115808+01:00"
