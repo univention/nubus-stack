@@ -208,7 +208,6 @@ minio:
     enabled: false
     resources: *nubusDevelopmentResources
     existingSecret: "{{ .Release.Name }}-minio-tls"
-  defaultBuckets: "nubus"
 
   provisioning:
     enabled: true

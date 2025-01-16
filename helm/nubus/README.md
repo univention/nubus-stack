@@ -678,15 +678,6 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>minio.defaultBuckets</td>
-			<td>string</td>
-			<td><pre lang="json">
-"nubus"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>minio.enabled</td>
 			<td>bool</td>
 			<td><pre lang="json">
@@ -843,7 +834,7 @@ true
 			<td>minio.provisioning.policies[0].name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"nubus-bucket-policy"
+"nubus-readwrite"
 </pre>
 </td>
 			<td></td>
@@ -876,16 +867,43 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>minio.provisioning.policies[0].statements[1].actions[0]</td>
+			<td>minio.provisioning.policies[0].statements[0].resources[1]</td>
 			<td>string</td>
 			<td><pre lang="json">
-"s3:*"
+"arn:aws:s3:::nubus/*"
 </pre>
 </td>
 			<td></td>
 		</tr>
 		<tr>
-			<td>minio.provisioning.policies[0].statements[1].effect</td>
+			<td>minio.provisioning.policies[1].name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"nubus-read"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>minio.provisioning.policies[1].statements[0].actions[0]</td>
+			<td>string</td>
+			<td><pre lang="json">
+"s3:GetBucketLocation"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>minio.provisioning.policies[1].statements[0].actions[1]</td>
+			<td>string</td>
+			<td><pre lang="json">
+"s3:GetObject"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>minio.provisioning.policies[1].statements[0].effect</td>
 			<td>string</td>
 			<td><pre lang="json">
 "Allow"
@@ -894,7 +912,16 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>minio.provisioning.policies[0].statements[1].resources[0]</td>
+			<td>minio.provisioning.policies[1].statements[0].resources[0]</td>
+			<td>string</td>
+			<td><pre lang="json">
+"arn:aws:s3:::nubus"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>minio.provisioning.policies[1].statements[0].resources[1]</td>
 			<td>string</td>
 			<td><pre lang="json">
 "arn:aws:s3:::nubus/*"
