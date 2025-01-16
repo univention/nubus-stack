@@ -228,10 +228,6 @@ minio:
         statements:
           - resources:
               - "arn:aws:s3:::nubus"
-            effect: "Allow"
-            actions:
-              - "s3:*"
-          - resources:
               - "arn:aws:s3:::nubus/*"
             effect: "Allow"
             actions:
