@@ -28,13 +28,6 @@ global:
     connection:
       host: ""
       port: ""
-  objectStorage:
-    bucket: "nubus"
-    connection:
-      host: ""
-      port: ""
-      protocol: ""
-      endpoint: ""
   memcached:
     connection:
       host: ""
@@ -85,11 +78,26 @@ certificates:
   # -- Enable SAML self-signed certificate generation. This required cert-manager.io
   enabled: true
 
-# -- Define and create Kubernetes Ingress.
+# -- Configure supporting Ingress resources created directly by the umbrella chart.
+#
+# The "enabled" attribute has been split, so that it is easier to enabled or
+# disable individual resources. They are organized according to the pattern
+# "{purpose}.enabled".
+#
 # Ref.: https://kubernetes.io/docs/concepts/services-networking/ingress/
 ingress:
-  # -- Enable creation of Ingress.
-  enabled: true
+  # -- Serve an icon on the path "/favicon.ico" if enabled.
+  favicon:
+    enabled: true
+
+  # -- Serve dynamic portal assets (icons, logos, background images) out of the
+  # MinIO bucket "portal-assets".
+  #
+  # This is intended to be used together with the bundled minio. If an external
+  # S3-compatible store is used then a potentially needed Ingress resource as to
+  # be set up by the operator.
+  minio:
+    enabled: true
 
   # -- Define the Fully Qualified Domain Name (FQDN) where application should be reachable.
   host: ""
@@ -200,7 +208,6 @@ minio:
     enabled: false
     resources: *nubusDevelopmentResources
     existingSecret: "{{ .Release.Name }}-minio-tls"
-  defaultBuckets: "nubus"
 
   provisioning:
     enabled: true
@@ -216,18 +223,23 @@ minio:
         versioning: false
         withLock: false
     policies:
-      - name: "nubus-bucket-policy"
+      - name: "nubus-readwrite"
         statements:
           - resources:
               - "arn:aws:s3:::nubus"
-            effect: "Allow"
-            actions:
-              - "s3:*"
-          - resources:
               - "arn:aws:s3:::nubus/*"
             effect: "Allow"
             actions:
               - "s3:*"
+      - name: "nubus-read"
+        statements:
+          - resources:
+              - "arn:aws:s3:::nubus"
+              - "arn:aws:s3:::nubus/*"
+            effect: "Allow"
+            actions:
+              - "s3:GetBucketLocation"
+              - "s3:GetObject"
     usersExistingSecrets:
       - nubus-minio-provisioning
 
@@ -260,7 +272,7 @@ keycloak:
 nubusGuardian: &nubusGuardian
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   nameOverride: "guardian"
-  enabled: false
+  enabled: true
   ingress:
     host: "{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
   resources: *nubusDevelopmentResources
@@ -341,13 +353,14 @@ nubusPortalConsumer: &nubusPortalConsumer
     auth:
       accessKey: null
       secretKey: null
+    endpoint: '{{ printf "http://%s-minio:9000" .Release.Name }}'
+    bucketName: "nubus"
   # TODO: Not yet supported
   # udm:
   #   auth:
   #     password: null
   portalConsumer:
     ldapHost: "{{ .Release.Name }}-ldap-server-primary"
-    objectStorageBucket: "nubus"
   provisioningApi:
     auth:
       username: "portal-consumer"
@@ -365,9 +378,10 @@ nubusPortalServer: &nubusPortalServer
     auth:
       accessKey: null
       secretKey: null
+    endpoint: '{{ printf "http://%s-minio:9000" .Release.Name }}'
+    bucketName: "nubus"
   resources: *nubusDevelopmentResources
   portalServer:
-    objectStorageBucket: "nubus"
     logLevel: "INFO" # default loglevel (subchart): WARNING
 
 nubusProvisioning: &nubusProvisioning
@@ -535,7 +549,7 @@ nubusProvisioning: &nubusProvisioning
 
 nubusUdmListener: &nubusUdmListener
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
-  nameOverride: "provisioning-listener"
+  nameOverride: "provisioning-udm-listener"
   enabled: true
   resources: *nubusDevelopmentResources
   ldap:

@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: AGPL-3.0-only
 # SPDX-FileCopyrightText: 2024 Univention GmbH
-{{- if .Values.ingress.enabled }}
+{{- if .Values.ingress.favicon.enabled }}
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -32,6 +32,8 @@ spec:
                 name: {{ .Release.Name }}-portal-frontend
                 port:
                   number: 80
+{{- end}}
+{{- if .Values.ingress.minio.enabled }}
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -44,7 +46,7 @@ metadata:
     {{- if .Values.ingress.certManager.enabled }}
     cert-manager.io/{{ .Values.ingress.certManager.issuerRef.kind | kebabcase }}: "{{ coalesce .Values.global.certManagerIssuer .Values.ingress.certManager.issuerRef.name }}"
     {{- end }}
-    nginx.ingress.kubernetes.io/rewrite-target: {{ printf "/%s/portal-assets/icons/$2/$3" .Values.global.objectStorage.bucket | quote }}
+    nginx.ingress.kubernetes.io/rewrite-target: {{ printf "/%s/portal-assets/icons/$2/$3" .Values.nubusPortalServer.objectStorage.bucketName | quote }}
 spec:
   ingressClassName: {{ .Values.ingress.ingressClassName | default .Values.global.ingressClass | quote }}
   {{- if .Values.ingress.tls.enabled }}
@@ -55,13 +57,13 @@ spec:
   {{- end }}
   rules:
     - host: {{ printf "%s.%s" .Values.global.subDomains.portal .Values.global.domain | quote }}
-      {{ .Values.global.objectStorage.connection.protocol | default "http" }}:
+      http:
         paths:
           - path: /univention/(portal|selfservice)/icons/(logos|entries)/(.*)$
             pathType: ImplementationSpecific
             backend:
               service:
-                name: {{ coalesce .Values.global.objectStorage.connection.host (printf "%s-minio" .Release.Name ) | quote }}
+                name: {{ printf "%s-minio" .Release.Name | quote }}
                 port:
-                  number: {{ int (.Values.global.objectStorage.connection.port | default 9000) }}
+                  number: 9000
 {{- end }}

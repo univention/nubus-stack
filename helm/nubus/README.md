@@ -35,23 +35,23 @@ helm uninstall nubus
 
 | Repository | Name | Version |
 |------------|------|---------|
-| oci://artifacts.software-univention.de/nubus/charts | nubusGuardian(guardian) | 0.14.1 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusGuardian(guardian) | 0.16.1 |
 | oci://artifacts.software-univention.de/nubus/charts | keycloak(keycloak) | 0.7.1 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakBootstrap(keycloak-bootstrap) | 0.7.1 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakExtensions(keycloak-extensions) | 0.14.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusLdapNotifier(ldap-notifier) | 0.29.1 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusLdapServer(ldap-server) | 0.29.1 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusNotificationsApi(notifications-api) | 0.48.3 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalConsumer(portal-consumer) | 0.48.3 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalFrontend(portal-frontend) | 0.48.3 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.48.3 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 0.46.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceConsumer(selfservice-consumer) | 0.12.3 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.80.2 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 0.46.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUdmRestApi(udm-rest-api) | 0.26.1 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.35.5 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUmcServer(umc-server) | 0.35.5 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakBootstrap(keycloak-bootstrap) | 0.9.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakExtensions(keycloak-extensions) | 0.15.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusLdapNotifier(ldap-notifier) | 0.32.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusLdapServer(ldap-server) | 0.32.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusNotificationsApi(notifications-api) | 0.49.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalConsumer(portal-consumer) | 0.50.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalFrontend(portal-frontend) | 0.49.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.50.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 0.48.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceConsumer(selfservice-consumer) | 0.13.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.82.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 0.47.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUdmRestApi(udm-rest-api) | 0.28.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.36.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUmcServer(umc-server) | 0.36.0 |
 | oci://registry-1.docker.io/bitnamicharts | common | ^2.x.x |
 | oci://registry-1.docker.io/bitnamicharts | minio | 14.7.0 |
 | oci://registry-1.docker.io/bitnamicharts | postgresql | ^12.x.x |
@@ -285,51 +285,6 @@ true
 			<td>Master password from which other passwords are derived.</td>
 		</tr>
 		<tr>
-			<td>global.objectStorage.bucket</td>
-			<td>string</td>
-			<td><pre lang="json">
-"nubus"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>global.objectStorage.connection.endpoint</td>
-			<td>string</td>
-			<td><pre lang="json">
-""
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>global.objectStorage.connection.host</td>
-			<td>string</td>
-			<td><pre lang="json">
-""
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>global.objectStorage.connection.port</td>
-			<td>string</td>
-			<td><pre lang="json">
-""
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>global.objectStorage.connection.protocol</td>
-			<td>string</td>
-			<td><pre lang="json">
-""
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>global.postgresql.connection.host</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -405,9 +360,14 @@ true
       "name": ""
     }
   },
-  "enabled": true,
+  "favicon": {
+    "enabled": true
+  },
   "host": "",
   "ingressClassName": "",
+  "minio": {
+    "enabled": true
+  },
   "tls": {
     "enabled": true,
     "secretName": ""
@@ -415,7 +375,7 @@ true
 }
 </pre>
 </td>
-			<td>Define and create Kubernetes Ingress. Ref.: https://kubernetes.io/docs/concepts/services-networking/ingress/</td>
+			<td>Configure supporting Ingress resources created directly by the umbrella chart.  The "enabled" attribute has been split, so that it is easier to enabled or disable individual resources. They are organized according to the pattern "{purpose}.enabled".  Ref.: https://kubernetes.io/docs/concepts/services-networking/ingress/</td>
 		</tr>
 		<tr>
 			<td>ingress.annotations</td>
@@ -477,13 +437,15 @@ true
 			<td>Name of cert-manager.io Issuer resource.</td>
 		</tr>
 		<tr>
-			<td>ingress.enabled</td>
-			<td>bool</td>
+			<td>ingress.favicon</td>
+			<td>object</td>
 			<td><pre lang="json">
-true
+{
+  "enabled": true
+}
 </pre>
 </td>
-			<td>Enable creation of Ingress.</td>
+			<td>Serve an icon on the path "/favicon.ico" if enabled.</td>
 		</tr>
 		<tr>
 			<td>ingress.host</td>
@@ -502,6 +464,17 @@ true
 </pre>
 </td>
 			<td>The Ingress controller class name.</td>
+		</tr>
+		<tr>
+			<td>ingress.minio</td>
+			<td>object</td>
+			<td><pre lang="json">
+{
+  "enabled": true
+}
+</pre>
+</td>
+			<td>Serve dynamic portal assets (icons, logos, background images) out of the MinIO bucket "portal-assets".  This is intended to be used together with the bundled minio. If an external S3-compatible store is used then a potentially needed Ingress resource as to be set up by the operator.</td>
 		</tr>
 		<tr>
 			<td>ingress.tls</td>
@@ -705,15 +678,6 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>minio.defaultBuckets</td>
-			<td>string</td>
-			<td><pre lang="json">
-"nubus"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>minio.enabled</td>
 			<td>bool</td>
 			<td><pre lang="json">
@@ -870,7 +834,7 @@ true
 			<td>minio.provisioning.policies[0].name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"nubus-bucket-policy"
+"nubus-readwrite"
 </pre>
 </td>
 			<td></td>
@@ -903,16 +867,43 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>minio.provisioning.policies[0].statements[1].actions[0]</td>
+			<td>minio.provisioning.policies[0].statements[0].resources[1]</td>
 			<td>string</td>
 			<td><pre lang="json">
-"s3:*"
+"arn:aws:s3:::nubus/*"
 </pre>
 </td>
 			<td></td>
 		</tr>
 		<tr>
-			<td>minio.provisioning.policies[0].statements[1].effect</td>
+			<td>minio.provisioning.policies[1].name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"nubus-read"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>minio.provisioning.policies[1].statements[0].actions[0]</td>
+			<td>string</td>
+			<td><pre lang="json">
+"s3:GetBucketLocation"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>minio.provisioning.policies[1].statements[0].actions[1]</td>
+			<td>string</td>
+			<td><pre lang="json">
+"s3:GetObject"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>minio.provisioning.policies[1].statements[0].effect</td>
 			<td>string</td>
 			<td><pre lang="json">
 "Allow"
@@ -921,7 +912,16 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>minio.provisioning.policies[0].statements[1].resources[0]</td>
+			<td>minio.provisioning.policies[1].statements[0].resources[0]</td>
+			<td>string</td>
+			<td><pre lang="json">
+"arn:aws:s3:::nubus"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>minio.provisioning.policies[1].statements[0].resources[1]</td>
 			<td>string</td>
 			<td><pre lang="json">
 "arn:aws:s3:::nubus/*"
@@ -1122,7 +1122,7 @@ false
 			<td>nubusGuardian.enabled</td>
 			<td>bool</td>
 			<td><pre lang="json">
-false
+true
 </pre>
 </td>
 			<td></td>
@@ -1974,19 +1974,28 @@ null
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusPortalConsumer.portalConsumer.ldapHost</td>
+			<td>nubusPortalConsumer.objectStorage.bucketName</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ .Release.Name }}-ldap-server-primary"
+"nubus"
 </pre>
 </td>
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusPortalConsumer.portalConsumer.objectStorageBucket</td>
+			<td>nubusPortalConsumer.objectStorage.endpoint</td>
 			<td>string</td>
 			<td><pre lang="json">
-"nubus"
+"{{ printf \"http://%s-minio:9000\" .Release.Name }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusPortalConsumer.portalConsumer.ldapHost</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Release.Name }}-ldap-server-primary"
 </pre>
 </td>
 			<td></td>
@@ -2190,19 +2199,28 @@ null
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusPortalServer.portalServer.logLevel</td>
+			<td>nubusPortalServer.objectStorage.bucketName</td>
 			<td>string</td>
 			<td><pre lang="json">
-"INFO"
+"nubus"
 </pre>
 </td>
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusPortalServer.portalServer.objectStorageBucket</td>
+			<td>nubusPortalServer.objectStorage.endpoint</td>
 			<td>string</td>
 			<td><pre lang="json">
-"nubus"
+"{{ printf \"http://%s-minio:9000\" .Release.Name }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusPortalServer.portalServer.logLevel</td>
+			<td>string</td>
+			<td><pre lang="json">
+"INFO"
 </pre>
 </td>
 			<td></td>
@@ -3675,19 +3693,28 @@ null
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataUms.nubusPortalConsumer.portalConsumer.ldapHost</td>
+			<td>nubusStackDataUms.nubusPortalConsumer.objectStorage.bucketName</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ .Release.Name }}-ldap-server-primary"
+"nubus"
 </pre>
 </td>
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataUms.nubusPortalConsumer.portalConsumer.objectStorageBucket</td>
+			<td>nubusStackDataUms.nubusPortalConsumer.objectStorage.endpoint</td>
 			<td>string</td>
 			<td><pre lang="json">
-"nubus"
+"{{ printf \"http://%s-minio:9000\" .Release.Name }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusPortalConsumer.portalConsumer.ldapHost</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Release.Name }}-ldap-server-primary"
 </pre>
 </td>
 			<td></td>
@@ -3810,19 +3837,28 @@ null
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataUms.nubusPortalServer.portalServer.logLevel</td>
+			<td>nubusStackDataUms.nubusPortalServer.objectStorage.bucketName</td>
 			<td>string</td>
 			<td><pre lang="json">
-"INFO"
+"nubus"
 </pre>
 </td>
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataUms.nubusPortalServer.portalServer.objectStorageBucket</td>
+			<td>nubusStackDataUms.nubusPortalServer.objectStorage.endpoint</td>
 			<td>string</td>
 			<td><pre lang="json">
-"nubus"
+"{{ printf \"http://%s-minio:9000\" .Release.Name }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusPortalServer.portalServer.logLevel</td>
+			<td>string</td>
+			<td><pre lang="json">
+"INFO"
 </pre>
 </td>
 			<td></td>
@@ -4866,7 +4902,7 @@ true
 			<td>nubusStackDataUms.nubusUdmListener.nameOverride</td>
 			<td>string</td>
 			<td><pre lang="json">
-"provisioning-listener"
+"provisioning-udm-listener"
 </pre>
 </td>
 			<td></td>
@@ -5523,7 +5559,7 @@ true
 			<td>nubusUdmListener.nameOverride</td>
 			<td>string</td>
 			<td><pre lang="json">
-"provisioning-listener"
+"provisioning-udm-listener"
 </pre>
 </td>
 			<td></td>
