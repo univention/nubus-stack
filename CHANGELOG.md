@@ -1,5 +1,27 @@
 # Changelog
 
+## [1.6.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v1.5.1...v1.6.0) (2025-01-21)
+
+
+### Features
+
+* Allow to enabled/disable support Ingersses individually. ([4726af5](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/4726af5d39b25cf634349b7d741685d14eef685f))
+* Consolidate objectStorage configuration for portal components ([14f15da](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/14f15dae8c3db77351e56b30587ed6641e7f07fa))
+* Correct name of udm listener to "provisioning-udm-listener" ([86f491e](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/86f491e3510297ab5b943688ff8967be51174a8d))
+* **guardian:** Enable guardian and ugprade it to v3.0.0 ([c9e0d1e](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/c9e0d1e4c8cd20f6a1b3d03e7b2dd4ed4148f8d8))
+* **minio:** Remove configuration option "defaultBuckets" ([48225b9](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/48225b9650a8f35232e307b6025ea48de800c143))
+* **minio:** Use a read-only policy for the portal server ([cced2a9](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/cced2a9e72d63c14d99e31f2abd2b536acac4bb9))
+* Remove unused objectStorage related helpers and reduce Ingress to bundled minio ([4448ca0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/4448ca04037ed8a7ce3baa08c72b1616a8856f11))
+* upgrade keycloak-bootstrap to not use k8s hooks ([724a64a](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/724a64a0b375d3a4be870cb07e4a7e641834dd1c))
+* Upgrade portal-consumer / portal-server to version 0.50.0 ([0ff02b6](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/0ff02b6efa9026bd151a98da5c422c579574c0ef))
+* upgrade provisioning with new NATS chart ([9df584b](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/9df584ba81bd61a9a26f5dec604f5890e646976e))
+* upgrade UCS base image to 2024-12-12 ([99444b3](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/99444b3a7fe64dae77cfe583314f6e1564de7da2))
+
+
+### Bug Fixes
+
+* **ldap-server:** Overwrite the labelSelector on the primary service every 15 seconds to recover from initial state after the service is overwritten by helm ([07c48a2](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/07c48a23ba226b97275d128b53634685e74af3c6))
+
 ## [1.5.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v1.5.0...v1.5.1) (2024-12-11)
 
 
