@@ -20,6 +20,13 @@ environments:
       - nextcloud-values.yaml.gotmpl
       - reviewPrefix: {{ env "REVIEW_PREFIX" | default .Namespace }}
 
+  # Extension of the default values, customized for large load testing scenarios
+  loadtest:
+    values:
+      - gaia-values.yaml.gotmpl
+      - loadtest-values.yaml.gotmpl
+      - reviewPrefix: {{ env "REVIEW_PREFIX" | default .Namespace }}
+
   # Configuration for a local or custom deployment.
   #
   # Copy "gaia-values.yaml" to "local-values.yaml" and run helmfile with "-e
@@ -56,7 +63,9 @@ releases:
     values:
       - ./ci-values.yaml.gotmpl
       - ./dev-values.yaml.gotmpl
+      {{- if hasKey .Values "releaseValues" }}
       - {{ .Values.releaseValues.nubus | toYaml | nindent 8 }}
+      {{- end }}
 
   - name: maildev
     chart: maildev/maildev
