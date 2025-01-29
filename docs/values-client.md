@@ -144,3 +144,21 @@ postgresql:
       keyMapping:
         # ...
 ```
+
+
+### Client configuration regarding a S3 compatible object store
+
+The portal components `portal-server` and `portal-consumer` use an S3 compatible
+object store. The access configuration follows this schema:
+
+```yaml
+objectStorage:
+  auth:
+    accessKey: "READ_WRITE_ACCESS_KEY"
+    secretKey: "SECRET"
+  endpoint: "https://api.external-store.example"
+  bucketName: "portal-data"
+```
+
+Further details regarding this topic are documented in
+[./object-store.md](./object-store.md).
