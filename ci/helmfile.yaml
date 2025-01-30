@@ -63,8 +63,11 @@ releases:
     values:
       - ./ci-values.yaml.gotmpl
       - ./dev-values.yaml.gotmpl
-      {{- if hasKey .Values "releaseValues" }}
-      - {{ .Values.releaseValues.nubus | toYaml | nindent 8 }}
+      {{- if .Values.toggles.nextcloudExtension }}
+      - nextcloud-extension-values.yaml.gotmpl
+      {{- end }}
+      {{- if .Values.toggles.loadTest }}
+      - loadtest-values.yaml.gotmpl
       {{- end }}
 
   - name: maildev
