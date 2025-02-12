@@ -621,9 +621,6 @@ nubusUmcServer: &nubusUmcServer
     host: "{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
   resources: *nubusDevelopmentResources
   postgresql:
-    connection:
-      host: ""
-      port: ""
     auth:
       username: selfservice
       database: selfservice
@@ -652,8 +649,6 @@ nubusUmcServer: &nubusUmcServer
       existingSecret:
         name: '{{ printf "%s-umc-server-memcached-credentials" .Release.Name }}'
     connection:
-      host: ""
-      port: ""
       username: umcserver
   umcServer:
     certPemFile: "/var/secrets/ssl/tls.crt"
@@ -728,7 +723,19 @@ nubusStackDataUms:
   nameOverride: "stack-data-ums"
   enabled: true
   resources: *nubusDevelopmentResources
-  nubusUmcServer: *nubusUmcServer
+  nubusUmcServer:
+    postgresql:
+      connection:
+        host: '{{ printf "%s-postgresql" .Release.Name }}'
+        port: "5432"
+      auth:
+        username: selfservice
+        database: selfservice
+    memcached:
+      auth:
+        username: selfservice
+      connection:
+        host: '{{ printf "%s-umc-server-memcached" .Release.Name }}'
   stackDataContext:
     ldapMasterHost: '{{ include "nubusTemplates.connections.ldap.primary.host" . }}'
     ldapHost: '{{ include "nubusTemplates.connections.ldap.primary.host" . }}'
