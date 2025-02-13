@@ -25,9 +25,14 @@ nubusGuardian:
       secretName: {{ .Values.ingress.tls.secretName | quote }}
 
 nubusLdapServer:
+{{- if .Values.toggles.scaledSetup }}
   replicaCountPrimary: 2
   replicaCountSecondary: 2
   replicaCountProxy: 3
+{{- else }}
+  replicaCountSecondary: 0
+  replicaCountProxy: 0
+{{- end }}
 
 nubusNotificationsApi:
   ingress:
@@ -56,7 +61,9 @@ nubusStackDataUms:
     portalFqdn: "{{ .Values.reviewPrefix }}.portal.{{ .Values.reviewBaseDomain }}"
 
 keycloak:
+  {{- if .Values.toggles.scaledSetup }}
   replicaCount: 2
+  {{- end }}
   ingress:
     certManager:
       enabled: false
@@ -102,7 +109,9 @@ nubusUdmRestApi:
       secretName: {{ .Values.ingress.tls.secretName | quote }}
 
 nubusUmcServer:
+  {{- if .Values.toggles.scaledSetup }}
   replicaCount: 2
+  {{- end }}
   ingress:
     certManager:
       enabled: false
