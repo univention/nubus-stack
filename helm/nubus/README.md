@@ -35,16 +35,16 @@ helm uninstall nubus
 
 | Repository | Name | Version |
 |------------|------|---------|
-| oci://artifacts.software-univention.de/nubus/charts | nubusGuardian(guardian) | 0.16.3 |
+| oci://artifacts.software-univention.de/nubus-dev/charts | nubusNotificationsApi(notifications-api) | 0.51.0-pre-jbornhold-feature-toggles |
+| oci://artifacts.software-univention.de/nubus-dev/charts | nubusPortalConsumer(portal-consumer) | 0.51.0-pre-jbornhold-feature-toggles |
+| oci://artifacts.software-univention.de/nubus-dev/charts | nubusPortalFrontend(portal-frontend) | 0.51.0-pre-jbornhold-feature-toggles |
+| oci://artifacts.software-univention.de/nubus-dev/charts | nubusPortalServer(portal-server) | 0.51.0-pre-jbornhold-feature-toggles |
+| oci://artifacts.software-univention.de/nubus/charts | nubusGuardian(guardian) | 0.16.2 |
 | oci://artifacts.software-univention.de/nubus/charts | keycloak(keycloak) | 0.7.2 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakBootstrap(keycloak-bootstrap) | 0.9.1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakExtensions(keycloak-extensions) | 0.15.4 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusLdapNotifier(ldap-notifier) | 0.32.1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusLdapServer(ldap-server) | 0.32.2 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusNotificationsApi(notifications-api) | 0.50.1 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalConsumer(portal-consumer) | 0.50.1 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalFrontend(portal-frontend) | 0.50.1 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.50.1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 0.48.3 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceConsumer(selfservice-consumer) | 0.13.1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.83.1 |
