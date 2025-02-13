@@ -331,8 +331,6 @@ nubusNotificationsApi: &nubusNotificationsApi
       database: notificationsapi
       existingSecret:
         name: "{{ .Release.Name }}-notifications-api-postgresql-credentials"
-  notificationsApi:
-    logLevel: "INFO" # default loglevel (subchart): WARNING
 
 nubusPortalFrontend: &nubusPortalFrontend
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
@@ -341,8 +339,6 @@ nubusPortalFrontend: &nubusPortalFrontend
   resources: *nubusDevelopmentResources
   ingress:
     host: "{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
-  portalFrontend:
-    logLevel: "INFO" # default loglevel (subchart): WARNING
 
 nubusPortalConsumer: &nubusPortalConsumer
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
@@ -381,8 +377,6 @@ nubusPortalServer: &nubusPortalServer
     endpoint: '{{ printf "http://%s-minio:9000" .Release.Name }}'
     bucketName: "nubus"
   resources: *nubusDevelopmentResources
-  portalServer:
-    logLevel: "INFO" # default loglevel (subchart): WARNING
 
 nubusProvisioning: &nubusProvisioning
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds

@@ -35,16 +35,16 @@ helm uninstall nubus
 
 | Repository | Name | Version |
 |------------|------|---------|
-| oci://artifacts.software-univention.de/nubus-dev/charts | nubusNotificationsApi(notifications-api) | 0.51.0-pre-jbornhold-feature-toggles |
-| oci://artifacts.software-univention.de/nubus-dev/charts | nubusPortalConsumer(portal-consumer) | 0.51.0-pre-jbornhold-feature-toggles |
-| oci://artifacts.software-univention.de/nubus-dev/charts | nubusPortalFrontend(portal-frontend) | 0.51.0-pre-jbornhold-feature-toggles |
-| oci://artifacts.software-univention.de/nubus-dev/charts | nubusPortalServer(portal-server) | 0.51.0-pre-jbornhold-feature-toggles |
-| oci://artifacts.software-univention.de/nubus/charts | nubusGuardian(guardian) | 0.16.2 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusGuardian(guardian) | 0.16.3 |
 | oci://artifacts.software-univention.de/nubus/charts | keycloak(keycloak) | 0.7.2 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakBootstrap(keycloak-bootstrap) | 0.9.1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakExtensions(keycloak-extensions) | 0.15.4 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusLdapNotifier(ldap-notifier) | 0.32.1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusLdapServer(ldap-server) | 0.32.2 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusNotificationsApi(notifications-api) | 0.51.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalConsumer(portal-consumer) | 0.51.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalFrontend(portal-frontend) | 0.51.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.51.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 0.48.3 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceConsumer(selfservice-consumer) | 0.13.1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.83.1 |
@@ -1830,15 +1830,6 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusNotificationsApi.notificationsApi.logLevel</td>
-			<td>string</td>
-			<td><pre lang="json">
-"INFO"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusNotificationsApi.postgresql.auth.database</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -2100,15 +2091,6 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusPortalFrontend.portalFrontend.logLevel</td>
-			<td>string</td>
-			<td><pre lang="json">
-"INFO"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusPortalFrontend.resources.limits.cpu</td>
 			<td>int</td>
 			<td><pre lang="json">
@@ -2212,15 +2194,6 @@ null
 			<td>string</td>
 			<td><pre lang="json">
 "{{ printf \"http://%s-minio:9000\" .Release.Name }}"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusPortalServer.portalServer.logLevel</td>
-			<td>string</td>
-			<td><pre lang="json">
-"INFO"
 </pre>
 </td>
 			<td></td>
