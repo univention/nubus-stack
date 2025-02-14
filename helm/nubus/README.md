@@ -47,7 +47,7 @@ helm uninstall nubus
 | oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.50.1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 0.48.3 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceConsumer(selfservice-consumer) | 0.13.1 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.82.1 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.83.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 0.48.2 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmRestApi(udm-rest-api) | 0.28.2 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.36.1 |
@@ -3225,123 +3225,6 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.enabled</td>
-			<td>bool</td>
-			<td><pre lang="json">
-true
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.extraVolumeMounts[0].mountPath</td>
-			<td>string</td>
-			<td><pre lang="json">
-"/var/secrets/ssl"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.extraVolumeMounts[0].name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"certificates"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.extraVolumes[0].name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"certificates"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.extraVolumes[0].secret.secretName</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-saml-tls"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.global.imageRegistry</td>
-			<td>string</td>
-			<td><pre lang="json">
-"docker.io"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.image.registry</td>
-			<td>string</td>
-			<td><pre lang="json">
-"artifacts.software-univention.de"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.ingress.host</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.ldap.existingSecret.keyMapping.ldapPasswordKey</td>
-			<td>string</td>
-			<td><pre lang="json">
-"ldap.secret"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.ldap.existingSecret.keyMapping.machinePasswordKey</td>
-			<td>string</td>
-			<td><pre lang="json">
-"machine.secret"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.ldap.existingSecret.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ printf \"%s-umc-server-ldap-credentials\" .Release.Name }}"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.memcached.auth.existingPasswordSecret</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ printf \"%s-umc-server-memcached-credentials\" .Release.Name }}"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.memcached.auth.existingSecret.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ printf \"%s-umc-server-memcached-credentials\" .Release.Name }}"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusStackDataUms.nubusUmcServer.memcached.auth.username</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -3354,52 +3237,7 @@ true
 			<td>nubusStackDataUms.nubusUmcServer.memcached.connection.host</td>
 			<td>string</td>
 			<td><pre lang="json">
-""
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.memcached.connection.port</td>
-			<td>string</td>
-			<td><pre lang="json">
-""
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.memcached.connection.username</td>
-			<td>string</td>
-			<td><pre lang="json">
-"umcserver"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.memcached.containerSecurityContext.readOnlyRootFilesystem</td>
-			<td>bool</td>
-			<td><pre lang="json">
-false
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.memcached.nameOverride</td>
-			<td>string</td>
-			<td><pre lang="json">
-"umc-server-memcached"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.nameOverride</td>
-			<td>string</td>
-			<td><pre lang="json">
-"umc-server"
+"{{ printf \"%s-umc-server-memcached\" .Release.Name }}"
 </pre>
 </td>
 			<td></td>
@@ -3409,15 +3247,6 @@ false
 			<td>string</td>
 			<td><pre lang="json">
 "selfservice"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.postgresql.auth.existingSecret.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ printf \"%s-umc-server-postgresql-credentials\" .Release.Name }}"
 </pre>
 </td>
 			<td></td>
@@ -3435,7 +3264,7 @@ false
 			<td>nubusStackDataUms.nubusUmcServer.postgresql.connection.host</td>
 			<td>string</td>
 			<td><pre lang="json">
-""
+"{{ printf \"%s-postgresql\" .Release.Name }}"
 </pre>
 </td>
 			<td></td>
@@ -3444,97 +3273,7 @@ false
 			<td>nubusStackDataUms.nubusUmcServer.postgresql.connection.port</td>
 			<td>string</td>
 			<td><pre lang="json">
-""
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.proxy.logLevel</td>
-			<td>string</td>
-			<td><pre lang="json">
-"INFO"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.replicaCount</td>
-			<td>int</td>
-			<td><pre lang="json">
-1
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.resources.limits.cpu</td>
-			<td>int</td>
-			<td><pre lang="json">
-288
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.resources.limits.memory</td>
-			<td>string</td>
-			<td><pre lang="json">
-"1Gi"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.resources.requests.cpu</td>
-			<td>string</td>
-			<td><pre lang="json">
-"10m"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.resources.requests.memory</td>
-			<td>string</td>
-			<td><pre lang="json">
-"16Mi"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.smtp.existingSecret.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ printf \"%s-umc-server-smtp-credentials\" .Release.Name }}"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.terminationGracePeriodSeconds</td>
-			<td>int</td>
-			<td><pre lang="json">
-5
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.umcServer.certPemFile</td>
-			<td>string</td>
-			<td><pre lang="json">
-"/var/secrets/ssl/tls.crt"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.umcServer.privateKeyFile</td>
-			<td>string</td>
-			<td><pre lang="json">
-"/var/secrets/ssl/tls.key"
+"5432"
 </pre>
 </td>
 			<td></td>
@@ -4080,24 +3819,6 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusUmcServer.memcached.connection.host</td>
-			<td>string</td>
-			<td><pre lang="json">
-""
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUmcServer.memcached.connection.port</td>
-			<td>string</td>
-			<td><pre lang="json">
-""
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusUmcServer.memcached.connection.username</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -4156,24 +3877,6 @@ false
 			<td>string</td>
 			<td><pre lang="json">
 "selfservice"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUmcServer.postgresql.connection.host</td>
-			<td>string</td>
-			<td><pre lang="json">
-""
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUmcServer.postgresql.connection.port</td>
-			<td>string</td>
-			<td><pre lang="json">
-""
 </pre>
 </td>
 			<td></td>
