@@ -330,7 +330,7 @@ true
       "imagePullPolicy": "IfNotPresent",
       "registry": "artifacts.software-univention.de",
       "repository": "nubus/images/portal-extension",
-      "tag": "0.44.3@sha256:734efc0adda680526dde09387db964612f9e0ab020382580984488cc993c68f0"
+      "tag": "0.55.0@sha256:6f4fff6a53ffb8be858f3a06e9832b90f773500877dd8ab0e20da82008f3d964"
     },
     "name": "portal"
   }
@@ -3373,6 +3373,15 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 "{{ include \"nubusTemplates.credentials.ldap.users.readonly.password\" . }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.templateContext.svcPortalServerUserPassword</td>
+			<td>string</td>
+			<td><pre lang="json">
+null
 </pre>
 </td>
 			<td></td>

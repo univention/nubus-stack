@@ -71,7 +71,7 @@ global:
         registry: "artifacts.software-univention.de"
         repository: "nubus/images/portal-extension"
         imagePullPolicy: "IfNotPresent"
-        tag: "0.44.3@sha256:734efc0adda680526dde09387db964612f9e0ab020382580984488cc993c68f0"
+        tag: "0.55.0@sha256:6f4fff6a53ffb8be858f3a06e9832b90f773500877dd8ab0e20da82008f3d964"
 
 # -- Additional custom annotations to add to all objects deployed directly by the umbrella chart.
 additionalAnnotations: {}
@@ -755,6 +755,7 @@ nubusStackDataUms:
         lastname: "LDAP-system-User"
         password: '{{ include "nubusTemplates.credentials.ldap.users.readonly.password" . }}'
     readonlyUserPassword: '{{ include "nubusTemplates.credentials.ldap.users.readonly.password" . }}'
+    svcPortalServerUserPassword: null
 
 
 # Allows for creation of additional secrets, for example containing credentials for third party services.
