@@ -17,6 +17,12 @@ global:
           keyMapping:
             password: "adminPassword"
 
+  udm:
+    connection:
+      # -- Global default for the URL via which the UDM Rest API can be reached.
+      # In transition state, not all subcharts do make use of this yet.
+      url: '{{ include "nubusTemplates.udmRestApi.uri" . }}'
+
   domain: ""
   subDomains:
     portal: portal
@@ -370,12 +376,19 @@ nubusPortalServer: &nubusPortalServer
   enabled: true
   ingress:
     host: "{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
+
   objectStorage:
     auth:
       accessKey: null
       secretKey: null
     endpoint: '{{ printf "http://%s-minio:9000" .Release.Name }}'
     bucketName: "nubus"
+
+  udm:
+    auth:
+      existingSecret:
+        name: "{{ .Release.Name }}-stack-data-ums-svc-portal-server"
+
   resources: *nubusDevelopmentResources
 
 nubusProvisioning: &nubusProvisioning
