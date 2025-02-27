@@ -4,8 +4,9 @@
 global:
   # -- Indicates to all subcharts that they are being used as part of a Nubus deployment.
   nubusDeployment: true
-  # -- Master password from which other passwords are derived.
-  nubusMasterPassword: ""
+  secrets:
+    # -- Master password from which other passwords are derived.
+    masterPassword: ""
   ldap:
     baseDn: ""
     domainName: ""

@@ -277,15 +277,6 @@ true
 			<td>Indicates to all subcharts that they are being used as part of a Nubus deployment.</td>
 		</tr>
 		<tr>
-			<td>global.nubusMasterPassword</td>
-			<td>string</td>
-			<td><pre lang="json">
-""
-</pre>
-</td>
-			<td>Master password from which other passwords are derived.</td>
-		</tr>
-		<tr>
 			<td>global.postgresql.connection.host</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -302,6 +293,15 @@ true
 </pre>
 </td>
 			<td></td>
+		</tr>
+		<tr>
+			<td>global.secrets.masterPassword</td>
+			<td>string</td>
+			<td><pre lang="json">
+""
+</pre>
+</td>
+			<td>Master password from which other passwords are derived.</td>
 		</tr>
 		<tr>
 			<td>global.subDomains.keycloak</td>

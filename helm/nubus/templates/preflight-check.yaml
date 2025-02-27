@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: AGPL-3.0-only
 # SPDX-FileCopyrightText: 2024 Univention GmbH
-{{- if not .Values.global.nubusMasterPassword -}}
-# {{- required "Variable .Values.global.nubusMasterPassword must be set" .Values.false -}}
+{{- if not .Values.global.secrets.masterPassword -}}
+# {{- required "Variable .Values.global.secrets.masterPassword must be set" .Values.false -}}
 {{- end -}}
 {{- if not .Values.global.domain -}}
 # {{- required "Variable .Values.global.domain must be set" .Values.false -}}

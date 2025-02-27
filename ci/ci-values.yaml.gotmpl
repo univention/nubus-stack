@@ -6,7 +6,8 @@ global:
     baseDn: "dc=univention-organization,dc=intranet"
     domainName: "univention-organization.intranet"
   nubusDeployment: true
-  nubusMasterPassword: {{ .Values.secrets.masterPassword | quote }}
+  secrets:
+    masterPassword: {{ .Values.secrets.masterPassword | quote }}
   subDomains:
     portal: "{{ .Values.reviewPrefix }}.portal"
     keycloak: "{{ .Values.reviewPrefix }}.id"

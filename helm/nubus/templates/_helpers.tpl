@@ -3,7 +3,7 @@ SPDX-FileCopyrightText: 2024 Univention GmbH
 SPDX-License-Identifier: AGPL-3.0-only
 */}}
 {{- define "nubusTemplates.masterPassword" -}}
-{{- .Values.global.nubusMasterPassword | default (randAlphaNum 10 | sha1sum) -}}
+{{- .Values.global.secrets.masterPassword | default (randAlphaNum 10 | sha1sum) -}}
 {{- end -}}
 
 {{- define "nubusTemplates.credentials.administrator.password" -}}
