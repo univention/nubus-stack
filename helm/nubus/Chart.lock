@@ -2,6 +2,9 @@ dependencies:
 - name: common
   repository: oci://registry-1.docker.io/bitnamicharts
   version: 2.30.0
+- name: nubus-common
+  repository: oci://artifacts.software-univention.de/nubus/charts
+  version: 0.8.0
 - name: postgresql
   repository: oci://registry-1.docker.io/bitnamicharts
   version: 12.12.10
@@ -19,25 +22,25 @@ dependencies:
   version: 0.33.0
 - name: notifications-api
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.54.0
+  version: 0.55.0
 - name: portal-frontend
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.54.0
+  version: 0.55.0
 - name: portal-consumer
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.54.0
+  version: 0.55.0
 - name: portal-server
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.54.0
+  version: 0.55.0
 - name: selfservice-consumer
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.14.0
 - name: provisioning
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.49.0
+  version: 0.49.1
 - name: udm-listener
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.49.0
+  version: 0.49.1
 - name: keycloak
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.8.0
@@ -49,7 +52,7 @@ dependencies:
   version: 0.10.1
 - name: stack-data-ums
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.86.0
+  version: 0.87.0
 - name: udm-rest-api
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.29.0
@@ -59,5 +62,5 @@ dependencies:
 - name: umc-server
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.37.0
-digest: sha256:8b5d893e13747ca037ad394a5ab76d76f344c9ef26551b25ec97a69deb9e26df
-generated: "2025-02-27T09:32:00.742716359+01:00"
+digest: sha256:ff03f0ca7c58005759cdc167ce89b1ce8c024287bef889af51ae69561711a036
+generated: "2025-02-27T16:03:15.726157+01:00"

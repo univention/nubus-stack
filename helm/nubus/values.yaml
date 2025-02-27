@@ -4,8 +4,9 @@
 global:
   # -- Indicates to all subcharts that they are being used as part of a Nubus deployment.
   nubusDeployment: true
-  # -- Master password from which other passwords are derived.
-  nubusMasterPassword: ""
+  secrets:
+    # -- Master password from which other passwords are derived.
+    masterPassword: ""
   ldap:
     baseDn: ""
     domainName: ""
@@ -16,6 +17,12 @@ global:
           name: null
           keyMapping:
             password: "adminPassword"
+
+  udm:
+    connection:
+      # -- Global default for the URL via which the UDM Rest API can be reached.
+      # In transition state, not all subcharts do make use of this yet.
+      url: '{{ include "nubusTemplates.udmRestApi.uri" . }}'
 
   domain: ""
   subDomains:
@@ -65,7 +72,7 @@ global:
         registry: "artifacts.software-univention.de"
         repository: "nubus/images/portal-extension"
         imagePullPolicy: "IfNotPresent"
-        tag: "0.44.3@sha256:734efc0adda680526dde09387db964612f9e0ab020382580984488cc993c68f0"
+        tag: "0.55.0@sha256:6f4fff6a53ffb8be858f3a06e9832b90f773500877dd8ab0e20da82008f3d964"
 
 # -- Additional custom annotations to add to all objects deployed directly by the umbrella chart.
 additionalAnnotations: {}
@@ -370,12 +377,19 @@ nubusPortalServer: &nubusPortalServer
   enabled: true
   ingress:
     host: "{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
+
   objectStorage:
     auth:
       accessKey: null
       secretKey: null
     endpoint: '{{ printf "http://%s-minio:9000" .Release.Name }}'
     bucketName: "nubus"
+
+  udm:
+    auth:
+      existingSecret:
+        name: "{{ .Release.Name }}-stack-data-ums-svc-portal-server"
+
   resources: *nubusDevelopmentResources
 
 nubusProvisioning: &nubusProvisioning
@@ -742,6 +756,7 @@ nubusStackDataUms:
         lastname: "LDAP-system-User"
         password: '{{ include "nubusTemplates.credentials.ldap.users.readonly.password" . }}'
     readonlyUserPassword: '{{ include "nubusTemplates.credentials.ldap.users.readonly.password" . }}'
+    svcPortalServerUserPassword: null
 
 
 # Allows for creation of additional secrets, for example containing credentials for third party services.
