@@ -1,5 +1,38 @@
 # Changelog
 
+## [1.7.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v1.6.0...v1.7.0) (2025-02-28)
+
+
+### Features
+
+* Add new dependency "nubus-common" in version 0.8.0 ([862a91c](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/862a91c7475912396fa0260df41bf371326bd2f7))
+* adhoc provisioning ([eddab3c](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/eddab3cb00c20c1ca5ce902e8e447cdbebbde199))
+* Bump ucs-base-image to use released apt sources ([d94d64f](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/d94d64ff6673dd148d8a863fd7ce78ec925ece56))
+* remove injected configuration from nubusStackDataUms ([abc934d](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/abc934dde86c61113cdbf23b27575d11837addee))
+* Remove portal related defaults regarding the log level configuration ([e8698a6](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/e8698a64df9c16e8912c020551d084468a73e389))
+* Replace "global.nubusMasterPassword" with "global.secrets.masterPassword" ([17687dc](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/17687dc1d6845f0183e7b412f85b7b1411e8d823))
+* Update portal charts to version 0.51.0 ([d33a028](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/d33a028180c680032a426e3a9f1e21b58819f741))
+* Update portal subcharts to version 0.55.0 ([f8e3c76](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/f8e3c766260b6692640a81827dbbee3f6c4a1261))
+* Update portal-extension to version 0.55.0 ([1224be8](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/1224be8c1aaf7e75e4a5568f09b238af3e41d513))
+* Update stack-data-ums to version 0.87.0 ([49c92d5](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/49c92d5149f0e57692f6d681b7d692c2b605c4fb))
+
+
+### Bug Fixes
+
+* add resources to guardian ([32a3032](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/32a3032c917a04a70564789e5f4053155cf594fb))
+* Bump stack-data chart to add the new data loader actions: modify_if_exists and ensure_list_does_not_contain ([cae1364](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/cae136431472d6f5eaafeed608427e1f12927931))
+* dispatch crashes if NATS connections fails. ([fe513a9](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/fe513a92b5ea6463566c56c26b4adfdce7db377c))
+* fix keycloak-extensions database connection ([ca701c9](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/ca701c9468297dae70d78792dece3bb176550765))
+* fix security context on portal consumer ([a3c2739](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/a3c2739145be3fa1f7c6cea843cf0bad5a986f66))
+* **keycloak-extensions:** Fix httpx dependency in keycloak-extensions handler ([676c679](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/676c679ecd07f6660ac3e62cea72257240a2a194))
+* **keycloak-extensions:** Fix postgres SSL parsing so it is a boolean ([d3d3b57](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/d3d3b57e8968b43e66e8927f5d257afb8efb5452))
+* **keycloak-extensions:** handle failed promise in keycloak-extensions proxy ([5beb20f](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/5beb20fdcf4f3a6ea960e35a059ba2d7bbc527c4))
+* set plugin mounts to read-only ([b098137](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/b0981372dc4961a72a98e58ec76f38c3c97a00ea))
+* **stack-data:** Do not disable OX Context UMC module via UCR ([7647d98](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/7647d9842a05972d79746eb117715defd7c70529))
+* **stack-data:** Excess pointers caused values and documentation to be double namespaced ([b85806f](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/b85806f6e7cabf49f317ad9402008ae11adaa4cb))
+* **udm-listener:** Fix double resources key in statefulset ([1e7d72c](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/1e7d72c3113fa1d277dfcd5a9eb7326600938c52))
+* Update provisioning subchart to version 0.49.1 ([98ea4b9](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/98ea4b945b02a1f289ef589adcda5ffeeb3aaaa2))
+
 ## [1.6.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v1.5.1...v1.6.0) (2025-01-21)
 
 
