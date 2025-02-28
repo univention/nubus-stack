@@ -9,7 +9,6 @@ global:
   domain: "example.com"
   ingressClass: "nginx"
   certManagerIssuer: "letsencrypt"
-  nubusMasterPassword: "nubus"
 
 nubusStackGateway:
   ingress:

@@ -40,6 +40,21 @@ based on the following patterns:
 The `REVIEW_PREFIX` being the leftmost part of the domains should help to ensure
 that we have the best possible support for wildcard certificates during testing.
 
+## Configuration structure
+
+There are two levels of values files in the `ci` directory.
+
+The helm level values files configure the Nubus helm chart for different scenarios:
+- ./ci-values.yaml.gotmpl
+(always active)
+- ./dev-values.yaml.gotmpl
+(always active)
+- ./nextcloud-extension-values.yaml.gotmpl
+(optional, activate with `--state-values-set toggles.nextcloudEnabled=true`)
+- ./loadtest-values.yaml.gotmpl
+(optional, activate with `--state-values-set toggles.loadTest=true`)
+-
+
 
 ## Manual usage
 
@@ -49,7 +64,7 @@ The idea is to deploy into a new namespace which is based on the name of the
 branch or a tag. The Ingress objects will then be configured based on this
 namespace.
 
-Copy `gaia-values.yaml.gotmpl` to `local-values.yaml.gotmpl` if you want to
+Copy `gaia-state-values.yaml.gotmpl` to `local-state-values.yaml.gotmpl` if you want to
 tweak settings for deployments, e.g. when using a different target cluster.
 
 ```

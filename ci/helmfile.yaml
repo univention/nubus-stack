@@ -4,14 +4,12 @@
 ---
 environments:
 
-  # The default configuration is a Nubus deployed with openDesk extensions
-  # with adjustments for the Gaia cluster.
-  #
-  # A transition to plain Nubus is being prepared and will be done once the
-  # plain Nubus deployment is stable and has passing e2e tests.
+  # The default configuration is a bare Nubus deployment without openDesk extensions
+  # but with a few adjustments for the Gaia cluster.
   default:
     values:
-      - gaia-values.yaml.gotmpl
+      - default-state-values.yaml.gotmpl
+      - gaia-state-values.yaml.gotmpl
       - reviewPrefix: {{ env "REVIEW_PREFIX" | default .Namespace }}
 
   # Configuration for a local or custom deployment.
@@ -20,7 +18,8 @@ environments:
   # local" for local experimentation e.g. with other clusters.
   local:
     values:
-      - local-values.yaml.gotmpl
+      - default-state-values.yaml.gotmpl
+      - local-state-values.yaml.gotmpl
       - reviewPrefix: {{ env "REVIEW_PREFIX" | default .Namespace }}
 
 ---
@@ -49,10 +48,13 @@ releases:
     version: {{ env "CHART_VERSION" | default "*" | quote }}
     values:
       - ./ci-values.yaml.gotmpl
-      {{- if not .Values.toggles.opendeskCustomization }}
-      - ./ci-plain-values.yaml
-      {{- end }}
       - ./dev-values.yaml.gotmpl
+      {{- if .Values.toggles.nextcloudExtension }}
+      - ./nextcloud-extension-values.yaml.gotmpl
+      {{- end }}
+      {{- if .Values.toggles.loadTest }}
+      - ./load-test-values.yaml.gotmpl
+      {{- end }}
 
   - name: maildev
     chart: maildev/maildev
