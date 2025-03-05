@@ -62,5 +62,5 @@ dependencies:
 - name: umc-server
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.37.0
-digest: sha256:54ca4c4d5e12257a5a0cd38b8c09827b01c84724e73e050f11af8565d0a14ab8
-generated: "2025-03-05T15:26:43.78359+01:00"
+digest: sha256:93649fefb67940ae5a5e2a24d7ab2191ac6b0f36443c9a1102fd45b523dbbbe3
+generated: "2025-03-05T15:40:30.238951+01:00"
