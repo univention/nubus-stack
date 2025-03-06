@@ -3523,6 +3523,15 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusUdmRestApi.ingress.enabled</td>
+			<td>bool</td>
+			<td><pre lang="json">
+false
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusUdmRestApi.ingress.host</td>
 			<td>string</td>
 			<td><pre lang="json">
