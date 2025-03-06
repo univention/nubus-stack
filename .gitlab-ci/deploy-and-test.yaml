@@ -23,6 +23,7 @@ pipline-configuration:
     - echo "${DEPLOY_SUBDOMAIN}"
     - echo "${RELEASE_VERSION}"
     - echo "${SEMANTIC_VERSION}"
+    - echo "${TESTRUNNER_VERSION}"
   variables:
     GIT_STRATEGY: none
 
@@ -145,8 +146,6 @@ e2e-tests:
     expire_in: "1 week"
   tags:
     - "docker"
-  variables:
-    TESTRUNNER_VERSION: "latest"
 
 
 stop-deployment:
