@@ -600,6 +600,7 @@ nubusUdmRestApi: &nubusUdmRestApi
   nameOverride: "udm-rest-api"
   enabled: true
   ingress:
+    enabled: false
     host: "{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
   resources: *nubusDevelopmentResources
   udmRestApi:
