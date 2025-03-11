@@ -111,8 +111,8 @@ dependencies:
 
   - name: "stack-data-ums"
     alias: "nubusStackDataUms"
-    repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.88.0"
+    repository: "oci://artifacts.software-univention.de/nubus-dev/charts"
+    version: "0.89.0-pre-ahendricks-remove-obsolete-authorized-groups-from-config"
     condition: "nubusStackDataUms.enabled"
 
   # udm-rest-api related chart(s)
