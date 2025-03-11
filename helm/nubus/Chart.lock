@@ -51,8 +51,8 @@ dependencies:
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.10.1
 - name: stack-data-ums
-  repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.88.0
+  repository: oci://artifacts.software-univention.de/nubus-dev/charts
+  version: 0.89.0-pre-ahendricks-remove-obsolete-authorized-groups-from-config
 - name: udm-rest-api
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.29.0
@@ -62,5 +62,10 @@ dependencies:
 - name: umc-server
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.37.0
+<<<<<<< HEAD
 digest: sha256:685a99f171e4fb9afbe6a881866bf2d8f2bb4542baf61be75e84a2e45d255e5f
 generated: "2025-03-12T20:01:57.944021+01:00"
+=======
+digest: sha256:0cf7a062aec4411f9600400575a05cc194ade33a21753cbe50828ab739c5d0c4
+generated: "2025-03-11T15:39:04.73207+01:00"
+>>>>>>> 3be127e (feat: bump stack-data version)
