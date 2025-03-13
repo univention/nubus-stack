@@ -7,10 +7,6 @@ type: "application"
 version: "1.0.0"
 
 dependencies:
-  - name: "common"
-    version: "^2.x.x"
-    repository: "oci://registry-1.docker.io/bitnamicharts"
-
   - name: "nubus-common"
     version: "^0.8.x"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
@@ -112,7 +108,7 @@ dependencies:
   - name: "stack-data-ums"
     alias: "nubusStackDataUms"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.88.0"
+    version: "0.89.0"
     condition: "nubusStackDataUms.enabled"
 
   # udm-rest-api related chart(s)
