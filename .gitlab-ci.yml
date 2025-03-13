@@ -24,6 +24,11 @@ variables:
   DEPLOY_SUBDOMAIN:
     description: "The subdomain to prepend during the deployment."
     value: "${CI_COMMIT_REF_SLUG}"
+  TESTRUNNER_VERSION:
+    description: |
+      Allows to specify a custom tag to use for the e2e-tests testrunner image.
+      Intended to help with testing a branch of the e2e-tests repository.
+    value: "latest"
 
 renovate:
   stage: "package"
