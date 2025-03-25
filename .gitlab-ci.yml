@@ -18,6 +18,14 @@ include:
 
 variables:
   SKIP_UPDATE_HELM_VALUES: "1"
+  AUTO_TRIGGER_TESTS:
+    description: |
+      Deployment and e2e test run will be triggered automatically if this is set
+      to "yes".
+    value: "no"
+    options:
+      - "yes"
+      - "no"
   DEPLOY_NAMESPACE:
     description: "The namespace to deploy into."
     value: "ci-${CI_COMMIT_REF_SLUG}"
@@ -67,4 +75,6 @@ deploy-and-test:
   rules:
     - if: '$CI_PIPELINE_SOURCE == "schedule"'
       when: never
+    - if: '$AUTO_TRIGGER_TESTS == "yes"'
+      when: on_success
     - when: manual
