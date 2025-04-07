@@ -1,5 +1,42 @@
 # Changelog
 
+## [1.8.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v1.7.0...v1.8.0) (2025-04-07)
+
+
+### Features
+
+* bump stack-data version ([acb5b8e](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/acb5b8e2a26a3d6dcd10775578ec27c5f578eef5))
+* bump stack-data version ([70a6532](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/70a6532562c78d81531cfd15758e9b255bd35b13))
+* bump stack-data version ([901f55c](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/901f55cd0d44cff73cf72f91497794c5585f60ea))
+* bump stack-data-ums to 0.89.0 to remove obsolete user groups by default ([1838472](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/1838472d20a6667da832a67855eb534f801edf0a))
+* bump stack-data-ums to 0.89.0 to remove obsolete user groups by default - add Chart.lock ([25c5064](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/25c506457579b1cb9153f7f3283204de634b357a))
+* bump stack-data-ums to 0.89.0 to remove obsolete user groups by default - add Chart.lock ([002854a](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/002854a61f13f599cc0855ecb31565777afbe5c2))
+* Bump version of UMC components to 0.38.0 ([0887299](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/0887299e6fef5759c1b5285abc9de1dc705c8601)), closes [univention/dev/internal/team-nubus#1048](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1048)
+* **ldap-server:** integrate refactored existingSecrets of ldap-server (dev version) ([2b3f408](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/2b3f408746fbf5c4d1fea4dcd2807927cea7973e)), closes [univention/dev/internal/team-nubus#1089](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1089)
+* **portal-server:** Migrate object storage and central navigation secrets ([a19e82d](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/a19e82d214e0cbd9897ad93ee1c7abd98debbf7b)), closes [univention/dev/internal/team-nubus#1092](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1092)
+* remove common from Chart to only use nubus-common which is not rate limited ([94f0bcd](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/94f0bcd12e1c701b63ecac20bf0e31a62e695f12))
+* udm rest api not reachable by default ([6284610](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/6284610f98ef007ef4797c50ff580cdaf4d2c964))
+* Update ldap-server and -notifier to version 0.33.1 ([818ea5c](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/818ea5c1b8c93b9fd6e864e617820bc59e18791b))
+* Update portal components to version 0.57.0 ([410a2f5](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/410a2f5833d8e061d4352509c9adf99cc7a91d9b))
+* Update portal components to version 0.59.1 ([a1b3745](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/a1b374580ba61d5e5628a52a390c841bc18557c6))
+
+
+### Bug Fixes
+
+* add adapted readme and chart lock file ([f7d194e](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/f7d194eb9f619289fa54a3a88a215dec0c8d6f85))
+* Adding correct version tag of container-ldap ([ec3464b](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/ec3464b83f0b2069799e6c605283116863b768f9))
+* bump lda-notifier version to dev version from mr for testing ([01270a6](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/01270a6fcaadd9fadc4c1fa9b07cbc6c6495ac60))
+* fix namespace templating ([05f970b](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/05f970b5a081521b2475130b2d429e8a9cf99bdf)), closes [univention/dev/internal/team-nubus#1075](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1075)
+* Integrate data-loader refactoring. (no functional changes) ([9ec8ca4](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/9ec8ca417b62885c024837126eac1ee317e08755))
+* **keycloak:** Changed version to 0.9.2 ([0172950](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/0172950ec9c057aeee8327cdc81ac21fafb96569)), closes [univention/dev/internal/team-nubus#996](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/996)
+* **ldap-server:** Resources templated correctlly on primary and secondary ([5894640](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/58946401116599a4e2555fe30e936d255a8eda1a)), closes [univention/dev/internal/team-nubus#1117](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1117)
+* Update portal components to version 0.57.3 ([f42fbaf](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/f42fbaf673e0de96999ce0fb199aa41a1ea47141))
+* Update portal components to version 0.57.4 ([dcc2049](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/dcc20493f3ae0400747687988934431883c83181))
+* update the nats container images ([133401f](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/133401f74061fb742e00586a89fb6a30c5ce1395))
+* version bump of keycloak to 0.9.0 ([9ba54dc](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/9ba54dcb8f240e206f722e5e21c35ca8207a860a))
+* version bump of keycloak to 0.9.0 bump Chart.lock ([1e30369](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/1e30369dc020e0c90fdf05d65186b7cc03ba60ed))
+* version bump of keycloak to 0.9.0 include Chart.lock ([f30e7b3](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/f30e7b3ee2cb776245d2bf1c47637b5c0544a2a4))
+
 ## [1.7.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v1.6.0...v1.7.0) (2025-02-28)
 
 
