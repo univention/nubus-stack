@@ -36,24 +36,23 @@ helm uninstall nubus
 | Repository | Name | Version |
 |------------|------|---------|
 | oci://artifacts.software-univention.de/nubus/charts | nubusGuardian(guardian) | 0.17.0 |
-| oci://artifacts.software-univention.de/nubus/charts | keycloak(keycloak) | 0.8.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakBootstrap(keycloak-bootstrap) | 0.10.1 |
+| oci://artifacts.software-univention.de/nubus/charts | keycloak(keycloak) | 0.9.2 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakBootstrap(keycloak-bootstrap) | 0.10.2 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakExtensions(keycloak-extensions) | 0.16.1 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusLdapNotifier(ldap-notifier) | 0.33.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusLdapServer(ldap-server) | 0.33.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusNotificationsApi(notifications-api) | 0.55.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusLdapNotifier(ldap-notifier) | 0.34.1 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusLdapServer(ldap-server) | 0.34.1 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusNotificationsApi(notifications-api) | 0.63.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubus-common | ^0.8.x |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalConsumer(portal-consumer) | 0.55.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalFrontend(portal-frontend) | 0.55.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.55.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 0.49.1 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalConsumer(portal-consumer) | 0.63.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalFrontend(portal-frontend) | 0.63.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.63.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 0.49.3 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceConsumer(selfservice-consumer) | 0.14.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.87.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 0.49.1 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.89.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 0.49.3 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmRestApi(udm-rest-api) | 0.29.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.37.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUmcServer(umc-server) | 0.37.0 |
-| oci://registry-1.docker.io/bitnamicharts | common | ^2.x.x |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.38.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUmcServer(umc-server) | 0.38.0 |
 | oci://registry-1.docker.io/bitnamicharts | minio | 14.7.0 |
 | oci://registry-1.docker.io/bitnamicharts | postgresql | ^12.x.x |
 
@@ -331,7 +330,7 @@ true
       "imagePullPolicy": "IfNotPresent",
       "registry": "artifacts.software-univention.de",
       "repository": "nubus/images/portal-extension",
-      "tag": "0.55.0@sha256:6f4fff6a53ffb8be858f3a06e9832b90f773500877dd8ab0e20da82008f3d964"
+      "tag": "0.59.1@sha256:c9c7faa3cca2be2f45d073517a50e8a8cc89d46c978c2f3a6be3c13d0e6ae900"
     },
     "name": "portal"
   }
@@ -1669,6 +1668,24 @@ false
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusLdapServer.ldapServer.auth.existingSecret.keyMapping.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+"adminPassword"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusLdapServer.ldapServer.auth.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Release.Name }}-ldap-server-credentials"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusLdapServer.nameOverride</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -2173,19 +2190,10 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusPortalServer.objectStorage.auth.accessKey</td>
+			<td>nubusPortalServer.objectStorage.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-null
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusPortalServer.objectStorage.auth.secretKey</td>
-			<td>string</td>
-			<td><pre lang="json">
-null
+"{{ .Release.Name }}-portal-server-minio-credentials"
 </pre>
 </td>
 			<td></td>
@@ -2203,7 +2211,16 @@ null
 			<td>nubusPortalServer.objectStorage.endpoint</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ printf \"http://%s-minio:9000\" .Release.Name }}"
+"http://{{ .Release.Name }}-minio:9000"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusPortalServer.portalServer.centralNavigation.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Release.Name }}-portal-server-central-navigation-shared-secret"
 </pre>
 </td>
 			<td></td>
@@ -3518,6 +3535,15 @@ null
 			<td>bool</td>
 			<td><pre lang="json">
 true
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusUdmRestApi.ingress.enabled</td>
+			<td>bool</td>
+			<td><pre lang="json">
+false
 </pre>
 </td>
 			<td></td>

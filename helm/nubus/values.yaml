@@ -72,7 +72,7 @@ global:
         registry: "artifacts.software-univention.de"
         repository: "nubus/images/portal-extension"
         imagePullPolicy: "IfNotPresent"
-        tag: "0.55.0@sha256:6f4fff6a53ffb8be858f3a06e9832b90f773500877dd8ab0e20da82008f3d964"
+        tag: "0.59.1@sha256:c9c7faa3cca2be2f45d073517a50e8a8cc89d46c978c2f3a6be3c13d0e6ae900"
 
 # -- Additional custom annotations to add to all objects deployed directly by the umbrella chart.
 additionalAnnotations: {}
@@ -320,6 +320,12 @@ nubusLdapServer: &nubusLdapServer
   resourcesPrimary: *nubusDevelopmentResources
   resourcesSecondary: *nubusDevelopmentResources
   resourcesProxy: *nubusDevelopmentResources
+  ldapServer:
+    auth:
+      existingSecret:
+        name: "{{ .Release.Name }}-ldap-server-credentials"
+        keyMapping:
+          password: "adminPassword"
 
 nubusNotificationsApi: &nubusNotificationsApi
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
@@ -380,10 +386,15 @@ nubusPortalServer: &nubusPortalServer
 
   objectStorage:
     auth:
-      accessKey: null
-      secretKey: null
-    endpoint: '{{ printf "http://%s-minio:9000" .Release.Name }}'
+      existingSecret:
+        name: "{{ .Release.Name }}-portal-server-minio-credentials"
+    endpoint: "http://{{ .Release.Name }}-minio:9000"
     bucketName: "nubus"
+
+  portalServer:
+    centralNavigation:
+      existingSecret:
+        name: "{{ .Release.Name }}-portal-server-central-navigation-shared-secret"
 
   udm:
     auth:
@@ -600,6 +611,7 @@ nubusUdmRestApi: &nubusUdmRestApi
   nameOverride: "udm-rest-api"
   enabled: true
   ingress:
+    enabled: false
     host: "{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
   resources: *nubusDevelopmentResources
   udmRestApi:

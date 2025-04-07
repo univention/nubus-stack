@@ -15,20 +15,30 @@ stages:
   - test
   - cleanup
 
+.check-variables:
+  before_script:
+    # kubernets has a 63 chars limit for namespaces so make sure we do not exceed this
+    - export DEPLOY_NAMESPACE="${DEPLOY_NAMESPACE:0:63}"
+    # urllib (idna) has a char limit of 63 and some tests add -maildev to the url
+    # so limit chars ro 63 - 8
+    - export DEPLOY_SUBDOMAIN="${DEPLOY_SUBDOMAIN:0:55}"
 
 pipline-configuration:
   stage: prepare
+  extends: .check-variables
   script:
     - echo "${DEPLOY_NAMESPACE}"
     - echo "${DEPLOY_SUBDOMAIN}"
     - echo "${RELEASE_VERSION}"
     - echo "${SEMANTIC_VERSION}"
+    - echo "${TESTRUNNER_VERSION}"
   variables:
     GIT_STRATEGY: none
 
 
 deploy-gaia:
   stage: "deploy"
+  extends: .check-variables
   image: "ghcr.io/helmfile/helmfile:v0.167.1\
           @sha256:414cb074a0da0f457129590c39d96575fbdcdb7ce75bf0d2b30f05e835947d76"
   script:
@@ -49,7 +59,6 @@ deploy-gaia:
     # would be preferred since it gives a nice diff of the changes.
     #
     # See: https://github.com/databus23/helm-diff/issues/460
-    # - helmfile -n "${DEPLOY_NAMESPACE}" apply --skip-diff-on-install
     - helmfile --debug -n "${DEPLOY_NAMESPACE}" sync
     - popd
   environment:
@@ -66,6 +75,7 @@ deploy-gaia:
 
 wait-for-bootstrap:
   stage: deploy
+  extends: .check-variables
   image: "ghcr.io/helmfile/helmfile:v0.167.1\
           @sha256:414cb074a0da0f457129590c39d96575fbdcdb7ce75bf0d2b30f05e835947d76"
   needs:
@@ -76,11 +86,12 @@ wait-for-bootstrap:
     # It's easier to wait for a job than a container, that's why we wait for the portal-tiles a bit more implicitly.
     - echo "Waiting for the bootstrapping of the deployment to finish"
     - echo "Waiting for the creation of the provisioning subscriptions"
-    - kubectl -n "$DEPLOY_NAMESPACE" wait --for=condition=complete jobs.batch "${RELEASE_NAME:=nubus}-provisioning-register-consumers-1" --timeout 10m
+    - kubectl -n "${DEPLOY_NAMESPACE}" wait --for=condition=complete jobs.batch "${RELEASE_NAME:=nubus}-provisioning-register-consumers-1" --timeout 10m
 
 
 configure-tests:
   stage: test
+  extends: .check-variables
   image: "ghcr.io/helmfile/helmfile:v0.167.1\
           @sha256:414cb074a0da0f457129590c39d96575fbdcdb7ce75bf0d2b30f05e835947d76"
   script:
@@ -106,6 +117,7 @@ configure-tests:
 
 e2e-tests:
   stage: test
+  extends: .check-variables
   needs:
     - configure-tests
   image: "gitregistry.knut.univention.de/univention/customers/dataport/upx/\
@@ -145,12 +157,11 @@ e2e-tests:
     expire_in: "1 week"
   tags:
     - "docker"
-  variables:
-    TESTRUNNER_VERSION: "latest"
 
 
 stop-deployment:
   stage: cleanup
+  extends: .check-variables
   allow_failure: true
   needs:
     - deploy-gaia

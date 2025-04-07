@@ -4,7 +4,7 @@
 ---
 include:
   - project: "univention/customers/dataport/upx/common-ci"
-    ref: "v1.34.0"
+    ref: "v1.36.2"
     file:
       - "defaults/nubus-workflow.yaml"
       - "defaults/stages.yaml"
@@ -18,12 +18,25 @@ include:
 
 variables:
   SKIP_UPDATE_HELM_VALUES: "1"
+  AUTO_TRIGGER_TESTS:
+    description: |
+      Deployment and e2e test run will be triggered automatically if this is set
+      to "yes".
+    value: "no"
+    options:
+      - "yes"
+      - "no"
   DEPLOY_NAMESPACE:
     description: "The namespace to deploy into."
     value: "ci-${CI_COMMIT_REF_SLUG}"
   DEPLOY_SUBDOMAIN:
     description: "The subdomain to prepend during the deployment."
     value: "${CI_COMMIT_REF_SLUG}"
+  TESTRUNNER_VERSION:
+    description: |
+      Allows to specify a custom tag to use for the e2e-tests testrunner image.
+      Intended to help with testing a branch of the e2e-tests repository.
+    value: "latest"
 
 renovate:
   stage: "package"
@@ -62,4 +75,6 @@ deploy-and-test:
   rules:
     - if: '$CI_PIPELINE_SOURCE == "schedule"'
       when: never
+    - if: '$AUTO_TRIGGER_TESTS == "yes"'
+      when: on_success
     - when: manual
