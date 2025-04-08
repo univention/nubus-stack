@@ -165,8 +165,8 @@ spec:
               path: {{ .Values.nubusKeycloakExtensions.postgresql.auth.username | quote }}
       - name: "guardian-postgresql-credentials"
         secret:
-          secretName: {{ (printf "%s-guardian-management-api-postgresql-credentials" .Release.Name) | quote }}
+          secretName: {{ include "nubus-common.secrets.name" (dict "existingSecret" .Values.nubusGuardian.postgresql.auth.existingSecret "defaultNameSuffix" "management-api-postgresql-credentials" "context" .) | quote }}
           items:
-            - key: {{ .Values.nubusGuardian.postgresql.auth.credentialSecret.key | quote }}
+            - key: {{ include "nubus-common.secrets.key" (dict "existingSecret" .Values.nubusGuardian.postgresql.auth.existingSecret "key" "password") }}
               path: {{ .Values.nubusGuardian.postgresql.auth.username | quote }}
 {{ end }}

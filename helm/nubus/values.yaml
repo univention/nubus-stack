@@ -283,26 +283,39 @@ nubusGuardian: &nubusGuardian
   ingress:
     host: "{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
   resources: *nubusDevelopmentResources
+  authorizationApi:
+    udm:
+      auth:
+        username: 'cn=admin'
+        existingSecret:
+          name: '{{- printf "%s-guardian-udm-secret" .Release.Name -}}'
+          keyMapping:
+            password: 'udmDataAdapterPassword'
+  managementApi:
+    oauth:
+      auth:
+        existingSecret:
+          name: '{{- printf "%s-guardian-keycloak-client-secret" .Release.Name -}}'
+          keyMapping:
+            clientSecret: 'oauthAdapterM2mSecret'
   postgresql:
-    bundled: false
     connection:
       host: ""
       port: ""
     auth:
       database: guardian
       username: guardian
-      credentialSecret:
-        key: password
+      existingSecret:
+        name: '{{- printf "%s-guardian-management-api-postgresql-credentials" .Release.Name -}}'
   provisioning:
     enabled: true
-    config:
-      keycloak:
+    keycloak:
+      auth:
         username: "kcadmin"
-        credentialSecret:
-          key: adminPassword
-      managementApi:
-        credentialSecret:
-          key: managementApiClientSecret
+        existingSecret:
+          name: '{{- printf "%s-guardian-provisioning-secret" .Release.Name -}}'
+          keyMapping:
+            password: "adminPassword"
 
 nubusLdapNotifier: &nubusLdapNotifier
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
