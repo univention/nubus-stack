@@ -63,7 +63,7 @@ global:
   # -- Extensions to load. Add entries to load additional extensions into Nubus.
   extensions: []
 
-# -- Allows to configure the system extensions to load. This is intended for
+  # -- Allows to configure the system extensions to load. This is intended for
   # internal usage, prefer to use `global.extensions` for user configured
   # extensions.
   systemExtensions:
@@ -384,22 +384,50 @@ nubusPortalConsumer: &nubusPortalConsumer
   resources: *nubusDevelopmentResources
   objectStorage:
     auth:
-      accessKey: null
-      secretKey: null
-    endpoint: '{{ printf "http://%s-minio:9000" .Release.Name }}'
+      existingSecret:
+        name: "{{ .Release.Name }}-portal-consumer-minio-credentials"
+    endpoint: "http://{{ .Release.Name }}-minio:9000"
     bucketName: "nubus"
+
   # TODO: Not yet supported
   # udm:
   #   auth:
   #     password: null
   portalConsumer:
     ldapHost: "{{ .Release.Name }}-ldap-server-primary"
-  provisioningApi:
+
+  ldap:
+    # -- Optional reference to a different secret containing credentials
     auth:
-      username: "portal-consumer"
-      password: null
+      existingSecret:
+        name: "{{ .Release.Name }}-ldap-server-credentials"
+        keyMapping:
+          password: "adminPassword"
+
+    # TLS configuration for the OpenLDAP server
+    tls:
+      enabled: false
+      # -- Optional reference to the secret to use for reading certificates
       existingSecret:
         name: null
+        keyMapping:
+          ca.crt: null
+          tls.crt: null
+          tls.key: null
+
+  provisioningApi:
+    connection:
+      baseUrl: '{{ printf "http://%s-provisioning-api" .Release.Name }}'
+    # -- Authentication parameters
+    auth:
+      # -- The username to authenticate with. A secret will be created if existingSecret is not set.
+      username: "portal-consumer"
+      # -- The password to authenticate with. A secret will be created if existingSecret is not set.
+      password: ""
+      existingSecret:
+        name: "{{ .Release.Name }}-portal-consumer-credentials"
+        keyMapping:
+          password: PROVISIONING_API_PASSWORD
 
 nubusPortalServer: &nubusPortalServer
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
@@ -441,7 +469,7 @@ nubusProvisioning: &nubusProvisioning
       existingSecret:
         name: '{{- printf "%s-ldap-server-credentials" .Release.Name -}}'
         keyMapping:
-          password: '{{ .Values.global.ldap.auth.cnAdmin.existingSecret.keyMapping.password }}'
+          password: "{{ .Values.global.ldap.auth.cnAdmin.existingSecret.keyMapping.password }}"
   nats:
     auth:
       adminPassword: null
@@ -646,7 +674,7 @@ nubusUdmRestApi: &nubusUdmRestApi
         existingSecret:
           name: '{{- printf "%s-ldap-server-credentials" .Release.Name -}}'
           keyMapping:
-            password: '{{ .Values.global.ldap.auth.cnAdmin.existingSecret.keyMapping.password }}'
+            password: "{{ .Values.global.ldap.auth.cnAdmin.existingSecret.keyMapping.password }}"
 
 nubusUmcGateway: &nubusUmcGateway
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
@@ -757,7 +785,7 @@ nubusKeycloakExtensions: &nubusKeycloakExtensions
         name: '{{- printf "%s-keycloak-extensions-postgresql-credentials" .Release.Name -}}'
   handler:
     appConfig:
-      logLevel: "INFO"  # default loglevel (subchart): DEBUG
+      logLevel: "INFO" # default loglevel (subchart): DEBUG
   proxy:
     appConfig:
       logLevel: "info" # default loglevel (subchart): debug
@@ -786,14 +814,13 @@ nubusStackDataUms:
 
   templateContext:
     initialPasswordAdministrator: '{{ include "nubusTemplates.credentials.administrator.password" . }}'
-    ldapSearchUsers: [ ]
+    ldapSearchUsers: []
     ldapSystemUsers:
       - username: "readonly"
         lastname: "LDAP-system-User"
         password: '{{ include "nubusTemplates.credentials.ldap.users.readonly.password" . }}'
     readonlyUserPassword: '{{ include "nubusTemplates.credentials.ldap.users.readonly.password" . }}'
     svcPortalServerUserPassword: null
-
 
 # Allows for creation of additional secrets, for example containing credentials for third party services.
 extraSecrets: []

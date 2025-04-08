@@ -42,11 +42,11 @@ helm uninstall nubus
 | oci://artifacts.software-univention.de/nubus/charts | nubusLdapNotifier(ldap-notifier) | 0.34.2 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusLdapServer(ldap-server) | 0.34.2 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusLicenseImport(license-import) | 0.1.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusNotificationsApi(notifications-api) | 0.63.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusNotificationsApi(notifications-api) | 0.64.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubus-common | ^0.8.x |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalConsumer(portal-consumer) | 0.63.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalFrontend(portal-frontend) | 0.63.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.63.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalConsumer(portal-consumer) | 0.64.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalFrontend(portal-frontend) | 0.64.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.64.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 0.49.4 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceConsumer(selfservice-consumer) | 0.14.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.89.2 |
@@ -2038,6 +2038,47 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusPortalConsumer.ldap.auth</td>
+			<td>object</td>
+			<td><pre lang="json">
+{
+  "existingSecret": {
+    "keyMapping": {
+      "password": "adminPassword"
+    },
+    "name": "{{ .Release.Name }}-ldap-server-credentials"
+  }
+}
+</pre>
+</td>
+			<td>Optional reference to a different secret containing credentials</td>
+		</tr>
+		<tr>
+			<td>nubusPortalConsumer.ldap.tls.enabled</td>
+			<td>bool</td>
+			<td><pre lang="json">
+false
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusPortalConsumer.ldap.tls.existingSecret</td>
+			<td>object</td>
+			<td><pre lang="json">
+{
+  "keyMapping": {
+    "ca.crt": null,
+    "tls.crt": null,
+    "tls.key": null
+  },
+  "name": null
+}
+</pre>
+</td>
+			<td>Optional reference to the secret to use for reading certificates</td>
+		</tr>
+		<tr>
 			<td>nubusPortalConsumer.nameOverride</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -2047,19 +2088,10 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusPortalConsumer.objectStorage.auth.accessKey</td>
+			<td>nubusPortalConsumer.objectStorage.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-null
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusPortalConsumer.objectStorage.auth.secretKey</td>
-			<td>string</td>
-			<td><pre lang="json">
-null
+"{{ .Release.Name }}-portal-consumer-minio-credentials"
 </pre>
 </td>
 			<td></td>
@@ -2077,7 +2109,7 @@ null
 			<td>nubusPortalConsumer.objectStorage.endpoint</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ printf \"http://%s-minio:9000\" .Release.Name }}"
+"http://{{ .Release.Name }}-minio:9000"
 </pre>
 </td>
 			<td></td>
@@ -2092,28 +2124,46 @@ null
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusPortalConsumer.provisioningApi.auth.existingSecret.name</td>
-			<td>string</td>
+			<td>nubusPortalConsumer.provisioningApi.auth</td>
+			<td>object</td>
 			<td><pre lang="json">
-null
+{
+  "existingSecret": {
+    "keyMapping": {
+      "password": "PROVISIONING_API_PASSWORD"
+    },
+    "name": "{{ .Release.Name }}-portal-consumer-credentials"
+  },
+  "password": "",
+  "username": "portal-consumer"
+}
 </pre>
 </td>
-			<td></td>
+			<td>Authentication parameters</td>
 		</tr>
 		<tr>
 			<td>nubusPortalConsumer.provisioningApi.auth.password</td>
 			<td>string</td>
 			<td><pre lang="json">
-null
+""
 </pre>
 </td>
-			<td></td>
+			<td>The password to authenticate with. A secret will be created if existingSecret is not set.</td>
 		</tr>
 		<tr>
 			<td>nubusPortalConsumer.provisioningApi.auth.username</td>
 			<td>string</td>
 			<td><pre lang="json">
 "portal-consumer"
+</pre>
+</td>
+			<td>The username to authenticate with. A secret will be created if existingSecret is not set.</td>
+		</tr>
+		<tr>
+			<td>nubusPortalConsumer.provisioningApi.connection.baseUrl</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ printf \"http://%s-provisioning-api\" .Release.Name }}"
 </pre>
 </td>
 			<td></td>
