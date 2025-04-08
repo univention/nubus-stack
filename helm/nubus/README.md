@@ -35,7 +35,7 @@ helm uninstall nubus
 
 | Repository | Name | Version |
 |------------|------|---------|
-| oci://artifacts.software-univention.de/nubus/charts | nubusGuardian(guardian) | 0.17.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusGuardian(guardian) | 0.18.0 |
 | oci://artifacts.software-univention.de/nubus/charts | keycloak(keycloak) | 0.9.2 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakBootstrap(keycloak-bootstrap) | 0.10.2 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakExtensions(keycloak-extensions) | 0.16.1 |
@@ -1128,6 +1128,33 @@ false
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusGuardian.authorizationApi.udm.auth.existingSecret.keyMapping.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+"udmDataAdapterPassword"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusGuardian.authorizationApi.udm.auth.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{- printf \"%s-guardian-udm-secret\" .Release.Name -}}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusGuardian.authorizationApi.udm.auth.username</td>
+			<td>string</td>
+			<td><pre lang="json">
+"cn=admin"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusGuardian.enabled</td>
 			<td>bool</td>
 			<td><pre lang="json">
@@ -1146,19 +1173,28 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusGuardian.nameOverride</td>
+			<td>nubusGuardian.managementApi.oauth.auth.existingSecret.keyMapping.clientSecret</td>
 			<td>string</td>
 			<td><pre lang="json">
-"guardian"
+"oauthAdapterM2mSecret"
 </pre>
 </td>
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusGuardian.postgresql.auth.credentialSecret.key</td>
+			<td>nubusGuardian.managementApi.oauth.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"password"
+"{{- printf \"%s-guardian-keycloak-client-secret\" .Release.Name -}}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusGuardian.nameOverride</td>
+			<td>string</td>
+			<td><pre lang="json">
+"guardian"
 </pre>
 </td>
 			<td></td>
@@ -1173,19 +1209,19 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusGuardian.postgresql.auth.username</td>
+			<td>nubusGuardian.postgresql.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"guardian"
+"{{- printf \"%s-guardian-management-api-postgresql-credentials\" .Release.Name -}}"
 </pre>
 </td>
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusGuardian.postgresql.bundled</td>
-			<td>bool</td>
+			<td>nubusGuardian.postgresql.auth.username</td>
+			<td>string</td>
 			<td><pre lang="json">
-false
+"guardian"
 </pre>
 </td>
 			<td></td>
@@ -1209,7 +1245,16 @@ false
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusGuardian.provisioning.config.keycloak.credentialSecret.key</td>
+			<td>nubusGuardian.provisioning.enabled</td>
+			<td>bool</td>
+			<td><pre lang="json">
+true
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusGuardian.provisioning.keycloak.auth.existingSecret.keyMapping.password</td>
 			<td>string</td>
 			<td><pre lang="json">
 "adminPassword"
@@ -1218,28 +1263,19 @@ false
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusGuardian.provisioning.config.keycloak.username</td>
+			<td>nubusGuardian.provisioning.keycloak.auth.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{- printf \"%s-guardian-provisioning-secret\" .Release.Name -}}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusGuardian.provisioning.keycloak.auth.username</td>
 			<td>string</td>
 			<td><pre lang="json">
 "kcadmin"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusGuardian.provisioning.config.managementApi.credentialSecret.key</td>
-			<td>string</td>
-			<td><pre lang="json">
-"managementApiClientSecret"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusGuardian.provisioning.enabled</td>
-			<td>bool</td>
-			<td><pre lang="json">
-true
 </pre>
 </td>
 			<td></td>
