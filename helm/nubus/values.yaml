@@ -339,6 +339,18 @@ nubusLdapServer: &nubusLdapServer
         keyMapping:
           password: "adminPassword"
 
+nubusLicenseImport:
+  enabled: false
+  nameOverride: "license-import"
+  ldap:
+    connection:
+      host: "{{ .Release.Name }}-ldap-server"
+    auth:
+      existingSecret:
+        name: "{{ .Release.Name }}-ldap-server-credentials"
+        keyMapping:
+          password: "{{ .Values.global.ldap.auth.cnAdmin.existingSecret.keyMapping.password }}"
+
 nubusNotificationsApi: &nubusNotificationsApi
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   nameOverride: "notifications-api"
