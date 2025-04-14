@@ -134,5 +134,5 @@ dependencies:
   - name: "umc-server"
     alias: "nubusUmcServer"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.39.0"
+    version: "0.40.0"
     condition: "nubusUmcServer.enabled"
