@@ -37,6 +37,7 @@ helm uninstall nubus
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami | minio | 14.7.0 |
 | https://charts.bitnami.com/bitnami | postgresql | ^12.x.x |
+| oci://artifacts.software-univention.de/nubus-dev/charts | nubusScimServer(scim-server) | 0.18.0-pre-jburgmeier-feature-team-nubus-1151-scim-authorization |
 | oci://artifacts.software-univention.de/nubus/charts | nubusGuardian(guardian) | 0.20.0 |
 | oci://artifacts.software-univention.de/nubus/charts | keycloak(keycloak) | 0.10.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakBootstrap(keycloak-bootstrap) | 0.11.0 |
@@ -50,7 +51,6 @@ helm uninstall nubus
 | oci://artifacts.software-univention.de/nubus/charts | nubusPortalFrontend(portal-frontend) | 0.69.1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.69.1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 0.53.2 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusScimServer(scim-server) | 0.9.1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceConsumer(selfservice-consumer) | 0.15.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.93.1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 0.53.3 |
