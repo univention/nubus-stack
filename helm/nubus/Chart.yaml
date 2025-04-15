@@ -136,3 +136,10 @@ dependencies:
     repository: "oci://artifacts.software-univention.de/nubus/charts"
     version: "0.43.1"
     condition: "nubusUmcServer.enabled"
+
+  # scrim-server related chart(s)
+  - name: "scim-server"
+    alias: "nubusScimServer"
+    repository: "oci://artifacts.software-univention.de/nubus/charts"
+    version: "0.9.1"
+    condition: "nubusScimServer.enabled"

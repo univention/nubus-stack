@@ -28,6 +28,7 @@ global:
   subDomains:
     portal: portal
     keycloak: id
+    scim: scim
 
   ingressClass: ""
   certManagerIssuer: ""
@@ -827,6 +828,19 @@ nubusStackDataUms:
         password: '{{ include "nubusTemplates.credentials.ldap.users.readonly.password" . }}'
     readonlyUserPassword: '{{ include "nubusTemplates.credentials.ldap.users.readonly.password" . }}'
     svcPortalServerUserPassword: null
+
+nubusScimServer: &nubusScimServer
+  terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
+  nameOverride: "scim-server"
+  enabled: false
+  resources: *nubusDevelopmentResources
+
+  config:
+    log_level: "INFO"
+
+  ingress:
+    enabled: true
+    host: "{{ .Values.global.subDomains.scim }}.{{ .Values.global.domain }}"
 
 # Allows for creation of additional secrets, for example containing credentials for third party services.
 extraSecrets: []
