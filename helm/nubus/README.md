@@ -35,6 +35,8 @@ helm uninstall nubus
 
 | Repository | Name | Version |
 |------------|------|---------|
+| https://charts.bitnami.com/bitnami | minio | 14.7.0 |
+| https://charts.bitnami.com/bitnami | postgresql | ^12.x.x |
 | oci://artifacts.software-univention.de/nubus/charts | nubusGuardian(guardian) | 0.18.0 |
 | oci://artifacts.software-univention.de/nubus/charts | keycloak(keycloak) | 0.9.3 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakBootstrap(keycloak-bootstrap) | 0.10.2 |
@@ -54,8 +56,6 @@ helm uninstall nubus
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmRestApi(udm-rest-api) | 0.29.2 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.41.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUmcServer(umc-server) | 0.41.0 |
-| oci://registry-1.docker.io/bitnamicharts | minio | 14.7.0 |
-| oci://registry-1.docker.io/bitnamicharts | postgresql | ^12.x.x |
 
 ## Values
 
