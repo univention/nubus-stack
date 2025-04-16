@@ -27,6 +27,12 @@ dependencies:
     version: "0.18.0"
     condition: "nubusGuardian.enabled"
 
+  - name: "license-import"
+    alias: "nubusLicenseImport"
+    repository: "oci://artifacts.software-univention.de/nubus/charts"
+    version: "0.1.0"
+    condition: "nubusLicenseImport.enabled"
+
   # ldap-server related chart(s)
   - name: "ldap-notifier"
     alias: "nubusLdapNotifier"
@@ -122,11 +128,11 @@ dependencies:
   - name: "umc-gateway"
     alias: "nubusUmcGateway"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.38.1"
+    version: "0.39.0"
     condition: "nubusUmcGateway.enabled"
 
   - name: "umc-server"
     alias: "nubusUmcServer"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.38.1"
+    version: "0.39.0"
     condition: "nubusUmcServer.enabled"

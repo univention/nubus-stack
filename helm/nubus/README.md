@@ -41,6 +41,7 @@ helm uninstall nubus
 | oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakExtensions(keycloak-extensions) | 0.16.1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusLdapNotifier(ldap-notifier) | 0.34.2 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusLdapServer(ldap-server) | 0.34.2 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusLicenseImport(license-import) | 0.1.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusNotificationsApi(notifications-api) | 0.63.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubus-common | ^0.8.x |
 | oci://artifacts.software-univention.de/nubus/charts | nubusPortalConsumer(portal-consumer) | 0.63.0 |
@@ -51,8 +52,8 @@ helm uninstall nubus
 | oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.89.2 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 0.49.3 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmRestApi(udm-rest-api) | 0.29.2 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.38.1 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUmcServer(umc-server) | 0.38.1 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.39.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUmcServer(umc-server) | 0.39.0 |
 | oci://registry-1.docker.io/bitnamicharts | minio | 14.7.0 |
 | oci://registry-1.docker.io/bitnamicharts | postgresql | ^12.x.x |
 
@@ -1695,15 +1696,6 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusLdapServer.highAvailabilityMode</td>
-			<td>bool</td>
-			<td><pre lang="json">
-false
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusLdapServer.ldapServer.auth.existingSecret.keyMapping.password</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -1861,6 +1853,51 @@ false
 			<td>string</td>
 			<td><pre lang="json">
 "16Mi"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusLicenseImport.enabled</td>
+			<td>bool</td>
+			<td><pre lang="json">
+false
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusLicenseImport.ldap.auth.existingSecret.keyMapping.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Values.global.ldap.auth.cnAdmin.existingSecret.keyMapping.password }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusLicenseImport.ldap.auth.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Release.Name }}-ldap-server-credentials"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusLicenseImport.ldap.connection.host</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Release.Name }}-ldap-server"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusLicenseImport.nameOverride</td>
+			<td>string</td>
+			<td><pre lang="json">
+"license-import"
 </pre>
 </td>
 			<td></td>
