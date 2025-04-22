@@ -13,7 +13,7 @@ include:
       - "jobs/package-and-publish-helm-charts-external.yaml"
       - "jobs/semantic-release-env.yaml"
       - "jobs/harbor-malware-scan.yaml"
-  - project: 'univention/dist/renovate-runner'
+  - project: 'univention/infrastructure/renovate-runner'
     file: '/templates/renovate.gitlab-ci.yml'
 
 variables:
