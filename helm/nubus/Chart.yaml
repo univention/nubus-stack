@@ -12,12 +12,12 @@ dependencies:
     repository: "oci://artifacts.software-univention.de/nubus/charts"
 
   - name: "postgresql"
-    repository: "oci://registry-1.docker.io/bitnamicharts"
+    repository: "https://charts.bitnami.com/bitnami"
     version: "^12.x.x"
     condition: "postgresql.enabled"
 
   - name: "minio"
-    repository: "oci://registry-1.docker.io/bitnamicharts"
+    repository: "https://charts.bitnami.com/bitnami"
     version: "14.7.0"
     condition: "minio.enabled"
 
