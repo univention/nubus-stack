@@ -35,26 +35,27 @@ helm uninstall nubus
 
 | Repository | Name | Version |
 |------------|------|---------|
-| oci://artifacts.software-univention.de/nubus/charts | nubusGuardian(guardian) | 0.17.0 |
-| oci://artifacts.software-univention.de/nubus/charts | keycloak(keycloak) | 0.9.2 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakBootstrap(keycloak-bootstrap) | 0.10.2 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakExtensions(keycloak-extensions) | 0.16.1 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusLdapNotifier(ldap-notifier) | 0.34.1 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusLdapServer(ldap-server) | 0.34.1 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusNotificationsApi(notifications-api) | 0.63.0 |
+| https://charts.bitnami.com/bitnami | minio | 14.7.0 |
+| https://charts.bitnami.com/bitnami | postgresql | ^12.x.x |
+| oci://artifacts.software-univention.de/nubus/charts | nubusGuardian(guardian) | 0.19.0 |
+| oci://artifacts.software-univention.de/nubus/charts | keycloak(keycloak) | 0.10.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakBootstrap(keycloak-bootstrap) | 0.11.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakExtensions(keycloak-extensions) | 0.17.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusLdapNotifier(ldap-notifier) | 0.37.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusLdapServer(ldap-server) | 0.37.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusLicenseImport(license-import) | 0.2.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusNotificationsApi(notifications-api) | 0.67.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubus-common | ^0.8.x |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalConsumer(portal-consumer) | 0.63.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalFrontend(portal-frontend) | 0.63.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.63.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 0.49.3 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceConsumer(selfservice-consumer) | 0.14.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.89.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 0.49.3 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUdmRestApi(udm-rest-api) | 0.29.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.38.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUmcServer(umc-server) | 0.38.0 |
-| oci://registry-1.docker.io/bitnamicharts | minio | 14.7.0 |
-| oci://registry-1.docker.io/bitnamicharts | postgresql | ^12.x.x |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalConsumer(portal-consumer) | 0.67.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalFrontend(portal-frontend) | 0.67.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.67.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 0.51.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceConsumer(selfservice-consumer) | 0.15.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.90.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 0.51.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUdmRestApi(udm-rest-api) | 0.30.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.43.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUmcServer(umc-server) | 0.43.0 |
 
 ## Values
 
@@ -139,6 +140,20 @@ true
 </pre>
 </td>
 			<td></td>
+		</tr>
+		<tr>
+			<td>global.configUcr.ldap.index</td>
+			<td>object</td>
+			<td><pre lang="json">
+{
+  "approx": "cn,givenName,mail,sn,uid",
+  "eq": "aRecord,automountInformation,cNAMERecord,cn,description,dhcpHWAddress,displayName,entryUUID,gidNumber,givenName,homeDirectory,krb5PrincipalName,macAddress,mail,mailAlternativeAddress,mailPrimaryAddress,memberUid,objectClass,ou,pTRRecord,relativeDomainName,sambaAcctFlags,sambaDomainName,sambaGroupType,sambaPrimaryGroupSID,sambaSID,sambaSIDList,secretary,shadowExpire,sn,uid,uidNumber,uniqueMember,univentionCanonicalRecipientRewriteEnabled,univentionDataType,univentionInventoryNumber,univentionLicenseModule,univentionLicenseObject,univentionMailHomeServer,univentionNagiosHostname,univentionObjectFlag,univentionObjectType,univentionPolicyReference,univentionServerRole,univentionService,univentionShareGid,univentionShareSambaName,univentionShareWriteable,univentionUDMOptionModule,univentionUDMPropertyCLIName,univentionUDMPropertyCopyable,univentionUDMPropertyDefault,univentionUDMPropertyDeleteObjectClass,univentionUDMPropertyDoNotSearch,univentionUDMPropertyHook,univentionUDMPropertyLayoutOverwritePosition,univentionUDMPropertyLayoutOverwriteTab,univentionUDMPropertyLayoutPosition,univentionUDMPropertyLayoutTabAdvanced,univentionUDMPropertyLayoutTabName,univentionUDMPropertyLdapMapping,univentionUDMPropertyLongDescription,univentionUDMPropertyModule,univentionUDMPropertyMultivalue,univentionUDMPropertyObjectClass,univentionUDMPropertyOptions,univentionUDMPropertyShortDescription,univentionUDMPropertySyntax,univentionUDMPropertyTranslationLongDescription,univentionUDMPropertyTranslationShortDescription,univentionUDMPropertyTranslationTabName,univentionUDMPropertyValueMayChange,univentionUDMPropertyValueRequired,univentionUDMPropertyVersion,zoneName,univentionObjectIdentifier",
+  "pres": "aRecord,automountInformation,cn,description,dhcpHWAddress,displayName,gidNumber,givenName,homeDirectory,krb5PrincipalName,macAddress,mail,mailAlternativeAddress,mailPrimaryAddress,memberUid,name,objectClass,ou,relativeDomainName,shadowMax,sn,uid,uidNumber,uniqueMember,univentionMailHomeServer,univentionObjectFlag,univentionPolicyReference,univentionUDMPropertyCLIName,univentionUDMPropertyDefault,univentionUDMPropertyDeleteObjectClass,univentionUDMPropertyDoNotSearch,univentionUDMPropertyHook,univentionUDMPropertyLayoutOverwritePosition,univentionUDMPropertyLayoutOverwriteTab,univentionUDMPropertyLayoutPosition,univentionUDMPropertyLayoutTabAdvanced,univentionUDMPropertyLayoutTabName,univentionUDMPropertyLdapMapping,univentionUDMPropertyLongDescription,univentionUDMPropertyModule,univentionUDMPropertyMultivalue,univentionUDMPropertyObjectClass,univentionUDMPropertyOptions,univentionUDMPropertyShortDescription,univentionUDMPropertySyntax,univentionUDMPropertyTranslationLongDescription,univentionUDMPropertyTranslationShortDescription,univentionUDMPropertyTranslationTabName,univentionUDMPropertyValueMayChange,univentionUDMPropertyValueRequired,univentionUDMPropertyVersion,zoneName,univentionObjectIdentifier",
+  "sub": "aRecord,associatedDomain,automountInformation,cn,default,description,displayName,employeeNumber,givenName,macAddress,mail,mailAlternativeAddress,mailPrimaryAddress,name,ou,pTRRecord,printerModel,relativeDomainName,sambaSID,sn,uid,univentionInventoryNumber,univentionOperatingSystem,univentionSyntaxDescription,univentionUDMPropertyLongDescription,univentionUDMPropertyShortDescription,zoneName"
+}
+</pre>
+</td>
+			<td>Indexes for the LDAP database</td>
 		</tr>
 		<tr>
 			<td>global.configUcr.umc.module.debug.level</td>
@@ -1128,6 +1143,33 @@ false
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusGuardian.authorizationApi.udm.auth.existingSecret.keyMapping.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+"udmDataAdapterPassword"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusGuardian.authorizationApi.udm.auth.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{- printf \"%s-guardian-udm-secret\" .Release.Name -}}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusGuardian.authorizationApi.udm.auth.username</td>
+			<td>string</td>
+			<td><pre lang="json">
+"cn=admin"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusGuardian.enabled</td>
 			<td>bool</td>
 			<td><pre lang="json">
@@ -1146,19 +1188,28 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusGuardian.nameOverride</td>
+			<td>nubusGuardian.managementApi.oauth.auth.existingSecret.keyMapping.clientSecret</td>
 			<td>string</td>
 			<td><pre lang="json">
-"guardian"
+"oauthAdapterM2mSecret"
 </pre>
 </td>
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusGuardian.postgresql.auth.credentialSecret.key</td>
+			<td>nubusGuardian.managementApi.oauth.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"password"
+"{{- printf \"%s-guardian-keycloak-client-secret\" .Release.Name -}}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusGuardian.nameOverride</td>
+			<td>string</td>
+			<td><pre lang="json">
+"guardian"
 </pre>
 </td>
 			<td></td>
@@ -1173,19 +1224,19 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusGuardian.postgresql.auth.username</td>
+			<td>nubusGuardian.postgresql.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"guardian"
+"{{- printf \"%s-guardian-management-api-postgresql-credentials\" .Release.Name -}}"
 </pre>
 </td>
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusGuardian.postgresql.bundled</td>
-			<td>bool</td>
+			<td>nubusGuardian.postgresql.auth.username</td>
+			<td>string</td>
 			<td><pre lang="json">
-false
+"guardian"
 </pre>
 </td>
 			<td></td>
@@ -1209,7 +1260,16 @@ false
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusGuardian.provisioning.config.keycloak.credentialSecret.key</td>
+			<td>nubusGuardian.provisioning.enabled</td>
+			<td>bool</td>
+			<td><pre lang="json">
+true
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusGuardian.provisioning.keycloak.auth.existingSecret.keyMapping.password</td>
 			<td>string</td>
 			<td><pre lang="json">
 "adminPassword"
@@ -1218,28 +1278,19 @@ false
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusGuardian.provisioning.config.keycloak.username</td>
+			<td>nubusGuardian.provisioning.keycloak.auth.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{- printf \"%s-guardian-provisioning-secret\" .Release.Name -}}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusGuardian.provisioning.keycloak.auth.username</td>
 			<td>string</td>
 			<td><pre lang="json">
 "kcadmin"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusGuardian.provisioning.config.managementApi.credentialSecret.key</td>
-			<td>string</td>
-			<td><pre lang="json">
-"managementApiClientSecret"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusGuardian.provisioning.enabled</td>
-			<td>bool</td>
-			<td><pre lang="json">
-true
 </pre>
 </td>
 			<td></td>
@@ -1659,15 +1710,6 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusLdapServer.highAvailabilityMode</td>
-			<td>bool</td>
-			<td><pre lang="json">
-false
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusLdapServer.ldapServer.auth.existingSecret.keyMapping.password</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -1830,6 +1872,51 @@ false
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusLicenseImport.enabled</td>
+			<td>bool</td>
+			<td><pre lang="json">
+false
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusLicenseImport.ldap.auth.existingSecret.keyMapping.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Values.global.ldap.auth.cnAdmin.existingSecret.keyMapping.password }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusLicenseImport.ldap.auth.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Release.Name }}-ldap-server-credentials"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusLicenseImport.ldap.connection.host</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Release.Name }}-ldap-server"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusLicenseImport.nameOverride</td>
+			<td>string</td>
+			<td><pre lang="json">
+"license-import"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusNotificationsApi.enabled</td>
 			<td>bool</td>
 			<td><pre lang="json">
@@ -1965,6 +2052,47 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusPortalConsumer.ldap.auth</td>
+			<td>object</td>
+			<td><pre lang="json">
+{
+  "existingSecret": {
+    "keyMapping": {
+      "password": "adminPassword"
+    },
+    "name": "{{ .Release.Name }}-ldap-server-credentials"
+  }
+}
+</pre>
+</td>
+			<td>Optional reference to a different secret containing credentials</td>
+		</tr>
+		<tr>
+			<td>nubusPortalConsumer.ldap.tls.enabled</td>
+			<td>bool</td>
+			<td><pre lang="json">
+false
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusPortalConsumer.ldap.tls.existingSecret</td>
+			<td>object</td>
+			<td><pre lang="json">
+{
+  "keyMapping": {
+    "ca.crt": null,
+    "tls.crt": null,
+    "tls.key": null
+  },
+  "name": null
+}
+</pre>
+</td>
+			<td>Optional reference to the secret to use for reading certificates</td>
+		</tr>
+		<tr>
 			<td>nubusPortalConsumer.nameOverride</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -1974,19 +2102,10 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusPortalConsumer.objectStorage.auth.accessKey</td>
+			<td>nubusPortalConsumer.objectStorage.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-null
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusPortalConsumer.objectStorage.auth.secretKey</td>
-			<td>string</td>
-			<td><pre lang="json">
-null
+"{{ .Release.Name }}-portal-consumer-minio-credentials"
 </pre>
 </td>
 			<td></td>
@@ -2004,7 +2123,7 @@ null
 			<td>nubusPortalConsumer.objectStorage.endpoint</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ printf \"http://%s-minio:9000\" .Release.Name }}"
+"http://{{ .Release.Name }}-minio:9000"
 </pre>
 </td>
 			<td></td>
@@ -2019,28 +2138,46 @@ null
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusPortalConsumer.provisioningApi.auth.existingSecret.name</td>
-			<td>string</td>
+			<td>nubusPortalConsumer.provisioningApi.auth</td>
+			<td>object</td>
 			<td><pre lang="json">
-null
+{
+  "existingSecret": {
+    "keyMapping": {
+      "password": "PROVISIONING_API_PASSWORD"
+    },
+    "name": "{{ .Release.Name }}-portal-consumer-credentials"
+  },
+  "password": "",
+  "username": "portal-consumer"
+}
 </pre>
 </td>
-			<td></td>
+			<td>Authentication parameters</td>
 		</tr>
 		<tr>
 			<td>nubusPortalConsumer.provisioningApi.auth.password</td>
 			<td>string</td>
 			<td><pre lang="json">
-null
+""
 </pre>
 </td>
-			<td></td>
+			<td>The password to authenticate with. A secret will be created if existingSecret is not set.</td>
 		</tr>
 		<tr>
 			<td>nubusPortalConsumer.provisioningApi.auth.username</td>
 			<td>string</td>
 			<td><pre lang="json">
 "portal-consumer"
+</pre>
+</td>
+			<td>The username to authenticate with. A secret will be created if existingSecret is not set.</td>
+		</tr>
+		<tr>
+			<td>nubusPortalConsumer.provisioningApi.connection.baseUrl</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ printf \"http://%s-provisioning-api\" .Release.Name }}"
 </pre>
 </td>
 			<td></td>
