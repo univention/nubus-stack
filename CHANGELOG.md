@@ -1,5 +1,32 @@
 # Changelog
 
+## [1.9.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v1.8.0...v1.9.0) (2025-05-05)
+
+
+### Features
+
+* Add Ingress for favicon related files ([50df258](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/50df25853038b91dc92e070877a8cbb547910939))
+* Bump ucs-base-image version ([fe735af](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/fe735af055ac6edf26151f90a5da74507f34f5ac)), closes [univention/dev/internal/team-nubus#1155](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1155)
+* **guardian:** secret refactor ([518e1c5](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/518e1c51d335d64b6c805e5d5e760526a9633aac)), closes [univention/dev/internal/team-nubus#1087](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1087)
+* Keycloak 26 upgrade ([d471d6c](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/d471d6c9697309cd501f36903a76f50dbe5b017f)), closes [univention/dev/internal/team-nubus#1043](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1043)
+* **ldap-server:** (Re)Creating LDAP indexes. ([f1c3a86](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/f1c3a86d378530ea697c5f98c58eaa5208461fa7)), closes [univention/dev/internal/team-nubus#1019](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1019)
+* **license-import:** Support for adding a license ([f410694](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/f410694715c832f9684e3248523bf56617c0f546)), closes [univention/dev/internal/team-nubus#833](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/833)
+* Migrate bitnami charts from docker.io to bitnami registry ([198967e](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/198967ee0a4978b083ef579ee452912c3f863798)), closes [univention/dev/internal/team-nubus#1131](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1131)
+* **portal-consumer:** refactor: use existingSecrets for portal-consumer ([c855337](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/c855337db15fcb91c9484fa12d5cc62df8574ab4)), closes [univention/dev/internal/team-nubus#1091](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1091)
+* **umc-server:** Run sssd sidecar non-root ([b67c8f5](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/b67c8f55fdc6d157f00f62fc672c5bd2bda39ad5)), closes [univention/dev/internal/team-nubus#1123](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1123)
+* Update portal components to version 0.65.0 ([2357e6b](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/2357e6b797dcc4c77d7ab6043ce401eeadd40499))
+* Update portal components to version 0.66.0 ([9058e7a](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/9058e7aba87447e539358328d828ab92e6650ed3))
+
+
+### Bug Fixes
+
+* **keycloak:** New version with error messages ([4c7b6f1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/4c7b6f16cee235a252305435cc71d5a24a5a4043)), closes [univention/dev/internal/team-nubus#996](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/996)
+* make copy calls in container init more robust ([cacf062](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/cacf0629bfbeb238ff6fb936c2f4467b9c404cef)), closes [univention/dev/internal/team-nubus#1079](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1079)
+* Remove "nubusLdapServer.highAvailabilityMode" from values ([5b54b62](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/5b54b62353684a5e40d70dd0861c6962004a9966))
+* **umc-server:** non-root sssd and umc-server ([47dae34](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/47dae343798fe54ffac56bb98b0d7d25d4c7b1f9)), closes [univention/dev/internal/team-nubus#1123](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1123)
+* Update portal components to version 0.66.1 ([137b415](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/137b415202e2643b18643c6d40dd3a8fae6fabbe)), closes [univention/dev/internal/team-nubus#1161](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1161)
+* Update Portal components to version 0.66.2 ([db98c45](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/db98c459c41e940ae3ceaa734980454db2fad9ea))
+
 ## [1.8.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v1.7.0...v1.8.0) (2025-04-07)
 
 
