@@ -45,7 +45,6 @@ metadata:
     cert-manager.io/{{ .Values.ingress.certManager.issuerRef.kind | kebabcase }}: "{{ coalesce .Values.global.certManagerIssuer .Values.ingress.certManager.issuerRef.name }}"
     {{- end }}
     nginx.ingress.kubernetes.io/rewrite-target: "/favicon/$1"
-    nginx.ingress.kubernetes.io/use-regex: "true"
 spec:
   ingressClassName: {{ .Values.ingress.ingressClassName | default .Values.global.ingressClass | quote }}
   {{- if .Values.ingress.tls.enabled }}
