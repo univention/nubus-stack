@@ -62,7 +62,7 @@ dependencies:
   - name: "portal-consumer"
     alias: "nubusPortalConsumer"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.67.1"
+    version: "0.67.2"
     condition: "nubusPortalConsumer.enabled"
 
   - name: "portal-server"
