@@ -24,7 +24,7 @@ dependencies:
   - name: "guardian"
     alias: "nubusGuardian"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.19.0"
+    version: "0.19.1"
     condition: "nubusGuardian.enabled"
 
   - name: "license-import"
@@ -62,7 +62,7 @@ dependencies:
   - name: "portal-consumer"
     alias: "nubusPortalConsumer"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.67.0"
+    version: "0.67.1"
     condition: "nubusPortalConsumer.enabled"
 
   - name: "portal-server"
@@ -128,11 +128,11 @@ dependencies:
   - name: "umc-gateway"
     alias: "nubusUmcGateway"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.43.0"
+    version: "0.43.1"
     condition: "nubusUmcGateway.enabled"
 
   - name: "umc-server"
     alias: "nubusUmcServer"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.43.0"
+    version: "0.43.1"
     condition: "nubusUmcServer.enabled"
