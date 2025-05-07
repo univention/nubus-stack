@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.9.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v1.9.0...v1.9.1) (2025-05-07)
+
+
+### Bug Fixes
+
+* Avoid duplicate key in favicon related Ingress ([87a4a17](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/87a4a175b8580bd2c8ed8032898796050dce4c95))
+* Warnings and errors on duplicated keys and security context ([91696cc](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/91696cc35f1c4419322be91ae04aae806ec89bcf)), closes [univention/dev/internal/team-nubus#1168](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1168)
+
 ## [1.9.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v1.8.0...v1.9.0) (2025-05-05)
 
 
