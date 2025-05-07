@@ -28,7 +28,7 @@ dependencies:
   version: 0.67.0
 - name: portal-consumer
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.67.1
+  version: 0.67.2
 - name: portal-server
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.67.0
@@ -65,5 +65,5 @@ dependencies:
 - name: scim-server
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.9.1
-digest: sha256:931de595e99f51dd42012d4d581f73e5d27fafbb3bc42283927efc951662fb42
-generated: "2025-05-09T08:13:56.39685008+02:00"
+digest: sha256:1fd251c9c953c896c8551ed2ae9fdf4fa24ed5c72aa733aa426cf70a747ee008
+generated: "2025-05-09T10:48:15.827089983+02:00"
