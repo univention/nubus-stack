@@ -62,5 +62,8 @@ dependencies:
 - name: umc-server
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.43.1
-digest: sha256:1ed558f21411770eb6bd7e4a829f7efe0263991cf9a0c25cab97a29c444c0c7e
-generated: "2025-05-07T13:14:22.386414077+02:00"
+- name: scim-server
+  repository: oci://artifacts.software-univention.de/nubus/charts
+  version: 0.9.1
+digest: sha256:ff0043a43981f14109974a29c37c7dea6bdd2d6ec4c4886b8bc1da75f9262714
+generated: "2025-05-08T09:09:05.940088549+02:00"
