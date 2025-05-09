@@ -4,7 +4,7 @@
 ---
 include:
   - project: "univention/customers/dataport/upx/common-ci"
-    ref: "v1.36.2"
+    ref: "main"
     file:
       - "defaults/nubus-workflow.yaml"
       - "defaults/stages.yaml"
