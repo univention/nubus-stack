@@ -37,7 +37,7 @@ helm uninstall nubus
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami | minio | 14.7.0 |
 | https://charts.bitnami.com/bitnami | postgresql | ^12.x.x |
-| oci://artifacts.software-univention.de/nubus/charts | nubusGuardian(guardian) | 0.19.1 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusGuardian(guardian) | 0.20.0 |
 | oci://artifacts.software-univention.de/nubus/charts | keycloak(keycloak) | 0.10.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakBootstrap(keycloak-bootstrap) | 0.11.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakExtensions(keycloak-extensions) | 0.17.0 |
