@@ -10,7 +10,7 @@ dependencies:
   version: 14.7.0
 - name: guardian
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.19.1
+  version: 0.20.0
 - name: license-import
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.2.0
@@ -65,5 +65,5 @@ dependencies:
 - name: scim-server
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.9.1
-digest: sha256:3cc3a2f6c84d14640013bca15472d53e9f5737f53cf5ac8b7cea8899097d16e9
-generated: "2025-05-09T11:49:58.804708+02:00"
+digest: sha256:bb0b3e3efcc272c6051bbfa6cce7bcd14eead01f12b94d1cbbdd5df887fac21e
+generated: "2025-05-09T14:04:53.390021692+02:00"
