@@ -79,8 +79,9 @@ lint-render-manifests:
   artifacts:
     name: rendered-manifests
     expire_in: 1 week
+    expose_as: Rendered Kubernetes Manifests
     paths:
-      - manifests
+      - manifests/
 
 lint-kubeconform:
   stage: lint
