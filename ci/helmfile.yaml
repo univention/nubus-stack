@@ -40,8 +40,7 @@ releases:
   - name: certificate
     chart: ./certificate
     values:
-      - certificate: {{ printf "ref+k8s://v1/Secret/%s/certificates-ci-tls/tls.crt" .Values.cluster.namespaces.ci | fetchSecretValue | quote }}
-        key: {{ printf "ref+k8s://v1/Secret/%s/certificates-ci-tls/tls.key" .Values.cluster.namespaces.ci | fetchSecretValue | quote }}
+      - certificates-values.yaml.gotmpl
 
   - name: nubus
     chart: {{ if .Values.dev.useLocalChart }}../helm/nubus{{ else }}nubus-dev/nubus{{ end }}
