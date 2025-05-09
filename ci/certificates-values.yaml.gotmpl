@@ -1,0 +1,2 @@
+certificate: {{ printf "ref+k8s://v1/Secret/%s/certificates-ci-tls/tls.crt" .Values.cluster.namespaces.ci | fetchSecretValue | quote }}
+key: {{ printf "ref+k8s://v1/Secret/%s/certificates-ci-tls/tls.key" .Values.cluster.namespaces.ci | fetchSecretValue | quote }}
