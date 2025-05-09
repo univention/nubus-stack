@@ -849,11 +849,32 @@ nubusStackDataUms:
 nubusScimServer: &nubusScimServer
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   nameOverride: "scim-server"
-  enabled: false
+  enabled: true
   resources: *nubusDevelopmentResources
 
   config:
-    log_level: "INFO"
+    logLevel: "DEBUG"
+
+  provisioning:
+    enabled: true
+    keycloak:
+      auth:
+        username: "kcadmin"
+        existingSecret:
+          name: '{{- printf "%s-scim-server-provisioning-secret" .Release.Name -}}'
+          keyMapping:
+            password: "adminPassword"
+    user:
+      create: true
+      username: "scim-api"
+      password: "scim-api"
+
+  oauth:
+    auth:
+      existingSecret:
+        name: '{{- printf "%s-scim-server-keycloak-client-secret" .Release.Name -}}'
+        keyMapping:
+          clientSecret: 'oauthAdapterM2mSecret'
 
   ingress:
     enabled: true
