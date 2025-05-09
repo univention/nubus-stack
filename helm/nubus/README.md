@@ -3257,10 +3257,10 @@ null
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusScimServer.config.log_level</td>
+			<td>nubusScimServer.config.logLevel</td>
 			<td>string</td>
 			<td><pre lang="json">
-"INFO"
+"DEBUG"
 </pre>
 </td>
 			<td></td>
@@ -3269,7 +3269,7 @@ null
 			<td>nubusScimServer.enabled</td>
 			<td>bool</td>
 			<td><pre lang="json">
-false
+true
 </pre>
 </td>
 			<td></td>
@@ -3297,6 +3297,87 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 "scim-server"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusScimServer.oauth.auth.existingSecret.keyMapping.clientSecret</td>
+			<td>string</td>
+			<td><pre lang="json">
+"oauthAdapterM2mSecret"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusScimServer.oauth.auth.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{- printf \"%s-scim-server-keycloak-client-secret\" .Release.Name -}}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusScimServer.provisioning.enabled</td>
+			<td>bool</td>
+			<td><pre lang="json">
+true
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusScimServer.provisioning.keycloak.auth.existingSecret.keyMapping.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+"adminPassword"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusScimServer.provisioning.keycloak.auth.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{- printf \"%s-scim-server-provisioning-secret\" .Release.Name -}}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusScimServer.provisioning.keycloak.auth.username</td>
+			<td>string</td>
+			<td><pre lang="json">
+"kcadmin"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusScimServer.provisioning.user.create</td>
+			<td>bool</td>
+			<td><pre lang="json">
+true
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusScimServer.provisioning.user.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+"scim-api"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusScimServer.provisioning.user.username</td>
+			<td>string</td>
+			<td><pre lang="json">
+"scim-api"
 </pre>
 </td>
 			<td></td>
