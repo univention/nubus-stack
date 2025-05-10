@@ -38,6 +38,10 @@ variables:
       Intended to help with testing a branch of the e2e-tests repository.
     value: "latest"
 
+.lint-pre-commit:
+  before_script:
+    - helm repo add bitnami https://charts.bitnami.com/bitnami
+
 renovate:
   stage: "package"
   variables:
