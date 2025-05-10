@@ -101,7 +101,7 @@ configure-tests:
       git clone
       --depth 1
       --branch "${TESTRUNNER_CONFIGURATION_BRANCH}"
-      https://git.knut.univention.de/univention/customers/dataport/upx/e2e-tests.git
+      https://git.knut.univention.de/univention/dev/nubus-for-k8s/e2e-tests.git
 
     # Grab the pytest configuration
     - pushd ./e2e-tests
@@ -120,8 +120,7 @@ e2e-tests:
   extends: .check-variables
   needs:
     - configure-tests
-  image: "gitregistry.knut.univention.de/univention/customers/dataport/upx/\
-          e2e-tests/e2e-tests-runner:${TESTRUNNER_VERSION}"
+  image: "gitregistry.knut.univention.de/univention/dev/nubus-for-k8s/e2e-tests/e2e-tests-runner:${TESTRUNNER_VERSION}"
   script:
     - pushd /e2e
     - >
