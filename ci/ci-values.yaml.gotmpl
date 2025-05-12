@@ -109,6 +109,8 @@ nubusUdmRestApi:
       enabled: false
     tls:
       secretName: {{ .Values.ingress.tls.secretName | quote }}
+  ldapUpdateUniventionObjectIdentifier:
+    suspend: false
 
 nubusUmcServer:
   {{- if .Values.toggles.scaledSetup }}
