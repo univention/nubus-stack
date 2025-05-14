@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.9.2](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v1.9.1...v1.9.2) (2025-05-14)
+
+
+### Bug Fixes
+
+* add bitnami helm repo to lint-pre-commit job ([8e7b550](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/8e7b5502e7c6a08460389123c32bc2f799458cc9))
+* add bitnami repo to package-helm-charts ([b6b987a](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/b6b987a8f95e1c02582247fd4cfc915d1a4799d1))
+* move addlicense pre-commit hook ([b871b99](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/b871b992d339ddab2ef59671ce8233fe6f225e17))
+* move e2e-tests to dev/nubus-for-k8s ([dbfb777](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/dbfb777283d6d8130f1c86968cc7749b86008efe))
+* **portal-consumer:** Wrong keys ([19fe7f5](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/19fe7f57376381105798f490403dd9ddc4776b10)), closes [univention/dev/internal/team-nubus#1091](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1091)
+* **umc-gateway:** Icons were copied to the wrong path ([36445d1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/36445d15264f72e3722be64ebdb6d7290ed1ca8d))
+* update common-ci to main ([f0a5388](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/f0a5388cfd1648ea4907d989c91487328c60acba))
+
 ## [1.9.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v1.9.0...v1.9.1) (2025-05-07)
 
 
