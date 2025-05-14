@@ -128,7 +128,7 @@ dependencies:
   - name: "umc-gateway"
     alias: "nubusUmcGateway"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.43.1"
+    version: "0.45.1"
     condition: "nubusUmcGateway.enabled"
 
   - name: "umc-server"
