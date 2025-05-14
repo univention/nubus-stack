@@ -19,7 +19,7 @@ dependencies:
   version: 0.38.0
 - name: ldap-server
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.38.0
+  version: 0.40.0
 - name: notifications-api
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.69.1
@@ -52,10 +52,10 @@ dependencies:
   version: 0.11.0
 - name: stack-data-ums
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.91.1
+  version: 0.92.0
 - name: udm-rest-api
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.32.1
+  version: 0.33.0
 - name: umc-gateway
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.45.2
@@ -65,5 +65,5 @@ dependencies:
 - name: scim-server
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.9.1
-digest: sha256:97f0b20d28602d1ce0a19f330accac5a7e75d2ede927a37e6ae3fb68734c6543
-generated: "2025-05-15T11:19:54.336810464+02:00"
+digest: sha256:a995c02522786b7e88e7e108a2a774f7d42d690bf8c4e813e1bb9007f1a3ebfe
+generated: "2025-05-15T15:29:33.508805314+02:00"
