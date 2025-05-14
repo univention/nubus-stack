@@ -146,6 +146,7 @@ ingress:
       X-Forwarded-Port $http_x_forwarded_port;
       X-Forwarded-Proto $http_x_forwarded_proto;
     nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/affinity: "none"
 
   # -- Secure an Ingress by specifying a Secret that contains a TLS private key and certificate.
   #

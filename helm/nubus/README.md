@@ -44,19 +44,19 @@ helm uninstall nubus
 | oci://artifacts.software-univention.de/nubus/charts | nubusLdapNotifier(ldap-notifier) | 0.38.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusLdapServer(ldap-server) | 0.38.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusLicenseImport(license-import) | 0.2.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusNotificationsApi(notifications-api) | 0.68.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusNotificationsApi(notifications-api) | 0.69.1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubus-common | ^0.8.x |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalConsumer(portal-consumer) | 0.68.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalFrontend(portal-frontend) | 0.68.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.68.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalConsumer(portal-consumer) | 0.69.1 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalFrontend(portal-frontend) | 0.69.1 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.69.1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 0.51.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusScimServer(scim-server) | 0.9.1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceConsumer(selfservice-consumer) | 0.15.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.91.1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 0.51.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUdmRestApi(udm-rest-api) | 0.32.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.45.1 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUmcServer(umc-server) | 0.44.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUdmRestApi(udm-rest-api) | 0.32.1 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.45.2 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUmcServer(umc-server) | 0.45.2 |
 
 ## Values
 
@@ -379,6 +379,7 @@ true
 			<td><pre lang="json">
 {
   "annotations": {
+    "nginx.ingress.kubernetes.io/affinity": "none",
     "nginx.ingress.kubernetes.io/proxy-body-size": "128k",
     "nginx.ingress.kubernetes.io/proxy-buffer-size": "64k",
     "nginx.ingress.kubernetes.io/proxy-buffers-number": "4",
@@ -416,6 +417,7 @@ true
 			<td>object</td>
 			<td><pre lang="json">
 {
+  "nginx.ingress.kubernetes.io/affinity": "none",
   "nginx.ingress.kubernetes.io/proxy-body-size": "128k",
   "nginx.ingress.kubernetes.io/proxy-buffer-size": "64k",
   "nginx.ingress.kubernetes.io/proxy-buffers-number": "4",
