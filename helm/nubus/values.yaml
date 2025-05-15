@@ -636,13 +636,23 @@ nubusUdmListener: &nubusUdmListener
       host: ""
       port: ""
     auth:
-      bindDn: cn=admin,dc=example,dc=org
-      # TODO: Needs adjustment together with the sub-chart
-      credentialSecret:
-        key: password
+      existingSecret:
+        name: "{{ .Release.Name }}-provisioning-udm-listener-ldap-credentials"
+        keyMapping:
+          password: "ldap.secret"
   nats:
     auth:
       password: null
+      existingSecret:
+        name: "{{ .Release.Name }}-provisioning-udm-listener-credentials"
+        keyMapping:
+          password: "NATS_PASSWORD"
+  provisioningApi:
+    auth:
+      existingSecret:
+        name: "{{ .Release.Name }}-provisioning-udm-listener-credentials"
+        keyMapping:
+          password: "EVENTS_PASSWORD_UDM"
   config:
     debugLevel: "2" # default loglevel (subchart): 2
 

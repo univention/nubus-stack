@@ -3671,19 +3671,19 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusUdmListener.ldap.auth.bindDn</td>
+			<td>nubusUdmListener.ldap.auth.existingSecret.keyMapping.password</td>
 			<td>string</td>
 			<td><pre lang="json">
-"cn=admin,dc=example,dc=org"
+"ldap.secret"
 </pre>
 </td>
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusUdmListener.ldap.auth.credentialSecret.key</td>
+			<td>nubusUdmListener.ldap.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"password"
+"{{ .Release.Name }}-provisioning-udm-listener-ldap-credentials"
 </pre>
 </td>
 			<td></td>
@@ -3716,10 +3716,46 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusUdmListener.nats.auth.existingSecret.keyMapping.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+"NATS_PASSWORD"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusUdmListener.nats.auth.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Release.Name }}-provisioning-udm-listener-credentials"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusUdmListener.nats.auth.password</td>
 			<td>string</td>
 			<td><pre lang="json">
 null
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusUdmListener.provisioningApi.auth.existingSecret.keyVapping.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+"EVENTS_PASSWORD_UDM"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusUdmListener.provisioningApi.auth.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Release.Name }}-provisioning-udm-listener-credentials"
 </pre>
 </td>
 			<td></td>
