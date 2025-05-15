@@ -40,7 +40,7 @@ dependencies:
   version: 0.51.0
 - name: udm-listener
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.51.0
+  version: 0.53.0
 - name: keycloak
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.10.0
@@ -65,5 +65,5 @@ dependencies:
 - name: scim-server
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.9.1
-digest: sha256:a995c02522786b7e88e7e108a2a774f7d42d690bf8c4e813e1bb9007f1a3ebfe
-generated: "2025-05-15T15:29:33.508805314+02:00"
+digest: sha256:47d0524dfd04e13214b5d9328282f8297d0963d57b91d23401d303dfe247fea9
+generated: "2025-05-16T10:06:55.02079+02:00"
