@@ -3653,6 +3653,24 @@ null
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusStackDataUms.udm.auth.existingSecret.keyMapping.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+"ldap.secret"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.udm.auth.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ printf \"%s-udm-rest-api-credentials\" .Release.Name }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusUdmListener.config.debugLevel</td>
 			<td>string</td>
 			<td><pre lang="json">

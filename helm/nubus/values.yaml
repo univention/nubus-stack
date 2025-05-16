@@ -813,6 +813,12 @@ nubusStackDataUms:
   nameOverride: "stack-data-ums"
   enabled: true
   resources: *nubusDevelopmentResources
+  udm:
+    auth:
+      existingSecret:
+        name: '{{ printf "%s-udm-rest-api-credentials" .Release.Name }}'
+        keyMapping:
+          password: "ldap.secret"
   nubusUmcServer:
     postgresql:
       connection:
