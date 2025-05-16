@@ -3257,10 +3257,46 @@ null
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusScimServer.config.auth.allowGroupDn</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{- printf \"cn=%s,cn=groups,%s\" \"scim-api-access\" .Values.global.ldap.baseDn -}}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusScimServer.config.logLevel</td>
 			<td>string</td>
 			<td><pre lang="json">
-"DEBUG"
+"INFO"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusScimServer.config.udm.existingSecret.keyMapping.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+"password"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusScimServer.config.udm.existingSecret.keyMapping.username</td>
+			<td>string</td>
+			<td><pre lang="json">
+"username"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusScimServer.config.udm.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{- printf \"%s-scim-server-udm-secret\" .Release.Name -}}"
 </pre>
 </td>
 			<td></td>
@@ -3269,7 +3305,7 @@ null
 			<td>nubusScimServer.enabled</td>
 			<td>bool</td>
 			<td><pre lang="json">
-true
+false
 </pre>
 </td>
 			<td></td>
@@ -3357,6 +3393,15 @@ true
 		</tr>
 		<tr>
 			<td>nubusScimServer.provisioning.user.create</td>
+			<td>bool</td>
+			<td><pre lang="json">
+true
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusScimServer.provisioning.user.group.create</td>
 			<td>bool</td>
 			<td><pre lang="json">
 true
