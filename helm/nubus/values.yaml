@@ -849,11 +849,8 @@ nubusStackDataUms:
 nubusScimServer: &nubusScimServer
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   nameOverride: "scim-server"
-  enabled: true
+  enabled: false
   resources: *nubusDevelopmentResources
-
-  config:
-    logLevel: "DEBUG"
 
   provisioning:
     enabled: true
@@ -865,9 +862,23 @@ nubusScimServer: &nubusScimServer
           keyMapping:
             password: "adminPassword"
     user:
+      group:
+        create: true
+
       create: true
       username: "scim-api"
       password: "scim-api"
+
+  config:
+    logLevel: "INFO"
+    auth:
+      allowGroupDn: '{{- printf "cn=%s,cn=groups,%s" "scim-api-access" .Values.global.ldap.baseDn -}}'
+    udm:
+      existingSecret:
+        name: '{{- printf "%s-scim-server-udm-secret" .Release.Name -}}'
+        keyMapping:
+          username: "username"
+          password: "password"
 
   oauth:
     auth:
