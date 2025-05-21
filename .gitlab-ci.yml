@@ -97,8 +97,7 @@ lint-kubeconform:
     reports:
       junit: kubeconform-report.xml
 
-
-deploy-and-test:
+.base-deploy-and-test:
   stage: deploy
   allow_failure: true
   needs:
@@ -115,6 +114,19 @@ deploy-and-test:
   rules:
     - if: '$CI_PIPELINE_SOURCE == "schedule"'
       when: never
+
+deploy-and-test:
+  extends: .base-deploy-and-test
+  rules:
     - if: '$AUTO_TRIGGER_TESTS == "yes"'
       when: on_success
+    - when: manual
+
+deploy-and-test-external-dependencies:
+  extends: .base-deploy-and-test
+  variables:
+    EXTERNAL_DEPENDENCIES: true
+    DEPLOY_NAMESPACE: "ci-${CI_COMMIT_REF_SLUG}-ext"
+    DEPLOY_SUBDOMAIN: "${CI_COMMIT_REF_SLUG}-ext"
+  rules:
     - when: manual

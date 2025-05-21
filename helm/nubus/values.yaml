@@ -641,6 +641,8 @@ nubusUdmListener: &nubusUdmListener
         keyMapping:
           password: "ldap.secret"
   nats:
+    connection:
+      host: "{{ .Release.Name }}-provisioning-nats"
     auth:
       password: null
       existingSecret:
@@ -822,8 +824,8 @@ nubusStackDataUms:
   nubusUmcServer:
     postgresql:
       connection:
-        host: '{{ printf "%s-postgresql" .Release.Name }}'
-        port: "5432"
+        host: '{{ include "nubusTemplates.connections.postgres.host" . }}'
+        port: '{{ include "nubusTemplates.connections.postgres.port" . }}'
       auth:
         username: selfservice
         database: selfservice

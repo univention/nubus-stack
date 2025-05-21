@@ -24,6 +24,14 @@ SPDX-License-Identifier: AGPL-3.0-only
 {{- printf "%s-ldap-server-secondary" .Release.Name -}}
 {{- end -}}
 
+{{- define "nubusTemplates.connections.postgres.host" -}}
+{{ tpl (coalesce .Values.global.postgresql.connection.host (printf "%s-postgresql" .Release.Name ) ) . }}
+{{- end -}}
+
+{{- define "nubusTemplates.connections.postgres.port" -}}
+{{ tpl (coalesce .Values.global.postgresql.connection.port "5432") . }}
+{{- end -}}
+
 {{- define "nubusTemplates.enablePlainUmcLogin" -}}
 {{- if .Values.global.enablePlainUmcLogin -}}
 {{- .Values.global.enablePlainUmcLogin -}}
