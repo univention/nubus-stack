@@ -61,6 +61,42 @@ lint-pre-commit:
   before_script:
     - helm repo add bitnami "https://charts.bitnami.com/bitnami"
 
+lint-render-manifests:
+  stage: lint
+  needs:
+    - pre-semantic-release
+    - publish-chart-external
+  image: "ghcr.io/helmfile/helmfile:v0.167.1\
+          @sha256:414cb074a0da0f457129590c39d96575fbdcdb7ce75bf0d2b30f05e835947d76"
+  script:
+    # Prepare
+    - export CHART_VERSION=${RELEASE_VERSION}
+
+    # Render manifests with CI configuration
+    - pushd ci
+    - helmfile template --output-dir ../manifests -l name=nubus
+    - popd
+  artifacts:
+    name: rendered-manifests
+    expire_in: 1 week
+    expose_as: Rendered Kubernetes Manifests
+    paths:
+      - manifests/
+
+lint-kubeconform:
+  stage: lint
+  needs:
+    - lint-render-manifests
+  image:
+    name: ghcr.io/yannh/kubeconform:latest-alpine
+    entrypoint: [""]
+  script:
+    - /kubeconform -strict -ignore-missing-schemas -summary -output junit manifests/ > kubeconform-report.xml || true
+    - /kubeconform -strict -ignore-missing-schemas -summary -output text manifests/
+  artifacts:
+    reports:
+      junit: kubeconform-report.xml
+
 
 deploy-and-test:
   stage: deploy
