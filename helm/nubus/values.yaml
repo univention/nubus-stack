@@ -7,6 +7,16 @@ global:
   secrets:
     # -- Master password from which other passwords are derived.
     masterPassword: ""
+
+  domain: ""
+  subDomains:
+    portal: portal
+    keycloak: id
+    scim: scim
+
+  ingressClass: ""
+  certManagerIssuer: ""
+
   ldap:
     baseDn: ""
     domainName: ""
@@ -20,29 +30,22 @@ global:
             password: "adminPassword"
       host: "{{ .Release.Name }}-ldap-server"
 
+  memcached:
+    connection:
+      host: ""
+    auth:
+      username: ""
+
+  postgresql:
+    connection:
+      host: "{{ .Release.Name }}-postgresql"
+
   udm:
     connection:
       # -- Global default for the URL via which the UDM Rest API can be reached.
       # In transition state, not all subcharts do make use of this yet.
       url: '{{ include "nubusTemplates.udmRestApi.uri" . }}'
 
-  domain: ""
-  subDomains:
-    portal: portal
-    keycloak: id
-    scim: scim
-
-  ingressClass: ""
-  certManagerIssuer: ""
-  postgresql:
-    connection:
-      host: ""
-      port: ""
-  memcached:
-    connection:
-      host: ""
-    auth:
-      username: ""
   keycloak:
     realm: "nubus"
 
@@ -273,9 +276,6 @@ keycloak:
   resources: *nubusDevelopmentResources
   replicaCount: 1
   postgresql:
-    connection:
-      host: ""
-      port: ""
     auth:
       username: keycloak_user
       database: keycloak
@@ -316,9 +316,6 @@ nubusGuardian: &nubusGuardian
           keyMapping:
             clientSecret: 'oauthAdapterM2mSecret'
   postgresql:
-    connection:
-      host: ""
-      port: ""
     auth:
       database: guardian
       username: guardian
@@ -822,9 +819,6 @@ nubusKeycloakExtensions: &nubusKeycloakExtensions
         keyMapping:
           adminPassword: "admin_password"
   postgresql:
-    connection:
-      host: ""
-      port: ""
     auth:
       database: keycloak_extensions
       username: keycloak_extensions
