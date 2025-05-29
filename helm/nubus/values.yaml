@@ -10,6 +10,7 @@ global:
   ldap:
     baseDn: ""
     domainName: ""
+    connection:
     auth:
       cnAdmin:
         password: null
@@ -17,6 +18,7 @@ global:
           name: null
           keyMapping:
             password: "adminPassword"
+      host: "{{ .Release.Name }}-ldap-server"
 
   udm:
     connection:
@@ -43,6 +45,7 @@ global:
       username: ""
   keycloak:
     realm: "nubus"
+
   # -- Allow plain UMC login (otherwise only SAML login is possible)
   # Be aware this will expose the UMC login page to the public, which can
   # circumvent 2FA and other security measures placed in the IdP.
@@ -401,13 +404,10 @@ nubusNotificationsApi: &nubusNotificationsApi
   resources: *nubusDevelopmentResources
   ingress:
     host: "{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
+
   postgresql:
-    bundled: false
-    connection:
-      host: ""
-      port: ""
     auth:
-      username: notificationsapi_user
+      username: notificationsapi
       database: notificationsapi
       existingSecret:
         name: "{{ .Release.Name }}-notifications-api-postgresql-credentials"
@@ -425,52 +425,42 @@ nubusPortalConsumer: &nubusPortalConsumer
   nameOverride: "portal-consumer"
   enabled: true
   resources: *nubusDevelopmentResources
+
   objectStorage:
     auth:
       existingSecret:
         name: "{{ .Release.Name }}-portal-consumer-minio-credentials"
+        keyMapping:
+          access_key_id: accessKey
+          secret_access_key: secretKey
     endpoint: "http://{{ .Release.Name }}-minio:9000"
     bucketName: "nubus"
 
-  # TODO: Not yet supported
-  # udm:
-  #   auth:
-  #     password: null
-  portalConsumer:
-    ldapHost: "{{ .Release.Name }}-ldap-server-primary"
-
   ldap:
-    # -- Optional reference to a different secret containing credentials
+    connection:
+      # NOTE: Special case, we want to be sure that the consumer is talking
+      # to the primary ldap server.
+      host: "{{ .Release.Name }}-ldap-server-primary"
     auth:
       existingSecret:
         name: "{{ .Release.Name }}-ldap-server-credentials"
         keyMapping:
           password: "adminPassword"
 
-    # TLS configuration for the OpenLDAP server
-    tls:
-      enabled: false
-      # -- Optional reference to the secret to use for reading certificates
-      existingSecret:
-        name: null
-        keyMapping:
-          ca.crt: null
-          tls.crt: null
-          tls.key: null
-
   provisioningApi:
     connection:
-      baseUrl: '{{ printf "http://%s-provisioning-api" .Release.Name }}'
-    # -- Authentication parameters
+      url: "http://{{ .Release.Name }}-provisioning-api"
     auth:
-      # -- The username to authenticate with. A secret will be created if existingSecret is not set.
-      username: "portal-consumer"
-      # -- The password to authenticate with. A secret will be created if existingSecret is not set.
-      password: ""
       existingSecret:
         name: "{{ .Release.Name }}-portal-consumer-credentials"
         keyMapping:
           password: PROVISIONING_API_PASSWORD
+
+  udm:
+    auth:
+      existingSecret:
+        name: "{{ .Release.Name }}-portal-consumer-udm-rest-api-credentials"
+
 
 nubusPortalServer: &nubusPortalServer
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
@@ -478,25 +468,23 @@ nubusPortalServer: &nubusPortalServer
   enabled: true
   ingress:
     host: "{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
+  resources: *nubusDevelopmentResources
 
   objectStorage:
     auth:
       existingSecret:
         name: "{{ .Release.Name }}-portal-server-minio-credentials"
+        keyMapping:
+          access_key_id: accessKey
+          secret_access_key: secretKey
     endpoint: "http://{{ .Release.Name }}-minio:9000"
     bucketName: "nubus"
-
-  portalServer:
-    centralNavigation:
-      existingSecret:
-        name: "{{ .Release.Name }}-portal-server-central-navigation-shared-secret"
 
   udm:
     auth:
       existingSecret:
         name: "{{ .Release.Name }}-stack-data-ums-svc-portal-server"
 
-  resources: *nubusDevelopmentResources
 
 nubusProvisioning: &nubusProvisioning
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds

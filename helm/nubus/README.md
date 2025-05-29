@@ -257,6 +257,15 @@ null
 			<td></td>
 		</tr>
 		<tr>
+			<td>global.ldap.connection.host</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Release.Name }}-ldap-server-primary"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>global.ldap.domainName</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -2023,34 +2032,7 @@ true
 			<td>nubusNotificationsApi.postgresql.auth.username</td>
 			<td>string</td>
 			<td><pre lang="json">
-"notificationsapi_user"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusNotificationsApi.postgresql.bundled</td>
-			<td>bool</td>
-			<td><pre lang="json">
-false
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusNotificationsApi.postgresql.connection.host</td>
-			<td>string</td>
-			<td><pre lang="json">
-""
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusNotificationsApi.postgresql.connection.port</td>
-			<td>string</td>
-			<td><pre lang="json">
-""
+"notificationsapi"
 </pre>
 </td>
 			<td></td>
@@ -2110,51 +2092,55 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusPortalConsumer.ldap.auth</td>
-			<td>object</td>
+			<td>nubusPortalConsumer.ldap.auth.existingSecret.keyMapping.password</td>
+			<td>string</td>
 			<td><pre lang="json">
-{
-  "existingSecret": {
-    "keyMapping": {
-      "password": "adminPassword"
-    },
-    "name": "{{ .Release.Name }}-ldap-server-credentials"
-  }
-}
-</pre>
-</td>
-			<td>Optional reference to a different secret containing credentials</td>
-		</tr>
-		<tr>
-			<td>nubusPortalConsumer.ldap.tls.enabled</td>
-			<td>bool</td>
-			<td><pre lang="json">
-false
+"adminPassword"
 </pre>
 </td>
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusPortalConsumer.ldap.tls.existingSecret</td>
-			<td>object</td>
+			<td>nubusPortalConsumer.ldap.auth.existingSecret.name</td>
+			<td>string</td>
 			<td><pre lang="json">
-{
-  "keyMapping": {
-    "ca.crt": null,
-    "tls.crt": null,
-    "tls.key": null
-  },
-  "name": null
-}
+"{{ .Release.Name }}-ldap-server-credentials"
 </pre>
 </td>
-			<td>Optional reference to the secret to use for reading certificates</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusPortalConsumer.ldap.connection.host</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Release.Name }}-ldap-server-primary"
+</pre>
+</td>
+			<td></td>
 		</tr>
 		<tr>
 			<td>nubusPortalConsumer.nameOverride</td>
 			<td>string</td>
 			<td><pre lang="json">
 "portal-consumer"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusPortalConsumer.objectStorage.auth.existingSecret.keyMapping.access_key_id</td>
+			<td>string</td>
+			<td><pre lang="json">
+"accessKey"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusPortalConsumer.objectStorage.auth.existingSecret.keyMapping.secret_access_key</td>
+			<td>string</td>
+			<td><pre lang="json">
+"secretKey"
 </pre>
 </td>
 			<td></td>
@@ -2187,55 +2173,28 @@ false
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusPortalConsumer.portalConsumer.ldapHost</td>
+			<td>nubusPortalConsumer.provisioningApi.auth.existingSecret.keyMapping.password</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ .Release.Name }}-ldap-server-primary"
+"PROVISIONING_API_PASSWORD"
 </pre>
 </td>
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusPortalConsumer.provisioningApi.auth</td>
-			<td>object</td>
-			<td><pre lang="json">
-{
-  "existingSecret": {
-    "keyMapping": {
-      "password": "PROVISIONING_API_PASSWORD"
-    },
-    "name": "{{ .Release.Name }}-portal-consumer-credentials"
-  },
-  "password": "",
-  "username": "portal-consumer"
-}
-</pre>
-</td>
-			<td>Authentication parameters</td>
-		</tr>
-		<tr>
-			<td>nubusPortalConsumer.provisioningApi.auth.password</td>
+			<td>nubusPortalConsumer.provisioningApi.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-""
+"{{ .Release.Name }}-portal-consumer-credentials"
 </pre>
 </td>
-			<td>The password to authenticate with. A secret will be created if existingSecret is not set.</td>
+			<td></td>
 		</tr>
 		<tr>
-			<td>nubusPortalConsumer.provisioningApi.auth.username</td>
+			<td>nubusPortalConsumer.provisioningApi.connection.url</td>
 			<td>string</td>
 			<td><pre lang="json">
-"portal-consumer"
-</pre>
-</td>
-			<td>The username to authenticate with. A secret will be created if existingSecret is not set.</td>
-		</tr>
-		<tr>
-			<td>nubusPortalConsumer.provisioningApi.connection.baseUrl</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ printf \"http://%s-provisioning-api\" .Release.Name }}"
+"http://{{ .Release.Name }}-provisioning-api"
 </pre>
 </td>
 			<td></td>
@@ -2281,6 +2240,15 @@ false
 			<td>int</td>
 			<td><pre lang="json">
 5
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusPortalConsumer.udm.auth.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Release.Name }}-portal-consumer-udm-rest-api-credentials"
 </pre>
 </td>
 			<td></td>
@@ -2385,6 +2353,24 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusPortalServer.objectStorage.auth.existingSecret.keyMapping.access_key_id</td>
+			<td>string</td>
+			<td><pre lang="json">
+"accessKey"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusPortalServer.objectStorage.auth.existingSecret.keyMapping.secret_access_key</td>
+			<td>string</td>
+			<td><pre lang="json">
+"secretKey"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusPortalServer.objectStorage.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -2407,15 +2393,6 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 "http://{{ .Release.Name }}-minio:9000"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusPortalServer.portalServer.centralNavigation.existingSecret.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-portal-server-central-navigation-shared-secret"
 </pre>
 </td>
 			<td></td>
