@@ -1,5 +1,31 @@
 # Changelog
 
+## [1.10.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v1.9.2...v1.10.0) (2025-05-29)
+
+
+### Features
+
+* Adjust values configuration for stack-data-ums towards the new secrets structure ([a768a1d](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/a768a1d0f57f490b50de826aa19e4cd71fcbac9f))
+* Adjust values configuration towards updated secrets structure in udm-listener ([2abab0a](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/2abab0ae8c4618cd6511c3de86f4476ccfcca5c1))
+* All containers non-root and w/ read only file system ([e9c70af](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/e9c70af7d52a7b5df0fe7d8c145e7baaf3493981)), closes [univention/dev/internal/team-nubus#1139](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1139)
+* enable blocklist feature ([b7f22c6](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/b7f22c6c86466ac700866ce547955c865f9e46ee))
+* Init containers of UMC pods are started as non-root ([f0efd54](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/f0efd549ed18567d2055a670d4e5d88ddf16528f)), closes [univention/dev/internal/team-nubus#1138](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1138)
+* **nubus:** Add scim-server ([d25016c](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/d25016cf87c0684dd14452ad44cf34752ca156f2)), closes [univention/dev/internal/team-nubus#1112](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1112)
+* Update portal components to version 0.68.0 ([61a0d1b](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/61a0d1bbb8dee62f72ff059f82394aef3b7b00c9))
+* Update stack-data-ums to version 0.93.0 ([959f3ef](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/959f3efc37be0649502cf7ab0071507a2f48a705))
+* Update udm-listener to version 0.53.0 ([547ce03](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/547ce03125de68e3d75d398b7dd780267eeb362f))
+
+
+### Bug Fixes
+
+* Automatically set the univentionObjectIdentifier for new objects ([15df8c7](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/15df8c7cd32032eb2e73b7bd6eebbf4541ee62d8)), closes [univention/dev/internal/team-nubus#1143](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1143)
+* disable ingress affinity ([fc5e444](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/fc5e4442cb8b0c0a8dc938095327c024a53c6f75)), closes [univention/dev/internal/team-nubus#1121](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1121)
+* hide report generation in umc ([4359855](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/43598554410ed70b4d140a4cd23f2734260dda69)), closes [univention/dev/internal/team-nubus#1164](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1164)
+* **portal-consumer:** Bump to latest version ([09cd25e](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/09cd25e1460ec0a978dc172bfa206457e268dd0d)), closes [univention/dev/internal/team-nubus#1167](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1167)
+* **udm-listener:** add configurable storageClass and size to PVC ([192f38c](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/192f38c73e8bf4c8fd29f643184911ec40521839)), closes [univention/dev/internal/team-nubus#1181](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1181)
+* **udm-listener:** Typo in provisioning api secret key mapping ([5051987](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/50519873677b8205f44e5ce6b499b6575f322043)), closes [univention/dev/internal/team-nubus#1208](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1208)
+* **udm-rest-api:** Generate univentionObjectIdentifier for existing objects ([65153ce](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/65153cecf55edcf0fb90c3953fd174ed9a611319)), closes [univention/dev/internal/team-nubus#1157](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1157)
+
 ## [1.9.2](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v1.9.1...v1.9.2) (2025-05-14)
 
 
