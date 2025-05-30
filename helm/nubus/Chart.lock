@@ -64,6 +64,6 @@ dependencies:
   version: 0.45.3
 - name: scim-server
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.9.1
-digest: sha256:942590fb76df3a49803863c92a23d13d75826b37e73d7db0fa88a8d4fe2427d8
-generated: "2025-05-29T13:18:36.92323121+02:00"
+  version: 0.18.0
+digest: sha256:fd2edd3288b370c2dbb65aacee53f1aa5be245d4aac937872ac3948e4a14c75f
+generated: "2025-05-30T13:34:45.384379676+02:00"

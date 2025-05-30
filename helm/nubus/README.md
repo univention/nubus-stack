@@ -50,7 +50,7 @@ helm uninstall nubus
 | oci://artifacts.software-univention.de/nubus/charts | nubusPortalFrontend(portal-frontend) | 0.69.1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.69.1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 0.53.2 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusScimServer(scim-server) | 0.9.1 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusScimServer(scim-server) | 0.18.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceConsumer(selfservice-consumer) | 0.15.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.93.1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 0.53.3 |
@@ -3257,10 +3257,46 @@ null
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusScimServer.config.log_level</td>
+			<td>nubusScimServer.config.auth.allowGroupDn</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{- printf \"cn=%s,cn=groups,%s\" \"scim-api-access\" .Values.global.ldap.baseDn -}}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusScimServer.config.logLevel</td>
 			<td>string</td>
 			<td><pre lang="json">
 "INFO"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusScimServer.config.udm.existingSecret.keyMapping.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+"password"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusScimServer.config.udm.existingSecret.keyMapping.username</td>
+			<td>string</td>
+			<td><pre lang="json">
+"username"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusScimServer.config.udm.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{- printf \"%s-scim-server-udm-secret\" .Release.Name -}}"
 </pre>
 </td>
 			<td></td>
@@ -3297,6 +3333,96 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 "scim-server"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusScimServer.oauth.auth.existingSecret.keyMapping.clientSecret</td>
+			<td>string</td>
+			<td><pre lang="json">
+"oauthAdapterM2mSecret"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusScimServer.oauth.auth.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{- printf \"%s-scim-server-keycloak-client-secret\" .Release.Name -}}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusScimServer.provisioning.enabled</td>
+			<td>bool</td>
+			<td><pre lang="json">
+true
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusScimServer.provisioning.keycloak.auth.existingSecret.keyMapping.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+"adminPassword"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusScimServer.provisioning.keycloak.auth.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{- printf \"%s-scim-server-provisioning-secret\" .Release.Name -}}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusScimServer.provisioning.keycloak.auth.username</td>
+			<td>string</td>
+			<td><pre lang="json">
+"kcadmin"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusScimServer.provisioning.user.create</td>
+			<td>bool</td>
+			<td><pre lang="json">
+true
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusScimServer.provisioning.user.group.create</td>
+			<td>bool</td>
+			<td><pre lang="json">
+true
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusScimServer.provisioning.user.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+"scim-api"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusScimServer.provisioning.user.username</td>
+			<td>string</td>
+			<td><pre lang="json">
+"scim-api"
 </pre>
 </td>
 			<td></td>
