@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.10.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v1.10.0...v1.10.1) (2025-06-02)
+
+
+### Bug Fixes
+
+* **udm-rest-api:** CronJob additionalAnnotations and podAnnotations ([e44e2da](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/e44e2dad9cd236ea70b848df93c20262efff0792)), closes [univention/dev/internal/team-nubus#1170](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1170)
+
 ## [1.10.0](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v1.9.2...v1.10.0) (2025-05-29)
 
 
