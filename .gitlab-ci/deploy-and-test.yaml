@@ -59,7 +59,7 @@ deploy-gaia:
     # would be preferred since it gives a nice diff of the changes.
     #
     # See: https://github.com/databus23/helm-diff/issues/460
-    - helmfile --debug -n "${DEPLOY_NAMESPACE}" sync
+    - helmfile --debug -n "${DEPLOY_NAMESPACE}" --state-values-set toggles.externalDependencies=${EXTERNAL_DEPENDENCIES:-false} sync
     - popd
   environment:
     name: ${CI_COMMIT_REF_SLUG}/nubus-with-extensions

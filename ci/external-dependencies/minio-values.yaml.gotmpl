@@ -1,0 +1,35 @@
+provisioning:
+  enabled: true
+  cleanupAfterFinished:
+    enabled: true
+    seconds: 900
+  extraCommands:
+    - "mc anonymous set download provisioning/nubus/portal-assets"
+  buckets:
+    - name: "nubus"
+      versioning: false
+      withLock: false
+  policies:
+    - name: "nubus-readwrite"
+      statements:
+        - resources:
+            - "arn:aws:s3:::nubus"
+            - "arn:aws:s3:::nubus/*"
+          effect: "Allow"
+          actions:
+            - "s3:*"
+    - name: "nubus-read"
+      statements:
+        - resources:
+            - "arn:aws:s3:::nubus"
+            - "arn:aws:s3:::nubus/*"
+          effect: "Allow"
+          actions:
+            - "s3:GetBucketLocation"
+            - "s3:GetObject"
+  usersExistingSecrets:
+    - minio-external-user-provisioning
+auth:
+  existingSecret: minio-external-admin-credentials
+  rootUserSecretKey: "root-user"
+  rootPasswordSecretKey: "root-password"

@@ -1,0 +1,71 @@
+config:
+  cluster:
+    replicas: 1
+  jetstream:
+    enabled: true
+  extraConfig:
+    max_payload: "16MB"
+  authorization:
+    enabled: true
+  createUsers:
+    provisioningApi:
+      user: "api"
+      password: "$NATS_PROVISIONING_API_PASSWORD"
+      permissions:
+        publish: ">"
+        subscribe: ">"
+    dispatcher:
+      user: "dispatcher"
+      password: "$NATS_DISPATCHER_PASSWORD"
+      permissions:
+        publish: ">"
+        subscribe: ">"
+    udmTransformer:
+      user: "udmtransformer"
+      password: "$NATS_UDM_TRANSFORMER_PASSWORD"
+      permissions:
+        publish: ">"
+        subscribe: ">"
+    prefill:
+      user: "prefill"
+      password: "$NATS_PREFILL_PASSWORD"
+      permissions:
+        publish: ">"
+        subscribe: ">"
+    udmListener:
+      user: "udmlistener"
+      password: "$NATS_UDM_LISTENER_PASSWORD"
+      permissions:
+        publish: ">"
+        subscribe: ">"
+extraEnvVars:
+  - name: NATS_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: nats-external-secret
+        key: nats-password
+  - name: NATS_PROVISIONING_API_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: nats-external-secret
+        key: nats-provisioning-password
+  - name: NATS_DISPATCHER_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: nats-external-secret
+        key: nats-dispatcher-password
+  - name: NATS_UDM_TRANSFORMER_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: nats-external-secret
+        key: nats-udm-transformer-password
+  - name: NATS_PREFILL_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: nats-external-secret
+        key: nats-prefill-password
+  - name: NATS_UDM_LISTENER_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: nats-external-secret
+        key: nats-udm-listener-password
