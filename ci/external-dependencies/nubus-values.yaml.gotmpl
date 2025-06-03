@@ -1,0 +1,137 @@
+global:
+  postgresql:
+    connection:
+      host: postgres-postgresql
+      port: "5432"
+
+postgresql:
+  enabled: false
+  auth:
+    existingSecret: postgresql-external-secret
+    username: "postgres"
+    secretKeys:
+      adminPasswordKey: "adminPassword"
+      userPasswordKey: "userPassword"
+      replicationPasswordKey: "replicationPassword"
+  provisioning:
+    enabled: false
+
+minio:
+  enabled: false
+
+ingress:
+  minio:
+    enabled: false
+
+nubusGuardian:
+  postgresql:
+    auth:
+      username: "guardian"
+      existingSecret:
+        name: postgresql-external-secret
+        keyMapping:
+          password: guardian
+
+keycloak:
+  postgresql:
+    auth:
+      username: "keycloak"
+      existingSecret:
+        name: postgresql-external-secret
+        keyMapping:
+          password: keycloak
+
+nubusKeycloakExtensions:
+  postgresql:
+    auth:
+      username: "keycloak_extensions"
+      existingSecret:
+        name: postgresql-external-secret
+        keyMapping:
+          password: keycloak-extensions
+
+nubusNotificationsApi:
+  postgresql:
+    auth:
+      username: "notificationsapi"
+      existingSecret:
+        name: postgresql-external-secret
+        keyMapping:
+          password: notifications
+
+
+nubusUmcServer:
+  postgresql:
+    auth:
+      username: "selfservice"
+      existingSecret:
+        name: postgresql-external-secret
+        keyMapping:
+          password: umc
+
+nubusPortalConsumer:
+  objectStorage:
+    bucketName: nubus
+    endpoint: "http://minio:9000"
+    auth:
+      existingSecret:
+        name: minio-external-secret
+        keyMapping:
+          accessKey: portal-consumer-access-key
+          secretKey: portal-consumer-secret-key
+
+nubusPortalServer:
+  objectStorage:
+    bucketName: nubus
+    endpoint: "http://minio:9000"
+    auth:
+      existingSecret:
+        name: minio-external-secret
+        keyMapping:
+          accessKey: portal-server-access-key
+          secretKey: portal-server-secret-key
+
+nubusProvisioning:
+  nats:
+    enabled: false
+    bundled: false
+    connection:
+      host: "nats"
+      port: "4222"
+  api:
+    nats:
+      auth:
+        existingSecret:
+          name: nats-external-secret
+          keyMapping:
+            provisioningApiPassword: nats-provisioning-password
+  dispatcher:
+    nats:
+      auth:
+        existingSecret:
+          name: nats-external-secret
+          keyMapping:
+            dispatcherPassword: nats-dispatcher-password
+  prefill:
+    nats:
+      auth:
+        existingSecret:
+          name: nats-external-secret
+          keyMapping:
+            prefillPassword: nats-prefill-password
+  udmTransformer:
+    nats:
+      auth:
+        existingSecret:
+          name: nats-external-secret
+          keyMapping:
+            udmTransformerPassword: nats-udm-transformer-password
+nubusUdmListener:
+  nats:
+    connection:
+      host: "nats"
+    auth:
+      existingSecret:
+        name: nats-external-secret
+        keyMapping:
+          password: nats-udm-listener-password
