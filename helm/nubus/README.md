@@ -53,7 +53,7 @@ helm uninstall nubus
 | oci://artifacts.software-univention.de/nubus/charts | nubusScimServer(scim-server) | 0.28.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceConsumer(selfservice-consumer) | 0.15.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.94.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusTwofaHelpdesk(twofa-helpdesk) | 0.3.5 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusTwofaHelpdesk(twofa-helpdesk) | 0.4.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 0.55.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmRestApi(udm-rest-api) | 0.35.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.46.0 |
@@ -374,7 +374,7 @@ true
       "imagePullPolicy": "IfNotPresent",
       "registry": "artifacts.software-univention.de",
       "repository": "nubus/images/twofa-helpdesk-extensions",
-      "tag": "0.3.3@sha256:05936ba63fef4a8757577996e8eaa34bc593dd03f992641d01c57dbe5618bbe6"
+      "tag": "0.4.0@sha256:12c8635466b07bcb1a095479b82057849bdd1afdd1951daeeb08304d76b5452a"
     },
     "name": "2fa-helpdesk"
   }
@@ -1367,6 +1367,24 @@ true
 			<td>int</td>
 			<td><pre lang="json">
 5
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusKeycloakBootstrap.bootstrap.twoFactorAuthentication.enabled</td>
+			<td>bool</td>
+			<td><pre lang="json">
+true
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusKeycloakBootstrap.bootstrap.twoFactorAuthentication.group</td>
+			<td>string</td>
+			<td><pre lang="json">
+"2fa-users"
 </pre>
 </td>
 			<td></td>
@@ -3954,7 +3972,7 @@ true
 			<td>nubusStackDataUms.templateContext.portalTwoFaLinkBase</td>
 			<td>string</td>
 			<td><pre lang="json">
-"https://{{ .Values.global.subDomains.twofaHelpdesk }}.{{ .Values.global.domain }}"
+"https://{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
 </pre>
 </td>
 			<td></td>
@@ -4053,7 +4071,7 @@ true
 			<td>nubusTwofaHelpdesk.ingress.host</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ .Values.global.subDomains.twofaHelpdesk }}.{{ .Values.global.domain }}"
+"{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
 </pre>
 </td>
 			<td></td>
@@ -4098,7 +4116,16 @@ true
 			<td>nubusTwofaHelpdesk.nubusBaseUrl</td>
 			<td>string</td>
 			<td><pre lang="json">
-"dummy"
+"{{ printf \"%s.%s\" .Values.global.subDomains.portal .Values.global.domain }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusTwofaHelpdesk.provisioning.enabled</td>
+			<td>bool</td>
+			<td><pre lang="json">
+true
 </pre>
 </td>
 			<td></td>
@@ -4198,33 +4225,6 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 "https://{{ .Values.global.subDomains.keycloak }}.{{ .Values.global.domain }}"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusTwofaHelpdesk.twofaHelpdeskBackend.config.oidc_client</td>
-			<td>string</td>
-			<td><pre lang="json">
-"twofa-helpdesk"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusTwofaHelpdesk.twofaHelpdeskBackend.config.oidc_host</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ printf \"%s.%s\" .Values.global.subDomains.keycloak .Values.global.domain }}"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusTwofaHelpdesk.twofaHelpdeskBackend.config.twofa_admin_groups[0]</td>
-			<td>string</td>
-			<td><pre lang="json">
-"/Domain Admins"
 </pre>
 </td>
 			<td></td>
