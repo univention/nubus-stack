@@ -50,7 +50,7 @@ helm uninstall nubus
 | oci://artifacts.software-univention.de/nubus/charts | nubusPortalFrontend(portal-frontend) | 0.69.1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.69.1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 0.55.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusScimServer(scim-server) | 0.18.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusScimServer(scim-server) | 0.26.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceConsumer(selfservice-consumer) | 0.15.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.94.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusTwofaHelpdesk(twofa-helpdesk) | 0.3.5 |
@@ -3285,6 +3285,33 @@ null
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusScimServer.config.auth.enabled</td>
+			<td>bool</td>
+			<td><pre lang="json">
+true
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusScimServer.config.corsOrigins</td>
+			<td>string</td>
+			<td><pre lang="json">
+"[\"https://{{ .Values.global.subDomains.scim }}.{{ .Values.global.domain }}\"]"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusScimServer.config.host</td>
+			<td>string</td>
+			<td><pre lang="json">
+"https://{{ .Values.global.subDomains.scim }}.{{ .Values.global.domain }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusScimServer.config.logLevel</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -3294,37 +3321,37 @@ null
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusScimServer.config.udm.existingSecret.keyMapping.password</td>
-			<td>string</td>
-			<td><pre lang="json">
-"password"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusScimServer.config.udm.existingSecret.keyMapping.username</td>
-			<td>string</td>
-			<td><pre lang="json">
-"username"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusScimServer.config.udm.existingSecret.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{- printf \"%s-scim-server-udm-secret\" .Release.Name -}}"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusScimServer.enabled</td>
 			<td>bool</td>
 			<td><pre lang="json">
 false
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusScimServer.ingress.certManager.enabled</td>
+			<td>bool</td>
+			<td><pre lang="json">
+true
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusScimServer.ingress.certManager.issuerRef.kind</td>
+			<td>string</td>
+			<td><pre lang="json">
+"ClusterIssuer"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusScimServer.ingress.certManager.issuerRef.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+""
 </pre>
 </td>
 			<td></td>
@@ -3348,6 +3375,33 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusScimServer.ingress.tls.enabled</td>
+			<td>bool</td>
+			<td><pre lang="json">
+true
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusScimServer.keycloak.connection.realm</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Values.global.keycloak.realm }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusScimServer.keycloak.connection.url</td>
+			<td>string</td>
+			<td><pre lang="json">
+"https://{{ .Values.global.subDomains.keycloak }}.{{ .Values.global.domain }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusScimServer.nameOverride</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -3360,7 +3414,7 @@ true
 			<td>nubusScimServer.oauth.auth.existingSecret.keyMapping.clientSecret</td>
 			<td>string</td>
 			<td><pre lang="json">
-"oauthAdapterM2mSecret"
+"clientSecret"
 </pre>
 </td>
 			<td></td>
@@ -3369,76 +3423,13 @@ true
 			<td>nubusScimServer.oauth.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{- printf \"%s-scim-server-keycloak-client-secret\" .Release.Name -}}"
+"{{- printf \"%s-scim-server-client-secret\" .Release.Name -}}"
 </pre>
 </td>
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusScimServer.provisioning.enabled</td>
-			<td>bool</td>
-			<td><pre lang="json">
-true
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusScimServer.provisioning.keycloak.auth.existingSecret.keyMapping.password</td>
-			<td>string</td>
-			<td><pre lang="json">
-"adminPassword"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusScimServer.provisioning.keycloak.auth.existingSecret.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{- printf \"%s-scim-server-provisioning-secret\" .Release.Name -}}"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusScimServer.provisioning.keycloak.auth.username</td>
-			<td>string</td>
-			<td><pre lang="json">
-"kcadmin"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusScimServer.provisioning.user.create</td>
-			<td>bool</td>
-			<td><pre lang="json">
-true
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusScimServer.provisioning.user.group.create</td>
-			<td>bool</td>
-			<td><pre lang="json">
-true
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusScimServer.provisioning.user.password</td>
-			<td>string</td>
-			<td><pre lang="json">
-"scim-api"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusScimServer.provisioning.user.username</td>
+			<td>nubusScimServer.oauth.clientId</td>
 			<td>string</td>
 			<td><pre lang="json">
 "scim-api"
@@ -3483,10 +3474,181 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusScimServer.setup.config.debug.enabled</td>
+			<td>bool</td>
+			<td><pre lang="json">
+false
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusScimServer.setup.config.nubusBaseUrl</td>
+			<td>string</td>
+			<td><pre lang="json">
+"https://{{ .Values.global.subDomains.scim }}.{{ .Values.global.domain }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusScimServer.setup.enabled</td>
+			<td>bool</td>
+			<td><pre lang="json">
+true
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusScimServer.setup.keycloak.auth.existingSecret.keyMapping.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+"password"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusScimServer.setup.keycloak.auth.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{- printf \"%s-scim-server-setup-keycloak-secret\" .Release.Name -}}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusScimServer.setup.keycloak.auth.username</td>
+			<td>string</td>
+			<td><pre lang="json">
+"kcadmin"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusScimServer.setup.keycloak.connection.baseUrl</td>
+			<td>string</td>
+			<td><pre lang="json">
+"http://{{ .Release.Name }}-keycloak:8080"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusScimServer.setup.keycloak.connection.host</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Release.Name }}-keycloak"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusScimServer.setup.keycloak.connection.port</td>
+			<td>string</td>
+			<td><pre lang="json">
+"8080"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusScimServer.setup.user.create</td>
+			<td>bool</td>
+			<td><pre lang="json">
+true
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusScimServer.setup.user.group.create</td>
+			<td>bool</td>
+			<td><pre lang="json">
+true
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusScimServer.setup.user.group.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"scim-api-access"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusScimServer.setup.user.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+"scim-api"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusScimServer.setup.user.username</td>
+			<td>string</td>
+			<td><pre lang="json">
+"scim-api"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusScimServer.terminationGracePeriodSeconds</td>
 			<td>int</td>
 			<td><pre lang="json">
 5
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusScimServer.udm.auth.existingSecret.keyMapping.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+"password"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusScimServer.udm.auth.existingSecret.keyMapping.username</td>
+			<td>string</td>
+			<td><pre lang="json">
+"username"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusScimServer.udm.auth.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{- printf \"%s-scim-server-udm-secret\" .Release.Name -}}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusScimServer.udm.auth.username</td>
+			<td>string</td>
+			<td><pre lang="json">
+"cn=admin"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusScimServer.udm.connection.url</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ include \"nubusTemplates.udmRestApi.uri\" . }}"
 </pre>
 </td>
 			<td></td>
