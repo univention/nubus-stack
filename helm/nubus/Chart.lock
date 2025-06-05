@@ -55,7 +55,7 @@ dependencies:
   version: 0.93.1
 - name: udm-rest-api
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.34.1
+  version: 0.34.2
 - name: umc-gateway
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.45.3
@@ -65,5 +65,5 @@ dependencies:
 - name: scim-server
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.9.1
-digest: sha256:4c25093dbf35249b765bcb371cae467fc856753972646e198b655108f63c412e
-generated: "2025-06-02T15:57:24.776234756+02:00"
+digest: sha256:811b1f363dc00d44186ae120bedb4fc82d1c10524399c8954394614a4c61921e
+generated: "2025-06-06T17:56:55.288523+02:00"
