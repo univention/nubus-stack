@@ -53,6 +53,7 @@ helm uninstall nubus
 | oci://artifacts.software-univention.de/nubus/charts | nubusScimServer(scim-server) | 0.18.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceConsumer(selfservice-consumer) | 0.15.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.93.1 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusTwofaHelpdesk(twofa-helpdesk) | 0.3.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 0.54.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmRestApi(udm-rest-api) | 0.34.1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.45.3 |
@@ -346,6 +347,15 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>global.subDomains.twofaHelpdesk</td>
+			<td>string</td>
+			<td><pre lang="json">
+"2fa-helpdesk"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>global.systemExtensions</td>
 			<td>list</td>
 			<td><pre lang="json">
@@ -358,6 +368,15 @@ true
       "tag": "0.59.1@sha256:c9c7faa3cca2be2f45d073517a50e8a8cc89d46c978c2f3a6be3c13d0e6ae900"
     },
     "name": "portal"
+  },
+  {
+    "image": {
+      "imagePullPolicy": "IfNotPresent",
+      "registry": "artifacts.software-univention.de",
+      "repository": "nubus-dev/images/twofa-helpdesk-extensions",
+      "tag": "0.3.0@sha256:d1b4cddd3522943076a65c8955202c7617b51d95f4449cc64a972a01e9c2ea85"
+    },
+    "name": "2fa-helpdesk"
   }
 ]
 </pre>
@@ -3752,6 +3771,24 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusStackDataUms.templateContext.portalTwoFaAllowedGroups[0]</td>
+			<td>string</td>
+			<td><pre lang="json">
+"Domain Admins"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.templateContext.portalTwoFaLinkBase</td>
+			<td>string</td>
+			<td><pre lang="json">
+"https://{{ .Values.global.subDomains.twofaHelpdesk }}.{{ .Values.global.domain }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusStackDataUms.templateContext.readonlyUserPassword</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -3765,6 +3802,24 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 null
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.templateContext.twofaAdminTileCategory</td>
+			<td>string</td>
+			<td><pre lang="json">
+"domain-admin"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.templateContext.twofaSelfserviceTileCategory</td>
+			<td>string</td>
+			<td><pre lang="json">
+"domain-service"
 </pre>
 </td>
 			<td></td>
@@ -3792,6 +3847,204 @@ null
 			<td>string</td>
 			<td><pre lang="json">
 "{{ printf \"%s-udm-rest-api-credentials\" .Release.Name }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusTwofaHelpdesk.enabled</td>
+			<td>bool</td>
+			<td><pre lang="json">
+false
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusTwofaHelpdesk.ingress.certManager.enabled</td>
+			<td>bool</td>
+			<td><pre lang="json">
+true
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusTwofaHelpdesk.ingress.host</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Values.global.subDomains.twofaHelpdesk }}.{{ .Values.global.domain }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusTwofaHelpdesk.keycloak.auth.existingSecret.keyMapping.adminPassword</td>
+			<td>string</td>
+			<td><pre lang="json">
+"admin_password"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusTwofaHelpdesk.keycloak.auth.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{- printf \"%s-keycloak-credentials\" .Release.Name -}}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusTwofaHelpdesk.keycloak.auth.username</td>
+			<td>string</td>
+			<td><pre lang="json">
+"kcadmin"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusTwofaHelpdesk.nameOverride</td>
+			<td>string</td>
+			<td><pre lang="json">
+"helpdesk"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusTwofaHelpdesk.nubusBaseUrl</td>
+			<td>string</td>
+			<td><pre lang="json">
+"dummy"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusTwofaHelpdesk.resources.limits.cpu</td>
+			<td>int</td>
+			<td><pre lang="json">
+288
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusTwofaHelpdesk.resources.limits.memory</td>
+			<td>string</td>
+			<td><pre lang="json">
+"1Gi"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusTwofaHelpdesk.resources.requests.cpu</td>
+			<td>string</td>
+			<td><pre lang="json">
+"10m"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusTwofaHelpdesk.resources.requests.memory</td>
+			<td>string</td>
+			<td><pre lang="json">
+"16Mi"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusTwofaHelpdesk.terminationGracePeriodSeconds</td>
+			<td>int</td>
+			<td><pre lang="json">
+5
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusTwofaHelpdesk.tls.secretName</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Release.Name }}-twofa-backend-api-tls"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusTwofaHelpdesk.twofaHelpdeskBackend.auth.admin_realm</td>
+			<td>string</td>
+			<td><pre lang="json">
+"master"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusTwofaHelpdesk.twofaHelpdeskBackend.auth.existingSecret.keyMapping.adminPassword</td>
+			<td>string</td>
+			<td><pre lang="json">
+"admin_password"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusTwofaHelpdesk.twofaHelpdeskBackend.auth.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{- printf \"%s-keycloak-credentials\" .Release.Name -}}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusTwofaHelpdesk.twofaHelpdeskBackend.auth.username</td>
+			<td>string</td>
+			<td><pre lang="json">
+"kcadmin"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusTwofaHelpdesk.twofaHelpdeskBackend.config.keycloak_url</td>
+			<td>string</td>
+			<td><pre lang="json">
+"https://{{ .Values.global.subDomains.keycloak }}.{{ .Values.global.domain }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusTwofaHelpdesk.twofaHelpdeskBackend.config.oidc_client</td>
+			<td>string</td>
+			<td><pre lang="json">
+"twofa-helpdesk"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusTwofaHelpdesk.twofaHelpdeskBackend.config.oidc_host</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ printf \"%s.%s\" .Values.global.subDomains.keycloak .Values.global.domain }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusTwofaHelpdesk.twofaHelpdeskBackend.config.twofa_admin_groups[0]</td>
+			<td>string</td>
+			<td><pre lang="json">
+"/Domain Admins"
 </pre>
 </td>
 			<td></td>
