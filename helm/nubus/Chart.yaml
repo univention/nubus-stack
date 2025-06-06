@@ -121,7 +121,7 @@ dependencies:
   - name: "udm-rest-api"
     alias: "nubusUdmRestApi"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.34.1"
+    version: "0.34.2"
     condition: "nubusUdmRestApi.enabled"
 
   # umc related chart(s)
