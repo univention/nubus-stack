@@ -29,6 +29,7 @@ global:
     portal: portal
     keycloak: id
     scim: scim
+    twofaHelpdesk: 2fa-helpdesk
 
   ingressClass: ""
   certManagerIssuer: ""
@@ -80,6 +81,12 @@ global:
         repository: "nubus/images/portal-extension"
         imagePullPolicy: "IfNotPresent"
         tag: "0.59.1@sha256:c9c7faa3cca2be2f45d073517a50e8a8cc89d46c978c2f3a6be3c13d0e6ae900"
+    - name: "2fa-helpdesk"
+      image:
+        registry: "artifacts.software-univention.de"
+        repository: "nubus-dev/images/twofa-helpdesk-extensions"
+        imagePullPolicy: "IfNotPresent"
+        tag: "0.3.0@sha256:d1b4cddd3522943076a65c8955202c7617b51d95f4449cc64a972a01e9c2ea85"
 
 # -- Additional custom annotations to add to all objects deployed directly by the umbrella chart.
 additionalAnnotations: {}
@@ -324,6 +331,42 @@ nubusGuardian: &nubusGuardian
           name: '{{- printf "%s-guardian-provisioning-secret" .Release.Name -}}'
           keyMapping:
             password: "adminPassword"
+
+nubusTwofaHelpdesk: &nubusTwofaHelpdesk
+  nubusBaseUrl: 'dummy' # TODO: Must be changed when we fully integrate the twofa helpdesk into the Nubus deployment.
+  terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
+  nameOverride: "helpdesk"
+  enabled: false
+  resources: *nubusDevelopmentResources
+  ingress:
+    host: "{{ .Values.global.subDomains.twofaHelpdesk }}.{{ .Values.global.domain }}"
+    certManager:
+      enabled: true
+  tls:
+    secretName: "{{ .Release.Name }}-twofa-backend-api-tls"
+
+  keycloak:
+    auth:
+      username: "kcadmin"
+      existingSecret:
+        name: '{{- printf "%s-keycloak-credentials" .Release.Name -}}'
+        keyMapping:
+          adminPassword: "admin_password"
+
+  twofaHelpdeskBackend:
+      config:
+          keycloak_url: "https://{{ .Values.global.subDomains.keycloak }}.{{ .Values.global.domain }}"
+          oidc_client: "twofa-helpdesk"
+          oidc_host: '{{ printf "%s.%s" .Values.global.subDomains.keycloak .Values.global.domain }}'
+          twofa_admin_groups: ["/Domain Admins"]
+
+      auth:
+        username: "kcadmin"
+        admin_realm: "master"
+        existingSecret:
+          name: '{{- printf "%s-keycloak-credentials" .Release.Name -}}'
+          keyMapping:
+            adminPassword: "admin_password"
 
 nubusLdapNotifier: &nubusLdapNotifier
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
@@ -847,6 +890,11 @@ nubusStackDataUms:
         password: '{{ include "nubusTemplates.credentials.ldap.users.readonly.password" . }}'
     readonlyUserPassword: '{{ include "nubusTemplates.credentials.ldap.users.readonly.password" . }}'
     svcPortalServerUserPassword: null
+    portalTwoFaLinkBase: 'https://{{ .Values.global.subDomains.twofaHelpdesk }}.{{ .Values.global.domain }}'
+    twofaSelfserviceTileCategory: "domain-service"
+    twofaAdminTileCategory: "domain-admin"
+    portalTwoFaAllowedGroups:
+      - "Domain Admins"
 
 nubusScimServer: &nubusScimServer
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
