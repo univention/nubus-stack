@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.10.2](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v1.10.1...v1.10.2) (2025-06-06)
+
+
+### Bug Fixes
+
+* Update sub-chart udm-rest-api to version 0.34.2 ([f963634](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/commit/f96363456cc76cad25a3ecb474a441c794b806e2)), closes [univention/dev/internal/team-nubus#892](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/892)
+
 ## [1.10.1](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v1.10.0...v1.10.1) (2025-06-02)
 
 
