@@ -117,6 +117,12 @@ dependencies:
     version: "0.93.1"
     condition: "nubusStackDataUms.enabled"
 
+  - name: "twofa-helpdesk"
+    alias: "nubusTwofaHelpdesk"
+    repository: "oci://artifacts.software-univention.de/nubus/charts"
+    version: "0.3.0"
+    condition: "nubusTwofaHelpdesk.enabled"
+
   # udm-rest-api related chart(s)
   - name: "udm-rest-api"
     alias: "nubusUdmRestApi"
