@@ -111,8 +111,6 @@ configure-tests:
   artifacts:
     reports:
       dotenv: deploy.env
-  variables:
-    TESTRUNNER_CONFIGURATION_BRANCH: main
 
 
 e2e-tests:
