@@ -60,6 +60,9 @@ nubusStackDataUms:
     smtpUser: ""
     smtpStartTls: false
     portalFqdn: "{{ .Values.reviewPrefix }}.portal.{{ .Values.reviewBaseDomain }}"
+  # TODO: Clean up here when fully integrated
+  templateContext:
+    twofaActivated: true
 
 keycloak:
   {{- if .Values.toggles.scaledSetup }}
