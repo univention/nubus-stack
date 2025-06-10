@@ -865,6 +865,7 @@ nubusStackDataUms:
         keyMapping:
           password: "ldap.secret"
   nubusUmcServer:
+    host: '{{ printf "%s-umc-server" .Release.Name }}'
     postgresql:
       connection:
         host: '{{ include "nubusTemplates.connections.postgres.host" . }}'
