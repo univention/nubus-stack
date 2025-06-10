@@ -86,7 +86,7 @@ global:
         registry: "artifacts.software-univention.de"
         repository: "nubus/images/twofa-helpdesk-extensions"
         imagePullPolicy: "IfNotPresent"
-        tag: "0.3.2@sha256:b4b74ab3eb831be07a9ac858665899bbf628d218ec641a1dc1038712116d6213"
+        tag: "0.3.3@sha256:05936ba63fef4a8757577996e8eaa34bc593dd03f992641d01c57dbe5618bbe6"
 
 # -- Additional custom annotations to add to all objects deployed directly by the umbrella chart.
 additionalAnnotations: {}
@@ -896,6 +896,7 @@ nubusStackDataUms:
     twofaAdminTileCategory: "domain-admin"
     portalTwoFaAllowedGroups:
       - "Domain Admins"
+    twofaActivated: false
 
 nubusScimServer: &nubusScimServer
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
