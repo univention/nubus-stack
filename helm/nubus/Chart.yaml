@@ -37,13 +37,13 @@ dependencies:
   - name: "ldap-notifier"
     alias: "nubusLdapNotifier"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.41.0"
+    version: "0.42.0"
     condition: "nubusLdapNotifier.enabled"
 
   - name: "ldap-server"
     alias: "nubusLdapServer"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.41.0"
+    version: "0.42.0"
     condition: "nubusLdapServer.enabled"
 
   # portal related chart(s)
@@ -114,7 +114,7 @@ dependencies:
   - name: "stack-data-ums"
     alias: "nubusStackDataUms"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.93.1"
+    version: "0.94.0"
     condition: "nubusStackDataUms.enabled"
 
   - name: "twofa-helpdesk"
@@ -127,20 +127,20 @@ dependencies:
   - name: "udm-rest-api"
     alias: "nubusUdmRestApi"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.34.2"
+    version: "0.35.0"
     condition: "nubusUdmRestApi.enabled"
 
   # umc related chart(s)
   - name: "umc-gateway"
     alias: "nubusUmcGateway"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.45.3"
+    version: "0.46.0"
     condition: "nubusUmcGateway.enabled"
 
   - name: "umc-server"
     alias: "nubusUmcServer"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.45.3"
+    version: "0.46.0"
     condition: "nubusUmcServer.enabled"
 
   # scim-server related chart(s)
