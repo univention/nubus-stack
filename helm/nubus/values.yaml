@@ -903,45 +903,68 @@ nubusScimServer: &nubusScimServer
   nameOverride: "scim-server"
   enabled: false
   resources: *nubusDevelopmentResources
-
-  provisioning:
-    enabled: true
-    keycloak:
-      auth:
-        username: "kcadmin"
-        existingSecret:
-          name: '{{- printf "%s-scim-server-provisioning-secret" .Release.Name -}}'
-          keyMapping:
-            password: "adminPassword"
-    user:
-      group:
-        create: true
-
-      create: true
-      username: "scim-api"
-      password: "scim-api"
-
   config:
+    host: "https://{{ .Values.global.subDomains.scim }}.{{ .Values.global.domain }}"
     logLevel: "INFO"
+    corsOrigins: '["https://{{ .Values.global.subDomains.scim }}.{{ .Values.global.domain }}"]'
     auth:
+      enabled: true
       allowGroupDn: '{{- printf "cn=%s,cn=groups,%s" "scim-api-access" .Values.global.ldap.baseDn -}}'
-    udm:
+  keycloak:
+    connection:
+      url: "https://{{ .Values.global.subDomains.keycloak }}.{{ .Values.global.domain }}"
+      realm: "{{ .Values.global.keycloak.realm }}"
+  udm:
+    connection:
+      url: '{{ include "nubusTemplates.udmRestApi.uri" . }}'
+    auth:
+      username: "cn=admin"
       existingSecret:
         name: '{{- printf "%s-scim-server-udm-secret" .Release.Name -}}'
         keyMapping:
           username: "username"
           password: "password"
-
   oauth:
+    clientId: "scim-api"
     auth:
       existingSecret:
-        name: '{{- printf "%s-scim-server-keycloak-client-secret" .Release.Name -}}'
+        name: '{{- printf "%s-scim-server-client-secret" .Release.Name -}}'
         keyMapping:
-          clientSecret: 'oauthAdapterM2mSecret'
-
+          clientSecret: "clientSecret"
+  setup:
+    enabled: true
+    keycloak:
+      connection:
+        host: "{{ .Release.Name }}-keycloak"
+        port: "8080"
+        baseUrl: "http://{{ .Release.Name }}-keycloak:8080"
+      auth:
+        username: "kcadmin"
+        existingSecret:
+          name: '{{- printf "%s-scim-server-setup-keycloak-secret" .Release.Name -}}'
+          keyMapping:
+            password: "password"
+    config:
+      nubusBaseUrl: "https://{{ .Values.global.subDomains.scim }}.{{ .Values.global.domain }}"
+      debug:
+        enabled: false
+    user:
+      create: true
+      username: "scim-api"
+      password: "scim-api"
+      group:
+        create: true
+        name: "scim-api-access"
   ingress:
     enabled: true
     host: "{{ .Values.global.subDomains.scim }}.{{ .Values.global.domain }}"
+    certManager:
+      enabled: true
+      issuerRef:
+        name: ""
+        kind: "ClusterIssuer"
+    tls:
+      enabled: true
 
 # Allows for creation of additional secrets, for example containing credentials for third party services.
 extraSecrets: []
