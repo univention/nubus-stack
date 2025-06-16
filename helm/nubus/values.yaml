@@ -86,7 +86,7 @@ global:
         registry: "artifacts.software-univention.de"
         repository: "nubus/images/twofa-helpdesk-extensions"
         imagePullPolicy: "IfNotPresent"
-        tag: "0.3.3@sha256:05936ba63fef4a8757577996e8eaa34bc593dd03f992641d01c57dbe5618bbe6"
+        tag: "0.4.0@sha256:12c8635466b07bcb1a095479b82057849bdd1afdd1951daeeb08304d76b5452a"
 
 # -- Additional custom annotations to add to all objects deployed directly by the umbrella chart.
 additionalAnnotations: {}
@@ -333,17 +333,20 @@ nubusGuardian: &nubusGuardian
             password: "adminPassword"
 
 nubusTwofaHelpdesk: &nubusTwofaHelpdesk
-  nubusBaseUrl: 'dummy' # TODO: Must be changed when we fully integrate the twofa helpdesk into the Nubus deployment.
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   nameOverride: "helpdesk"
   enabled: false
   resources: *nubusDevelopmentResources
   ingress:
-    host: "{{ .Values.global.subDomains.twofaHelpdesk }}.{{ .Values.global.domain }}"
+    host: "{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
     certManager:
       enabled: true
   tls:
     secretName: "{{ .Release.Name }}-twofa-backend-api-tls"
+
+  nubusBaseUrl: '{{ printf "%s.%s" .Values.global.subDomains.portal .Values.global.domain }}'
+  provisioning:
+    enabled: true
 
   keycloak:
     auth:
@@ -356,9 +359,6 @@ nubusTwofaHelpdesk: &nubusTwofaHelpdesk
   twofaHelpdeskBackend:
       config:
           keycloak_url: "https://{{ .Values.global.subDomains.keycloak }}.{{ .Values.global.domain }}"
-          oidc_client: "twofa-helpdesk"
-          oidc_host: '{{ printf "%s.%s" .Values.global.subDomains.keycloak .Values.global.domain }}'
-          twofa_admin_groups: ["/Domain Admins"]
 
       auth:
         username: "kcadmin"
@@ -803,6 +803,10 @@ nubusKeycloakBootstrap: &nubusKeycloakBootstrap
   nameOverride: "keycloak-bootstrap"
   enabled: true
   resources: *nubusDevelopmentResources
+  bootstrap:
+    twoFactorAuthentication:
+      enabled: true
+      group: "2fa-users"
   ldap:
     auth:
       bindDn: '{{ include "nubus.keycloak.ldap.auth.bindDn" . }}'
@@ -891,7 +895,7 @@ nubusStackDataUms:
         password: '{{ include "nubusTemplates.credentials.ldap.users.readonly.password" . }}'
     readonlyUserPassword: '{{ include "nubusTemplates.credentials.ldap.users.readonly.password" . }}'
     svcPortalServerUserPassword: null
-    portalTwoFaLinkBase: 'https://{{ .Values.global.subDomains.twofaHelpdesk }}.{{ .Values.global.domain }}'
+    portalTwoFaLinkBase: 'https://{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}'
     twofaSelfserviceTileCategory: "domain-service"
     twofaAdminTileCategory: "domain-admin"
     portalTwoFaAllowedGroups:
