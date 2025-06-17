@@ -7,8 +7,6 @@ include:
     ref: "v1.34.0"
     file:
       - "defaults/nubus-workflow.yaml"
-
-
 stages:
   - prepare
   - deploy
@@ -32,9 +30,9 @@ pipline-configuration:
     - echo "${RELEASE_VERSION}"
     - echo "${SEMANTIC_VERSION}"
     - echo "${TESTRUNNER_VERSION}"
+    - echo "ENVIRONMENT_SUFFIX=${ENVIRONMENT_SUFFIX:-}"
   variables:
     GIT_STRATEGY: none
-
 
 deploy-gaia:
   stage: "deploy"
@@ -45,14 +43,12 @@ deploy-gaia:
     # Prepare
     - export CHART_VERSION=${RELEASE_VERSION}
     - export REVIEW_PREFIX=${DEPLOY_SUBDOMAIN}
-
     # Ensure cleanup
     - >
       kubectl delete namespace "${DEPLOY_NAMESPACE}"
       --wait
       --timeout=600s
       --ignore-not-found
-
     # Deploy via ci/helmfile
     - pushd ci
     # TODO: There is an issue around the call to "helm diff". Using "apply"
@@ -62,7 +58,7 @@ deploy-gaia:
     - helmfile --debug -n "${DEPLOY_NAMESPACE}" --state-values-set toggles.externalDependencies=${EXTERNAL_DEPENDENCIES:-false} sync
     - popd
   environment:
-    name: ${CI_COMMIT_REF_SLUG}/nubus-with-extensions
+    name: ${CI_COMMIT_REF_SLUG}/nubus-with-extensions${ENVIRONMENT_SUFFIX}
     url: https://${DEPLOY_SUBDOMAIN}.portal.review.univention.dev
     on_stop: stop-deployment
     auto_stop_in: 3 hours
@@ -71,7 +67,6 @@ deploy-gaia:
   artifacts:
     reports:
       dotenv: deploy.env
-
 
 wait-for-bootstrap:
   stage: deploy
@@ -88,7 +83,6 @@ wait-for-bootstrap:
     - echo "Waiting for the creation of the provisioning subscriptions"
     - kubectl -n "${DEPLOY_NAMESPACE}" wait --for=condition=complete jobs.batch "${RELEASE_NAME:=nubus}-provisioning-register-consumers-1" --timeout 10m
 
-
 configure-tests:
   stage: test
   extends: .check-variables
@@ -102,7 +96,6 @@ configure-tests:
       --depth 1
       --branch "${TESTRUNNER_CONFIGURATION_BRANCH}"
       https://git.knut.univention.de/univention/dev/nubus-for-k8s/e2e-tests.git
-
     # Grab the pytest configuration
     - pushd ./e2e-tests
     - source ./discover-env-from-cluster.sh
@@ -111,7 +104,6 @@ configure-tests:
   artifacts:
     reports:
       dotenv: deploy.env
-
 
 e2e-tests:
   stage: test
@@ -155,7 +147,6 @@ e2e-tests:
   tags:
     - "docker"
 
-
 stop-deployment:
   stage: cleanup
   extends: .check-variables
@@ -173,11 +164,10 @@ stop-deployment:
   variables:
     GIT_STRATEGY: none
   environment:
-    name: ${CI_COMMIT_REF_SLUG}/nubus-with-extensions
+    name: ${CI_COMMIT_REF_SLUG}/nubus-with-extensions${ENVIRONMENT_SUFFIX}
     action: stop
   rules:
     - when: manual
-
 
 cleanup-failed-deployment:
   extends: stop-deployment
