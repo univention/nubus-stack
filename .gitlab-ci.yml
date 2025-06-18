@@ -13,6 +13,7 @@ include:
       - "jobs/package-and-publish-helm-charts-external.yaml"
       - "jobs/semantic-release-env.yaml"
       - "jobs/harbor-malware-scan.yaml"
+      - "jobs/sonarqube.yaml"
   - project: 'univention/infrastructure/renovate-runner'
     file: '/templates/renovate.gitlab-ci.yml'
 
