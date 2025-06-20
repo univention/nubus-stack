@@ -49,7 +49,7 @@ dependencies:
   # portal related chart(s)
   - name: "notifications-api"
     alias: "nubusNotificationsApi"
-    repository: "oci://artifacts.software-univention.de/nubus-dev/charts"
+    repository: "oci://artifacts.software-univention.de/nubus/charts"
     version: "0.69.2"
     condition: "nubusNotificationsApi.enabled"
 
