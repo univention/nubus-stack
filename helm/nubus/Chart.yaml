@@ -30,7 +30,7 @@ dependencies:
   - name: "license-import"
     alias: "nubusLicenseImport"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.3.1"
+    version: "0.4.0"
     condition: "nubusLicenseImport.enabled"
 
   # ldap-server related chart(s)
