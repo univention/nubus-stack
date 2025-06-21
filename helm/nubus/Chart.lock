@@ -21,7 +21,7 @@ dependencies:
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.42.0
 - name: notifications-api
-  repository: oci://artifacts.software-univention.de/nubus-dev/charts
+  repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.69.2
 - name: portal-frontend
   repository: oci://artifacts.software-univention.de/nubus/charts
@@ -68,5 +68,5 @@ dependencies:
 - name: scim-server
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.28.0
-digest: sha256:debb57da84274ee9d3c66e2140c03c01ba6e0d8576b97d7bb4adb2ce64c4ba5c
-generated: "2025-06-18T09:33:51.621358955+02:00"
+digest: sha256:b2f00338f7b6150071ad2ed12829786c3411787d0ec781c91e571c9b656ed607
+generated: "2025-06-20T17:23:42.65250345+02:00"
