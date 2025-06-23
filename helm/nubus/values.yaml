@@ -341,32 +341,25 @@ nubusTwofaHelpdesk: &nubusTwofaHelpdesk
     host: "{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
     certManager:
       enabled: true
-  tls:
-    secretName: "{{ .Release.Name }}-twofa-backend-api-tls"
+    tls:
+      secretName: "{{ .Release.Name }}-twofa-backend-api-tls"
 
   nubusBaseUrl: '{{ printf "%s.%s" .Values.global.subDomains.portal .Values.global.domain }}'
   provisioning:
     enabled: true
 
   keycloak:
+    realm: "{{ .Values.global.keycloak.realm }}"
+    admin_realm: "master"
     auth:
       username: "kcadmin"
       existingSecret:
         name: '{{- printf "%s-keycloak-credentials" .Release.Name -}}'
         keyMapping:
           adminPassword: "admin_password"
-
-  twofaHelpdeskBackend:
-      config:
-          keycloak_url: "https://{{ .Values.global.subDomains.keycloak }}.{{ .Values.global.domain }}"
-
-      auth:
-        username: "kcadmin"
-        admin_realm: "master"
-        existingSecret:
-          name: '{{- printf "%s-keycloak-credentials" .Release.Name -}}'
-          keyMapping:
-            adminPassword: "admin_password"
+    connection:
+      url: "https://{{ .Values.global.subDomains.keycloak }}.{{ .Values.global.domain }}"
+      host: "{{ .Release.Name }}-keycloak"
 
 nubusLdapNotifier: &nubusLdapNotifier
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
