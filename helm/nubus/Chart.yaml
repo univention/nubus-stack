@@ -102,7 +102,7 @@ dependencies:
   - name: "keycloak-extensions"
     alias: "nubusKeycloakExtensions"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.17.0"
+    version: "0.19.0"
     condition: "nubusKeycloakExtensions.enabled"
 
   - name: "keycloak-bootstrap"

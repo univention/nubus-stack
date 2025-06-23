@@ -853,6 +853,9 @@ nubusKeycloakExtensions: &nubusKeycloakExtensions
   handler:
     appConfig:
       logLevel: "INFO" # default loglevel (subchart): DEBUG
+      newDeviceLoginNotificationEnable: "True"
+      emailNotificationTimezone: "UTC"
+
   proxy:
     appConfig:
       logLevel: "info" # default loglevel (subchart): debug
