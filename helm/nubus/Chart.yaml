@@ -114,7 +114,7 @@ dependencies:
   - name: "stack-data-ums"
     alias: "nubusStackDataUms"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.94.0"
+    version: "0.94.2"
     condition: "nubusStackDataUms.enabled"
 
   - name: "twofa-helpdesk"
