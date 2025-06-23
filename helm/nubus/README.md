@@ -37,6 +37,7 @@ helm uninstall nubus
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami | minio | 14.7.0 |
 | https://charts.bitnami.com/bitnami | postgresql | ^12.x.x |
+| oci://artifacts.software-univention.de/nubus-dev/charts | nubusTwofaHelpdesk(twofa-helpdesk) | 0.5.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusGuardian(guardian) | 0.21.2 |
 | oci://artifacts.software-univention.de/nubus/charts | keycloak(keycloak) | 0.10.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakBootstrap(keycloak-bootstrap) | 0.12.2 |
@@ -53,7 +54,6 @@ helm uninstall nubus
 | oci://artifacts.software-univention.de/nubus/charts | nubusScimServer(scim-server) | 0.28.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceConsumer(selfservice-consumer) | 0.16.1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.94.3 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusTwofaHelpdesk(twofa-helpdesk) | 0.4.1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 0.55.2 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmRestApi(udm-rest-api) | 0.35.2 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.46.1 |
@@ -4095,6 +4095,24 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusTwofaHelpdesk.ingress.tls.secretName</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Release.Name }}-twofa-backend-api-tls"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusTwofaHelpdesk.keycloak.admin_realm</td>
+			<td>string</td>
+			<td><pre lang="json">
+"master"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusTwofaHelpdesk.keycloak.auth.existingSecret.keyMapping.adminPassword</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -4117,6 +4135,33 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 "kcadmin"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusTwofaHelpdesk.keycloak.connection.host</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Release.Name }}-keycloak"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusTwofaHelpdesk.keycloak.connection.url</td>
+			<td>string</td>
+			<td><pre lang="json">
+"https://{{ .Values.global.subDomains.keycloak }}.{{ .Values.global.domain }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusTwofaHelpdesk.keycloak.realm</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Values.global.keycloak.realm }}"
 </pre>
 </td>
 			<td></td>
@@ -4189,60 +4234,6 @@ true
 			<td>int</td>
 			<td><pre lang="json">
 5
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusTwofaHelpdesk.tls.secretName</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-twofa-backend-api-tls"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusTwofaHelpdesk.twofaHelpdeskBackend.auth.admin_realm</td>
-			<td>string</td>
-			<td><pre lang="json">
-"master"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusTwofaHelpdesk.twofaHelpdeskBackend.auth.existingSecret.keyMapping.adminPassword</td>
-			<td>string</td>
-			<td><pre lang="json">
-"admin_password"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusTwofaHelpdesk.twofaHelpdeskBackend.auth.existingSecret.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{- printf \"%s-keycloak-credentials\" .Release.Name -}}"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusTwofaHelpdesk.twofaHelpdeskBackend.auth.username</td>
-			<td>string</td>
-			<td><pre lang="json">
-"kcadmin"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusTwofaHelpdesk.twofaHelpdeskBackend.config.keycloak_url</td>
-			<td>string</td>
-			<td><pre lang="json">
-"https://{{ .Values.global.subDomains.keycloak }}.{{ .Values.global.domain }}"
 </pre>
 </td>
 			<td></td>
