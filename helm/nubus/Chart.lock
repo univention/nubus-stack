@@ -54,7 +54,7 @@ dependencies:
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.94.3
 - name: twofa-helpdesk
-  repository: oci://artifacts.software-univention.de/nubus-dev/charts
+  repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.5.0
 - name: udm-rest-api
   repository: oci://artifacts.software-univention.de/nubus/charts
@@ -68,5 +68,5 @@ dependencies:
 - name: scim-server
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.28.0
-digest: sha256:82bbe7597219ef5f5727d81ca17d0a14774f373be0d45882fda5873354568a04
-generated: "2025-06-23T14:18:14.307455086+02:00"
+digest: sha256:ef350678e536ed9e05e3a2333553e7159e18dd994f3c41480c7408296c69b956
+generated: "2025-06-23T14:53:46.200611785+02:00"
