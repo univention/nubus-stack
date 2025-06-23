@@ -40,7 +40,7 @@ helm uninstall nubus
 | oci://artifacts.software-univention.de/nubus/charts | nubusGuardian(guardian) | 0.20.0 |
 | oci://artifacts.software-univention.de/nubus/charts | keycloak(keycloak) | 0.10.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakBootstrap(keycloak-bootstrap) | 0.11.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakExtensions(keycloak-extensions) | 0.17.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakExtensions(keycloak-extensions) | 0.19.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusLdapNotifier(ldap-notifier) | 0.42.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusLdapServer(ldap-server) | 0.42.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusLicenseImport(license-import) | 0.2.0 |
@@ -1507,10 +1507,28 @@ false
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusKeycloakExtensions.handler.appConfig.emailNotificationTimezone</td>
+			<td>string</td>
+			<td><pre lang="json">
+"UTC"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusKeycloakExtensions.handler.appConfig.logLevel</td>
 			<td>string</td>
 			<td><pre lang="json">
 "INFO"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusKeycloakExtensions.handler.appConfig.newDeviceLoginNotificationEnable</td>
+			<td>string</td>
+			<td><pre lang="json">
+"True"
 </pre>
 </td>
 			<td></td>

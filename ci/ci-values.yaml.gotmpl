@@ -75,10 +75,12 @@ keycloak:
       secretName: {{ .Values.ingress.tls.secretName | quote }}
 
 nubusKeycloakExtensions:
+  enabled: false
   handler:
     appConfig:
       # No email configured on CI deployments
-      newDeviceLoginNotificationEnable: "False"
+      newDeviceLoginNotificationEnable: "True"
+      emailNotificationTimezone: "Europe/Berlin"
       # We only cover tests for IP block in the CI
       deviceProtectionEnable: "False"
   proxy:
@@ -90,6 +92,10 @@ nubusKeycloakExtensions:
   smtp:
     connection:
       host: "maildev-smtp"
+      port: "25"
+      starttls: false
+    auth:
+      enabled: false
 
 nubusPortalFrontend:
   ingress:

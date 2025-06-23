@@ -46,7 +46,7 @@ dependencies:
   version: 0.10.0
 - name: keycloak-extensions
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.17.0
+  version: 0.19.0
 - name: keycloak-bootstrap
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.11.0
@@ -68,5 +68,5 @@ dependencies:
 - name: scim-server
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.28.0
-digest: sha256:da7ff6020303a78df8f634d5a5e99585ebbd95b67eaae31b64dd9d6af5f79e59
-generated: "2025-06-23T08:34:36.360748799+02:00"
+digest: sha256:a1fff876b176fc203e2f2da7261f8e3dce1876220fce29aaa585953b87e70f3a
+generated: "2025-06-23T08:57:32.080357989+02:00"
