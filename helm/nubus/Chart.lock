@@ -43,13 +43,13 @@ dependencies:
   version: 0.19.2
 - name: keycloak-bootstrap
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.12.2
+  version: 0.13.0
 - name: stack-data-ums
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.95.0
 - name: twofa-helpdesk
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.6.0
+  version: 0.7.0
 - name: udm-rest-api
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.37.1
@@ -68,5 +68,5 @@ dependencies:
 - name: minio
   repository: https://charts.bitnami.com/bitnami
   version: 14.7.0
-digest: sha256:527d1ec58522b18e67c87bbb96c6c08a9a0d903781b236112ac5b150cab0f832
-generated: "2025-07-10T11:27:35.273151348+02:00"
+digest: sha256:ff70237db5c1dfc8318483cbe15f50a7da376e6c0f48ad43e0827a8f130d5558
+generated: "2025-07-10T13:35:30.775572025+02:00"

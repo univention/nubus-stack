@@ -346,6 +346,9 @@ nubusTwofaHelpdesk: &nubusTwofaHelpdesk
     connection:
       url: "https://{{ .Values.global.subDomains.keycloak }}.{{ .Values.global.domain }}"
       host: "{{ .Release.Name }}-keycloak"
+  twofaHelpdeskFrontend:
+    config:
+      postLogoutRedirectURI: '{{ printf "https://%s.%s/" .Values.global.subDomains.portal .Values.global.domain }}'
 
 nubusLdapNotifier: &nubusLdapNotifier
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
