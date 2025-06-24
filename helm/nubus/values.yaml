@@ -588,8 +588,6 @@ nubusProvisioning: &nubusProvisioning
         password:
           secretKeyRef:
             key: password
-    config:
-      LOG_LEVEL: "INFO" # default loglevel (subchart): INFO
   dispatcher:
     nats:
       auth:
