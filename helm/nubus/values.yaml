@@ -462,8 +462,6 @@ nubusProvisioning: &nubusProvisioning
     api: *nubusDevelopmentResources
 
   nats:
-    auth:
-      adminPassword: null
     config:
       cluster:
         # TODO: Set back to the default of 3 after nats clustering is solved.
@@ -530,29 +528,25 @@ nubusProvisioning: &nubusProvisioning
   api:
     nats:
       auth:
-        password: null
         existingSecret:
           name: "{{ .Release.Name }}-provisioning-api-credentials"
           keyMapping:
-            provisioningApiPassword: "NATS_PASSWORD"
             password: "NATS_PASSWORD"
 
   dispatcher:
     nats:
       auth:
-        password: null
         existingSecret:
           name: "{{ .Release.Name }}-provisioning-dispatcher-credentials"
           keyMapping:
-            dispatcherPassword: "NATS_PASSWORD"
+            password: "NATS_PASSWORD"
   prefill:
     nats:
       auth:
-        password: null
         existingSecret:
           name: "{{ .Release.Name }}-provisioning-prefill-credentials"
           keyMapping:
-            prefillPassword: "NATS_PASSWORD"
+            password: "NATS_PASSWORD"
     udm:
       auth:
         existingSecret:
@@ -569,11 +563,10 @@ nubusProvisioning: &nubusProvisioning
           name: "{{ .Release.Name }}-ldap-server-ldap"
     nats:
       auth:
-        password: null
         existingSecret:
           name: "{{ .Release.Name }}-provisioning-udm-transformer-credentials"
           keyMapping:
-            udmTransformerPassword: "NATS_PASSWORD"
+            password: "NATS_PASSWORD"
 
 nubusUdmListener: &nubusUdmListener
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
@@ -588,7 +581,6 @@ nubusUdmListener: &nubusUdmListener
     connection:
       host: "{{ .Release.Name }}-provisioning-nats"
     auth:
-      password: null
       existingSecret:
         name: "{{ .Release.Name }}-provisioning-udm-listener-credentials"
         keyMapping:
