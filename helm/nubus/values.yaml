@@ -592,9 +592,6 @@ nubusProvisioning: &nubusProvisioning
             dispatcherPassword: "NATS_PASSWORD"
   prefill:
     nats:
-      connection:
-        host: ""
-        port: ""
       auth:
         password: null
         existingSecret:
