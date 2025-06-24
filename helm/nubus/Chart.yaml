@@ -65,7 +65,7 @@ dependencies:
   - name: "selfservice-consumer"
     alias: "nubusSelfServiceConsumer"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.16.1"
+    version: "0.17.0"
     condition: "nubusSelfServiceConsumer.enabled"
 
   # provisioning related chart(s)
