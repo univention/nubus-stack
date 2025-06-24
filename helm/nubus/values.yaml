@@ -616,9 +616,6 @@ nubusUdmListener: &nubusUdmListener
   enabled: true
   resources: *nubusDevelopmentResources
   ldap:
-    connection:
-      host: ""
-      port: ""
     auth:
       existingSecret:
         name: "{{ .Release.Name }}-provisioning-udm-listener-ldap-credentials"
