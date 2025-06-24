@@ -660,8 +660,6 @@ nubusUmcServer: &nubusUmcServer
   umcServer:
     certPemFile: "/var/secrets/ssl/tls.crt"
     privateKeyFile: "/var/secrets/ssl/tls.key"
-  proxy:
-    logLevel: "INFO" # default loglevel (subchart): INFO
   extraVolumes:
     - name: "certificates"
       secret:
