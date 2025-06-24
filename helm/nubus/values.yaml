@@ -86,7 +86,7 @@ additionalLabels: {}
 
 # -- SAML certificates generation
 certificates:
-  # -- Enable SAML self-signed certificate generation. This required cert-manager.io
+  # -- Enable SAML self-signed certificate generation. This requires cert-manager.io
   enabled: true
 
 # -- Configure supporting Ingress resources created directly by the umbrella chart.
