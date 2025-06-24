@@ -590,10 +590,6 @@ nubusProvisioning: &nubusProvisioning
           name: "{{ .Release.Name }}-provisioning-dispatcher-credentials"
           keyMapping:
             dispatcherPassword: "NATS_PASSWORD"
-
-      connection:
-        host: ""
-        port: ""
     config:
       LOG_LEVEL: "INFO" # default loglevel (subchart): INFO
   prefill:
