@@ -420,11 +420,6 @@ nubusPortalConsumer: &nubusPortalConsumer
   provisioningApi:
     connection:
       url: "http://{{ .Release.Name }}-provisioning-api"
-    auth:
-      existingSecret:
-        name: "{{ .Release.Name }}-portal-consumer-credentials"
-        keyMapping:
-          password: PROVISIONING_API_PASSWORD
 
   udm:
     auth:
@@ -518,49 +513,21 @@ nubusProvisioning: &nubusProvisioning
       resources: *nubusDevelopmentResources
     natsBox:
       resources: *nubusDevelopmentResources
+
   registerConsumers:
     createUsers:
       portalConsumer:
-        # TODO: not yet supported
-        # username: null
-        # password: null
         existingSecret:
-          name: '{{- printf "%s-provisioning-register-consumers-json-secrets" .Release.Name -}}'
-          keyMapping:
-            password: "portal-consumer.json"
+          name: "{{ .Release.Name }}-portal-consumer-provisioning-api"
       selfserviceConsumer:
-        # TODO: not yet supported
-        # username: null
-        # password: null
         existingSecret:
-          name: '{{- printf "%s-provisioning-register-consumers-json-secrets" .Release.Name -}}'
-          keyMapping:
-            password: "selfservice.json"
+          name: "{{ .Release.Name }}-selfservice-listener-provisioning-api"
     udm:
       auth:
         existingSecret:
           name: "{{ .Release.Name }}-ldap-server-ldap"
 
   api:
-    auth:
-      adminPassword: null
-      prefillPassword: null
-      udmTransformerPassword: null
-      admin:
-        existingSecret:
-          name: "{{ .Release.Name }}-provisioning-api-credentials"
-          keyMapping:
-            password: ADMIN_PASSWORD
-      eventsUdm:
-        existingSecret:
-          name: "{{ .Release.Name }}-provisioning-api-credentials"
-          keyMapping:
-            password: EVENTS_PASSWORD_UDM
-      prefill:
-        existingSecret:
-          name: "{{ .Release.Name }}-provisioning-api-credentials"
-          keyMapping:
-            password: PREFILL_PASSWORD
     nats:
       auth:
         password: null
@@ -569,6 +536,7 @@ nubusProvisioning: &nubusProvisioning
           keyMapping:
             provisioningApiPassword: "NATS_PASSWORD"
             password: "NATS_PASSWORD"
+
   dispatcher:
     nats:
       auth:
@@ -628,26 +596,17 @@ nubusUdmListener: &nubusUdmListener
   provisioningApi:
     auth:
       existingSecret:
-        name: "{{ .Release.Name }}-provisioning-udm-listener-credentials"
-        keyMapping:
-          password: "EVENTS_PASSWORD_UDM"
+        name: "{{ .Release.Name }}-provisioning-api-events"
 
 nubusSelfServiceConsumer: &nubusSelfServiceConsumer
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   nameOverride: "selfservice-listener"
   enabled: true
   resources: *nubusDevelopmentResources
+
   provisioningApi:
-    auth:
-      username: "selfservice"
-      # TODO: This needs another iteration, it shows that we set the password,
-      # but we also have the existingSecret. Most likely this does belong in the
-      # user provisioning configuration around provisioning.
-      password: null
-      existingSecret:
-        name: "{{ .Release.Name }}-selfservice-listener-credentials"
-        keyMapping:
-          password: "PROVISIONING_API_PASSWORD"
+    connection:
+      url: "http://{{ .Release.Name }}-provisioning-api"
 
 nubusUdmRestApi: &nubusUdmRestApi
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
