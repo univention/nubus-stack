@@ -643,9 +643,6 @@ nubusUmcServer: &nubusUmcServer
     auth:
       existingSecret:
         name: "{{ .Release.Name }}-ldap-server-ldap"
-  smtp:
-    existingSecret:
-      name: '{{ printf "%s-umc-server-smtp-credentials" .Release.Name }}'
   memcached:
     nameOverride: "umc-server-memcached"
     containerSecurityContext:
