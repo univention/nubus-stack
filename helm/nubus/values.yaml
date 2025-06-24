@@ -598,8 +598,6 @@ nubusProvisioning: &nubusProvisioning
           name: "{{ .Release.Name }}-provisioning-prefill-credentials"
           keyMapping:
             prefillPassword: "NATS_PASSWORD"
-    config:
-      LOG_LEVEL: "INFO" # default loglevel (subchart): INFO
   udmTransformer:
     ldap:
       connection:
