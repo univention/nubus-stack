@@ -609,8 +609,6 @@ nubusProvisioning: &nubusProvisioning
           name: "{{ .Release.Name }}-provisioning-udm-transformer-credentials"
           keyMapping:
             udmTransformerPassword: "NATS_PASSWORD"
-    config:
-      LOG_LEVEL: "INFO" # default loglevel (subchart): INFO
 
 nubusUdmListener: &nubusUdmListener
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
