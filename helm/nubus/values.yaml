@@ -652,12 +652,11 @@ nubusUmcServer: &nubusUmcServer
     containerSecurityContext:
       readOnlyRootFilesystem: false
     auth:
-      username: selfservice
       existingPasswordSecret: '{{ printf "%s-umc-server-memcached-credentials" .Release.Name }}'
       existingSecret:
         name: '{{ printf "%s-umc-server-memcached-credentials" .Release.Name }}'
-    connection:
-      username: umcserver
+        keyMapping:
+          password: "memcached-password"
   umcServer:
     certPemFile: "/var/secrets/ssl/tls.crt"
     privateKeyFile: "/var/secrets/ssl/tls.key"
