@@ -636,8 +636,6 @@ nubusUdmListener: &nubusUdmListener
         name: "{{ .Release.Name }}-provisioning-udm-listener-credentials"
         keyMapping:
           password: "EVENTS_PASSWORD_UDM"
-  config:
-    debugLevel: "2" # default loglevel (subchart): 2
 
 nubusSelfServiceConsumer: &nubusSelfServiceConsumer
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
