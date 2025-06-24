@@ -642,9 +642,6 @@ nubusSelfServiceConsumer: &nubusSelfServiceConsumer
   nameOverride: "selfservice-listener"
   enabled: true
   resources: *nubusDevelopmentResources
-  nats:
-    auth:
-      password: null
   provisioningApi:
     auth:
       username: "selfservice"
