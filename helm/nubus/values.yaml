@@ -757,14 +757,12 @@ nubusStackDataUms:
     ldapHost: '{{ include "nubusTemplates.connections.ldap.primary.host" . }}'
 
   templateContext:
-    initialPasswordAdministrator: '{{ include "nubusTemplates.credentials.administrator.password" . }}'
     ldapSearchUsers: []
     ldapSystemUsers:
       - username: "readonly"
         lastname: "LDAP-system-User"
         password: '{{ include "nubusTemplates.credentials.ldap.users.readonly.password" . }}'
     readonlyUserPassword: '{{ include "nubusTemplates.credentials.ldap.users.readonly.password" . }}'
-    svcPortalServerUserPassword: null
     portalTwoFaLinkBase: 'https://{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}'
     twofaSelfserviceTileCategory: "domain-service"
     twofaAdminTileCategory: "domain-admin"
