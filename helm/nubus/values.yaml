@@ -290,9 +290,7 @@ nubusGuardian: &nubusGuardian
       auth:
         username: 'cn=admin'
         existingSecret:
-          name: '{{- printf "%s-guardian-udm-secret" .Release.Name -}}'
-          keyMapping:
-            password: 'udmDataAdapterPassword'
+          name: "{{ .Release.Name}}-ldap-server-ldap"
   managementApi:
     oauth:
       auth:
@@ -369,9 +367,7 @@ nubusLicenseImport:
       host: "{{ .Release.Name }}-ldap-server"
     auth:
       existingSecret:
-        name: "{{ .Release.Name }}-ldap-server-credentials"
-        keyMapping:
-          password: "{{ .Values.global.ldap.auth.cnAdmin.existingSecret.keyMapping.password }}"
+        name: "{{ .Release.Name }}-ldap-server-ldap"
 
 nubusNotificationsApi: &nubusNotificationsApi
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
@@ -419,9 +415,7 @@ nubusPortalConsumer: &nubusPortalConsumer
       host: "{{ .Release.Name }}-ldap-server-primary"
     auth:
       existingSecret:
-        name: "{{ .Release.Name }}-ldap-server-credentials"
-        keyMapping:
-          password: "adminPassword"
+        name: "{{ .Release.Name }}-ldap-server-ldap"
 
   provisioningApi:
     connection:
@@ -435,7 +429,7 @@ nubusPortalConsumer: &nubusPortalConsumer
   udm:
     auth:
       existingSecret:
-        name: "{{ .Release.Name }}-portal-consumer-udm-rest-api-credentials"
+        name: "{{ .Release.Name }}-ldap-server-ldap"
 
 
 nubusPortalServer: &nubusPortalServer
@@ -471,12 +465,7 @@ nubusProvisioning: &nubusProvisioning
     dispatcher: *nubusDevelopmentResources
     prefill: *nubusDevelopmentResources
     api: *nubusDevelopmentResources
-  ldap:
-    auth:
-      existingSecret:
-        name: '{{- printf "%s-ldap-server-credentials" .Release.Name -}}'
-        keyMapping:
-          password: "{{ .Values.global.ldap.auth.cnAdmin.existingSecret.keyMapping.password }}"
+
   nats:
     auth:
       adminPassword: null
@@ -547,6 +536,10 @@ nubusProvisioning: &nubusProvisioning
           name: '{{- printf "%s-provisioning-register-consumers-json-secrets" .Release.Name -}}'
           keyMapping:
             password: "selfservice.json"
+    udm:
+      auth:
+        existingSecret:
+          name: "{{ .Release.Name }}-ldap-server-ldap"
 
   api:
     auth:
@@ -592,10 +585,20 @@ nubusProvisioning: &nubusProvisioning
           name: "{{ .Release.Name }}-provisioning-prefill-credentials"
           keyMapping:
             prefillPassword: "NATS_PASSWORD"
+    udm:
+      auth:
+        existingSecret:
+          name: "{{ .Release.Name }}-ldap-server-ldap"
+
   udmTransformer:
     ldap:
       connection:
+        # NOTE: Special case, we want to be sure that the udm-transformer is
+        # talking to the primary ldap server.
         host: "{{ .Release.Name }}-ldap-server-primary"
+      auth:
+        existingSecret:
+          name: "{{ .Release.Name }}-ldap-server-ldap"
     nats:
       auth:
         password: null
@@ -612,9 +615,7 @@ nubusUdmListener: &nubusUdmListener
   ldap:
     auth:
       existingSecret:
-        name: "{{ .Release.Name }}-provisioning-udm-listener-ldap-credentials"
-        keyMapping:
-          password: "ldap.secret"
+        name: "{{ .Release.Name }}-ldap-server-ldap"
   nats:
     connection:
       host: "{{ .Release.Name }}-provisioning-nats"
@@ -656,15 +657,10 @@ nubusUdmRestApi: &nubusUdmRestApi
     enabled: false
     host: "{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
   resources: *nubusDevelopmentResources
-  udmRestApi:
-    ldap:
-      uri: ""
-      baseDn: ""
-      auth:
-        existingSecret:
-          name: '{{- printf "%s-ldap-server-credentials" .Release.Name -}}'
-          keyMapping:
-            password: "{{ .Values.global.ldap.auth.cnAdmin.existingSecret.keyMapping.password }}"
+  ldap:
+    auth:
+      existingSecret:
+        name: "{{ .Release.Name }}-ldap-server-ldap"
 
 nubusUmcGateway: &nubusUmcGateway
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
@@ -693,11 +689,9 @@ nubusUmcServer: &nubusUmcServer
   image:
     registry: "artifacts.software-univention.de"
   ldap:
-    existingSecret:
-      name: '{{ printf "%s-umc-server-ldap-credentials" .Release.Name }}'
-      keyMapping:
-        ldapPasswordKey: "ldap.secret"
-        machinePasswordKey: "machine.secret"
+    auth:
+      existingSecret:
+        name: "{{ .Release.Name }}-ldap-server-ldap"
   smtp:
     existingSecret:
       name: '{{ printf "%s-umc-server-smtp-credentials" .Release.Name }}'
@@ -792,9 +786,8 @@ nubusStackDataUms:
   udm:
     auth:
       existingSecret:
-        name: '{{ printf "%s-udm-rest-api-credentials" .Release.Name }}'
-        keyMapping:
-          password: "ldap.secret"
+        name: "{{ .Release.Name }}-ldap-server-ldap"
+
   nubusUmcServer:
     host: '{{ printf "%s-umc-server" .Release.Name }}'
     postgresql:
@@ -863,7 +856,7 @@ nubusScimServer: &nubusScimServer
     auth:
       username: "cn=admin"
       existingSecret:
-        name: '{{- printf "%s-scim-server-udm-secret" .Release.Name -}}'
+        name: "{{ .Release.Name }}-ldap-server-ldap"
         keyMapping:
           username: "username"
           password: "password"
