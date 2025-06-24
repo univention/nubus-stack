@@ -360,12 +360,6 @@ nubusLdapServer: &nubusLdapServer
   resourcesPrimary: *nubusDevelopmentResources
   resourcesSecondary: *nubusDevelopmentResources
   resourcesProxy: *nubusDevelopmentResources
-  ldapServer:
-    auth:
-      existingSecret:
-        name: "{{ .Release.Name }}-ldap-server-credentials"
-        keyMapping:
-          password: "adminPassword"
 
 nubusLicenseImport:
   enabled: false
