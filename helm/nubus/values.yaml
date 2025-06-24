@@ -50,8 +50,6 @@ global:
   configMapUcr: "{{ .Release.Name }}-stack-data-ums-ucr"
 
   configUcr:
-    apache2:
-      loglevel: "info" # default loglevel (subchart): warn
     ldap:
       # -- Indexes for the LDAP database
       index:
