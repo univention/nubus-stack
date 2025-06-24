@@ -21,13 +21,6 @@ global:
     baseDn: ""
     domainName: ""
     connection:
-    auth:
-      cnAdmin:
-        password: null
-        existingSecret:
-          name: null
-          keyMapping:
-            password: "adminPassword"
       host: "{{ .Release.Name }}-ldap-server"
 
   memcached:
