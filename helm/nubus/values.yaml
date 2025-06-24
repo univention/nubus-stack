@@ -600,6 +600,10 @@ nubusSelfServiceConsumer: &nubusSelfServiceConsumer
     connection:
       url: "http://{{ .Release.Name }}-provisioning-api"
 
+  umc:
+    connection:
+      url: "http://{{ .Release.Name }}-umc-server"
+
 nubusUdmRestApi: &nubusUdmRestApi
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   nameOverride: "udm-rest-api"
