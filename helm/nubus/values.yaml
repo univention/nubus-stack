@@ -581,13 +581,7 @@ nubusProvisioning: &nubusProvisioning
           name: "{{ .Release.Name }}-provisioning-api-credentials"
           keyMapping:
             provisioningApiPassword: "NATS_PASSWORD"
-      connection:
-        host: ""
-        port: ""
-        username: events_and_consumer_api
-        password:
-          secretKeyRef:
-            key: password
+            password: "NATS_PASSWORD"
   dispatcher:
     nats:
       auth:
