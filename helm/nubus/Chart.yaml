@@ -8,18 +8,8 @@ version: "1.0.0"
 
 dependencies:
   - name: "nubus-common"
-    version: "^0.8.x"
+    version: "0.21.0"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-
-  - name: "postgresql"
-    repository: "https://charts.bitnami.com/bitnami"
-    version: "^12.x.x"
-    condition: "postgresql.enabled"
-
-  - name: "minio"
-    repository: "https://charts.bitnami.com/bitnami"
-    version: "14.7.0"
-    condition: "minio.enabled"
 
   - name: "guardian"
     alias: "nubusGuardian"
@@ -148,3 +138,14 @@ dependencies:
     repository: "oci://artifacts.software-univention.de/nubus/charts"
     version: "0.35.0"
     condition: "nubusScimServer.enabled"
+
+  # Optionally bundled external dependencies
+  - name: "postgresql"
+    repository: "https://charts.bitnami.com/bitnami"
+    version: "^12.x.x"
+    condition: "postgresql.enabled"
+
+  - name: "minio"
+    repository: "https://charts.bitnami.com/bitnami"
+    version: "14.7.0"
+    condition: "minio.enabled"
