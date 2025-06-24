@@ -57,13 +57,6 @@ global:
   configMapUcr: "{{ .Release.Name }}-stack-data-ums-ucr"
 
   configUcr:
-    umc:
-      module:
-        debug:
-          level: 2 # default loglevel (subchart): 5
-      server:
-        debug:
-          level: 2 # default loglevel (subchart): 5
     apache2:
       loglevel: "info" # default loglevel (subchart): warn
     ldap:
