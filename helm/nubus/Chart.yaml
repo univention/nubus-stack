@@ -50,29 +50,28 @@ dependencies:
   - name: "notifications-api"
     alias: "nubusNotificationsApi"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.69.4"
+    version: "0.69.5"
     condition: "nubusNotificationsApi.enabled"
 
   - name: "portal-frontend"
     alias: "nubusPortalFrontend"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.69.4"
+    version: "0.69.5"
     condition: "nubusPortalFrontend.enabled"
 
   - name: "portal-consumer"
     alias: "nubusPortalConsumer"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.69.4"
+    version: "0.69.5"
     condition: "nubusPortalConsumer.enabled"
 
   - name: "portal-server"
     alias: "nubusPortalServer"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.69.4"
+    version: "0.69.5"
     condition: "nubusPortalServer.enabled"
 
   # selfservice related chart(s)
-
   - name: "selfservice-consumer"
     alias: "nubusSelfServiceConsumer"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
@@ -127,7 +126,7 @@ dependencies:
   - name: "udm-rest-api"
     alias: "nubusUdmRestApi"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.35.3"
+    version: "0.35.4"
     condition: "nubusUdmRestApi.enabled"
 
   # umc related chart(s)
