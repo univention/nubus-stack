@@ -410,8 +410,9 @@ nubusPortalConsumer: &nubusPortalConsumer
 
   ldap:
     connection:
-      # NOTE: Special case, we want to be sure that the consumer is talking
-      # to the primary ldap server.
+      # NOTE: Special case, we want to be sure that the consumer is talking to
+      # the primary ldap server. This way there is no race condition between the
+      # provisioning event and the update of the secondary ldap servers.
       host: "{{ .Release.Name }}-ldap-server-primary"
     auth:
       existingSecret:
@@ -556,7 +557,9 @@ nubusProvisioning: &nubusProvisioning
     ldap:
       connection:
         # NOTE: Special case, we want to be sure that the udm-transformer is
-        # talking to the primary ldap server.
+        # talking to the primary ldap server. This way there is no race
+        # condition between the provisioning event and the update of the
+        # secondary ldap servers.
         host: "{{ .Release.Name }}-ldap-server-primary"
       auth:
         existingSecret:
