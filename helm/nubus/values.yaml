@@ -29,7 +29,6 @@ global:
     portal: portal
     keycloak: id
     scim: scim
-    twofaHelpdesk: 2fa-helpdesk
 
   ingressClass: ""
   certManagerIssuer: ""

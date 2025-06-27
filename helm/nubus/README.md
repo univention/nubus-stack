@@ -347,15 +347,6 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>global.subDomains.twofaHelpdesk</td>
-			<td>string</td>
-			<td><pre lang="json">
-"2fa-helpdesk"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>global.systemExtensions</td>
 			<td>list</td>
 			<td><pre lang="json">
