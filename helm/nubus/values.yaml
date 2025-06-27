@@ -905,15 +905,27 @@ nubusScimServer: &nubusScimServer
   resources: *nubusDevelopmentResources
   config:
     host: "https://{{ .Values.global.subDomains.scim }}.{{ .Values.global.domain }}"
+    # -- Available log levels are:
+    # TRACE, DEBUG, INFO, SUCCESS, WARNING, ERROR, CRITICAL
+    #
+    # For detailed information please have a look at the loguru documentation: https://loguru.readthedocs.io/en/stable/api/logger.html#levels
     logLevel: "INFO"
     corsOrigins: '["https://{{ .Values.global.subDomains.scim }}.{{ .Values.global.domain }}"]'
     auth:
       enabled: true
-      allowGroupDn: '{{- printf "cn=%s,cn=groups,%s" "scim-api-access" .Values.global.ldap.baseDn -}}'
+      allowedAudience: 'scim-api-access'
+      allowedClientId: 'scim-client'
+    externalId:
+      userMapping: null
+      groupMapping: null
+    roles:
+      userMapping: null
   keycloak:
     connection:
       url: "https://{{ .Values.global.subDomains.keycloak }}.{{ .Values.global.domain }}"
       realm: "{{ .Values.global.keycloak.realm }}"
+  docu:
+    enabled: false
   udm:
     connection:
       url: '{{ include "nubusTemplates.udmRestApi.uri" . }}'
@@ -924,37 +936,6 @@ nubusScimServer: &nubusScimServer
         keyMapping:
           username: "username"
           password: "password"
-  oauth:
-    clientId: "scim-api"
-    auth:
-      existingSecret:
-        name: '{{- printf "%s-scim-server-client-secret" .Release.Name -}}'
-        keyMapping:
-          clientSecret: "clientSecret"
-  setup:
-    enabled: true
-    keycloak:
-      connection:
-        host: "{{ .Release.Name }}-keycloak"
-        port: "8080"
-        baseUrl: "http://{{ .Release.Name }}-keycloak:8080"
-      auth:
-        username: "kcadmin"
-        existingSecret:
-          name: '{{- printf "%s-scim-server-setup-keycloak-secret" .Release.Name -}}'
-          keyMapping:
-            password: "password"
-    config:
-      nubusBaseUrl: "https://{{ .Values.global.subDomains.scim }}.{{ .Values.global.domain }}"
-      debug:
-        enabled: false
-    user:
-      create: true
-      username: "scim-api"
-      password: "scim-api"
-      group:
-        create: true
-        name: "scim-api-access"
   ingress:
     enabled: true
     host: "{{ .Values.global.subDomains.scim }}.{{ .Values.global.domain }}"

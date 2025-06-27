@@ -50,7 +50,7 @@ helm uninstall nubus
 | oci://artifacts.software-univention.de/nubus/charts | nubusPortalFrontend(portal-frontend) | 0.69.5 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.69.5 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 0.55.3 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusScimServer(scim-server) | 0.28.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusScimServer(scim-server) | 0.35.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceConsumer(selfservice-consumer) | 0.16.1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.94.3 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusTwofaHelpdesk(twofa-helpdesk) | 0.6.0 |
@@ -3312,10 +3312,19 @@ null
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusScimServer.config.auth.allowGroupDn</td>
+			<td>nubusScimServer.config.auth.allowedAudience</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{- printf \"cn=%s,cn=groups,%s\" \"scim-api-access\" .Values.global.ldap.baseDn -}}"
+"scim-api-access"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusScimServer.config.auth.allowedClientId</td>
+			<td>string</td>
+			<td><pre lang="json">
+"scim-client"
 </pre>
 </td>
 			<td></td>
@@ -3339,6 +3348,24 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusScimServer.config.externalId.groupMapping</td>
+			<td>string</td>
+			<td><pre lang="json">
+null
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusScimServer.config.externalId.userMapping</td>
+			<td>string</td>
+			<td><pre lang="json">
+null
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusScimServer.config.host</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -3352,6 +3379,24 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 "INFO"
+</pre>
+</td>
+			<td>Available log levels are: TRACE, DEBUG, INFO, SUCCESS, WARNING, ERROR, CRITICAL  For detailed information please have a look at the loguru documentation: https://loguru.readthedocs.io/en/stable/api/logger.html#levels</td>
+		</tr>
+		<tr>
+			<td>nubusScimServer.config.roles.userMapping</td>
+			<td>string</td>
+			<td><pre lang="json">
+null
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusScimServer.docu.enabled</td>
+			<td>bool</td>
+			<td><pre lang="json">
+false
 </pre>
 </td>
 			<td></td>
@@ -3447,33 +3492,6 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusScimServer.oauth.auth.existingSecret.keyMapping.clientSecret</td>
-			<td>string</td>
-			<td><pre lang="json">
-"clientSecret"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusScimServer.oauth.auth.existingSecret.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{- printf \"%s-scim-server-client-secret\" .Release.Name -}}"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusScimServer.oauth.clientId</td>
-			<td>string</td>
-			<td><pre lang="json">
-"scim-api"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusScimServer.resources.limits.cpu</td>
 			<td>int</td>
 			<td><pre lang="json">
@@ -3505,132 +3523,6 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 "16Mi"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusScimServer.setup.config.debug.enabled</td>
-			<td>bool</td>
-			<td><pre lang="json">
-false
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusScimServer.setup.config.nubusBaseUrl</td>
-			<td>string</td>
-			<td><pre lang="json">
-"https://{{ .Values.global.subDomains.scim }}.{{ .Values.global.domain }}"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusScimServer.setup.enabled</td>
-			<td>bool</td>
-			<td><pre lang="json">
-true
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusScimServer.setup.keycloak.auth.existingSecret.keyMapping.password</td>
-			<td>string</td>
-			<td><pre lang="json">
-"password"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusScimServer.setup.keycloak.auth.existingSecret.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{- printf \"%s-scim-server-setup-keycloak-secret\" .Release.Name -}}"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusScimServer.setup.keycloak.auth.username</td>
-			<td>string</td>
-			<td><pre lang="json">
-"kcadmin"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusScimServer.setup.keycloak.connection.baseUrl</td>
-			<td>string</td>
-			<td><pre lang="json">
-"http://{{ .Release.Name }}-keycloak:8080"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusScimServer.setup.keycloak.connection.host</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-keycloak"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusScimServer.setup.keycloak.connection.port</td>
-			<td>string</td>
-			<td><pre lang="json">
-"8080"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusScimServer.setup.user.create</td>
-			<td>bool</td>
-			<td><pre lang="json">
-true
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusScimServer.setup.user.group.create</td>
-			<td>bool</td>
-			<td><pre lang="json">
-true
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusScimServer.setup.user.group.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"scim-api-access"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusScimServer.setup.user.password</td>
-			<td>string</td>
-			<td><pre lang="json">
-"scim-api"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusScimServer.setup.user.username</td>
-			<td>string</td>
-			<td><pre lang="json">
-"scim-api"
 </pre>
 </td>
 			<td></td>
