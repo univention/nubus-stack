@@ -105,7 +105,7 @@ helm uninstall nubus
 true
 </pre>
 </td>
-			<td>Enable SAML self-signed certificate generation. This required cert-manager.io</td>
+			<td>Enable SAML self-signed certificate generation. This requires cert-manager.io</td>
 		</tr>
 		<tr>
 			<td>extraSecrets</td>
@@ -135,15 +135,6 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>global.configUcr.apache2.loglevel</td>
-			<td>string</td>
-			<td><pre lang="json">
-"info"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>global.configUcr.ldap.index</td>
 			<td>object</td>
 			<td><pre lang="json">
@@ -156,24 +147,6 @@ true
 </pre>
 </td>
 			<td>Indexes for the LDAP database</td>
-		</tr>
-		<tr>
-			<td>global.configUcr.umc.module.debug.level</td>
-			<td>int</td>
-			<td><pre lang="json">
-2
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>global.configUcr.umc.server.debug.level</td>
-			<td>int</td>
-			<td><pre lang="json">
-2
-</pre>
-</td>
-			<td></td>
 		</tr>
 		<tr>
 			<td>global.domain</td>
@@ -221,42 +194,6 @@ false
 			<td></td>
 		</tr>
 		<tr>
-			<td>global.ldap.auth.cnAdmin.existingSecret.keyMapping.password</td>
-			<td>string</td>
-			<td><pre lang="json">
-"adminPassword"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>global.ldap.auth.cnAdmin.existingSecret.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-null
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>global.ldap.auth.cnAdmin.password</td>
-			<td>string</td>
-			<td><pre lang="json">
-null
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>global.ldap.auth.host</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-ldap-server"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>global.ldap.baseDn</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -266,10 +203,10 @@ null
 			<td></td>
 		</tr>
 		<tr>
-			<td>global.ldap.connection</td>
+			<td>global.ldap.connection.host</td>
 			<td>string</td>
 			<td><pre lang="json">
-null
+"{{ .Release.Name }}-ldap-server"
 </pre>
 </td>
 			<td></td>
@@ -387,7 +324,7 @@ true
 			<td>global.udm.connection.url</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ include \"nubusTemplates.udmRestApi.uri\" . }}"
+"http://{{ .Release.Name }}-udm-rest-api:9979/udm/"
 </pre>
 </td>
 			<td>Global default for the URL via which the UDM Rest API can be reached. In transition state, not all subcharts do make use of this yet.</td>
@@ -1156,19 +1093,10 @@ false
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusGuardian.authorizationApi.udm.auth.existingSecret.keyMapping.password</td>
-			<td>string</td>
-			<td><pre lang="json">
-"udmDataAdapterPassword"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusGuardian.authorizationApi.udm.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{- printf \"%s-guardian-udm-secret\" .Release.Name -}}"
+"{{ .Release.Name}}-ldap-server-admin"
 </pre>
 </td>
 			<td></td>
@@ -1723,24 +1651,6 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusLdapServer.ldapServer.auth.existingSecret.keyMapping.password</td>
-			<td>string</td>
-			<td><pre lang="json">
-"adminPassword"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusLdapServer.ldapServer.auth.existingSecret.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-ldap-server-credentials"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusLdapServer.nameOverride</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -1894,19 +1804,10 @@ false
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusLicenseImport.ldap.auth.existingSecret.keyMapping.password</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Values.global.ldap.auth.cnAdmin.existingSecret.keyMapping.password }}"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusLicenseImport.ldap.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ .Release.Name }}-ldap-server-credentials"
+"{{ .Release.Name }}-ldap-server-admin"
 </pre>
 </td>
 			<td></td>
@@ -2038,19 +1939,10 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusPortalConsumer.ldap.auth.existingSecret.keyMapping.password</td>
-			<td>string</td>
-			<td><pre lang="json">
-"adminPassword"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusPortalConsumer.ldap.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ .Release.Name }}-ldap-server-credentials"
+"{{ .Release.Name }}-ldap-server-admin"
 </pre>
 </td>
 			<td></td>
@@ -2119,24 +2011,6 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusPortalConsumer.provisioningApi.auth.existingSecret.keyMapping.password</td>
-			<td>string</td>
-			<td><pre lang="json">
-"PROVISIONING_API_PASSWORD"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusPortalConsumer.provisioningApi.auth.existingSecret.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-portal-consumer-credentials"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusPortalConsumer.provisioningApi.connection.url</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -2194,7 +2068,7 @@ true
 			<td>nubusPortalConsumer.udm.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ .Release.Name }}-portal-consumer-udm-rest-api-credentials"
+"{{ .Release.Name }}-ldap-server-admin"
 </pre>
 </td>
 			<td></td>
@@ -2398,97 +2272,7 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusProvisioning.api.auth.admin.existingSecret.keyMapping.password</td>
-			<td>string</td>
-			<td><pre lang="json">
-"ADMIN_PASSWORD"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.api.auth.admin.existingSecret.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-provisioning-api-credentials"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.api.auth.adminPassword</td>
-			<td>string</td>
-			<td><pre lang="json">
-null
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.api.auth.eventsUdm.existingSecret.keyMapping.password</td>
-			<td>string</td>
-			<td><pre lang="json">
-"EVENTS_PASSWORD_UDM"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.api.auth.eventsUdm.existingSecret.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-provisioning-api-credentials"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.api.auth.prefill.existingSecret.keyMapping.password</td>
-			<td>string</td>
-			<td><pre lang="json">
-"PREFILL_PASSWORD"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.api.auth.prefill.existingSecret.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-provisioning-api-credentials"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.api.auth.prefillPassword</td>
-			<td>string</td>
-			<td><pre lang="json">
-null
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.api.auth.udmTransformerPassword</td>
-			<td>string</td>
-			<td><pre lang="json">
-null
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.api.config.LOG_LEVEL</td>
-			<td>string</td>
-			<td><pre lang="json">
-"INFO"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.api.nats.auth.existingSecret.keyMapping.provisioningApiPassword</td>
+			<td>nubusProvisioning.api.nats.auth.existingSecret.keyMapping.password</td>
 			<td>string</td>
 			<td><pre lang="json">
 "NATS_PASSWORD"
@@ -2506,61 +2290,7 @@ null
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusProvisioning.api.nats.auth.password</td>
-			<td>string</td>
-			<td><pre lang="json">
-null
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.api.nats.connection.host</td>
-			<td>string</td>
-			<td><pre lang="json">
-""
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.api.nats.connection.password.secretKeyRef.key</td>
-			<td>string</td>
-			<td><pre lang="json">
-"password"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.api.nats.connection.port</td>
-			<td>string</td>
-			<td><pre lang="json">
-""
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.api.nats.connection.username</td>
-			<td>string</td>
-			<td><pre lang="json">
-"events_and_consumer_api"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.dispatcher.config.LOG_LEVEL</td>
-			<td>string</td>
-			<td><pre lang="json">
-"INFO"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.dispatcher.nats.auth.existingSecret.keyMapping.dispatcherPassword</td>
+			<td>nubusProvisioning.dispatcher.nats.auth.existingSecret.keyMapping.password</td>
 			<td>string</td>
 			<td><pre lang="json">
 "NATS_PASSWORD"
@@ -2578,33 +2308,6 @@ null
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusProvisioning.dispatcher.nats.auth.password</td>
-			<td>string</td>
-			<td><pre lang="json">
-null
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.dispatcher.nats.connection.host</td>
-			<td>string</td>
-			<td><pre lang="json">
-""
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.dispatcher.nats.connection.port</td>
-			<td>string</td>
-			<td><pre lang="json">
-""
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusProvisioning.enabled</td>
 			<td>bool</td>
 			<td><pre lang="json">
@@ -2614,37 +2317,10 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusProvisioning.ldap.auth.existingSecret.keyMapping.password</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Values.global.ldap.auth.cnAdmin.existingSecret.keyMapping.password }}"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.ldap.auth.existingSecret.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{- printf \"%s-ldap-server-credentials\" .Release.Name -}}"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusProvisioning.nameOverride</td>
 			<td>string</td>
 			<td><pre lang="json">
 "provisioning"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.nats.auth.adminPassword</td>
-			<td>string</td>
-			<td><pre lang="json">
-null
 </pre>
 </td>
 			<td></td>
@@ -2974,16 +2650,7 @@ null
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusProvisioning.prefill.config.LOG_LEVEL</td>
-			<td>string</td>
-			<td><pre lang="json">
-"INFO"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.prefill.nats.auth.existingSecret.keyMapping.prefillPassword</td>
+			<td>nubusProvisioning.prefill.nats.auth.existingSecret.keyMapping.password</td>
 			<td>string</td>
 			<td><pre lang="json">
 "NATS_PASSWORD"
@@ -3001,37 +2668,10 @@ null
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusProvisioning.prefill.nats.auth.password</td>
+			<td>nubusProvisioning.prefill.udm.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-null
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.prefill.nats.connection.host</td>
-			<td>string</td>
-			<td><pre lang="json">
-""
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.prefill.nats.connection.port</td>
-			<td>string</td>
-			<td><pre lang="json">
-""
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.registerConsumers.createUsers.portalConsumer.existingSecret.keyMapping.password</td>
-			<td>string</td>
-			<td><pre lang="json">
-"portal-consumer.json"
+"{{ .Release.Name }}-ldap-server-admin"
 </pre>
 </td>
 			<td></td>
@@ -3040,16 +2680,7 @@ null
 			<td>nubusProvisioning.registerConsumers.createUsers.portalConsumer.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{- printf \"%s-provisioning-register-consumers-json-secrets\" .Release.Name -}}"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.registerConsumers.createUsers.selfserviceConsumer.existingSecret.keyMapping.password</td>
-			<td>string</td>
-			<td><pre lang="json">
-"selfservice.json"
+"{{ .Release.Name }}-portal-consumer-provisioning-api"
 </pre>
 </td>
 			<td></td>
@@ -3058,7 +2689,16 @@ null
 			<td>nubusProvisioning.registerConsumers.createUsers.selfserviceConsumer.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{- printf \"%s-provisioning-register-consumers-json-secrets\" .Release.Name -}}"
+"{{ .Release.Name }}-selfservice-listener-provisioning-api"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusProvisioning.registerConsumers.udm.auth.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Release.Name }}-ldap-server-admin"
 </pre>
 </td>
 			<td></td>
@@ -3181,10 +2821,10 @@ null
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusProvisioning.udmTransformer.config.LOG_LEVEL</td>
+			<td>nubusProvisioning.udmTransformer.ldap.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"INFO"
+"{{ .Release.Name }}-ldap-server-admin"
 </pre>
 </td>
 			<td></td>
@@ -3199,7 +2839,7 @@ null
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusProvisioning.udmTransformer.nats.auth.existingSecret.keyMapping.udmTransformerPassword</td>
+			<td>nubusProvisioning.udmTransformer.nats.auth.existingSecret.keyMapping.password</td>
 			<td>string</td>
 			<td><pre lang="json">
 "NATS_PASSWORD"
@@ -3212,15 +2852,6 @@ null
 			<td>string</td>
 			<td><pre lang="json">
 "{{ .Release.Name }}-provisioning-udm-transformer-credentials"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.udmTransformer.nats.auth.password</td>
-			<td>string</td>
-			<td><pre lang="json">
-null
 </pre>
 </td>
 			<td></td>
@@ -3451,28 +3082,10 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusScimServer.udm.auth.existingSecret.keyMapping.password</td>
-			<td>string</td>
-			<td><pre lang="json">
-"password"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusScimServer.udm.auth.existingSecret.keyMapping.username</td>
-			<td>string</td>
-			<td><pre lang="json">
-"username"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusScimServer.udm.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{- printf \"%s-scim-server-udm-secret\" .Release.Name -}}"
+"{{ .Release.Name }}-ldap-server-admin"
 </pre>
 </td>
 			<td></td>
@@ -3514,46 +3127,10 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusSelfServiceConsumer.nats.auth.password</td>
+			<td>nubusSelfServiceConsumer.provisioningApi.connection.url</td>
 			<td>string</td>
 			<td><pre lang="json">
-null
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusSelfServiceConsumer.provisioningApi.auth.existingSecret.keyMapping.password</td>
-			<td>string</td>
-			<td><pre lang="json">
-"PROVISIONING_API_PASSWORD"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusSelfServiceConsumer.provisioningApi.auth.existingSecret.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-selfservice-listener-credentials"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusSelfServiceConsumer.provisioningApi.auth.password</td>
-			<td>string</td>
-			<td><pre lang="json">
-null
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusSelfServiceConsumer.provisioningApi.auth.username</td>
-			<td>string</td>
-			<td><pre lang="json">
-"selfservice"
+"http://{{ .Release.Name }}-provisioning-api"
 </pre>
 </td>
 			<td></td>
@@ -3599,6 +3176,15 @@ null
 			<td>int</td>
 			<td><pre lang="json">
 5
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusSelfServiceConsumer.umc.connection.url</td>
+			<td>string</td>
+			<td><pre lang="json">
+"http://{{ .Release.Name }}-umc-server"
 </pre>
 </td>
 			<td></td>
@@ -3739,15 +3325,6 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataUms.templateContext.initialPasswordAdministrator</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ include \"nubusTemplates.credentials.administrator.password\" . }}"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusStackDataUms.templateContext.ldapSearchUsers</td>
 			<td>list</td>
 			<td><pre lang="json">
@@ -3811,15 +3388,6 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataUms.templateContext.svcPortalServerUserPassword</td>
-			<td>string</td>
-			<td><pre lang="json">
-null
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusStackDataUms.templateContext.twofaActivated</td>
 			<td>bool</td>
 			<td><pre lang="json">
@@ -3856,19 +3424,10 @@ false
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataUms.udm.auth.existingSecret.keyMapping.password</td>
-			<td>string</td>
-			<td><pre lang="json">
-"ldap.secret"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusStackDataUms.udm.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ printf \"%s-udm-rest-api-credentials\" .Release.Name }}"
+"{{ .Release.Name }}-ldap-server-admin"
 </pre>
 </td>
 			<td></td>
@@ -4045,15 +3604,6 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusUdmListener.config.debugLevel</td>
-			<td>string</td>
-			<td><pre lang="json">
-"2"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusUdmListener.enabled</td>
 			<td>bool</td>
 			<td><pre lang="json">
@@ -4063,37 +3613,10 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusUdmListener.ldap.auth.existingSecret.keyMapping.password</td>
-			<td>string</td>
-			<td><pre lang="json">
-"ldap.secret"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusUdmListener.ldap.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ .Release.Name }}-provisioning-udm-listener-ldap-credentials"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUdmListener.ldap.connection.host</td>
-			<td>string</td>
-			<td><pre lang="json">
-""
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUdmListener.ldap.connection.port</td>
-			<td>string</td>
-			<td><pre lang="json">
-""
+"{{ .Release.Name }}-ldap-server-admin"
 </pre>
 </td>
 			<td></td>
@@ -4126,15 +3649,6 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusUdmListener.nats.auth.password</td>
-			<td>string</td>
-			<td><pre lang="json">
-null
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusUdmListener.nats.connection.host</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -4144,19 +3658,10 @@ null
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusUdmListener.provisioningApi.auth.existingSecret.keyMapping.password</td>
-			<td>string</td>
-			<td><pre lang="json">
-"EVENTS_PASSWORD_UDM"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusUdmListener.provisioningApi.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ .Release.Name }}-provisioning-udm-listener-credentials"
+"{{ .Release.Name }}-provisioning-api-events"
 </pre>
 </td>
 			<td></td>
@@ -4234,6 +3739,15 @@ false
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusUdmRestApi.ldap.auth.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Release.Name }}-ldap-server-admin"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusUdmRestApi.nameOverride</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -4283,42 +3797,6 @@ false
 			<td>int</td>
 			<td><pre lang="json">
 5
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUdmRestApi.udmRestApi.ldap.auth.existingSecret.keyMapping.password</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Values.global.ldap.auth.cnAdmin.existingSecret.keyMapping.password }}"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUdmRestApi.udmRestApi.ldap.auth.existingSecret.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{- printf \"%s-ldap-server-credentials\" .Release.Name -}}"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUdmRestApi.udmRestApi.ldap.baseDn</td>
-			<td>string</td>
-			<td><pre lang="json">
-""
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUdmRestApi.udmRestApi.ldap.uri</td>
-			<td>string</td>
-			<td><pre lang="json">
-""
 </pre>
 </td>
 			<td></td>
@@ -4468,28 +3946,10 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusUmcServer.ldap.existingSecret.keyMapping.ldapPasswordKey</td>
+			<td>nubusUmcServer.ldap.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"ldap.secret"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUmcServer.ldap.existingSecret.keyMapping.machinePasswordKey</td>
-			<td>string</td>
-			<td><pre lang="json">
-"machine.secret"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUmcServer.ldap.existingSecret.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ printf \"%s-umc-server-ldap-credentials\" .Release.Name }}"
+"{{ .Release.Name }}-ldap-server-admin"
 </pre>
 </td>
 			<td></td>
@@ -4504,28 +3964,19 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusUmcServer.memcached.auth.existingSecret.keyMapping.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+"memcached-password"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusUmcServer.memcached.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
 "{{ printf \"%s-umc-server-memcached-credentials\" .Release.Name }}"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUmcServer.memcached.auth.username</td>
-			<td>string</td>
-			<td><pre lang="json">
-"selfservice"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUmcServer.memcached.connection.username</td>
-			<td>string</td>
-			<td><pre lang="json">
-"umcserver"
 </pre>
 </td>
 			<td></td>
@@ -4585,15 +4036,6 @@ false
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusUmcServer.proxy.logLevel</td>
-			<td>string</td>
-			<td><pre lang="json">
-"INFO"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusUmcServer.replicaCount</td>
 			<td>int</td>
 			<td><pre lang="json">
@@ -4634,15 +4076,6 @@ false
 			<td>string</td>
 			<td><pre lang="json">
 "16Mi"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUmcServer.smtp.existingSecret.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ printf \"%s-umc-server-smtp-credentials\" .Release.Name }}"
 </pre>
 </td>
 			<td></td>

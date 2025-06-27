@@ -290,7 +290,7 @@ nubusGuardian: &nubusGuardian
       auth:
         username: 'cn=admin'
         existingSecret:
-          name: "{{ .Release.Name}}-ldap-server-ldap"
+          name: "{{ .Release.Name}}-ldap-server-admin"
   managementApi:
     oauth:
       auth:
@@ -367,7 +367,7 @@ nubusLicenseImport:
       host: "{{ .Release.Name }}-ldap-server"
     auth:
       existingSecret:
-        name: "{{ .Release.Name }}-ldap-server-ldap"
+        name: "{{ .Release.Name }}-ldap-server-admin"
 
 nubusNotificationsApi: &nubusNotificationsApi
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
@@ -416,7 +416,7 @@ nubusPortalConsumer: &nubusPortalConsumer
       host: "{{ .Release.Name }}-ldap-server-primary"
     auth:
       existingSecret:
-        name: "{{ .Release.Name }}-ldap-server-ldap"
+        name: "{{ .Release.Name }}-ldap-server-admin"
 
   provisioningApi:
     connection:
@@ -425,7 +425,7 @@ nubusPortalConsumer: &nubusPortalConsumer
   udm:
     auth:
       existingSecret:
-        name: "{{ .Release.Name }}-ldap-server-ldap"
+        name: "{{ .Release.Name }}-ldap-server-admin"
 
 
 nubusPortalServer: &nubusPortalServer
@@ -524,7 +524,7 @@ nubusProvisioning: &nubusProvisioning
     udm:
       auth:
         existingSecret:
-          name: "{{ .Release.Name }}-ldap-server-ldap"
+          name: "{{ .Release.Name }}-ldap-server-admin"
 
   api:
     nats:
@@ -551,7 +551,7 @@ nubusProvisioning: &nubusProvisioning
     udm:
       auth:
         existingSecret:
-          name: "{{ .Release.Name }}-ldap-server-ldap"
+          name: "{{ .Release.Name }}-ldap-server-admin"
 
   udmTransformer:
     ldap:
@@ -563,7 +563,7 @@ nubusProvisioning: &nubusProvisioning
         host: "{{ .Release.Name }}-ldap-server-primary"
       auth:
         existingSecret:
-          name: "{{ .Release.Name }}-ldap-server-ldap"
+          name: "{{ .Release.Name }}-ldap-server-admin"
     nats:
       auth:
         existingSecret:
@@ -580,7 +580,7 @@ nubusUdmListener: &nubusUdmListener
   ldap:
     auth:
       existingSecret:
-        name: "{{ .Release.Name }}-ldap-server-ldap"
+        name: "{{ .Release.Name }}-ldap-server-admin"
 
   nats:
     connection:
@@ -621,7 +621,7 @@ nubusUdmRestApi: &nubusUdmRestApi
   ldap:
     auth:
       existingSecret:
-        name: "{{ .Release.Name }}-ldap-server-ldap"
+        name: "{{ .Release.Name }}-ldap-server-admin"
 
 nubusUmcGateway: &nubusUmcGateway
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
@@ -652,7 +652,7 @@ nubusUmcServer: &nubusUmcServer
   ldap:
     auth:
       existingSecret:
-        name: "{{ .Release.Name }}-ldap-server-ldap"
+        name: "{{ .Release.Name }}-ldap-server-admin"
   memcached:
     nameOverride: "umc-server-memcached"
     containerSecurityContext:
@@ -741,7 +741,7 @@ nubusStackDataUms:
   udm:
     auth:
       existingSecret:
-        name: "{{ .Release.Name }}-ldap-server-ldap"
+        name: "{{ .Release.Name }}-ldap-server-admin"
 
   nubusUmcServer:
     host: '{{ printf "%s-umc-server" .Release.Name }}'
@@ -809,10 +809,7 @@ nubusScimServer: &nubusScimServer
     auth:
       username: "cn=admin"
       existingSecret:
-        name: "{{ .Release.Name }}-ldap-server-ldap"
-        keyMapping:
-          username: "username"
-          password: "password"
+        name: "{{ .Release.Name }}-ldap-server-admin"
   ingress:
     enabled: true
     host: "{{ .Values.global.subDomains.scim }}.{{ .Values.global.domain }}"
