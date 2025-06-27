@@ -194,6 +194,15 @@ false
 			<td></td>
 		</tr>
 		<tr>
+			<td>global.ldap.auth.admin.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Release.Name }}-ldap-server-admin"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>global.ldap.baseDn</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -1096,7 +1105,7 @@ false
 			<td>nubusGuardian.authorizationApi.udm.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ .Release.Name}}-ldap-server-admin"
+"{{ tpl .Values.global.ldap.auth.admin.existingSecret.name . }}"
 </pre>
 </td>
 			<td></td>
@@ -1807,7 +1816,7 @@ false
 			<td>nubusLicenseImport.ldap.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ .Release.Name }}-ldap-server-admin"
+"{{ tpl .Values.global.ldap.auth.admin.existingSecret.name . }}"
 </pre>
 </td>
 			<td></td>
@@ -1942,7 +1951,7 @@ true
 			<td>nubusPortalConsumer.ldap.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ .Release.Name }}-ldap-server-admin"
+"{{ tpl .Values.global.ldap.auth.admin.existingSecret.name . }}"
 </pre>
 </td>
 			<td></td>
@@ -2068,7 +2077,7 @@ true
 			<td>nubusPortalConsumer.udm.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ .Release.Name }}-ldap-server-admin"
+"{{ tpl .Values.global.ldap.auth.admin.existingSecret.name . }}"
 </pre>
 </td>
 			<td></td>
@@ -2671,7 +2680,7 @@ true
 			<td>nubusProvisioning.prefill.udm.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ .Release.Name }}-ldap-server-admin"
+"{{ tpl .Values.global.ldap.auth.admin.existingSecret.name . }}"
 </pre>
 </td>
 			<td></td>
@@ -2698,7 +2707,7 @@ true
 			<td>nubusProvisioning.registerConsumers.udm.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ .Release.Name }}-ldap-server-admin"
+"{{ tpl .Values.global.ldap.auth.admin.existingSecret.name . }}"
 </pre>
 </td>
 			<td></td>
@@ -2824,7 +2833,7 @@ true
 			<td>nubusProvisioning.udmTransformer.ldap.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ .Release.Name }}-ldap-server-admin"
+"{{ tpl .Values.global.ldap.auth.admin.existingSecret.name . }}"
 </pre>
 </td>
 			<td></td>
@@ -3085,7 +3094,7 @@ true
 			<td>nubusScimServer.udm.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ .Release.Name }}-ldap-server-admin"
+"{{ tpl .Values.global.ldap.auth.admin.existingSecret.name . }}"
 </pre>
 </td>
 			<td></td>
@@ -3427,7 +3436,7 @@ false
 			<td>nubusStackDataUms.udm.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ .Release.Name }}-ldap-server-admin"
+"{{ tpl .Values.global.ldap.auth.admin.existingSecret.name . }}"
 </pre>
 </td>
 			<td></td>
@@ -3616,7 +3625,7 @@ true
 			<td>nubusUdmListener.ldap.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ .Release.Name }}-ldap-server-admin"
+"{{ tpl .Values.global.ldap.auth.admin.existingSecret.name . }}"
 </pre>
 </td>
 			<td></td>
@@ -3742,7 +3751,7 @@ false
 			<td>nubusUdmRestApi.ldap.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ .Release.Name }}-ldap-server-admin"
+"{{ tpl .Values.global.ldap.auth.admin.existingSecret.name . }}"
 </pre>
 </td>
 			<td></td>
@@ -3949,7 +3958,7 @@ true
 			<td>nubusUmcServer.ldap.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ .Release.Name }}-ldap-server-admin"
+"{{ tpl .Values.global.ldap.auth.admin.existingSecret.name . }}"
 </pre>
 </td>
 			<td></td>
