@@ -4,7 +4,7 @@
 ---
 include:
   - project: "univention/dev/nubus-for-k8s/common-ci"
-    ref: "v1.43.0"
+    ref: "v1.43.3"
     file:
       - "defaults/nubus-workflow.yaml"
       - "defaults/stages.yaml"
@@ -13,7 +13,7 @@ include:
       - "jobs/package-and-publish-helm-charts-external.yaml"
       - "jobs/semantic-release-env.yaml"
       - "jobs/harbor-malware-scan.yaml"
-      - "jobs/sonarqube.yaml"
+      - "templates/sonarqube.yaml"
   - project: 'univention/infrastructure/renovate-runner'
     file: '/templates/renovate.gitlab-ci.yml'
 
@@ -140,3 +140,7 @@ deploy-and-test-external-dependencies:
     ENVIRONMENT_SUFFIX: "-ext"
   rules:
     - when: manual
+
+sonarqube:
+  extends: .sonarqube
+  needs: []
