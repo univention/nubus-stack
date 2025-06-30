@@ -37,7 +37,7 @@ dependencies:
   version: 0.56.0
 - name: keycloak
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.10.2
+  version: 0.11.0
 - name: keycloak-extensions
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.19.2
@@ -55,10 +55,10 @@ dependencies:
   version: 0.36.0
 - name: umc-gateway
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.47.0
+  version: 0.47.1
 - name: umc-server
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.47.0
+  version: 0.47.1
 - name: scim-server
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.35.0
@@ -68,5 +68,5 @@ dependencies:
 - name: minio
   repository: https://charts.bitnami.com/bitnami
   version: 14.7.0
-digest: sha256:a5756d273af27495d9cb91bb19a3d4322c55291731d7538d0f085ec27885fd34
-generated: "2025-06-27T17:17:56.798454+02:00"
+digest: sha256:8cacdfd88a33fa5a17fb5a0909d804b63fdee385f86d84e1dcb095df93d76ae5
+generated: "2025-06-30T12:54:37.125224397+02:00"
