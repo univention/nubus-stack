@@ -14,7 +14,9 @@ metadata:
     cert-manager.io/{{ .Values.ingress.certManager.issuerRef.kind | kebabcase }}: "{{ coalesce .Values.global.certManagerIssuer .Values.ingress.certManager.issuerRef.name }}"
     {{- end }}
 spec:
-  ingressClassName: {{ .Values.ingress.ingressClassName | default .Values.global.ingressClass | quote }}
+  {{- if or .Values.ingress.ingressClassName .Values.global.ingressClass }}
+  ingressClassName: {{ coalesce .Values.ingress.ingressClassName .Values.global.ingressClass | quote }}
+  {{- end }}
   {{- if .Values.ingress.tls.enabled }}
   tls:
     - hosts:
@@ -46,7 +48,9 @@ metadata:
     {{- end }}
     nginx.ingress.kubernetes.io/rewrite-target: "/favicon/$1"
 spec:
-  ingressClassName: {{ .Values.ingress.ingressClassName | default .Values.global.ingressClass | quote }}
+  {{- if or .Values.ingress.ingressClassName .Values.global.ingressClass }}
+  ingressClassName: {{ coalesce .Values.ingress.ingressClassName .Values.global.ingressClass | quote }}
+  {{- end }}
   {{- if .Values.ingress.tls.enabled }}
   tls:
     - hosts:
@@ -80,7 +84,9 @@ metadata:
     {{- end }}
     nginx.ingress.kubernetes.io/rewrite-target: {{ printf "/%s/portal-assets/icons/$2/$3" .Values.nubusPortalServer.objectStorage.bucketName | quote }}
 spec:
-  ingressClassName: {{ .Values.ingress.ingressClassName | default .Values.global.ingressClass | quote }}
+  {{- if or .Values.ingress.ingressClassName .Values.global.ingressClass }}
+  ingressClassName: {{ coalesce .Values.ingress.ingressClassName .Values.global.ingressClass | quote }}
+  {{- end }}
   {{- if .Values.ingress.tls.enabled }}
   tls:
     - hosts:

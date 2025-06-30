@@ -3,8 +3,8 @@
 
 ---
 include:
-  - project: "univention/customers/dataport/upx/common-ci"
-    ref: "main"
+  - project: "univention/dev/nubus-for-k8s/common-ci"
+    ref: "v1.43.3"
     file:
       - "defaults/nubus-workflow.yaml"
       - "defaults/stages.yaml"
@@ -13,6 +13,7 @@ include:
       - "jobs/package-and-publish-helm-charts-external.yaml"
       - "jobs/semantic-release-env.yaml"
       - "jobs/harbor-malware-scan.yaml"
+      - "templates/sonarqube.yaml"
   - project: 'univention/infrastructure/renovate-runner'
     file: '/templates/renovate.gitlab-ci.yml'
 
@@ -37,6 +38,12 @@ variables:
       Allows to specify a custom tag to use for the e2e-tests testrunner image.
       Intended to help with testing a branch of the e2e-tests repository.
     value: "latest"
+  TESTRUNNER_CONFIGURATION_BRANCH:
+    description: |
+      Allows to specify a custom branch name to use for the testrunner configuration.
+      This branch is used to run the script "discover-env-from-cluster.sh".
+    value: "main"
+
 
 .package-helm-charts:
   before_script:
@@ -97,8 +104,7 @@ lint-kubeconform:
     reports:
       junit: kubeconform-report.xml
 
-
-deploy-and-test:
+.base-deploy-and-test:
   stage: deploy
   allow_failure: true
   needs:
@@ -115,6 +121,26 @@ deploy-and-test:
   rules:
     - if: '$CI_PIPELINE_SOURCE == "schedule"'
       when: never
+
+deploy-and-test:
+  extends: .base-deploy-and-test
+  variables:
+    ENVIRONMENT_SUFFIX: ""
+  rules:
     - if: '$AUTO_TRIGGER_TESTS == "yes"'
       when: on_success
     - when: manual
+
+deploy-and-test-external-dependencies:
+  extends: .base-deploy-and-test
+  variables:
+    EXTERNAL_DEPENDENCIES: true
+    DEPLOY_NAMESPACE: "ci-${CI_COMMIT_REF_SLUG}-ext"
+    DEPLOY_SUBDOMAIN: "${CI_COMMIT_REF_SLUG}-ext"
+    ENVIRONMENT_SUFFIX: "-ext"
+  rules:
+    - when: manual
+
+sonarqube:
+  extends: .sonarqube
+  needs: []

@@ -1,0 +1,52 @@
+primary:
+  initdb:
+    scripts:
+      create-db.sh: |
+        for db in guardian keycloak keycloak_extensions notificationsapi selfservice; do
+          db_password_env_var="${db}_password"
+          db_password=${!db_password_env_var}
+          echo "$db_password"
+          psql -v ON_ERROR_STOP=1 <<-EOSQL
+            CREATE USER $db WITH PASSWORD '$db_password';
+            CREATE DATABASE $db;
+            GRANT ALL PRIVILEGES ON DATABASE $db TO $db;
+            \c $db
+            GRANT ALL ON SCHEMA public TO $db;
+        EOSQL
+        done
+  extraEnvVars:
+    - name: guardian_password
+      valueFrom:
+        secretKeyRef:
+          name: postgresql-external-secret
+          key: guardian
+    - name: keycloak_password
+      valueFrom:
+        secretKeyRef:
+          name: postgresql-external-secret
+          key: keycloak
+    - name: keycloak_extensions_password
+      valueFrom:
+        secretKeyRef:
+          name: postgresql-external-secret
+          key: keycloak-extensions
+    - name: notificationsapi_password
+      valueFrom:
+        secretKeyRef:
+          name: postgresql-external-secret
+          key: notifications
+    - name: selfservice_password
+      valueFrom:
+        secretKeyRef:
+          name: postgresql-external-secret
+          key: umc
+    - name: PGPASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: postgresql-external-secret
+          key: adminPassword
+
+auth:
+  existingSecret: "postgresql-external-secret"
+  secretKeys:
+    adminPasswordKey: "adminPassword"

@@ -2,6 +2,8 @@
 
 ## Overview of common keys
 
+- `centralNavigation`: Client access for the central navigation API of the
+  portal server.
 - `keycloak`: Client access for Keycloak.
 - `ldap`: Client access for LDAP.
 - `nats`: NATS related configuration, mainly around the `provisioning` sub-chart.

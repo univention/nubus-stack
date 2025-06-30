@@ -8,9 +8,138 @@ version: "1.0.0"
 
 dependencies:
   - name: "nubus-common"
-    version: "^0.8.x"
+    version: "0.21.0"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
 
+  - name: "guardian"
+    alias: "nubusGuardian"
+    repository: "oci://artifacts.software-univention.de/nubus/charts"
+    version: "0.21.3"
+    condition: "nubusGuardian.enabled"
+
+  - name: "license-import"
+    alias: "nubusLicenseImport"
+    repository: "oci://artifacts.software-univention.de/nubus/charts"
+    version: "0.4.0"
+    condition: "nubusLicenseImport.enabled"
+
+  # ldap-server related chart(s)
+  - name: "ldap-notifier"
+    alias: "nubusLdapNotifier"
+    repository: "oci://artifacts.software-univention.de/nubus/charts"
+    version: "0.43.0"
+    condition: "nubusLdapNotifier.enabled"
+
+  - name: "ldap-server"
+    alias: "nubusLdapServer"
+    repository: "oci://artifacts.software-univention.de/nubus/charts"
+    version: "0.43.0"
+    condition: "nubusLdapServer.enabled"
+
+  # portal related chart(s)
+  - name: "notifications-api"
+    alias: "nubusNotificationsApi"
+    repository: "oci://artifacts.software-univention.de/nubus/charts"
+    version: "0.70.0"
+    condition: "nubusNotificationsApi.enabled"
+
+  - name: "portal-frontend"
+    alias: "nubusPortalFrontend"
+    repository: "oci://artifacts.software-univention.de/nubus/charts"
+    version: "0.70.0"
+    condition: "nubusPortalFrontend.enabled"
+
+  - name: "portal-consumer"
+    alias: "nubusPortalConsumer"
+    repository: "oci://artifacts.software-univention.de/nubus/charts"
+    version: "0.70.0"
+    condition: "nubusPortalConsumer.enabled"
+
+  - name: "portal-server"
+    alias: "nubusPortalServer"
+    repository: "oci://artifacts.software-univention.de/nubus/charts"
+    version: "0.70.0"
+    condition: "nubusPortalServer.enabled"
+
+  # selfservice related chart(s)
+  - name: "selfservice-consumer"
+    alias: "nubusSelfServiceConsumer"
+    repository: "oci://artifacts.software-univention.de/nubus/charts"
+    version: "0.17.0"
+    condition: "nubusSelfServiceConsumer.enabled"
+
+  # provisioning related chart(s)
+  - name: "provisioning"
+    alias: "nubusProvisioning"
+    repository: "oci://artifacts.software-univention.de/nubus/charts"
+    version: "0.56.0"
+    condition: "nubusProvisioning.enabled"
+
+  - name: "udm-listener"
+    alias: "nubusUdmListener"
+    repository: "oci://artifacts.software-univention.de/nubus/charts"
+    version: "0.56.0"
+    condition: "nubusProvisioning.enabled"
+
+  # keycloak related chart(s)
+  - name: "keycloak"
+    alias: "keycloak"
+    repository: "oci://artifacts.software-univention.de/nubus/charts"
+    version: "0.11.0"
+    condition: "keycloak.enabled"
+
+  - name: "keycloak-extensions"
+    alias: "nubusKeycloakExtensions"
+    repository: "oci://artifacts.software-univention.de/nubus/charts"
+    version: "0.19.2"
+    condition: "nubusKeycloakExtensions.enabled"
+
+  - name: "keycloak-bootstrap"
+    alias: "nubusKeycloakBootstrap"
+    repository: "oci://artifacts.software-univention.de/nubus/charts"
+    version: "0.12.2"
+    condition: "nubusKeycloakBootstrap.enabled"
+
+  - name: "stack-data-ums"
+    alias: "nubusStackDataUms"
+    repository: "oci://artifacts.software-univention.de/nubus/charts"
+    version: "0.95.0"
+    condition: "nubusStackDataUms.enabled"
+
+  - name: "twofa-helpdesk"
+    alias: "nubusTwofaHelpdesk"
+    repository: "oci://artifacts.software-univention.de/nubus/charts"
+    version: "0.6.0"
+    condition: "nubusTwofaHelpdesk.enabled"
+
+  # udm-rest-api related chart(s)
+  - name: "udm-rest-api"
+    alias: "nubusUdmRestApi"
+    repository: "oci://artifacts.software-univention.de/nubus/charts"
+    version: "0.37.0"
+    condition: "nubusUdmRestApi.enabled"
+
+  # umc related chart(s)
+  - name: "umc-gateway"
+    alias: "nubusUmcGateway"
+    repository: "oci://artifacts.software-univention.de/nubus/charts"
+    version: "0.47.1"
+    condition: "nubusUmcGateway.enabled"
+
+  - name: "umc-server"
+    alias: "nubusUmcServer"
+    repository: "oci://artifacts.software-univention.de/nubus/charts"
+    version: "0.47.1"
+    condition: "nubusUmcServer.enabled"
+
+  # scim-server related chart(s)
+  - name: "scim-server"
+    alias: "nubusScimServer"
+    repository: "oci://artifacts.software-univention.de/nubus/charts"
+    version: "0.35.0"
+    condition: "nubusScimServer.enabled"
+
+  # Optionally bundled external dependencies
   - name: "postgresql"
     repository: "https://charts.bitnami.com/bitnami"
     version: "^12.x.x"
@@ -20,126 +149,3 @@ dependencies:
     repository: "https://charts.bitnami.com/bitnami"
     version: "14.7.0"
     condition: "minio.enabled"
-
-  - name: "guardian"
-    alias: "nubusGuardian"
-    repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.20.0"
-    condition: "nubusGuardian.enabled"
-
-  - name: "license-import"
-    alias: "nubusLicenseImport"
-    repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.2.0"
-    condition: "nubusLicenseImport.enabled"
-
-  # ldap-server related chart(s)
-  - name: "ldap-notifier"
-    alias: "nubusLdapNotifier"
-    repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.38.0"
-    condition: "nubusLdapNotifier.enabled"
-
-  - name: "ldap-server"
-    alias: "nubusLdapServer"
-    repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.40.0"
-    condition: "nubusLdapServer.enabled"
-
-  # portal related chart(s)
-  - name: "notifications-api"
-    alias: "nubusNotificationsApi"
-    repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.69.1"
-    condition: "nubusNotificationsApi.enabled"
-
-  - name: "portal-frontend"
-    alias: "nubusPortalFrontend"
-    repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.69.1"
-    condition: "nubusPortalFrontend.enabled"
-
-  - name: "portal-consumer"
-    alias: "nubusPortalConsumer"
-    repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.69.1"
-    condition: "nubusPortalConsumer.enabled"
-
-  - name: "portal-server"
-    alias: "nubusPortalServer"
-    repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.69.1"
-    condition: "nubusPortalServer.enabled"
-
-  # selfservice related chart(s)
-
-  - name: "selfservice-consumer"
-    alias: "nubusSelfServiceConsumer"
-    repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.15.0"
-    condition: "nubusSelfServiceConsumer.enabled"
-
-  # provisioning related chart(s)
-  - name: "provisioning"
-    alias: "nubusProvisioning"
-    repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.53.2"
-    condition: "nubusProvisioning.enabled"
-
-  - name: "udm-listener"
-    alias: "nubusUdmListener"
-    repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.53.3"
-    condition: "nubusProvisioning.enabled"
-
-  # keycloak related chart(s)
-  - name: "keycloak"
-    alias: "keycloak"
-    repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.10.0"
-    condition: "keycloak.enabled"
-
-  - name: "keycloak-extensions"
-    alias: "nubusKeycloakExtensions"
-    repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.17.0"
-    condition: "nubusKeycloakExtensions.enabled"
-
-  - name: "keycloak-bootstrap"
-    alias: "nubusKeycloakBootstrap"
-    repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.11.0"
-    condition: "nubusKeycloakBootstrap.enabled"
-
-  - name: "stack-data-ums"
-    alias: "nubusStackDataUms"
-    repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.93.1"
-    condition: "nubusStackDataUms.enabled"
-
-  # udm-rest-api related chart(s)
-  - name: "udm-rest-api"
-    alias: "nubusUdmRestApi"
-    repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.34.2"
-    condition: "nubusUdmRestApi.enabled"
-
-  # umc related chart(s)
-  - name: "umc-gateway"
-    alias: "nubusUmcGateway"
-    repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.45.3"
-    condition: "nubusUmcGateway.enabled"
-
-  - name: "umc-server"
-    alias: "nubusUmcServer"
-    repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.45.3"
-    condition: "nubusUmcServer.enabled"
-
-  # scrim-server related chart(s)
-  - name: "scim-server"
-    alias: "nubusScimServer"
-    repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.9.1"
-    condition: "nubusScimServer.enabled"

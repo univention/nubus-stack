@@ -8,4 +8,4 @@ To learn more about the release, try:
   $ helm get all {{ .Release.Name }} -n {{ .Release.Namespace }}
 
 The default user is called "Administrator" with admin and user roles. You can retrieve its password by running:
-  $ kubectl -n {{ .Release.Namespace }} get secret {{ .Release.Name }}-nubus-credentials -o json | jq -r '.data.administrator_password' | base64 -d
+  $ kubectl -n {{ .Release.Namespace }} get secret {{ .Release.Name }}-stack-data-ums-administrator -o json | jq -r '.data.password' | base64 -d

@@ -7,22 +7,6 @@ global:
   secrets:
     # -- Master password from which other passwords are derived.
     masterPassword: ""
-  ldap:
-    baseDn: ""
-    domainName: ""
-    auth:
-      cnAdmin:
-        password: null
-        existingSecret:
-          name: null
-          keyMapping:
-            password: "adminPassword"
-
-  udm:
-    connection:
-      # -- Global default for the URL via which the UDM Rest API can be reached.
-      # In transition state, not all subcharts do make use of this yet.
-      url: '{{ include "nubusTemplates.udmRestApi.uri" . }}'
 
   domain: ""
   subDomains:
@@ -32,17 +16,36 @@ global:
 
   ingressClass: ""
   certManagerIssuer: ""
-  postgresql:
+
+  ldap:
+    baseDn: ""
+    domainName: ""
     connection:
-      host: ""
-      port: ""
+      host: "{{ .Release.Name }}-ldap-server"
+    auth:
+      admin:
+        existingSecret:
+          name: "{{ .Release.Name }}-ldap-server-admin"
+
   memcached:
     connection:
       host: ""
     auth:
       username: ""
+
+  postgresql:
+    connection:
+      host: "{{ .Release.Name }}-postgresql"
+
+  udm:
+    connection:
+      # -- Global default for the URL via which the UDM Rest API can be reached.
+      # In transition state, not all subcharts do make use of this yet.
+      url: "http://{{ .Release.Name }}-udm-rest-api:9979/udm/"
+
   keycloak:
     realm: "nubus"
+
   # -- Allow plain UMC login (otherwise only SAML login is possible)
   # Be aware this will expose the UMC login page to the public, which can
   # circumvent 2FA and other security measures placed in the IdP.
@@ -51,15 +54,6 @@ global:
   configMapUcr: "{{ .Release.Name }}-stack-data-ums-ucr"
 
   configUcr:
-    umc:
-      module:
-        debug:
-          level: 2 # default loglevel (subchart): 5
-      server:
-        debug:
-          level: 2 # default loglevel (subchart): 5
-    apache2:
-      loglevel: "info" # default loglevel (subchart): warn
     ldap:
       # -- Indexes for the LDAP database
       index:
@@ -67,6 +61,7 @@ global:
         pres: aRecord,automountInformation,cn,description,dhcpHWAddress,displayName,gidNumber,givenName,homeDirectory,krb5PrincipalName,macAddress,mail,mailAlternativeAddress,mailPrimaryAddress,memberUid,name,objectClass,ou,relativeDomainName,shadowMax,sn,uid,uidNumber,uniqueMember,univentionMailHomeServer,univentionObjectFlag,univentionPolicyReference,univentionUDMPropertyCLIName,univentionUDMPropertyDefault,univentionUDMPropertyDeleteObjectClass,univentionUDMPropertyDoNotSearch,univentionUDMPropertyHook,univentionUDMPropertyLayoutOverwritePosition,univentionUDMPropertyLayoutOverwriteTab,univentionUDMPropertyLayoutPosition,univentionUDMPropertyLayoutTabAdvanced,univentionUDMPropertyLayoutTabName,univentionUDMPropertyLdapMapping,univentionUDMPropertyLongDescription,univentionUDMPropertyModule,univentionUDMPropertyMultivalue,univentionUDMPropertyObjectClass,univentionUDMPropertyOptions,univentionUDMPropertyShortDescription,univentionUDMPropertySyntax,univentionUDMPropertyTranslationLongDescription,univentionUDMPropertyTranslationShortDescription,univentionUDMPropertyTranslationTabName,univentionUDMPropertyValueMayChange,univentionUDMPropertyValueRequired,univentionUDMPropertyVersion,zoneName,univentionObjectIdentifier
         approx: cn,givenName,mail,sn,uid
         sub: aRecord,associatedDomain,automountInformation,cn,default,description,displayName,employeeNumber,givenName,macAddress,mail,mailAlternativeAddress,mailPrimaryAddress,name,ou,pTRRecord,printerModel,relativeDomainName,sambaSID,sn,uid,univentionInventoryNumber,univentionOperatingSystem,univentionSyntaxDescription,univentionUDMPropertyLongDescription,univentionUDMPropertyShortDescription,zoneName
+
   # -- Extensions to load. Add entries to load additional extensions into Nubus.
   extensions: []
 
@@ -80,6 +75,12 @@ global:
         repository: "nubus/images/portal-extension"
         imagePullPolicy: "IfNotPresent"
         tag: "0.59.1@sha256:c9c7faa3cca2be2f45d073517a50e8a8cc89d46c978c2f3a6be3c13d0e6ae900"
+    - name: "2fa-helpdesk"
+      image:
+        registry: "artifacts.software-univention.de"
+        repository: "nubus/images/twofa-helpdesk-extensions"
+        imagePullPolicy: "IfNotPresent"
+        tag: "0.5.1@sha256:21217d02d45881f46e52ab54698f967f9cc5ead6a5a04270b0deb8e63b7eb715"
 
 # -- Additional custom annotations to add to all objects deployed directly by the umbrella chart.
 additionalAnnotations: {}
@@ -89,7 +90,7 @@ additionalLabels: {}
 
 # -- SAML certificates generation
 certificates:
-  # -- Enable SAML self-signed certificate generation. This required cert-manager.io
+  # -- Enable SAML self-signed certificate generation. This requires cert-manager.io
   enabled: true
 
 # -- Configure supporting Ingress resources created directly by the umbrella chart.
@@ -264,9 +265,6 @@ keycloak:
   resources: *nubusDevelopmentResources
   replicaCount: 1
   postgresql:
-    connection:
-      host: ""
-      port: ""
     auth:
       username: keycloak_user
       database: keycloak
@@ -296,9 +294,7 @@ nubusGuardian: &nubusGuardian
       auth:
         username: 'cn=admin'
         existingSecret:
-          name: '{{- printf "%s-guardian-udm-secret" .Release.Name -}}'
-          keyMapping:
-            password: 'udmDataAdapterPassword'
+          name: "{{ tpl .Values.global.ldap.auth.admin.existingSecret.name . }}"
   managementApi:
     oauth:
       auth:
@@ -307,9 +303,6 @@ nubusGuardian: &nubusGuardian
           keyMapping:
             clientSecret: 'oauthAdapterM2mSecret'
   postgresql:
-    connection:
-      host: ""
-      port: ""
     auth:
       database: guardian
       username: guardian
@@ -324,6 +317,35 @@ nubusGuardian: &nubusGuardian
           name: '{{- printf "%s-guardian-provisioning-secret" .Release.Name -}}'
           keyMapping:
             password: "adminPassword"
+
+nubusTwofaHelpdesk: &nubusTwofaHelpdesk
+  terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
+  nameOverride: "helpdesk"
+  enabled: false
+  resources: *nubusDevelopmentResources
+  ingress:
+    host: "{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
+    certManager:
+      enabled: true
+    tls:
+      secretName: "{{ .Release.Name }}-twofa-backend-api-tls"
+
+  nubusBaseUrl: '{{ printf "%s.%s" .Values.global.subDomains.portal .Values.global.domain }}'
+  provisioning:
+    enabled: true
+
+  keycloak:
+    realm: "{{ .Values.global.keycloak.realm }}"
+    admin_realm: "master"
+    auth:
+      username: "kcadmin"
+      existingSecret:
+        name: '{{- printf "%s-keycloak-credentials" .Release.Name -}}'
+        keyMapping:
+          adminPassword: "admin_password"
+    connection:
+      url: "https://{{ .Values.global.subDomains.keycloak }}.{{ .Values.global.domain }}"
+      host: "{{ .Release.Name }}-keycloak"
 
 nubusLdapNotifier: &nubusLdapNotifier
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
@@ -340,12 +362,6 @@ nubusLdapServer: &nubusLdapServer
   resourcesPrimary: *nubusDevelopmentResources
   resourcesSecondary: *nubusDevelopmentResources
   resourcesProxy: *nubusDevelopmentResources
-  ldapServer:
-    auth:
-      existingSecret:
-        name: "{{ .Release.Name }}-ldap-server-credentials"
-        keyMapping:
-          password: "adminPassword"
 
 nubusLicenseImport:
   enabled: false
@@ -355,9 +371,7 @@ nubusLicenseImport:
       host: "{{ .Release.Name }}-ldap-server"
     auth:
       existingSecret:
-        name: "{{ .Release.Name }}-ldap-server-credentials"
-        keyMapping:
-          password: "{{ .Values.global.ldap.auth.cnAdmin.existingSecret.keyMapping.password }}"
+        name: "{{ tpl .Values.global.ldap.auth.admin.existingSecret.name . }}"
 
 nubusNotificationsApi: &nubusNotificationsApi
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
@@ -366,13 +380,10 @@ nubusNotificationsApi: &nubusNotificationsApi
   resources: *nubusDevelopmentResources
   ingress:
     host: "{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
+
   postgresql:
-    bundled: false
-    connection:
-      host: ""
-      port: ""
     auth:
-      username: notificationsapi_user
+      username: notificationsapi
       database: notificationsapi
       existingSecret:
         name: "{{ .Release.Name }}-notifications-api-postgresql-credentials"
@@ -390,52 +401,36 @@ nubusPortalConsumer: &nubusPortalConsumer
   nameOverride: "portal-consumer"
   enabled: true
   resources: *nubusDevelopmentResources
+
   objectStorage:
     auth:
       existingSecret:
         name: "{{ .Release.Name }}-portal-consumer-minio-credentials"
+        keyMapping:
+          access_key_id: accessKey
+          secret_access_key: secretKey
     endpoint: "http://{{ .Release.Name }}-minio:9000"
     bucketName: "nubus"
 
-  # TODO: Not yet supported
-  # udm:
-  #   auth:
-  #     password: null
-  portalConsumer:
-    ldapHost: "{{ .Release.Name }}-ldap-server-primary"
-
   ldap:
-    # -- Optional reference to a different secret containing credentials
+    connection:
+      # NOTE: Special case, we want to be sure that the consumer is talking to
+      # the primary ldap server. This way there is no race condition between the
+      # provisioning event and the update of the secondary ldap servers.
+      host: "{{ .Release.Name }}-ldap-server-primary"
     auth:
       existingSecret:
-        name: "{{ .Release.Name }}-ldap-server-credentials"
-        keyMapping:
-          password: "adminPassword"
-
-    # TLS configuration for the OpenLDAP server
-    tls:
-      enabled: false
-      # -- Optional reference to the secret to use for reading certificates
-      existingSecret:
-        name: null
-        keyMapping:
-          ca.crt: null
-          tls.crt: null
-          tls.key: null
+        name: "{{ tpl .Values.global.ldap.auth.admin.existingSecret.name . }}"
 
   provisioningApi:
     connection:
-      baseUrl: '{{ printf "http://%s-provisioning-api" .Release.Name }}'
-    # -- Authentication parameters
+      url: "http://{{ .Release.Name }}-provisioning-api"
+
+  udm:
     auth:
-      # -- The username to authenticate with. A secret will be created if existingSecret is not set.
-      username: "portal-consumer"
-      # -- The password to authenticate with. A secret will be created if existingSecret is not set.
-      password: ""
       existingSecret:
-        name: "{{ .Release.Name }}-portal-consumer-credentials"
-        keyMapping:
-          password: PROVISIONING_API_PASSWORD
+        name: "{{ tpl .Values.global.ldap.auth.admin.existingSecret.name . }}"
+
 
 nubusPortalServer: &nubusPortalServer
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
@@ -443,25 +438,23 @@ nubusPortalServer: &nubusPortalServer
   enabled: true
   ingress:
     host: "{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
+  resources: *nubusDevelopmentResources
 
   objectStorage:
     auth:
       existingSecret:
         name: "{{ .Release.Name }}-portal-server-minio-credentials"
+        keyMapping:
+          access_key_id: accessKey
+          secret_access_key: secretKey
     endpoint: "http://{{ .Release.Name }}-minio:9000"
     bucketName: "nubus"
-
-  portalServer:
-    centralNavigation:
-      existingSecret:
-        name: "{{ .Release.Name }}-portal-server-central-navigation-shared-secret"
 
   udm:
     auth:
       existingSecret:
         name: "{{ .Release.Name }}-stack-data-ums-svc-portal-server"
 
-  resources: *nubusDevelopmentResources
 
 nubusProvisioning: &nubusProvisioning
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
@@ -472,15 +465,8 @@ nubusProvisioning: &nubusProvisioning
     dispatcher: *nubusDevelopmentResources
     prefill: *nubusDevelopmentResources
     api: *nubusDevelopmentResources
-  ldap:
-    auth:
-      existingSecret:
-        name: '{{- printf "%s-ldap-server-credentials" .Release.Name -}}'
-        keyMapping:
-          password: "{{ .Values.global.ldap.auth.cnAdmin.existingSecret.keyMapping.password }}"
+
   nats:
-    auth:
-      adminPassword: null
     config:
       cluster:
         # TODO: Set back to the default of 3 after nats clustering is solved.
@@ -530,151 +516,103 @@ nubusProvisioning: &nubusProvisioning
       resources: *nubusDevelopmentResources
     natsBox:
       resources: *nubusDevelopmentResources
+
   registerConsumers:
     createUsers:
       portalConsumer:
-        # TODO: not yet supported
-        # username: null
-        # password: null
         existingSecret:
-          name: '{{- printf "%s-provisioning-register-consumers-json-secrets" .Release.Name -}}'
-          keyMapping:
-            password: "portal-consumer.json"
+          name: "{{ .Release.Name }}-portal-consumer-provisioning-api"
       selfserviceConsumer:
-        # TODO: not yet supported
-        # username: null
-        # password: null
         existingSecret:
-          name: '{{- printf "%s-provisioning-register-consumers-json-secrets" .Release.Name -}}'
-          keyMapping:
-            password: "selfservice.json"
+          name: "{{ .Release.Name }}-selfservice-listener-provisioning-api"
+    udm:
+      auth:
+        existingSecret:
+          name: "{{ tpl .Values.global.ldap.auth.admin.existingSecret.name . }}"
 
   api:
-    auth:
-      adminPassword: null
-      prefillPassword: null
-      udmTransformerPassword: null
-      admin:
-        existingSecret:
-          name: "{{ .Release.Name }}-provisioning-api-credentials"
-          keyMapping:
-            password: ADMIN_PASSWORD
-      eventsUdm:
-        existingSecret:
-          name: "{{ .Release.Name }}-provisioning-api-credentials"
-          keyMapping:
-            password: EVENTS_PASSWORD_UDM
-      prefill:
-        existingSecret:
-          name: "{{ .Release.Name }}-provisioning-api-credentials"
-          keyMapping:
-            password: PREFILL_PASSWORD
     nats:
       auth:
-        password: null
         existingSecret:
           name: "{{ .Release.Name }}-provisioning-api-credentials"
           keyMapping:
-            provisioningApiPassword: "NATS_PASSWORD"
-      connection:
-        host: ""
-        port: ""
-        username: events_and_consumer_api
-        password:
-          secretKeyRef:
-            key: password
-    config:
-      LOG_LEVEL: "INFO" # default loglevel (subchart): INFO
+            password: "NATS_PASSWORD"
+
   dispatcher:
     nats:
       auth:
-        password: null
         existingSecret:
           name: "{{ .Release.Name }}-provisioning-dispatcher-credentials"
           keyMapping:
-            dispatcherPassword: "NATS_PASSWORD"
-
-      connection:
-        host: ""
-        port: ""
-    config:
-      LOG_LEVEL: "INFO" # default loglevel (subchart): INFO
+            password: "NATS_PASSWORD"
   prefill:
     nats:
-      connection:
-        host: ""
-        port: ""
       auth:
-        password: null
         existingSecret:
           name: "{{ .Release.Name }}-provisioning-prefill-credentials"
           keyMapping:
-            prefillPassword: "NATS_PASSWORD"
-    config:
-      LOG_LEVEL: "INFO" # default loglevel (subchart): INFO
+            password: "NATS_PASSWORD"
+    udm:
+      auth:
+        existingSecret:
+          name: "{{ tpl .Values.global.ldap.auth.admin.existingSecret.name . }}"
+
   udmTransformer:
     ldap:
       connection:
+        # NOTE: Special case, we want to be sure that the udm-transformer is
+        # talking to the primary ldap server. This way there is no race
+        # condition between the provisioning event and the update of the
+        # secondary ldap servers.
         host: "{{ .Release.Name }}-ldap-server-primary"
+      auth:
+        existingSecret:
+          name: "{{ tpl .Values.global.ldap.auth.admin.existingSecret.name . }}"
     nats:
       auth:
-        password: null
         existingSecret:
           name: "{{ .Release.Name }}-provisioning-udm-transformer-credentials"
           keyMapping:
-            udmTransformerPassword: "NATS_PASSWORD"
-    config:
-      LOG_LEVEL: "INFO" # default loglevel (subchart): INFO
+            password: "NATS_PASSWORD"
 
 nubusUdmListener: &nubusUdmListener
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   nameOverride: "provisioning-udm-listener"
   enabled: true
   resources: *nubusDevelopmentResources
+
   ldap:
-    connection:
-      host: ""
-      port: ""
     auth:
       existingSecret:
-        name: "{{ .Release.Name }}-provisioning-udm-listener-ldap-credentials"
-        keyMapping:
-          password: "ldap.secret"
+        name: "{{ tpl .Values.global.ldap.auth.admin.existingSecret.name . }}"
+
   nats:
+    connection:
+      host: "{{ .Release.Name }}-provisioning-nats"
     auth:
-      password: null
       existingSecret:
         name: "{{ .Release.Name }}-provisioning-udm-listener-credentials"
         keyMapping:
           password: "NATS_PASSWORD"
+
   provisioningApi:
     auth:
       existingSecret:
-        name: "{{ .Release.Name }}-provisioning-udm-listener-credentials"
-        keyMapping:
-          password: "EVENTS_PASSWORD_UDM"
-  config:
-    debugLevel: "2" # default loglevel (subchart): 2
+        name: "{{ .Release.Name }}-provisioning-api-events"
 
 nubusSelfServiceConsumer: &nubusSelfServiceConsumer
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   nameOverride: "selfservice-listener"
   enabled: true
   resources: *nubusDevelopmentResources
-  nats:
-    auth:
-      password: null
+
   provisioningApi:
-    auth:
-      username: "selfservice"
-      # TODO: This needs another iteration, it shows that we set the password,
-      # but we also have the existingSecret. Most likely this does belong in the
-      # user provisioning configuration around provisioning.
-      password: null
-      existingSecret:
-        name: "{{ .Release.Name }}-selfservice-listener-credentials"
-        keyMapping:
-          password: "PROVISIONING_API_PASSWORD"
+    connection:
+      url: "http://{{ .Release.Name }}-provisioning-api"
+
+  umc:
+    connection:
+      url: "http://{{ .Release.Name }}-umc-server"
 
 nubusUdmRestApi: &nubusUdmRestApi
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
@@ -684,15 +622,10 @@ nubusUdmRestApi: &nubusUdmRestApi
     enabled: false
     host: "{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
   resources: *nubusDevelopmentResources
-  udmRestApi:
-    ldap:
-      uri: ""
-      baseDn: ""
-      auth:
-        existingSecret:
-          name: '{{- printf "%s-ldap-server-credentials" .Release.Name -}}'
-          keyMapping:
-            password: "{{ .Values.global.ldap.auth.cnAdmin.existingSecret.keyMapping.password }}"
+  ldap:
+    auth:
+      existingSecret:
+        name: "{{ tpl .Values.global.ldap.auth.admin.existingSecret.name . }}"
 
 nubusUmcGateway: &nubusUmcGateway
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
@@ -721,30 +654,22 @@ nubusUmcServer: &nubusUmcServer
   image:
     registry: "artifacts.software-univention.de"
   ldap:
-    existingSecret:
-      name: '{{ printf "%s-umc-server-ldap-credentials" .Release.Name }}'
-      keyMapping:
-        ldapPasswordKey: "ldap.secret"
-        machinePasswordKey: "machine.secret"
-  smtp:
-    existingSecret:
-      name: '{{ printf "%s-umc-server-smtp-credentials" .Release.Name }}'
+    auth:
+      existingSecret:
+        name: "{{ tpl .Values.global.ldap.auth.admin.existingSecret.name . }}"
   memcached:
     nameOverride: "umc-server-memcached"
     containerSecurityContext:
       readOnlyRootFilesystem: false
     auth:
-      username: selfservice
       existingPasswordSecret: '{{ printf "%s-umc-server-memcached-credentials" .Release.Name }}'
       existingSecret:
         name: '{{ printf "%s-umc-server-memcached-credentials" .Release.Name }}'
-    connection:
-      username: umcserver
+        keyMapping:
+          password: "memcached-password"
   umcServer:
     certPemFile: "/var/secrets/ssl/tls.crt"
     privateKeyFile: "/var/secrets/ssl/tls.key"
-  proxy:
-    logLevel: "INFO" # default loglevel (subchart): INFO
   extraVolumes:
     - name: "certificates"
       secret:
@@ -758,6 +683,10 @@ nubusKeycloakBootstrap: &nubusKeycloakBootstrap
   nameOverride: "keycloak-bootstrap"
   enabled: true
   resources: *nubusDevelopmentResources
+  bootstrap:
+    twoFactorAuthentication:
+      enabled: true
+      group: "2fa-users"
   ldap:
     auth:
       bindDn: '{{ include "nubus.keycloak.ldap.auth.bindDn" . }}'
@@ -793,9 +722,6 @@ nubusKeycloakExtensions: &nubusKeycloakExtensions
         keyMapping:
           adminPassword: "admin_password"
   postgresql:
-    connection:
-      host: ""
-      port: ""
     auth:
       database: keycloak_extensions
       username: keycloak_extensions
@@ -804,6 +730,9 @@ nubusKeycloakExtensions: &nubusKeycloakExtensions
   handler:
     appConfig:
       logLevel: "INFO" # default loglevel (subchart): DEBUG
+      newDeviceLoginNotificationEnable: "True"
+      emailNotificationTimezone: "UTC"
+
   proxy:
     appConfig:
       logLevel: "info" # default loglevel (subchart): debug
@@ -816,14 +745,14 @@ nubusStackDataUms:
   udm:
     auth:
       existingSecret:
-        name: '{{ printf "%s-udm-rest-api-credentials" .Release.Name }}'
-        keyMapping:
-          password: "ldap.secret"
+        name: "{{ tpl .Values.global.ldap.auth.admin.existingSecret.name . }}"
+
   nubusUmcServer:
+    host: '{{ printf "%s-umc-server" .Release.Name }}'
     postgresql:
       connection:
-        host: '{{ printf "%s-postgresql" .Release.Name }}'
-        port: "5432"
+        host: '{{ include "nubusTemplates.connections.postgres.host" . }}'
+        port: '{{ include "nubusTemplates.connections.postgres.port" . }}'
       auth:
         username: selfservice
         database: selfservice
@@ -837,27 +766,64 @@ nubusStackDataUms:
     ldapHost: '{{ include "nubusTemplates.connections.ldap.primary.host" . }}'
 
   templateContext:
-    initialPasswordAdministrator: '{{ include "nubusTemplates.credentials.administrator.password" . }}'
     ldapSearchUsers: []
     ldapSystemUsers:
       - username: "readonly"
         lastname: "LDAP-system-User"
         password: '{{ include "nubusTemplates.credentials.ldap.users.readonly.password" . }}'
     readonlyUserPassword: '{{ include "nubusTemplates.credentials.ldap.users.readonly.password" . }}'
-    svcPortalServerUserPassword: null
+    portalTwoFaLinkBase: 'https://{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}'
+    twofaSelfserviceTileCategory: "domain-service"
+    twofaAdminTileCategory: "domain-admin"
+    portalTwoFaAllowedGroups:
+      - "Domain Admins"
+    twofaActivated: false
 
 nubusScimServer: &nubusScimServer
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   nameOverride: "scim-server"
   enabled: false
   resources: *nubusDevelopmentResources
-
   config:
-    log_level: "INFO"
-
+    host: "https://{{ .Values.global.subDomains.scim }}.{{ .Values.global.domain }}"
+    # -- Available log levels are:
+    # TRACE, DEBUG, INFO, SUCCESS, WARNING, ERROR, CRITICAL
+    #
+    # For detailed information please have a look at the loguru documentation: https://loguru.readthedocs.io/en/stable/api/logger.html#levels
+    logLevel: "INFO"
+    corsOrigins: '["https://{{ .Values.global.subDomains.scim }}.{{ .Values.global.domain }}"]'
+    auth:
+      enabled: true
+      allowedAudience: 'scim-api-access'
+      allowedClientId: 'scim-client'
+    externalId:
+      userMapping: null
+      groupMapping: null
+    roles:
+      userMapping: null
+  keycloak:
+    connection:
+      url: "https://{{ .Values.global.subDomains.keycloak }}.{{ .Values.global.domain }}"
+      realm: "{{ .Values.global.keycloak.realm }}"
+  docu:
+    enabled: false
+  udm:
+    connection:
+      url: '{{ include "nubusTemplates.udmRestApi.uri" . }}'
+    auth:
+      username: "cn=admin"
+      existingSecret:
+        name: "{{ tpl .Values.global.ldap.auth.admin.existingSecret.name . }}"
   ingress:
     enabled: true
     host: "{{ .Values.global.subDomains.scim }}.{{ .Values.global.domain }}"
+    certManager:
+      enabled: true
+      issuerRef:
+        name: ""
+        kind: "ClusterIssuer"
+    tls:
+      enabled: true
 
 # Allows for creation of additional secrets, for example containing credentials for third party services.
 extraSecrets: []
