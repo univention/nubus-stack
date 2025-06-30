@@ -1,5 +1,89 @@
 # Changelog
 
+## [1.11.0](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/compare/v1.10.2...v1.11.0) (2025-06-30)
+
+
+### Features
+
+* **2fa:** refactor secret handling for keycloak secrets ([325e34e](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/325e34e86be9cb2403510f7b4297c2e8a36605f3)), closes [univention/dev/internal/team-nubus#1219](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1219)
+* **2fa:** Use portal theme and custom css ([eca45d8](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/eca45d81bba1f7446b43238b3a10ccdd70d5cfc3)), closes [univention/dev/internal/team-nubus#1242](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1242)
+* add wait-for-ldap init container to update-uOID job ([bb51df9](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/bb51df9d673dc7ab320125a3491383af68a812ca)), closes [univention/dev/internal/team-nubus#1303](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1303)
+* Adjust memcached configuration for the umc server ([30cacd1](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/30cacd18f9a3da0e49ae298643e4bc39708e0762))
+* Adjust NOTES.txt to refer to the correct secret name for Administrator ([f52bf86](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/f52bf862e790e191b9208372d9b1722ba74f2612))
+* Adjust nubus values related to portal components ([2584afb](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/2584afbc40b285f464250d8d84607872151a63f7))
+* Adjust secret name of ldap-server to "ldap-server-admin" ([08741f1](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/08741f1ba72dd7ab9ae9d5255b62f7df348cf452)), closes [univention/dev/internal/team-nubus#892](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/892)
+* Configure "postgresql.connection.host" via global values ([7e74661](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/7e74661ee40a0eeb447c7889db7647394f7db305))
+* Configure the UMC connection for the selfservice consumer ([da47c42](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/da47c4204a10c4335dea0ca3b43376eda9250b05))
+* Consolidate the secret configuration related to Nats ([bda0150](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/bda0150b2ed982b8867dd22f99878abac992b4fa))
+* Consolidate the secret configuration related to provisioning api ([c9c74ac](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/c9c74ac75e49ea44c1c75015791ee86f92fe1e08))
+* helm best practices for scim-server ([135a09a](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/135a09a177fa4598f5ff21ed1a6e22a56ab020e0)), closes [univention/dev/internal/team-nubus#1197](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1197)
+* **keycloak-extension:** email login notice contains configurable timezone ([a96d558](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/a96d55822a3edb6ebe864916c4fb8b9f1ee0adc0)), closes [univention/dev/internal/team-nubus#1163](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1163)
+* **nubus:** Add scim-server ([32654dc](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/32654dcd9b5b5aeb1a686f21b86be6b186cf0a3d)), closes [univention/dev/internal/team-nubus#1112](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1112)
+* Redirect ldap admin secret configuration through global values ([fbf6dde](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/fbf6dde373dd7e8e251263158a87aebcc4f956cb)), closes [univention/dev/internal/team-nubus#892](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/892)
+* Remove "nubusLdapServer.ldapServer.auth.*" ([2b67ece](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/2b67eced32ef557a575839ea7a34797350ed696c))
+* Remove "nubusUdmListener.config.debugLevel" ([800a5fe](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/800a5fea135f4f0efa7864c2dfe116cfa6c309d2))
+* Remove central navigation related secret from nubusSecrets ([ec19e0a](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/ec19e0a7a6ba8e68ef7cc58b4ff2583d27f238bc))
+* Remove log level configuration of umc server ([1c225a1](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/1c225a112eaf59a48d3f3b99626364865ebaee00))
+* Remove secrets from nubusSecrets.yaml which are not needed anymore ([52a0025](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/52a00258cff3d484b917c041521e0f87efa381ff))
+* Remove SMTP related configuration for umc-server ([3fd690d](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/3fd690d7056cb8489715443d47fe885c81379155))
+* Remove the configuration "global.ldap.auth.cnAdmin" ([5affacd](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/5affacd183800c774a2ec63787d430051edad519))
+* Remove the ldap admin password from the secret generation via nubusSecrets.yaml ([4427525](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/44275257cadd5046d8a01e5cee7b5d9be3ce7ac4))
+* Remove the stack data configuration for initial passwords ([f7eff18](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/f7eff18e699f64f115095fed38046913af356172))
+* Remove the value "nubusProvisioning.prefill.config.LOG_LEVEL" ([4a6b45a](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/4a6b45abba09eabba738704e5be6539dd5f5fe18))
+* Remove the value "nubusProvisioning.prefill.nats.connection" ([0253772](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/0253772c7e9021078e9a9eceb67ee3f0f4c57d9e))
+* Remove the value "nubusProvisioning.udmTransformer.config.LOG_LEVEL" ([ef3b2f9](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/ef3b2f97663e0e597558292fde8f7d48f940913a))
+* Remove the value "nubusUdmListener.ldap.connection.*" ([aec0305](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/aec0305baf34b5d48247dddb8a5d2395ade45088))
+* Remove UCR configuration "global.configUcr.apache2.loglevel" ([7b63dc5](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/7b63dc53342e9c4d901f53105ee9b739f6bc69a5))
+* Remove value "nubusProvisioning.api.nats.connection.*" ([c8af896](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/c8af8969bb70befaf5f465959d5d39f9a76738c7))
+* Remove value "nubusProvisioning.dispatcher.config.LOG_LEVEL" ([ed52409](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/ed524096ebe598bd36d709b398b3beff1e3606f8))
+* Remove value "nubusProvisioning.dispatcher.nats.connection" ([eadf65e](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/eadf65efb4b3b1dd047c52b7131e26170256be64))
+* Remove value "nubusSelfServiceConsumer.nath.auth.password" ([d43531d](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/d43531da850a56a50a606b481af2ac1646d35b3c))
+* **scim-server:** Create group and make sure it has access to the scim-api ([cae7610](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/cae76108abbdeea96ffb163933c6f1e8c73ef864)), closes [univention/dev/internal/team-nubus#1151](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1151)
+* **scim:** Bump version of scim-server ([793c414](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/793c41424bcf61b18a1eca19107f05372e87402b)), closes [univention/dev/internal/team-nubus#1151](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1151)
+* test nubus with external dependencies ([b7b46d2](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/b7b46d27cf27e56b75db56819d6b1003845fa0d0)), closes [univention/dev/internal/team-nubus#950](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/950) [univention/dev/internal/team-nubus#950](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/950)
+* **twofa-helpdesk:** first integration into nubus (still disabled) ([bd79981](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/bd79981a4d2585673d353a4e7a0c7357de57313c)), closes [univention/dev/internal/team-nubus#1212](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1212)
+* Update generated files ([2acaf66](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/2acaf6678bd9e9f1024a056672900f014f50a0a3))
+* Update ldap-server and ldap-notifier to version 0.43.0 ([2d112f6](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/2d112f677d3a1d2fd998678ea66b2124d6d611ee))
+* Update license import version to 0.4.0 ([4ee5370](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/4ee5370b77350695b0febb7a46b0c738a4a99010))
+* Update nubus-common to version 0.21.0 ([1eca171](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/1eca171cdd15b6112a9ae00808924b87b741d308))
+* Update portal components to version 0.70.0 ([8d46e01](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/8d46e01d29291f10193c621500a0db87f607df0c))
+* Update provisioning and udm-listener to version 0.56.0 ([d5fbf9c](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/d5fbf9cb41d497be2d08bba0972e9b80c301bbe1))
+* update scim-server chart ([7932bc8](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/7932bc884966938406ffc66d3f5b1649676bfedc)), closes [univention/dev/internal/team-nubus#1226](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1226)
+* Update selfservice-consumer to version 0.17.0 ([ecceac4](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/ecceac498e001ec871cd9077257ef34755018804))
+* Update stack-data-ums to version 0.95.0 ([7578982](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/757898206ce16e64763eced0c6ba120600adea21))
+* update ucs-base-image to 0.18.1-build-2025-05-29 ([d8d2ff8](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/d8d2ff8703ebbf2dbd401859c281f44a6a639699)), closes [univention/dev/internal/team-nubus#1220](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1220)
+* Update udm-rest-api to version 0.36.0 ([bbedc8f](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/bbedc8f09f11efedbb37524f675ec0e61c10ae2d))
+* Update umc-gateway and umc-server to version 0.47.0 ([8808303](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/8808303ad25a3f030d86784231c59e21ee4d4e90))
+* upgrade stack-data-ums ([3b46249](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/3b462490d5bcb52ff01eab52b7babaff941fe48f)), closes [univention/dev/internal/team-nubus#953](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/953)
+* upgrade stack-data-ums ([ffda77c](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/ffda77c0bd2b9d02485058c915449376c138ad6e)), closes [univention/dev/internal/team-nubus#953](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/953)
+* Use the generated secret from the ldap server subchart ([63e0e47](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/63e0e4705ffb7f728dc41e4eb4c7936c997c011c))
+
+
+### Bug Fixes
+
+* 2fa helpdesk tiles ([f9b6832](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/f9b6832917601f1fff234b32071d476851e7ab18)), closes [univention/dev/internal/team-nubus#1211](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1211)
+* **2fa-frontend:** use univention nginx image ([3b772d4](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/3b772d47c34376e03f0711a84b7fb7f393eb8ab8)), closes [univention/dev/internal/team-nubus#1224](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1224)
+* **2fa:** Drop subdomain customization in favor of subpath only support ([eedf56c](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/eedf56c45a5f9bd9e3cc957c26a13fd35a6128b6)), closes [univention/dev/internal/team-nubus#1279](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1279)
+* adjust URL of twofa-helpdesk chart ([bab3555](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/bab3555b5cdf54c81c8d31189e3b7d48755601de)), closes [univention/dev/internal/team-nubus#1219](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1219)
+* disable 2FA helpdesk tiles by default ([b18f5ff](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/b18f5ff240008b85ba8b1273264bd1603b1c66e1)), closes [univention/dev/internal/team-nubus#1211](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1211)
+* enable 2fa in keycloak-bootstrap, using group "2fa-users" ([d55e637](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/d55e63701a25a609083485654f193e6ba05a2f75)), closes [univention/dev/internal/team-nubus#1213](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1213)
+* fix ingress template, and change path to `univention/2fa/ui` ([113fa11](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/113fa11ee3fc3000103579b79a7c6c8e1cd3cb40)), closes [univention/dev/internal/team-nubus#1239](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1239)
+* integrate components w/ bumped umc-base-image versions ([2553fe8](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/2553fe88b6b4390a665afa2098406ab744f0b5b9)), closes [univention/dev/internal/team-nubus#1263](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1263)
+* integrate the provisioning code refactoring ([11d70b1](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/11d70b1ab498d047d0e67d84fec2f857613b586d)), closes [univention/dev/internal/team-nubus#930](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/930)
+* **keycloak:** Bump Keycloak to 26.2.5 ([c926257](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/c926257cd21ff45c52c51857aa69fa4c974ead88)), closes [univention/dev/internal/team-nubus#1312](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1312)
+* **ldap-server:** Add the univentionObjectIdentifier to the base.ldif ([782aa96](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/782aa96b8f53c4e2b666671f46994c483d747f47)), closes [univention/dev/internal/team-nubus#1186](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1186)
+* neewsfeed type typo ([186c277](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/186c2774af07c640b53093cfb80c6888dcff2a3e)), closes [univention/dev/internal/team-nubus#1249](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1249)
+* **notifications-api:** Use final artifact ([a536139](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/a53613928d2978074537bf5c6f8f0db430a29dbc)), closes [univention/dev/internal/team-nubus#0](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/0)
+* removed obsolete test-connection in portal-server,udm-rest-api ([f1ce535](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/f1ce5355a13fe21aa8df349af91006c146874bde)), closes [univention/dev/internal/team-nubus#1246](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1246)
+* **scim-server:** Update authentication configuration and add externalId and roles mappings ([c5b90c1](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/c5b90c139d43cb075bb995a1a48476fed7e27a57)), closes [univention/dev/internal/team-nubus#1279](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1279)
+* Update sub-chart udm-rest-api to version 0.34.2 ([389482b](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/389482b2fd3c418d259706f21f4f3aee13f0e5b6)), closes [univention/dev/internal/team-nubus#892](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/892)
+* use default cluster ingress class if not defined ([beac741](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/beac7410af1d29baf6aceed7091a1983c57637e5)), closes [univention/dev/internal/team-nubus#1134](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1134)
+
+
+### Reverts
+
+* Revert "feat: upgrade stack-data-ums" ([8d7da40](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/8d7da400a7f2e14515bab06513516d1499b44032))
+
 ## [1.10.2](https://git.knut.univention.de/univention/customers/dataport/upx/ums-stack/compare/v1.10.1...v1.10.2) (2025-06-06)
 
 
