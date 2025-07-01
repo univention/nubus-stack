@@ -83,6 +83,44 @@ wait-for-bootstrap:
     - echo "Waiting for the creation of the provisioning subscriptions"
     - kubectl -n "${DEPLOY_NAMESPACE}" wait --for=condition=complete jobs.batch "${RELEASE_NAME:=nubus}-provisioning-register-consumers-1" --timeout 10m
 
+# Create LDAP extended attributes for SCIM tests
+create-ldap-extended-attributes:
+  stage: test
+  extends: .check-variables
+  needs:
+    - configure-tests
+  image: "gitregistry.knut.univention.de/univention/dev/nubus-for-k8s/e2e-tests/e2e-tests-runner:${TESTRUNNER_VERSION}"
+  variables:
+    UDM_URL: "https://${DEPLOY_SUBDOMAIN}.portal.review.univention.dev/univention/udm/"
+    UDM_USERNAME: "Administrator"
+    UDM_PASSWORD: $UDM_ADMIN_PASSWORD
+  script:
+    - python3 ci/create-ldap-extended-attributes.py
+
+# Run SCIM end-to-end tests
+scim-e2e-test:
+  stage: test
+  extends: .check-variables
+  needs:
+    - job: create-scim-client
+      artifacts: true
+    - job: create-ldap-extended-attributes
+  image: "gitregistry.knut.univention.de/univention/dev/nubus-for-k8s/e2e-tests/e2e-tests-runner:${TESTRUNNER_VERSION}"
+  variables:
+    SCIM_BASE_URL: "https://${DEPLOY_SUBDOMAIN}.scim.review.univention.dev/scim/v2"
+    KEYCLOAK_BASE_URL: "https://${DEPLOY_SUBDOMAIN}.id.review.univention.dev/realms/nubus/protocol/openid-connect/token"
+    CLIENT_ID: "scim-client"
+  before_script:
+    - source scim-client.env
+    - export CLIENT_SECRET
+  script:
+    - pushd /e2e
+    - >
+      python
+      tests/scim/scim_e2e_test.py
+  tags:
+    - "docker"
+
 configure-tests:
   stage: test
   extends: .check-variables
@@ -101,9 +139,33 @@ configure-tests:
     - source ./discover-env-from-cluster.sh
     - popd
     - echo "PYTEST_ADDOPTS=$PYTEST_ADDOPTS" > deploy.env
+    - |
+      echo "KC_ADMIN_USERNAME=$(echo $PYTEST_ADDOPTS | sed -n 's/.*--kc-admin-username=\([^ ]*\).*/\1/p')" >> deploy.env
+      echo "KC_ADMIN_PASSWORD=$(echo $PYTEST_ADDOPTS | sed -n 's/.*--kc-admin-password=\([^ ]*\).*/\1/p')" >> deploy.env
+      echo "UDM_ADMIN_PASSWORD=$(echo $PYTEST_ADDOPTS | sed -n 's/.*--admin-password=\([^ ]*\).*/\1/p')" >> deploy.env
   artifacts:
     reports:
       dotenv: deploy.env
+
+create-scim-client:
+  stage: test
+  extends: .check-variables
+  needs:
+    - configure-tests
+  image: "ubuntu:22.04"
+  before_script:
+    - apt-get update && apt-get install -y curl jq
+  script:
+    - export KEYCLOAK_BASE_URL="https://${DEPLOY_SUBDOMAIN}.id.review.univention.dev"
+    - chmod +x ci/create-scim-client.sh
+    - ci/create-scim-client.sh
+    - echo "CLIENT_SECRET=$(cat scim-client.env | grep CLIENT_SECRET | cut -d'=' -f2)" >> scim-client.env
+  artifacts:
+    reports:
+      dotenv: scim-client.env
+    paths:
+      - scim-client.env
+    expire_in: 1 hour
 
 e2e-tests:
   stage: test

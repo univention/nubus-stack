@@ -11,6 +11,7 @@ global:
   subDomains:
     portal: "{{ .Values.reviewPrefix }}.portal"
     keycloak: "{{ .Values.reviewPrefix }}.id"
+    scim: "{{ .Values.reviewPrefix }}.scim"
 
 ingress:
   certManager:
@@ -137,3 +138,20 @@ nubusUmcGateway:
       enabled: false
     tls:
       secretName: {{ .Values.ingress.tls.secretName | quote }}
+
+nubusScimServer:
+  enabled: true
+  ingress:
+    certManager:
+      enabled: false
+    tls:
+      secretName: {{ .Values.ingress.tls.secretName | quote }}
+  config:
+    auth:
+      enabled: true
+      allowedAudience: 'scim-api-access'
+      allowedClientId: 'scim-client'
+  keycloak:
+    connection:
+      url: "http://nubus-keycloak:8080"
+      realm: "nubus"
