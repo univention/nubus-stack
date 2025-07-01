@@ -77,8 +77,8 @@ nubusPortalConsumer:
       existingSecret:
         name: minio-external-secret
         keyMapping:
-          accessKey: portal-consumer-access-key
-          secretKey: portal-consumer-secret-key
+          access_key_id: portal-consumer-access-key
+          secret_access_key: portal-consumer-secret-key
 
 nubusPortalServer:
   objectStorage:
@@ -88,8 +88,8 @@ nubusPortalServer:
       existingSecret:
         name: minio-external-secret
         keyMapping:
-          accessKey: portal-server-access-key
-          secretKey: portal-server-secret-key
+          access_key_id: portal-server-access-key
+          secret_access_key: portal-server-secret-key
 
 nubusProvisioning:
   nats:
@@ -104,28 +104,28 @@ nubusProvisioning:
         existingSecret:
           name: nats-external-secret
           keyMapping:
-            provisioningApiPassword: nats-provisioning-password
+            password: nats-provisioning-password
   dispatcher:
     nats:
       auth:
         existingSecret:
           name: nats-external-secret
           keyMapping:
-            dispatcherPassword: nats-dispatcher-password
+            password: nats-dispatcher-password
   prefill:
     nats:
       auth:
         existingSecret:
           name: nats-external-secret
           keyMapping:
-            prefillPassword: nats-prefill-password
+            password: nats-prefill-password
   udmTransformer:
     nats:
       auth:
         existingSecret:
           name: nats-external-secret
           keyMapping:
-            udmTransformerPassword: nats-udm-transformer-password
+            password: nats-udm-transformer-password
 nubusUdmListener:
   nats:
     connection:
