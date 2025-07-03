@@ -48,8 +48,8 @@ dependencies:
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.95.0
 - name: twofa-helpdesk
-  repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.7.0
+  repository: oci://artifacts.software-univention.de/nubus-dev/charts
+  version: 0.7.1-pre-jtorres-kyverno
 - name: udm-rest-api
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.37.1
@@ -68,5 +68,5 @@ dependencies:
 - name: minio
   repository: https://charts.bitnami.com/bitnami
   version: 14.7.0
-digest: sha256:30123fcaac2176c4233ce5781856e4a7ccb398cafda0d7efa50e4aa22d939941
-generated: "2025-07-10T13:37:53.393812479+02:00"
+digest: sha256:55d1ab76b4fb8bfcc5b5b904645829f9ea93504dbb56242eb4727b74afa29f35
+generated: "2025-07-10T13:39:29.554782761+02:00"
