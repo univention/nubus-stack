@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.11.1](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/compare/v1.11.0...v1.11.1) (2025-07-03)
+
+
+### Bug Fixes
+
+* **udm-rest-api:** Update version of udm-rest-api to 0.37.1 ([54835ce](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/54835ce76ee5b2f475d848a3a57035892f4f0ca2)), closes [univention/dev/internal/team-nubus#1303](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1303)
+
 ## [1.11.0](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/compare/v1.10.2...v1.11.0) (2025-06-30)
 
 
