@@ -108,8 +108,8 @@ dependencies:
 
   - name: "twofa-helpdesk"
     alias: "nubusTwofaHelpdesk"
-    repository: "oci://artifacts.software-univention.de/nubus-dev/charts"
-    version: "0.7.1-pre-jtorres-kyverno"
+    repository: "oci://artifacts.software-univention.de/nubus/charts"
+    version: "0.7.1"
     condition: "nubusTwofaHelpdesk.enabled"
 
   # udm-rest-api related chart(s)
