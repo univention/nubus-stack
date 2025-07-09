@@ -77,8 +77,8 @@ dependencies:
 
   - name: "udm-listener"
     alias: "nubusUdmListener"
-    repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.56.0"
+    repository: "oci://artifacts.software-univention.de/nubus-dev/charts"
+    version: "0.57.0-pre-mmeschter-wait-for-nats"
     condition: "nubusProvisioning.enabled"
 
   # keycloak related chart(s)
