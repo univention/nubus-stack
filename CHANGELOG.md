@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.11.2](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/compare/v1.11.1...v1.11.2) (2025-07-10)
+
+
+### Bug Fixes
+
+* add wait-for-nats init container to udm-listener ([ff72c41](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/ff72c41fdab34f021f8444b043bb01d127e9fafb)), closes [univention/dev/internal/dev-issues/dev-incidents#149](https://git.knut.univention.de/univention/dev/internal/dev-issues/dev-incidents/issues/149)
+* **udm-listener:** retry to interact with NATS on connection erros and terminate if not possible ([c607046](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/c607046a228525a8d6819176646ed43b4fc57cd6)), closes [univention/dev/internal/dev-issues/dev-incidents#149](https://git.knut.univention.de/univention/dev/internal/dev-issues/dev-incidents/issues/149)
+
 ## [1.11.1](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/compare/v1.11.0...v1.11.1) (2025-07-03)
 
 
