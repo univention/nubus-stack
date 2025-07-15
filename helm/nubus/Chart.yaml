@@ -136,7 +136,7 @@ dependencies:
   - name: "scim-server"
     alias: "nubusScimServer"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.35.0"
+    version: "0.39.1"
     condition: "nubusScimServer.enabled"
 
   # Optionally bundled external dependencies
