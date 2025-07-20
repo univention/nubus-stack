@@ -4,7 +4,7 @@ dependencies:
   version: 0.23.0
 - name: guardian
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.22.1
+  version: 0.22.2
 - name: license-import
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.6.0
@@ -49,7 +49,7 @@ dependencies:
   version: 0.96.0
 - name: twofa-helpdesk
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.11.0
+  version: 0.12.1
 - name: udm-rest-api
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.39.1
@@ -68,5 +68,5 @@ dependencies:
 - name: minio
   repository: https://charts.bitnami.com/bitnami
   version: 14.7.0
-digest: sha256:23d6ba058e5fa48bcdf1418fe9dd665087d1c64807224a214db8236a13f3b379
-generated: "2025-07-18T13:39:12.131330234+02:00"
+digest: sha256:c5bdf371fa8979950bb4534d11afa56f64473fb8ca883656b2c0bf6c6ba62c95
+generated: "2025-07-21T12:31:19.081866447+02:00"

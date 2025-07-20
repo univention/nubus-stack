@@ -14,7 +14,7 @@ dependencies:
   - name: "guardian"
     alias: "nubusGuardian"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.22.1"
+    version: "0.22.2"
     condition: "nubusGuardian.enabled"
 
   - name: "license-import"
@@ -109,7 +109,7 @@ dependencies:
   - name: "twofa-helpdesk"
     alias: "nubusTwofaHelpdesk"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.11.0"
+    version: "0.12.1"
     condition: "nubusTwofaHelpdesk.enabled"
 
   # udm-rest-api related chart(s)
