@@ -112,6 +112,9 @@ nubusPortalServer:
     tls:
       secretName: {{ .Values.ingress.tls.secretName | quote }}
 
+nubusTwofaHelpdesk:
+  enabled: true
+
 nubusUdmRestApi:
   ingress:
     enabled: true
