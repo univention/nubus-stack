@@ -61,12 +61,12 @@ dependencies:
   version: 0.48.2
 - name: scim-server
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.41.0
+  version: 0.41.2
 - name: postgresql
   repository: https://charts.bitnami.com/bitnami
   version: 12.12.10
 - name: minio
   repository: https://charts.bitnami.com/bitnami
   version: 14.7.0
-digest: sha256:c5bdf371fa8979950bb4534d11afa56f64473fb8ca883656b2c0bf6c6ba62c95
-generated: "2025-07-21T12:31:19.081866447+02:00"
+digest: sha256:c563d0e11d2d59e7341244ef58d181b3fdef62088845fdc86deed90356c9ba37
+generated: "2025-07-23T13:31:12.513114665+02:00"
