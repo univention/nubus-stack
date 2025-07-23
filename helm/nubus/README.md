@@ -56,8 +56,8 @@ helm uninstall nubus
 | oci://artifacts.software-univention.de/nubus/charts | nubusTwofaHelpdesk(twofa-helpdesk) | 0.12.2 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 0.60.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmRestApi(udm-rest-api) | 0.39.1 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.48.2 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUmcServer(umc-server) | 0.48.2 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.49.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUmcServer(umc-server) | 0.49.0 |
 
 ## Values
 
@@ -350,7 +350,6 @@ true
     "nginx.ingress.kubernetes.io/proxy-buffers-number": "4",
     "nginx.ingress.kubernetes.io/proxy-busy-buffers-size": "128k",
     "nginx.ingress.kubernetes.io/proxy-http-version": "1.1",
-    "nginx.ingress.kubernetes.io/proxy-set-headers": "Host $http_host;\nX-Forwarded-For $proxy_add_x_forwarded_for;\nX-Forwarded-Host $http_x_forwarded_host;\nX-Forwarded-Port $http_x_forwarded_port;\nX-Forwarded-Proto $http_x_forwarded_proto;\n",
     "nginx.ingress.kubernetes.io/use-regex": "true"
   },
   "certManager": {
@@ -388,7 +387,6 @@ true
   "nginx.ingress.kubernetes.io/proxy-buffers-number": "4",
   "nginx.ingress.kubernetes.io/proxy-busy-buffers-size": "128k",
   "nginx.ingress.kubernetes.io/proxy-http-version": "1.1",
-  "nginx.ingress.kubernetes.io/proxy-set-headers": "Host $http_host;\nX-Forwarded-For $proxy_add_x_forwarded_for;\nX-Forwarded-Host $http_x_forwarded_host;\nX-Forwarded-Port $http_x_forwarded_port;\nX-Forwarded-Proto $http_x_forwarded_proto;\n",
   "nginx.ingress.kubernetes.io/use-regex": "true"
 }
 </pre>
