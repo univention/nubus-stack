@@ -61,9 +61,6 @@ nubusStackDataUms:
     smtpUser: ""
     smtpStartTls: false
     portalFqdn: "{{ .Values.reviewPrefix }}.portal.{{ .Values.reviewBaseDomain }}"
-  # TODO: Clean up here when fully integrated
-  templateContext:
-    twofaActivated: true
 
 keycloak:
   {{- if .Values.toggles.scaledSetup }}
@@ -111,9 +108,6 @@ nubusPortalServer:
       enabled: false
     tls:
       secretName: {{ .Values.ingress.tls.secretName | quote }}
-
-nubusTwofaHelpdesk:
-  enabled: true
 
 nubusUdmRestApi:
   ingress:
