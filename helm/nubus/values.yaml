@@ -685,7 +685,7 @@ nubusKeycloakBootstrap: &nubusKeycloakBootstrap
   bootstrap:
     twoFactorAuthentication:
       enabled: true
-      group: "2fa-users"
+      group: "2FA Users"
   ldap:
     auth:
       bindDn: '{{ include "nubus.keycloak.ldap.auth.bindDn" . }}'
@@ -765,6 +765,7 @@ nubusStackDataUms:
     ldapHost: '{{ include "nubusTemplates.connections.ldap.primary.host" . }}'
 
   templateContext:
+    keycloakTwofaGroup: "2FA Users"
     ldapSearchUsers: []
     ldapSystemUsers:
       - username: "readonly"
