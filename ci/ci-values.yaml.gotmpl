@@ -61,6 +61,14 @@ nubusStackDataUms:
     smtpUser: ""
     smtpStartTls: false
     portalFqdn: "{{ .Values.reviewPrefix }}.portal.{{ .Values.reviewBaseDomain }}"
+  templateContext:
+    twofaSelfServiceActivated: true
+
+# enable the optional 2fa self-service in CI
+nubusTwofaHelpdesk:
+  twofaHelpdeskFrontend:
+    config:
+      enableSelfService: true
 
 keycloak:
   {{- if .Values.toggles.scaledSetup }}
