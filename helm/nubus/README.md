@@ -52,8 +52,8 @@ helm uninstall nubus
 | oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 0.60.1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusScimServer(scim-server) | 0.41.2 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceConsumer(selfservice-consumer) | 0.19.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.96.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusTwofaHelpdesk(twofa-helpdesk) | 0.12.2 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.97.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusTwofaHelpdesk(twofa-helpdesk) | 0.13.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 0.60.1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmRestApi(udm-rest-api) | 0.39.1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.49.0 |
@@ -319,8 +319,8 @@ true
     "image": {
       "imagePullPolicy": "IfNotPresent",
       "registry": "artifacts.software-univention.de",
-      "repository": "nubus/images/twofa-helpdesk-extensions",
-      "tag": "0.5.1@sha256:21217d02d45881f46e52ab54698f967f9cc5ead6a5a04270b0deb8e63b7eb715"
+      "repository": "nubus-dev/images/twofa-helpdesk-extensions",
+      "tag": "0.13.0-pre-mmeschter-conditional-frontend@sha256:394671aedbfc1d5ec8e774496cec529e9314c6edd206374e9e4437c2b6f90dd9"
     },
     "name": "2fa-helpdesk"
   }
@@ -1283,7 +1283,7 @@ true
 			<td>nubusKeycloakBootstrap.bootstrap.twoFactorAuthentication.group</td>
 			<td>string</td>
 			<td><pre lang="json">
-"2fa-users"
+"2FA Users"
 </pre>
 </td>
 			<td></td>
@@ -3332,6 +3332,15 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusStackDataUms.templateContext.keycloakTwofaGroup</td>
+			<td>string</td>
+			<td><pre lang="json">
+"2FA Users"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusStackDataUms.templateContext.ldapSearchUsers</td>
 			<td>list</td>
 			<td><pre lang="json">
@@ -3395,10 +3404,10 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataUms.templateContext.twofaActivated</td>
+			<td>nubusStackDataUms.templateContext.twofaAdminHelpdeskActivated</td>
 			<td>bool</td>
 			<td><pre lang="json">
-false
+true
 </pre>
 </td>
 			<td></td>
@@ -3408,6 +3417,15 @@ false
 			<td>string</td>
 			<td><pre lang="json">
 "domain-admin"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.templateContext.twofaSelfServiceActivated</td>
+			<td>bool</td>
+			<td><pre lang="json">
+false
 </pre>
 </td>
 			<td></td>
@@ -3443,7 +3461,7 @@ false
 			<td>nubusTwofaHelpdesk.enabled</td>
 			<td>bool</td>
 			<td><pre lang="json">
-false
+true
 </pre>
 </td>
 			<td></td>
@@ -3606,6 +3624,24 @@ true
 			<td>int</td>
 			<td><pre lang="json">
 5
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusTwofaHelpdesk.twofaHelpdeskFrontend.config.enableAdminHelpdesk</td>
+			<td>bool</td>
+			<td><pre lang="json">
+true
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusTwofaHelpdesk.twofaHelpdeskFrontend.config.enableSelfService</td>
+			<td>bool</td>
+			<td><pre lang="json">
+false
 </pre>
 </td>
 			<td></td>

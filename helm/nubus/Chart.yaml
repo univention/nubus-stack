@@ -103,13 +103,13 @@ dependencies:
   - name: "stack-data-ums"
     alias: "nubusStackDataUms"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.96.0"
+    version: "0.97.0"
     condition: "nubusStackDataUms.enabled"
 
   - name: "twofa-helpdesk"
     alias: "nubusTwofaHelpdesk"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.12.2"
+    version: "0.13.0"
     condition: "nubusTwofaHelpdesk.enabled"
 
   # udm-rest-api related chart(s)

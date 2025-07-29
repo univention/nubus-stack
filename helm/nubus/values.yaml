@@ -78,9 +78,9 @@ global:
     - name: "2fa-helpdesk"
       image:
         registry: "artifacts.software-univention.de"
-        repository: "nubus/images/twofa-helpdesk-extensions"
+        repository: "nubus-dev/images/twofa-helpdesk-extensions"
         imagePullPolicy: "IfNotPresent"
-        tag: "0.5.1@sha256:21217d02d45881f46e52ab54698f967f9cc5ead6a5a04270b0deb8e63b7eb715"
+        tag: "0.13.0-pre-mmeschter-conditional-frontend@sha256:394671aedbfc1d5ec8e774496cec529e9314c6edd206374e9e4437c2b6f90dd9"
 
 # -- Additional custom annotations to add to all objects deployed directly by the umbrella chart.
 additionalAnnotations: {}
@@ -315,7 +315,7 @@ nubusGuardian: &nubusGuardian
 nubusTwofaHelpdesk: &nubusTwofaHelpdesk
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   nameOverride: "helpdesk"
-  enabled: false
+  enabled: true
   resources: *nubusDevelopmentResources
   ingress:
     host: "{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
@@ -343,6 +343,8 @@ nubusTwofaHelpdesk: &nubusTwofaHelpdesk
   twofaHelpdeskFrontend:
     config:
       postLogoutRedirectURI: '{{ printf "https://%s.%s/" .Values.global.subDomains.portal .Values.global.domain }}'
+      enableSelfService: false
+      enableAdminHelpdesk: true
 
 nubusLdapNotifier: &nubusLdapNotifier
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
@@ -683,7 +685,7 @@ nubusKeycloakBootstrap: &nubusKeycloakBootstrap
   bootstrap:
     twoFactorAuthentication:
       enabled: true
-      group: "2fa-users"
+      group: "2FA Users"
   ldap:
     auth:
       bindDn: '{{ include "nubus.keycloak.ldap.auth.bindDn" . }}'
@@ -763,6 +765,7 @@ nubusStackDataUms:
     ldapHost: '{{ include "nubusTemplates.connections.ldap.primary.host" . }}'
 
   templateContext:
+    keycloakTwofaGroup: "2FA Users"
     ldapSearchUsers: []
     ldapSystemUsers:
       - username: "readonly"
@@ -774,7 +777,8 @@ nubusStackDataUms:
     twofaAdminTileCategory: "domain-admin"
     portalTwoFaAllowedGroups:
       - "Domain Admins"
-    twofaActivated: false
+    twofaAdminHelpdeskActivated: true
+    twofaSelfServiceActivated: false
 
 nubusScimServer: &nubusScimServer
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
