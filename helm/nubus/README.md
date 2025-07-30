@@ -319,8 +319,8 @@ true
     "image": {
       "imagePullPolicy": "IfNotPresent",
       "registry": "artifacts.software-univention.de",
-      "repository": "nubus-dev/images/twofa-helpdesk-extensions",
-      "tag": "0.13.0-pre-mmeschter-conditional-frontend@sha256:394671aedbfc1d5ec8e774496cec529e9314c6edd206374e9e4437c2b6f90dd9"
+      "repository": "nubus/images/twofa-helpdesk-extensions",
+      "tag": "0.13.0@sha256:3b3a625e8069bb24aafb979335f0fedd04a7bd790f5471ef4a4e81f0dd16fc81"
     },
     "name": "2fa-helpdesk"
   }
