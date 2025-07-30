@@ -11,6 +11,7 @@ global:
   subDomains:
     portal: "{{ .Values.reviewPrefix }}.portal"
     keycloak: "{{ .Values.reviewPrefix }}.id"
+    scim: "{{ .Values.reviewPrefix }}.scim"
 
 ingress:
   certManager:
@@ -60,9 +61,14 @@ nubusStackDataUms:
     smtpUser: ""
     smtpStartTls: false
     portalFqdn: "{{ .Values.reviewPrefix }}.portal.{{ .Values.reviewBaseDomain }}"
-  # TODO: Clean up here when fully integrated
   templateContext:
-    twofaActivated: true
+    twofaSelfServiceActivated: true
+
+# enable the optional 2fa self-service in CI
+nubusTwofaHelpdesk:
+  twofaHelpdeskFrontend:
+    config:
+      enableSelfService: true
 
 keycloak:
   {{- if .Values.toggles.scaledSetup }}
@@ -137,3 +143,20 @@ nubusUmcGateway:
       enabled: false
     tls:
       secretName: {{ .Values.ingress.tls.secretName | quote }}
+
+nubusScimServer:
+  enabled: true
+  ingress:
+    certManager:
+      enabled: false
+    tls:
+      secretName: {{ .Values.ingress.tls.secretName | quote }}
+  config:
+    auth:
+      enabled: true
+      allowedAudience: 'scim-api-access'
+      allowedClientId: 'scim-client'
+  keycloak:
+    connection:
+      url: "http://nubus-keycloak:8080"
+      realm: "nubus"

@@ -80,7 +80,7 @@ global:
         registry: "artifacts.software-univention.de"
         repository: "nubus/images/twofa-helpdesk-extensions"
         imagePullPolicy: "IfNotPresent"
-        tag: "0.5.1@sha256:21217d02d45881f46e52ab54698f967f9cc5ead6a5a04270b0deb8e63b7eb715"
+        tag: "0.13.0@sha256:3b3a625e8069bb24aafb979335f0fedd04a7bd790f5471ef4a4e81f0dd16fc81"
 
 # -- Additional custom annotations to add to all objects deployed directly by the umbrella chart.
 additionalAnnotations: {}
@@ -140,12 +140,6 @@ ingress:
     nginx.ingress.kubernetes.io/proxy-buffers-number: "4"
     nginx.ingress.kubernetes.io/proxy-busy-buffers-size: "128k"
     nginx.ingress.kubernetes.io/proxy-http-version: "1.1"
-    nginx.ingress.kubernetes.io/proxy-set-headers: |
-      Host $http_host;
-      X-Forwarded-For $proxy_add_x_forwarded_for;
-      X-Forwarded-Host $http_x_forwarded_host;
-      X-Forwarded-Port $http_x_forwarded_port;
-      X-Forwarded-Proto $http_x_forwarded_proto;
     nginx.ingress.kubernetes.io/use-regex: "true"
     nginx.ingress.kubernetes.io/affinity: "none"
 
@@ -321,7 +315,7 @@ nubusGuardian: &nubusGuardian
 nubusTwofaHelpdesk: &nubusTwofaHelpdesk
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   nameOverride: "helpdesk"
-  enabled: false
+  enabled: true
   resources: *nubusDevelopmentResources
   ingress:
     host: "{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
@@ -346,6 +340,11 @@ nubusTwofaHelpdesk: &nubusTwofaHelpdesk
     connection:
       url: "https://{{ .Values.global.subDomains.keycloak }}.{{ .Values.global.domain }}"
       host: "{{ .Release.Name }}-keycloak"
+  twofaHelpdeskFrontend:
+    config:
+      postLogoutRedirectURI: '{{ printf "https://%s.%s/" .Values.global.subDomains.portal .Values.global.domain }}'
+      enableSelfService: false
+      enableAdminHelpdesk: true
 
 nubusLdapNotifier: &nubusLdapNotifier
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
@@ -686,7 +685,7 @@ nubusKeycloakBootstrap: &nubusKeycloakBootstrap
   bootstrap:
     twoFactorAuthentication:
       enabled: true
-      group: "2fa-users"
+      group: "2FA Users"
   ldap:
     auth:
       bindDn: '{{ include "nubus.keycloak.ldap.auth.bindDn" . }}'
@@ -766,6 +765,7 @@ nubusStackDataUms:
     ldapHost: '{{ include "nubusTemplates.connections.ldap.primary.host" . }}'
 
   templateContext:
+    keycloakTwofaGroup: "2FA Users"
     ldapSearchUsers: []
     ldapSystemUsers:
       - username: "readonly"
@@ -777,7 +777,8 @@ nubusStackDataUms:
     twofaAdminTileCategory: "domain-admin"
     portalTwoFaAllowedGroups:
       - "Domain Admins"
-    twofaActivated: false
+    twofaAdminHelpdeskActivated: true
+    twofaSelfServiceActivated: false
 
 nubusScimServer: &nubusScimServer
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
