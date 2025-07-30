@@ -78,9 +78,9 @@ global:
     - name: "2fa-helpdesk"
       image:
         registry: "artifacts.software-univention.de"
-        repository: "nubus-dev/images/twofa-helpdesk-extensions"
+        repository: "nubus/images/twofa-helpdesk-extensions"
         imagePullPolicy: "IfNotPresent"
-        tag: "0.13.0-pre-mmeschter-conditional-frontend@sha256:394671aedbfc1d5ec8e774496cec529e9314c6edd206374e9e4437c2b6f90dd9"
+        tag: "0.13.0@sha256:3b3a625e8069bb24aafb979335f0fedd04a7bd790f5471ef4a4e81f0dd16fc81"
 
 # -- Additional custom annotations to add to all objects deployed directly by the umbrella chart.
 additionalAnnotations: {}
