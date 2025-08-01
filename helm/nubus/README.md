@@ -3338,7 +3338,7 @@ true
 "2FA Users"
 </pre>
 </td>
-			<td></td>
+			<td>Creates the group needed for enforcing configuration of a second factor in Keycloak.</td>
 		</tr>
 		<tr>
 			<td>nubusStackDataUms.templateContext.ldapSearchUsers</td>
@@ -3410,7 +3410,7 @@ true
 true
 </pre>
 </td>
-			<td></td>
+			<td>Creates the Portal Tile for the 2FA admin helpdesk.</td>
 		</tr>
 		<tr>
 			<td>nubusStackDataUms.templateContext.twofaAdminTileCategory</td>
@@ -3428,7 +3428,7 @@ true
 false
 </pre>
 </td>
-			<td></td>
+			<td>Creates the Portal Tile for the 2FA self-service.</td>
 		</tr>
 		<tr>
 			<td>nubusStackDataUms.templateContext.twofaSelfserviceTileCategory</td>
