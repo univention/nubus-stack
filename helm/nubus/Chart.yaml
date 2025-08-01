@@ -72,20 +72,20 @@ dependencies:
   - name: "provisioning"
     alias: "nubusProvisioning"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.60.1"
+    version: "0.60.2"
     condition: "nubusProvisioning.enabled"
 
   - name: "udm-listener"
     alias: "nubusUdmListener"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.60.1"
+    version: "0.60.2"
     condition: "nubusProvisioning.enabled"
 
   # keycloak related chart(s)
   - name: "keycloak"
     alias: "keycloak"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.11.2"
+    version: "0.11.3"
     condition: "keycloak.enabled"
 
   - name: "keycloak-extensions"
@@ -97,7 +97,7 @@ dependencies:
   - name: "keycloak-bootstrap"
     alias: "nubusKeycloakBootstrap"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.15.1"
+    version: "0.15.2"
     condition: "nubusKeycloakBootstrap.enabled"
 
   - name: "stack-data-ums"
@@ -109,7 +109,7 @@ dependencies:
   - name: "twofa-helpdesk"
     alias: "nubusTwofaHelpdesk"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.13.0"
+    version: "0.14.0"
     condition: "nubusTwofaHelpdesk.enabled"
 
   # udm-rest-api related chart(s)
@@ -136,7 +136,7 @@ dependencies:
   - name: "scim-server"
     alias: "nubusScimServer"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.41.2"
+    version: "0.41.3"
     condition: "nubusScimServer.enabled"
 
   # Optionally bundled external dependencies

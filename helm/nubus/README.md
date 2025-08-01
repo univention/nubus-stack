@@ -38,8 +38,8 @@ helm uninstall nubus
 | https://charts.bitnami.com/bitnami | minio | 14.7.0 |
 | https://charts.bitnami.com/bitnami | postgresql | ^12.x.x |
 | oci://artifacts.software-univention.de/nubus/charts | nubusGuardian(guardian) | 0.22.2 |
-| oci://artifacts.software-univention.de/nubus/charts | keycloak(keycloak) | 0.11.2 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakBootstrap(keycloak-bootstrap) | 0.15.1 |
+| oci://artifacts.software-univention.de/nubus/charts | keycloak(keycloak) | 0.11.3 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakBootstrap(keycloak-bootstrap) | 0.15.2 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakExtensions(keycloak-extensions) | 0.20.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusLdapNotifier(ldap-notifier) | 0.46.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusLdapServer(ldap-server) | 0.46.0 |
@@ -49,12 +49,12 @@ helm uninstall nubus
 | oci://artifacts.software-univention.de/nubus/charts | nubusPortalConsumer(portal-consumer) | 0.74.1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusPortalFrontend(portal-frontend) | 0.74.1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.74.1 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 0.60.1 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusScimServer(scim-server) | 0.41.2 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 0.60.2 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusScimServer(scim-server) | 0.41.3 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceConsumer(selfservice-consumer) | 0.19.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.97.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusTwofaHelpdesk(twofa-helpdesk) | 0.13.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 0.60.1 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusTwofaHelpdesk(twofa-helpdesk) | 0.14.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 0.60.2 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmRestApi(udm-rest-api) | 0.39.1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.49.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUmcServer(umc-server) | 0.49.0 |
@@ -311,7 +311,7 @@ true
       "imagePullPolicy": "IfNotPresent",
       "registry": "artifacts.software-univention.de",
       "repository": "nubus/images/portal-extension",
-      "tag": "0.59.1@sha256:c9c7faa3cca2be2f45d073517a50e8a8cc89d46c978c2f3a6be3c13d0e6ae900"
+      "tag": "0.74.1@sha256:cb3c3e4188cfde1d2091790bed38495bf4aa05b54c88e76fd78923db25502c1a"
     },
     "name": "portal"
   },
@@ -320,7 +320,7 @@ true
       "imagePullPolicy": "IfNotPresent",
       "registry": "artifacts.software-univention.de",
       "repository": "nubus/images/twofa-helpdesk-extensions",
-      "tag": "0.13.0@sha256:3b3a625e8069bb24aafb979335f0fedd04a7bd790f5471ef4a4e81f0dd16fc81"
+      "tag": "0.14.0@sha256:ee6300270361f133453ba12bc53eedac88db12ba167541f9237ff659e218a599"
     },
     "name": "2fa-helpdesk"
   }
@@ -3338,7 +3338,7 @@ true
 "2FA Users"
 </pre>
 </td>
-			<td></td>
+			<td>Creates the group needed for enforcing configuration of a second factor in Keycloak.</td>
 		</tr>
 		<tr>
 			<td>nubusStackDataUms.templateContext.ldapSearchUsers</td>
@@ -3410,7 +3410,7 @@ true
 true
 </pre>
 </td>
-			<td></td>
+			<td>Creates the Portal Tile for the 2FA admin helpdesk.</td>
 		</tr>
 		<tr>
 			<td>nubusStackDataUms.templateContext.twofaAdminTileCategory</td>
@@ -3428,7 +3428,7 @@ true
 false
 </pre>
 </td>
-			<td></td>
+			<td>Creates the Portal Tile for the 2FA self-service.</td>
 		</tr>
 		<tr>
 			<td>nubusStackDataUms.templateContext.twofaSelfserviceTileCategory</td>
