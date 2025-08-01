@@ -1,5 +1,42 @@
 # Changelog
 
+## [1.12.0](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/compare/v1.11.2...v1.12.0) (2025-08-01)
+
+
+### Features
+
+* **2fa:** add integration tests for the 2fa helpdesk ([dc90179](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/dc90179b788020100ed761a0c4a8e541c70508ef)), closes [univention/dev/internal/team-nubus#1218](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1218)
+* add frontchannel-logout to 2fa helpdesk ([e846b1c](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/e846b1c2088765a3a362c41da934b19fc8512914)), closes [univention/dev/internal/team-nubus#1238](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1238)
+* **portal-frontend:** Allow disabling "me" api endpoint loading ([83f746b](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/83f746b325ddcbaedc47b2d69847116d663648a8)), closes [univention/dev/internal/team-nubus#1358](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1358)
+* **portal-frontend:** update version of portal 0.71.0 ([fa38051](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/fa3805119ef37f35a41cc1dd8186c21bf214ad87)), closes [univention/dev/projects/portal#740](https://git.knut.univention.de/univention/dev/projects/portal/issues/740)
+* update ucs-base to 5.2.2-build.20250714 ([ca98e5f](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/ca98e5fdc7c77278deb4845446788d82e57d8d09)), closes [univention/dev/internal/team-nubus#1320](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1320)
+
+
+### Bug Fixes
+
+* adjust default name of the 2FA Users group ([6775299](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/6775299964aa27318038425dc597ef050fd7c3a6)), closes [univention/dev/internal/team-nubus#1347](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1347)
+* bump 2fa helpdesk ([eae6944](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/eae694415365c17bb9cf45163cd43ee555234142)), closes [univention/dev/internal/team-nubus#1237](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1237)
+* Bump systemExtensions to their latest versions ([34af226](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/34af226a5bd9cd01f6acb6f4ecc764f69754d63c)), closes [#0](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/issues/0)
+* enable 2fa helpdesk admin helpdesk by default ([a196fa9](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/a196fa9081429cfeda035d27b8ee7df331e9feaf)), closes [univention/dev/internal/team-nubus#1347](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1347)
+* enable 2fa self-service in CI ([cfff20d](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/cfff20db292932e58c175602fc8860f5d3b299a0)), closes [univention/dev/internal/team-nubus#1347](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1347)
+* fix maintainability issues discovered by sonarqube ([5706775](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/57067757ca8723a6648ca7c4adc39602bc780ff8)), closes [#0](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/issues/0)
+* **helm:** Add new provisioning prefill retry configuration parameters ([27c4915](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/27c49152860887dafa1f865745df51887ba7b676)), closes [univention/dev/internal/team-nubus#1357](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1357)
+* **helm:** Add new provisioning prefill retry configuration parameters ([2cb16c8](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/2cb16c818c3251b89b4ebb6dae5254afb6b2352b)), closes [univention/dev/internal/team-nubus#1357](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1357)
+* **ingress:** remove wrongly used annotation. ([420b27f](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/420b27f886daa5e7b20df583c0b48e1aa8fbf2e6)), closes [univention/dev/internal/team-nubus#1328](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1328)
+* keycloak-bootstrap failing on upgrades ([9062ba9](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/9062ba9957aebb79225695a5e33589a722b6bde1)), closes [#0](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/issues/0)
+* **keycloak-helm:** Upgrade keycloak to 26.3.1 version. ([d362488](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/d3624880db7574b6ba93e01f73b605cf31612274)), closes [univention/dev/internal/team-nubus#1355](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1355)
+* **keycloak:** Template resources in initContainers ([38a4ee8](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/38a4ee841cd6a9a3593a6fc3763da79ba4c1d428)), closes [univention/dev/internal/team-nubus#1356](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1356)
+* **ldap-server:** Allow more than 8 ldap secondaries ([ec83f0c](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/ec83f0c54ae365493a72869aea38408c61794779)), closes [univention/dev/internal/team-nubus#1353](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1353)
+* **portal-frontend:** Load newsfeed after user is logged in ([4788ffc](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/4788ffc36fb6603539bcbecc346f3cbb1cd65fea)), closes [univention/dev/internal/team-nubus#1359](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1359)
+* **provisioning:** bump provisioning version to include the NATS upgrade ([55b3443](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/55b344300a41022bdd5f1c7242621b459c93df6a)), closes [univention/dev/internal/team-nubus#1350](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1350)
+* remove leading slash from Keycloak group ([698d3c4](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/698d3c468907be322114c653d89b00bb2cd62f8a)), closes [univention/dev/internal/team-nubus#1343](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1343)
+* subcharts ([c8a9c3c](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/c8a9c3ce4c2a3938df69159541568f77676d994e)), closes [univention/dev/internal/team-nubus#1320](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1320)
+* **twofa-helpdesk:** Bump version ([4a02a8e](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/4a02a8e0e8e5273de0ef8cb5a2bed31f4b3ea28c)), closes [univention/dev/internal/team-nubus#1241](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1241)
+* **twofa-helpdesk:** Helm chart best practices ([0b771d5](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/0b771d5ea2e13374fc14fbb22d10e2973ce4e6fe)), closes [univention/dev/internal/team-nubus#1240](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1240)
+* **twofa-helpdesk:** Rename provisioning to keycloakBootstrap ([b07783f](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/b07783fa40be07bde840cf209f15944a9f53b7de)), closes [univention/dev/internal/team-nubus#1356](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1356)
+* **univention-portal:** Security fixes ([4d7fb6e](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/4d7fb6e23b8108847f35b4d01006eac899dc6d83)), closes [univention/dev/internal/team-nubus#1221](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1221)
+* use final version of 2fa-extensions ([6229884](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/62298844fcebb200f55aa1955bed044a92da1bf1)), closes [#0](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/issues/0)
+
 ## [1.11.2](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/compare/v1.11.1...v1.11.2) (2025-07-10)
 
 
