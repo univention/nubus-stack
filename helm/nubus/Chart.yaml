@@ -46,7 +46,7 @@ dependencies:
   - name: "portal-frontend"
     alias: "nubusPortalFrontend"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.75.0"
+    version: "0.77.0"
     condition: "nubusPortalFrontend.enabled"
 
   - name: "portal-consumer"
@@ -58,7 +58,7 @@ dependencies:
   - name: "portal-server"
     alias: "nubusPortalServer"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.76.0"
+    version: "0.77.0"
     condition: "nubusPortalServer.enabled"
 
   # selfservice related chart(s)
