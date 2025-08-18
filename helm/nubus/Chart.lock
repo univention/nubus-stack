@@ -43,7 +43,7 @@ dependencies:
   version: 0.20.0
 - name: keycloak-bootstrap
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.15.2
+  version: 0.15.3
 - name: stack-data-ums
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.97.0
@@ -68,5 +68,5 @@ dependencies:
 - name: minio
   repository: https://charts.bitnami.com/bitnami
   version: 14.7.0
-digest: sha256:0ddfe93904ad85f9e32f31f6cdd9934c7923a7a3461b35bf2baa047995d74368
-generated: "2025-08-19T16:50:43.182002553+02:00"
+digest: sha256:a9e51e7c26bd7e600e1f49ce32e894e0d19e3827996252de7ec449271837e9ca
+generated: "2025-08-22T09:16:16.042770501+02:00"
