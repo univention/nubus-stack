@@ -1202,7 +1202,7 @@ true
 			<td>nubusGuardian.provisioning.keycloak.auth.existingSecret.keyMapping.password</td>
 			<td>string</td>
 			<td><pre lang="json">
-"adminPassword"
+"admin_password"
 </pre>
 </td>
 			<td></td>
@@ -1211,7 +1211,7 @@ true
 			<td>nubusGuardian.provisioning.keycloak.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{- printf \"%s-guardian-provisioning-secret\" .Release.Name -}}"
+"{{- printf \"%s-keycloak-credentials\" .Release.Name -}}"
 </pre>
 </td>
 			<td></td>
@@ -2328,6 +2328,15 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 "provisioning"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusProvisioning.nats.auth.adminPassword</td>
+			<td>string</td>
+			<td><pre lang="json">
+null
 </pre>
 </td>
 			<td></td>

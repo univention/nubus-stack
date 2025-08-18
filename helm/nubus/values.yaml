@@ -308,9 +308,9 @@ nubusGuardian: &nubusGuardian
       auth:
         username: "kcadmin"
         existingSecret:
-          name: '{{- printf "%s-guardian-provisioning-secret" .Release.Name -}}'
+          name: '{{- printf "%s-keycloak-credentials" .Release.Name -}}'
           keyMapping:
-            password: "adminPassword"
+            password: "admin_password"
 
 nubusTwofaHelpdesk: &nubusTwofaHelpdesk
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
@@ -400,7 +400,6 @@ nubusPortalConsumer: &nubusPortalConsumer
   nameOverride: "portal-consumer"
   enabled: true
   resources: *nubusDevelopmentResources
-
   objectStorage:
     auth:
       existingSecret:
@@ -410,7 +409,6 @@ nubusPortalConsumer: &nubusPortalConsumer
           secret_access_key: secretKey
     endpoint: "http://{{ .Release.Name }}-minio:9000"
     bucketName: "nubus"
-
   ldap:
     connection:
       # NOTE: Special case, we want to be sure that the consumer is talking to
@@ -420,11 +418,9 @@ nubusPortalConsumer: &nubusPortalConsumer
     auth:
       existingSecret:
         name: "{{ tpl .Values.global.ldap.auth.admin.existingSecret.name . }}"
-
   provisioningApi:
     connection:
       url: "http://{{ .Release.Name }}-provisioning-api"
-
   udm:
     auth:
       existingSecret:
@@ -438,7 +434,6 @@ nubusPortalServer: &nubusPortalServer
   ingress:
     host: "{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
   resources: *nubusDevelopmentResources
-
   objectStorage:
     auth:
       existingSecret:
@@ -448,7 +443,6 @@ nubusPortalServer: &nubusPortalServer
           secret_access_key: secretKey
     endpoint: "http://{{ .Release.Name }}-minio:9000"
     bucketName: "nubus"
-
   udm:
     auth:
       existingSecret:
@@ -466,6 +460,8 @@ nubusProvisioning: &nubusProvisioning
     api: *nubusDevelopmentResources
 
   nats:
+    auth:
+      adminPassword: null
     config:
       cluster:
         # TODO: Set back to the default of 3 after nats clustering is solved.
@@ -579,12 +575,10 @@ nubusUdmListener: &nubusUdmListener
   nameOverride: "provisioning-udm-listener"
   enabled: true
   resources: *nubusDevelopmentResources
-
   ldap:
     auth:
       existingSecret:
         name: "{{ tpl .Values.global.ldap.auth.admin.existingSecret.name . }}"
-
   nats:
     connection:
       host: "{{ .Release.Name }}-provisioning-nats"
@@ -593,7 +587,6 @@ nubusUdmListener: &nubusUdmListener
         name: "{{ .Release.Name }}-provisioning-udm-listener-credentials"
         keyMapping:
           password: "NATS_PASSWORD"
-
   provisioningApi:
     auth:
       existingSecret:
@@ -604,11 +597,9 @@ nubusSelfServiceConsumer: &nubusSelfServiceConsumer
   nameOverride: "selfservice-listener"
   enabled: true
   resources: *nubusDevelopmentResources
-
   provisioningApi:
     connection:
       url: "http://{{ .Release.Name }}-provisioning-api"
-
   umc:
     connection:
       url: "http://{{ .Release.Name }}-umc-server"
