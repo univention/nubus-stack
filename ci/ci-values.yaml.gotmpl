@@ -116,6 +116,25 @@ nubusPortalServer:
       enabled: false
     tls:
       secretName: {{ .Values.ingress.tls.secretName | quote }}
+  portalServer:
+    featureToggles:
+      {{ if .Values.portal.featureToggles.centered_layout }}
+      centered_layout: true
+      {{ end }}
+      {{ if .Values.portal.featureToggles.left_sidebar }}
+      left_sidebar: true
+      {{ end }}
+      {{ if .Values.portal.featureToggles.native_html_list }}
+      native_html_list: true
+      {{ end }}
+      {{ if .Values.portal.featureToggles.newsfeed }}
+      newsfeed: true
+      {{ end }}
+      {{ if .Values.portal.featureToggles.welcome_message }}
+      welcome_message: true
+      {{ end }}
+      notifications_api: true
+      umc_session_refresh: true
 
 nubusUdmRestApi:
   ingress:
