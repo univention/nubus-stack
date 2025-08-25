@@ -63,10 +63,10 @@ dependencies:
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.41.3
 - name: postgresql
-  repository: https://charts.bitnami.com/bitnami
+  repository: oci://docker.io/bitnamicharts
   version: 12.12.10
 - name: minio
-  repository: https://charts.bitnami.com/bitnami
+  repository: oci://docker.io/bitnamicharts
   version: 14.7.0
-digest: sha256:742d985f32ff183cd5c3d8a50bdbd96fee3bbeed04e741a99fa0409889e59a23
-generated: "2025-08-26T07:19:41.62169018+02:00"
+digest: sha256:6bacb860ecef17d772d5097356012cc18cbd17ea9e9bf17e6c759c4b7ac8a496
+generated: "2025-08-26T10:57:06.436339584+02:00"

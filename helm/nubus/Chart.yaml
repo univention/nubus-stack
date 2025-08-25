@@ -141,11 +141,11 @@ dependencies:
 
   # Optionally bundled external dependencies
   - name: "postgresql"
-    repository: "https://charts.bitnami.com/bitnami"
+    repository: "oci://docker.io/bitnamicharts"
     version: "^12.x.x"
     condition: "postgresql.enabled"
 
   - name: "minio"
-    repository: "https://charts.bitnami.com/bitnami"
+    repository: "oci://docker.io/bitnamicharts"
     version: "14.7.0"
     condition: "minio.enabled"
