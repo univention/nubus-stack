@@ -551,6 +551,15 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>keycloak.keycloak.auth.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+null
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>keycloak.keycloak.auth.username</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -573,6 +582,15 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 "{{- printf \"%s-keycloak-postgresql-credentials\" .Release.Name -}}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>keycloak.postgresql.auth.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+null
 </pre>
 </td>
 			<td></td>
@@ -2693,10 +2711,28 @@ null
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusProvisioning.registerConsumers.createUsers.portalConsumer.existingSecret.keyMapping.registration</td>
+			<td>string</td>
+			<td><pre lang="json">
+null
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusProvisioning.registerConsumers.createUsers.portalConsumer.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
 "{{ .Release.Name }}-portal-consumer-provisioning-api"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusProvisioning.registerConsumers.createUsers.selfserviceConsumer.existingSecret.keyMapping.registration</td>
+			<td>string</td>
+			<td><pre lang="json">
+null
 </pre>
 </td>
 			<td></td>

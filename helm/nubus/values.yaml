@@ -261,12 +261,14 @@ keycloak:
   postgresql:
     auth:
       username: keycloak_user
+      password: null
       database: keycloak
       existingSecret:
         name: '{{- printf "%s-keycloak-postgresql-credentials" .Release.Name -}}'
   keycloak:
     auth:
       username: "kcadmin"
+      password: null
       existingSecret:
         name: '{{- printf "%s-keycloak-credentials" .Release.Name -}}'
         keyMapping:
@@ -517,9 +519,13 @@ nubusProvisioning: &nubusProvisioning
       portalConsumer:
         existingSecret:
           name: "{{ .Release.Name }}-portal-consumer-provisioning-api"
+          keyMapping:
+            registration: null
       selfserviceConsumer:
         existingSecret:
           name: "{{ .Release.Name }}-selfservice-listener-provisioning-api"
+          keyMapping:
+            registration: null
     udm:
       auth:
         existingSecret:
