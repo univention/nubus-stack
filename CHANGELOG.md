@@ -1,5 +1,31 @@
 # Changelog
 
+## [1.13.0](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/compare/v1.12.0...v1.13.0) (2025-08-27)
+
+
+### Features
+
+* **ci:** left-sidebar: enable concept of executing test for feature toggles ([72aea15](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/72aea15d2c455bfc1888d2a24de4a024cd321e8c)), closes [univention/dev/internal/team-nubus#1122](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1122)
+* **portal:** integration of new sidebar (controlled by feature toggle, default: off) ([d793cbe](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/d793cbef38af8732f7478d1d073cc7200a73fd69)), closes [univention/dev/internal/team-nubus#1231](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1231)
+* update charts for configurable centralnav ([8180a3f](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/8180a3fdb52b96fae82d16b58480861baba94b5d)), closes [univention/dev/internal/team-nubus#1301](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1301)
+* upgrade bitnami charts ([6325ae0](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/6325ae08c130278d4fa137af5d9b4a2c045f62ac)), closes [univention/dev/internal/team-nubus#1406](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1406)
+
+
+### Bug Fixes
+
+* Don't template postgres or minio secrets if the components are disabled ([bbd7c54](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/bbd7c54977b4890030f866fefaa083a59a9839e0)), closes [univention/dev/internal/team-nubus#989](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/989)
+* **keycloak-bootstrap:** Update keyloak-bootstrap to fix yaml parsing bug ([f967a0a](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/f967a0a43daa0a73d5e7a2f06b87b9d6d4654c1e)), closes [univention/dev/internal/team-nubus#989](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/989)
+* **keycloak:** Use the same secret for the Keycloak admin credentials everywhere ([b0a4fc6](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/b0a4fc6788199010fb16f64c56ae5c2e6cd2c8f3)), closes [univention/dev/internal/team-nubus#989](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/989)
+* **nats:** bump nats chart to solve a template issue ([dbfb8cb](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/dbfb8cb7e8e9d8342f6a042e3470c6f095b9cb8e)), closes [univention/dev/internal/team-nubus#1382](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1382)
+* **portal-frontend:** update version of portal 0.75.0 ([a88000f](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/a88000fd7a56c233891d7268a95c787577698b2a)), closes [univention/dev/projects/portal#741](https://git.knut.univention.de/univention/dev/projects/portal/issues/741)
+* **provisioning:** atomic subscription to NATS ([b13142a](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/b13142aa684db57f2bbf1baa9f6fd5c8daa78ff4)), closes [univention/dev/internal/team-nubus#1349](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1349)
+* **provisioning:** improve error handling in the provisioning api. ([4bd2217](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/4bd221766b72df0ee97d5c16aec0e9037009ac94)), closes [univention/dev/projects/provisioning#78](https://git.knut.univention.de/univention/dev/projects/provisioning/issues/78)
+* Remove unused secrets ([8f877ba](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/8f877ba61b441cbe505fb89e44a24d3467cd6f3b)), closes [univention/dev/internal/team-nubus#989](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/989)
+* **secrets:** Already documented custom-secret-values ([06ef5db](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/06ef5dbfe2d86ba4f79b13c8ce33075cd31c6ebe)), closes [univention/dev/internal/team-nubus#989](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/989)
+* **udm-listener:** fix initialization of UDM listener ([945adb9](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/945adb90b1972a7170bab9a74a002aec571ade52)), closes [univention/dev/internal/team-nubus#1372](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1372)
+* **udm-listener:** Remove unused secret from listener ([6acd1b8](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/6acd1b887f7409a8dad5faa341cc9359f6d762a0)), closes [univention/dev/internal/team-nubus#989](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/989)
+* **umc-server:** Make podManagementPolicy configurable ([1e517b6](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/1e517b62fdd9ed1842a041d00fa851a24afff22b)), closes [univention/dev/internal/team-nubus#1363](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1363)
+
 ## [1.12.0](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/compare/v1.11.2...v1.12.0) (2025-08-01)
 
 
