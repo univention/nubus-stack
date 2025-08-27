@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2024-2025 Univention GmbH
 ---
 global:
+  secrets:
+    masterPassword: "nubus"
   nubusDeployment: true
   ldap:
     baseDn: "dc=example,dc=com"

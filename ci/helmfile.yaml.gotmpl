@@ -10,6 +10,7 @@ environments:
     values:
       - default-state-values.yaml.gotmpl
       - gaia-state-values.yaml.gotmpl
+      - portal-feature-toggles-values.yaml.gotmpl
       - reviewPrefix: {{ env "REVIEW_PREFIX" | default .Namespace }}
 
   # Configuration for a local or custom deployment.
@@ -20,6 +21,7 @@ environments:
     values:
       - default-state-values.yaml.gotmpl
       - local-state-values.yaml.gotmpl
+      - portal-feature-toggles-values.yaml.gotmpl
       - reviewPrefix: {{ env "REVIEW_PREFIX" | default .Namespace }}
 
 ---
@@ -56,6 +58,12 @@ releases:
       {{- end }}
       {{- if .Values.toggles.externalDependencies }}
       - ./external-dependencies/nubus-values.yaml.gotmpl
+      {{- end }}
+      {{- if .Values.toggles.changeableCredentials }}
+      - ./changeable-secrets.yaml
+      {{- end }}
+      {{- if .Values.toggles.customSecretValues }}
+      - ../helm/nubus/example-custom-secret-values.yaml
       {{- end }}
 
   - name: maildev

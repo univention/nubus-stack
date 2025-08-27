@@ -1,0 +1,79 @@
+# SPDX-License-Identifier: AGPL-3.0-only
+# SPDX-FileCopyrightText: 2024-2025 Univention GmbH
+
+# Base template for redeploying with a toggle
+.toggles:update-deployment:
+  stage: test-toggles
+  extends: .check-variables
+  image: "ghcr.io/helmfile/helmfile:v0.167.1\
+          @sha256:414cb074a0da0f457129590c39d96575fbdcdb7ce75bf0d2b30f05e835947d76"
+  script:
+    # Prepare environment variables
+    - export CHART_VERSION=${RELEASE_VERSION}
+    - export REVIEW_PREFIX=${DEPLOY_SUBDOMAIN}
+    - export MASTER_PASSWORD=${MASTER_PASSWORD}
+    # Update deployment with toggle
+    - pushd ci
+    - >
+      helmfile --debug -n "${DEPLOY_NAMESPACE}"
+      --state-values-set portal.featureToggles.${TOGGLE_NAME}=${TOGGLE_VALUE}
+      sync
+    - popd
+    - echo "Deployment updated with ${TOGGLE_NAME}=${TOGGLE_VALUE}"
+    - echo "Waiting for the redeployment with ${TOGGLE_NAME} toggle to finish"
+    - echo "Waiting for pods to be ready after toggle update"
+    # Wait for the main deployments to be ready
+    - kubectl -n "${DEPLOY_NAMESPACE}" wait --for=condition=available deployment/nubus-portal-server --timeout=10m
+    - kubectl -n "${DEPLOY_NAMESPACE}" wait --for=condition=available deployment/nubus-portal-frontend --timeout=10m
+    - echo "${TOGGLE_NAME} toggle deployment is ready"
+  rules:
+    - if: '$EXTERNAL_DEPENDENCIES == "true"'
+      when: never
+    - when: on_success
+
+# Base template for testing toggles
+.toggles:test:
+  stage: test-toggles
+  extends: .check-variables
+  image: "gitregistry.knut.univention.de/univention/dev/nubus-for-k8s/e2e-tests/e2e-tests-runner:${TESTRUNNER_VERSION}"
+  script:
+    - pushd /e2e
+    - echo "=== Testing ${TOGGLE_NAME} toggle functionality ==="
+    - >
+      pytest
+      tests/portal/featureToggles/${TOGGLE_NAME}
+      -m acceptance_environment
+      --showlocals
+      --junitxml=${TOGGLE_NAME}_test_results.xml
+      --html=${TOGGLE_NAME}_report.html
+      --self-contained-html
+      --verbose
+      --video=retain-on-failure
+      --tracing=retain-on-failure
+      --screenshot=only-on-failure
+      || exit_code=$?
+    - popd
+    # NOTE: This is a workaround. Our testrunner image does not yet support to
+    # run the tests in a different directory than "/e2e". So we copy the reports
+    # back into the CI_PROJECT_DIR for Gitlab to accept them as artifacts.
+    - mkdir -p /e2e/${TOGGLE_NAME}_test-results
+    - cp -a /e2e/${TOGGLE_NAME}_test-results .
+    - cp -a /e2e/${TOGGLE_NAME}_report.html .
+    - cp -a /e2e/${TOGGLE_NAME}_test_results.xml .
+    - exit $exit_code
+
+  artifacts:
+    paths:
+      - "${CI_PROJECT_DIR}/${TOGGLE_NAME}_report.html"
+      - "${CI_PROJECT_DIR}/${TOGGLE_NAME}_test_results.xml"
+      - "${CI_PROJECT_DIR}/${TOGGLE_NAME}_test-results/"
+    when: "always"
+    reports:
+      junit: "${TOGGLE_NAME}_test_results.xml"
+    expire_in: "1 week"
+  tags:
+    - "docker"
+  rules:
+    - if: '$EXTERNAL_DEPENDENCIES == "true"'
+      when: never
+    - when: on_success

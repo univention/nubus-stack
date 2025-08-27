@@ -7,10 +7,13 @@ include:
     ref: "v1.42.1"
     file:
       - "defaults/nubus-workflow.yaml"
+  - local: '.gitlab-ci/toggle-base-jobs.yaml'
+
 stages:
   - prepare
   - deploy
   - test
+  - test-toggles
   - cleanup
 
 .check-variables:
@@ -37,8 +40,8 @@ pipline-configuration:
 deploy-gaia:
   stage: "deploy"
   extends: .check-variables
-  image: "ghcr.io/helmfile/helmfile:v0.167.1\
-          @sha256:414cb074a0da0f457129590c39d96575fbdcdb7ce75bf0d2b30f05e835947d76"
+  image: "ghcr.io/helmfile/helmfile:v1.1.4\
+          @sha256:a49a91071567f3b3e5ee45e08bba25fe96b90d12c194ac10178c073453cd00f1"
   script:
     # Prepare
     - export CHART_VERSION=${RELEASE_VERSION}
@@ -177,7 +180,7 @@ e2e-tests:
     - pushd /e2e
     - >
       pytest
-      -m acceptance_environment
+      -m "acceptance_environment and not feature_toggle"
       --showlocals
       --junitxml=test_results.xml
       --html=report.html
@@ -208,6 +211,28 @@ e2e-tests:
     expire_in: "1 week"
   tags:
     - "docker"
+
+# Concrete jobs for left_sidebar toggle
+toggle:redeploy:left_sidebar:
+  extends: .toggles:update-deployment
+  needs:
+    - configure-tests
+    - job: e2e-tests
+      optional: true
+  variables:
+    TOGGLE_NAME: "left_sidebar"
+    TOGGLE_VALUE: "true"
+
+toggle:test:left_sidebar:
+  extends: .toggles:test
+  needs:
+    - configure-tests
+    - toggle:redeploy:left_sidebar
+  variables:
+    TOGGLE_NAME: "left_sidebar"
+    TOGGLE_VALUE: "true"
+  artifacts:
+    expose_as: "toggle-report-left_sidebar"
 
 stop-deployment:
   stage: cleanup
