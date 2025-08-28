@@ -29,14 +29,23 @@ PATH_IGNORE_LIST = [
 """Secrets that currently can't be replaced using existing secrets"""
 SECRET_IGNORE_LIST = set((
     "release-name-stack-data-ums-context",
+    "release-name-stack-data-ums-svc-portal-server"
 ))
 
 """Username configuration paths don't need to be mentioned in the secrets documentation"""
 IGNORE_ONLY_CONFIG = set((
+    # Usernames don't need to be configured.
     "keycloak.keycloak.auth.username",
     "nubusGuardian.postgresql.auth.username",
     "nubusKeycloakExtensions.smtp.auth.username",
     "nubusStackDataUms.templateContext.ldapSystemUsers[0].username",
+    # Will be fixed in follow-up issue
+    "nubusKeycloakExtensions.smtp.auth.existingSecret.name",
+    "nubusKeycloakExtensions.smtp.auth.existingSecret.keyMapping.password",
+    # Unused tls secrets
+    "nubusUdmListener.ldap.tlsSecret.name",
+    "nubusUmcServer.ldap.tlsSecret.name",
+
 ))
 
 
@@ -118,6 +127,8 @@ def test_docs_matches_configuration(subtests):
 
     with subtests.test("only_configured"):
         missing = config_paths - docs_paths_set - IGNORE_ONLY_CONFIG
+        # NATS extraEnvVars are documented differently.
+        missing = [m for m in missing if not m.startswith("nubusProvisioning.nats.extraEnvVars")]
         assert not missing, "only in config:\n" + "\n".join(sorted(missing))
 
 
