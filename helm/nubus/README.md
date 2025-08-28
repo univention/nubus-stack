@@ -3350,42 +3350,6 @@ true
 			<td>Creates the group needed for enforcing configuration of a second factor in Keycloak.</td>
 		</tr>
 		<tr>
-			<td>nubusStackDataUms.templateContext.ldapSearchUsers</td>
-			<td>list</td>
-			<td><pre lang="json">
-[]
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.templateContext.ldapSystemUsers[0].lastname</td>
-			<td>string</td>
-			<td><pre lang="json">
-"LDAP-system-User"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.templateContext.ldapSystemUsers[0].password</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ include \"nubusTemplates.credentials.ldap.users.readonly.password\" . }}"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.templateContext.ldapSystemUsers[0].username</td>
-			<td>string</td>
-			<td><pre lang="json">
-"readonly"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusStackDataUms.templateContext.portalTwoFaAllowedGroups[0]</td>
 			<td>string</td>
 			<td><pre lang="json">
