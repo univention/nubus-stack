@@ -1,11 +1,35 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:recommended",
-    "group:all",
-    ":disableRateLimiting"
+    "config:best-practices",
+  ],
+  "packageRules": [
+
+    // Group only the Nubus dependencies from us together into one MR.
+    {
+      "matchFileNames": [
+        "helm/nubus/Chart.yaml",
+        "helm/nubus/values.yaml",
+      ],
+      "matchPackageNames": [
+        "artifacts.software-univention.de/nubus/charts/**",
+        "artifacts.software-univention.de/nubus/images/**",
+      ],
+      "groupName": "nubus subcharts",
+      "separateMajorMinor": false,
+    },
+
+    // "chore" is used if nothing is configured. This ensures that all Helm dependencies
+    // will result in a "fix" commit.
+    //
+    // See: https://docs.renovatebot.com/presets-default/#semanticprefixfixdepschoreothers
+    {
+      "matchManagers": [
+        "helmv3",
+        "helm-values",
+      ],
+      "semanticCommitType": "fix"
+    },
   ],
   "semanticCommits": "enabled",
-  "semanticCommitType": "fix",
-  "semanticCommitScope": "deps"
 }
