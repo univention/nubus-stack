@@ -762,8 +762,6 @@ nubusStackDataUms:
     ldapHost: '{{ include "nubusTemplates.connections.ldap.primary.host" . }}'
 
   templateContext:
-    # -- Creates the group needed for enforcing configuration of a second factor in Keycloak.
-    keycloakTwofaGroup: "2FA Users"
     readonlyUserPassword: '{{ include "nubusTemplates.credentials.ldap.users.readonly.password" . }}'
     portalTwoFaLinkBase: 'https://{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}'
     twofaSelfserviceTileCategory: "domain-service"

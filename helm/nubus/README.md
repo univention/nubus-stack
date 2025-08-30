@@ -50,7 +50,7 @@ helm uninstall nubus
 | oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 0.60.8 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusScimServer(scim-server) | 0.42.3 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceConsumer(selfservice-consumer) | 0.19.4 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.97.4 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.97.5 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusTwofaHelpdesk(twofa-helpdesk) | 0.14.1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 0.60.8 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmRestApi(udm-rest-api) | 0.39.4 |
@@ -3375,15 +3375,6 @@ true
 </pre>
 </td>
 			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.templateContext.keycloakTwofaGroup</td>
-			<td>string</td>
-			<td><pre lang="json">
-"2FA Users"
-</pre>
-</td>
-			<td>Creates the group needed for enforcing configuration of a second factor in Keycloak.</td>
 		</tr>
 		<tr>
 			<td>nubusStackDataUms.templateContext.portalTwoFaAllowedGroups[0]</td>
