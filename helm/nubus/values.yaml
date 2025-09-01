@@ -8,6 +8,7 @@ global:
     # -- Master password from which other passwords are derived.
     masterPassword: ""
 
+  # -- Domain of the deployment
   domain: ""
   subDomains:
     portal: portal
@@ -15,10 +16,12 @@ global:
     scim: scim
 
   ingressClass: ""
+  # -- Cert manager issuer of the cluster
   certManagerIssuer: ""
 
   ldap:
     baseDn: ""
+    # -- Domain of the ldap server
     domainName: ""
     connection:
       host: "{{ .Release.Name }}-ldap-server"

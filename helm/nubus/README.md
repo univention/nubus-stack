@@ -123,7 +123,7 @@ true
 ""
 </pre>
 </td>
-			<td></td>
+			<td>Cert manager issuer of the cluster</td>
 		</tr>
 		<tr>
 			<td>global.configMapUcr</td>
@@ -155,7 +155,7 @@ true
 ""
 </pre>
 </td>
-			<td></td>
+			<td>Domain of the deployment</td>
 		</tr>
 		<tr>
 			<td>global.enablePlainUmcLogin</td>
@@ -227,7 +227,7 @@ false
 ""
 </pre>
 </td>
-			<td></td>
+			<td>Domain of the ldap server</td>
 		</tr>
 		<tr>
 			<td>global.memcached.auth.username</td>

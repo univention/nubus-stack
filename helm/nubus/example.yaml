@@ -5,9 +5,14 @@ global:
   nubusDeployment: true
   ldap:
     baseDn: "dc=example,dc=com"
+    # domain name for ldap configuration
     domainName: "example.com"
+  # domain of the deployment
   domain: example.com
   ingressClass: "nginx"
+  # certManagerIssuer for the cluster
   certManagerIssuer: "letsencrypt"
-  secrets:
-    masterPassword: "nubus"
+  # Operator should specify a masterPassword for the deployment.
+  # Secrets in the deployment will be derived from this masterPassword
+#  secrets:
+#    masterPassword:
