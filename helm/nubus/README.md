@@ -35,27 +35,27 @@ helm uninstall nubus
 
 | Repository | Name | Version |
 |------------|------|---------|
-| oci://artifacts.software-univention.de/nubus/charts | nubusGuardian(guardian) | 0.22.2 |
-| oci://artifacts.software-univention.de/nubus/charts | keycloak(keycloak) | 0.11.3 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakBootstrap(keycloak-bootstrap) | 0.15.3 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakExtensions(keycloak-extensions) | 0.20.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusLdapNotifier(ldap-notifier) | 0.46.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusLdapServer(ldap-server) | 0.46.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusLicenseImport(license-import) | 0.6.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusNotificationsApi(notifications-api) | 0.79.1 |
-| oci://artifacts.software-univention.de/nubus/charts | nubus-common | 0.23.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalConsumer(portal-consumer) | 0.79.1 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalFrontend(portal-frontend) | 0.79.1 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.79.1 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 0.60.8 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusScimServer(scim-server) | 0.41.3 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceConsumer(selfservice-consumer) | 0.19.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.97.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusTwofaHelpdesk(twofa-helpdesk) | 0.14.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 0.60.8 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUdmRestApi(udm-rest-api) | 0.39.1 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.49.1 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUmcServer(umc-server) | 0.49.1 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusGuardian(guardian) | 0.22.5 |
+| oci://artifacts.software-univention.de/nubus/charts | keycloak(keycloak) | 0.12.1 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakBootstrap(keycloak-bootstrap) | 0.16.3 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakExtensions(keycloak-extensions) | 0.21.1 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusLdapNotifier(ldap-notifier) | 0.46.2 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusLdapServer(ldap-server) | 0.46.2 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusLicenseImport(license-import) | 0.6.5 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusNotificationsApi(notifications-api) | 0.79.4 |
+| oci://artifacts.software-univention.de/nubus/charts | nubus-common | 0.24.2 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalConsumer(portal-consumer) | 0.79.4 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalFrontend(portal-frontend) | 0.79.4 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.79.4 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 0.60.10 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusScimServer(scim-server) | 0.42.3 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceConsumer(selfservice-consumer) | 0.19.4 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.97.5 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusTwofaHelpdesk(twofa-helpdesk) | 0.14.1 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 0.60.10 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUdmRestApi(udm-rest-api) | 0.39.4 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.50.3 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUmcServer(umc-server) | 0.50.3 |
 | oci://docker.io/bitnamicharts | minio | 14.7.0 |
 | oci://docker.io/bitnamicharts | postgresql | ^12.x.x |
 
@@ -311,7 +311,7 @@ true
       "imagePullPolicy": "IfNotPresent",
       "registry": "artifacts.software-univention.de",
       "repository": "nubus/images/portal-extension",
-      "tag": "0.76.0@sha256:7d535b53aff8d7db8a3fa4d8e1a84910b51499bc055fff988da8e477fc2e5087"
+      "tag": "0.79.4@sha256:15a01dd58bdb309a54acaeb6722c497dd8f40e1269b7ae023813c4d33f73ac97"
     },
     "name": "portal"
   },
@@ -320,7 +320,7 @@ true
       "imagePullPolicy": "IfNotPresent",
       "registry": "artifacts.software-univention.de",
       "repository": "nubus/images/twofa-helpdesk-extensions",
-      "tag": "0.14.0@sha256:ee6300270361f133453ba12bc53eedac88db12ba167541f9237ff659e218a599"
+      "tag": "0.14.1@sha256:3d07949f50f65f1294bb349c8196c475b5b9cd34e6ed90fe24474e88e94f5999"
     },
     "name": "2fa-helpdesk"
   }
@@ -551,6 +551,15 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>keycloak.keycloak.auth.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+null
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>keycloak.keycloak.auth.username</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -573,6 +582,15 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 "{{- printf \"%s-keycloak-postgresql-credentials\" .Release.Name -}}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>keycloak.postgresql.auth.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+null
 </pre>
 </td>
 			<td></td>
@@ -2693,10 +2711,28 @@ null
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusProvisioning.registerConsumers.createUsers.portalConsumer.existingSecret.keyMapping.registration</td>
+			<td>string</td>
+			<td><pre lang="json">
+null
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusProvisioning.registerConsumers.createUsers.portalConsumer.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
 "{{ .Release.Name }}-portal-consumer-provisioning-api"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusProvisioning.registerConsumers.createUsers.selfserviceConsumer.existingSecret.keyMapping.registration</td>
+			<td>string</td>
+			<td><pre lang="json">
+null
 </pre>
 </td>
 			<td></td>
@@ -3336,51 +3372,6 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 "{{ include \"nubusTemplates.connections.ldap.primary.host\" . }}"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.templateContext.keycloakTwofaGroup</td>
-			<td>string</td>
-			<td><pre lang="json">
-"2FA Users"
-</pre>
-</td>
-			<td>Creates the group needed for enforcing configuration of a second factor in Keycloak.</td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.templateContext.ldapSearchUsers</td>
-			<td>list</td>
-			<td><pre lang="json">
-[]
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.templateContext.ldapSystemUsers[0].lastname</td>
-			<td>string</td>
-			<td><pre lang="json">
-"LDAP-system-User"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.templateContext.ldapSystemUsers[0].password</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ include \"nubusTemplates.credentials.ldap.users.readonly.password\" . }}"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.templateContext.ldapSystemUsers[0].username</td>
-			<td>string</td>
-			<td><pre lang="json">
-"readonly"
 </pre>
 </td>
 			<td></td>

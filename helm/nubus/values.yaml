@@ -74,13 +74,13 @@ global:
         registry: "artifacts.software-univention.de"
         repository: "nubus/images/portal-extension"
         imagePullPolicy: "IfNotPresent"
-        tag: "0.76.0@sha256:7d535b53aff8d7db8a3fa4d8e1a84910b51499bc055fff988da8e477fc2e5087"
+        tag: "0.79.4@sha256:15a01dd58bdb309a54acaeb6722c497dd8f40e1269b7ae023813c4d33f73ac97"
     - name: "2fa-helpdesk"
       image:
         registry: "artifacts.software-univention.de"
         repository: "nubus/images/twofa-helpdesk-extensions"
         imagePullPolicy: "IfNotPresent"
-        tag: "0.14.0@sha256:ee6300270361f133453ba12bc53eedac88db12ba167541f9237ff659e218a599"
+        tag: "0.14.1@sha256:3d07949f50f65f1294bb349c8196c475b5b9cd34e6ed90fe24474e88e94f5999"
 
 # -- Additional custom annotations to add to all objects deployed directly by the umbrella chart.
 additionalAnnotations: {}
@@ -261,12 +261,14 @@ keycloak:
   postgresql:
     auth:
       username: keycloak_user
+      password: null
       database: keycloak
       existingSecret:
         name: '{{- printf "%s-keycloak-postgresql-credentials" .Release.Name -}}'
   keycloak:
     auth:
       username: "kcadmin"
+      password: null
       existingSecret:
         name: '{{- printf "%s-keycloak-credentials" .Release.Name -}}'
         keyMapping:
@@ -517,9 +519,13 @@ nubusProvisioning: &nubusProvisioning
       portalConsumer:
         existingSecret:
           name: "{{ .Release.Name }}-portal-consumer-provisioning-api"
+          keyMapping:
+            registration: null
       selfserviceConsumer:
         existingSecret:
           name: "{{ .Release.Name }}-selfservice-listener-provisioning-api"
+          keyMapping:
+            registration: null
     udm:
       auth:
         existingSecret:
@@ -756,13 +762,6 @@ nubusStackDataUms:
     ldapHost: '{{ include "nubusTemplates.connections.ldap.primary.host" . }}'
 
   templateContext:
-    # -- Creates the group needed for enforcing configuration of a second factor in Keycloak.
-    keycloakTwofaGroup: "2FA Users"
-    ldapSearchUsers: []
-    ldapSystemUsers:
-      - username: "readonly"
-        lastname: "LDAP-system-User"
-        password: '{{ include "nubusTemplates.credentials.ldap.users.readonly.password" . }}'
     readonlyUserPassword: '{{ include "nubusTemplates.credentials.ldap.users.readonly.password" . }}'
     portalTwoFaLinkBase: 'https://{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}'
     twofaSelfserviceTileCategory: "domain-service"
