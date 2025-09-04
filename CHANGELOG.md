@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.13.1](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/compare/v1.13.0...v1.13.1) (2025-09-04)
+
+
+### Bug Fixes
+
+* **deps:** update nubus subcharts ([efc047b](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/efc047b079df698c76de19a3477908203e8a0b73)), closes [univention/dev/internal/team-nubus#1385](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1385)
+* Downgrade keycloak-bootstrap to version 0.15.3 ([c55df86](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/c55df86a011a6cbcdb8fa1e68fe49c414c952bcb)), closes [univention/dev/internal/team-nubus#1385](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1385)
+* **portal-frontend:** Prompt for login when refreshing the SAML session fails due to NoPassive ([6a8061c](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/6a8061c41bea90328ceb872b74fb998ee39c5eff)), closes [univention/dev/internal/team-nubus#1401](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1401)
+* **provisioning:** Bump provisioning to integrate the nats reconnect fix ([a124963](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/a124963824990a3fe222de29dfa42ebfb6d0fd4d)), closes [univention/dev/internal/team-nubus#1383](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1383)
+* Remove default for "keycloakTwofaGroup" ([80146fe](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/80146fe2cd9e915f7fd7b705e0da0d5742667278)), closes [univention/dev/internal/team-nubus#1385](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1385)
+* remove unused values from stack-data template context ([e5e6ba4](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/e5e6ba4a3b7f27216c875377daa834be5eb346e8)), closes [univention/dev/internal/team-nubus#1396](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1396)
+* **secrets:** Add some existing configuration options to helm default values for documentation purposes ([123a4e1](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/123a4e11dda239e4f193a87a56ebdbc5d26d6547)), closes [univention/dev/internal/team-nubus#989](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/989)
+* **secrets:** Update example values and helm unittests ([3891af7](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/3891af79a899d4a9fc2eff35b0ddaedefa859eea)), closes [univention/dev/internal/team-nubus#989](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/989)
+* Update provisioning to version 0.60.9 ([868793a](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/868793ae272afed9db6f78ebef1b46cdc2c1836e)), closes [univention/dev/internal/team-nubus#1385](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1385)
+* Upgrade keycloak-bootstrap to version 0.16.3 ([2bd1e9a](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/2bd1e9ae9a125ad891501d9022edd7628268626e)), closes [univention/dev/internal/team-nubus#1385](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1385)
+
 ## [1.13.0](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/compare/v1.12.0...v1.13.0) (2025-08-27)
 
 
