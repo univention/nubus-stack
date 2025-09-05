@@ -10,10 +10,10 @@ dependencies:
   version: 0.6.5
 - name: ldap-notifier
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.46.2
+  version: 0.47.0
 - name: ldap-server
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.46.2
+  version: 0.47.0
 - name: notifications-api
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.79.4
@@ -43,16 +43,16 @@ dependencies:
   version: 0.21.1
 - name: keycloak-bootstrap
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.16.3
+  version: 0.17.0
 - name: stack-data-ums
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.97.5
+  version: 0.98.0
 - name: twofa-helpdesk
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.14.1
 - name: udm-rest-api
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.39.4
+  version: 0.40.0
 - name: umc-gateway
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.50.3
@@ -68,5 +68,5 @@ dependencies:
 - name: minio
   repository: oci://docker.io/bitnamicharts
   version: 14.7.0
-digest: sha256:9fac951631fd1cd12b51f2457a43b3fdea2ec36ab9eb5b92d1e1c02b179bb0ea
-generated: "2025-09-03T10:30:29.19441347+02:00"
+digest: sha256:fdb55b20790ca6eeefd5198b41849e24f98a9210d894a0cdf9e768cc74f833ad
+generated: "2025-09-12T13:00:45.861308621+02:00"
