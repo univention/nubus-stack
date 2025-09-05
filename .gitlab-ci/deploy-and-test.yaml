@@ -71,7 +71,7 @@ deploy-gaia:
     reports:
       dotenv: deploy.env
 
-wait-for-bootstrap:
+configure-tests:
   stage: deploy
   extends: .check-variables
   image: "ghcr.io/helmfile/helmfile:v0.167.1\
@@ -79,18 +79,87 @@ wait-for-bootstrap:
   needs:
     - deploy-gaia
   script:
-    # portal-tiles depend on portal-consumer depends on provisioning-register-consumers depends on stack-data-ums.
-    # the portal-consumer and the portal-tiles are up seconds after the provisioning-register-consumers job is done.
-    # It's easier to wait for a job than a container, that's why we wait for the portal-tiles a bit more implicitly.
-    - echo "Waiting for the bootstrapping of the deployment to finish"
-    - echo "Waiting for the creation of the provisioning subscriptions"
-    - kubectl -n "${DEPLOY_NAMESPACE}" wait --for=condition=complete jobs.batch "${RELEASE_NAME:=nubus}-provisioning-register-consumers-1" --timeout 10m
+    # Grab the e2e-tests sources to use the discovery script
+    - "[ ! -e e2e-tests ]"
+    - >
+      git clone
+      --depth 1
+      --branch "${TESTRUNNER_CONFIGURATION_BRANCH}"
+      https://git.knut.univention.de/univention/dev/nubus-for-k8s/e2e-tests.git
+    # Grab the pytest configuration
+    - pushd ./e2e-tests
+    - source ./discover-env-from-cluster.sh
+    - popd
+    - echo "PYTEST_ADDOPTS=$PYTEST_ADDOPTS" > deploy.env
+    - |
+      echo "KC_ADMIN_USERNAME=$(echo $PYTEST_ADDOPTS | sed -n 's/.*--kc-admin-username=\([^ ]*\).*/\1/p')" >> deploy.env
+      echo "KC_ADMIN_PASSWORD=$(echo $PYTEST_ADDOPTS | sed -n 's/.*--kc-admin-password=\([^ ]*\).*/\1/p')" >> deploy.env
+      echo "UDM_ADMIN_PASSWORD=$(echo $PYTEST_ADDOPTS | sed -n 's/.*--admin-password=\([^ ]*\).*/\1/p')" >> deploy.env
+  artifacts:
+    reports:
+      dotenv: deploy.env
+
+wait-for-nubus-to-be-ready:
+  stage: deploy
+  extends: .check-variables
+  needs:
+    - job: configure-tests
+      artifacts: true
+  image: "gitregistry.knut.univention.de/univention/dev/nubus-for-k8s/e2e-tests/e2e-tests-runner:${TESTRUNNER_VERSION}"
+  script:
+    - pushd /e2e
+    - LOG_LEVEL="INFO" TIMEOUT=600 ./tests-env-ready/all_pods_ready.py
+    - pytest tests/portal/test_nubus_ready.py --log-cli-level=DEBUG
+      --showlocals
+      --self-contained-html
+      --verbose
+      --video=retain-on-failure
+      --tracing=retain-on-failure
+      --screenshot=only-on-failure
+      || exit_code=$?
+    - popd
+    # NOTE: This is a workaround. Our testrunner image does not yet support to
+    # run the tests in a different directory than "/e2e". So we copy the reports
+    # back into the CI_PROJECT_DIR for Gitlab to accept them as artifacts.
+  after_script:
+    - mkdir -p /e2e/test-results
+    - cp -a /e2e/test-results .
+    - exit $exit_code
+  artifacts:
+    expose_as: "report"
+    paths:
+      - "${CI_PROJECT_DIR}/report.html"
+      - "${CI_PROJECT_DIR}/test-results/"
+    when: "always"
+    expire_in: "1 week"
+  tags:
+    - "docker"
+
+create-scim-client:
+  stage: test
+  extends: .check-variables
+  needs:
+    - configure-tests
+  image: "ubuntu:22.04"
+  before_script:
+    - apt-get update && apt-get install -y curl jq
+  script:
+    - export KEYCLOAK_BASE_URL="https://${DEPLOY_SUBDOMAIN}.id.review.univention.dev"
+    - chmod +x ci/create-scim-client.sh
+    - ci/create-scim-client.sh
+    - echo "CLIENT_SECRET=$(cat scim-client.env | grep CLIENT_SECRET | cut -d'=' -f2)" >> scim-client.env
+  artifacts:
+    reports:
+      dotenv: scim-client.env
+    paths:
+      - scim-client.env
+    expire_in: 1 hour
 
 # Create LDAP extended attributes for SCIM tests
 create-ldap-extended-attributes:
   stage: test
   extends: .check-variables
-  needs:
+  dependencies:
     - configure-tests
   image: "gitregistry.knut.univention.de/univention/dev/nubus-for-k8s/e2e-tests/e2e-tests-runner:${TESTRUNNER_VERSION}"
   variables:
@@ -124,31 +193,25 @@ scim-e2e-test:
   tags:
     - "docker"
 
-configure-tests:
+create-scim-client:
   stage: test
   extends: .check-variables
-  image: "ghcr.io/helmfile/helmfile:v0.167.1\
-          @sha256:414cb074a0da0f457129590c39d96575fbdcdb7ce75bf0d2b30f05e835947d76"
+  needs:
+    - configure-tests
+  image: "ubuntu:22.04"
+  before_script:
+    - apt-get update && apt-get install -y curl jq
   script:
-    # Grab the e2e-tests sources to use the discovery script
-    - "[ ! -e e2e-tests ]"
-    - >
-      git clone
-      --depth 1
-      --branch "${TESTRUNNER_CONFIGURATION_BRANCH}"
-      https://git.knut.univention.de/univention/dev/nubus-for-k8s/e2e-tests.git
-    # Grab the pytest configuration
-    - pushd ./e2e-tests
-    - source ./discover-env-from-cluster.sh
-    - popd
-    - echo "PYTEST_ADDOPTS=$PYTEST_ADDOPTS" > deploy.env
-    - |
-      echo "KC_ADMIN_USERNAME=$(echo $PYTEST_ADDOPTS | sed -n 's/.*--kc-admin-username=\([^ ]*\).*/\1/p')" >> deploy.env
-      echo "KC_ADMIN_PASSWORD=$(echo $PYTEST_ADDOPTS | sed -n 's/.*--kc-admin-password=\([^ ]*\).*/\1/p')" >> deploy.env
-      echo "UDM_ADMIN_PASSWORD=$(echo $PYTEST_ADDOPTS | sed -n 's/.*--admin-password=\([^ ]*\).*/\1/p')" >> deploy.env
+    - export KEYCLOAK_BASE_URL="https://${DEPLOY_SUBDOMAIN}.id.review.univention.dev"
+    - chmod +x ci/create-scim-client.sh
+    - ci/create-scim-client.sh
+    - echo "CLIENT_SECRET=$(cat scim-client.env | grep CLIENT_SECRET | cut -d'=' -f2)" >> scim-client.env
   artifacts:
     reports:
-      dotenv: deploy.env
+      dotenv: scim-client.env
+    paths:
+      - scim-client.env
+    expire_in: 1 hour
 
 create-scim-client:
   stage: test
@@ -171,6 +234,8 @@ create-scim-client:
     expire_in: 1 hour
 
 .pytest-base:
+  dependencies:
+    - configure-tests
   extends: .check-variables
   image: "gitregistry.knut.univention.de/univention/dev/nubus-for-k8s/e2e-tests/e2e-tests-runner:${TESTRUNNER_VERSION}"
   variables:
@@ -226,13 +291,13 @@ create-scim-client:
 e2e-tests:
   stage: test
   extends: .pytest-base
-  needs: [configure-tests]
 
 # Concrete jobs for left_sidebar toggle
 toggle:redeploy:left_sidebar:
   extends: .toggles:update-deployment
   needs:
-    - configure-tests
+    - job: configure-tests
+      artifacts: true
     - job: e2e-tests
       optional: true
   variables:
@@ -242,7 +307,8 @@ toggle:redeploy:left_sidebar:
 toggle:test:left_sidebar:
   extends: .toggles:test
   needs:
-    - configure-tests
+    - job: configure-tests
+      artifacts: true
     - toggle:redeploy:left_sidebar
   variables:
     TOGGLE_NAME: "left_sidebar"
