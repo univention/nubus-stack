@@ -132,8 +132,6 @@ wait-for-nubus-to-be-ready:
       - "${CI_PROJECT_DIR}/test-results/"
     when: "always"
     expire_in: "1 week"
-  tags:
-    - "docker"
 
 create-scim-client:
   stage: test
@@ -190,8 +188,6 @@ scim-e2e-test:
     - >
       python
       tests/scim/scim_e2e_test.py
-  tags:
-    - "docker"
 
 create-scim-client:
   stage: test
@@ -285,8 +281,6 @@ create-scim-client:
     reports:
       junit: "$JUNIT_XML"
     expire_in: "1 week"
-  tags:
-    - "docker"
 
 e2e-tests:
   stage: test
