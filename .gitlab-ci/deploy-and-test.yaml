@@ -170,22 +170,34 @@ create-scim-client:
       - scim-client.env
     expire_in: 1 hour
 
-e2e-tests:
-  stage: test
+.pytest-base:
   extends: .check-variables
-  needs:
-    - configure-tests
   image: "gitregistry.knut.univention.de/univention/dev/nubus-for-k8s/e2e-tests/e2e-tests-runner:${TESTRUNNER_VERSION}"
+  variables:
+    JUNIT_XML: "test_results.xml"
+    HTML_REPORT: "report.html"
+    PLAYWRIGHT_RESULT_DIR: "playwright-results"
+    PYTEST_EXPR: "acceptance_environment and not feature_toggle"
+    RETRIES: "2"
+    WAIT_SECS: "300"
   script:
     - pushd /e2e
     - >
-      pytest
-      -m "acceptance_environment and not feature_toggle"
+      ./pytest_retry.py
+      --retry "$RETRIES"
+      --wait "$WAIT_SECS"
+      --junitxml "$JUNIT_XML"
+      --backup "$HTML_REPORT"
+      --backup "$PLAYWRIGHT_RESULT_DIR"
+      --
+      ${TEST_PATH:-}
+      -m "$PYTEST_EXPR"
       --showlocals
-      --junitxml=test_results.xml
-      --html=report.html
+      --junitxml="$JUNIT_XML"
+      --html="$HTML_REPORT"
       --self-contained-html
       --verbose
+      --output="$PLAYWRIGHT_RESULT_DIR"
       --video=retain-on-failure
       --tracing=retain-on-failure
       --screenshot=only-on-failure
@@ -194,23 +206,27 @@ e2e-tests:
     # NOTE: This is a workaround. Our testrunner image does not yet support to
     # run the tests in a different directory than "/e2e". So we copy the reports
     # back into the CI_PROJECT_DIR for Gitlab to accept them as artifacts.
-    - mkdir -p /e2e/test-results
-    - cp -a /e2e/test-results .
-    - cp -a /e2e/report.html .
-    - cp -a /e2e/test_results.xml .
+    - mkdir -p "/e2e/$PLAYWRIGHT_RESULT_DIR"
+    - cp -a "/e2e/$PLAYWRIGHT_RESULT_DIR" .
+    - cp -a "/e2e/$HTML_REPORT" .
+    - cp -a "/e2e/$JUNIT_XML" .
     - exit $exit_code
   artifacts:
-    expose_as: "report"
     paths:
-      - "${CI_PROJECT_DIR}/report.html"
-      - "${CI_PROJECT_DIR}/test_results.xml"
-      - "${CI_PROJECT_DIR}/test-results/"
+      - "${CI_PROJECT_DIR}/${HTML_REPORT}"
+      - "${CI_PROJECT_DIR}/${JUNIT_XML}"
+      - "${CI_PROJECT_DIR}/${PLAYWRIGHT_RESULT_DIR}/"
     when: "always"
     reports:
-      junit: "test_results.xml"
+      junit: "$JUNIT_XML"
     expire_in: "1 week"
   tags:
     - "docker"
+
+e2e-tests:
+  stage: test
+  extends: .pytest-base
+  needs: [configure-tests]
 
 # Concrete jobs for left_sidebar toggle
 toggle:redeploy:left_sidebar:
@@ -231,8 +247,6 @@ toggle:test:left_sidebar:
   variables:
     TOGGLE_NAME: "left_sidebar"
     TOGGLE_VALUE: "true"
-  artifacts:
-    expose_as: "toggle-report-left_sidebar"
 
 stop-deployment:
   stage: cleanup
