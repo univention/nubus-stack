@@ -138,6 +138,7 @@ create-scim-client:
   extends: .check-variables
   needs:
     - configure-tests
+    - wait-for-nubus-to-be-ready
   image: "ubuntu:22.04"
   before_script:
     - apt-get update && apt-get install -y curl jq
@@ -188,46 +189,6 @@ scim-e2e-test:
     - >
       python
       tests/scim/scim_e2e_test.py
-
-create-scim-client:
-  stage: test
-  extends: .check-variables
-  needs:
-    - configure-tests
-  image: "ubuntu:22.04"
-  before_script:
-    - apt-get update && apt-get install -y curl jq
-  script:
-    - export KEYCLOAK_BASE_URL="https://${DEPLOY_SUBDOMAIN}.id.review.univention.dev"
-    - chmod +x ci/create-scim-client.sh
-    - ci/create-scim-client.sh
-    - echo "CLIENT_SECRET=$(cat scim-client.env | grep CLIENT_SECRET | cut -d'=' -f2)" >> scim-client.env
-  artifacts:
-    reports:
-      dotenv: scim-client.env
-    paths:
-      - scim-client.env
-    expire_in: 1 hour
-
-create-scim-client:
-  stage: test
-  extends: .check-variables
-  needs:
-    - configure-tests
-  image: "ubuntu:22.04"
-  before_script:
-    - apt-get update && apt-get install -y curl jq
-  script:
-    - export KEYCLOAK_BASE_URL="https://${DEPLOY_SUBDOMAIN}.id.review.univention.dev"
-    - chmod +x ci/create-scim-client.sh
-    - ci/create-scim-client.sh
-    - echo "CLIENT_SECRET=$(cat scim-client.env | grep CLIENT_SECRET | cut -d'=' -f2)" >> scim-client.env
-  artifacts:
-    reports:
-      dotenv: scim-client.env
-    paths:
-      - scim-client.env
-    expire_in: 1 hour
 
 .pytest-base:
   dependencies:
