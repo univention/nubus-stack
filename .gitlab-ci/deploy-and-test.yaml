@@ -22,7 +22,14 @@ stages:
     - export DEPLOY_NAMESPACE="${DEPLOY_NAMESPACE:0:63}"
     # urllib (idna) has a char limit of 63 and some tests add -maildev to the url
     # so limit chars ro 63 - 8
-    - export DEPLOY_SUBDOMAIN="${DEPLOY_SUBDOMAIN:0:55}"
+    # Remove chars in the middle, to make sure resulting string is a valid URL
+    - |-
+        max_length=55
+        if [[ ${#DEPLOY_SUBDOMAIN} -gt ${max_length} ]]; then
+            suffix_length=10
+            suffix=${DEPLOY_SUBDOMAIN:(-${suffix_length})}
+            export DEPLOY_SUBDOMAIN="${DEPLOY_SUBDOMAIN:0:$((max_length - suffix_length - 3))}zzz${suffix}"
+        fi
 
 pipline-configuration:
   stage: prepare
@@ -142,8 +149,11 @@ create-scim-client:
   image: "ubuntu:22.04"
   before_script:
     - apt-get update && apt-get install -y curl jq
-  script:
+    # Make sure not to override the before_script from .check-variables
+    - !reference [".check-variables", "before_script"]
+    # KEYCLOAK_BASE_URL is modified in the .check-variables,before_script so we can't set in in variables
     - export KEYCLOAK_BASE_URL="https://${DEPLOY_SUBDOMAIN}.id.review.univention.dev"
+  script:
     - chmod +x ci/create-scim-client.sh
     - ci/create-scim-client.sh
     - echo "CLIENT_SECRET=$(cat scim-client.env | grep CLIENT_SECRET | cut -d'=' -f2)" >> scim-client.env
@@ -162,9 +172,13 @@ create-ldap-extended-attributes:
     - configure-tests
   image: "gitregistry.knut.univention.de/univention/dev/nubus-for-k8s/e2e-tests/e2e-tests-runner:${TESTRUNNER_VERSION}"
   variables:
-    UDM_URL: "https://${DEPLOY_SUBDOMAIN}.portal.review.univention.dev/univention/udm/"
     UDM_USERNAME: "Administrator"
     UDM_PASSWORD: $UDM_ADMIN_PASSWORD
+  before_script:
+    # Make sure not to override the before_script from .check-variables
+    - !reference [".check-variables", "before_script"]
+    # DEPLOY_SUBDOMAIN is modified in the .check-variables,before_script so we can't set in in variables
+    - export UDM_URL="https://${DEPLOY_SUBDOMAIN}.portal.review.univention.dev/univention/udm/"
   script:
     - python3 ci/create-ldap-extended-attributes.py
 
@@ -178,13 +192,17 @@ scim-e2e-test:
     - job: create-ldap-extended-attributes
   image: "gitregistry.knut.univention.de/univention/dev/nubus-for-k8s/e2e-tests/e2e-tests-runner:${TESTRUNNER_VERSION}"
   variables:
-    SCIM_BASE_URL: "https://${DEPLOY_SUBDOMAIN}.scim.review.univention.dev/scim/v2"
-    KEYCLOAK_BASE_URL: "https://${DEPLOY_SUBDOMAIN}.id.review.univention.dev/realms/nubus/protocol/openid-connect/token"
     CLIENT_ID: "scim-client"
   before_script:
+    # Make sure not to override the before_script from .check-variables
+    - !reference [".check-variables", "before_script"]
     - source scim-client.env
     - export CLIENT_SECRET
+    # DEPLOY_SUBDOMAIN is modified in the .check-variables,before_script so we can't set in in variables
+    - export SCIM_BASE_URL="https://${DEPLOY_SUBDOMAIN}.scim.review.univention.dev/scim/v2"
+    - export KEYCLOAK_BASE_URL="https://${DEPLOY_SUBDOMAIN}.id.review.univention.dev/realms/nubus/protocol/openid-connect/token"
   script:
+    - echo "DEPLOY_SUBDOMAIN=${DEPLOY_SUBDOMAIN}"
     - pushd /e2e
     - >
       python
