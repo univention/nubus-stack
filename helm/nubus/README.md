@@ -3458,15 +3458,6 @@ false
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataUms.umcServer.oidc.clientSecret.existingSecret.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.name }}-keycloak-bootstrap-oidc-rp-umc-server"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusTwofaHelpdesk.enabled</td>
 			<td>bool</td>
 			<td><pre lang="json">
@@ -4070,7 +4061,52 @@ false
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusUmcServer.postgresql.auth.database</td>
+			<td>nubusUmcServer.postgresql.authSession.auth.database</td>
+			<td>string</td>
+			<td><pre lang="json">
+"umcsession"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusUmcServer.postgresql.authSession.auth.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ printf \"%s-umc-server-session-postgresql-credentials\" .Release.Name }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusUmcServer.postgresql.authSession.auth.username</td>
+			<td>string</td>
+			<td><pre lang="json">
+"umcsession"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusUmcServer.postgresql.authSession.connection.host</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ include \"nubusTemplates.connections.postgres.host\" . }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusUmcServer.postgresql.authSession.connection.port</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ include \"nubusTemplates.connections.postgres.port\" . }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusUmcServer.postgresql.selfservice.auth.database</td>
 			<td>string</td>
 			<td><pre lang="json">
 "selfservice"
@@ -4079,7 +4115,7 @@ false
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusUmcServer.postgresql.auth.existingSecret.name</td>
+			<td>nubusUmcServer.postgresql.selfservice.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
 "{{ printf \"%s-umc-server-postgresql-credentials\" .Release.Name }}"
@@ -4088,7 +4124,7 @@ false
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusUmcServer.postgresql.auth.username</td>
+			<td>nubusUmcServer.postgresql.selfservice.auth.username</td>
 			<td>string</td>
 			<td><pre lang="json">
 "selfservice"
@@ -4155,6 +4191,15 @@ false
 			<td>string</td>
 			<td><pre lang="json">
 "/var/secrets/ssl/tls.crt"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusUmcServer.umcServer.oidcClient.auth.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Release.Name }}-keycloak-bootstrap-oidc-rp-umc-server"
 </pre>
 </td>
 			<td></td>

@@ -643,11 +643,21 @@ nubusUmcServer: &nubusUmcServer
     host: "{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
   resources: *nubusDevelopmentResources
   postgresql:
-    auth:
-      username: selfservice
-      database: selfservice
-      existingSecret:
-        name: '{{ printf "%s-umc-server-postgresql-credentials" .Release.Name }}'
+    selfservice:
+      auth:
+        username: selfservice
+        database: selfservice
+        existingSecret:
+          name: '{{ printf "%s-umc-server-postgresql-credentials" .Release.Name }}'
+    authSession:
+      connection:
+        host: '{{ include "nubusTemplates.connections.postgres.host" . }}'
+        port: '{{ include "nubusTemplates.connections.postgres.port" . }}'
+      auth:
+        username: umcsession
+        database: umcsession
+        existingSecret:
+          name: '{{ printf "%s-umc-server-session-postgresql-credentials" .Release.Name }}'
   global:
     imageRegistry: "docker.io"
   image:
@@ -669,6 +679,10 @@ nubusUmcServer: &nubusUmcServer
   umcServer:
     certPemFile: "/var/secrets/ssl/tls.crt"
     privateKeyFile: "/var/secrets/ssl/tls.key"
+    oidcClient:
+      auth:
+        existingSecret:
+          name: "{{ .Release.Name }}-keycloak-bootstrap-oidc-rp-umc-server"
   extraVolumes:
     - name: "certificates"
       secret:
@@ -763,11 +777,6 @@ nubusStackDataUms:
   stackDataContext:
     ldapMasterHost: '{{ include "nubusTemplates.connections.ldap.primary.host" . }}'
     ldapHost: '{{ include "nubusTemplates.connections.ldap.primary.host" . }}'
-  umcServer:
-    oidc:
-      clientSecret:
-        existingSecret:
-          name: '{{ .Release.name }}-keycloak-bootstrap-oidc-rp-umc-server'
 
   templateContext:
     readonlyUserPassword: '{{ include "nubusTemplates.credentials.ldap.users.readonly.password" . }}'
