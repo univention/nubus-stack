@@ -11,7 +11,7 @@ environments:
       - default-state-values.yaml.gotmpl
       - gaia-state-values.yaml.gotmpl
       - portal-feature-toggles-values.yaml.gotmpl
-      - reviewPrefix: {{ env "REVIEW_PREFIX" | default .Namespace }}
+      - reviewPrefix: {{ env "REVIEW_PREFIX" | default .Namespace | quote }}
 
   # Configuration for a local or custom deployment.
   #
@@ -22,7 +22,7 @@ environments:
       - default-state-values.yaml.gotmpl
       - local-state-values.yaml.gotmpl
       - portal-feature-toggles-values.yaml.gotmpl
-      - reviewPrefix: {{ env "REVIEW_PREFIX" | default .Namespace }}
+      - reviewPrefix: {{ env "REVIEW_PREFIX" | default .Namespace | quote }}
 
 ---
 helmDefaults:
