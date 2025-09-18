@@ -2,7 +2,7 @@ primary:
   initdb:
     scripts:
       create-db.sh: |
-        for db in guardian keycloak keycloak_extensions notificationsapi selfservice; do
+        for db in guardian keycloak keycloak_extensions notificationsapi selfservice umcsession; do
           db_password_env_var="${db}_password"
           db_password=${!db_password_env_var}
           echo "$db_password"
@@ -40,6 +40,11 @@ primary:
         secretKeyRef:
           name: postgresql-external-secret
           key: umc
+    - name: umcsession_password
+      valueFrom:
+        secretKeyRef:
+          name: postgresql-external-secret
+          key: umcsession
     - name: PGPASSWORD
       valueFrom:
         secretKeyRef:
