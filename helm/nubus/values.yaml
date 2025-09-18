@@ -522,13 +522,9 @@ nubusProvisioning: &nubusProvisioning
       portalConsumer:
         existingSecret:
           name: "{{ .Release.Name }}-portal-consumer-provisioning-api"
-          keyMapping:
-            registration: null
       selfserviceConsumer:
         existingSecret:
           name: "{{ .Release.Name }}-selfservice-listener-provisioning-api"
-          keyMapping:
-            registration: null
     udm:
       auth:
         existingSecret:
