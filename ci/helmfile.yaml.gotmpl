@@ -77,18 +77,21 @@ releases:
     chart: oci://registry-1.docker.io/bitnamicharts/postgresql
     version: 16.7.4
     values:
+      - ./external-dependencies/global-values.yaml.gotmpl
       - ./external-dependencies/postgres-values.yaml.gotmpl
 
   - name: minio
     chart: oci://registry-1.docker.io/bitnamicharts/minio
     version: 16.0.10
     values:
+      - ./external-dependencies/global-values.yaml.gotmpl
       - ./external-dependencies/minio-values.yaml.gotmpl
 
   - name: nats
     chart: oci://artifacts.software-univention.de/nubus/charts/nats
     version: 0.4.1
     values:
+      - ./external-dependencies/global-values.yaml.gotmpl
       - ./external-dependencies/nats-values.yaml.gotmpl
 
   - name: external-config
