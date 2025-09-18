@@ -10,22 +10,22 @@ dependencies:
   version: 0.6.5
 - name: ldap-notifier
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.46.2
+  version: 0.47.0
 - name: ldap-server
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.46.2
+  version: 0.47.0
 - name: notifications-api
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.79.4
+  version: 0.80.2
 - name: portal-frontend
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.79.4
+  version: 0.80.2
 - name: portal-consumer
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.79.4
+  version: 0.80.2
 - name: portal-server
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.79.4
+  version: 0.80.2
 - name: selfservice-consumer
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.19.4
@@ -43,22 +43,22 @@ dependencies:
   version: 0.21.1
 - name: keycloak-bootstrap
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.16.3
+  version: 0.17.5
 - name: stack-data-ums
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.97.5
+  version: 0.99.0
 - name: twofa-helpdesk
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.14.1
 - name: udm-rest-api
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.39.4
+  version: 0.40.0
 - name: umc-gateway
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.50.3
+  version: 0.51.2
 - name: umc-server
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.50.3
+  version: 0.51.2
 - name: scim-server
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.42.3
@@ -68,5 +68,5 @@ dependencies:
 - name: minio
   repository: oci://docker.io/bitnamicharts
   version: 14.7.0
-digest: sha256:9fac951631fd1cd12b51f2457a43b3fdea2ec36ab9eb5b92d1e1c02b179bb0ea
-generated: "2025-09-03T10:30:29.19441347+02:00"
+digest: sha256:d498378a8fe38216e65cea725bbbdeb54d7973254904d9715fe08f71ddccb0fb
+generated: "2025-09-18T13:25:36.362417173+02:00"

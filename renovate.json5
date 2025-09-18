@@ -3,6 +3,9 @@
   "extends": [
     "config:best-practices",
   ],
+  "baseBranchPatterns": [
+    "develop",
+  ],
   "packageRules": [
 
     // Group only the Nubus dependencies from us together into one MR.

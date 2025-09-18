@@ -13,6 +13,17 @@ global:
     keycloak: "{{ .Values.reviewPrefix }}.id"
     scim: "{{ .Values.reviewPrefix }}.scim"
 
+postgresql:
+  image:
+    repository: bitnamilegacy/postgresql
+  provisioning:
+    image:
+      repository: bitnamilegacy/postgresql
+
+minio:
+  image:
+    repository: bitnamilegacy/minio
+
 ingress:
   certManager:
     enabled: false
@@ -63,6 +74,17 @@ nubusStackDataUms:
     portalFqdn: "{{ .Values.reviewPrefix }}.portal.{{ .Values.reviewBaseDomain }}"
   templateContext:
     twofaSelfServiceActivated: true
+  stackDataUms:
+    extraDataFiles:
+      99-ci-login-saml-tile.yaml: |
+      {{`
+        # Enable SAML login tile
+        action: "modify"
+        module: "portals/entry"
+        position: "cn=login-saml,cn=entry,cn=portals,cn=univention,{{"{{"}} ldapBaseDn {{"}}"}}"
+        properties:
+          activated: true
+      `}}
 
 # enable the optional 2fa self-service in CI
 nubusTwofaHelpdesk:
@@ -147,6 +169,9 @@ nubusUdmRestApi:
     suspend: false
 
 nubusUmcServer:
+  memcached:
+    image:
+      repository: bitnamilegacy/memcached
   {{- if .Values.toggles.scaledSetup }}
   replicaCount: 2
   {{- end }}

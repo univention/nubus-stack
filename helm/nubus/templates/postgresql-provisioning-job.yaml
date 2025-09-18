@@ -121,8 +121,8 @@ spec:
           - name: "provisioning-scripts-volume"
             mountPath: "/provisioning-scripts"
           - name: "umc-server-postgresql-credentials"
-            mountPath: "/provisioning/passwords/{{ .Values.nubusUmcServer.postgresql.auth.username }}"
-            subPath: "{{ .Values.nubusUmcServer.postgresql.auth.username }}"
+            mountPath: "/provisioning/passwords/{{ .Values.nubusUmcServer.postgresql.selfservice.auth.username }}"
+            subPath: "{{ .Values.nubusUmcServer.postgresql.selfservice.auth.username }}"
           - name: "notifications-api-postgresql-credentials"
             mountPath: "/provisioning/passwords/{{ .Values.nubusNotificationsApi.postgresql.auth.username }}"
             subPath: "{{ .Values.nubusNotificationsApi.postgresql.auth.username }}"
@@ -135,16 +135,19 @@ spec:
           - name: "guardian-postgresql-credentials"
             mountPath: "/provisioning/passwords/{{ .Values.nubusGuardian.postgresql.auth.username }}"
             subPath: "{{ .Values.nubusGuardian.postgresql.auth.username }}"
+          - name: "umc-session-postgresql-credentials"
+            mountPath: "/provisioning/passwords/{{ .Values.nubusUmcServer.postgresql.authSession.auth.username }}"
+            subPath: "{{ .Values.nubusUmcServer.postgresql.authSession.auth.username }}"
       volumes:
       - name: "provisioning-scripts-volume"
         configMap:
           name: {{ printf "%s-postgresql-provisioning" .Release.Name | quote }}
       - name: "umc-server-postgresql-credentials"
         secret:
-          secretName: {{ tpl .Values.nubusUmcServer.postgresql.auth.existingSecret.name . }}
+          secretName: {{ tpl .Values.nubusUmcServer.postgresql.selfservice.auth.existingSecret.name . }}
           items:
-            - key: '{{ include "common.secrets.key" (dict "existingSecret" .Values.nubusUmcServer.postgresql.auth.existingSecret.name "key" "password") }}'
-              path: {{ .Values.nubusUmcServer.postgresql.auth.username | quote }}
+            - key: '{{ include "common.secrets.key" (dict "existingSecret" .Values.nubusUmcServer.postgresql.selfservice.auth.existingSecret.name "key" "password") }}'
+              path: {{ .Values.nubusUmcServer.postgresql.selfservice.auth.username | quote }}
       - name: "notifications-api-postgresql-credentials"
         secret:
           secretName: {{ (printf "%s-notifications-api-postgresql-credentials" .Release.Name) | quote }}
@@ -169,4 +172,10 @@ spec:
           items:
             - key: {{ include "nubus-common.secrets.key" (dict "existingSecret" .Values.nubusGuardian.postgresql.auth.existingSecret "key" "password") }}
               path: {{ .Values.nubusGuardian.postgresql.auth.username | quote }}
+      - name: "umc-session-postgresql-credentials"
+        secret:
+          secretName: {{ include "nubus-common.secrets.name" (dict "existingSecret" .Values.nubusUmcServer.postgresql.authSession.auth.existingSecret "defaultNameSuffix" "server-session-postgresql-credentials" "context" .) | quote }}
+          items:
+            - key: {{ include "nubus-common.secrets.key" (dict "existingSecret" .Values.nubusUmcServer.postgresql.authSession.auth.existingSecret "key" "password") }}
+              path: {{ .Values.nubusUmcServer.postgresql.authSession.auth.username | quote }}
 {{ end }}

@@ -62,12 +62,20 @@ nubusNotificationsApi:
 
 nubusUmcServer:
   postgresql:
-    auth:
-      username: "selfservice"
-      existingSecret:
-        name: postgresql-external-secret
-        keyMapping:
-          password: umc
+    selfservice:
+      auth:
+        username: "selfservice"
+        existingSecret:
+          name: postgresql-external-secret
+          keyMapping:
+            password: umc
+    authSession:
+      auth:
+        username: "umcsession"
+        existingSecret:
+          name: postgresql-external-secret
+          keyMapping:
+            password: umcsession
 
 nubusPortalConsumer:
   objectStorage:

@@ -34,45 +34,12 @@
 # Base template for testing toggles
 .toggles:test:
   stage: test-toggles
-  extends: .check-variables
-  image: "gitregistry.knut.univention.de/univention/dev/nubus-for-k8s/e2e-tests/e2e-tests-runner:${TESTRUNNER_VERSION}"
-  script:
-    - pushd /e2e
-    - echo "=== Testing ${TOGGLE_NAME} toggle functionality ==="
-    - >
-      pytest
-      tests/portal/featureToggles/${TOGGLE_NAME}
-      -m acceptance_environment
-      --showlocals
-      --junitxml=${TOGGLE_NAME}_test_results.xml
-      --html=${TOGGLE_NAME}_report.html
-      --self-contained-html
-      --verbose
-      --video=retain-on-failure
-      --tracing=retain-on-failure
-      --screenshot=only-on-failure
-      || exit_code=$?
-    - popd
-    # NOTE: This is a workaround. Our testrunner image does not yet support to
-    # run the tests in a different directory than "/e2e". So we copy the reports
-    # back into the CI_PROJECT_DIR for Gitlab to accept them as artifacts.
-    - mkdir -p /e2e/${TOGGLE_NAME}_test-results
-    - cp -a /e2e/${TOGGLE_NAME}_test-results .
-    - cp -a /e2e/${TOGGLE_NAME}_report.html .
-    - cp -a /e2e/${TOGGLE_NAME}_test_results.xml .
-    - exit $exit_code
-
-  artifacts:
-    paths:
-      - "${CI_PROJECT_DIR}/${TOGGLE_NAME}_report.html"
-      - "${CI_PROJECT_DIR}/${TOGGLE_NAME}_test_results.xml"
-      - "${CI_PROJECT_DIR}/${TOGGLE_NAME}_test-results/"
-    when: "always"
-    reports:
-      junit: "${TOGGLE_NAME}_test_results.xml"
-    expire_in: "1 week"
-  tags:
-    - "docker"
+  extends: .pytest-base
+  variables:
+    TEST_PATH: "tests/portal/featureToggles/${TOGGLE_NAME}"
+    PYTEST_EXPR: 'acceptance_environment'
+    JUNIT_XML: "${TOGGLE_NAME}_test_results.xml"
+    HTML_REPORT: "${TOGGLE_NAME}_report.html"
   rules:
     - if: '$EXTERNAL_DEPENDENCIES == "true"'
       when: never
