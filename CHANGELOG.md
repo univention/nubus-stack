@@ -1,5 +1,27 @@
 # Changelog
 
+## [1.14.0](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/compare/v1.13.1...v1.14.0) (2025-09-18)
+
+
+### Features
+
+* Activate OIDC in the portal ([3568f9f](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/3568f9f9b2fd012a3051e578c1dd0c65b36008ac)), closes [univention/dev/internal/team-nubus#1435](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1435)
+* **helm:** Support OIDC auth for portal <-> UDM communication ([489ac5e](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/489ac5e4f943f7a62abfbbbeb5f93b20b2ed60f5)), closes [univention/dev/internal/dev-issues/dev-incidents#138](https://git.knut.univention.de/univention/dev/internal/dev-issues/dev-incidents/issues/138)
+* setup shared session storage for umc ([9bbc032](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/9bbc032f798e6799b347aa62ade3e5ac2080cc82)), closes [univention/dev/internal/team-nubus#1435](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1435)
+
+
+### Bug Fixes
+
+* **ci:** fix bitnami images ([b4ac38d](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/b4ac38da32ac656b8b8e61f82b158fc755a80b23)), closes [#0](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/issues/0)
+* **ci:** fix deployment with external dependencies ([5aed1ec](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/5aed1ec5ca14dcfd92c5397bcb64cf4621c838e7)), closes [univention/dev/internal/team-nubus#1435](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1435)
+* **deps:** Update dependency univention/dev/nubus-for-k8s/common-ci to v1.44.6 ([24aa100](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/24aa1009acdd815ec6560b2269128166dd78ab39)), closes [#0](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/issues/0)
+* **e2e-tests:** Make sure DEPLOY_SUBDOMAIN is a valid domain name and does not end with a '-' ([901080d](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/901080df76dd6c56e1fb86d00592e478120d4a6b)), closes [univention/dev/internal/dev-issues/dev-incidents#138](https://git.knut.univention.de/univention/dev/internal/dev-issues/dev-incidents/issues/138)
+* **keycloak-bootstrap:** remove force flag from keycloak-bootstrap ([6b0de0d](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/6b0de0d2f7e54e28bb19bfe2c0b8b70a87566831)), closes [univention/dev/internal/dev-issues/dev-incidents#158](https://git.knut.univention.de/univention/dev/internal/dev-issues/dev-incidents/issues/158)
+* **portal-extension:** OIDC tile on upgrade from SAML ([2d5ffdc](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/2d5ffdce42f0882503ee76155704c524d54aedb3)), closes [univention/dev/internal/team-nubus#1435](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1435)
+* **portal:** Don't show portal tiles in left sidebar ([99a2200](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/99a22002cce590a4aa14f470cc6531e840387c64)), closes [univention/dev/internal/team-nubus#1416](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1416)
+* Remove the dynamic part of the UMC OIDC Keycloak client name to make it static and predictable ([5fd1fa9](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/5fd1fa95f2f69031942e78d751027b538fbdb2c6)), closes [univention/dev/internal/team-nubus#1435](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1435)
+* Revert "test: temporary change of testrunner" ([af81219](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/af8121998cc761c0396d2cd8e545db0127854d06)), closes [univention/dev/internal/team-nubus#1435](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1435)
+
 ## [1.13.1](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/compare/v1.13.0...v1.13.1) (2025-09-04)
 
 
