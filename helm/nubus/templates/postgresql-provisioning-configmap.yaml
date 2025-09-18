@@ -76,20 +76,23 @@ data:
     done
   grants.list: |
     {{ .Values.nubusNotificationsApi.postgresql.auth.username }}:{{ .Values.nubusNotificationsApi.postgresql.auth.database }}:rw
-    {{ .Values.nubusUmcServer.postgresql.auth.username }}:{{ .Values.nubusUmcServer.postgresql.auth.database }}:rw
+    {{ .Values.nubusUmcServer.postgresql.selfservice.auth.username }}:{{ .Values.nubusUmcServer.postgresql.selfservice.auth.database }}:rw
     {{ .Values.keycloak.postgresql.auth.username }}:{{ .Values.keycloak.postgresql.auth.database }}:rw
     {{ .Values.nubusKeycloakExtensions.postgresql.auth.username }}:{{ .Values.nubusKeycloakExtensions.postgresql.auth.database }}:rw
     {{ .Values.nubusGuardian.postgresql.auth.username }}:{{ .Values.nubusGuardian.postgresql.auth.database }}:rw
+    {{ .Values.nubusUmcServer.postgresql.authSession.auth.username }}:{{ .Values.nubusUmcServer.postgresql.authSession.auth.database }}:rw
   users.list: |
     {{ .Values.nubusNotificationsApi.postgresql.auth.username }}
-    {{ .Values.nubusUmcServer.postgresql.auth.username }}
+    {{ .Values.nubusUmcServer.postgresql.selfservice.auth.username }}
     {{ .Values.keycloak.postgresql.auth.username }}
     {{ .Values.nubusKeycloakExtensions.postgresql.auth.username }}
     {{ .Values.nubusGuardian.postgresql.auth.username }}
+    {{ .Values.nubusUmcServer.postgresql.authSession.auth.username }}
   databases.list: |
     {{ .Values.nubusNotificationsApi.postgresql.auth.database }}
-    {{ .Values.nubusUmcServer.postgresql.auth.database }}
+    {{ .Values.nubusUmcServer.postgresql.selfservice.auth.database }}
     {{ .Values.keycloak.postgresql.auth.database }}
     {{ .Values.nubusKeycloakExtensions.postgresql.auth.database }}
     {{ .Values.nubusGuardian.postgresql.auth.database }}
+    {{ .Values.nubusUmcServer.postgresql.authSession.auth.database }}
 {{ end }}
