@@ -37,12 +37,12 @@ variables:
     description: |
       Allows to specify a custom tag to use for the e2e-tests testrunner image.
       Intended to help with testing a branch of the e2e-tests repository.
-    value: "0.53.0-pre-cgarcia-oidc-by-default"
+    value: "latest"
   TESTRUNNER_CONFIGURATION_BRANCH:
     description: |
       Allows to specify a custom branch name to use for the testrunner configuration.
       This branch is used to run the script "discover-env-from-cluster.sh".
-    value: "cgarcia/oidc-by-default"
+    value: "main"
 
 renovate:
   stage: "package"
