@@ -58,6 +58,7 @@ releases:
       {{- end }}
       {{- if .Values.toggles.externalDependencies }}
       - ./external-dependencies/nubus-values.yaml.gotmpl
+      - ./external-dependencies/nubus-existing-secrets.yaml.gotmpl
       {{- end }}
       {{- if .Values.toggles.changeableCredentials }}
       - ./changeable-secrets.yaml

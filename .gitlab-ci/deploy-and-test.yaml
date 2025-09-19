@@ -102,6 +102,8 @@ configure-tests:
       echo "KC_ADMIN_USERNAME=$(echo $PYTEST_ADDOPTS | sed -n 's/.*--kc-admin-username=\([^ ]*\).*/\1/p')" >> deploy.env
       echo "KC_ADMIN_PASSWORD=$(echo $PYTEST_ADDOPTS | sed -n 's/.*--kc-admin-password=\([^ ]*\).*/\1/p')" >> deploy.env
       echo "UDM_ADMIN_PASSWORD=$(echo $PYTEST_ADDOPTS | sed -n 's/.*--admin-password=\([^ ]*\).*/\1/p')" >> deploy.env
+      echo "LDAP_CREDENTIALS_SECRET_NAME=$LDAP_CREDENTIALS_SECRET_NAME" >> deploy.env
+      echo "LDAP_CREDENTIALS_SECRET_KEY=$LDAP_CREDENTIALS_SECRET_KEY" >> deploy.env
   artifacts:
     reports:
       dotenv: deploy.env
