@@ -132,6 +132,16 @@ deploy-and-test-external-dependencies:
   rules:
     - when: manual
 
+deploy-and-test-provided-secret-values:
+  extends: .base-deploy-and-test
+  variables:
+    PROVIDED_SECRET_VALUES: true
+    DEPLOY_NAMESPACE: "ci-${CI_COMMIT_REF_SLUG}-val"
+    DEPLOY_SUBDOMAIN: "${CI_COMMIT_REF_SLUG}-val"
+    ENVIRONMENT_SUFFIX: "-val"
+  rules:
+    - when: manual
+
 # Temporarly allow failure when linting commit messages
 # until we know why it fails on issue links
 lint-commit-messages:
