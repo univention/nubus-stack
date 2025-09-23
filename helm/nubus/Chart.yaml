@@ -14,13 +14,13 @@ dependencies:
   - name: "guardian"
     alias: "nubusGuardian"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.22.5"
+    version: "0.23.0"
     condition: "nubusGuardian.enabled"
 
   - name: "license-import"
     alias: "nubusLicenseImport"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.6.5"
+    version: "0.7.0"
     condition: "nubusLicenseImport.enabled"
 
   # ldap-server related chart(s)
@@ -72,13 +72,13 @@ dependencies:
   - name: "provisioning"
     alias: "nubusProvisioning"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.60.10"
+    version: "0.61.0"
     condition: "nubusProvisioning.enabled"
 
   - name: "udm-listener"
     alias: "nubusUdmListener"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.60.10"
+    version: "0.61.0"
     condition: "nubusProvisioning.enabled"
 
   # keycloak related chart(s)
@@ -91,7 +91,7 @@ dependencies:
   - name: "keycloak-extensions"
     alias: "nubusKeycloakExtensions"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.21.1"
+    version: "0.22.0"
     condition: "nubusKeycloakExtensions.enabled"
 
   - name: "keycloak-bootstrap"
@@ -103,13 +103,13 @@ dependencies:
   - name: "stack-data-ums"
     alias: "nubusStackDataUms"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.99.1"
+    version: "0.99.6"
     condition: "nubusStackDataUms.enabled"
 
   - name: "twofa-helpdesk"
     alias: "nubusTwofaHelpdesk"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.14.1"
+    version: "0.14.3"
     condition: "nubusTwofaHelpdesk.enabled"
 
   # udm-rest-api related chart(s)
@@ -136,7 +136,7 @@ dependencies:
   - name: "scim-server"
     alias: "nubusScimServer"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.43.0"
+    version: "0.44.0"
     condition: "nubusScimServer.enabled"
 
   # Optionally bundled external dependencies
