@@ -167,8 +167,9 @@ nubusUmcServer:
   postgresql:
     selfservice:
       auth:
-        username: selfservice
-        database: selfservice
+        # FIXME: See nubusStackDataUms.nubusUmcServer
+        # username: selfservice
+        # database: selfservice
         existingSecret:
           name: '{{ printf "%s-umc-server-postgresql-credentials" .Release.Name }}'
     authSession:

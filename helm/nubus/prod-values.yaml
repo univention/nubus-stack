@@ -87,7 +87,10 @@ nubusUmcServer:
   postgresql:
     selfservice:
       auth:
-        username: "selfservice"
+        # FIXME: See nubusStackDataUms.nubusUmcServer.postgresql.auth.username
+        # username: "selfservice"
+        # FIXME: See nubusStackDataUms.nubusUmcServer.postgresql.auth.database
+        # database: "selfservice"
         existingSecret:
           name: postgresql-external-secret
           keyMapping:
@@ -100,6 +103,15 @@ nubusUmcServer:
           keyMapping:
             password: umcsession
 
+nubusStackDataUms:
+  nubusUmcServer:
+    postgresql:
+      auth:
+        username: "selfservice"
+        database: "selfservice"
+      connection:
+        host: '{{ include "nubusTemplates.connections.postgres.host" . }}'
+        port: '{{ include "nubusTemplates.connections.postgres.port" . }}'
 
 # External PostgreSQL authentication configuration
 # Choose one of the following approaches:

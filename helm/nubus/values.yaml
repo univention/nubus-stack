@@ -538,6 +538,11 @@ nubusUmcServer: &nubusUmcServer
         name: '{{ printf "%s-umc-server-memcached-credentials" .Release.Name }}'
         keyMapping:
           password: "memcached-password"
+  postgresql:
+    authSession:
+      connection:
+        host: '{{ include "nubusTemplates.connections.postgres.host" . }}'
+        port: '{{ include "nubusTemplates.connections.postgres.port" . }}'
   umcServer:
     certPemFile: "/var/secrets/ssl/tls.crt"
     privateKeyFile: "/var/secrets/ssl/tls.key"
@@ -617,6 +622,10 @@ nubusStackDataUms:
 
   nubusUmcServer:
     host: '{{ printf "%s-umc-server" .Release.Name }}'
+    postgresql:
+      connection:
+        host: '{{ include "nubusTemplates.connections.postgres.host" . }}'
+        port: '{{ include "nubusTemplates.connections.postgres.port" . }}'
     memcached:
       auth:
         username: selfservice

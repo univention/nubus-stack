@@ -2657,6 +2657,24 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusStackDataUms.nubusUmcServer.postgresql.connection.host</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ include \"nubusTemplates.connections.postgres.host\" . }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.nubusUmcServer.postgresql.connection.port</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ include \"nubusTemplates.connections.postgres.port\" . }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusStackDataUms.resources.limits.cpu</td>
 			<td>int</td>
 			<td><pre lang="json">
@@ -3390,6 +3408,24 @@ false
 			<td>string</td>
 			<td><pre lang="json">
 "umc-server"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusUmcServer.postgresql.authSession.connection.host</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ include \"nubusTemplates.connections.postgres.host\" . }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusUmcServer.postgresql.authSession.connection.port</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ include \"nubusTemplates.connections.postgres.port\" . }}"
 </pre>
 </td>
 			<td></td>
