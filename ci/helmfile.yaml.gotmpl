@@ -52,6 +52,8 @@ releases:
       - ./dev-values.yaml.gotmpl
       {{- if not .Values.toggles.externalDependencies }}
       - ../helm/nubus/demo-values.yaml
+      {{- else }}
+      - ../helm/nubus/prod-values.yaml
       {{- end }}
       {{- if .Values.toggles.nextcloudExtension }}
       - ./nextcloud-extension-values.yaml.gotmpl
