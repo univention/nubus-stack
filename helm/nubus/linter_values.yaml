@@ -11,8 +11,191 @@ global:
   domain: "example.com"
   ingressClass: "nginx"
   certManagerIssuer: "letsencrypt"
+  postgresql:
+    connection:
+      host: "{{ .Release.Name }}-postgresql"
 
-nubusStackGateway:
-  ingress:
-    hostname: "portal.example.com"
-    ingressClassName: "nginx"
+nubusDevelopment:
+  resources: &nubusDevelopmentResources
+    limits:
+      cpu: 288
+      memory: "1Gi"
+    requests:
+      cpu: "10m"
+      memory: "16Mi"
+  terminationGracePeriodSeconds: &nubusTerminationGracePeriodSeconds 5
+
+postgresql:
+  enabled: true
+  resources: *nubusDevelopmentResources
+  auth:
+    existingSecret: "{{ .Release.Name }}-postgresql-credentials"
+    username: "nubus"
+    secretKeys:
+      adminPasswordKey: "admin_password"
+      userPasswordKey: "user_password"
+      replicationPasswordKey: "replication_password"
+  tls:
+    enabled: false
+    existingSecret: "{{ .Release.Name }}-postgresql-tls"
+    certFilename: "tls.crt"
+    certKeyFilename: "tls.key"
+    certCaFilename: "ca.crt"
+  provisioning:
+    enabled: true
+    ttlSecondsAfterFinished: 30
+    image:
+      registry: "docker.io"
+      repository: "bitnamilegacy/postgresql"
+      tag: "15.4.0-debian-11-r45"
+    containerSecurityContext:
+      enabled: true
+      seLinuxOptions: {}
+      runAsUser: 1001
+      runAsGroup: 1001
+      runAsNonRoot: true
+      privileged: false
+      readOnlyRootFilesystem: true
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop: ["ALL"]
+      seccompProfile:
+        type: "RuntimeDefault"
+  primary:
+    resources: *nubusDevelopmentResources
+    terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
+
+minio:
+  enabled: true
+  terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
+  resources: *nubusDevelopmentResources
+  networkPolicy:
+    enabled: false
+    resources: *nubusDevelopmentResources
+  auth:
+    rootUser: admin
+    existingSecret: "{{ .Release.Name }}-minio-credentials"
+  tls:
+    enabled: false
+    resources: *nubusDevelopmentResources
+    existingSecret: "{{ .Release.Name }}-minio-tls"
+  provisioning:
+    enabled: true
+    resources: *nubusDevelopmentResources
+    cleanupAfterFinished:
+      enabled: true
+      seconds: 900
+      resources: *nubusDevelopmentResources
+    extraCommands:
+      - "mc anonymous set download provisioning/nubus/portal-assets"
+    buckets:
+      - name: "nubus"
+        versioning: false
+        withLock: false
+    policies:
+      - name: "nubus-readwrite"
+        statements:
+          - resources:
+              - "arn:aws:s3:::nubus"
+              - "arn:aws:s3:::nubus/*"
+            effect: "Allow"
+            actions:
+              - "s3:*"
+      - name: "nubus-read"
+        statements:
+          - resources:
+              - "arn:aws:s3:::nubus"
+              - "arn:aws:s3:::nubus/*"
+            effect: "Allow"
+            actions:
+              - "s3:GetBucketLocation"
+              - "s3:GetObject"
+    usersExistingSecrets:
+      - nubus-minio-provisioning
+
+ingress:
+  minio:
+    enabled: true
+
+keycloak:
+  postgresql:
+    auth:
+      username: keycloak_user
+      password: null
+      database: keycloak
+      existingSecret:
+        name: '{{- printf "%s-keycloak-postgresql-credentials" .Release.Name -}}'
+
+nubusGuardian:
+  postgresql:
+    auth:
+      database: guardian
+      username: guardian
+      existingSecret:
+        name: '{{- printf "%s-guardian-management-api-postgresql-credentials" .Release.Name -}}'
+
+nubusNotificationsApi:
+  postgresql:
+    auth:
+      username: notificationsapi
+      database: notificationsapi
+      existingSecret:
+        name: "{{ .Release.Name }}-notifications-api-postgresql-credentials"
+
+nubusPortalConsumer:
+  objectStorage:
+    auth:
+      existingSecret:
+        name: "{{ .Release.Name }}-portal-consumer-minio-credentials"
+        keyMapping:
+          access_key_id: accessKey
+          secret_access_key: secretKey
+    endpoint: "http://{{ .Release.Name }}-minio:9000"
+    bucketName: "nubus"
+
+nubusPortalServer:
+  objectStorage:
+    auth:
+      existingSecret:
+        name: "{{ .Release.Name }}-portal-server-minio-credentials"
+        keyMapping:
+          access_key_id: accessKey
+          secret_access_key: secretKey
+    endpoint: "http://{{ .Release.Name }}-minio:9000"
+    bucketName: "nubus"
+
+nubusUmcServer:
+  postgresql:
+    selfservice:
+      auth:
+        username: selfservice
+        database: selfservice
+        existingSecret:
+          name: '{{ printf "%s-umc-server-postgresql-credentials" .Release.Name }}'
+    authSession:
+      connection:
+        host: '{{ include "nubusTemplates.connections.postgres.host" . }}'
+        port: '{{ include "nubusTemplates.connections.postgres.port" . }}'
+      auth:
+        username: umcsession
+        database: umcsession
+        existingSecret:
+          name: '{{ printf "%s-umc-server-session-postgresql-credentials" .Release.Name }}'
+
+nubusKeycloakExtensions:
+  postgresql:
+    auth:
+      database: keycloak_extensions
+      username: keycloak_extensions
+      existingSecret:
+        name: '{{- printf "%s-keycloak-extensions-postgresql-credentials" .Release.Name -}}'
+
+nubusStackDataUms:
+  nubusUmcServer:
+    postgresql:
+      connection:
+        host: '{{ include "nubusTemplates.connections.postgres.host" . }}'
+        port: '{{ include "nubusTemplates.connections.postgres.port" . }}'
+      auth:
+        username: selfservice
+        database: selfservice
