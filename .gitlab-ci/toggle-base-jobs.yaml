@@ -29,6 +29,8 @@
   rules:
     - if: '$EXTERNAL_DEPENDENCIES == "true"'
       when: never
+    - if: '$PROVIDED_SECRET_VALUES == "true"'
+      when: never
     - when: on_success
 
 # Base template for testing toggles
@@ -42,5 +44,7 @@
     HTML_REPORT: "${TOGGLE_NAME}_report.html"
   rules:
     - if: '$EXTERNAL_DEPENDENCIES == "true"'
+      when: never
+    - if: '$PROVIDED_SECRET_VALUES == "true"'
       when: never
     - when: on_success
