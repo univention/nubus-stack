@@ -185,9 +185,7 @@ keycloak:
       username: "kcadmin"
       password: null
       existingSecret:
-        name: '{{- printf "%s-keycloak-credentials" .Release.Name -}}'
-        keyMapping:
-          adminPassword: "admin_password"
+        name: null
   config:
     logLevel: "INFO" # default loglevel (subchart): INFO
   ingress:
@@ -221,7 +219,7 @@ nubusGuardian: &nubusGuardian
         existingSecret:
           name: '{{- printf "%s-keycloak-credentials" .Release.Name -}}'
           keyMapping:
-            password: "admin_password"
+            password: "adminPassword"
 
 nubusTwofaHelpdesk: &nubusTwofaHelpdesk
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
@@ -247,7 +245,8 @@ nubusTwofaHelpdesk: &nubusTwofaHelpdesk
       existingSecret:
         name: '{{- printf "%s-keycloak-credentials" .Release.Name -}}'
         keyMapping:
-          adminPassword: "admin_password"
+          adminPassword: "adminPassword"
+
     connection:
       url: "https://{{ .Values.global.subDomains.keycloak }}.{{ .Values.global.domain }}"
       host: "{{ .Release.Name }}-keycloak"
@@ -517,7 +516,7 @@ nubusKeycloakBootstrap: &nubusKeycloakBootstrap
       existingSecret:
         name: '{{- printf "%s-keycloak-credentials" .Release.Name -}}'
         keyMapping:
-          adminPassword: "admin_password"
+          adminPassword: "adminPassword"
 
 nubusKeycloakExtensions: &nubusKeycloakExtensions
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
@@ -539,7 +538,13 @@ nubusKeycloakExtensions: &nubusKeycloakExtensions
       existingSecret:
         name: '{{- printf "%s-keycloak-credentials" .Release.Name -}}'
         keyMapping:
-          adminPassword: "admin_password"
+          adminPassword: "adminPassword"
+  postgresql:
+    auth:
+      database: keycloak_extensions
+      username: keycloak_extensions
+      existingSecret:
+        name: '{{- printf "%s-keycloak-extensions-postgresql-credentials" .Release.Name -}}'
   handler:
     appConfig:
       logLevel: "INFO" # default loglevel (subchart): DEBUG

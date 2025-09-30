@@ -90,14 +90,14 @@ dependencies:
 
   - name: "keycloak-extensions"
     alias: "nubusKeycloakExtensions"
-    repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.22.0"
+    repository: "oci://artifacts.software-univention.de/nubus-dev/charts"
+    version: "0.23.0-pre-dpapoutsis-keycloak-secrets"
     condition: "nubusKeycloakExtensions.enabled"
 
   - name: "keycloak-bootstrap"
     alias: "nubusKeycloakBootstrap"
-    repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.17.6"
+    repository: "oci://artifacts.software-univention.de/nubus-dev/charts"
+    version: "0.18.0-pre-dpapoutsis-keycloak-bootstrap-secrets"
     condition: "nubusKeycloakBootstrap.enabled"
 
   - name: "stack-data-ums"
