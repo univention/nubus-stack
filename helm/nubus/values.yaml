@@ -219,7 +219,7 @@ nubusGuardian: &nubusGuardian
         existingSecret:
           name: '{{- printf "%s-keycloak-credentials" .Release.Name -}}'
           keyMapping:
-            password: "adminPassword"
+            adminPassword: "adminPassword"
 
 nubusTwofaHelpdesk: &nubusTwofaHelpdesk
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
