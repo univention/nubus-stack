@@ -77,7 +77,7 @@ global:
         registry: "artifacts.software-univention.de"
         repository: "nubus/images/portal-extension"
         imagePullPolicy: "IfNotPresent"
-        tag: "0.81.1@sha256:67f99c37c6ec2a8732987346a2e5caede75dcaff7e8d65ce1eaef6cf74eec6bc"
+        tag: "0.82.0@sha256:feadcb3ab73bc4b477bf16545187b13982368831f77028883b05c925aace777b"
     - name: "2fa-helpdesk"
       image:
         registry: "artifacts.software-univention.de"
