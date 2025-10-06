@@ -73,17 +73,6 @@ nubusStackDataUms:
     portalFqdn: "{{ .Values.reviewPrefix }}.portal.{{ .Values.reviewBaseDomain }}"
   templateContext:
     twofaSelfServiceActivated: true
-  stackDataUms:
-    extraDataFiles:
-      99-ci-login-saml-tile.yaml: |
-      {{`
-        # Enable SAML login tile
-        action: "modify"
-        module: "portals/entry"
-        position: "cn=login-saml,cn=entry,cn=portals,cn=univention,{{"{{"}} ldapBaseDn {{"}}"}}"
-        properties:
-          activated: true
-      `}}
 
 # enable the optional 2fa self-service in CI
 nubusTwofaHelpdesk:
