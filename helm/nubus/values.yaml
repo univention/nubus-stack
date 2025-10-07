@@ -21,8 +21,6 @@ global:
 
   ldap:
     baseDn: ""
-    # -- Domain of the ldap server
-    domainName: ""
     connection:
       host: "{{ .Release.Name }}-ldap-server"
     auth:
