@@ -115,8 +115,8 @@ dependencies:
   # udm-rest-api related chart(s)
   - name: "udm-rest-api"
     alias: "nubusUdmRestApi"
-    repository: "oci://artifacts.software-univention.de/nubus-dev/charts"
-    version: "0.40.4-pre-jtorres-sonarqube-fixes"
+    repository: "oci://artifacts.software-univention.de/nubus/charts"
+    version: "0.40.0"
     condition: "nubusUdmRestApi.enabled"
 
   # umc related chart(s)
