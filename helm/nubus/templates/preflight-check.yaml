@@ -18,6 +18,3 @@
 {{- if not (index (default dict .Values.global.ldap) "baseDn") -}}
 # {{- required "Variable .Values.global.ldap.baseDn must be set" .Values.false -}}
 {{- end -}}
-{{- if not (index (default dict .Values.global.ldap) "domainName") -}}
-# {{- required "Variable .Values.global.ldap.domainName must be set" .Values.false -}}
-{{- end }}

@@ -7,7 +7,6 @@ global:
   nubusDeployment: true
   ldap:
     baseDn: "dc=example,dc=com"
-    domainName: "example.com"
   domain: "example.com"
   ingressClass: "nginx"
   certManagerIssuer: "letsencrypt"
