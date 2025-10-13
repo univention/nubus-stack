@@ -353,42 +353,15 @@ nubusProvisioning: &nubusProvisioning
         replicas: 1
       createUsers:
         udmListener:
-          user: "udmlistener"
-          password: "$NATS_UDM_LISTENER_PASSWORD"
           permissions:
             publish: ">"
             subscribe: ">"
-    extraEnvVars:
-      - name: NATS_UDM_LISTENER_PASSWORD
-        valueFrom:
-          secretKeyRef:
-            name: "{{ .Release.Name }}-provisioning-udm-listener-credentials"
-            key: NATS_PASSWORD
-      - name: NATS_PASSWORD
-        valueFrom:
-          secretKeyRef:
-            name: "{{ .Release.Name }}-provisioning-nats-credentials"
-            key: admin_password
-      - name: NATS_PROVISIONING_API_PASSWORD
-        valueFrom:
-          secretKeyRef:
-            name: "{{ .Release.Name }}-provisioning-api-credentials"
-            key: NATS_PASSWORD
-      - name: NATS_DISPATCHER_PASSWORD
-        valueFrom:
-          secretKeyRef:
-            name: "{{ .Release.Name }}-provisioning-dispatcher-credentials"
-            key: NATS_PASSWORD
-      - name: NATS_UDM_TRANSFORMER_PASSWORD
-        valueFrom:
-          secretKeyRef:
-            name: "{{ .Release.Name }}-provisioning-udm-transformer-credentials"
-            key: NATS_PASSWORD
-      - name: NATS_PREFILL_PASSWORD
-        valueFrom:
-          secretKeyRef:
-            name: "{{ .Release.Name }}-provisioning-prefill-credentials"
-            key: NATS_PASSWORD
+          auth:
+            username: "udmlistener"
+            existingSecret:
+              name: "{{ .Release.Name }}-provisioning-udm-listener-nats"
+              keyMapping:
+                password:
     global:
       imageRegistry: "docker.io"
     resources: *nubusDevelopmentResources
@@ -410,28 +383,7 @@ nubusProvisioning: &nubusProvisioning
         existingSecret:
           name: "{{ tpl .Values.global.ldap.auth.admin.existingSecret.name . }}"
 
-  api:
-    nats:
-      auth:
-        existingSecret:
-          name: "{{ .Release.Name }}-provisioning-api-credentials"
-          keyMapping:
-            password: "NATS_PASSWORD"
-
-  dispatcher:
-    nats:
-      auth:
-        existingSecret:
-          name: "{{ .Release.Name }}-provisioning-dispatcher-credentials"
-          keyMapping:
-            password: "NATS_PASSWORD"
   prefill:
-    nats:
-      auth:
-        existingSecret:
-          name: "{{ .Release.Name }}-provisioning-prefill-credentials"
-          keyMapping:
-            password: "NATS_PASSWORD"
     udm:
       auth:
         existingSecret:
@@ -448,12 +400,6 @@ nubusProvisioning: &nubusProvisioning
       auth:
         existingSecret:
           name: "{{ tpl .Values.global.ldap.auth.admin.existingSecret.name . }}"
-    nats:
-      auth:
-        existingSecret:
-          name: "{{ .Release.Name }}-provisioning-udm-transformer-credentials"
-          keyMapping:
-            password: "NATS_PASSWORD"
 
 nubusUdmListener: &nubusUdmListener
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
@@ -467,11 +413,6 @@ nubusUdmListener: &nubusUdmListener
   nats:
     connection:
       host: "{{ .Release.Name }}-provisioning-nats"
-    auth:
-      existingSecret:
-        name: "{{ .Release.Name }}-provisioning-udm-listener-credentials"
-        keyMapping:
-          password: "NATS_PASSWORD"
   provisioningApi:
     auth:
       existingSecret:
