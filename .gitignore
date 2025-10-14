@@ -5,3 +5,4 @@
 /ci/local-values.yaml.gotmpl
 
 /ci/dist-*
+__pycache__/

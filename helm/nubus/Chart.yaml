@@ -14,7 +14,7 @@ dependencies:
   - name: "guardian"
     alias: "nubusGuardian"
     repository: "oci://artifacts.software-univention.de/nubus-dev/charts"
-    version: "0.23.1-pre-dpapoutsis-keycloak-secret-usage"
+    version: "0.23.2-pre-dpapoutsis-keycloak-secret-usage"
     condition: "nubusGuardian.enabled"
 
   - name: "license-import"
@@ -102,8 +102,8 @@ dependencies:
 
   - name: "stack-data-ums"
     alias: "nubusStackDataUms"
-    repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.99.7"
+    repository: "oci://artifacts.software-univention.de/nubus-dev/charts"
+    version: "0.99.10-pre-dpapoutsis-keycloak-bootstrap-readonly-user"
     condition: "nubusStackDataUms.enabled"
 
   - name: "twofa-helpdesk"

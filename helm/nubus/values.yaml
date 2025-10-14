@@ -204,13 +204,6 @@ nubusGuardian: &nubusGuardian
         username: 'cn=admin'
         existingSecret:
           name: "{{ tpl .Values.global.ldap.auth.admin.existingSecret.name . }}"
-  managementApi:
-    oauth:
-      auth:
-        existingSecret:
-          name: '{{- printf "%s-guardian-keycloak-client-secret" .Release.Name -}}'
-          keyMapping:
-            clientSecret: 'oauthAdapterM2mSecret'
   provisioning:
     enabled: true
     keycloak:
@@ -509,7 +502,7 @@ nubusKeycloakBootstrap: &nubusKeycloakBootstrap
     auth:
       bindDn: '{{ include "nubus.keycloak.ldap.auth.bindDn" . }}'
       existingSecret:
-        name: '{{- printf "%s-keycloak-bootstrap-ldap-credentials" .Release.Name -}}'
+        name: '{{- printf "%s-stack-data-ums-readonly-user" .Release.Name -}}'
   keycloak:
     auth:
       username: "kcadmin"
@@ -580,7 +573,6 @@ nubusStackDataUms:
     ldapHost: '{{ include "nubusTemplates.connections.ldap.primary.host" . }}'
 
   templateContext:
-    readonlyUserPassword: '{{ include "nubusTemplates.credentials.ldap.users.readonly.password" . }}'
     portalTwoFaLinkBase: 'https://{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}'
     twofaSelfserviceTileCategory: "domain-service"
     twofaAdminTileCategory: "domain-admin"
