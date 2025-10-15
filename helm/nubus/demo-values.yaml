@@ -24,6 +24,8 @@ nubusDevelopment:
 # Enable bundled PostgreSQL database
 postgresql:
   enabled: true
+  image:
+    repository: bitnamilegacy/postgresql
   resources: *nubusDevelopmentResources
   auth:
     existingSecret: "{{ .Release.Name }}-postgresql-credentials"
@@ -65,6 +67,8 @@ postgresql:
 # Enable bundled MinIO object storage
 minio:
   enabled: true
+  image:
+    repository: bitnamilegacy/minio
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   resources: *nubusDevelopmentResources
   networkPolicy:
