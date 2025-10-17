@@ -14,7 +14,7 @@ dependencies:
   - name: "guardian"
     alias: "nubusGuardian"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.23.0"
+    version: "0.23.2"
     condition: "nubusGuardian.enabled"
 
   - name: "license-import"
@@ -91,25 +91,25 @@ dependencies:
   - name: "keycloak-extensions"
     alias: "nubusKeycloakExtensions"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.22.0"
+    version: "0.23.0"
     condition: "nubusKeycloakExtensions.enabled"
 
   - name: "keycloak-bootstrap"
     alias: "nubusKeycloakBootstrap"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.17.6"
+    version: "0.18.0"
     condition: "nubusKeycloakBootstrap.enabled"
 
   - name: "stack-data-ums"
     alias: "nubusStackDataUms"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.99.7"
+    version: "0.99.11"
     condition: "nubusStackDataUms.enabled"
 
   - name: "twofa-helpdesk"
     alias: "nubusTwofaHelpdesk"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.14.4"
+    version: "0.14.5"
     condition: "nubusTwofaHelpdesk.enabled"
 
   # udm-rest-api related chart(s)

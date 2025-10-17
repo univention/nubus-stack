@@ -185,9 +185,7 @@ keycloak:
       username: "kcadmin"
       password: null
       existingSecret:
-        name: '{{- printf "%s-keycloak-credentials" .Release.Name -}}'
-        keyMapping:
-          adminPassword: "admin_password"
+        name: null
   config:
     logLevel: "INFO" # default loglevel (subchart): INFO
   ingress:
@@ -206,13 +204,6 @@ nubusGuardian: &nubusGuardian
         username: 'cn=admin'
         existingSecret:
           name: "{{ tpl .Values.global.ldap.auth.admin.existingSecret.name . }}"
-  managementApi:
-    oauth:
-      auth:
-        existingSecret:
-          name: '{{- printf "%s-guardian-keycloak-client-secret" .Release.Name -}}'
-          keyMapping:
-            clientSecret: 'oauthAdapterM2mSecret'
   provisioning:
     enabled: true
     keycloak:
@@ -221,7 +212,7 @@ nubusGuardian: &nubusGuardian
         existingSecret:
           name: '{{- printf "%s-keycloak-credentials" .Release.Name -}}'
           keyMapping:
-            password: "admin_password"
+            adminPassword: "adminPassword"
 
 nubusTwofaHelpdesk: &nubusTwofaHelpdesk
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
@@ -247,7 +238,8 @@ nubusTwofaHelpdesk: &nubusTwofaHelpdesk
       existingSecret:
         name: '{{- printf "%s-keycloak-credentials" .Release.Name -}}'
         keyMapping:
-          adminPassword: "admin_password"
+          adminPassword: "adminPassword"
+
     connection:
       url: "https://{{ .Values.global.subDomains.keycloak }}.{{ .Values.global.domain }}"
       host: "{{ .Release.Name }}-keycloak"
@@ -510,14 +502,14 @@ nubusKeycloakBootstrap: &nubusKeycloakBootstrap
     auth:
       bindDn: '{{ include "nubus.keycloak.ldap.auth.bindDn" . }}'
       existingSecret:
-        name: '{{- printf "%s-keycloak-bootstrap-ldap-credentials" .Release.Name -}}'
+        name: '{{- printf "%s-stack-data-ums-readonly-user" .Release.Name -}}'
   keycloak:
     auth:
       username: "kcadmin"
       existingSecret:
         name: '{{- printf "%s-keycloak-credentials" .Release.Name -}}'
         keyMapping:
-          adminPassword: "admin_password"
+          adminPassword: "adminPassword"
 
 nubusKeycloakExtensions: &nubusKeycloakExtensions
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
@@ -539,7 +531,13 @@ nubusKeycloakExtensions: &nubusKeycloakExtensions
       existingSecret:
         name: '{{- printf "%s-keycloak-credentials" .Release.Name -}}'
         keyMapping:
-          adminPassword: "admin_password"
+          adminPassword: "adminPassword"
+  postgresql:
+    auth:
+      database: keycloak_extensions
+      username: keycloak_extensions
+      existingSecret:
+        name: '{{- printf "%s-keycloak-extensions-postgresql-credentials" .Release.Name -}}'
   handler:
     appConfig:
       logLevel: "INFO" # default loglevel (subchart): DEBUG
@@ -575,7 +573,6 @@ nubusStackDataUms:
     ldapHost: '{{ include "nubusTemplates.connections.ldap.primary.host" . }}'
 
   templateContext:
-    readonlyUserPassword: '{{ include "nubusTemplates.credentials.ldap.users.readonly.password" . }}'
     portalTwoFaLinkBase: 'https://{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}'
     twofaSelfserviceTileCategory: "domain-service"
     twofaAdminTileCategory: "domain-admin"
