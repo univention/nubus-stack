@@ -6,3 +6,4 @@
 
 /ci/dist-*
 __pycache__/
+tmpcharts-*/

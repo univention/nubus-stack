@@ -4,6 +4,7 @@ global:
   ingressClass: "nginx"
   ldap:
     baseDn: "dc=univention-organization,dc=intranet"
+    domainName: "example.com"
   nubusDeployment: true
   secrets:
     masterPassword: {{ .Values.secrets.masterPassword | quote }}

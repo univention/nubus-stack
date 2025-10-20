@@ -27,6 +27,8 @@ global:
       admin:
         existingSecret:
           name: "{{ .Release.Name }}-ldap-server-admin"
+          keyMapping:
+            password: "password"
 
   memcached:
     connection:
@@ -204,6 +206,8 @@ nubusGuardian: &nubusGuardian
         username: 'cn=admin'
         existingSecret:
           name: "{{ tpl .Values.global.ldap.auth.admin.existingSecret.name . }}"
+          keyMapping:
+            password: "{{ tpl .Values.global.ldap.auth.admin.existingSecret.keyMapping.password . }}"
   provisioning:
     enabled: true
     keycloak:
@@ -239,7 +243,6 @@ nubusTwofaHelpdesk: &nubusTwofaHelpdesk
         name: '{{- printf "%s-keycloak-credentials" .Release.Name -}}'
         keyMapping:
           adminPassword: "adminPassword"
-
     connection:
       url: "https://{{ .Values.global.subDomains.keycloak }}.{{ .Values.global.domain }}"
       host: "{{ .Release.Name }}-keycloak"
@@ -274,6 +277,8 @@ nubusLicenseImport:
     auth:
       existingSecret:
         name: "{{ tpl .Values.global.ldap.auth.admin.existingSecret.name . }}"
+        keyMapping:
+          password: "{{ tpl .Values.global.ldap.auth.admin.existingSecret.keyMapping.password . }}"
 
 nubusNotificationsApi: &nubusNotificationsApi
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
@@ -305,6 +310,8 @@ nubusPortalConsumer: &nubusPortalConsumer
     auth:
       existingSecret:
         name: "{{ tpl .Values.global.ldap.auth.admin.existingSecret.name . }}"
+        keyMapping:
+          password: "{{ tpl .Values.global.ldap.auth.admin.existingSecret.keyMapping.password . }}"
   provisioningApi:
     connection:
       url: "http://{{ .Release.Name }}-provisioning-api"
@@ -312,6 +319,8 @@ nubusPortalConsumer: &nubusPortalConsumer
     auth:
       existingSecret:
         name: "{{ tpl .Values.global.ldap.auth.admin.existingSecret.name . }}"
+        keyMapping:
+          password: "{{ tpl .Values.global.ldap.auth.admin.existingSecret.keyMapping.password . }}"
 
 nubusPortalServer: &nubusPortalServer
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
@@ -374,12 +383,16 @@ nubusProvisioning: &nubusProvisioning
       auth:
         existingSecret:
           name: "{{ tpl .Values.global.ldap.auth.admin.existingSecret.name . }}"
+          keyMapping:
+            password: "{{ tpl .Values.global.ldap.auth.admin.existingSecret.keyMapping.password . }}"
 
   prefill:
     udm:
       auth:
         existingSecret:
           name: "{{ tpl .Values.global.ldap.auth.admin.existingSecret.name . }}"
+          keyMapping:
+            password: "{{ tpl .Values.global.ldap.auth.admin.existingSecret.keyMapping.password . }}"
 
   udmTransformer:
     ldap:
@@ -392,6 +405,8 @@ nubusProvisioning: &nubusProvisioning
       auth:
         existingSecret:
           name: "{{ tpl .Values.global.ldap.auth.admin.existingSecret.name . }}"
+          keyMapping:
+            password: "{{ tpl .Values.global.ldap.auth.admin.existingSecret.keyMapping.password . }}"
 
 nubusUdmListener: &nubusUdmListener
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
@@ -402,6 +417,8 @@ nubusUdmListener: &nubusUdmListener
     auth:
       existingSecret:
         name: "{{ tpl .Values.global.ldap.auth.admin.existingSecret.name . }}"
+        keyMapping:
+          password: "{{ tpl .Values.global.ldap.auth.admin.existingSecret.keyMapping.password . }}"
   nats:
     connection:
       host: "{{ .Release.Name }}-provisioning-nats"
@@ -434,6 +451,8 @@ nubusUdmRestApi: &nubusUdmRestApi
     auth:
       existingSecret:
         name: "{{ tpl .Values.global.ldap.auth.admin.existingSecret.name . }}"
+        keyMapping:
+          password: "{{ tpl .Values.global.ldap.auth.admin.existingSecret.keyMapping.password . }}"
 
 nubusUmcGateway: &nubusUmcGateway
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
@@ -459,6 +478,8 @@ nubusUmcServer: &nubusUmcServer
     auth:
       existingSecret:
         name: "{{ tpl .Values.global.ldap.auth.admin.existingSecret.name . }}"
+        keyMapping:
+          password: "{{ tpl .Values.global.ldap.auth.admin.existingSecret.keyMapping.password . }}"
   memcached:
     nameOverride: "umc-server-memcached"
     containerSecurityContext:
@@ -556,6 +577,8 @@ nubusStackDataUms:
     auth:
       existingSecret:
         name: "{{ tpl .Values.global.ldap.auth.admin.existingSecret.name . }}"
+        keyMapping:
+          password: "{{ tpl .Values.global.ldap.auth.admin.existingSecret.keyMapping.password . }}"
 
   nubusUmcServer:
     host: '{{ printf "%s-umc-server" .Release.Name }}'
@@ -618,6 +641,8 @@ nubusScimServer: &nubusScimServer
       username: "cn=admin"
       existingSecret:
         name: "{{ tpl .Values.global.ldap.auth.admin.existingSecret.name . }}"
+        keyMapping:
+          password: "{{ tpl .Values.global.ldap.auth.admin.existingSecret.keyMapping.password . }}"
   ingress:
     enabled: true
     host: "{{ .Values.global.subDomains.scim }}.{{ .Values.global.domain }}"

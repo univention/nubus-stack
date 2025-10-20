@@ -168,6 +168,9 @@ nubusPortalServer:
     bucketName: "nubus"
 
 nubusUmcServer:
+  smtp:
+    auth:
+      password: "stub-password"
   postgresql:
     selfservice:
       auth:
