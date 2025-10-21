@@ -35,27 +35,27 @@ helm uninstall nubus
 
 | Repository | Name | Version |
 |------------|------|---------|
-| oci://artifacts.software-univention.de/nubus/charts | nubusGuardian(guardian) | 0.22.5 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusGuardian(guardian) | 0.23.2 |
 | oci://artifacts.software-univention.de/nubus/charts | keycloak(keycloak) | 0.14.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakBootstrap(keycloak-bootstrap) | 0.17.5 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakExtensions(keycloak-extensions) | 0.21.1 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusLdapNotifier(ldap-notifier) | 0.47.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusLdapServer(ldap-server) | 0.47.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusLicenseImport(license-import) | 0.6.5 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusNotificationsApi(notifications-api) | 0.80.2 |
-| oci://artifacts.software-univention.de/nubus/charts | nubus-common | 0.24.2 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalConsumer(portal-consumer) | 0.80.2 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalFrontend(portal-frontend) | 0.80.2 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.80.2 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 0.60.10 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusScimServer(scim-server) | 0.43.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceConsumer(selfservice-consumer) | 0.19.4 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.99.1 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusTwofaHelpdesk(twofa-helpdesk) | 0.14.1 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 0.60.10 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUdmRestApi(udm-rest-api) | 0.40.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.51.2 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUmcServer(umc-server) | 0.51.3 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakBootstrap(keycloak-bootstrap) | 0.19.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakExtensions(keycloak-extensions) | 0.23.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusLdapNotifier(ldap-notifier) | 0.47.3 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusLdapServer(ldap-server) | 0.47.3 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusLicenseImport(license-import) | 0.7.3 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusNotificationsApi(notifications-api) | 0.84.1 |
+| oci://artifacts.software-univention.de/nubus/charts | nubus-common | 0.28.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalConsumer(portal-consumer) | 0.84.1 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalFrontend(portal-frontend) | 0.84.1 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.84.1 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 0.62.3 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusScimServer(scim-server) | 0.46.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceConsumer(selfservice-consumer) | 0.19.20 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.99.11 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusTwofaHelpdesk(twofa-helpdesk) | 0.14.5 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 0.62.3 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUdmRestApi(udm-rest-api) | 0.41.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.53.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUmcServer(umc-server) | 0.53.0 |
 | oci://docker.io/bitnamicharts | minio | 14.7.0 |
 | oci://docker.io/bitnamicharts | postgresql | ^12.x.x |
 
@@ -194,6 +194,15 @@ false
 			<td></td>
 		</tr>
 		<tr>
+			<td>global.ldap.auth.admin.existingSecret.keyMapping.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+"password"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>global.ldap.auth.admin.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -219,15 +228,6 @@ false
 </pre>
 </td>
 			<td></td>
-		</tr>
-		<tr>
-			<td>global.ldap.domainName</td>
-			<td>string</td>
-			<td><pre lang="json">
-""
-</pre>
-</td>
-			<td>Domain of the ldap server</td>
 		</tr>
 		<tr>
 			<td>global.memcached.auth.username</td>
@@ -311,7 +311,7 @@ true
       "imagePullPolicy": "IfNotPresent",
       "registry": "artifacts.software-univention.de",
       "repository": "nubus/images/portal-extension",
-      "tag": "0.80.2@sha256:cde5547ef1c2d5da55fb41bdae7248ba8514ab4f200822709ca9a99f483a1cc8"
+      "tag": "0.84.0@sha256:5fe36fbd4041de4ef21d8fc188d720800df904abbbe4ca6a985649e6a84410f9"
     },
     "name": "portal"
   },
@@ -320,7 +320,7 @@ true
       "imagePullPolicy": "IfNotPresent",
       "registry": "artifacts.software-univention.de",
       "repository": "nubus/images/twofa-helpdesk-extensions",
-      "tag": "0.14.1@sha256:3d07949f50f65f1294bb349c8196c475b5b9cd34e6ed90fe24474e88e94f5999"
+      "tag": "0.14.4@sha256:70e227e72fd7a0bf99bf9c3543e3e5d4c7523edcd455a919c9c0f4f84319f11b"
     },
     "name": "2fa-helpdesk"
   }
@@ -533,19 +533,10 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>keycloak.keycloak.auth.existingSecret.keyMapping.adminPassword</td>
-			<td>string</td>
-			<td><pre lang="json">
-"admin_password"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>keycloak.keycloak.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{- printf \"%s-keycloak-credentials\" .Release.Name -}}"
+null
 </pre>
 </td>
 			<td></td>
@@ -677,6 +668,15 @@ false
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusGuardian.authorizationApi.udm.auth.existingSecret.keyMapping.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ tpl .Values.global.ldap.auth.admin.existingSecret.keyMapping.password . }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusGuardian.authorizationApi.udm.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -713,24 +713,6 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusGuardian.managementApi.oauth.auth.existingSecret.keyMapping.clientSecret</td>
-			<td>string</td>
-			<td><pre lang="json">
-"oauthAdapterM2mSecret"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusGuardian.managementApi.oauth.auth.existingSecret.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{- printf \"%s-guardian-keycloak-client-secret\" .Release.Name -}}"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusGuardian.nameOverride</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -749,10 +731,10 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusGuardian.provisioning.keycloak.auth.existingSecret.keyMapping.password</td>
+			<td>nubusGuardian.provisioning.keycloak.auth.existingSecret.keyMapping.adminPassword</td>
 			<td>string</td>
 			<td><pre lang="json">
-"admin_password"
+"adminPassword"
 </pre>
 </td>
 			<td></td>
@@ -851,7 +833,7 @@ true
 			<td>nubusKeycloakBootstrap.keycloak.auth.existingSecret.keyMapping.adminPassword</td>
 			<td>string</td>
 			<td><pre lang="json">
-"admin_password"
+"adminPassword"
 </pre>
 </td>
 			<td></td>
@@ -887,7 +869,7 @@ true
 			<td>nubusKeycloakBootstrap.ldap.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{- printf \"%s-keycloak-bootstrap-ldap-credentials\" .Release.Name -}}"
+"{{- printf \"%s-stack-data-ums-readonly-user\" .Release.Name -}}"
 </pre>
 </td>
 			<td></td>
@@ -986,7 +968,7 @@ false
 			<td>nubusKeycloakExtensions.keycloak.auth.existingSecret.keyMapping.adminPassword</td>
 			<td>string</td>
 			<td><pre lang="json">
-"admin_password"
+"adminPassword"
 </pre>
 </td>
 			<td></td>
@@ -1023,6 +1005,33 @@ false
 			<td>string</td>
 			<td><pre lang="json">
 "keycloak-extensions"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusKeycloakExtensions.postgresql.auth.database</td>
+			<td>string</td>
+			<td><pre lang="json">
+"keycloak_extensions"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusKeycloakExtensions.postgresql.auth.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{- printf \"%s-keycloak-extensions-postgresql-credentials\" .Release.Name -}}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusKeycloakExtensions.postgresql.auth.username</td>
+			<td>string</td>
+			<td><pre lang="json">
+"keycloak_extensions"
 </pre>
 </td>
 			<td></td>
@@ -1334,6 +1343,15 @@ false
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusLicenseImport.ldap.auth.existingSecret.keyMapping.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ tpl .Values.global.ldap.auth.admin.existingSecret.keyMapping.password . }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusLicenseImport.ldap.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -1442,6 +1460,15 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusPortalConsumer.ldap.auth.existingSecret.keyMapping.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ tpl .Values.global.ldap.auth.admin.existingSecret.keyMapping.password . }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusPortalConsumer.ldap.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -1518,6 +1545,15 @@ true
 			<td>int</td>
 			<td><pre lang="json">
 5
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusPortalConsumer.udm.auth.existingSecret.keyMapping.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ tpl .Values.global.ldap.auth.admin.existingSecret.keyMapping.password . }}"
 </pre>
 </td>
 			<td></td>
@@ -1685,42 +1721,6 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusProvisioning.api.nats.auth.existingSecret.keyMapping.password</td>
-			<td>string</td>
-			<td><pre lang="json">
-"NATS_PASSWORD"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.api.nats.auth.existingSecret.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-provisioning-api-credentials"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.dispatcher.nats.auth.existingSecret.keyMapping.password</td>
-			<td>string</td>
-			<td><pre lang="json">
-"NATS_PASSWORD"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.dispatcher.nats.auth.existingSecret.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-provisioning-dispatcher-credentials"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusProvisioning.enabled</td>
 			<td>bool</td>
 			<td><pre lang="json">
@@ -1757,10 +1757,28 @@ null
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusProvisioning.nats.config.createUsers.udmListener.password</td>
+			<td>nubusProvisioning.nats.config.createUsers.udmListener.auth.existingSecret.keyMapping.password</td>
 			<td>string</td>
 			<td><pre lang="json">
-"$NATS_UDM_LISTENER_PASSWORD"
+null
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusProvisioning.nats.config.createUsers.udmListener.auth.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Release.Name }}-provisioning-udm-listener-nats"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusProvisioning.nats.config.createUsers.udmListener.auth.username</td>
+			<td>string</td>
+			<td><pre lang="json">
+"udmlistener"
 </pre>
 </td>
 			<td></td>
@@ -1779,177 +1797,6 @@ null
 			<td>string</td>
 			<td><pre lang="json">
 "\u003e"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.nats.config.createUsers.udmListener.user</td>
-			<td>string</td>
-			<td><pre lang="json">
-"udmlistener"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.nats.extraEnvVars[0].name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"NATS_UDM_LISTENER_PASSWORD"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.nats.extraEnvVars[0].valueFrom.secretKeyRef.key</td>
-			<td>string</td>
-			<td><pre lang="json">
-"NATS_PASSWORD"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.nats.extraEnvVars[0].valueFrom.secretKeyRef.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-provisioning-udm-listener-credentials"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.nats.extraEnvVars[1].name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"NATS_PASSWORD"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.nats.extraEnvVars[1].valueFrom.secretKeyRef.key</td>
-			<td>string</td>
-			<td><pre lang="json">
-"admin_password"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.nats.extraEnvVars[1].valueFrom.secretKeyRef.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-provisioning-nats-credentials"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.nats.extraEnvVars[2].name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"NATS_PROVISIONING_API_PASSWORD"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.nats.extraEnvVars[2].valueFrom.secretKeyRef.key</td>
-			<td>string</td>
-			<td><pre lang="json">
-"NATS_PASSWORD"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.nats.extraEnvVars[2].valueFrom.secretKeyRef.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-provisioning-api-credentials"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.nats.extraEnvVars[3].name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"NATS_DISPATCHER_PASSWORD"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.nats.extraEnvVars[3].valueFrom.secretKeyRef.key</td>
-			<td>string</td>
-			<td><pre lang="json">
-"NATS_PASSWORD"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.nats.extraEnvVars[3].valueFrom.secretKeyRef.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-provisioning-dispatcher-credentials"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.nats.extraEnvVars[4].name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"NATS_UDM_TRANSFORMER_PASSWORD"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.nats.extraEnvVars[4].valueFrom.secretKeyRef.key</td>
-			<td>string</td>
-			<td><pre lang="json">
-"NATS_PASSWORD"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.nats.extraEnvVars[4].valueFrom.secretKeyRef.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-provisioning-udm-transformer-credentials"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.nats.extraEnvVars[5].name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"NATS_PREFILL_PASSWORD"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.nats.extraEnvVars[5].valueFrom.secretKeyRef.key</td>
-			<td>string</td>
-			<td><pre lang="json">
-"NATS_PASSWORD"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.nats.extraEnvVars[5].valueFrom.secretKeyRef.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-provisioning-prefill-credentials"
 </pre>
 </td>
 			<td></td>
@@ -2072,19 +1919,10 @@ null
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusProvisioning.prefill.nats.auth.existingSecret.keyMapping.password</td>
+			<td>nubusProvisioning.prefill.udm.auth.existingSecret.keyMapping.password</td>
 			<td>string</td>
 			<td><pre lang="json">
-"NATS_PASSWORD"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.prefill.nats.auth.existingSecret.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-provisioning-prefill-credentials"
+"{{ tpl .Values.global.ldap.auth.admin.existingSecret.keyMapping.password . }}"
 </pre>
 </td>
 			<td></td>
@@ -2112,6 +1950,15 @@ null
 			<td>string</td>
 			<td><pre lang="json">
 "{{ .Release.Name }}-selfservice-listener-provisioning-api"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusProvisioning.registerConsumers.udm.auth.existingSecret.keyMapping.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ tpl .Values.global.ldap.auth.admin.existingSecret.keyMapping.password . }}"
 </pre>
 </td>
 			<td></td>
@@ -2243,6 +2090,15 @@ null
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusProvisioning.udmTransformer.ldap.auth.existingSecret.keyMapping.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ tpl .Values.global.ldap.auth.admin.existingSecret.keyMapping.password . }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusProvisioning.udmTransformer.ldap.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -2256,24 +2112,6 @@ null
 			<td>string</td>
 			<td><pre lang="json">
 "{{ .Release.Name }}-ldap-server-primary"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.udmTransformer.nats.auth.existingSecret.keyMapping.password</td>
-			<td>string</td>
-			<td><pre lang="json">
-"NATS_PASSWORD"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.udmTransformer.nats.auth.existingSecret.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-provisioning-udm-transformer-credentials"
 </pre>
 </td>
 			<td></td>
@@ -2499,6 +2337,15 @@ true
 			<td>int</td>
 			<td><pre lang="json">
 5
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusScimServer.udm.auth.existingSecret.keyMapping.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ tpl .Values.global.ldap.auth.admin.existingSecret.keyMapping.password . }}"
 </pre>
 </td>
 			<td></td>
@@ -2747,15 +2594,6 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataUms.templateContext.readonlyUserPassword</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ include \"nubusTemplates.credentials.ldap.users.readonly.password\" . }}"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusStackDataUms.templateContext.twofaAdminHelpdeskActivated</td>
 			<td>bool</td>
 			<td><pre lang="json">
@@ -2796,6 +2634,15 @@ false
 			<td>int</td>
 			<td><pre lang="json">
 5
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.udm.auth.existingSecret.keyMapping.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ tpl .Values.global.ldap.auth.admin.existingSecret.keyMapping.password . }}"
 </pre>
 </td>
 			<td></td>
@@ -2858,7 +2705,7 @@ true
 			<td>nubusTwofaHelpdesk.keycloak.auth.existingSecret.keyMapping.adminPassword</td>
 			<td>string</td>
 			<td><pre lang="json">
-"admin_password"
+"adminPassword"
 </pre>
 </td>
 			<td></td>
@@ -3017,6 +2864,15 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusUdmListener.ldap.auth.existingSecret.keyMapping.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ tpl .Values.global.ldap.auth.admin.existingSecret.keyMapping.password . }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusUdmListener.ldap.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -3030,24 +2886,6 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 "provisioning-udm-listener"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUdmListener.nats.auth.existingSecret.keyMapping.password</td>
-			<td>string</td>
-			<td><pre lang="json">
-"NATS_PASSWORD"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUdmListener.nats.auth.existingSecret.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-provisioning-udm-listener-credentials"
 </pre>
 </td>
 			<td></td>
@@ -3138,6 +2976,15 @@ false
 			<td>string</td>
 			<td><pre lang="json">
 "{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusUdmRestApi.ldap.auth.existingSecret.keyMapping.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ tpl .Values.global.ldap.auth.admin.existingSecret.keyMapping.password . }}"
 </pre>
 </td>
 			<td></td>
@@ -3345,6 +3192,15 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 "{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusUmcServer.ldap.auth.existingSecret.keyMapping.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ tpl .Values.global.ldap.auth.admin.existingSecret.keyMapping.password . }}"
 </pre>
 </td>
 			<td></td>
