@@ -34,8 +34,8 @@ as YAML files. This also works if you don't have a Kubernetes cluster available:
 helm template nubus ./helm/nubus
 
 # Add custom values if you want to check specific scenarios
-helm template --values your-values-file.yaml nubus ./helm/nubus
-helm template --set example.key=value nubus ./helm/nubus
+helm template --values your-values-file.yaml --values ./helm/nubus/demo-values.yaml nubus ./helm/nubus
+helm template --values ./helm/nubus/demo-values.yaml --set example.key=value nubus ./helm/nubus
 
 # Be aware, there are further options to set values on the command line,
 # "helm template --help" will provide further details.
@@ -59,11 +59,13 @@ Typically you would work with the sub-commands `install`, `upgrade` and
 
 ```sh
 # Often the use of "upgrade" with the argument "--install" is useful
-helm upgrade --install --values your-values-file.yaml nubus ./helm/nubus
+helm upgrade --install --values ./helm/nubus/demo-values.yaml --values your-values-file.yaml  nubus ./helm/nubus
 
 # If you want to run the bootstrap job of Keycloak (required on initial deployment)
 helm upgrade --install --values linter_values.yaml --set keycloak-bootstrap.enabled=true nubus ./
 ```
+
+You can create your own values file based on `./helm/nubus/example.yaml`.
 
 
 ## Related and further information
