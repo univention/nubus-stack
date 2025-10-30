@@ -261,6 +261,33 @@ keycloak:
   enabled: true
   resources: *nubusDevelopmentResources
   replicaCount: 1
+  #
+  # Performance tuning for Keycloak via subchart environment variables
+  # Use the keycloak subchart's `extraEnvVars` interface to set Quarkus/DB pool and JVM flags.
+  # Uncomment and adjust values as needed for your deployment size.
+  #
+  # extraEnvVars:
+  #   # Database pool sizing (Quarkus/Hibernate)
+  #   - name: KC_DB_POOL_MIN_SIZE
+  #     value: "10"
+  #   - name: KC_DB_POOL_MAX_SIZE
+  #     value: "50"
+  #   - name: KC_DB_POOL_INITIAL_SIZE
+  #     value: "10"
+  #   - name: QUARKUS_DATASOURCE_JDBC_MAX_LIFETIME
+  #     value: "1800000ms"   # 30 minutes
+  #   - name: QUARKUS_DATASOURCE_JDBC_IDLE_REMOVAL_INTERVAL
+  #     value: "60000ms"     # 1 minute
+  #
+  #   # Optional threading/HTTP (set if you need to override defaults)
+  #   # - name: QUARKUS_HTTP_IO_THREADS
+  #   #   value: "8"
+  #   # - name: QUARKUS_THREAD_POOL_MAX_THREADS
+  #   #   value: "48"
+  #
+  #   # JVM flags appended after chart defaults
+  #   - name: JAVA_OPTS_APPEND
+  #     value: "-XX:+UseG1GC -XX:MaxRAMPercentage=75"
   postgresql:
     auth:
       username: keycloak_user
