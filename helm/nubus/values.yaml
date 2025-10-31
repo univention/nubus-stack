@@ -900,4 +900,34 @@ selfservice:
     #     This link expires in {{expires_in}}.
     #     If you did not intend to set or change your password, you can safely ignore this email.
     #
-    # (Other templates for verification/change/deregistration will be added separately)
+    # accountVerification:
+    #   subject: "Verify your account"
+    #   html: |
+    #     <p>Hello {{user_name}},</p>
+    #     <p>Please verify your account by clicking the link below:</p>
+    #     <p><a href="{{verification_link}}">Verify account</a></p>
+    #   text: |
+    #     Hello {{user_name}},
+    #
+    #     Please verify your account using the link below:
+    #     {{verification_link}}
+    #
+    # emailChange:
+    #   subject: "Your email address was changed"
+    #   html: |
+    #     <p>Hello {{user_name}},</p>
+    #     <p>Your email address was changed. If this wasn't you, please follow the instructions here: {{support_link}}</p>
+    #   text: |
+    #     Hello {{user_name}},
+    #
+    #     Your email address was changed. If this wasn't you, see: {{support_link}}
+    #
+    # accountDeregistration:
+    #   subject: "Account deregistration confirmation"
+    #   html: |
+    #     <p>Hello {{user_name}},</p>
+    #     <p>Your account deregistration was requested. If you did not request this, please contact support: {{support_link}}</p>
+    #   text: |
+    #     Hello {{user_name}},
+    #
+    #     Your account deregistration was requested. If you did not request this, contact: {{support_link}}
