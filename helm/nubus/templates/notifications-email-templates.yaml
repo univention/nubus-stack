@@ -1,0 +1,72 @@
+# SPDX-License-Identifier: AGPL-3.0-only
+# SPDX-FileCopyrightText: 2025 Univention GmbH
+
+{{/* Render only if any email template content is provided */}}
+{{- $se := .Values.selfservice -}}
+{{- if and $se $se.emails -}}
+{{- $emails := $se.emails -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nubus-email-templates
+  labels:
+    {{- include "common.labels.standard" . | nindent 4 }}
+data:
+  {{- with $emails.passwordReset }}
+  {{- if .subject }}
+  passwordReset.subject: {{ tpl .subject $ | quote }}
+  {{- end }}
+  {{- if .html }}
+  passwordReset.html: |-
+    {{- tpl .html $ | nindent 4 }}
+  {{- end }}
+  {{- if .text }}
+  passwordReset.text: |-
+    {{- tpl .text $ | nindent 4 }}
+  {{- end }}
+  {{- end }}
+
+  {{- with $emails.accountVerification }}
+  {{- if .subject }}
+  accountVerification.subject: {{ tpl .subject $ | quote }}
+  {{- end }}
+  {{- if .html }}
+  accountVerification.html: |-
+    {{- tpl .html $ | nindent 4 }}
+  {{- end }}
+  {{- if .text }}
+  accountVerification.text: |-
+    {{- tpl .text $ | nindent 4 }}
+  {{- end }}
+  {{- end }}
+
+  {{- with $emails.emailChange }}
+  {{- if .subject }}
+  emailChange.subject: {{ tpl .subject $ | quote }}
+  {{- end }}
+  {{- if .html }}
+  emailChange.html: |-
+    {{- tpl .html $ | nindent 4 }}
+  {{- end }}
+  {{- if .text }}
+  emailChange.text: |-
+    {{- tpl .text $ | nindent 4 }}
+  {{- end }}
+  {{- end }}
+
+  {{- with $emails.accountDeregistration }}
+  {{- if .subject }}
+  accountDeregistration.subject: {{ tpl .subject $ | quote }}
+  {{- end }}
+  {{- if .html }}
+  accountDeregistration.html: |-
+    {{- tpl .html $ | nindent 4 }}
+  {{- end }}
+  {{- if .text }}
+  accountDeregistration.text: |-
+    {{- tpl .text $ | nindent 4 }}
+  {{- end }}
+  {{- end }}
+{{- end }}
+
+

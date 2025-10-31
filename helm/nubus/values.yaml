@@ -419,6 +419,21 @@ nubusNotificationsApi: &nubusNotificationsApi
       existingSecret:
         name: "{{ .Release.Name }}-notifications-api-postgresql-credentials"
 
+  #
+  # Optional: Mount email template overrides and point the service to them
+  # Uncomment to enable umbrella-level wording changes for invitation/reset and others
+  # extraVolumes:
+  #   - name: selfservice-email-templates
+  #     configMap:
+  #       name: nubus-email-templates
+  # extraVolumeMounts:
+  #   - name: selfservice-email-templates
+  #     mountPath: /app/templates/overrides/selfservice
+  #     readOnly: true
+  # extraEnvVars:
+  #   - name: SELF_SERVICE_EMAIL_TEMPLATES_DIR
+  #     value: /app/templates/overrides/selfservice
+
 nubusPortalFrontend: &nubusPortalFrontend
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   nameOverride: "portal-frontend"
@@ -865,3 +880,24 @@ nubusScimServer: &nubusScimServer
 
 # Allows for creation of additional secrets, for example containing credentials for third party services.
 extraSecrets: []
+
+selfservice:
+  emails:
+    # passwordReset:
+    #   subject: "Set or reset your password"
+    #   html: |
+    #     <p>Hello {{user_name}},</p>
+    #     <p>You can set or reset your account password using the link below:</p>
+    #     <p><a href="{{reset_link}}">Set or reset your password</a></p>
+    #     <p>This link expires in {{expires_in}}.</p>
+    #     <p>If you did not intend to set or change your password, you can safely ignore this email.</p>
+    #   text: |
+    #     Hello {{user_name}},
+    #
+    #     You can set or reset your account password using the link below:
+    #     {{reset_link}}
+    #
+    #     This link expires in {{expires_in}}.
+    #     If you did not intend to set or change your password, you can safely ignore this email.
+    #
+    # (Other templates for verification/change/deregistration will be added separately)
