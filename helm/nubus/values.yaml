@@ -138,7 +138,7 @@ ingress:
   # annotations:
   #   nginx.ingress.kubernetes.io/rewrite-target: /
   annotations:
-    nginx.ingress.kubernetes.io/proxy-body-size: "128k"
+    nginx.ingress.kubernetes.io/proxy-body-size: "2m"
     nginx.ingress.kubernetes.io/proxy-buffer-size: "64k"
     nginx.ingress.kubernetes.io/proxy-buffers-number: "4"
     nginx.ingress.kubernetes.io/proxy-busy-buffers-size: "128k"
@@ -261,6 +261,33 @@ keycloak:
   enabled: true
   resources: *nubusDevelopmentResources
   replicaCount: 1
+  #
+  # Performance tuning for Keycloak via subchart environment variables
+  # Use the keycloak subchart's `extraEnvVars` interface to set Quarkus/DB pool and JVM flags.
+  # Uncomment and adjust values as needed for your deployment size.
+  #
+  # extraEnvVars:
+  #   # Database pool sizing (Quarkus/Hibernate)
+  #   - name: KC_DB_POOL_MIN_SIZE
+  #     value: "10"
+  #   - name: KC_DB_POOL_MAX_SIZE
+  #     value: "50"
+  #   - name: KC_DB_POOL_INITIAL_SIZE
+  #     value: "10"
+  #   - name: QUARKUS_DATASOURCE_JDBC_MAX_LIFETIME
+  #     value: "1800000ms"   # 30 minutes
+  #   - name: QUARKUS_DATASOURCE_JDBC_IDLE_REMOVAL_INTERVAL
+  #     value: "60000ms"     # 1 minute
+  #
+  #   # Optional threading/HTTP (set if you need to override defaults)
+  #   # - name: QUARKUS_HTTP_IO_THREADS
+  #   #   value: "8"
+  #   # - name: QUARKUS_THREAD_POOL_MAX_THREADS
+  #   #   value: "48"
+  #
+  #   # JVM flags appended after chart defaults
+  #   - name: JAVA_OPTS_APPEND
+  #     value: "-XX:+UseG1GC -XX:MaxRAMPercentage=75"
   postgresql:
     auth:
       username: keycloak_user
@@ -391,6 +418,21 @@ nubusNotificationsApi: &nubusNotificationsApi
       database: notificationsapi
       existingSecret:
         name: "{{ .Release.Name }}-notifications-api-postgresql-credentials"
+
+  #
+  # Optional: Mount email template overrides and point the service to them
+  # Uncomment to enable umbrella-level wording changes for invitation/reset and others
+  # extraVolumes:
+  #   - name: selfservice-email-templates
+  #     configMap:
+  #       name: nubus-email-templates
+  # extraVolumeMounts:
+  #   - name: selfservice-email-templates
+  #     mountPath: /app/templates/overrides/selfservice
+  #     readOnly: true
+  # extraEnvVars:
+  #   - name: SELF_SERVICE_EMAIL_TEMPLATES_DIR
+  #     value: /app/templates/overrides/selfservice
 
 nubusPortalFrontend: &nubusPortalFrontend
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
@@ -838,3 +880,54 @@ nubusScimServer: &nubusScimServer
 
 # Allows for creation of additional secrets, for example containing credentials for third party services.
 extraSecrets: []
+
+selfservice:
+  emails:
+    # passwordReset:
+    #   subject: "Set or reset your password"
+    #   html: |
+    #     <p>Hello {{user_name}},</p>
+    #     <p>You can set or reset your account password using the link below:</p>
+    #     <p><a href="{{reset_link}}">Set or reset your password</a></p>
+    #     <p>This link expires in {{expires_in}}.</p>
+    #     <p>If you did not intend to set or change your password, you can safely ignore this email.</p>
+    #   text: |
+    #     Hello {{user_name}},
+    #
+    #     You can set or reset your account password using the link below:
+    #     {{reset_link}}
+    #
+    #     This link expires in {{expires_in}}.
+    #     If you did not intend to set or change your password, you can safely ignore this email.
+    #
+    # accountVerification:
+    #   subject: "Verify your account"
+    #   html: |
+    #     <p>Hello {{user_name}},</p>
+    #     <p>Please verify your account by clicking the link below:</p>
+    #     <p><a href="{{verification_link}}">Verify account</a></p>
+    #   text: |
+    #     Hello {{user_name}},
+    #
+    #     Please verify your account using the link below:
+    #     {{verification_link}}
+    #
+    # emailChange:
+    #   subject: "Your email address was changed"
+    #   html: |
+    #     <p>Hello {{user_name}},</p>
+    #     <p>Your email address was changed. If this wasn't you, please follow the instructions here: {{support_link}}</p>
+    #   text: |
+    #     Hello {{user_name}},
+    #
+    #     Your email address was changed. If this wasn't you, see: {{support_link}}
+    #
+    # accountDeregistration:
+    #   subject: "Account deregistration confirmation"
+    #   html: |
+    #     <p>Hello {{user_name}},</p>
+    #     <p>Your account deregistration was requested. If you did not request this, please contact support: {{support_link}}</p>
+    #   text: |
+    #     Hello {{user_name}},
+    #
+    #     Your account deregistration was requested. If you did not request this, contact: {{support_link}}
