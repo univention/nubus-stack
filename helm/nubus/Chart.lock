@@ -1,19 +1,19 @@
 dependencies:
 - name: nubus-common
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.28.0
+  version: 0.28.11
 - name: guardian
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.23.2
+  version: 0.23.9
 - name: license-import
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.7.3
+  version: 0.7.6
 - name: ldap-notifier
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.47.3
+  version: 0.47.5
 - name: ldap-server
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.47.3
+  version: 0.47.5
 - name: notifications-api
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.86.0
@@ -28,7 +28,7 @@ dependencies:
   version: 0.86.0
 - name: selfservice-consumer
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.19.20
+  version: 0.19.31
 - name: provisioning
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.62.4
@@ -37,36 +37,36 @@ dependencies:
   version: 0.62.4
 - name: keycloak
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.14.0
+  version: 0.15.0
 - name: keycloak-extensions
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.23.0
+  version: 0.23.1
 - name: keycloak-bootstrap
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.19.0
+  version: 0.19.10
 - name: stack-data-ums
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.99.11
+  version: 0.99.20
 - name: twofa-helpdesk
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.14.5
 - name: udm-rest-api
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.41.0
+  version: 0.41.4
 - name: umc-gateway
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.53.4
+  version: 0.53.5
 - name: umc-server
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.53.4
+  version: 0.53.5
 - name: scim-server
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.46.0
+  version: 0.46.2
 - name: postgresql
   repository: oci://docker.io/bitnamicharts
   version: 12.12.10
 - name: minio
   repository: oci://docker.io/bitnamicharts
   version: 14.7.0
-digest: sha256:bbc14294ab1a8b81aa812981c3c28ae221cd661d495d8cf3bc3bf2284052821d
-generated: "2025-11-04T14:13:51.237106709+01:00"
+digest: sha256:86c0a0d6d1414faf9f1741d2af68fb06ea834091638b2d88b5ebb13be674e94a
+generated: "2025-11-05T12:36:23.889246+01:00"
