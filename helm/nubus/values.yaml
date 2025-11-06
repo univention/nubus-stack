@@ -490,6 +490,8 @@ nubusUmcServer: &nubusUmcServer
         name: '{{ printf "%s-umc-server-memcached-credentials" .Release.Name }}'
         keyMapping:
           password: "memcached-password"
+    image:
+      repository: "bitnamilegacy/memcached"
   postgresql:
     authSession:
       connection:
