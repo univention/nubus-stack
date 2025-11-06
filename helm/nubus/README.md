@@ -623,6 +623,15 @@ false
 			<td>Enable bundled MinIO object storage. Disable when using an external S3-compatible object store. See demo-values.yaml and prod-values.yaml for examples.</td>
 		</tr>
 		<tr>
+			<td>minio.image.repository</td>
+			<td>string</td>
+			<td><pre lang="json">
+"bitnamilegacy/minio"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusDevelopment.resources.limits.cpu</td>
 			<td>int</td>
 			<td><pre lang="json">
@@ -3251,6 +3260,15 @@ false
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusUmcServer.memcached.image.repository</td>
+			<td>string</td>
+			<td><pre lang="json">
+"bitnamilegacy/memcached"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusUmcServer.memcached.nameOverride</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -3375,6 +3393,42 @@ false
 </pre>
 </td>
 			<td>Enable bundled PostgreSQL database. Disable when using an external database. See demo-values.yaml and prod-values.yaml for examples.</td>
+		</tr>
+		<tr>
+			<td>postgresql.image.repository</td>
+			<td>string</td>
+			<td><pre lang="json">
+"bitnamilegacy/postgresql"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>postgresql.provisioning.image.registry</td>
+			<td>string</td>
+			<td><pre lang="json">
+"docker.io"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>postgresql.provisioning.image.repository</td>
+			<td>string</td>
+			<td><pre lang="json">
+"bitnamilegacy/postgresql"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>postgresql.provisioning.image.tag</td>
+			<td>string</td>
+			<td><pre lang="json">
+"15.4.0-debian-11-r45"
+</pre>
+</td>
+			<td></td>
 		</tr>
 	</tbody>
 </table>

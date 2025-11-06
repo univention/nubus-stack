@@ -13,17 +13,6 @@ global:
     keycloak: "{{ .Values.reviewPrefix }}.id"
     scim: "{{ .Values.reviewPrefix }}.scim"
 
-postgresql:
-  image:
-    repository: bitnamilegacy/postgresql
-  provisioning:
-    image:
-      repository: bitnamilegacy/postgresql
-
-minio:
-  image:
-    repository: bitnamilegacy/minio
-
 ingress:
   certManager:
     enabled: false
@@ -158,9 +147,6 @@ nubusUdmRestApi:
     suspend: false
 
 nubusUmcServer:
-  memcached:
-    image:
-      repository: bitnamilegacy/memcached
   {{- if .Values.toggles.scaledSetup }}
   replicaCount: 2
   {{- end }}

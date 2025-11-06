@@ -171,11 +171,20 @@ postgresql:
   # -- Enable bundled PostgreSQL database. Disable when using an external database.
   # See demo-values.yaml and prod-values.yaml for examples.
   enabled: false
+  image:
+    repository: "bitnamilegacy/postgresql"
+  provisioning:
+    image:
+      registry: "docker.io"
+      repository: "bitnamilegacy/postgresql"
+      tag: "15.4.0-debian-11-r45"
 
 minio:
   # -- Enable bundled MinIO object storage. Disable when using an external S3-compatible object store.
   # See demo-values.yaml and prod-values.yaml for examples.
   enabled: false
+  image:
+    repository: "bitnamilegacy/minio"
 
 keycloak:
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds

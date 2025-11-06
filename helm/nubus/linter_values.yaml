@@ -43,10 +43,6 @@ postgresql:
   provisioning:
     enabled: true
     ttlSecondsAfterFinished: 30
-    image:
-      registry: "docker.io"
-      repository: "bitnamilegacy/postgresql"
-      tag: "15.4.0-debian-11-r45"
     containerSecurityContext:
       enabled: true
       seLinuxOptions: {}
