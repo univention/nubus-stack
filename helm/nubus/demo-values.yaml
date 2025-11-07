@@ -24,8 +24,6 @@ nubusDevelopment:
 # Enable bundled PostgreSQL database
 postgresql:
   enabled: true
-  image:
-    repository: bitnamilegacy/postgresql
   resources: *nubusDevelopmentResources
   auth:
     existingSecret: "{{ .Release.Name }}-postgresql-credentials"
@@ -43,10 +41,6 @@ postgresql:
   provisioning:
     enabled: true
     ttlSecondsAfterFinished: 30
-    image:
-      registry: "docker.io"
-      repository: "bitnamilegacy/postgresql"
-      tag: "15.4.0-debian-11-r45"
     containerSecurityContext:
       enabled: true
       seLinuxOptions: {}
@@ -67,8 +61,6 @@ postgresql:
 # Enable bundled MinIO object storage
 minio:
   enabled: true
-  image:
-    repository: bitnamilegacy/minio
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   resources: *nubusDevelopmentResources
   networkPolicy:
