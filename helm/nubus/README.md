@@ -23,6 +23,41 @@ To install the chart with the release name `nubus`:
 helm upgrade --install nubus oci://artifacts.software-univention.de/nubus/charts/nubus
 ```
 
+## Keycloak performance tuning
+
+You can tune Keycloak performance by passing environment variables to the Keycloak subchart using its `extraEnvVars` interface.
+
+```yaml
+keycloak:
+  extraEnvVars:
+    # Database pool sizing (Quarkus/Hibernate)
+    - name: KC_DB_POOL_MIN_SIZE
+      value: "10"
+    - name: KC_DB_POOL_MAX_SIZE
+      value: "50"
+    - name: KC_DB_POOL_INITIAL_SIZE
+      value: "10"
+    - name: QUARKUS_DATASOURCE_JDBC_MAX_LIFETIME
+      value: "1800000ms"   # 30 minutes
+    - name: QUARKUS_DATASOURCE_JDBC_IDLE_REMOVAL_INTERVAL
+      value: "60000ms"     # 1 minute
+
+    # Optional threading/HTTP (set if you need to override defaults)
+    # - name: QUARKUS_HTTP_IO_THREADS
+    #   value: "8"
+    # - name: QUARKUS_THREAD_POOL_MAX_THREADS
+    #   value: "48"
+
+    # JVM flags appended after chart defaults
+    - name: JAVA_OPTS_APPEND
+      value: "-XX:+UseG1GC -XX:MaxRAMPercentage=75"
+```
+
+Notes:
+- The `extraEnvVars` key belongs to the `keycloak` subchart (version 0.14.0) and is used here from the umbrella chart values.
+- Adjust numbers to your deployment size; start conservative and validate under load.
+
+
 ## Uninstalling
 
 To uninstall the chart with the release name `nubus`:
