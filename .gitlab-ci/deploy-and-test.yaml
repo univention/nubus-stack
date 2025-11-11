@@ -31,7 +31,7 @@ stages:
             export DEPLOY_SUBDOMAIN="${DEPLOY_SUBDOMAIN:0:$((max_length - suffix_length - 3))}zzz${suffix}"
         fi
 
-pipline-configuration:
+pipeline-configuration:
   stage: prepare
   extends: .check-variables
   script:
@@ -44,6 +44,39 @@ pipline-configuration:
   variables:
     GIT_STRATEGY: none
 
+re-create-namespace:
+  stage: "prepare"
+  needs:
+    - pipeline-configuration
+  image: "ghcr.io/helmfile/helmfile:v1.1.4\
+          @sha256:a49a91071567f3b3e5ee45e08bba25fe96b90d12c194ac10178c073453cd00f1"
+  script:
+    - echo "Cluster information:"
+    - kubectl cluster-info
+
+    - echo "Ensure cleanup of namespace"
+    - >
+      kubectl delete namespace "${DEPLOY_NAMESPACE}"
+      --wait
+      --timeout=600s
+      --ignore-not-found
+
+    - echo "Creating namespace ${DEPLOY_NAMESPACE}"
+    - |
+      kubectl create -f - <<EOT
+        apiVersion: v1
+        kind: Namespace
+        metadata:
+          name: ${DEPLOY_NAMESPACE}
+          annotations:
+            kubernetes.io/description: Used and managed by the CI system of nubus-helm via Gitlab
+            nubus.univention.dev/owner: Nautilus Team
+            nubus.univention.dev/repository: ${CI_PROJECT_URL}
+            nubus.univention.dev/pipeline: ${CI_PIPELINE_URL}
+      EOT
+  variables:
+    GIT_STRATEGY: none
+
 deploy-gaia:
   stage: "deploy"
   extends: .check-variables
@@ -53,19 +86,13 @@ deploy-gaia:
     # Prepare
     - export CHART_VERSION=${RELEASE_VERSION}
     - export REVIEW_PREFIX=${DEPLOY_SUBDOMAIN}
-    # Ensure cleanup
-    - >
-      kubectl delete namespace "${DEPLOY_NAMESPACE}"
-      --wait
-      --timeout=600s
-      --ignore-not-found
     # Deploy via ci/helmfile
     - pushd ci
     # TODO: There is an issue around the call to "helm diff". Using "apply"
     # would be preferred since it gives a nice diff of the changes.
     #
     # See: https://github.com/databus23/helm-diff/issues/460
-    - helmfile --debug -n "${DEPLOY_NAMESPACE}" --state-values-set toggles.externalDependencies=${EXTERNAL_DEPENDENCIES:-false} sync
+    - helmfile --debug -n "${DEPLOY_NAMESPACE}" --state-values-set toggles.externalDependencies=${EXTERNAL_DEPENDENCIES:-false} --state-values-set toggles.customSecretValues=${PROVIDED_SECRET_VALUES:-false} sync
     - popd
   environment:
     name: ${CI_COMMIT_REF_SLUG}/nubus-with-extensions${ENVIRONMENT_SUFFIX}
@@ -102,6 +129,8 @@ configure-tests:
       echo "KC_ADMIN_USERNAME=$(echo $PYTEST_ADDOPTS | sed -n 's/.*--kc-admin-username=\([^ ]*\).*/\1/p')" >> deploy.env
       echo "KC_ADMIN_PASSWORD=$(echo $PYTEST_ADDOPTS | sed -n 's/.*--kc-admin-password=\([^ ]*\).*/\1/p')" >> deploy.env
       echo "UDM_ADMIN_PASSWORD=$(echo $PYTEST_ADDOPTS | sed -n 's/.*--admin-password=\([^ ]*\).*/\1/p')" >> deploy.env
+      echo "LDAP_CREDENTIALS_SECRET_NAME=$LDAP_CREDENTIALS_SECRET_NAME" >> deploy.env
+      echo "LDAP_CREDENTIALS_SECRET_KEY=$LDAP_CREDENTIALS_SECRET_KEY" >> deploy.env
   artifacts:
     reports:
       dotenv: deploy.env

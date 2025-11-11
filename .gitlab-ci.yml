@@ -4,7 +4,7 @@
 ---
 include:
   - project: "univention/dev/nubus-for-k8s/common-ci"
-    ref: "v1.44.6"
+    ref: "v1.48.0"
     file:
       - "defaults/nubus-workflow.yaml"
       - "defaults/stages.yaml"
@@ -37,11 +37,13 @@ variables:
     description: |
       Allows to specify a custom tag to use for the e2e-tests testrunner image.
       Intended to help with testing a branch of the e2e-tests repository.
+    # TODO: Change this back to "latest" once the changes have been merged
     value: "latest"
   TESTRUNNER_CONFIGURATION_BRANCH:
     description: |
       Allows to specify a custom branch name to use for the testrunner configuration.
       This branch is used to run the script "discover-env-from-cluster.sh".
+    # TODO: Change this back to "main" once the changes have been merged
     value: "main"
 
 renovate:
@@ -129,6 +131,16 @@ deploy-and-test-external-dependencies:
     DEPLOY_NAMESPACE: "ci-${CI_COMMIT_REF_SLUG}-ext"
     DEPLOY_SUBDOMAIN: "${CI_COMMIT_REF_SLUG}-ext"
     ENVIRONMENT_SUFFIX: "-ext"
+  rules:
+    - when: manual
+
+deploy-and-test-provided-secret-values:
+  extends: .base-deploy-and-test
+  variables:
+    PROVIDED_SECRET_VALUES: true
+    DEPLOY_NAMESPACE: "ci-${CI_COMMIT_REF_SLUG}-val"
+    DEPLOY_SUBDOMAIN: "${CI_COMMIT_REF_SLUG}-val"
+    ENVIRONMENT_SUFFIX: "-val"
   rules:
     - when: manual
 

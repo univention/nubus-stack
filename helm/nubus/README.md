@@ -35,27 +35,27 @@ helm uninstall nubus
 
 | Repository | Name | Version |
 |------------|------|---------|
-| oci://artifacts.software-univention.de/nubus/charts | nubusGuardian(guardian) | 0.22.5 |
-| oci://artifacts.software-univention.de/nubus/charts | keycloak(keycloak) | 0.14.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakBootstrap(keycloak-bootstrap) | 0.17.5 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakExtensions(keycloak-extensions) | 0.21.1 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusLdapNotifier(ldap-notifier) | 0.47.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusLdapServer(ldap-server) | 0.47.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusLicenseImport(license-import) | 0.6.5 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusNotificationsApi(notifications-api) | 0.80.2 |
-| oci://artifacts.software-univention.de/nubus/charts | nubus-common | 0.24.2 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalConsumer(portal-consumer) | 0.80.2 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalFrontend(portal-frontend) | 0.80.2 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.80.2 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 0.60.10 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusScimServer(scim-server) | 0.42.3 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceConsumer(selfservice-consumer) | 0.19.4 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.99.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusTwofaHelpdesk(twofa-helpdesk) | 0.14.1 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 0.60.10 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUdmRestApi(udm-rest-api) | 0.40.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.51.2 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUmcServer(umc-server) | 0.51.2 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusGuardian(guardian) | 0.23.9 |
+| oci://artifacts.software-univention.de/nubus/charts | keycloak(keycloak) | 0.15.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakBootstrap(keycloak-bootstrap) | 0.19.10 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakExtensions(keycloak-extensions) | 0.23.1 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusLdapNotifier(ldap-notifier) | 0.47.5 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusLdapServer(ldap-server) | 0.47.5 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusLicenseImport(license-import) | 0.7.6 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusNotificationsApi(notifications-api) | 0.86.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubus-common | 0.28.11 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalConsumer(portal-consumer) | 0.86.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalFrontend(portal-frontend) | 0.86.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.86.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 0.63.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusScimServer(scim-server) | 0.46.2 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceConsumer(selfservice-consumer) | 0.19.31 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.99.20 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusTwofaHelpdesk(twofa-helpdesk) | 0.14.5 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 0.63.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUdmRestApi(udm-rest-api) | 0.41.4 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.53.5 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUmcServer(umc-server) | 0.53.5 |
 | oci://docker.io/bitnamicharts | minio | 14.7.0 |
 | oci://docker.io/bitnamicharts | postgresql | ^12.x.x |
 
@@ -194,6 +194,15 @@ false
 			<td></td>
 		</tr>
 		<tr>
+			<td>global.ldap.auth.admin.existingSecret.keyMapping.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+"password"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>global.ldap.auth.admin.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -219,15 +228,6 @@ false
 </pre>
 </td>
 			<td></td>
-		</tr>
-		<tr>
-			<td>global.ldap.domainName</td>
-			<td>string</td>
-			<td><pre lang="json">
-""
-</pre>
-</td>
-			<td>Domain of the ldap server</td>
 		</tr>
 		<tr>
 			<td>global.memcached.auth.username</td>
@@ -311,7 +311,7 @@ true
       "imagePullPolicy": "IfNotPresent",
       "registry": "artifacts.software-univention.de",
       "repository": "nubus/images/portal-extension",
-      "tag": "0.80.2@sha256:cde5547ef1c2d5da55fb41bdae7248ba8514ab4f200822709ca9a99f483a1cc8"
+      "tag": "0.86.0@sha256:1799413fe8cbc6d9cb97656be95a99786a382a3558a7720b7fe62a38c84bdd22"
     },
     "name": "portal"
   },
@@ -320,7 +320,7 @@ true
       "imagePullPolicy": "IfNotPresent",
       "registry": "artifacts.software-univention.de",
       "repository": "nubus/images/twofa-helpdesk-extensions",
-      "tag": "0.14.1@sha256:3d07949f50f65f1294bb349c8196c475b5b9cd34e6ed90fe24474e88e94f5999"
+      "tag": "0.14.5@sha256:1d6c697d269254d52b89f01eaa2c589657624861dffe42b3dcb54a587e43e01b"
     },
     "name": "2fa-helpdesk"
   }
@@ -365,7 +365,7 @@ true
   "host": "",
   "ingressClassName": "",
   "minio": {
-    "enabled": true
+    "enabled": false
   },
   "tls": {
     "enabled": true,
@@ -469,7 +469,7 @@ true
 			<td>object</td>
 			<td><pre lang="json">
 {
-  "enabled": true
+  "enabled": false
 }
 </pre>
 </td>
@@ -533,19 +533,10 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>keycloak.keycloak.auth.existingSecret.keyMapping.adminPassword</td>
-			<td>string</td>
-			<td><pre lang="json">
-"admin_password"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>keycloak.keycloak.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{- printf \"%s-keycloak-credentials\" .Release.Name -}}"
+null
 </pre>
 </td>
 			<td></td>
@@ -564,42 +555,6 @@ null
 			<td>string</td>
 			<td><pre lang="json">
 "kcadmin"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>keycloak.postgresql.auth.database</td>
-			<td>string</td>
-			<td><pre lang="json">
-"keycloak"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>keycloak.postgresql.auth.existingSecret.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{- printf \"%s-keycloak-postgresql-credentials\" .Release.Name -}}"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>keycloak.postgresql.auth.password</td>
-			<td>string</td>
-			<td><pre lang="json">
-null
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>keycloak.postgresql.auth.username</td>
-			<td>string</td>
-			<td><pre lang="json">
-"keycloak_user"
 </pre>
 </td>
 			<td></td>
@@ -659,415 +614,19 @@ null
 			<td></td>
 		</tr>
 		<tr>
-			<td>minio.auth.existingSecret</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-minio-credentials"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>minio.auth.rootUser</td>
-			<td>string</td>
-			<td><pre lang="json">
-"admin"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>minio.enabled</td>
 			<td>bool</td>
 			<td><pre lang="json">
-true
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>minio.networkPolicy.enabled</td>
-			<td>bool</td>
-			<td><pre lang="json">
 false
 </pre>
 </td>
-			<td></td>
+			<td>Enable bundled MinIO object storage. Disable when using an external S3-compatible object store. See demo-values.yaml and prod-values.yaml for examples.</td>
 		</tr>
 		<tr>
-			<td>minio.networkPolicy.resources.limits.cpu</td>
-			<td>int</td>
-			<td><pre lang="json">
-288
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>minio.networkPolicy.resources.limits.memory</td>
+			<td>minio.image.repository</td>
 			<td>string</td>
 			<td><pre lang="json">
-"1Gi"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>minio.networkPolicy.resources.requests.cpu</td>
-			<td>string</td>
-			<td><pre lang="json">
-"10m"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>minio.networkPolicy.resources.requests.memory</td>
-			<td>string</td>
-			<td><pre lang="json">
-"16Mi"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>minio.provisioning.buckets[0].name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"nubus"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>minio.provisioning.buckets[0].versioning</td>
-			<td>bool</td>
-			<td><pre lang="json">
-false
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>minio.provisioning.buckets[0].withLock</td>
-			<td>bool</td>
-			<td><pre lang="json">
-false
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>minio.provisioning.cleanupAfterFinished.enabled</td>
-			<td>bool</td>
-			<td><pre lang="json">
-true
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>minio.provisioning.cleanupAfterFinished.resources.limits.cpu</td>
-			<td>int</td>
-			<td><pre lang="json">
-288
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>minio.provisioning.cleanupAfterFinished.resources.limits.memory</td>
-			<td>string</td>
-			<td><pre lang="json">
-"1Gi"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>minio.provisioning.cleanupAfterFinished.resources.requests.cpu</td>
-			<td>string</td>
-			<td><pre lang="json">
-"10m"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>minio.provisioning.cleanupAfterFinished.resources.requests.memory</td>
-			<td>string</td>
-			<td><pre lang="json">
-"16Mi"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>minio.provisioning.cleanupAfterFinished.seconds</td>
-			<td>int</td>
-			<td><pre lang="json">
-900
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>minio.provisioning.enabled</td>
-			<td>bool</td>
-			<td><pre lang="json">
-true
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>minio.provisioning.extraCommands[0]</td>
-			<td>string</td>
-			<td><pre lang="json">
-"mc anonymous set download provisioning/nubus/portal-assets"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>minio.provisioning.policies[0].name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"nubus-readwrite"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>minio.provisioning.policies[0].statements[0].actions[0]</td>
-			<td>string</td>
-			<td><pre lang="json">
-"s3:*"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>minio.provisioning.policies[0].statements[0].effect</td>
-			<td>string</td>
-			<td><pre lang="json">
-"Allow"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>minio.provisioning.policies[0].statements[0].resources[0]</td>
-			<td>string</td>
-			<td><pre lang="json">
-"arn:aws:s3:::nubus"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>minio.provisioning.policies[0].statements[0].resources[1]</td>
-			<td>string</td>
-			<td><pre lang="json">
-"arn:aws:s3:::nubus/*"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>minio.provisioning.policies[1].name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"nubus-read"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>minio.provisioning.policies[1].statements[0].actions[0]</td>
-			<td>string</td>
-			<td><pre lang="json">
-"s3:GetBucketLocation"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>minio.provisioning.policies[1].statements[0].actions[1]</td>
-			<td>string</td>
-			<td><pre lang="json">
-"s3:GetObject"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>minio.provisioning.policies[1].statements[0].effect</td>
-			<td>string</td>
-			<td><pre lang="json">
-"Allow"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>minio.provisioning.policies[1].statements[0].resources[0]</td>
-			<td>string</td>
-			<td><pre lang="json">
-"arn:aws:s3:::nubus"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>minio.provisioning.policies[1].statements[0].resources[1]</td>
-			<td>string</td>
-			<td><pre lang="json">
-"arn:aws:s3:::nubus/*"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>minio.provisioning.resources.limits.cpu</td>
-			<td>int</td>
-			<td><pre lang="json">
-288
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>minio.provisioning.resources.limits.memory</td>
-			<td>string</td>
-			<td><pre lang="json">
-"1Gi"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>minio.provisioning.resources.requests.cpu</td>
-			<td>string</td>
-			<td><pre lang="json">
-"10m"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>minio.provisioning.resources.requests.memory</td>
-			<td>string</td>
-			<td><pre lang="json">
-"16Mi"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>minio.provisioning.usersExistingSecrets[0]</td>
-			<td>string</td>
-			<td><pre lang="json">
-"nubus-minio-provisioning"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>minio.resources.limits.cpu</td>
-			<td>int</td>
-			<td><pre lang="json">
-288
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>minio.resources.limits.memory</td>
-			<td>string</td>
-			<td><pre lang="json">
-"1Gi"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>minio.resources.requests.cpu</td>
-			<td>string</td>
-			<td><pre lang="json">
-"10m"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>minio.resources.requests.memory</td>
-			<td>string</td>
-			<td><pre lang="json">
-"16Mi"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>minio.terminationGracePeriodSeconds</td>
-			<td>int</td>
-			<td><pre lang="json">
-5
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>minio.tls.enabled</td>
-			<td>bool</td>
-			<td><pre lang="json">
-false
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>minio.tls.existingSecret</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-minio-tls"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>minio.tls.resources.limits.cpu</td>
-			<td>int</td>
-			<td><pre lang="json">
-288
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>minio.tls.resources.limits.memory</td>
-			<td>string</td>
-			<td><pre lang="json">
-"1Gi"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>minio.tls.resources.requests.cpu</td>
-			<td>string</td>
-			<td><pre lang="json">
-"10m"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>minio.tls.resources.requests.memory</td>
-			<td>string</td>
-			<td><pre lang="json">
-"16Mi"
+"bitnamilegacy/minio"
 </pre>
 </td>
 			<td></td>
@@ -1118,6 +677,15 @@ false
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusGuardian.authorizationApi.udm.auth.existingSecret.keyMapping.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ tpl .Values.global.ldap.auth.admin.existingSecret.keyMapping.password . }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusGuardian.authorizationApi.udm.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -1154,52 +722,7 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusGuardian.managementApi.oauth.auth.existingSecret.keyMapping.clientSecret</td>
-			<td>string</td>
-			<td><pre lang="json">
-"oauthAdapterM2mSecret"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusGuardian.managementApi.oauth.auth.existingSecret.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{- printf \"%s-guardian-keycloak-client-secret\" .Release.Name -}}"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusGuardian.nameOverride</td>
-			<td>string</td>
-			<td><pre lang="json">
-"guardian"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusGuardian.postgresql.auth.database</td>
-			<td>string</td>
-			<td><pre lang="json">
-"guardian"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusGuardian.postgresql.auth.existingSecret.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{- printf \"%s-guardian-management-api-postgresql-credentials\" .Release.Name -}}"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusGuardian.postgresql.auth.username</td>
 			<td>string</td>
 			<td><pre lang="json">
 "guardian"
@@ -1217,10 +740,10 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusGuardian.provisioning.keycloak.auth.existingSecret.keyMapping.password</td>
+			<td>nubusGuardian.provisioning.keycloak.auth.existingSecret.keyMapping.adminPassword</td>
 			<td>string</td>
 			<td><pre lang="json">
-"admin_password"
+"adminPassword"
 </pre>
 </td>
 			<td></td>
@@ -1319,7 +842,7 @@ true
 			<td>nubusKeycloakBootstrap.keycloak.auth.existingSecret.keyMapping.adminPassword</td>
 			<td>string</td>
 			<td><pre lang="json">
-"admin_password"
+"adminPassword"
 </pre>
 </td>
 			<td></td>
@@ -1355,7 +878,7 @@ true
 			<td>nubusKeycloakBootstrap.ldap.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{- printf \"%s-keycloak-bootstrap-ldap-credentials\" .Release.Name -}}"
+"{{- printf \"%s-stack-data-ums-readonly-user\" .Release.Name -}}"
 </pre>
 </td>
 			<td></td>
@@ -1454,7 +977,7 @@ false
 			<td>nubusKeycloakExtensions.keycloak.auth.existingSecret.keyMapping.adminPassword</td>
 			<td>string</td>
 			<td><pre lang="json">
-"admin_password"
+"adminPassword"
 </pre>
 </td>
 			<td></td>
@@ -1829,6 +1352,15 @@ false
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusLicenseImport.ldap.auth.existingSecret.keyMapping.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ tpl .Values.global.ldap.auth.admin.existingSecret.keyMapping.password . }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusLicenseImport.ldap.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -1878,33 +1410,6 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 "notifications-api"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusNotificationsApi.postgresql.auth.database</td>
-			<td>string</td>
-			<td><pre lang="json">
-"notificationsapi"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusNotificationsApi.postgresql.auth.existingSecret.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-notifications-api-postgresql-credentials"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusNotificationsApi.postgresql.auth.username</td>
-			<td>string</td>
-			<td><pre lang="json">
-"notificationsapi"
 </pre>
 </td>
 			<td></td>
@@ -1964,6 +1469,15 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusPortalConsumer.ldap.auth.existingSecret.keyMapping.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ tpl .Values.global.ldap.auth.admin.existingSecret.keyMapping.password . }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusPortalConsumer.ldap.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -1986,51 +1500,6 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 "portal-consumer"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusPortalConsumer.objectStorage.auth.existingSecret.keyMapping.access_key_id</td>
-			<td>string</td>
-			<td><pre lang="json">
-"accessKey"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusPortalConsumer.objectStorage.auth.existingSecret.keyMapping.secret_access_key</td>
-			<td>string</td>
-			<td><pre lang="json">
-"secretKey"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusPortalConsumer.objectStorage.auth.existingSecret.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-portal-consumer-minio-credentials"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusPortalConsumer.objectStorage.bucketName</td>
-			<td>string</td>
-			<td><pre lang="json">
-"nubus"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusPortalConsumer.objectStorage.endpoint</td>
-			<td>string</td>
-			<td><pre lang="json">
-"http://{{ .Release.Name }}-minio:9000"
 </pre>
 </td>
 			<td></td>
@@ -2085,6 +1554,15 @@ true
 			<td>int</td>
 			<td><pre lang="json">
 5
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusPortalConsumer.udm.auth.existingSecret.keyMapping.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ tpl .Values.global.ldap.auth.admin.existingSecret.keyMapping.password . }}"
 </pre>
 </td>
 			<td></td>
@@ -2198,51 +1676,6 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusPortalServer.objectStorage.auth.existingSecret.keyMapping.access_key_id</td>
-			<td>string</td>
-			<td><pre lang="json">
-"accessKey"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusPortalServer.objectStorage.auth.existingSecret.keyMapping.secret_access_key</td>
-			<td>string</td>
-			<td><pre lang="json">
-"secretKey"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusPortalServer.objectStorage.auth.existingSecret.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-portal-server-minio-credentials"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusPortalServer.objectStorage.bucketName</td>
-			<td>string</td>
-			<td><pre lang="json">
-"nubus"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusPortalServer.objectStorage.endpoint</td>
-			<td>string</td>
-			<td><pre lang="json">
-"http://{{ .Release.Name }}-minio:9000"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusPortalServer.resources.limits.cpu</td>
 			<td>int</td>
 			<td><pre lang="json">
@@ -2297,42 +1730,6 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusProvisioning.api.nats.auth.existingSecret.keyMapping.password</td>
-			<td>string</td>
-			<td><pre lang="json">
-"NATS_PASSWORD"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.api.nats.auth.existingSecret.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-provisioning-api-credentials"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.dispatcher.nats.auth.existingSecret.keyMapping.password</td>
-			<td>string</td>
-			<td><pre lang="json">
-"NATS_PASSWORD"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.dispatcher.nats.auth.existingSecret.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-provisioning-dispatcher-credentials"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusProvisioning.enabled</td>
 			<td>bool</td>
 			<td><pre lang="json">
@@ -2369,10 +1766,28 @@ null
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusProvisioning.nats.config.createUsers.udmListener.password</td>
+			<td>nubusProvisioning.nats.config.createUsers.udmListener.auth.existingSecret.keyMapping.password</td>
 			<td>string</td>
 			<td><pre lang="json">
-"$NATS_UDM_LISTENER_PASSWORD"
+null
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusProvisioning.nats.config.createUsers.udmListener.auth.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Release.Name }}-provisioning-udm-listener-nats"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusProvisioning.nats.config.createUsers.udmListener.auth.username</td>
+			<td>string</td>
+			<td><pre lang="json">
+"udmlistener"
 </pre>
 </td>
 			<td></td>
@@ -2391,177 +1806,6 @@ null
 			<td>string</td>
 			<td><pre lang="json">
 "\u003e"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.nats.config.createUsers.udmListener.user</td>
-			<td>string</td>
-			<td><pre lang="json">
-"udmlistener"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.nats.extraEnvVars[0].name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"NATS_UDM_LISTENER_PASSWORD"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.nats.extraEnvVars[0].valueFrom.secretKeyRef.key</td>
-			<td>string</td>
-			<td><pre lang="json">
-"NATS_PASSWORD"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.nats.extraEnvVars[0].valueFrom.secretKeyRef.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-provisioning-udm-listener-credentials"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.nats.extraEnvVars[1].name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"NATS_PASSWORD"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.nats.extraEnvVars[1].valueFrom.secretKeyRef.key</td>
-			<td>string</td>
-			<td><pre lang="json">
-"admin_password"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.nats.extraEnvVars[1].valueFrom.secretKeyRef.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-provisioning-nats-credentials"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.nats.extraEnvVars[2].name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"NATS_PROVISIONING_API_PASSWORD"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.nats.extraEnvVars[2].valueFrom.secretKeyRef.key</td>
-			<td>string</td>
-			<td><pre lang="json">
-"NATS_PASSWORD"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.nats.extraEnvVars[2].valueFrom.secretKeyRef.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-provisioning-api-credentials"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.nats.extraEnvVars[3].name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"NATS_DISPATCHER_PASSWORD"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.nats.extraEnvVars[3].valueFrom.secretKeyRef.key</td>
-			<td>string</td>
-			<td><pre lang="json">
-"NATS_PASSWORD"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.nats.extraEnvVars[3].valueFrom.secretKeyRef.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-provisioning-dispatcher-credentials"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.nats.extraEnvVars[4].name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"NATS_UDM_TRANSFORMER_PASSWORD"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.nats.extraEnvVars[4].valueFrom.secretKeyRef.key</td>
-			<td>string</td>
-			<td><pre lang="json">
-"NATS_PASSWORD"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.nats.extraEnvVars[4].valueFrom.secretKeyRef.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-provisioning-udm-transformer-credentials"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.nats.extraEnvVars[5].name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"NATS_PREFILL_PASSWORD"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.nats.extraEnvVars[5].valueFrom.secretKeyRef.key</td>
-			<td>string</td>
-			<td><pre lang="json">
-"NATS_PASSWORD"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.nats.extraEnvVars[5].valueFrom.secretKeyRef.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-provisioning-prefill-credentials"
 </pre>
 </td>
 			<td></td>
@@ -2684,19 +1928,10 @@ null
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusProvisioning.prefill.nats.auth.existingSecret.keyMapping.password</td>
+			<td>nubusProvisioning.prefill.udm.auth.existingSecret.keyMapping.password</td>
 			<td>string</td>
 			<td><pre lang="json">
-"NATS_PASSWORD"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.prefill.nats.auth.existingSecret.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-provisioning-prefill-credentials"
+"{{ tpl .Values.global.ldap.auth.admin.existingSecret.keyMapping.password . }}"
 </pre>
 </td>
 			<td></td>
@@ -2711,15 +1946,6 @@ null
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusProvisioning.registerConsumers.createUsers.portalConsumer.existingSecret.keyMapping.registration</td>
-			<td>string</td>
-			<td><pre lang="json">
-null
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusProvisioning.registerConsumers.createUsers.portalConsumer.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -2729,19 +1955,19 @@ null
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusProvisioning.registerConsumers.createUsers.selfserviceConsumer.existingSecret.keyMapping.registration</td>
+			<td>nubusProvisioning.registerConsumers.createUsers.selfserviceConsumer.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-null
+"{{ .Release.Name }}-selfservice-listener-provisioning-api"
 </pre>
 </td>
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusProvisioning.registerConsumers.createUsers.selfserviceConsumer.existingSecret.name</td>
+			<td>nubusProvisioning.registerConsumers.udm.auth.existingSecret.keyMapping.password</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ .Release.Name }}-selfservice-listener-provisioning-api"
+"{{ tpl .Values.global.ldap.auth.admin.existingSecret.keyMapping.password . }}"
 </pre>
 </td>
 			<td></td>
@@ -2873,6 +2099,15 @@ null
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusProvisioning.udmTransformer.ldap.auth.existingSecret.keyMapping.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ tpl .Values.global.ldap.auth.admin.existingSecret.keyMapping.password . }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusProvisioning.udmTransformer.ldap.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -2886,24 +2121,6 @@ null
 			<td>string</td>
 			<td><pre lang="json">
 "{{ .Release.Name }}-ldap-server-primary"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.udmTransformer.nats.auth.existingSecret.keyMapping.password</td>
-			<td>string</td>
-			<td><pre lang="json">
-"NATS_PASSWORD"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.udmTransformer.nats.auth.existingSecret.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-provisioning-udm-transformer-credentials"
 </pre>
 </td>
 			<td></td>
@@ -3134,6 +2351,15 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusScimServer.udm.auth.existingSecret.keyMapping.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ tpl .Values.global.ldap.auth.admin.existingSecret.keyMapping.password . }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusScimServer.udm.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -3287,24 +2513,6 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.postgresql.auth.database</td>
-			<td>string</td>
-			<td><pre lang="json">
-"selfservice"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusStackDataUms.nubusUmcServer.postgresql.auth.username</td>
-			<td>string</td>
-			<td><pre lang="json">
-"selfservice"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusStackDataUms.nubusUmcServer.postgresql.connection.host</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -3395,15 +2603,6 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusStackDataUms.templateContext.readonlyUserPassword</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ include \"nubusTemplates.credentials.ldap.users.readonly.password\" . }}"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusStackDataUms.templateContext.twofaAdminHelpdeskActivated</td>
 			<td>bool</td>
 			<td><pre lang="json">
@@ -3444,6 +2643,15 @@ false
 			<td>int</td>
 			<td><pre lang="json">
 5
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusStackDataUms.udm.auth.existingSecret.keyMapping.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ tpl .Values.global.ldap.auth.admin.existingSecret.keyMapping.password . }}"
 </pre>
 </td>
 			<td></td>
@@ -3506,7 +2714,7 @@ true
 			<td>nubusTwofaHelpdesk.keycloak.auth.existingSecret.keyMapping.adminPassword</td>
 			<td>string</td>
 			<td><pre lang="json">
-"admin_password"
+"adminPassword"
 </pre>
 </td>
 			<td></td>
@@ -3665,6 +2873,15 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusUdmListener.ldap.auth.existingSecret.keyMapping.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ tpl .Values.global.ldap.auth.admin.existingSecret.keyMapping.password . }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusUdmListener.ldap.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -3678,24 +2895,6 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 "provisioning-udm-listener"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUdmListener.nats.auth.existingSecret.keyMapping.password</td>
-			<td>string</td>
-			<td><pre lang="json">
-"NATS_PASSWORD"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUdmListener.nats.auth.existingSecret.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-provisioning-udm-listener-credentials"
 </pre>
 </td>
 			<td></td>
@@ -3786,6 +2985,15 @@ false
 			<td>string</td>
 			<td><pre lang="json">
 "{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusUdmRestApi.ldap.auth.existingSecret.keyMapping.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ tpl .Values.global.ldap.auth.admin.existingSecret.keyMapping.password . }}"
 </pre>
 </td>
 			<td></td>
@@ -3998,6 +3206,15 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusUmcServer.ldap.auth.existingSecret.keyMapping.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ tpl .Values.global.ldap.auth.admin.existingSecret.keyMapping.password . }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusUmcServer.ldap.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -4043,6 +3260,15 @@ false
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusUmcServer.memcached.image.repository</td>
+			<td>string</td>
+			<td><pre lang="json">
+"bitnamilegacy/memcached"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusUmcServer.memcached.nameOverride</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -4061,33 +3287,6 @@ false
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusUmcServer.postgresql.authSession.auth.database</td>
-			<td>string</td>
-			<td><pre lang="json">
-"umcsession"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUmcServer.postgresql.authSession.auth.existingSecret.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ printf \"%s-umc-server-session-postgresql-credentials\" .Release.Name }}"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUmcServer.postgresql.authSession.auth.username</td>
-			<td>string</td>
-			<td><pre lang="json">
-"umcsession"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusUmcServer.postgresql.authSession.connection.host</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -4101,33 +3300,6 @@ false
 			<td>string</td>
 			<td><pre lang="json">
 "{{ include \"nubusTemplates.connections.postgres.port\" . }}"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUmcServer.postgresql.selfservice.auth.database</td>
-			<td>string</td>
-			<td><pre lang="json">
-"selfservice"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUmcServer.postgresql.selfservice.auth.existingSecret.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ printf \"%s-umc-server-postgresql-credentials\" .Release.Name }}"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUmcServer.postgresql.selfservice.auth.username</td>
-			<td>string</td>
-			<td><pre lang="json">
-"selfservice"
 </pre>
 </td>
 			<td></td>
@@ -4214,199 +3386,19 @@ false
 			<td></td>
 		</tr>
 		<tr>
-			<td>postgresql.auth.existingSecret</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-postgresql-credentials"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>postgresql.auth.secretKeys.adminPasswordKey</td>
-			<td>string</td>
-			<td><pre lang="json">
-"admin_password"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>postgresql.auth.secretKeys.replicationPasswordKey</td>
-			<td>string</td>
-			<td><pre lang="json">
-"replication_password"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>postgresql.auth.secretKeys.userPasswordKey</td>
-			<td>string</td>
-			<td><pre lang="json">
-"user_password"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>postgresql.auth.username</td>
-			<td>string</td>
-			<td><pre lang="json">
-"nubus"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>postgresql.enabled</td>
 			<td>bool</td>
 			<td><pre lang="json">
-true
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>postgresql.primary.resources.limits.cpu</td>
-			<td>int</td>
-			<td><pre lang="json">
-288
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>postgresql.primary.resources.limits.memory</td>
-			<td>string</td>
-			<td><pre lang="json">
-"1Gi"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>postgresql.primary.resources.requests.cpu</td>
-			<td>string</td>
-			<td><pre lang="json">
-"10m"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>postgresql.primary.resources.requests.memory</td>
-			<td>string</td>
-			<td><pre lang="json">
-"16Mi"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>postgresql.primary.terminationGracePeriodSeconds</td>
-			<td>int</td>
-			<td><pre lang="json">
-5
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>postgresql.provisioning.containerSecurityContext.allowPrivilegeEscalation</td>
-			<td>bool</td>
-			<td><pre lang="json">
 false
 </pre>
 </td>
-			<td></td>
+			<td>Enable bundled PostgreSQL database. Disable when using an external database. See demo-values.yaml and prod-values.yaml for examples.</td>
 		</tr>
 		<tr>
-			<td>postgresql.provisioning.containerSecurityContext.capabilities.drop[0]</td>
+			<td>postgresql.image.repository</td>
 			<td>string</td>
 			<td><pre lang="json">
-"ALL"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>postgresql.provisioning.containerSecurityContext.enabled</td>
-			<td>bool</td>
-			<td><pre lang="json">
-true
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>postgresql.provisioning.containerSecurityContext.privileged</td>
-			<td>bool</td>
-			<td><pre lang="json">
-false
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>postgresql.provisioning.containerSecurityContext.readOnlyRootFilesystem</td>
-			<td>bool</td>
-			<td><pre lang="json">
-true
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>postgresql.provisioning.containerSecurityContext.runAsGroup</td>
-			<td>int</td>
-			<td><pre lang="json">
-1001
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>postgresql.provisioning.containerSecurityContext.runAsNonRoot</td>
-			<td>bool</td>
-			<td><pre lang="json">
-true
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>postgresql.provisioning.containerSecurityContext.runAsUser</td>
-			<td>int</td>
-			<td><pre lang="json">
-1001
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>postgresql.provisioning.containerSecurityContext.seLinuxOptions</td>
-			<td>object</td>
-			<td><pre lang="json">
-{}
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>postgresql.provisioning.containerSecurityContext.seccompProfile.type</td>
-			<td>string</td>
-			<td><pre lang="json">
-"RuntimeDefault"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>postgresql.provisioning.enabled</td>
-			<td>bool</td>
-			<td><pre lang="json">
-true
+"bitnamilegacy/postgresql"
 </pre>
 </td>
 			<td></td>
@@ -4434,96 +3426,6 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 "15.4.0-debian-11-r45"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>postgresql.provisioning.ttlSecondsAfterFinished</td>
-			<td>int</td>
-			<td><pre lang="json">
-30
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>postgresql.resources.limits.cpu</td>
-			<td>int</td>
-			<td><pre lang="json">
-288
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>postgresql.resources.limits.memory</td>
-			<td>string</td>
-			<td><pre lang="json">
-"1Gi"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>postgresql.resources.requests.cpu</td>
-			<td>string</td>
-			<td><pre lang="json">
-"10m"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>postgresql.resources.requests.memory</td>
-			<td>string</td>
-			<td><pre lang="json">
-"16Mi"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>postgresql.tls.certCaFilename</td>
-			<td>string</td>
-			<td><pre lang="json">
-"ca.crt"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>postgresql.tls.certFilename</td>
-			<td>string</td>
-			<td><pre lang="json">
-"tls.crt"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>postgresql.tls.certKeyFilename</td>
-			<td>string</td>
-			<td><pre lang="json">
-"tls.key"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>postgresql.tls.enabled</td>
-			<td>bool</td>
-			<td><pre lang="json">
-false
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>postgresql.tls.existingSecret</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-postgresql-tls"
 </pre>
 </td>
 			<td></td>

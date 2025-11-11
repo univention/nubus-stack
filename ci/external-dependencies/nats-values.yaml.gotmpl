@@ -1,5 +1,3 @@
-image:
-  repository: bitnamilegacy/nats
 config:
   cluster:
     replicas: 1
@@ -10,64 +8,60 @@ config:
   authorization:
     enabled: true
   createUsers:
+    adminUser:
+      auth:
+        existingSecret:
+          username: "admin"
+          name: nats-external-secret
+          keyMapping:
+            password: nats-password
     provisioningApi:
-      user: "api"
-      password: "$NATS_PROVISIONING_API_PASSWORD"
+      auth:
+        username: "api"
+        existingSecret:
+          name: nats-external-secret
+          keyMapping:
+            password: nats-provisioning-password
       permissions:
         publish: ">"
         subscribe: ">"
     dispatcher:
-      user: "dispatcher"
-      password: "$NATS_DISPATCHER_PASSWORD"
       permissions:
         publish: ">"
         subscribe: ">"
+      auth:
+        username: "dispatcher"
+        existingSecret:
+          name: nats-external-secret
+          keyMapping:
+            password: nats-dispatcher-password
     udmTransformer:
-      user: "udmtransformer"
-      password: "$NATS_UDM_TRANSFORMER_PASSWORD"
       permissions:
         publish: ">"
         subscribe: ">"
+      auth:
+        username: "udm-transformer"
+        existingSecret:
+          name: nats-external-secret
+          keyMapping:
+            password: nats-udm-transformer-password
     prefill:
-      user: "prefill"
-      password: "$NATS_PREFILL_PASSWORD"
       permissions:
         publish: ">"
         subscribe: ">"
+      auth:
+        username: "prefill"
+        existingSecret:
+          name: nats-external-secret
+          keyMapping:
+            password: nats-prefill-password
     udmListener:
-      user: "udmlistener"
-      password: "$NATS_UDM_LISTENER_PASSWORD"
       permissions:
         publish: ">"
         subscribe: ">"
-extraEnvVars:
-  - name: NATS_PASSWORD
-    valueFrom:
-      secretKeyRef:
-        name: nats-external-secret
-        key: nats-password
-  - name: NATS_PROVISIONING_API_PASSWORD
-    valueFrom:
-      secretKeyRef:
-        name: nats-external-secret
-        key: nats-provisioning-password
-  - name: NATS_DISPATCHER_PASSWORD
-    valueFrom:
-      secretKeyRef:
-        name: nats-external-secret
-        key: nats-dispatcher-password
-  - name: NATS_UDM_TRANSFORMER_PASSWORD
-    valueFrom:
-      secretKeyRef:
-        name: nats-external-secret
-        key: nats-udm-transformer-password
-  - name: NATS_PREFILL_PASSWORD
-    valueFrom:
-      secretKeyRef:
-        name: nats-external-secret
-        key: nats-prefill-password
-  - name: NATS_UDM_LISTENER_PASSWORD
-    valueFrom:
-      secretKeyRef:
-        name: nats-external-secret
-        key: nats-udm-listener-password
+      auth:
+        username: "udmlistener"
+        existingSecret:
+          name: nats-external-secret
+          keyMapping:
+            password: nats-udm-listener-password

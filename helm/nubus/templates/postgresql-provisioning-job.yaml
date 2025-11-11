@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: AGPL-3.0-only
 # SPDX-FileCopyrightText: 2024-2025 Univention GmbH
-{{ if .Values.postgresql.provisioning.enabled }}
+{{ if and .Values.postgresql.provisioning.enabled .Values.postgresql.enabled }}
 ---
 apiVersion: "batch/v1"
 kind: "Job"
@@ -144,38 +144,38 @@ spec:
           name: {{ printf "%s-postgresql-provisioning" .Release.Name | quote }}
       - name: "umc-server-postgresql-credentials"
         secret:
-          secretName: {{ tpl .Values.nubusUmcServer.postgresql.selfservice.auth.existingSecret.name . }}
+          secretName: {{ include "nubus-common.secrets.name" (dict "existingSecret" .Values.nubusUmcServer.postgresql.selfservice.auth.existingSecret "defaultNameSuffix" "umc-server-postgresql-credentials" "context" . ) }}
           items:
-            - key: '{{ include "common.secrets.key" (dict "existingSecret" .Values.nubusUmcServer.postgresql.selfservice.auth.existingSecret.name "key" "password") }}'
+            - key: '{{ include "nubus-common.secrets.key" (dict "existingSecret" .Values.nubusUmcServer.postgresql.selfservice.auth.existingSecret "key" "password" "context" .) }}'
               path: {{ .Values.nubusUmcServer.postgresql.selfservice.auth.username | quote }}
       - name: "notifications-api-postgresql-credentials"
         secret:
           secretName: {{ (printf "%s-notifications-api-postgresql-credentials" .Release.Name) | quote }}
           items:
-            - key: {{ include "common.secrets.key" (dict "existingSecret" .Values.nubusNotificationsApi.postgresql.auth.existingSecret "key" "password") | quote }}
+            - key: {{ include "nubus-common.secrets.key" (dict "existingSecret" .Values.nubusNotificationsApi.postgresql.auth.existingSecret "key" "password" "context" .) }}
               path: {{ .Values.nubusNotificationsApi.postgresql.auth.username | quote }}
       - name: "keycloak-postgresql-credentials"
         secret:
-          secretName: {{ tpl .Values.keycloak.postgresql.auth.existingSecret.name . }}
+          secretName: {{ include "nubus-common.secrets.name" (dict "existingSecret" .Values.keycloak.postgresql.auth.existingSecret "defaultNameSuffix" "keycloak-postgresql-credentials" "context" . ) }}
           items:
             - key: '{{ include "common.secrets.key" (dict "existingSecret" .Values.keycloak.postgresql.auth.existingSecret.name "key" "password") }}'
               path: {{ .Values.keycloak.postgresql.auth.username | quote }}
       - name: "keycloak-extensions-postgresql-credentials"
         secret:
-          secretName: {{ tpl .Values.nubusKeycloakExtensions.postgresql.auth.existingSecret.name . | quote }}
+          secretName: {{ include "nubus-common.secrets.name" (dict "existingSecret" .Values.nubusKeycloakExtensions.postgresql.auth.existingSecret "defaultNameSuffix" "keycloak-extensions-postgresql-credentials" "context" . ) }}
           items:
             - key: '{{ include "common.secrets.key" (dict "existingSecret" .Values.nubusKeycloakExtensions.postgresql.auth.existingSecret.name "key" "password") }}'
               path: {{ .Values.nubusKeycloakExtensions.postgresql.auth.username | quote }}
       - name: "guardian-postgresql-credentials"
         secret:
-          secretName: {{ include "nubus-common.secrets.name" (dict "existingSecret" .Values.nubusGuardian.postgresql.auth.existingSecret "defaultNameSuffix" "management-api-postgresql-credentials" "context" .) | quote }}
+          secretName: {{ include "nubus-common.secrets.name" (dict "existingSecret" .Values.nubusGuardian.postgresql.auth.existingSecret "defaultNameSuffix" "guardian-management-api-postgresql-credentials" "context" .) }}
           items:
-            - key: {{ include "nubus-common.secrets.key" (dict "existingSecret" .Values.nubusGuardian.postgresql.auth.existingSecret "key" "password") }}
+            - key: {{ include "nubus-common.secrets.key" (dict "existingSecret" .Values.nubusGuardian.postgresql.auth.existingSecret "key" "password" "context" .) }}
               path: {{ .Values.nubusGuardian.postgresql.auth.username | quote }}
       - name: "umc-session-postgresql-credentials"
         secret:
-          secretName: {{ include "nubus-common.secrets.name" (dict "existingSecret" .Values.nubusUmcServer.postgresql.authSession.auth.existingSecret "defaultNameSuffix" "server-session-postgresql-credentials" "context" .) | quote }}
+          secretName: {{ include "nubus-common.secrets.name" (dict "existingSecret" .Values.nubusUmcServer.postgresql.authSession.auth.existingSecret "defaultNameSuffix" "umc-server-session-postgresql-credentials" "context" .) }}
           items:
-            - key: {{ include "nubus-common.secrets.key" (dict "existingSecret" .Values.nubusUmcServer.postgresql.authSession.auth.existingSecret "key" "password") }}
+            - key: {{ include "nubus-common.secrets.key" (dict "existingSecret" .Values.nubusUmcServer.postgresql.authSession.auth.existingSecret "key" "password" "context" .) }}
               path: {{ .Values.nubusUmcServer.postgresql.authSession.auth.username | quote }}
 {{ end }}

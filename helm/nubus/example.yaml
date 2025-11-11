@@ -5,8 +5,6 @@ global:
   nubusDeployment: true
   ldap:
     baseDn: "dc=example,dc=com"
-    # domain name for ldap configuration
-    domainName: "example.com"
   # domain of the deployment
   domain: example.com
   ingressClass: "nginx"

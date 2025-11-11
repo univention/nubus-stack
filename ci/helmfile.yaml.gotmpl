@@ -11,7 +11,7 @@ environments:
       - default-state-values.yaml.gotmpl
       - gaia-state-values.yaml.gotmpl
       - portal-feature-toggles-values.yaml.gotmpl
-      - reviewPrefix: {{ env "REVIEW_PREFIX" | default .Namespace }}
+      - reviewPrefix: {{ env "REVIEW_PREFIX" | default .Namespace | quote }}
 
   # Configuration for a local or custom deployment.
   #
@@ -22,7 +22,7 @@ environments:
       - default-state-values.yaml.gotmpl
       - local-state-values.yaml.gotmpl
       - portal-feature-toggles-values.yaml.gotmpl
-      - reviewPrefix: {{ env "REVIEW_PREFIX" | default .Namespace }}
+      - reviewPrefix: {{ env "REVIEW_PREFIX" | default .Namespace | quote }}
 
 ---
 helmDefaults:
@@ -50,6 +50,11 @@ releases:
     values:
       - ./ci-values.yaml.gotmpl
       - ./dev-values.yaml.gotmpl
+      {{- if not .Values.toggles.externalDependencies }}
+      - ../helm/nubus/demo-values.yaml
+      {{- else }}
+      - ../helm/nubus/prod-values.yaml
+      {{- end }}
       {{- if .Values.toggles.nextcloudExtension }}
       - ./nextcloud-extension-values.yaml.gotmpl
       {{- end }}
@@ -58,12 +63,16 @@ releases:
       {{- end }}
       {{- if .Values.toggles.externalDependencies }}
       - ./external-dependencies/nubus-values.yaml.gotmpl
+      - ./external-dependencies/nubus-existing-secrets.yaml.gotmpl
       {{- end }}
       {{- if .Values.toggles.changeableCredentials }}
       - ./changeable-secrets.yaml
       {{- end }}
       {{- if .Values.toggles.customSecretValues }}
       - ../helm/nubus/example-custom-secret-values.yaml
+      {{- end }}
+      {{- if .Values.releases.nubus.extraValues }}
+      {{ .Values.releases.nubus.extraValues | toYaml | nindent 6 }}
       {{- end }}
 
   - name: maildev
@@ -89,7 +98,7 @@ releases:
 
   - name: nats
     chart: oci://artifacts.software-univention.de/nubus/charts/nats
-    version: 0.4.1
+    version: 0.5.0
     values:
       - ./external-dependencies/global-values.yaml.gotmpl
       - ./external-dependencies/nats-values.yaml.gotmpl

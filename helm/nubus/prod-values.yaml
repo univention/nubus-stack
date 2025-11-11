@@ -1,0 +1,268 @@
+# SPDX-License-Identifier: AGPL-3.0-only
+# SPDX-FileCopyrightText: 2024-2025 Univention GmbH
+---
+
+# Production configuration for Nubus with external dependencies
+# This configuration disables bundled dependencies and expects
+# external PostgreSQL and MinIO/S3 services to be configured.
+
+# Configuration for external PostgreSQL
+global:
+  postgresql:
+    connection:
+      host: postgres-postgresql
+      port: "5432"
+
+# Disable bundled dependencies
+postgresql:
+  enabled: false
+
+minio:
+  enabled: false
+
+# Disable MinIO ingress since using external object storage
+ingress:
+  minio:
+    enabled: false
+
+keycloak:
+  postgresql:
+    auth:
+      username: "keycloak"
+      existingSecret:
+        name: postgresql-external-secret
+        keyMapping:
+          password: keycloak
+
+nubusGuardian:
+  postgresql:
+    auth:
+      username: "guardian"
+      existingSecret:
+        name: postgresql-external-secret
+        keyMapping:
+          password: guardian
+
+nubusKeycloakExtensions:
+  postgresql:
+    auth:
+      username: "keycloak_extensions"
+      existingSecret:
+        name: postgresql-external-secret
+        keyMapping:
+          password: keycloak-extensions
+
+nubusPortalConsumer:
+  objectStorage:
+    bucketName: nubus
+    endpoint: "http://minio:9000"
+    auth:
+      existingSecret:
+        name: minio-external-secret
+        keyMapping:
+          access_key_id: portal-consumer-access-key
+          secret_access_key: portal-consumer-secret-key
+
+nubusPortalServer:
+  objectStorage:
+    bucketName: nubus
+    endpoint: "http://minio:9000"
+    auth:
+      existingSecret:
+        name: minio-external-secret
+        keyMapping:
+          access_key_id: portal-server-access-key
+          secret_access_key: portal-server-secret-key
+
+nubusNotificationsApi:
+  postgresql:
+    auth:
+      username: "notificationsapi"
+      existingSecret:
+        name: postgresql-external-secret
+        keyMapping:
+          password: notifications
+
+nubusUmcServer:
+  postgresql:
+    selfservice:
+      auth:
+        # FIXME: See nubusStackDataUms.nubusUmcServer.postgresql.auth.username
+        # username: "selfservice"
+        # FIXME: See nubusStackDataUms.nubusUmcServer.postgresql.auth.database
+        # database: "selfservice"
+        existingSecret:
+          name: postgresql-external-secret
+          keyMapping:
+            password: umc
+    authSession:
+      auth:
+        username: "umcsession"
+        existingSecret:
+          name: postgresql-external-secret
+          keyMapping:
+            password: umcsession
+
+nubusStackDataUms:
+  nubusUmcServer:
+    postgresql:
+      auth:
+        username: "selfservice"
+        database: "selfservice"
+      connection:
+        host: '{{ include "nubusTemplates.connections.postgres.host" . }}'
+        port: '{{ include "nubusTemplates.connections.postgres.port" . }}'
+
+# External PostgreSQL authentication configuration
+# Choose one of the following approaches:
+
+# Option 1: Use existing secrets for PostgreSQL authentication
+# Uncomment and configure the following sections if you have existing secrets:
+#
+# keycloak:
+#   postgresql:
+#     auth:
+#       database: "keycloak"
+#       username: "keycloak_user"
+#       existingSecret:
+#         name: "keycloak-postgresql-credentials"
+#         keyMapping:
+#           password: "the-key-for-the-password-in-the-secret-if-not-password"
+#
+# nubusGuardian:
+#   postgresql:
+#     auth:
+#       database: "guardian"
+#       username: "guardian_user"
+#       existingSecret:
+#         name: "guardian-postgresql-credentials"
+#         keyMapping:
+#           password: "the-key-for-the-password-in-the-secret-if-not-password"
+#
+# nubusNotificationsApi:
+#   postgresql:
+#     auth:
+#       database: "notifications_api"
+#       username: "notifications_api_user"
+#       existingSecret:
+#         name: "notifications-api-postgresql-credentials"
+#         keyMapping:
+#           password: "the-key-for-the-password-in-the-secret-if-not-password"
+#
+# nubusUmcServer:
+#   postgresql:
+#     selfservice:
+#       auth:
+#         database: "umc_selfservice"
+#         username: "umc_selfservice_user"
+#         existingSecret:
+#           name: "umc-server-postgresql-credentials"
+#           keyMapping:
+#             password: "the-key-for-the-password-in-the-secret-if-not-password"
+#     authSession:
+#       auth:
+#         database: "umc_session"
+#         username: "umc_session_user"
+#         existingSecret:
+#           name: "umc-server-session-postgresql-credentials"
+#           keyMapping:
+#             password: "the-key-for-the-password-in-the-secret-if-not-password"
+#
+# nubusKeycloakExtensions:
+#   postgresql:
+#     auth:
+#       database: "keycloak_extensions"
+#       username: "keycloak_extensions_user"
+#       existingSecret:
+#         name: "keycloak-extensions-postgresql-credentials"
+#         keyMapping:
+#           password: "the-key-for-the-password-in-the-secret-if-not-password"
+
+# Option 2: Provide passwords directly (not recommended for production)
+# Uncomment and configure the following if you want to set passwords directly:
+#
+# keycloak:
+#   postgresql:
+#     auth:
+#       database: "keycloak"
+#       username: "keycloak_user"
+#       password: "your-keycloak-db-password"
+#
+# nubusGuardian:
+#   postgresql:
+#     auth:
+#       database: "guardian"
+#       username: "guardian_user"
+#       password: "your-guardian-db-password"
+#
+# nubusNotificationsApi:
+#   postgresql:
+#     auth:
+#       database: "notifications_api"
+#       username: "notifications_api_user"
+#       password: "your-notifications-api-db-password"
+#
+# nubusUmcServer:
+#   postgresql:
+#     selfservice:
+#       auth:
+#         database: "umc_selfservice"
+#         username: "umc_selfservice_user"
+#         password: "your-umc-selfservice-db-password"
+#     authSession:
+#       auth:
+#         database: "umc_session"
+#         username: "umc_session_user"
+#         password: "your-umc-session-db-password"
+#
+# nubusKeycloakExtensions:
+#   postgresql:
+#     auth:
+#       database: "keycloak_extensions"
+#       username: "keycloak_extensions_user"
+#       password: "your-keycloak-extensions-db-password"
+
+# Configuration for external object storage (MinIO/S3)
+# Uncomment and configure the following for your external object storage:
+#
+# nubusPortalServer:
+#   objectStorage:
+#     endpoint: "https://your-minio-or-s3-endpoint"
+#     bucketName: "your-bucket-name"
+#     auth:
+#       existingSecret:
+#         name: "portal-server-minio-credentials"
+#         keyMapping:
+#           access_key_id: "the-key-for-the-password-in-the-secret-if-not-access_key_id"
+#           secret_key: "the-key-for-the-password-in-the-secret-if-not-secret_key"
+#
+# nubusPortalConsumer:
+#   objectStorage:
+#     endpoint: "https://your-minio-or-s3-endpoint"
+#     bucketName: "your-bucket-name"
+#     auth:
+#       existingSecret:
+#         name: "portal-consumer-minio-credentials"
+#         keyMapping:
+#           access_key_id: "the-key-for-the-password-in-the-secret-if-not-access_key_id"
+#           secret_key: "the-key-for-the-password-in-the-secret-if-not-secret_key"
+
+# Configuration for external Memcached
+# By default, UMC server uses bundled memcached. To use external memcached:
+# Uncomment and configure the following:
+#
+# nubusUmcServer:
+#   memcached:
+#     bundled: false
+#     connection:
+#       host: "external-memcached-host"
+#       port: 11211
+#     auth:
+#       username: "memcached-username"
+#       # Option 1: Provide password directly (not recommended for production)
+#       password: "memcached-password"
+#       # Option 2: Use existing secret
+#       existingSecret:
+#         name: "umc-server-memcached-credentials"
+#         keyMapping:
+#           password: "the-key-for-the-password-in-the-secret-if-not-password"

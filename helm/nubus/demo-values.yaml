@@ -1,15 +1,12 @@
 # SPDX-License-Identifier: AGPL-3.0-only
 # SPDX-FileCopyrightText: 2024-2025 Univention GmbH
 ---
+
+# Demo configuration for Nubus with bundled dependencies
+# This configuration enables PostgreSQL and MinIO bundled with the chart,
+# suitable for demonstration, development, and testing purposes.
+
 global:
-  secrets:
-    masterPassword: "nubus"
-  nubusDeployment: true
-  ldap:
-    baseDn: "dc=example,dc=com"
-  domain: "example.com"
-  ingressClass: "nginx"
-  certManagerIssuer: "letsencrypt"
   postgresql:
     connection:
       host: "{{ .Release.Name }}-postgresql"
@@ -24,6 +21,7 @@ nubusDevelopment:
       memory: "16Mi"
   terminationGracePeriodSeconds: &nubusTerminationGracePeriodSeconds 5
 
+# Enable bundled PostgreSQL database
 postgresql:
   enabled: true
   resources: *nubusDevelopmentResources
@@ -60,6 +58,7 @@ postgresql:
     resources: *nubusDevelopmentResources
     terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
 
+# Enable bundled MinIO object storage
 minio:
   enabled: true
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
@@ -108,6 +107,7 @@ minio:
     usersExistingSecrets:
       - nubus-minio-provisioning
 
+# Enable MinIO ingress for dynamic portal assets
 ingress:
   minio:
     enabled: true
@@ -166,8 +166,9 @@ nubusUmcServer:
   postgresql:
     selfservice:
       auth:
-        username: selfservice
-        database: selfservice
+        # FIXME: See nubusStackDataUms.nubusUmcServer
+        # username: selfservice
+        # database: selfservice
         existingSecret:
           name: '{{ printf "%s-umc-server-postgresql-credentials" .Release.Name }}'
     authSession:
