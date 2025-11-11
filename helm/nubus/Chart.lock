@@ -4,7 +4,7 @@ dependencies:
   version: 0.28.11
 - name: guardian
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.23.9
+  version: 0.23.11
 - name: license-import
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.7.6
