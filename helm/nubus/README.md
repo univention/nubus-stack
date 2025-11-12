@@ -3170,37 +3170,10 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusUmcServer.ldap.auth.existingPasswordSecret</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ printf \"%s-umc-server-memcached-credentials\" .Release.Name }}"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUmcServer.ldap.auth.existingSecret.keyMapping.password</td>
-			<td>string</td>
-			<td><pre lang="json">
-"memcached-password"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusUmcServer.ldap.auth.existingSecret.keyMapping.password</td>
 			<td>string</td>
 			<td><pre lang="json">
 "{{ tpl .Values.global.ldap.auth.admin.existingSecret.keyMapping.password . }}"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUmcServer.ldap.auth.existingSecret.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ printf \"%s-umc-server-memcached-credentials\" .Release.Name }}"
 </pre>
 </td>
 			<td></td>

@@ -485,12 +485,6 @@ nubusUmcServer: &nubusUmcServer
         name: "{{ tpl .Values.global.ldap.auth.admin.existingSecret.name . }}"
         keyMapping:
           password: "{{ tpl .Values.global.ldap.auth.admin.existingSecret.keyMapping.password . }}"
-    auth:
-      existingPasswordSecret: '{{ printf "%s-umc-server-memcached-credentials" .Release.Name }}'
-      existingSecret:
-        name: '{{ printf "%s-umc-server-memcached-credentials" .Release.Name }}'
-        keyMapping:
-          password: "memcached-password"
   postgresql:
     authSession:
       connection:
