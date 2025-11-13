@@ -38,7 +38,7 @@ helm uninstall nubus
 | oci://artifacts.software-univention.de/nubus/charts | nubusGuardian(guardian) | 0.23.9 |
 | oci://artifacts.software-univention.de/nubus/charts | keycloak(keycloak) | 0.15.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakBootstrap(keycloak-bootstrap) | 0.19.10 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakExtensions(keycloak-extensions) | 0.23.1 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakExtensions(keycloak-extensions) | 0.23.2 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusLdapNotifier(ldap-notifier) | 0.47.5 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusLdapServer(ldap-server) | 0.47.5 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusLicenseImport(license-import) | 0.7.6 |
@@ -1086,24 +1086,6 @@ false
 			<td>string</td>
 			<td><pre lang="json">
 "16Mi"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusKeycloakExtensions.smtp.auth.existingSecret.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{- printf \"%s-keycloak-extensions-smtp-credentials\" .Release.Name -}}"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusKeycloakExtensions.smtp.auth.username</td>
-			<td>string</td>
-			<td><pre lang="json">
-"keycloak-extensions"
 </pre>
 </td>
 			<td></td>

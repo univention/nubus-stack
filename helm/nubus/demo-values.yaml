@@ -188,6 +188,9 @@ nubusKeycloakExtensions:
       username: keycloak_extensions
       existingSecret:
         name: '{{- printf "%s-keycloak-extensions-postgresql-credentials" .Release.Name -}}'
+  smtp:
+    auth:
+      password: "stub-password"
 
 nubusStackDataUms:
   nubusUmcServer:

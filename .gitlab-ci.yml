@@ -74,7 +74,7 @@ lint-render-manifests:
 
     # Render manifests with CI configuration
     - pushd ci
-    - helmfile template --output-dir ../manifests -l name=nubus
+    - helmfile template --output-dir ../manifests -l name=nubus --set nubusKeycloakExtensions.enabled=true
     - popd
   artifacts:
     name: rendered-manifests
