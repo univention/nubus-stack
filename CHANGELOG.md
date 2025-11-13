@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.15.1](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/compare/v1.15.0...v1.15.1) (2025-11-13)
+
+
+### Bug Fixes
+
+* bump keycloak-extensions ([078f8f3](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/078f8f395e995dab382fd6342cf26c280eea8c0d)), closes [univention/dev/internal/team-nubus#1525](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1525)
+* enable keycloak-extensions for kubeconform ([29c7081](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/29c70813606bda24d9353a743947ca45fbe4431c)), closes [univention/dev/internal/team-nubus#1525](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1525)
+* remove non-existent secret from keycloak-extensions smtp auth ([9e0528b](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/9e0528bf034656fa44de45be2f32c0f7fbd9f76e)), closes [univention/dev/internal/team-nubus#1525](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1525)
+
 ## [1.15.0](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/compare/v1.14.1...v1.15.0) (2025-11-11)
 
 
