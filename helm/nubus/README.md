@@ -1091,24 +1091,6 @@ false
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusKeycloakExtensions.smtp.auth.existingSecret.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{- printf \"%s-keycloak-extensions-smtp-credentials\" .Release.Name -}}"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusKeycloakExtensions.smtp.auth.username</td>
-			<td>string</td>
-			<td><pre lang="json">
-"keycloak-extensions"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusKeycloakExtensions.smtp.connection.host</td>
 			<td>string</td>
 			<td><pre lang="json">

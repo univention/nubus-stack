@@ -551,10 +551,6 @@ nubusKeycloakExtensions: &nubusKeycloakExtensions
   smtp:
     connection:
       host: ""
-    auth:
-      username: "keycloak-extensions"
-      existingSecret:
-        name: '{{- printf "%s-keycloak-extensions-smtp-credentials" .Release.Name -}}'
   keycloak:
     connection:
       host: ""
