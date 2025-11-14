@@ -479,28 +479,12 @@ nubusUmcServer: &nubusUmcServer
   ingress:
     host: "{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
   resources: *nubusDevelopmentResources
-  global:
-    imageRegistry: "docker.io"
-  image:
-    registry: "artifacts.software-univention.de"
   ldap:
     auth:
       existingSecret:
         name: "{{ tpl .Values.global.ldap.auth.admin.existingSecret.name . }}"
         keyMapping:
           password: "{{ tpl .Values.global.ldap.auth.admin.existingSecret.keyMapping.password . }}"
-  memcached:
-    nameOverride: "umc-server-memcached"
-    containerSecurityContext:
-      readOnlyRootFilesystem: false
-    auth:
-      existingPasswordSecret: '{{ printf "%s-umc-server-memcached-credentials" .Release.Name }}'
-      existingSecret:
-        name: '{{ printf "%s-umc-server-memcached-credentials" .Release.Name }}'
-        keyMapping:
-          password: "memcached-password"
-    image:
-      repository: "bitnamilegacy/memcached"
   postgresql:
     authSession:
       connection:
