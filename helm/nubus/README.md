@@ -54,8 +54,8 @@ helm uninstall nubus
 | oci://artifacts.software-univention.de/nubus/charts | nubusTwofaHelpdesk(twofa-helpdesk) | 0.14.5 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 0.63.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmRestApi(udm-rest-api) | 0.41.4 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.53.5 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUmcServer(umc-server) | 0.53.5 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.54.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUmcServer(umc-server) | 0.54.0 |
 | oci://docker.io/bitnamicharts | minio | 14.7.0 |
 | oci://docker.io/bitnamicharts | postgresql | ^12.x.x |
 
@@ -3161,24 +3161,6 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusUmcServer.global.imageRegistry</td>
-			<td>string</td>
-			<td><pre lang="json">
-"docker.io"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUmcServer.image.registry</td>
-			<td>string</td>
-			<td><pre lang="json">
-"artifacts.software-univention.de"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusUmcServer.ingress.host</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -3201,60 +3183,6 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 "{{ tpl .Values.global.ldap.auth.admin.existingSecret.name . }}"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUmcServer.memcached.auth.existingPasswordSecret</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ printf \"%s-umc-server-memcached-credentials\" .Release.Name }}"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUmcServer.memcached.auth.existingSecret.keyMapping.password</td>
-			<td>string</td>
-			<td><pre lang="json">
-"memcached-password"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUmcServer.memcached.auth.existingSecret.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ printf \"%s-umc-server-memcached-credentials\" .Release.Name }}"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUmcServer.memcached.containerSecurityContext.readOnlyRootFilesystem</td>
-			<td>bool</td>
-			<td><pre lang="json">
-false
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUmcServer.memcached.image.repository</td>
-			<td>string</td>
-			<td><pre lang="json">
-"bitnamilegacy/memcached"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUmcServer.memcached.nameOverride</td>
-			<td>string</td>
-			<td><pre lang="json">
-"umc-server-memcached"
 </pre>
 </td>
 			<td></td>
