@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.15.2](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/compare/v1.15.1...v1.15.2) (2025-11-17)
+
+
+### Bug Fixes
+
+* bump keycloak ([f0afbf7](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/f0afbf7dd7f67f2a03abce1dd373070abc97dd1d)), closes [#0](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/issues/0)
+
 ## [1.15.1](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/compare/v1.15.0...v1.15.1) (2025-11-13)
 
 
