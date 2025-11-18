@@ -35,18 +35,18 @@ helm uninstall nubus
 
 | Repository | Name | Version |
 |------------|------|---------|
-| oci://artifacts.software-univention.de/nubus/charts | nubusGuardian(guardian) | 0.23.11 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusGuardian(guardian) | 0.23.14 |
 | oci://artifacts.software-univention.de/nubus/charts | keycloak(keycloak) | 0.15.2 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakBootstrap(keycloak-bootstrap) | 0.19.10 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakExtensions(keycloak-extensions) | 0.23.2 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusLdapNotifier(ldap-notifier) | 0.47.5 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusLdapServer(ldap-server) | 0.47.5 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusLicenseImport(license-import) | 0.7.6 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusNotificationsApi(notifications-api) | 0.86.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusNotificationsApi(notifications-api) | 0.86.1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubus-common | 0.28.11 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalConsumer(portal-consumer) | 0.86.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalFrontend(portal-frontend) | 0.86.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.86.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalConsumer(portal-consumer) | 0.86.1 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalFrontend(portal-frontend) | 0.86.1 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.86.1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 0.63.1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusScimServer(scim-server) | 0.46.2 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceConsumer(selfservice-consumer) | 0.19.31 |
