@@ -14,7 +14,7 @@ include:
       - "jobs/semantic-release-env.yaml"
       - "jobs/harbor-malware-scan.yaml"
       - "templates/sonarqube.yaml"
-  - component: "$CI_SERVER_FQDN/univention/dev/nubus-for-k8s/common-ci/vul-man@v1.50.3"
+  - component: "$CI_SERVER_FQDN/univention/dev/nubus-for-k8s/common-ci/vul-man@v1.51.0"
     inputs:
       helm_chart_name: "nubus"
       helm_values: "--helm-values ${CI_PROJECT_DIR}/helm/nubus/prod-values.yaml --helm-values ${CI_PROJECT_DIR}/helm/nubus/example-custom-secret-values.yaml --helm-values ${CI_PROJECT_DIR}/ci/vul-man-values.yaml --helm-values ${CI_PROJECT_DIR}/helm/nubus/example.yaml"
