@@ -25,3 +25,8 @@ nubusLicenseImport:
 
 nubusScimServer:
   enabled: true
+
+nubusProvisioning:
+  nats:
+    natsBox:
+      enabled: true
