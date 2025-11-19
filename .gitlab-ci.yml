@@ -4,7 +4,7 @@
 ---
 include:
   - project: "univention/dev/nubus-for-k8s/common-ci"
-    ref: "v1.48.0"
+    ref: "v1.50.3"
     file:
       - "defaults/nubus-workflow.yaml"
       - "defaults/stages.yaml"
@@ -14,8 +14,35 @@ include:
       - "jobs/semantic-release-env.yaml"
       - "jobs/harbor-malware-scan.yaml"
       - "templates/sonarqube.yaml"
+  - component: "$CI_SERVER_FQDN/univention/dev/nubus-for-k8s/common-ci/vul-man@v1.50.3"
+    inputs:
+      helm_chart_name: "nubus"
+      helm_values: "--helm-values ${CI_PROJECT_DIR}/helm/nubus/prod-values.yaml --helm-values ${CI_PROJECT_DIR}/helm/nubus/example-custom-secret-values.yaml --helm-values ${CI_PROJECT_DIR}/ci/vul-man-values.yaml --helm-values ${CI_PROJECT_DIR}/helm/nubus/example.yaml"
+      helm_repository_url: "oci://artifacts.software-univention.de/nubus-dev/charts"
+      parallelism: 20
   - project: 'univention/infrastructure/renovate-runner'
     file: '/templates/renovate.gitlab-ci.yml'
+
+sbom-scan-and-upload:
+  extends: .sbom-scan-and-upload
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME =~ /^release-/ && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == $CI_DEFAULT_BRANCH'
+      when: always
+    - when: never
+
+validate-vulnerabilities:
+  extends: .validate-vulnerabilities
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME =~ /^release-/ && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == $CI_DEFAULT_BRANCH'
+      when: always
+    - when: never
+
+sbom-vex-attest:
+  extends: .sbom-vex-attest
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME =~ /^release-/ && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == $CI_DEFAULT_BRANCH'
+      when: manual
+    - when: never
 
 variables:
   SKIP_UPDATE_HELM_VALUES: "1"
@@ -154,3 +181,6 @@ lint-commit-messages:
 sonarqube:
   extends: .sonarqube
   needs: []
+  # FIXME: Disable Sonarqube until the server is fixed
+  rules:
+    - when: never
