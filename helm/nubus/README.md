@@ -42,17 +42,17 @@ helm uninstall nubus
 | oci://artifacts.software-univention.de/nubus/charts | nubusLdapNotifier(ldap-notifier) | 0.47.5 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusLdapServer(ldap-server) | 0.47.5 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusLicenseImport(license-import) | 0.7.6 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusNotificationsApi(notifications-api) | 0.86.1 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusNotificationsApi(notifications-api) | 0.86.2 |
 | oci://artifacts.software-univention.de/nubus/charts | nubus-common | 0.28.11 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalConsumer(portal-consumer) | 0.86.1 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalFrontend(portal-frontend) | 0.86.1 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.86.1 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 0.63.2 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalConsumer(portal-consumer) | 0.86.2 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalFrontend(portal-frontend) | 0.86.2 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.86.2 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 0.64.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusScimServer(scim-server) | 0.46.2 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceConsumer(selfservice-consumer) | 0.19.31 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.99.20 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusTwofaHelpdesk(twofa-helpdesk) | 0.14.5 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 0.63.2 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 0.64.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmRestApi(udm-rest-api) | 0.41.4 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.54.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUmcServer(umc-server) | 0.54.0 |
@@ -311,7 +311,7 @@ true
       "imagePullPolicy": "IfNotPresent",
       "registry": "artifacts.software-univention.de",
       "repository": "nubus/images/portal-extension",
-      "tag": "0.86.0@sha256:1799413fe8cbc6d9cb97656be95a99786a382a3558a7720b7fe62a38c84bdd22"
+      "tag": "0.86.2@sha256:cbd3c13813fe020820b27db26d88ced58974cf694752fa9f05a6153bfad44eda"
     },
     "name": "portal"
   },

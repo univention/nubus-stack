@@ -46,6 +46,7 @@ pipeline-configuration:
 
 re-create-namespace:
   stage: "prepare"
+  extends: .check-variables
   needs:
     - pipeline-configuration
   image: "ghcr.io/helmfile/helmfile:v1.1.4\
