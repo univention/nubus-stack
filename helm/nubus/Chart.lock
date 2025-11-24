@@ -4,16 +4,16 @@ dependencies:
   version: 0.28.11
 - name: guardian
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.23.14
+  version: 0.23.16
 - name: license-import
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.7.6
+  version: 0.7.7
 - name: ldap-notifier
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.47.5
+  version: 0.47.6
 - name: ldap-server
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.47.5
+  version: 0.47.6
 - name: notifications-api
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.86.2
@@ -28,13 +28,13 @@ dependencies:
   version: 0.86.2
 - name: selfservice-consumer
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.19.31
+  version: 0.19.34
 - name: provisioning
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.64.0
+  version: 0.64.1
 - name: udm-listener
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.64.0
+  version: 0.64.1
 - name: keycloak
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.15.2
@@ -43,16 +43,16 @@ dependencies:
   version: 0.23.2
 - name: keycloak-bootstrap
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.19.10
+  version: 0.19.14
 - name: stack-data-ums
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.99.20
 - name: twofa-helpdesk
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.14.5
+  version: 0.14.7
 - name: udm-rest-api
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.41.4
+  version: 0.41.5
 - name: umc-gateway
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.54.0
@@ -68,5 +68,5 @@ dependencies:
 - name: minio
   repository: oci://docker.io/bitnamicharts
   version: 14.7.0
-digest: sha256:194901a40927e2e8cf9bd4742eb453ca04ee942ec83c301e36514de6328dad37
-generated: "2025-11-21T10:40:03.820558907+01:00"
+digest: sha256:cfd98c45255b70419263b6dcf3aeaeffe354aea2a9b0dfd53e548a270970fb26
+generated: "2025-11-24T14:26:45.322706082+01:00"

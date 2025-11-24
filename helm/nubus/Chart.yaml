@@ -14,26 +14,26 @@ dependencies:
   - name: "guardian"
     alias: "nubusGuardian"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.23.14"
+    version: "0.23.16"
     condition: "nubusGuardian.enabled"
 
   - name: "license-import"
     alias: "nubusLicenseImport"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.7.6"
+    version: "0.7.7"
     condition: "nubusLicenseImport.enabled"
 
   # ldap-server related chart(s)
   - name: "ldap-notifier"
     alias: "nubusLdapNotifier"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.47.5"
+    version: "0.47.6"
     condition: "nubusLdapNotifier.enabled"
 
   - name: "ldap-server"
     alias: "nubusLdapServer"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.47.5"
+    version: "0.47.6"
     condition: "nubusLdapServer.enabled"
 
   # portal related chart(s)
@@ -65,20 +65,20 @@ dependencies:
   - name: "selfservice-consumer"
     alias: "nubusSelfServiceConsumer"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.19.31"
+    version: "0.19.34"
     condition: "nubusSelfServiceConsumer.enabled"
 
   # provisioning related chart(s)
   - name: "provisioning"
     alias: "nubusProvisioning"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.64.0"
+    version: "0.64.1"
     condition: "nubusProvisioning.enabled"
 
   - name: "udm-listener"
     alias: "nubusUdmListener"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.64.0"
+    version: "0.64.1"
     condition: "nubusProvisioning.enabled"
 
   # keycloak related chart(s)
@@ -97,7 +97,7 @@ dependencies:
   - name: "keycloak-bootstrap"
     alias: "nubusKeycloakBootstrap"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.19.10"
+    version: "0.19.14"
     condition: "nubusKeycloakBootstrap.enabled"
 
   - name: "stack-data-ums"
@@ -109,14 +109,14 @@ dependencies:
   - name: "twofa-helpdesk"
     alias: "nubusTwofaHelpdesk"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.14.5"
+    version: "0.14.7"
     condition: "nubusTwofaHelpdesk.enabled"
 
   # udm-rest-api related chart(s)
   - name: "udm-rest-api"
     alias: "nubusUdmRestApi"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.41.4"
+    version: "0.41.5"
     condition: "nubusUdmRestApi.enabled"
 
   # umc related chart(s)
