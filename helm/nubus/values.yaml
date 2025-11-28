@@ -304,6 +304,14 @@ nubusPortalFrontend: &nubusPortalFrontend
   resources: *nubusDevelopmentResources
   ingress:
     host: "{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
+  extraVolumes:
+    - name: portal-nginx-fix
+      configMap:
+        name: "{{ .Release.Name }}-portal-nginx-fix"
+  extraVolumeMounts:
+    - name: portal-nginx-fix
+      mountPath: /etc/nginx/nginx.conf
+      subPath: nginx.conf
 
 nubusPortalConsumer: &nubusPortalConsumer
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
