@@ -64,13 +64,11 @@ variables:
     description: |
       Allows to specify a custom tag to use for the e2e-tests testrunner image.
       Intended to help with testing a branch of the e2e-tests repository.
-    # TODO: Change this back to "latest" once the changes have been merged
     value: "latest"
   TESTRUNNER_CONFIGURATION_BRANCH:
     description: |
       Allows to specify a custom branch name to use for the testrunner configuration.
       This branch is used to run the script "discover-env-from-cluster.sh".
-    # TODO: Change this back to "main" once the changes have been merged
     value: "main"
 
 
@@ -154,6 +152,16 @@ deploy-and-test-provided-secret-values:
     DEPLOY_NAMESPACE: "ci-${CI_COMMIT_REF_SLUG}-val"
     DEPLOY_SUBDOMAIN: "${CI_COMMIT_REF_SLUG}-val"
     ENVIRONMENT_SUFFIX: "-val"
+  rules:
+    - when: manual
+
+deploy-and-test-upgrade:
+  extends: .base-deploy-and-test
+  variables:
+    UPGRADE_TEST: true
+    DEPLOY_NAMESPACE: "ci-${CI_COMMIT_REF_SLUG}-up"
+    DEPLOY_SUBDOMAIN: "${CI_COMMIT_REF_SLUG}-up"
+    ENVIRONMENT_SUFFIX: "-up"
   rules:
     - when: manual
 

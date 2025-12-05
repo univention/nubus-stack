@@ -31,6 +31,8 @@
       when: never
     - if: '$PROVIDED_SECRET_VALUES == "true"'
       when: never
+    - if: '$UPGRADE_TEST == "true"'
+      when: never
     - when: on_success
 
 # Base template for testing toggles
@@ -46,5 +48,7 @@
     - if: '$EXTERNAL_DEPENDENCIES == "true"'
       when: never
     - if: '$PROVIDED_SECRET_VALUES == "true"'
+      when: never
+    - if: '$UPGRADE_TEST == "true"'
       when: never
     - when: on_success
