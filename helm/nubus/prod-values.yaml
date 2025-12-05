@@ -51,6 +51,33 @@ nubusKeycloakExtensions:
         name: postgresql-external-secret
         keyMapping:
           password: keycloak-extensions
+  # SMTP configuration for Keycloak Extensions
+  # Keycloak Extensions require full SMTP configuration including connection parameters.
+  smtp:
+    connection:
+      # Set this to your SMTP server hostname, e.g., "smtp.example.com"
+      host: ""
+      # SMTP server port (common values: 25, 587, 465)
+      port: "587"
+      # Use SSL/TLS encryption for connection (typically for port 465)
+      ssl: false
+      # Use StartTLS for encryption (recommended for port 587)
+      starttls: true
+    auth:
+      # Enable SMTP authentication
+      enabled: true
+      # SMTP authentication username (required when auth.enabled is true)
+      # For production, set this to your SMTP username, e.g., "smtp-user@example.com"
+      username: ""
+      # Provide password directly (replace with your SMTP password)
+      # For production: use existingSecret instead (see commented section below)
+      password: "changeme"
+      # For production: Use existing secret (recommended)
+      # Uncomment and configure the following, and remove the password field above:
+      # existingSecret:
+      #   name: "smtp-credentials"
+      #   keyMapping:
+      #     password: "keycloak-smtp-password"
 
 nubusPortalConsumer:
   objectStorage:
@@ -102,6 +129,21 @@ nubusUmcServer:
           name: postgresql-external-secret
           keyMapping:
             password: umcsession
+  # SMTP password for UMC Server
+  # UMC Server gets SMTP connection parameters (host, port, username, starttls) from UCR,
+  # which is configured via nubusStackDataUms.stackDataContext.smtp* values below.
+  # Only the SMTP password needs to be configured here.
+  smtp:
+    auth:
+      # Provide password directly (replace with your SMTP password)
+      # For production: use existingSecret instead (see commented section below)
+      password: "changeme"
+      # For production: Use existing secret (recommended)
+      # Uncomment and configure the following, and remove the password field above:
+      # existingSecret:
+      #   name: "smtp-credentials"
+      #   keyMapping:
+      #     password: "umc-smtp-password"
 
 nubusStackDataUms:
   nubusUmcServer:
@@ -112,6 +154,18 @@ nubusStackDataUms:
       connection:
         host: '{{ include "nubusTemplates.connections.postgres.host" . }}'
         port: '{{ include "nubusTemplates.connections.postgres.port" . }}'
+  # SMTP connection settings for UMC Server (via UCR)
+  # These values populate UCR variables that UMC Server reads for self-service emails.
+  # For production, configure your SMTP server details here.
+  stackDataContext:
+    # SMTP server hostname, e.g., "smtp.example.com"
+    smtpHost: ""
+    # SMTP server port (common values: 25, 587, 465)
+    smtpPort: 587
+    # SMTP authentication username, e.g., "smtp-user@example.com"
+    smtpUser: ""
+    # Enable StartTLS for encryption (recommended for port 587)
+    smtpStartTls: true
 
 # External PostgreSQL authentication configuration
 # Choose one of the following approaches:

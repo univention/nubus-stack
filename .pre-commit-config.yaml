@@ -66,3 +66,12 @@ repos:
     hooks:
       - id: "addlicense"
         name: "Check or add license headers to files"
+
+  - repo: "local"
+    hooks:
+      - id: "test-helm-template"
+        name: "Test Helm template rendering"
+        entry: "ci/test-helm-template.sh"
+        language: "script"
+        files: "^helm/nubus/(prod-values\\.yaml|demo-values\\.yaml|example\\.yaml|values\\.yaml)$"
+        pass_filenames: false
