@@ -85,7 +85,7 @@ dependencies:
   - name: "keycloak"
     alias: "keycloak"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.15.5"
+    version: "0.15.12"
     condition: "keycloak.enabled"
 
   - name: "keycloak-extensions"
