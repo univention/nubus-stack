@@ -10,3 +10,24 @@ nubusUdmListener:
   nats:
     connection:
       host: "nats"
+
+nubusUmcServer:
+  smtp:
+    auth:
+      password: null
+
+nubusKeycloakExtensions:
+  smtp:
+    connection:
+      host: "maildev-smtp"
+      port: "25"
+      starttls: false
+    auth:
+      enabled: false
+
+nubusStackDataUms:
+  stackDataContext:
+    smtpHost: maildev-smtp
+    smtpPort: 25
+    smtpUser: ""
+    smtpStartTls: false
