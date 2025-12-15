@@ -1,5 +1,37 @@
 # Changelog
 
+## [1.16.0](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/compare/v1.15.2...v1.16.0) (2025-12-15)
+
+
+### Features
+
+* helm template test and move example-custom-secret-values.yaml to ci/ ([53df7c0](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/53df7c02ddcd8d78976ee6906a642ef6f43a642d)), closes [univention/dev/internal/team-nubus#1528](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1528)
+* **umc-server:** update charts for bundled memcached ([1fa102b](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/1fa102bec3b2046a20b16170deb810bb30cd5218)), closes [univention/dev/internal/team-nubus#1501](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1501)
+* upgrade provisioning subcharts for NATS queue migration ([3026d11](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/3026d11c427181e1e492f7c63db626487b7aeab0)), closes [univention/dev/internal/team-nubus#1520](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1520)
+* use prod Dependency-Track URLs ([3aa2476](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/3aa2476aa1397f3a5fb75084fc2ea2238c047e79)), closes [univention/dev/internal/team-nubus#1512](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1512)
+
+
+### Bug Fixes
+
+* bump guardian to include js sbom ([c61f943](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/c61f943a32601fc09fbe0563948784b565e09cc8)), closes [univention/dev/tooling/vulnerability-management#1](https://git.knut.univention.de/univention/dev/tooling/vulnerability-management/issues/1)
+* bump helm charts to fix critical vulnerabilities ([6785784](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/678578420f57d2d679a34332c45163dd532521c0)), closes [univention/dev/internal/team-nubus#1540](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1540)
+* bump image to errata 298 ([16dfbb3](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/16dfbb378efc102812ec33e0b46b9ed65fcbd6f5)), closes [univention/dev/internal/team-nubus#1543](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1543)
+* bump images for frontend containers with JS sbom ([890675e](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/890675ef5c0f39d6c78fb12e2d25dfe3ebe6f946)), closes [univention/dev/tooling/vulnerability-management#1](https://git.knut.univention.de/univention/dev/tooling/vulnerability-management/issues/1)
+* bump keycloak helm chart ([408177d](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/408177d7f5d094e936be630a827dd4a643ae62c7)), closes [univention/dev/internal/team-nubus#1374](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1374)
+* bump provisioning for nats upgrade ([2f404a8](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/2f404a843e25a882bd6e91099ab6bd663fb9e9f1)), closes [univention/dev/internal/team-nubus#1539](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1539)
+* bump provisioning NATS chart ([fbb9a5e](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/fbb9a5ec06ccaadeddce1a5b5b3c4b5dd1c9487c)), closes [univention/dev/internal/team-nubus#1515](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1515)
+* bump wait-for-dependency and keycloak-bootstrap images ([4738d33](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/4738d33dba6d546b88b79c96ab5805876a5c6fda)), closes [univention/dev/internal/team-nubus#1476](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1476)
+* ci: vul-man SBOM upload cleans tag before uploading new SBOMs for a tag ([aab720b](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/aab720b24676b29c5372807029fde6ee712568d6)), closes [univention/dev/internal/team-nubus#1529](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1529)
+* **deps:** Update dependency univention/dev/nubus-for-k8s/common-ci to v1.54.0 ([de3c3ea](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/de3c3eae3f660bb0202eb6f2fcb5253a59505ebe)), closes [#0](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/issues/0)
+* **helm:** Support added for clientSecret value ([c56b828](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/c56b8281baef073740a2c119c919c2f6657d970b)), closes [univention/dev/internal/team-nubus#1523](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1523)
+* **keycloak:** Upgrade Keycloak to version 26.4.6 ([73586ba](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/73586ba33e514f020bb0b8e1dfc0fec20bb2063f)), closes [univention/dev/projects/keycloak/keycloak-app#249](https://git.knut.univention.de/univention/dev/projects/keycloak/keycloak-app/issues/249)
+* **portal-frontend:** bump version ([9e5c07f](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/9e5c07f93816115465d4bbe71638fcb5bacc640b)), closes [univention/dev/projects/portal#1485](https://git.knut.univention.de/univention/dev/projects/portal/issues/1485)
+* **provisioning:** Bump provisioning and consumer chart ([9d0d22f](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/9d0d22f0873fdf94759ceb12d5219c8e671013c0)), closes [univention/dev/projects/open-xchange/connector#143](https://git.knut.univention.de/univention/dev/projects/open-xchange/connector/issues/143)
+* **umc-server:** move memcached secret generation to sub-chart ([b6c6e99](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/b6c6e9927d08cba1a4957141a13294d7e8fa6774)), closes [univention/dev/internal/team-nubus#1501](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1501)
+* Updated base container image tags ([6873f94](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/6873f94670964ca3fa5b9fddd43212ef042c059d)), closes [univention/dev/internal/team-nubus#1519](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1519)
+* use guardian images from harbor ([e64b318](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/e64b3186dc8ca0349497c2a09d13a92f5c0f0709)), closes [univention/dev/internal/team-nubus#1466](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1466)
+* use guardian images from harbor ([f85c6b7](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/f85c6b7f1a9ac1d951f3973b20ccfb073767c25f)), closes [univention/dev/internal/team-nubus#1466](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1466)
+
 ## [1.15.2](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/compare/v1.15.1...v1.15.2) (2025-11-17)
 
 
