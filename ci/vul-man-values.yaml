@@ -1,0 +1,32 @@
+# SPDX-License-Identifier: AGPL-3.0-only
+# SPDX-FileCopyrightText: 2025 Univention GmbH
+
+# Values used by vul-man in the CI to enable all optional components
+---
+nubusKeycloakExtensions:
+  enabled: true
+  smtp:
+    connection:
+      host: "maildev-smtp"
+      port: "25"
+      starttls: false
+    auth:
+      enabled: false
+
+
+nubusLicenseImport:
+  enabled: true
+  license: |
+    # Univention Product License
+    # ISSUED TO: Univention
+    # To install this license use the following command on your UCS DC Master:
+    # univention-license-import name_of_this_file
+    ...
+
+nubusScimServer:
+  enabled: true
+
+nubusProvisioning:
+  nats:
+    natsBox:
+      enabled: true

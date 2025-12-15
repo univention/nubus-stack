@@ -69,7 +69,7 @@ releases:
       - ./changeable-secrets.yaml
       {{- end }}
       {{- if .Values.toggles.customSecretValues }}
-      - ../helm/nubus/example-custom-secret-values.yaml
+      - ./example-custom-secret-values.yaml
       {{- end }}
       {{- if .Values.releases.nubus.extraValues }}
       {{ .Values.releases.nubus.extraValues | toYaml | nindent 6 }}

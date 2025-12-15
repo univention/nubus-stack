@@ -77,13 +77,13 @@ global:
         registry: "artifacts.software-univention.de"
         repository: "nubus/images/portal-extension"
         imagePullPolicy: "IfNotPresent"
-        tag: "0.86.0@sha256:1799413fe8cbc6d9cb97656be95a99786a382a3558a7720b7fe62a38c84bdd22"
+        tag: "0.88.2@sha256:5e232665728b436586fe106dbd0e03a90aa6ff52fcc740555556dcca0d2dc9f7"
     - name: "2fa-helpdesk"
       image:
         registry: "artifacts.software-univention.de"
         repository: "nubus/images/twofa-helpdesk-extensions"
         imagePullPolicy: "IfNotPresent"
-        tag: "0.14.5@sha256:1d6c697d269254d52b89f01eaa2c589657624861dffe42b3dcb54a587e43e01b"
+        tag: "0.15.2@sha256:fb41190e73ea8ee77c746301acdf8579e73d787fdebf76f2289a0dac9e309548"
 
 # -- Additional custom annotations to add to all objects deployed directly by the umbrella chart.
 additionalAnnotations: {}
@@ -479,28 +479,12 @@ nubusUmcServer: &nubusUmcServer
   ingress:
     host: "{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
   resources: *nubusDevelopmentResources
-  global:
-    imageRegistry: "docker.io"
-  image:
-    registry: "artifacts.software-univention.de"
   ldap:
     auth:
       existingSecret:
         name: "{{ tpl .Values.global.ldap.auth.admin.existingSecret.name . }}"
         keyMapping:
           password: "{{ tpl .Values.global.ldap.auth.admin.existingSecret.keyMapping.password . }}"
-  memcached:
-    nameOverride: "umc-server-memcached"
-    containerSecurityContext:
-      readOnlyRootFilesystem: false
-    auth:
-      existingPasswordSecret: '{{ printf "%s-umc-server-memcached-credentials" .Release.Name }}'
-      existingSecret:
-        name: '{{ printf "%s-umc-server-memcached-credentials" .Release.Name }}'
-        keyMapping:
-          password: "memcached-password"
-    image:
-      repository: "bitnamilegacy/memcached"
   postgresql:
     authSession:
       connection:
