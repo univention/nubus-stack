@@ -12,18 +12,19 @@
 #
 # import os
 import sys  # noqa: I001
+
 # sys.path.insert(0, os.path.abspath('.'))
 from sphinx.locale import _
 
 
 # -- Project information -----------------------------------------------------
 
-project = 'UMS Stack'
-copyright = '2024, Univention GmbH'
-author = 'Team openDesk Dev'
+project = "UMS Stack"
+copyright = "2024, Univention GmbH"
+author = "Team openDesk Dev"
 
 # The full version, including alpha/beta/rc tags
-release = '0.0.1'
+release = "0.0.1"
 
 
 # -- General configuration ---------------------------------------------------
@@ -41,9 +42,9 @@ extensions = [
     "sphinxcontrib.spelling",
     "sphinxcontrib.video",
     "univention_sphinx_extension",
-    'myst_parser',
-    'sphinx.ext.ifconfig',
-    'sphinx.ext.todo',
+    "myst_parser",
+    "sphinx.ext.ifconfig",
+    "sphinx.ext.todo",
 ]
 
 intersphinx_mapping = {
@@ -60,23 +61,23 @@ copybutton_line_continuation_character = "\\"
 copybutton_here_doc_delimiter = "EOT"
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ['_templates']
+templates_path = ["_templates"]
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
+exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 
 
 # -- Options for HTML output -------------------------------------------------
 
-html_title = f'{project} Documentation'
+html_title = f"{project} Documentation"
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
 # See https://git.knut.univention.de/univention/documentation/univention_sphinx_book_theme
-html_theme = 'univention_sphinx_book_theme'
+html_theme = "univention_sphinx_book_theme"
 
 
 # The following parts are inspired from the dev-onboarding document.
@@ -92,7 +93,7 @@ html_static_path = [
 html_last_updated_fmt = "%a, %d. %b %Y at %H:%M (UTC%z)"
 
 # https://github.com/mgeier/sphinx-last-updated-by-git
-git_last_updated_timezone = 'Europe/Berlin'
+git_last_updated_timezone = "Europe/Berlin"
 numfig = True
 numfig_format = {
     "figure": _("Figure %s:"),
@@ -101,7 +102,7 @@ numfig_format = {
     "section": _("Section %s:"),
 }
 
-suppress_warnings = ['git.too_shallow']
+suppress_warnings = ["git.too_shallow"]
 
 if "spelling" in sys.argv:
     extensions.append("univention_sphinx_extension")
@@ -109,15 +110,13 @@ if "spelling" in sys.argv:
     spelling_show_suggestions = True
     spelling_word_list_filename = ["spelling_wordlist"]
 
-tls_cacerts = {
-}
+tls_cacerts = {}
 
 linkcheck_allowed_redirects = {
     r"https://git\.knut\.univention\.de/.*": r"https://git\.knut\.univention\.de/users/sign_in",
 }
 
-linkcheck_ignore = [
-]
+linkcheck_ignore = []
 
 root_doc = "index"
 pdf_doc_base = "ums-stack"
@@ -136,11 +135,10 @@ html_theme_options = {
     "use_repository_button": True,
 }
 
-latex_engine = 'lualatex'
+latex_engine = "lualatex"
 latex_show_pagerefs = True
 latex_show_urls = "footnote"
-latex_documents = [
-    (root_doc, f'{pdf_doc_base}.tex', project, author, "manual", False)]
+latex_documents = [(root_doc, f"{pdf_doc_base}.tex", project, author, "manual", False)]
 latex_elements = {
     "papersize": "a4paper",
 }

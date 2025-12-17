@@ -18,7 +18,9 @@ client = UDM.http(udm_url, udm_username, udm_password)
 module = client.get("settings/extended_attribute")
 
 # Customer1 extended attribute primaryOrgUnit
-udm_obj = module.new(position="cn=custom attributes,cn=univention,dc=univention-organization,dc=intranet")
+udm_obj = module.new(
+    position="cn=custom attributes,cn=univention,dc=univention-organization,dc=intranet"
+)
 udm_obj.properties["name"] = "Customer1PrimaryOrgUnit"
 udm_obj.properties["CLIName"] = "primaryOrgUnit"
 udm_obj.properties["module"] = ["users/user"]
@@ -39,7 +41,9 @@ with contextlib.suppress(UnprocessableEntity):
     udm_obj.save()
 
 # Customer1 extended attribute secondaryOrgUnits
-udm_obj = module.new(position="cn=custom attributes,cn=univention,dc=univention-organization,dc=intranet")
+udm_obj = module.new(
+    position="cn=custom attributes,cn=univention,dc=univention-organization,dc=intranet"
+)
 udm_obj.properties["name"] = "Customer1SecondaryOrgUnits"
 udm_obj.properties["CLIName"] = "secondaryOrgUnits"
 udm_obj.properties["module"] = ["users/user"]
