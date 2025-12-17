@@ -7,7 +7,7 @@ dependencies:
   version: 0.24.3
 - name: license-import
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.7.8
+  version: 0.8.0
 - name: ldap-notifier
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.47.9
@@ -28,25 +28,25 @@ dependencies:
   version: 0.89.0
 - name: selfservice-consumer
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.19.39
+  version: 0.20.0
 - name: provisioning
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.66.3
+  version: 0.67.0
 - name: udm-listener
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.66.3
+  version: 0.67.0
 - name: keycloak
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.15.12
 - name: keycloak-extensions
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.23.3
+  version: 0.24.0
 - name: keycloak-bootstrap
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.19.18
+  version: 0.20.0
 - name: stack-data-ums
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.99.27
+  version: 0.100.2
 - name: twofa-helpdesk
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.15.2
@@ -55,18 +55,18 @@ dependencies:
   version: 0.41.7
 - name: umc-gateway
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.54.2
+  version: 0.55.0
 - name: umc-server
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.54.2
+  version: 0.55.0
 - name: scim-server
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.47.1
+  version: 0.48.0
 - name: postgresql
   repository: oci://docker.io/bitnamicharts
   version: 12.12.10
 - name: minio
   repository: oci://docker.io/bitnamicharts
   version: 14.7.0
-digest: sha256:cc547d75c64ccca3ce30ed529b8265f004acf5af5e69369b58ec673947d19dc2
-generated: "2025-12-19T15:57:45.159646297+01:00"
+digest: sha256:540c4859b93fd50c882d44f7fd6205f0dc2131a58c6c594e5d4c35e547fe1ded
+generated: "2025-12-30T13:15:30.392150716+03:00"
