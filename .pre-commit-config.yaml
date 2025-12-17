@@ -75,3 +75,8 @@ repos:
         language: "script"
         files: "^helm/nubus/(prod-values\\.yaml|demo-values\\.yaml|example\\.yaml|values\\.yaml)$"
         pass_filenames: false
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.14.9
+    hooks:
+      - id: ruff-check
+      - id: ruff-format
