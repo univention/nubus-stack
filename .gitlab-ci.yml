@@ -20,8 +20,6 @@ include:
       helm_values: "--helm-values ${CI_PROJECT_DIR}/helm/nubus/prod-values.yaml --helm-values ${CI_PROJECT_DIR}/ci/example-custom-secret-values.yaml --helm-values ${CI_PROJECT_DIR}/ci/vul-man-values.yaml --helm-values ${CI_PROJECT_DIR}/helm/nubus/example.yaml"
       helm_repository_url: "oci://artifacts.software-univention.de/nubus-dev/charts"
       parallelism: 20
-  - project: 'univention/infrastructure/renovate-runner'
-    file: '/templates/renovate.gitlab-ci.yml'
 
 sbom-scan-and-upload:
   extends: .sbom-scan-and-upload
@@ -75,20 +73,6 @@ variables:
     # TODO: Change this back to "main" once the changes have been merged
     value: "main"
 
-renovate:
-  stage: "package"
-  variables:
-    LOG_LEVEL: debug
-    RENOVATE_CONFIG_FILE: renovate.yaml
-  before_script:
-    - curl -O https://get.helm.sh/helm-v3.14.3-linux-amd64.tar.gz
-    - sha256sum -c $HELM_SHA256_SUM
-    - tar -zxvf helm-v3.14.3-linux-amd64.tar.gz
-    - mv linux-amd64/helm /usr/local/bin/helm
-  rules:
-    - if: '$CI_PIPELINE_SOURCE == "schedule" && $SCHEDULED_TASK == "renovate"'
-      when: always
-    - when: never
 
 lint-render-manifests:
   stage: lint
