@@ -1,0 +1,48 @@
+{{- /*
+SPDX-FileCopyrightText: 2025 Univention GmbH
+SPDX-License-Identifier: AGPL-3.0-only
+*/}}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-portal-nginx-fix
+  namespace: {{ include "common.names.namespace" . | quote }}
+  labels:
+    {{- include "common.labels.standard" ( dict "customLabels" .Values.additionalLabels "context" . ) | nindent 4 }}
+data:
+  nginx.conf: |
+    worker_processes  auto;
+    error_log  /dev/stderr notice;
+    pid        /var/run/nginx.pid;
+    events {
+        worker_connections  1024;
+    }
+    http {
+        include       /etc/nginx/mime.types;
+        default_type  application/octet-stream;
+        log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                          '$status $body_bytes_sent "$http_referer" '
+                          '"$http_user_agent" "$http_x_forwarded_for"';
+        access_log  /dev/stdout  main;
+        sendfile        on;
+        keepalive_timeout  65;
+        #gzip  on;
+        server {
+            listen 80 default_server;
+            listen [::]:80 default_server;
+            root /var/www/html;
+            index index.html index.htm;
+            server_name _;
+
+            # Fix for Bug 58473: Remove hardcoded apple-mobile-web-app-title so it falls back to the HTML title
+            sub_filter_types text/html;
+            sub_filter '<meta name="apple-mobile-web-app-title" content="Univention Portal">' '';
+            sub_filter '<meta name="apple-mobile-web-app-title" content="Univention Portal" />' '';
+            sub_filter_once on;
+
+            location / {
+                try_files $uri $uri/ =404;
+            }
+        }
+    }
