@@ -9,8 +9,8 @@ global:
   secrets:
     masterPassword: {{ .Values.secrets.masterPassword | quote }}
   subDomains:
-    portal: "{{ .Values.reviewPrefix }}.portal"
-    keycloak: "{{ .Values.reviewPrefix }}.id"
+    portal: "{{ .Values.reviewPrefix }}.{{ dig "subDomainSuffix" "portal" "portal" .Values }}"
+    keycloak: "{{ .Values.reviewPrefix }}.{{ dig "subDomainSuffix" "keycloak" "id" .Values }}"
     scim: "{{ .Values.reviewPrefix }}.scim"
 
 ingress:
@@ -46,7 +46,7 @@ nubusNotificationsApi:
 nubusStackDataSwp:
   stackDataContext:
     # TODO: Fix in the subchart
-    portalFqdn: "{{ .Values.reviewPrefix }}.portal.{{ .Values.reviewBaseDomain }}"
+    portalFqdn: "{{ .Values.reviewPrefix }}.{{ dig "subDomainSuffix" "portal" "portal" .Values }}.{{ .Values.reviewBaseDomain }}"
 
     smtpHost: "maildev-smtp"
     smtpPort: "25"
@@ -55,12 +55,12 @@ nubusStackDataSwp:
 nubusStackDataUms:
   stackDataContext:
     # TODO: Fix in the subchart
-    ldapSamlSpUrls: "https://{{ .Values.reviewPrefix }}.portal.{{ .Values.reviewBaseDomain }}/univention/saml/metadata"
+    ldapSamlSpUrls: "https://{{ .Values.reviewPrefix }}.{{ dig "subDomainSuffix" "portal" "portal" .Values }}.{{ .Values.reviewBaseDomain }}/univention/saml/metadata"
     smtpHost: maildev-smtp
     smtpPort: 25
     smtpUser: ""
     smtpStartTls: false
-    portalFqdn: "{{ .Values.reviewPrefix }}.portal.{{ .Values.reviewBaseDomain }}"
+    portalFqdn: "{{ .Values.reviewPrefix }}.{{ dig "subDomainSuffix" "portal" "portal" .Values }}.{{ .Values.reviewBaseDomain }}"
   templateContext:
     twofaSelfServiceActivated: true
 
