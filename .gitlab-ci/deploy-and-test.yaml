@@ -132,6 +132,9 @@ configure-tests:
       echo "UDM_ADMIN_PASSWORD=$(echo $PYTEST_ADDOPTS | sed -n 's/.*--admin-password=\([^ ]*\).*/\1/p')" >> deploy.env
       echo "LDAP_CREDENTIALS_SECRET_NAME=$LDAP_CREDENTIALS_SECRET_NAME" >> deploy.env
       echo "LDAP_CREDENTIALS_SECRET_KEY=$LDAP_CREDENTIALS_SECRET_KEY" >> deploy.env
+    # Discover Keycloak URL from Ingress to support configurable subdomains
+    - export KEYCLOAK_HOST=$(kubectl get ingress -n "${DEPLOY_NAMESPACE}" "${RELEASE_NAME:-nubus}-keycloak" -o jsonpath='{.spec.rules[0].host}')
+    - echo "KEYCLOAK_BASE_URL=https://${KEYCLOAK_HOST}" >> deploy.env
   artifacts:
     reports:
       dotenv: deploy.env
@@ -174,15 +177,15 @@ create-scim-client:
   stage: test
   extends: .check-variables
   needs:
-    - configure-tests
+    - job: configure-tests
+      artifacts: true
     - wait-for-nubus-to-be-ready
   image: "ubuntu:22.04"
   before_script:
     - apt-get update && apt-get install -y curl jq
     # Make sure not to override the before_script from .check-variables
     - !reference [".check-variables", "before_script"]
-    # KEYCLOAK_BASE_URL is modified in the .check-variables,before_script so we can't set in in variables
-    - export KEYCLOAK_BASE_URL="https://${DEPLOY_SUBDOMAIN}.id.review.univention.dev"
+    # KEYCLOAK_BASE_URL is provided by configure-tests artifact
   script:
     - chmod +x ci/create-scim-client.sh
     - ci/create-scim-client.sh
@@ -207,8 +210,9 @@ create-ldap-extended-attributes:
   before_script:
     # Make sure not to override the before_script from .check-variables
     - !reference [".check-variables", "before_script"]
-    # DEPLOY_SUBDOMAIN is modified in the .check-variables,before_script so we can't set in in variables
-    - export UDM_URL="https://${DEPLOY_SUBDOMAIN}.portal.review.univention.dev/univention/udm/"
+    # Discover Portal URL from Ingress to support configurable subdomains
+    - export PORTAL_HOST=$(kubectl get ingress -n "${DEPLOY_NAMESPACE}" "${RELEASE_NAME:-nubus}-portal-server" -o jsonpath='{.spec.rules[0].host}')
+    - export UDM_URL="https://${PORTAL_HOST}/univention/udm/"
   script:
     - python3 ci/create-ldap-extended-attributes.py
 
@@ -228,9 +232,10 @@ scim-e2e-test:
     - !reference [".check-variables", "before_script"]
     - source scim-client.env
     - export CLIENT_SECRET
-    # DEPLOY_SUBDOMAIN is modified in the .check-variables,before_script so we can't set in in variables
+    # Discover URLs from Ingress to support configurable subdomains
     - export SCIM_BASE_URL="https://${DEPLOY_SUBDOMAIN}.scim.review.univention.dev/scim/v2"
-    - export KEYCLOAK_BASE_URL="https://${DEPLOY_SUBDOMAIN}.id.review.univention.dev/realms/nubus/protocol/openid-connect/token"
+    - export KEYCLOAK_HOST=$(kubectl get ingress -n "${DEPLOY_NAMESPACE}" "${RELEASE_NAME:-nubus}-keycloak" -o jsonpath='{.spec.rules[0].host}')
+    - export KEYCLOAK_BASE_URL="https://${KEYCLOAK_HOST}/realms/nubus/protocol/openid-connect/token"
   script:
     - echo "DEPLOY_SUBDOMAIN=${DEPLOY_SUBDOMAIN}"
     - pushd /e2e
