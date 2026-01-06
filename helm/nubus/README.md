@@ -44,9 +44,9 @@ helm uninstall nubus
 | oci://artifacts.software-univention.de/nubus/charts | nubusLicenseImport(license-import) | 0.8.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusNotificationsApi(notifications-api) | 0.89.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubus-common | 0.29.1 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalConsumer(portal-consumer) | 0.89.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalFrontend(portal-frontend) | 0.89.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.89.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalConsumer(portal-consumer) | 0.90.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalFrontend(portal-frontend) | 0.90.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.90.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 0.67.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusScimServer(scim-server) | 0.48.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceConsumer(selfservice-consumer) | 0.20.0 |
@@ -311,7 +311,7 @@ true
       "imagePullPolicy": "IfNotPresent",
       "registry": "artifacts.software-univention.de",
       "repository": "nubus/images/portal-extension",
-      "tag": "0.89.0@sha256:795d5e919892d821fb7a1f0bf5f0d1205dfeed8c343fb4c18fccd65a8769c625"
+      "tag": "0.90.0@sha256:8afb793ddf37bed3b931c8b35e0896b89c4eb0cb4fc67aa1004b3986da4585bc"
     },
     "name": "portal"
   },
