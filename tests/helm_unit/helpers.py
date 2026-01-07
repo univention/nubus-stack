@@ -31,7 +31,9 @@ def _dotted(path: list[str | int]) -> str:
     return ".".join(out)
 
 
-def _iter_string_values(obj: Any, path: list[str | int] | None = None) -> Iterable[tuple[str, list[str | int]]]:
+def _iter_string_values(
+    obj: Any, path: list[str | int] | None = None
+) -> Iterable[tuple[str, list[str | int]]]:
     if path is None:
         path = []
     if isinstance(obj, str):
@@ -48,7 +50,9 @@ def _iter_string_values(obj: Any, path: list[str | int] | None = None) -> Iterab
     return
 
 
-def find_secret_usages(resource: dict, forbidden: set[str], ignore_paths: list[str]) -> list[tuple[str, str]]:
+def find_secret_usages(
+    resource: dict, forbidden: set[str], ignore_paths: list[str]
+) -> list[tuple[str, str]]:
     hits: list[tuple[str, str]] = []
     for value, path in _iter_string_values(resource):
         if value in forbidden:
