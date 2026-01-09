@@ -19,17 +19,24 @@ stages:
 .check-variables:
   before_script:
     # kubernets has a 63 chars limit for namespaces so make sure we do not exceed this
-    - export DEPLOY_NAMESPACE="${DEPLOY_NAMESPACE:0:63}"
+    # Remove chars in the middle, to make sure resulting string is a valid namespace
+    - |-
+      max_length=63
+      if [[ ${#DEPLOY_NAMESPACE} -gt ${max_length} ]]; then
+          suffix_length=10
+          suffix=${DEPLOY_NAMESPACE:(-${suffix_length})}
+          export DEPLOY_NAMESPACE="${DEPLOY_NAMESPACE:0:$((max_length - suffix_length - 3))}zzz${suffix}"
+      fi
     # urllib (idna) has a char limit of 63 and some tests add -maildev to the url
     # so limit chars ro 63 - 8
     # Remove chars in the middle, to make sure resulting string is a valid URL
     - |-
-        max_length=55
-        if [[ ${#DEPLOY_SUBDOMAIN} -gt ${max_length} ]]; then
-            suffix_length=10
-            suffix=${DEPLOY_SUBDOMAIN:(-${suffix_length})}
-            export DEPLOY_SUBDOMAIN="${DEPLOY_SUBDOMAIN:0:$((max_length - suffix_length - 3))}zzz${suffix}"
-        fi
+      max_length=55
+      if [[ ${#DEPLOY_SUBDOMAIN} -gt ${max_length} ]]; then
+          suffix_length=10
+          suffix=${DEPLOY_SUBDOMAIN:(-${suffix_length})}
+          export DEPLOY_SUBDOMAIN="${DEPLOY_SUBDOMAIN:0:$((max_length - suffix_length - 3))}zzz${suffix}"
+      fi
 
 pipeline-configuration:
   stage: prepare
