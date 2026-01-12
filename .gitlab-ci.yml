@@ -45,6 +45,24 @@ sbom-vex-attest:
       when: manual
     - when: never
 
+cleanup-pre-develop-tags:
+  extends: .vul-man-base
+  stage: attest
+  needs:
+    - job: publish-chart-external
+      optional: true
+    - job: push-image-external
+      optional: true
+    - job: pre-semantic-release
+      optional: true
+    - job: sbom-vex-attest
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME =~ /^release-/ && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == $CI_DEFAULT_BRANCH'
+      when: on_success
+    - when: never
+  script:
+    - vul-man delete-tag --pattern "nubus:*-pre-develop"
+
 variables:
   SKIP_UPDATE_HELM_VALUES: "1"
   AUTO_TRIGGER_TESTS:
