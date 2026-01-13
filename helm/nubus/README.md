@@ -42,11 +42,11 @@ helm uninstall nubus
 | oci://artifacts.software-univention.de/nubus/charts | nubusLdapNotifier(ldap-notifier) | 0.47.12 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusLdapServer(ldap-server) | 0.47.12 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusLicenseImport(license-import) | 0.8.1 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusNotificationsApi(notifications-api) | 0.90.1 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusNotificationsApi(notifications-api) | 0.91.1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubus-common | 0.29.5 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalConsumer(portal-consumer) | 0.90.1 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalFrontend(portal-frontend) | 0.90.1 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.90.1 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalConsumer(portal-consumer) | 0.91.1 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalFrontend(portal-frontend) | 0.91.1 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.91.1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 0.68.6 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusScimServer(scim-server) | 0.48.2 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceConsumer(selfservice-consumer) | 0.20.2 |
@@ -320,7 +320,7 @@ true
       "imagePullPolicy": "IfNotPresent",
       "registry": "artifacts.software-univention.de",
       "repository": "nubus/images/portal-extension",
-      "tag": "0.90.0@sha256:8afb793ddf37bed3b931c8b35e0896b89c4eb0cb4fc67aa1004b3986da4585bc"
+      "tag": "0.91.1@sha256:86c03024e558d669507e90fe87057a3c0ae1a2664edc1afe6c9dc99394183b3f"
     },
     "name": "portal"
   },
@@ -1662,6 +1662,69 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 "portal-server"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusPortalServer.portalServer.guardian.auth.existingSecret.keyMapping.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+"administrator_password"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusPortalServer.portalServer.guardian.auth.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Release.Name }}-nubus-credentials"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusPortalServer.portalServer.guardian.fqdn</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Release.Name }}-guardian-authorization-api"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusPortalServer.portalServer.guardian.keycloak.fqdn</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Release.Name }}-keycloak:8080"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusPortalServer.portalServer.guardian.keycloak.realm</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ .Values.global.keycloak.realm }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusPortalServer.portalServer.guardian.keycloak.scheme</td>
+			<td>string</td>
+			<td><pre lang="json">
+"http"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusPortalServer.portalServer.guardian.scheme</td>
+			<td>string</td>
+			<td><pre lang="json">
+"http"
 </pre>
 </td>
 			<td></td>
