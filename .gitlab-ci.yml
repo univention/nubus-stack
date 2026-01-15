@@ -14,12 +14,13 @@ include:
       - "jobs/semantic-release-env.yaml"
       - "jobs/harbor-malware-scan.yaml"
       - "templates/sonarqube.yaml"
-  - component: "$CI_SERVER_FQDN/univention/dev/nubus-for-k8s/common-ci/vul-man@v1.52.0"
+  - component: "$CI_SERVER_FQDN/univention/dev/nubus-for-k8s/common-ci/vul-man@v1.55.0"
     inputs:
       helm_chart_name: "nubus"
       helm_values: "--helm-values ${CI_PROJECT_DIR}/helm/nubus/prod-values.yaml --helm-values ${CI_PROJECT_DIR}/ci/example-custom-secret-values.yaml --helm-values ${CI_PROJECT_DIR}/ci/vul-man-values.yaml --helm-values ${CI_PROJECT_DIR}/helm/nubus/example.yaml"
       helm_repository_url: "oci://artifacts.software-univention.de/nubus-dev/charts"
       parallelism: 20
+      enable_mr_environments: false
 
 sbom-scan-and-upload:
   extends: .sbom-scan-and-upload
@@ -43,6 +44,24 @@ sbom-vex-attest:
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME =~ /^release-/ && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == $CI_DEFAULT_BRANCH'
       when: manual
     - when: never
+
+cleanup-pre-develop-tags:
+  extends: .vul-man-base
+  stage: attest
+  needs:
+    - job: publish-chart-external
+      optional: true
+    - job: push-image-external
+      optional: true
+    - job: pre-semantic-release
+      optional: true
+    - job: sbom-vex-attest
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME =~ /^release-/ && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == $CI_DEFAULT_BRANCH'
+      when: on_success
+    - when: never
+  script:
+    - vul-man delete-tag --pattern "nubus:*-pre-develop"
 
 variables:
   SKIP_UPDATE_HELM_VALUES: "1"
