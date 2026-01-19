@@ -4,7 +4,7 @@ dependencies:
   version: 0.29.5
 - name: guardian
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.24.3
+  version: 0.24.7
 - name: license-import
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.8.1
@@ -68,5 +68,5 @@ dependencies:
 - name: minio
   repository: oci://docker.io/bitnamicharts
   version: 14.7.0
-digest: sha256:b731c6e0735c0c53e78c007e01566413517e033946af5d415a25bf30d4fa7a88
-generated: "2026-01-16T13:22:44.086763883+01:00"
+digest: sha256:da613a38a6931a94b74c3fc98039fe0e73379a14006c205ef8ca3881a2921105
+generated: "2026-01-19T11:47:17.963769104+03:00"
