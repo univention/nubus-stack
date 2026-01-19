@@ -85,7 +85,7 @@ dependencies:
   - name: "keycloak"
     alias: "keycloak"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.15.15"
+    version: "0.16.0"
     condition: "keycloak.enabled"
 
   - name: "keycloak-extensions"
@@ -123,13 +123,13 @@ dependencies:
   - name: "umc-gateway"
     alias: "nubusUmcGateway"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.55.1"
+    version: "0.56.0"
     condition: "nubusUmcGateway.enabled"
 
   - name: "umc-server"
     alias: "nubusUmcServer"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.55.1"
+    version: "0.56.0"
     condition: "nubusUmcServer.enabled"
 
   # scim-server related chart(s)
