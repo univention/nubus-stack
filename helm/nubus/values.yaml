@@ -45,7 +45,7 @@ global:
     connection:
       # -- Global default for the URL via which the UDM Rest API can be reached.
       # In transition state, not all subcharts do make use of this yet.
-      url: "http://{{ .Release.Name }}-udm-rest-api:9979/udm/"
+      url: "http://{{ .Release.Name }}-udm-rest-api:9979/univention/udm/"
 
   keycloak:
     realm: "nubus"
@@ -627,8 +627,6 @@ nubusScimServer: &nubusScimServer
   docu:
     enabled: false
   udm:
-    connection:
-      url: '{{ include "nubusTemplates.udmRestApi.uri" . }}'
     auth:
       username: "cn=admin"
       existingSecret:
