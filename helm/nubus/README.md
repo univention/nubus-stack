@@ -266,6 +266,15 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>global.postgresql.connection.port</td>
+			<td>string</td>
+			<td><pre lang="json">
+"5432"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>global.secrets.masterPassword</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -1928,10 +1937,28 @@ null
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusProvisioning.registerConsumers.createUsers.portalConsumer.existingSecret.keyMapping.registration</td>
+			<td>string</td>
+			<td><pre lang="json">
+"registration"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusProvisioning.registerConsumers.createUsers.portalConsumer.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
 "{{ .Release.Name }}-portal-consumer-provisioning-api"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusProvisioning.registerConsumers.createUsers.selfserviceConsumer.existingSecret.keyMapping.registration</td>
+			<td>string</td>
+			<td><pre lang="json">
+"registration"
 </pre>
 </td>
 			<td></td>
