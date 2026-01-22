@@ -64,6 +64,7 @@ cleanup-pre-develop-tags:
     - vul-man delete-tag --pattern "nubus:*-pre-develop"
 
 variables:
+  GIT_FETCH_EXTRA_FLAGS: --tags
   SKIP_UPDATE_HELM_VALUES: "1"
   AUTO_TRIGGER_TESTS:
     description: |
