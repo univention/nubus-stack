@@ -1,5 +1,31 @@
 # Changelog
 
+## [1.17.0](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/compare/v1.16.0...v1.17.0) (2026-01-23)
+
+
+### Features
+
+* **ci:** Support configurable subdomains in CI pipeline ([3a12332](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/3a12332340f98eef66431e068fea0ad91afb5042)), closes [univention/dev/internal/team-nubus#866](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/866)
+* **helm:** Add component-specific extraEnvVars support ([1b12d1d](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/1b12d1df55c4628489b0c0bc178da9ed78e044f6)), closes [univention/dev/internal/team-nubus#977](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/977)
+* **helm:** Add support for configurable hostnames and subdomains ([258486e](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/258486e06ef1f8da44a8f222262cff2c23b80af6)), closes [univention/dev/internal/team-nubus#866](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/866)
+* **provisioning:** Integrate Provisioning UDM Transformer fixes ([2877aaf](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/2877aafec962927c0913521a4cdda72e26ce4a9a)), closes [univention/dev/internal/team-nubus#1590](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1590)
+* Remove nginx-specific ingress rewrites ([eded67e](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/eded67e7f2fe49e430aecc5fdedc85392b3c0952)), closes [univention/dev/internal/team-nubus#1552](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1552)
+* update charts to disable structured logging by default ([178b50a](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/178b50af2eaaea236434fd6d217f3d01cfbe8b9d)), closes [univention/dev/internal/team-nubus#1588](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1588)
+* update portal charts for guardian schema changes ([00e2c9d](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/00e2c9d46bcfd4389c5d4effc332cd206eda1fef)), closes [univention/dev/internal/team-nubus#1251](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1251)
+* upgrade Keycloak for meta-cors issues ([ea29c7f](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/ea29c7fa2b42a3edf2f3013d9131f63987f19b76)), closes [univention/dev/internal/team-nubus#1555](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1555)
+
+
+### Bug Fixes
+
+* Bump guardian to 0.24.7 ([3a2fedc](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/3a2fedc1886a757bab72c485bb143a95274fefb5)), closes [univention/dev/internal/team-nubus#1518](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1518)
+* Bump image to errata 299 ([6f84be2](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/6f84be25c616348795f0f93332019415ac41223d)), closes [univention/dev/internal/team-nubus#1518](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1518)
+* Bump provisioning ([39d1ec1](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/39d1ec1794190ba360293fd3fc0ff9f1bca3f8a7)), closes [univention/dev/internal/team-nubus#1530](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1530)
+* format python files with ruff ([c72692b](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/c72692be47efb2499b4be0894b3a58cc5ec5c8bf)), closes [univention/dev/internal/team-nubus#1535](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1535)
+* **guardian:** security updates ([56de1bb](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/56de1bbe490b8c82d03460dc8639bc3a9cb55b78)), closes [univention/dev/internal/team-nubus#1541](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1541)
+* **guardian:** subdependencies bump ([c4cd270](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/c4cd270cd0bf786755e4184a0d9de65e7a50c718)), closes [univention/dev/internal/team-nubus#1541](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1541)
+* **ldap-server:** Helm upgrade conflicts ([0271392](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/02713922b4fef6dbfedbc63d1d30380aa600eace)), closes [univention/dev/internal/team-nubus#1567](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1567)
+* **values:** add values missing from generated reference-values ([8fcf698](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/8fcf6982deb0908912c6f3c00fe462bf8f865bd4)), closes [univention/dev/internal/team-nubus#1585](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1585)
+
 ## [1.16.0](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/compare/v1.15.2...v1.16.0) (2025-12-15)
 
 
