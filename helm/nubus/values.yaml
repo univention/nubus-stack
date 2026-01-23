@@ -39,6 +39,7 @@ global:
   postgresql:
     connection:
       host: "{{ .Release.Name }}-postgresql"
+      port: "5432"
 
   udm:
     connection:
@@ -385,9 +386,13 @@ nubusProvisioning: &nubusProvisioning
       portalConsumer:
         existingSecret:
           name: "{{ .Release.Name }}-portal-consumer-provisioning-api"
+          keyMapping:
+            registration: "registration"
       selfserviceConsumer:
         existingSecret:
           name: "{{ .Release.Name }}-selfservice-listener-provisioning-api"
+          keyMapping:
+            registration: "registration"
     udm:
       auth:
         existingSecret:
