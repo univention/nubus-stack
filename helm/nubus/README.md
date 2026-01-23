@@ -35,27 +35,27 @@ helm uninstall nubus
 
 | Repository | Name | Version |
 |------------|------|---------|
-| oci://artifacts.software-univention.de/nubus/charts | nubusGuardian(guardian) | 0.23.21 |
-| oci://artifacts.software-univention.de/nubus/charts | keycloak(keycloak) | 0.15.12 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakBootstrap(keycloak-bootstrap) | 0.19.18 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakExtensions(keycloak-extensions) | 0.23.3 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusLdapNotifier(ldap-notifier) | 0.47.7 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusLdapServer(ldap-server) | 0.47.7 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusLicenseImport(license-import) | 0.7.8 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusNotificationsApi(notifications-api) | 0.88.2 |
-| oci://artifacts.software-univention.de/nubus/charts | nubus-common | 0.29.1 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalConsumer(portal-consumer) | 0.88.2 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalFrontend(portal-frontend) | 0.88.2 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.88.2 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 0.66.3 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusScimServer(scim-server) | 0.47.1 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceConsumer(selfservice-consumer) | 0.19.39 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.99.27 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusTwofaHelpdesk(twofa-helpdesk) | 0.15.2 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 0.66.3 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUdmRestApi(udm-rest-api) | 0.41.7 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.54.2 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUmcServer(umc-server) | 0.54.2 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusGuardian(guardian) | 0.24.7 |
+| oci://artifacts.software-univention.de/nubus/charts | keycloak(keycloak) | 0.16.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakBootstrap(keycloak-bootstrap) | 0.20.2 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakExtensions(keycloak-extensions) | 0.24.1 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusLdapNotifier(ldap-notifier) | 0.47.12 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusLdapServer(ldap-server) | 0.47.12 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusLicenseImport(license-import) | 0.8.1 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusNotificationsApi(notifications-api) | 0.90.1 |
+| oci://artifacts.software-univention.de/nubus/charts | nubus-common | 0.29.5 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalConsumer(portal-consumer) | 0.90.1 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalFrontend(portal-frontend) | 0.90.1 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.90.1 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 0.68.6 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusScimServer(scim-server) | 0.48.2 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceConsumer(selfservice-consumer) | 0.20.2 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.101.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusTwofaHelpdesk(twofa-helpdesk) | 0.16.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 0.68.6 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUdmRestApi(udm-rest-api) | 0.41.12 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.56.1 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUmcServer(umc-server) | 0.56.1 |
 | oci://docker.io/bitnamicharts | minio | 14.7.0 |
 | oci://docker.io/bitnamicharts | postgresql | ^12.x.x |
 
@@ -266,6 +266,15 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>global.postgresql.connection.port</td>
+			<td>string</td>
+			<td><pre lang="json">
+"5432"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>global.secrets.masterPassword</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -311,7 +320,7 @@ true
       "imagePullPolicy": "IfNotPresent",
       "registry": "artifacts.software-univention.de",
       "repository": "nubus/images/portal-extension",
-      "tag": "0.88.2@sha256:5e232665728b436586fe106dbd0e03a90aa6ff52fcc740555556dcca0d2dc9f7"
+      "tag": "0.90.0@sha256:8afb793ddf37bed3b931c8b35e0896b89c4eb0cb4fc67aa1004b3986da4585bc"
     },
     "name": "portal"
   },
@@ -1928,10 +1937,28 @@ null
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusProvisioning.registerConsumers.createUsers.portalConsumer.existingSecret.keyMapping.registration</td>
+			<td>string</td>
+			<td><pre lang="json">
+"registration"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusProvisioning.registerConsumers.createUsers.portalConsumer.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
 "{{ .Release.Name }}-portal-consumer-provisioning-api"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusProvisioning.registerConsumers.createUsers.selfserviceConsumer.existingSecret.keyMapping.registration</td>
+			<td>string</td>
+			<td><pre lang="json">
+"registration"
 </pre>
 </td>
 			<td></td>
@@ -2081,7 +2108,7 @@ null
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusProvisioning.udmTransformer.ldap.auth.existingSecret.keyMapping.password</td>
+			<td>nubusProvisioning.udmTransformer.udm.auth.existingSecret.keyMapping.password</td>
 			<td>string</td>
 			<td><pre lang="json">
 "{{ tpl .Values.global.ldap.auth.admin.existingSecret.keyMapping.password . }}"
@@ -2090,19 +2117,10 @@ null
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusProvisioning.udmTransformer.ldap.auth.existingSecret.name</td>
+			<td>nubusProvisioning.udmTransformer.udm.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
 "{{ tpl .Values.global.ldap.auth.admin.existingSecret.name . }}"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.udmTransformer.ldap.connection.host</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-ldap-server-primary"
 </pre>
 </td>
 			<td></td>

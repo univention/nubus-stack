@@ -106,3 +106,46 @@ The deployment will assume the certificate to be prepared in a secret within the
 central CI namespace, e.g. `nubus-ci`, and try to deploy a copy into the target
 namespace. This way there is no certificate request needed for a deployment and
 we avoid bumping into rate limits.
+
+## Upgrade Testing
+
+The CI pipeline includes automated upgrade testing
+via the `deploy-and-test-upgrade` job.
+
+### How it works
+
+1. **find-starting-version** - Determines which version to upgrade from
+    - Parses `SEMANTIC_VERSION` to get current version
+    - Finds latest released version from previous minor (via git tags)
+    - Can be overridden with `UPGRADE_TEST_START_VERSION` variable
+
+2. **deploy-gaia** - Deploys the starting version
+    - Checks out the git tag for the starting version
+    - Deploys using `helmfile`
+
+3. **e2e-pre-upgrade** - Runs pre-upgrade tests
+    - Executes tests marked with `@pytest.mark.pre_upgrade`
+    - Saves test artifacts to `upgrade.json`
+
+4. **deploy-gaia-upgrade** - Upgrades to current version
+    - Redeployes using current branch's chart version
+
+5. **e2e-post-upgrade** - Runs post-upgrade tests
+    - Executes tests marked with `@pytest.mark.post_upgrade`
+    - Uses artifacts from pre-upgrade phase
+
+### Version Selection
+
+The `ci/upgrade_version/upgrade_version.py` script selects the starting version:
+
+- Gets all `v*` git tags
+- Finds latest version with different minor than current
+- Example: Current 1.16.0 → starts from 1.15.2
+
+### Manual version selection
+
+Instead of automatically selecting the starting version based on the current
+`SEMANTIC_VERSION` the start version can be manually selected by setting `UPGRADE_TEST_START_VERSION`.
+
+To pass this variable the pipeline has to be created manually in GitLab
+under `Build` > `Pipelines` > `New pipeline`.

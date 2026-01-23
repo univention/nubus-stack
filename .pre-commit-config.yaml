@@ -9,7 +9,7 @@ exclude: '^.*\.patch'
 
 repos:
   - repo: "https://github.com/pre-commit/pre-commit-hooks"
-    rev: "v4.5.0"
+    rev: "v6.0.0"
     hooks:
       # "Check for added large files"
       - id: "check-added-large-files"
@@ -32,7 +32,7 @@ repos:
 
   # "Commit messages"
   - repo: "https://github.com/compilerla/conventional-pre-commit"
-    rev: "v2.4.0"
+    rev: "v4.3.0"
     hooks:
       - id: "conventional-pre-commit"
         stages: ["commit-msg"]
@@ -43,7 +43,7 @@ repos:
       - id: check-issue-reference
 
   - repo: "https://github.com/norwoodj/helm-docs"
-    rev: "v1.11.0"
+    rev: "v1.14.2"
     hooks:
       - id: "helm-docs"
         args:
@@ -57,12 +57,12 @@ repos:
 
   # "Helm chart linter"
   - repo: "https://github.com/gruntwork-io/pre-commit"
-    rev: "v0.1.23"
+    rev: "v0.1.30"
     hooks:
       - id: "helmlint"
 
   - repo: "https://git.knut.univention.de/univention/infrastructure/pre-commit-hooks/addlicense"
-    rev: "v1.0.1"
+    rev: "v1.0.3"
     hooks:
       - id: "addlicense"
         name: "Check or add license headers to files"
@@ -75,3 +75,8 @@ repos:
         language: "script"
         files: "^helm/nubus/(prod-values\\.yaml|demo-values\\.yaml|example\\.yaml|values\\.yaml)$"
         pass_filenames: false
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.14.9
+    hooks:
+      - id: ruff-check
+      - id: ruff-format

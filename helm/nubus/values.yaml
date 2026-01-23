@@ -39,6 +39,7 @@ global:
   postgresql:
     connection:
       host: "{{ .Release.Name }}-postgresql"
+      port: "5432"
 
   udm:
     connection:
@@ -77,7 +78,7 @@ global:
         registry: "artifacts.software-univention.de"
         repository: "nubus/images/portal-extension"
         imagePullPolicy: "IfNotPresent"
-        tag: "0.88.2@sha256:5e232665728b436586fe106dbd0e03a90aa6ff52fcc740555556dcca0d2dc9f7"
+        tag: "0.90.0@sha256:8afb793ddf37bed3b931c8b35e0896b89c4eb0cb4fc67aa1004b3986da4585bc"
     - name: "2fa-helpdesk"
       image:
         registry: "artifacts.software-univention.de"
@@ -385,9 +386,13 @@ nubusProvisioning: &nubusProvisioning
       portalConsumer:
         existingSecret:
           name: "{{ .Release.Name }}-portal-consumer-provisioning-api"
+          keyMapping:
+            registration: "registration"
       selfserviceConsumer:
         existingSecret:
           name: "{{ .Release.Name }}-selfservice-listener-provisioning-api"
+          keyMapping:
+            registration: "registration"
     udm:
       auth:
         existingSecret:
@@ -404,13 +409,7 @@ nubusProvisioning: &nubusProvisioning
             password: "{{ tpl .Values.global.ldap.auth.admin.existingSecret.keyMapping.password . }}"
 
   udmTransformer:
-    ldap:
-      connection:
-        # NOTE: Special case, we want to be sure that the udm-transformer is
-        # talking to the primary ldap server. This way there is no race
-        # condition between the provisioning event and the update of the
-        # secondary ldap servers.
-        host: "{{ .Release.Name }}-ldap-server-primary"
+    udm:
       auth:
         existingSecret:
           name: "{{ tpl .Values.global.ldap.auth.admin.existingSecret.name . }}"

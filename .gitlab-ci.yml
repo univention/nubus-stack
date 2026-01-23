@@ -4,7 +4,7 @@
 ---
 include:
   - project: "univention/dev/nubus-for-k8s/common-ci"
-    ref: "v1.54.0"
+    ref: "v1.54.1"
     file:
       - "defaults/nubus-workflow.yaml"
       - "defaults/stages.yaml"
@@ -14,18 +14,19 @@ include:
       - "jobs/semantic-release-env.yaml"
       - "jobs/harbor-malware-scan.yaml"
       - "templates/sonarqube.yaml"
-  - component: "$CI_SERVER_FQDN/univention/dev/nubus-for-k8s/common-ci/vul-man@v1.52.0"
+  - component: "$CI_SERVER_FQDN/univention/dev/nubus-for-k8s/common-ci/vul-man@v1.55.0"
     inputs:
       helm_chart_name: "nubus"
       helm_values: "--helm-values ${CI_PROJECT_DIR}/helm/nubus/prod-values.yaml --helm-values ${CI_PROJECT_DIR}/ci/example-custom-secret-values.yaml --helm-values ${CI_PROJECT_DIR}/ci/vul-man-values.yaml --helm-values ${CI_PROJECT_DIR}/helm/nubus/example.yaml"
       helm_repository_url: "oci://artifacts.software-univention.de/nubus-dev/charts"
       parallelism: 20
-  - project: 'univention/infrastructure/renovate-runner'
-    file: '/templates/renovate.gitlab-ci.yml'
+      enable_mr_environments: false
 
 sbom-scan-and-upload:
   extends: .sbom-scan-and-upload
   rules:
+    - if: '$CI_COMMIT_BRANCH == "develop"'
+      when: always
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME =~ /^release-/ && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == $CI_DEFAULT_BRANCH'
       when: always
     - when: never
@@ -44,7 +45,26 @@ sbom-vex-attest:
       when: manual
     - when: never
 
+cleanup-pre-develop-tags:
+  extends: .vul-man-base
+  stage: attest
+  needs:
+    - job: publish-chart-external
+      optional: true
+    - job: push-image-external
+      optional: true
+    - job: pre-semantic-release
+      optional: true
+    - job: sbom-vex-attest
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME =~ /^release-/ && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == $CI_DEFAULT_BRANCH'
+      when: on_success
+    - when: never
+  script:
+    - vul-man delete-tag --pattern "nubus:*-pre-develop"
+
 variables:
+  GIT_FETCH_EXTRA_FLAGS: --tags
   SKIP_UPDATE_HELM_VALUES: "1"
   AUTO_TRIGGER_TESTS:
     description: |
@@ -64,29 +84,13 @@ variables:
     description: |
       Allows to specify a custom tag to use for the e2e-tests testrunner image.
       Intended to help with testing a branch of the e2e-tests repository.
-    # TODO: Change this back to "latest" once the changes have been merged
     value: "latest"
   TESTRUNNER_CONFIGURATION_BRANCH:
     description: |
       Allows to specify a custom branch name to use for the testrunner configuration.
       This branch is used to run the script "discover-env-from-cluster.sh".
-    # TODO: Change this back to "main" once the changes have been merged
     value: "main"
 
-renovate:
-  stage: "package"
-  variables:
-    LOG_LEVEL: debug
-    RENOVATE_CONFIG_FILE: renovate.yaml
-  before_script:
-    - curl -O https://get.helm.sh/helm-v3.14.3-linux-amd64.tar.gz
-    - sha256sum -c $HELM_SHA256_SUM
-    - tar -zxvf helm-v3.14.3-linux-amd64.tar.gz
-    - mv linux-amd64/helm /usr/local/bin/helm
-  rules:
-    - if: '$CI_PIPELINE_SOURCE == "schedule" && $SCHEDULED_TASK == "renovate"'
-      when: always
-    - when: never
 
 lint-render-manifests:
   stage: lint
@@ -168,6 +172,16 @@ deploy-and-test-provided-secret-values:
     DEPLOY_NAMESPACE: "ci-${CI_COMMIT_REF_SLUG}-val"
     DEPLOY_SUBDOMAIN: "${CI_COMMIT_REF_SLUG}-val"
     ENVIRONMENT_SUFFIX: "-val"
+  rules:
+    - when: manual
+
+deploy-and-test-upgrade:
+  extends: .base-deploy-and-test
+  variables:
+    UPGRADE_TEST: true
+    DEPLOY_NAMESPACE: "ci-${CI_COMMIT_REF_SLUG}-up"
+    DEPLOY_SUBDOMAIN: "${CI_COMMIT_REF_SLUG}-up"
+    ENVIRONMENT_SUFFIX: "-up"
   rules:
     - when: manual
 
