@@ -78,7 +78,7 @@ global:
         registry: "artifacts.software-univention.de"
         repository: "nubus/images/portal-extension"
         imagePullPolicy: "IfNotPresent"
-        tag: "0.90.0@sha256:8afb793ddf37bed3b931c8b35e0896b89c4eb0cb4fc67aa1004b3986da4585bc"
+        tag: "0.91.1@sha256:86c03024e558d669507e90fe87057a3c0ae1a2664edc1afe6c9dc99394183b3f"
     - name: "2fa-helpdesk"
       image:
         registry: "artifacts.software-univention.de"
@@ -343,6 +343,19 @@ nubusPortalServer: &nubusPortalServer
     auth:
       existingSecret:
         name: "{{ .Release.Name }}-stack-data-ums-svc-portal-server"
+  portalServer:
+    guardian:
+      fqdn: "{{ .Release.Name }}-guardian-authorization-api"
+      scheme: "http"
+      keycloak:
+        fqdn: "{{ .Release.Name }}-keycloak:8080"
+        scheme: "http"
+        realm: "{{ .Values.global.keycloak.realm }}"
+      auth:
+        existingSecret:
+          name: "{{ .Release.Name }}-nubus-credentials"
+          keyMapping:
+            password: "administrator_password"
 
 
 nubusProvisioning: &nubusProvisioning
