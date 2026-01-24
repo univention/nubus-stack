@@ -4,7 +4,7 @@
 ---
 include:
   - project: "univention/dev/nubus-for-k8s/common-ci"
-    ref: "v1.54.1"
+    ref: "v1.55.2"
     file:
       - "defaults/nubus-workflow.yaml"
       - "defaults/stages.yaml"
