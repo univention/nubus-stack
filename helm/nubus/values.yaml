@@ -458,7 +458,7 @@ nubusSelfServiceConsumer: &nubusSelfServiceConsumer
       url: "http://{{ .Release.Name }}-provisioning-api"
   umc:
     connection:
-      url: "http://{{ .Release.Name }}-umc-server"
+      url: "http://{{ .Release.Name }}-umc-server/univention"
 
 nubusUdmRestApi: &nubusUdmRestApi
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
