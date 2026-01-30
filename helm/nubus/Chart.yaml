@@ -103,7 +103,7 @@ dependencies:
   - name: "stack-data-ums"
     alias: "nubusStackDataUms"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.101.0"
+    version: "0.101.2"
     condition: "nubusStackDataUms.enabled"
 
   - name: "twofa-helpdesk"
@@ -123,13 +123,13 @@ dependencies:
   - name: "umc-gateway"
     alias: "nubusUmcGateway"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.57.0"
+    version: "0.57.1"
     condition: "nubusUmcGateway.enabled"
 
   - name: "umc-server"
     alias: "nubusUmcServer"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.57.0"
+    version: "0.57.1"
     condition: "nubusUmcServer.enabled"
 
   # scim-server related chart(s)
