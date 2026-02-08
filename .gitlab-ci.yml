@@ -195,6 +195,3 @@ lint-commit-messages:
 sonarqube:
   extends: .sonarqube
   needs: []
-  # FIXME: Disable Sonarqube until the server is fixed
-  rules:
-    - when: never
