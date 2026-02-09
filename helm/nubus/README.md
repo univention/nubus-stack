@@ -1629,6 +1629,24 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusPortalFrontend.udm.auth.existingSecret.keyMapping.password</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ tpl .Values.global.ldap.auth.admin.existingSecret.keyMapping.password . }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusPortalFrontend.udm.auth.existingSecret.name</td>
+			<td>string</td>
+			<td><pre lang="json">
+"{{ tpl .Values.global.ldap.auth.admin.existingSecret.name . }}"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>nubusPortalServer.enabled</td>
 			<td>bool</td>
 			<td><pre lang="json">

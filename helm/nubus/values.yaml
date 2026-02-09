@@ -303,6 +303,12 @@ nubusPortalFrontend: &nubusPortalFrontend
   resources: *nubusDevelopmentResources
   ingress:
     host: "{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
+  udm:
+    auth:
+      existingSecret:
+        name: "{{ tpl .Values.global.ldap.auth.admin.existingSecret.name . }}"
+        keyMapping:
+          password: "{{ tpl .Values.global.ldap.auth.admin.existingSecret.keyMapping.password . }}"
 
 nubusPortalConsumer: &nubusPortalConsumer
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
