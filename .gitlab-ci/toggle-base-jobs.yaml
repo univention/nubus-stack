@@ -5,8 +5,7 @@
 .toggles:update-deployment:
   stage: test-toggles
   extends: .check-variables
-  image: "ghcr.io/helmfile/helmfile:v0.167.1\
-          @sha256:414cb074a0da0f457129590c39d96575fbdcdb7ce75bf0d2b30f05e835947d76"
+  image: "$HELMFILE_IMAGE"
   script:
     # Prepare environment variables
     - export CHART_VERSION=${RELEASE_VERSION}

@@ -7,7 +7,7 @@ include:
     ref: "v1.42.1"
     file:
       - "defaults/nubus-workflow.yaml"
-  - local: '.gitlab-ci/toggle-base-jobs.yaml'
+  - local: ".gitlab-ci/toggle-base-jobs.yaml"
 
 stages:
   - prepare
@@ -56,8 +56,7 @@ re-create-namespace:
   extends: .check-variables
   needs:
     - pipeline-configuration
-  image: "ghcr.io/helmfile/helmfile:v1.1.4\
-          @sha256:a49a91071567f3b3e5ee45e08bba25fe96b90d12c194ac10178c073453cd00f1"
+  image: "$HELMFILE_IMAGE"
   script:
     - echo "Cluster information:"
     - kubectl cluster-info
@@ -110,8 +109,7 @@ find-starting-version:
 .deploy-gaia-base:
   stage: "deploy"
   extends: .check-variables
-  image: "ghcr.io/helmfile/helmfile:v1.1.4\
-          @sha256:a49a91071567f3b3e5ee45e08bba25fe96b90d12c194ac10178c073453cd00f1"
+  image: "$HELMFILE_IMAGE"
   variables:
     DO_UPGRADE: false
   script:
@@ -146,8 +144,7 @@ deploy-gaia:
 configure-tests:
   stage: deploy
   extends: .check-variables
-  image: "ghcr.io/helmfile/helmfile:v0.167.1\
-          @sha256:414cb074a0da0f457129590c39d96575fbdcdb7ce75bf0d2b30f05e835947d76"
+  image: "$HELMFILE_IMAGE"
   needs:
     - deploy-gaia
   script:
@@ -463,8 +460,7 @@ stop-deployment:
   allow_failure: true
   needs:
     - deploy-gaia
-  image: "ghcr.io/helmfile/helmfile:v0.167.1\
-          @sha256:414cb074a0da0f457129590c39d96575fbdcdb7ce75bf0d2b30f05e835947d76"
+  image: "$HELMFILE_IMAGE"
   script:
     - >
       kubectl delete namespace "${DEPLOY_NAMESPACE}"
