@@ -325,10 +325,9 @@ nubusPortalConsumer: &nubusPortalConsumer
       url: "http://{{ .Release.Name }}-provisioning-api"
   udm:
     auth:
+      username: "svc-portal-server"
       existingSecret:
-        name: "{{ tpl .Values.global.ldap.auth.admin.existingSecret.name . }}"
-        keyMapping:
-          password: "{{ tpl .Values.global.ldap.auth.admin.existingSecret.keyMapping.password . }}"
+        name: "{{ .Release.Name }}-stack-data-ums-svc-portal-server"
 
 nubusPortalServer: &nubusPortalServer
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
