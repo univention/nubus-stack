@@ -92,11 +92,6 @@ additionalAnnotations: {}
 # -- Additional custom labels to add to all objects deployed directly by the umbrella chart.
 additionalLabels: {}
 
-# -- SAML certificates generation
-certificates:
-  # -- Enable SAML self-signed certificate generation. This requires cert-manager.io
-  enabled: true
-
 # -- Configure supporting Ingress resources created directly by the umbrella chart.
 #
 # The "enabled" attribute has been split, so that it is easier to enabled or
@@ -277,6 +272,9 @@ nubusLdapServer: &nubusLdapServer
   resourcesPrimary: *nubusDevelopmentResources
   resourcesSecondary: *nubusDevelopmentResources
   resourcesProxy: *nubusDevelopmentResources
+  # Disable wait-for-saml-metadata init container. SAML authentication is handled by Keycloak OIDC
+  waitForDependency:
+    enabled: false
 
 nubusLicenseImport:
   enabled: false
@@ -503,19 +501,10 @@ nubusUmcServer: &nubusUmcServer
         host: '{{ include "nubusTemplates.connections.postgres.host" . }}'
         port: '{{ include "nubusTemplates.connections.postgres.port" . }}'
   umcServer:
-    certPemFile: "/var/secrets/ssl/tls.crt"
-    privateKeyFile: "/var/secrets/ssl/tls.key"
     oidcClient:
       auth:
         existingSecret:
           name: "{{ .Release.Name }}-keycloak-bootstrap-oidc-rp-umc-server"
-  extraVolumes:
-    - name: "certificates"
-      secret:
-        secretName: "{{ .Release.Name }}-saml-tls"
-  extraVolumeMounts:
-    - name: "certificates"
-      mountPath: "/var/secrets/ssl"
 
 nubusKeycloakBootstrap: &nubusKeycloakBootstrap
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds

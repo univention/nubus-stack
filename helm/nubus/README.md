@@ -50,12 +50,12 @@ helm uninstall nubus
 | oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 0.68.6 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusScimServer(scim-server) | 0.48.2 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceConsumer(selfservice-consumer) | 0.20.2 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.101.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.101.2 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusTwofaHelpdesk(twofa-helpdesk) | 0.16.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 0.68.6 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmRestApi(udm-rest-api) | 0.41.12 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.57.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUmcServer(umc-server) | 0.57.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.57.1 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUmcServer(umc-server) | 0.57.1 |
 | oci://docker.io/bitnamicharts | minio | 14.7.0 |
 | oci://docker.io/bitnamicharts | postgresql | ^12.x.x |
 
@@ -86,26 +86,6 @@ helm uninstall nubus
 </pre>
 </td>
 			<td>Additional custom labels to add to all objects deployed directly by the umbrella chart.</td>
-		</tr>
-		<tr>
-			<td>certificates</td>
-			<td>object</td>
-			<td><pre lang="json">
-{
-  "enabled": true
-}
-</pre>
-</td>
-			<td>SAML certificates generation</td>
-		</tr>
-		<tr>
-			<td>certificates.enabled</td>
-			<td>bool</td>
-			<td><pre lang="json">
-true
-</pre>
-</td>
-			<td>Enable SAML self-signed certificate generation. This requires cert-manager.io</td>
 		</tr>
 		<tr>
 			<td>extraSecrets</td>
@@ -1329,6 +1309,15 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 "16Mi"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusLdapServer.waitForDependency.enabled</td>
+			<td>bool</td>
+			<td><pre lang="json">
+false
 </pre>
 </td>
 			<td></td>
@@ -3206,42 +3195,6 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusUmcServer.extraVolumeMounts[0].mountPath</td>
-			<td>string</td>
-			<td><pre lang="json">
-"/var/secrets/ssl"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUmcServer.extraVolumeMounts[0].name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"certificates"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUmcServer.extraVolumes[0].name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"certificates"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUmcServer.extraVolumes[0].secret.secretName</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-saml-tls"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusUmcServer.ingress.host</td>
 			<td>string</td>
 			<td><pre lang="json">
@@ -3350,28 +3303,10 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusUmcServer.umcServer.certPemFile</td>
-			<td>string</td>
-			<td><pre lang="json">
-"/var/secrets/ssl/tls.crt"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>nubusUmcServer.umcServer.oidcClient.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
 "{{ .Release.Name }}-keycloak-bootstrap-oidc-rp-umc-server"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusUmcServer.umcServer.privateKeyFile</td>
-			<td>string</td>
-			<td><pre lang="json">
-"/var/secrets/ssl/tls.key"
 </pre>
 </td>
 			<td></td>
