@@ -35,7 +35,7 @@ helm uninstall nubus
 
 | Repository | Name | Version |
 |------------|------|---------|
-| oci://artifacts.software-univention.de/nubus/charts | nubusGuardian(guardian) | 0.24.7 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusGuardian(guardian) | 0.24.10 |
 | oci://artifacts.software-univention.de/nubus/charts | keycloak(keycloak) | 0.16.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakBootstrap(keycloak-bootstrap) | 0.20.2 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakExtensions(keycloak-extensions) | 0.24.1 |
@@ -47,15 +47,15 @@ helm uninstall nubus
 | oci://artifacts.software-univention.de/nubus/charts | nubusPortalConsumer(portal-consumer) | 0.91.3 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusPortalFrontend(portal-frontend) | 0.91.3 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.91.3 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 0.68.6 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusScimServer(scim-server) | 0.48.2 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 0.70.3 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusScimServer(scim-server) | 0.48.3 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceConsumer(selfservice-consumer) | 0.20.2 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.101.2 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.101.4 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusTwofaHelpdesk(twofa-helpdesk) | 0.16.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 0.68.6 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUdmRestApi(udm-rest-api) | 0.41.12 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.57.1 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUmcServer(umc-server) | 0.57.1 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 0.70.3 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUdmRestApi(udm-rest-api) | 0.42.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.57.2 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUmcServer(umc-server) | 0.57.2 |
 | oci://docker.io/bitnamicharts | minio | 14.7.0 |
 | oci://docker.io/bitnamicharts | postgresql | ^12.x.x |
 
@@ -322,7 +322,7 @@ true
 			<td>global.udm.connection.url</td>
 			<td>string</td>
 			<td><pre lang="json">
-"http://{{ .Release.Name }}-udm-rest-api:9979/udm/"
+"http://{{ .Release.Name }}-udm-rest-api:9979/univention/udm/"
 </pre>
 </td>
 			<td>Global default for the URL via which the UDM Rest API can be reached. In transition state, not all subcharts do make use of this yet.</td>
@@ -2425,15 +2425,6 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 "cn=admin"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusScimServer.udm.connection.url</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ include \"nubusTemplates.udmRestApi.uri\" . }}"
 </pre>
 </td>
 			<td></td>
