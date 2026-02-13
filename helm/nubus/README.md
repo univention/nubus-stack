@@ -1629,19 +1629,19 @@ true
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusPortalFrontend.udm.auth.existingSecret.keyMapping.password</td>
+			<td>nubusPortalFrontend.udm.auth.existingSecret.name</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ tpl .Values.global.ldap.auth.admin.existingSecret.keyMapping.password . }}"
+"{{ .Release.Name }}-stack-data-ums-svc-portal-server"
 </pre>
 </td>
 			<td></td>
 		</tr>
 		<tr>
-			<td>nubusPortalFrontend.udm.auth.existingSecret.name</td>
+			<td>nubusPortalFrontend.udm.auth.username</td>
 			<td>string</td>
 			<td><pre lang="json">
-"{{ tpl .Values.global.ldap.auth.admin.existingSecret.name . }}"
+"svc-portal-server"
 </pre>
 </td>
 			<td></td>
