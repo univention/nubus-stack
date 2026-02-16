@@ -28,41 +28,7 @@ spec:
       http:
         paths:
           - path: /favicon/
-            pathType: ImplementationSpecific
-            backend:
-              service:
-                name: {{ .Release.Name }}-portal-frontend
-                port:
-                  number: 80
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: {{ .Release.Name }}-favicon-well-known
-  annotations:
-    {{- if .Values.ingress.annotations }}
-    {{ .Values.ingress.annotations | toYaml | nindent 4 }}
-    {{- end }}
-    {{- if .Values.ingress.certManager.enabled }}
-    cert-manager.io/{{ .Values.ingress.certManager.issuerRef.kind | kebabcase }}: "{{ coalesce .Values.global.certManagerIssuer .Values.ingress.certManager.issuerRef.name }}"
-    {{- end }}
-    nginx.ingress.kubernetes.io/rewrite-target: "/favicon/$1"
-spec:
-  {{- if or .Values.ingress.ingressClassName .Values.global.ingressClass }}
-  ingressClassName: {{ coalesce .Values.ingress.ingressClassName .Values.global.ingressClass | quote }}
-  {{- end }}
-  {{- if .Values.ingress.tls.enabled }}
-  tls:
-    - hosts:
-        - {{ printf "%s.%s" .Values.global.subDomains.portal .Values.global.domain | quote }}
-      secretName: {{ .Values.ingress.tls.secretName | default (printf "%s-portal-tls" .Release.Name) }}
-  {{- end }}
-  rules:
-    - host: {{ printf "%s.%s" .Values.global.subDomains.portal .Values.global.domain | quote }}
-      http:
-        paths:
-          - path: /(favicon.ico)$
-            pathType: ImplementationSpecific
+            pathType: Prefix
             backend:
               service:
                 name: {{ .Release.Name }}-portal-frontend

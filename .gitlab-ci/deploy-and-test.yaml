@@ -226,6 +226,11 @@ configure-tests:
 
 wait-for-nubus-to-be-ready:
   extends: .wait-for-nubus-to-be-ready-base
+  rules:
+    - if: '$UPGRADE_TEST == "true"'
+      variables:
+        TESTRUNNER_VERSION: "${UPGRADE_TESTRUNNER_VERSION}"
+    - when: on_success
 
 create-scim-client:
   stage: test
@@ -381,6 +386,7 @@ e2e-pre-upgrade:
   variables:
     PYTEST_EXPR: "pre_upgrade"
     PYTEST_EXTRA_FLAGS: "--upgrade-artifacts-path=$CI_PROJECT_DIR/upgrade.json"
+    TESTRUNNER_VERSION: "${UPGRADE_TESTRUNNER_VERSION}"
   rules:
     - if: '$UPGRADE_TEST == "true"'
       when: on_success
