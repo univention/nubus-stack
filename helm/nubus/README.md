@@ -35,6 +35,10 @@ helm uninstall nubus
 
 | Repository | Name | Version |
 |------------|------|---------|
+| oci://artifacts.software-univention.de/nubus-dev/charts | nubusNotificationsApi(notifications-api) | 0.93.1-pre-rowino-portal-domain |
+| oci://artifacts.software-univention.de/nubus-dev/charts | nubusPortalConsumer(portal-consumer) | 0.93.1-pre-rowino-portal-domain |
+| oci://artifacts.software-univention.de/nubus-dev/charts | nubusPortalFrontend(portal-frontend) | 0.93.1-pre-rowino-portal-domain |
+| oci://artifacts.software-univention.de/nubus-dev/charts | nubusPortalServer(portal-server) | 0.93.1-pre-rowino-portal-domain |
 | oci://artifacts.software-univention.de/nubus/charts | nubusGuardian(guardian) | 0.24.10 |
 | oci://artifacts.software-univention.de/nubus/charts | keycloak(keycloak) | 0.16.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakBootstrap(keycloak-bootstrap) | 0.20.2 |
@@ -42,11 +46,7 @@ helm uninstall nubus
 | oci://artifacts.software-univention.de/nubus/charts | nubusLdapNotifier(ldap-notifier) | 0.47.12 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusLdapServer(ldap-server) | 0.47.12 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusLicenseImport(license-import) | 0.8.1 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusNotificationsApi(notifications-api) | 0.93.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubus-common | 0.29.5 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalConsumer(portal-consumer) | 0.93.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalFrontend(portal-frontend) | 0.93.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.93.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 0.70.3 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusScimServer(scim-server) | 0.48.3 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceConsumer(selfservice-consumer) | 0.20.2 |

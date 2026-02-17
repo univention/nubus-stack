@@ -15,17 +15,17 @@ dependencies:
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.47.12
 - name: notifications-api
-  repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.93.0
+  repository: oci://artifacts.software-univention.de/nubus-dev/charts
+  version: 0.93.1-pre-rowino-portal-domain
 - name: portal-frontend
-  repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.93.0
+  repository: oci://artifacts.software-univention.de/nubus-dev/charts
+  version: 0.93.1-pre-rowino-portal-domain
 - name: portal-consumer
-  repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.93.0
+  repository: oci://artifacts.software-univention.de/nubus-dev/charts
+  version: 0.93.1-pre-rowino-portal-domain
 - name: portal-server
-  repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.93.0
+  repository: oci://artifacts.software-univention.de/nubus-dev/charts
+  version: 0.93.1-pre-rowino-portal-domain
 - name: selfservice-consumer
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.20.2
@@ -68,5 +68,5 @@ dependencies:
 - name: minio
   repository: oci://docker.io/bitnamicharts
   version: 14.7.0
-digest: sha256:63355ad53e6c3d971ec9d1ccc3b30e692400a03db1b1604562f70c2220c78c10
-generated: "2026-02-18T11:04:57.892050819+01:00"
+digest: sha256:daca435156c77b775cc2d03c3abc5028d724e0a192c44b73334ea6a1eb0a087c
+generated: "2026-02-23T09:53:25.831023299+01:00"
