@@ -16,10 +16,10 @@ dependencies:
   version: 0.47.12
 - name: notifications-api
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.94.0
+  version: 0.94.1
 - name: portal-frontend
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.94.0
+  version: 0.94.1
 - name: portal-consumer
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.94.0
@@ -49,7 +49,7 @@ dependencies:
   version: 0.102.0
 - name: twofa-helpdesk
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.16.1
+  version: 0.16.2
 - name: udm-rest-api
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.42.1
@@ -68,5 +68,5 @@ dependencies:
 - name: minio
   repository: oci://docker.io/bitnamicharts
   version: 14.7.0
-digest: sha256:7b8706e9b7ba2180c0149cda3e50a72437194fad16a0a55355fcd391638e245d
-generated: "2026-02-23T14:13:16.916369584+01:00"
+digest: sha256:1f68639047a05c9b1a9078cd01ac996ba1d3f6c2f8aee1ffa235af051edc191d
+generated: "2026-02-23T14:47:33.505803565+01:00"
