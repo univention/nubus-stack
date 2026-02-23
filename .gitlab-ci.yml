@@ -4,7 +4,7 @@
 ---
 include:
   - project: "univention/dev/nubus-for-k8s/common-ci"
-    ref: "v1.55.3"
+    ref: "v1.58.0"
     file:
       - "defaults/nubus-workflow.yaml"
       - "defaults/stages.yaml"
@@ -94,6 +94,10 @@ variables:
       Allows to specify a custom branch name to use for the testrunner configuration.
       This branch is used to run the script "discover-env-from-cluster.sh".
     value: "main"
+  HELMFILE_IMAGE:
+    description: |
+      Sets the version of the helmfile docker image to use.
+    value: "ghcr.io/helmfile/helmfile:v1.2.3@sha256:8856e65c39ef4afb2a6852b34b5e9f535a866927b7ffe95a5ea805de63353548"
 
 
 lint-render-manifests:
@@ -101,8 +105,7 @@ lint-render-manifests:
   needs:
     - pre-semantic-release
     - publish-chart-external
-  image: "ghcr.io/helmfile/helmfile:v0.167.1\
-          @sha256:414cb074a0da0f457129590c39d96575fbdcdb7ce75bf0d2b30f05e835947d76"
+  image: "$HELMFILE_IMAGE"
   script:
     # Prepare
     - export CHART_VERSION=${RELEASE_VERSION}
