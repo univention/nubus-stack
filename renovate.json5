@@ -1,7 +1,7 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "local>univention/dev/nubus-for-k8s/common-renovate#v1.4.5"
+    "local>univention/dev/nubus-for-k8s/common-renovate#v1.5.0"
   ],
   "baseBranchPatterns": [
     "develop"
