@@ -72,13 +72,13 @@ dependencies:
   - name: "provisioning"
     alias: "nubusProvisioning"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.70.7"
+    version: "0.70.8"
     condition: "nubusProvisioning.enabled"
 
   - name: "udm-listener"
     alias: "nubusUdmListener"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.70.6"
+    version: "0.70.8"
     condition: "nubusProvisioning.enabled"
 
   # keycloak related chart(s)
@@ -123,20 +123,20 @@ dependencies:
   - name: "umc-gateway"
     alias: "nubusUmcGateway"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.57.6"
+    version: "0.57.7"
     condition: "nubusUmcGateway.enabled"
 
   - name: "umc-server"
     alias: "nubusUmcServer"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.57.6"
+    version: "0.57.7"
     condition: "nubusUmcServer.enabled"
 
   # scim-server related chart(s)
   - name: "scim-server"
     alias: "nubusScimServer"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.48.5"
+    version: "0.48.6"
     condition: "nubusScimServer.enabled"
 
   # Optionally bundled external dependencies
