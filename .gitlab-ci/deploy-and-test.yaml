@@ -223,11 +223,14 @@ configure-tests:
 
 wait-for-nubus-to-be-ready:
   extends: .wait-for-nubus-to-be-ready-base
+  image: "gitregistry.knut.univention.de/univention/dev/nubus-for-k8s/e2e-tests/e2e-tests-runner:${LOCAL_TESTRUNNER_VERSION}"
   rules:
     - if: '$UPGRADE_TEST == "true"'
       variables:
-        TESTRUNNER_VERSION: "${UPGRADE_TESTRUNNER_VERSION}"
-    - when: on_success
+        LOCAL_TESTRUNNER_VERSION: "${UPGRADE_TESTRUNNER_VERSION}"
+    - variables:
+        LOCAL_TESTRUNNER_VERSION: "${TESTRUNNER_VERSION}"
+      when: on_success
 
 create-scim-client:
   stage: test
@@ -380,10 +383,10 @@ e2e-tests:
 e2e-pre-upgrade:
   stage: test
   extends: .pytest-base
+  image: "gitregistry.knut.univention.de/univention/dev/nubus-for-k8s/e2e-tests/e2e-tests-runner:${UPGRADE_TESTRUNNER_VERSION}"
   variables:
     PYTEST_EXPR: "pre_upgrade"
     PYTEST_EXTRA_FLAGS: "--upgrade-artifacts-path=$CI_PROJECT_DIR/upgrade.json"
-    TESTRUNNER_VERSION: "${UPGRADE_TESTRUNNER_VERSION}"
   rules:
     - if: '$UPGRADE_TEST == "true"'
       when: on_success

@@ -37,7 +37,7 @@ dependencies:
   version: 0.70.8
 - name: keycloak
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.16.7
+  version: 0.16.8
 - name: keycloak-extensions
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.24.2
@@ -68,5 +68,5 @@ dependencies:
 - name: minio
   repository: oci://docker.io/bitnamicharts
   version: 14.7.0
-digest: sha256:91ba7ae03645e6ab129c22e86b8b03f139a0585c8740c4e2986af1121c3fa53f
-generated: "2026-03-10T18:25:50.734912733+03:00"
+digest: sha256:441629527f3c05496002788ce0f9a4b97e2374f66e167545e0fb88e93587da3d
+generated: "2026-03-11T11:29:49.296566127+03:00"
