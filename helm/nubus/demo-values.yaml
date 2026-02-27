@@ -81,7 +81,7 @@ minio:
       seconds: 900
       resources: *nubusDevelopmentResources
     extraCommands:
-      - "mc anonymous set download provisioning/nubus/portal-assets"
+      - "mc anonymous set none provisioning/nubus"
     buckets:
       - name: "nubus"
         versioning: false

@@ -4,7 +4,7 @@
 ---
 include:
   - project: "univention/dev/nubus-for-k8s/common-ci"
-    ref: "v1.54.1"
+    ref: "v1.58.0"
     file:
       - "defaults/nubus-workflow.yaml"
       - "defaults/stages.yaml"
@@ -14,7 +14,7 @@ include:
       - "jobs/semantic-release-env.yaml"
       - "jobs/harbor-malware-scan.yaml"
       - "templates/sonarqube.yaml"
-  - component: "$CI_SERVER_FQDN/univention/dev/nubus-for-k8s/common-ci/vul-man@v1.55.0"
+  - component: "$CI_SERVER_FQDN/univention/dev/nubus-for-k8s/common-ci/vul-man@v1.55.3"
     inputs:
       helm_chart_name: "nubus"
       helm_values: "--helm-values ${CI_PROJECT_DIR}/helm/nubus/prod-values.yaml --helm-values ${CI_PROJECT_DIR}/ci/example-custom-secret-values.yaml --helm-values ${CI_PROJECT_DIR}/ci/vul-man-values.yaml --helm-values ${CI_PROJECT_DIR}/helm/nubus/example.yaml"
@@ -85,11 +85,19 @@ variables:
       Allows to specify a custom tag to use for the e2e-tests testrunner image.
       Intended to help with testing a branch of the e2e-tests repository.
     value: "latest"
+  UPGRADE_TESTRUNNER_VERSION:
+    description: |
+      Tag for the e2e-tests testrunner image used in pre-upgrade tests.
+    value: "0.59.0"
   TESTRUNNER_CONFIGURATION_BRANCH:
     description: |
       Allows to specify a custom branch name to use for the testrunner configuration.
       This branch is used to run the script "discover-env-from-cluster.sh".
     value: "main"
+  HELMFILE_IMAGE:
+    description: |
+      Sets the version of the helmfile docker image to use.
+    value: "ghcr.io/helmfile/helmfile:v1.2.3@sha256:8856e65c39ef4afb2a6852b34b5e9f535a866927b7ffe95a5ea805de63353548"
 
 
 lint-render-manifests:
@@ -97,8 +105,7 @@ lint-render-manifests:
   needs:
     - pre-semantic-release
     - publish-chart-external
-  image: "ghcr.io/helmfile/helmfile:v0.167.1\
-          @sha256:414cb074a0da0f457129590c39d96575fbdcdb7ce75bf0d2b30f05e835947d76"
+  image: "$HELMFILE_IMAGE"
   script:
     # Prepare
     - export CHART_VERSION=${RELEASE_VERSION}
@@ -195,6 +202,3 @@ lint-commit-messages:
 sonarqube:
   extends: .sonarqube
   needs: []
-  # FIXME: Disable Sonarqube until the server is fixed
-  rules:
-    - when: never

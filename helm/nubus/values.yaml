@@ -45,7 +45,7 @@ global:
     connection:
       # -- Global default for the URL via which the UDM Rest API can be reached.
       # In transition state, not all subcharts do make use of this yet.
-      url: "http://{{ .Release.Name }}-udm-rest-api:9979/udm/"
+      url: "http://{{ .Release.Name }}-udm-rest-api:9979/univention/udm/"
 
   keycloak:
     realm: "nubus"
@@ -78,24 +78,19 @@ global:
         registry: "artifacts.software-univention.de"
         repository: "nubus/images/portal-extension"
         imagePullPolicy: "IfNotPresent"
-        tag: "0.90.0@sha256:8afb793ddf37bed3b931c8b35e0896b89c4eb0cb4fc67aa1004b3986da4585bc"
+        tag: "0.94.5@sha256:3f29711d4ba12c0cedaf11b645276863a7fd0d4d3bf7d637680e62d89d788ecf"
     - name: "2fa-helpdesk"
       image:
         registry: "artifacts.software-univention.de"
         repository: "nubus/images/twofa-helpdesk-extensions"
         imagePullPolicy: "IfNotPresent"
-        tag: "0.15.2@sha256:fb41190e73ea8ee77c746301acdf8579e73d787fdebf76f2289a0dac9e309548"
+        tag: "0.16.4@sha256:c9296ed5d5b848edff2df0c1269391d19328c36887a6936ababe06923f45e7c9"
 
 # -- Additional custom annotations to add to all objects deployed directly by the umbrella chart.
 additionalAnnotations: {}
 
 # -- Additional custom labels to add to all objects deployed directly by the umbrella chart.
 additionalLabels: {}
-
-# -- SAML certificates generation
-certificates:
-  # -- Enable SAML self-signed certificate generation. This requires cert-manager.io
-  enabled: true
 
 # -- Configure supporting Ingress resources created directly by the umbrella chart.
 #
@@ -277,6 +272,9 @@ nubusLdapServer: &nubusLdapServer
   resourcesPrimary: *nubusDevelopmentResources
   resourcesSecondary: *nubusDevelopmentResources
   resourcesProxy: *nubusDevelopmentResources
+  # Disable wait-for-saml-metadata init container. SAML authentication is handled by Keycloak OIDC
+  waitForDependency:
+    enabled: false
 
 nubusLicenseImport:
   enabled: false
@@ -305,6 +303,11 @@ nubusPortalFrontend: &nubusPortalFrontend
   resources: *nubusDevelopmentResources
   ingress:
     host: "{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
+  udm:
+    auth:
+      username: "svc-portal-server"
+      existingSecret:
+        name: "{{ .Release.Name }}-stack-data-ums-svc-portal-server"
 
 nubusPortalConsumer: &nubusPortalConsumer
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
@@ -327,10 +330,9 @@ nubusPortalConsumer: &nubusPortalConsumer
       url: "http://{{ .Release.Name }}-provisioning-api"
   udm:
     auth:
+      username: "svc-portal-server"
       existingSecret:
-        name: "{{ tpl .Values.global.ldap.auth.admin.existingSecret.name . }}"
-        keyMapping:
-          password: "{{ tpl .Values.global.ldap.auth.admin.existingSecret.keyMapping.password . }}"
+        name: "{{ .Release.Name }}-stack-data-ums-svc-portal-server"
 
 nubusPortalServer: &nubusPortalServer
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
@@ -343,6 +345,19 @@ nubusPortalServer: &nubusPortalServer
     auth:
       existingSecret:
         name: "{{ .Release.Name }}-stack-data-ums-svc-portal-server"
+  portalServer:
+    guardian:
+      fqdn: "{{ .Release.Name }}-guardian-authorization-api"
+      scheme: "http"
+      keycloak:
+        fqdn: "{{ .Release.Name }}-keycloak:8080"
+        scheme: "http"
+        realm: "{{ .Values.global.keycloak.realm }}"
+      auth:
+        existingSecret:
+          name: "{{ .Release.Name }}-nubus-credentials"
+          keyMapping:
+            password: "administrator_password"
 
 
 nubusProvisioning: &nubusProvisioning
@@ -445,7 +460,7 @@ nubusSelfServiceConsumer: &nubusSelfServiceConsumer
       url: "http://{{ .Release.Name }}-provisioning-api"
   umc:
     connection:
-      url: "http://{{ .Release.Name }}-umc-server"
+      url: "http://{{ .Release.Name }}-umc-server/univention"
 
 nubusUdmRestApi: &nubusUdmRestApi
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
@@ -490,19 +505,10 @@ nubusUmcServer: &nubusUmcServer
         host: '{{ include "nubusTemplates.connections.postgres.host" . }}'
         port: '{{ include "nubusTemplates.connections.postgres.port" . }}'
   umcServer:
-    certPemFile: "/var/secrets/ssl/tls.crt"
-    privateKeyFile: "/var/secrets/ssl/tls.key"
     oidcClient:
       auth:
         existingSecret:
           name: "{{ .Release.Name }}-keycloak-bootstrap-oidc-rp-umc-server"
-  extraVolumes:
-    - name: "certificates"
-      secret:
-        secretName: "{{ .Release.Name }}-saml-tls"
-  extraVolumeMounts:
-    - name: "certificates"
-      mountPath: "/var/secrets/ssl"
 
 nubusKeycloakBootstrap: &nubusKeycloakBootstrap
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
@@ -625,8 +631,6 @@ nubusScimServer: &nubusScimServer
   docu:
     enabled: false
   udm:
-    connection:
-      url: '{{ include "nubusTemplates.udmRestApi.uri" . }}'
     auth:
       username: "cn=admin"
       existingSecret:
