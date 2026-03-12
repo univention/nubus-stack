@@ -46,7 +46,7 @@ dependencies:
   - name: "portal-frontend"
     alias: "nubusPortalFrontend"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.94.5"
+    version: "0.94.6"
     condition: "nubusPortalFrontend.enabled"
 
   - name: "portal-consumer"
