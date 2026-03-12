@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.18.1](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/compare/v1.18.0...v1.18.1) (2026-03-12)
+
+
+### Bug Fixes
+
+* **keycloak:** fix Keycloak imagePullBackOff ([f576abd](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/f576abd479c1bc223bf10ffc36630a27b0ee630e)), closes [univention/dev/nubus-for-k8s/nubus-helm#18](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/issues/18)
+* Update Keycloak to 26.5.4 ([2afaf51](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/2afaf511a4388c72b2b5917a1de4f5670d9d7c92)), closes [univention/dev/nubus-for-k8s/nubus-helm#18](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/issues/18)
+* Update Keycloak to 26.5.5 ([5070cbd](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/5070cbdc3c512e855444b56100376c7761fe4938)), closes [univention/dev/projects/keycloak/keycloak-app#258](https://git.knut.univention.de/univention/dev/projects/keycloak/keycloak-app/issues/258)
+
 ## [1.18.0](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/compare/v1.17.0...v1.18.0) (2026-02-27)
 
 
