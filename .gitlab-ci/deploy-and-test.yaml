@@ -239,7 +239,7 @@ create-scim-client:
     - job: configure-tests
       artifacts: true
     - wait-for-nubus-to-be-ready
-  image: "ubuntu:22.04"
+  image: "${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/ubuntu:22.04"
   before_script:
     - apt-get update && apt-get install -y curl jq
     # Make sure not to override the before_script from .check-variables
