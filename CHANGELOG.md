@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.19.0](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/compare/v1.18.1...v1.19.0) (2026-03-31)
+
+
+### Features
+
+* version bump ([6b8c589](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/6b8c5891bb3b1264e07f1330eea0f637e3b855ef)), closes [univention/dev/internal/team-nubus#1610](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1610)
+
+
+### Bug Fixes
+
+* Dependency updates ([c63e4d8](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/c63e4d87384ca5552f58b0b975b81775011df4bb)), closes [univention/dev/internal/team-nubus#1477](https://git.knut.univention.de/univention/dev/internal/team-nubus/issues/1477)
+* **deps:** Update nubus subcharts ([f446293](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/f44629361ff2e14497421cf472553abed2a3f0c4)), closes [#0](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/issues/0)
+* **keycloak-bootstrap:** Change from bitnami common to nubus-common to avoid subPath: "%!s(<nil>)" error ([ebf9947](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/ebf9947924fab40c0dedc4b1120078b0b58539ee)), closes [univention/dev/ucs#3458](https://git.knut.univention.de/univention/dev/ucs/issues/3458)
+* **keycloak:** Bump Keycloak to 26.5.6 ([5990b84](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/5990b8400302b5678b606d33225179d951a1903e)), closes [univention/dev/projects/keycloak/keycloak-app#259](https://git.knut.univention.de/univention/dev/projects/keycloak/keycloak-app/issues/259)
+* **portal-frontend:** Don't redirect to login when navigating between selfservice routes ([1cf8288](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/1cf8288ae04ec18535a49324fc3894501bfb5bf7)), closes [univention/dev/internal/dev-issues/dev-incidents#210](https://git.knut.univention.de/univention/dev/internal/dev-issues/dev-incidents/issues/210)
+* **provisioning:** udm-transformer api changes, bump to 0.70.10 ([5e7c934](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/5e7c934ec818af514e623693d5efe5f3d9eb8520)), closes [univention/dev/projects/provisioning#121](https://git.knut.univention.de/univention/dev/projects/provisioning/issues/121)
+* **stack-data:** update stack-data-ums to 0.102.3 ([f7ccf43](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/f7ccf43d1c45998ad95ac01f05a73e2d80640bf9)), closes [#59026](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/issues/59026)
+
 ## [1.18.1](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/compare/v1.18.0...v1.18.1) (2026-03-12)
 
 
