@@ -63,6 +63,10 @@ cleanup-pre-develop-tags:
   script:
     - vul-man delete-tag --pattern "nubus:*-pre-develop"
 
+package-helm-charts:
+  before_script:
+    - "python3 ci/patch-chart-version.py"
+
 variables:
   GIT_FETCH_EXTRA_FLAGS: --tags
   SKIP_UPDATE_HELM_VALUES: "1"
