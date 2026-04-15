@@ -50,7 +50,7 @@ helm uninstall nubus
 | oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 0.70.11 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusScimServer(scim-server) | 0.48.9 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceConsumer(selfservice-consumer) | 0.20.7 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.102.4 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.103.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusTwofaHelpdesk(twofa-helpdesk) | 0.16.7 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 0.70.11 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmRestApi(udm-rest-api) | 0.42.6 |
@@ -226,6 +226,15 @@ false
 </pre>
 </td>
 			<td></td>
+		</tr>
+		<tr>
+			<td>global.nubusChartVersion</td>
+			<td>string</td>
+			<td><pre lang="json">
+"0.0.0"
+</pre>
+</td>
+			<td>The Nubus umbrella chart version.</td>
 		</tr>
 		<tr>
 			<td>global.nubusDeployment</td>
