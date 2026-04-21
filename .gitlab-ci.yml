@@ -88,7 +88,7 @@ variables:
   UPGRADE_TESTRUNNER_VERSION:
     description: |
       Tag for the e2e-tests testrunner image used in pre-upgrade tests.
-    value: "0.59.0"
+    value: "0.60.2"
   TESTRUNNER_CONFIGURATION_BRANCH:
     description: |
       Allows to specify a custom branch name to use for the testrunner configuration.
