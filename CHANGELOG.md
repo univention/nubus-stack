@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.19.1](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/compare/v1.19.0...v1.19.1) (2026-04-21)
+
+
+### Bug Fixes
+
+* **keycloak:** Bump Keycloak to 26.6.1 ([28fbf1a](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/commit/28fbf1ae0d0b5bbec9379363eadef065d6630545)), closes [univention/dev/nubus-for-k8s/nubus-helm#23](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/issues/23)
+
 ## [1.19.0](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/compare/v1.18.1...v1.19.0) (2026-03-31)
 
 
