@@ -40,7 +40,7 @@ dependencies:
   - name: "notifications-api"
     alias: "nubusNotificationsApi"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.94.9"
+    version: "0.94.8"
     condition: "nubusNotificationsApi.enabled"
 
   - name: "portal-frontend"
