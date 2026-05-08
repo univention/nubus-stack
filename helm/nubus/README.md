@@ -42,7 +42,7 @@ helm uninstall nubus
 | oci://artifacts.software-univention.de/nubus/charts | nubusLdapNotifier(ldap-notifier) | 0.47.15 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusLdapServer(ldap-server) | 0.47.15 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusLicenseImport(license-import) | 0.8.7 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusNotificationsApi(notifications-api) | 0.94.8 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusNotificationsApi(notifications-api) | 0.94.9 |
 | oci://artifacts.software-univention.de/nubus/charts | nubus-common | 0.29.14 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusPortalConsumer(portal-consumer) | 0.94.9 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusPortalFrontend(portal-frontend) | 0.94.9 |
@@ -309,7 +309,7 @@ true
       "imagePullPolicy": "IfNotPresent",
       "registry": "artifacts.software-univention.de",
       "repository": "nubus/images/portal-extension",
-      "tag": "0.94.9@sha256:c39503102b0146e9db78c4266d9e040dc7a63aef92c0b90397cadb7be7bcdbc4"
+      "tag": "0.94.9@sha256:fc6badc248647a91b68e1d02827361e2217b97209fdf469afc2024368fb8517e"
     },
     "name": "portal"
   },
