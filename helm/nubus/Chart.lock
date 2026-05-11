@@ -10,10 +10,10 @@ dependencies:
   version: 0.8.7
 - name: ldap-notifier
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.47.15
+  version: 0.48.0
 - name: ldap-server
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.47.15
+  version: 0.48.0
 - name: notifications-api
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.94.9
@@ -68,5 +68,5 @@ dependencies:
 - name: minio
   repository: oci://docker.io/bitnamicharts
   version: 14.7.0
-digest: sha256:e475e26415a761ebfe0fa5818de35adc86e7d22859c3df0ff3f95c2afed3398e
-generated: "2026-05-12T14:30:49.923284026+02:00"
+digest: sha256:b3f9e507631e20635906c5f4a36d946679090865cd0678ce225cd303bf69246b
+generated: "2026-05-18T21:07:48.308119625+02:00"
