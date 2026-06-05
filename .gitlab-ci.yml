@@ -21,6 +21,7 @@ include:
       helm_repository_url: "oci://artifacts.software-univention.de/nubus-dev/charts"
       parallelism: 20
       enable_mr_environments: false
+      max_retries: 20
 
 sbom-scan-and-upload:
   extends: .sbom-scan-and-upload
