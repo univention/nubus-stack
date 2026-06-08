@@ -116,11 +116,20 @@ find-starting-version:
     # Prepare
     - export CHART_VERSION=${RELEASE_VERSION}
     - export REVIEW_PREFIX=${DEPLOY_SUBDOMAIN}
+    # Stash the post-renderer plugin outside the work tree so it survives any git switch below.
+    # Helm v4 requires post-renderers to be installed plugins; a bare path/script no longer works.
+    - cp -r .gitlab-ci/helm-plugins/fix-ingress-pathtype /tmp/fix-ingress-pathtype
+    - chmod +x /tmp/fix-ingress-pathtype/run.sh
+    - helm plugin install /tmp/fix-ingress-pathtype
+    - POST_RENDERER_FLAG=""
     - |
       if [ "${UPGRADE_TEST}" = "true" ] && [ "${DO_UPGRADE}" = "false" ]; then
         git fetch --all
         git switch --detach "v${UPGRADE_TEST_START_VERSION}"
         export CHART_VERSION="${UPGRADE_TEST_START_VERSION}"
+        # Workaround for ingress-nginx webhook rejecting older charts'
+        # `pathType: Exact` + `path: /$` ingresses.
+        POST_RENDERER_FLAG="--post-renderer=fix-ingress-pathtype"
       fi
     # Deploy via ci/helmfile
     - pushd ci
@@ -128,7 +137,7 @@ find-starting-version:
     # would be preferred since it gives a nice diff of the changes.
     #
     # See: https://github.com/databus23/helm-diff/issues/460
-    - helmfile --debug -n "${DEPLOY_NAMESPACE}" --state-values-set toggles.externalDependencies=${EXTERNAL_DEPENDENCIES:-false} --state-values-set toggles.customSecretValues=${PROVIDED_SECRET_VALUES:-false} sync
+    - helmfile --debug -n "${DEPLOY_NAMESPACE}" --state-values-set toggles.externalDependencies=${EXTERNAL_DEPENDENCIES:-false} --state-values-set toggles.customSecretValues=${PROVIDED_SECRET_VALUES:-false} ${POST_RENDERER_FLAG} sync
     - popd
   environment:
     name: ${CI_COMMIT_REF_SLUG}/nubus-with-extensions${ENVIRONMENT_SUFFIX}

@@ -101,7 +101,7 @@ variables:
   HELMFILE_IMAGE:
     description: |
       Sets the version of the helmfile docker image to use.
-    value: "ghcr.io/helmfile/helmfile:v1.2.3@sha256:8856e65c39ef4afb2a6852b34b5e9f535a866927b7ffe95a5ea805de63353548"
+    value: "ghcr.io/helmfile/helmfile:v1.5.2@sha256:0d51e5a30aaf87e03451cbe462e9be3a614dc5aba9eae4e1f158858315755d3d"
 
 
 lint-render-manifests:
