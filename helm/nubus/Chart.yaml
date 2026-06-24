@@ -85,13 +85,13 @@ dependencies:
   - name: "keycloak"
     alias: "keycloak"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.28.0"
+    version: "26.6.3-ucs2"
     condition: "keycloak.enabled"
 
   - name: "keycloak-bootstrap"
     alias: "nubusKeycloakBootstrap"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.28.0"
+    version: "26.6.3-ucs2"
     condition: "nubusKeycloakBootstrap.enabled"
 
   - name: "keycloak-extensions"
