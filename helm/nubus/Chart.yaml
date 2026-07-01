@@ -8,7 +8,7 @@ version: "1.0.0"
 
 dependencies:
   - name: "nubus-common"
-    version: "0.29.15"
+    version: "0.29.17"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
 
   - name: "guardian"
@@ -20,7 +20,7 @@ dependencies:
   - name: "license-import"
     alias: "nubusLicenseImport"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.8.9"
+    version: "0.8.10"
     condition: "nubusLicenseImport.enabled"
 
   # ldap-server related chart(s)
@@ -65,20 +65,20 @@ dependencies:
   - name: "selfservice-consumer"
     alias: "nubusSelfServiceConsumer"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.20.10"
+    version: "0.20.11"
     condition: "nubusSelfServiceConsumer.enabled"
 
   # provisioning related chart(s)
   - name: "provisioning"
     alias: "nubusProvisioning"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.70.16"
+    version: "0.70.18"
     condition: "nubusProvisioning.enabled"
 
   - name: "udm-listener"
     alias: "nubusUdmListener"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.70.16"
+    version: "0.70.18"
     condition: "nubusProvisioning.enabled"
 
   # keycloak related chart(s)
@@ -103,13 +103,13 @@ dependencies:
   - name: "stack-data-ums"
     alias: "nubusStackDataUms"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.103.2"
+    version: "0.103.3"
     condition: "nubusStackDataUms.enabled"
 
   - name: "twofa-helpdesk"
     alias: "nubusTwofaHelpdesk"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.16.13"
+    version: "0.16.14"
     condition: "nubusTwofaHelpdesk.enabled"
 
   # udm-rest-api related chart(s)
@@ -136,7 +136,7 @@ dependencies:
   - name: "scim-server"
     alias: "nubusScimServer"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.48.12"
+    version: "0.48.13"
     condition: "nubusScimServer.enabled"
 
   # Optionally bundled external dependencies

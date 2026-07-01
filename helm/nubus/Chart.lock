@@ -1,13 +1,13 @@
 dependencies:
 - name: nubus-common
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.29.15
+  version: 0.29.17
 - name: guardian
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.24.22
 - name: license-import
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.8.9
+  version: 0.8.10
 - name: ldap-notifier
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.48.1
@@ -28,13 +28,13 @@ dependencies:
   version: 0.94.12
 - name: selfservice-consumer
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.20.10
+  version: 0.20.11
 - name: provisioning
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.70.16
+  version: 0.70.18
 - name: udm-listener
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.70.16
+  version: 0.70.18
 - name: keycloak
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 26.6.3-ucs2
@@ -46,10 +46,10 @@ dependencies:
   version: 0.24.6
 - name: stack-data-ums
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.103.2
+  version: 0.103.3
 - name: twofa-helpdesk
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.16.13
+  version: 0.16.14
 - name: udm-rest-api
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.44.0
@@ -61,12 +61,12 @@ dependencies:
   version: 0.57.14
 - name: scim-server
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.48.12
+  version: 0.48.13
 - name: postgresql
   repository: oci://docker.io/bitnamicharts
   version: 12.12.10
 - name: minio
   repository: oci://docker.io/bitnamicharts
   version: 14.7.0
-digest: sha256:225e75d7bf8584b134d90a03a32fdad8b5fd46214027f3a9cd5edc732dc2ba39
-generated: "2026-07-03T08:56:24.215208159+02:00"
+digest: sha256:32894da8ad8db35769b037394174d5ba93f3f79f321a22e9038f7141dcfdb05d
+generated: "2026-07-03T12:37:37.52816578+02:00"
