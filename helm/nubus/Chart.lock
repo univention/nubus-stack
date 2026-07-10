@@ -16,13 +16,13 @@ dependencies:
   version: 0.94.15
 - name: portal-frontend
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.94.15
+  version: 0.94.16
 - name: portal-consumer
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.94.15
 - name: portal-server
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.94.15
+  version: 0.94.16
 - name: selfservice-consumer
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.20.12
@@ -65,5 +65,5 @@ dependencies:
 - name: minio
   repository: oci://docker.io/bitnamicharts
   version: 14.7.0
-digest: sha256:43249238fe15f4a6bbca1e5c54a32defb3d1225bc0243c0642ff577c76891ab8
-generated: "2026-07-15T19:02:46.954627205+02:00"
+digest: sha256:018e5282f1cd4d0a0fafd823a133b9431088e33cc668a1cce95865024d62e82f
+generated: "2026-07-16T14:50:12.217177299+03:00"
