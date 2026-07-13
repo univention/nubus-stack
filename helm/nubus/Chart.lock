@@ -36,8 +36,8 @@ dependencies:
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 26.6.3-ucs2
 - name: keycloak-bootstrap
-  repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 26.6.3-ucs2
+  repository: oci://artifacts.software-univention.de/nubus-dev/charts
+  version: 0.28.1-post-rowino-26-7-update
 - name: keycloak-extensions
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.24.8
@@ -65,5 +65,5 @@ dependencies:
 - name: minio
   repository: oci://docker.io/bitnamicharts
   version: 14.7.0
-digest: sha256:8fd8e7f1fb32721321f944cb78822674850890e5f5735bf2eae58eadb3747c8d
-generated: "2026-07-15T13:11:30.992139459+02:00"
+digest: sha256:e08d42687c7913445a68b6797fc7c108a3b7a41b4a41787b1fb0dbeb7ac2961f
+generated: "2026-07-15T13:49:37.115156538+03:00"
