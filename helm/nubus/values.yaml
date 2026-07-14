@@ -201,31 +201,6 @@ keycloak:
   ingress:
     enabled: true
 
-nubusGuardian: &nubusGuardian
-  terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
-  nameOverride: "guardian"
-  enabled: true
-  ingress:
-    host: "{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
-  resources: *nubusDevelopmentResources
-  authorizationApi:
-    udm:
-      auth:
-        username: 'cn=admin'
-        existingSecret:
-          name: "{{ tpl .Values.global.ldap.auth.admin.existingSecret.name . }}"
-          keyMapping:
-            password: "{{ tpl .Values.global.ldap.auth.admin.existingSecret.keyMapping.password . }}"
-  provisioning:
-    enabled: true
-    keycloak:
-      auth:
-        username: "kcadmin"
-        existingSecret:
-          name: '{{- printf "%s-keycloak-credentials" .Release.Name -}}'
-          keyMapping:
-            adminPassword: "adminPassword"
-
 nubusTwofaHelpdesk: &nubusTwofaHelpdesk
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   nameOverride: "helpdesk"
@@ -348,19 +323,6 @@ nubusPortalServer: &nubusPortalServer
     auth:
       existingSecret:
         name: "{{ .Release.Name }}-stack-data-ums-svc-portal-server"
-  portalServer:
-    guardian:
-      fqdn: "{{ .Release.Name }}-guardian-authorization-api"
-      scheme: "http"
-      keycloak:
-        fqdn: "{{ .Release.Name }}-keycloak:8080"
-        scheme: "http"
-        realm: "{{ .Values.global.keycloak.realm }}"
-      auth:
-        existingSecret:
-          name: "{{ .Release.Name }}-nubus-credentials"
-          keyMapping:
-            password: "administrator_password"
 
 
 nubusProvisioning: &nubusProvisioning

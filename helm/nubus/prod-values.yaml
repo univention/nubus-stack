@@ -34,15 +34,6 @@ keycloak:
         keyMapping:
           password: keycloak
 
-nubusGuardian:
-  postgresql:
-    auth:
-      username: "guardian"
-      existingSecret:
-        name: postgresql-external-secret
-        keyMapping:
-          password: guardian
-
 nubusKeycloakExtensions:
   postgresql:
     auth:
@@ -183,16 +174,6 @@ nubusStackDataUms:
 #         keyMapping:
 #           password: "the-key-for-the-password-in-the-secret-if-not-password"
 #
-# nubusGuardian:
-#   postgresql:
-#     auth:
-#       database: "guardian"
-#       username: "guardian_user"
-#       existingSecret:
-#         name: "guardian-postgresql-credentials"
-#         keyMapping:
-#           password: "the-key-for-the-password-in-the-secret-if-not-password"
-#
 # nubusNotificationsApi:
 #   postgresql:
 #     auth:
@@ -241,13 +222,6 @@ nubusStackDataUms:
 #       database: "keycloak"
 #       username: "keycloak_user"
 #       password: "your-keycloak-db-password"
-#
-# nubusGuardian:
-#   postgresql:
-#     auth:
-#       database: "guardian"
-#       username: "guardian_user"
-#       password: "your-guardian-db-password"
 #
 # nubusNotificationsApi:
 #   postgresql:

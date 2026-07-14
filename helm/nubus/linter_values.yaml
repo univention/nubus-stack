@@ -121,14 +121,6 @@ keycloak:
       existingSecret:
         name: '{{- printf "%s-keycloak-postgresql-credentials" .Release.Name -}}'
 
-nubusGuardian:
-  postgresql:
-    auth:
-      database: guardian
-      username: guardian
-      existingSecret:
-        name: '{{- printf "%s-guardian-management-api-postgresql-credentials" .Release.Name -}}'
-
 nubusNotificationsApi:
   postgresql:
     auth:

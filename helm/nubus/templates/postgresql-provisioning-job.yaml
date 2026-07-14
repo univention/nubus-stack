@@ -132,9 +132,6 @@ spec:
           - name: "keycloak-extensions-postgresql-credentials"
             mountPath: "/provisioning/passwords/{{ .Values.nubusKeycloakExtensions.postgresql.auth.username }}"
             subPath: "{{ .Values.nubusKeycloakExtensions.postgresql.auth.username }}"
-          - name: "guardian-postgresql-credentials"
-            mountPath: "/provisioning/passwords/{{ .Values.nubusGuardian.postgresql.auth.username }}"
-            subPath: "{{ .Values.nubusGuardian.postgresql.auth.username }}"
           - name: "umc-session-postgresql-credentials"
             mountPath: "/provisioning/passwords/{{ .Values.nubusUmcServer.postgresql.authSession.auth.username }}"
             subPath: "{{ .Values.nubusUmcServer.postgresql.authSession.auth.username }}"
@@ -166,12 +163,6 @@ spec:
           items:
             - key: '{{ include "common.secrets.key" (dict "existingSecret" .Values.nubusKeycloakExtensions.postgresql.auth.existingSecret.name "key" "password") }}'
               path: {{ .Values.nubusKeycloakExtensions.postgresql.auth.username | quote }}
-      - name: "guardian-postgresql-credentials"
-        secret:
-          secretName: {{ include "nubus-common.secrets.name" (dict "existingSecret" .Values.nubusGuardian.postgresql.auth.existingSecret "defaultNameSuffix" "guardian-management-api-postgresql-credentials" "context" .) }}
-          items:
-            - key: {{ include "nubus-common.secrets.key" (dict "existingSecret" .Values.nubusGuardian.postgresql.auth.existingSecret "key" "password" "context" .) }}
-              path: {{ .Values.nubusGuardian.postgresql.auth.username | quote }}
       - name: "umc-session-postgresql-credentials"
         secret:
           secretName: {{ include "nubus-common.secrets.name" (dict "existingSecret" .Values.nubusUmcServer.postgresql.authSession.auth.existingSecret "defaultNameSuffix" "umc-server-session-postgresql-credentials" "context" .) }}

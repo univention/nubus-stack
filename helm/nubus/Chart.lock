@@ -2,9 +2,6 @@ dependencies:
 - name: nubus-common
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.29.17
-- name: guardian
-  repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.24.23
 - name: license-import
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.8.11
@@ -31,7 +28,7 @@ dependencies:
   version: 0.20.12
 - name: provisioning
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.70.20
+  version: 0.70.21
 - name: udm-listener
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.70.20
@@ -55,10 +52,10 @@ dependencies:
   version: 0.44.1
 - name: umc-gateway
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.58.0
+  version: 0.58.1
 - name: umc-server
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.58.0
+  version: 0.58.1
 - name: scim-server
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.48.14
@@ -68,5 +65,5 @@ dependencies:
 - name: minio
   repository: oci://docker.io/bitnamicharts
   version: 14.7.0
-digest: sha256:ee56cacb7922e65bbd4ac4bb38985389eab3fa846b69498cda69b150a46efad2
-generated: "2026-07-12T02:29:08.461663857Z"
+digest: sha256:7c9857f8a79228335c824cdf4af3ab1cd89d2fb4be8210a3cc0eeb1b275609a8
+generated: "2026-07-14T15:48:13.042076812+03:00"

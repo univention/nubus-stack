@@ -35,7 +35,6 @@ helm uninstall nubus
 
 | Repository | Name | Version |
 |------------|------|---------|
-| oci://artifacts.software-univention.de/nubus/charts | nubusGuardian(guardian) | 0.24.23 |
 | oci://artifacts.software-univention.de/nubus/charts | keycloak(keycloak) | 26.6.3-ucs2 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakBootstrap(keycloak-bootstrap) | 26.6.3-ucs2 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakExtensions(keycloak-extensions) | 0.24.8 |
@@ -47,15 +46,15 @@ helm uninstall nubus
 | oci://artifacts.software-univention.de/nubus/charts | nubusPortalConsumer(portal-consumer) | 0.94.15 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusPortalFrontend(portal-frontend) | 0.94.15 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.94.15 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 0.70.20 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 0.70.21 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusScimServer(scim-server) | 0.48.14 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceConsumer(selfservice-consumer) | 0.20.12 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.103.3 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusTwofaHelpdesk(twofa-helpdesk) | 0.16.15 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 0.70.20 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmRestApi(udm-rest-api) | 0.44.1 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.58.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUmcServer(umc-server) | 0.58.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.58.1 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUmcServer(umc-server) | 0.58.1 |
 | oci://docker.io/bitnamicharts | minio | 14.7.0 |
 | oci://docker.io/bitnamicharts | postgresql | ^12.x.x |
 
@@ -667,141 +666,6 @@ false
 		</tr>
 		<tr>
 			<td>nubusDevelopment.terminationGracePeriodSeconds</td>
-			<td>int</td>
-			<td><pre lang="json">
-5
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusGuardian.authorizationApi.udm.auth.existingSecret.keyMapping.password</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ tpl .Values.global.ldap.auth.admin.existingSecret.keyMapping.password . }}"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusGuardian.authorizationApi.udm.auth.existingSecret.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ tpl .Values.global.ldap.auth.admin.existingSecret.name . }}"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusGuardian.authorizationApi.udm.auth.username</td>
-			<td>string</td>
-			<td><pre lang="json">
-"cn=admin"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusGuardian.enabled</td>
-			<td>bool</td>
-			<td><pre lang="json">
-true
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusGuardian.ingress.host</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusGuardian.nameOverride</td>
-			<td>string</td>
-			<td><pre lang="json">
-"guardian"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusGuardian.provisioning.enabled</td>
-			<td>bool</td>
-			<td><pre lang="json">
-true
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusGuardian.provisioning.keycloak.auth.existingSecret.keyMapping.adminPassword</td>
-			<td>string</td>
-			<td><pre lang="json">
-"adminPassword"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusGuardian.provisioning.keycloak.auth.existingSecret.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{- printf \"%s-keycloak-credentials\" .Release.Name -}}"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusGuardian.provisioning.keycloak.auth.username</td>
-			<td>string</td>
-			<td><pre lang="json">
-"kcadmin"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusGuardian.resources.limits.cpu</td>
-			<td>int</td>
-			<td><pre lang="json">
-288
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusGuardian.resources.limits.memory</td>
-			<td>string</td>
-			<td><pre lang="json">
-"1Gi"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusGuardian.resources.requests.cpu</td>
-			<td>string</td>
-			<td><pre lang="json">
-"10m"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusGuardian.resources.requests.memory</td>
-			<td>string</td>
-			<td><pre lang="json">
-"16Mi"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusGuardian.terminationGracePeriodSeconds</td>
 			<td>int</td>
 			<td><pre lang="json">
 5
@@ -1678,69 +1542,6 @@ true
 			<td>string</td>
 			<td><pre lang="json">
 "portal-server"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusPortalServer.portalServer.guardian.auth.existingSecret.keyMapping.password</td>
-			<td>string</td>
-			<td><pre lang="json">
-"administrator_password"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusPortalServer.portalServer.guardian.auth.existingSecret.name</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-nubus-credentials"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusPortalServer.portalServer.guardian.fqdn</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-guardian-authorization-api"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusPortalServer.portalServer.guardian.keycloak.fqdn</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Release.Name }}-keycloak:8080"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusPortalServer.portalServer.guardian.keycloak.realm</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Values.global.keycloak.realm }}"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusPortalServer.portalServer.guardian.keycloak.scheme</td>
-			<td>string</td>
-			<td><pre lang="json">
-"http"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusPortalServer.portalServer.guardian.scheme</td>
-			<td>string</td>
-			<td><pre lang="json">
-"http"
 </pre>
 </td>
 			<td></td>
