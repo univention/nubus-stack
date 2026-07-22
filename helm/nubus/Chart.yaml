@@ -97,7 +97,7 @@ dependencies:
   - name: "stack-data-ums"
     alias: "nubusStackDataUms"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.103.3"
+    version: "0.105.0"
     condition: "nubusStackDataUms.enabled"
 
   - name: "twofa-helpdesk"
@@ -110,7 +110,7 @@ dependencies:
   - name: "udm-rest-api"
     alias: "nubusUdmRestApi"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.44.2"
+    version: "0.45.1"
     condition: "nubusUdmRestApi.enabled"
 
   # umc related chart(s)
