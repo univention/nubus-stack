@@ -40,7 +40,7 @@ dependencies:
   - name: "portal-frontend"
     alias: "nubusPortalFrontend"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.94.18"
+    version: "0.94.19"
     condition: "nubusPortalFrontend.enabled"
 
   - name: "portal-consumer"
@@ -103,7 +103,7 @@ dependencies:
   - name: "twofa-helpdesk"
     alias: "nubusTwofaHelpdesk"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.16.18"
+    version: "0.16.19"
     condition: "nubusTwofaHelpdesk.enabled"
 
   # udm-rest-api related chart(s)
