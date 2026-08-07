@@ -194,6 +194,12 @@ keycloak:
   ingress:
     enabled: true
 
+nubusGuardian: &nubusGuardian
+  terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
+  nameOverride: "guardian"
+  enabled: false
+  resources: *nubusDevelopmentResources
+
 nubusTwofaHelpdesk: &nubusTwofaHelpdesk
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   nameOverride: "helpdesk"

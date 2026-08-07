@@ -35,6 +35,7 @@ helm uninstall nubus
 
 | Repository | Name | Version |
 |------------|------|---------|
+| oci://artifacts.software-univention.de/nubus/charts | nubusGuardian(guardian) | 1.0.0 |
 | oci://artifacts.software-univention.de/nubus/charts | keycloak(keycloak) | 26.7.2-nubus1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakBootstrap(keycloak-bootstrap) | 26.7.2-nubus1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakExtensions(keycloak-extensions) | 0.24.13 |
@@ -661,6 +662,69 @@ false
 		</tr>
 		<tr>
 			<td>nubusDevelopment.terminationGracePeriodSeconds</td>
+			<td>int</td>
+			<td><pre lang="json">
+5
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusGuardian.enabled</td>
+			<td>bool</td>
+			<td><pre lang="json">
+false
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusGuardian.nameOverride</td>
+			<td>string</td>
+			<td><pre lang="json">
+"guardian"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusGuardian.resources.limits.cpu</td>
+			<td>int</td>
+			<td><pre lang="json">
+288
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusGuardian.resources.limits.memory</td>
+			<td>string</td>
+			<td><pre lang="json">
+"1Gi"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusGuardian.resources.requests.cpu</td>
+			<td>string</td>
+			<td><pre lang="json">
+"10m"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusGuardian.resources.requests.memory</td>
+			<td>string</td>
+			<td><pre lang="json">
+"16Mi"
+</pre>
+</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>nubusGuardian.terminationGracePeriodSeconds</td>
 			<td>int</td>
 			<td><pre lang="json">
 5
