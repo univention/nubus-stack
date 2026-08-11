@@ -42,8 +42,8 @@ dependencies:
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.24.11
 - name: stack-data-ums
-  repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.105.0
+  repository: oci://artifacts.software-univention.de/nubus-dev/charts
+  version: 0.106.0-pre-ekipsang-enable-structured-logging
 - name: twofa-helpdesk
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.16.18
@@ -65,5 +65,5 @@ dependencies:
 - name: minio
   repository: oci://docker.io/bitnamicharts
   version: 14.7.0
-digest: sha256:fc0487cec883cc056b7022e26062844a71825baf6cf8a7e628bcc6cbbebade7c
-generated: "2026-08-10T14:21:28.168247943+02:00"
+digest: sha256:1024e714a60776c08c2034999c18510cb4e79f2965233325173d07296f8012f4
+generated: "2026-08-11T13:27:40.138190465+03:00"
