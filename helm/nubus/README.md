@@ -37,22 +37,22 @@ helm uninstall nubus
 |------------|------|---------|
 | oci://artifacts.software-univention.de/nubus/charts | keycloak(keycloak) | 26.7.0-nubus2 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakBootstrap(keycloak-bootstrap) | 26.7.0-nubus2 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakExtensions(keycloak-extensions) | 0.24.11 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusLdapNotifier(ldap-notifier) | 0.48.2 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusLdapServer(ldap-server) | 0.48.4 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusLicenseImport(license-import) | 0.8.11 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusNotificationsApi(notifications-api) | 0.94.18 |
-| oci://artifacts.software-univention.de/nubus/charts | nubus-common | 0.29.17 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalConsumer(portal-consumer) | 0.94.18 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalFrontend(portal-frontend) | 0.94.19 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.94.18 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakExtensions(keycloak-extensions) | 0.24.12 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusLdapNotifier(ldap-notifier) | 0.48.5 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusLdapServer(ldap-server) | 0.48.5 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusLicenseImport(license-import) | 0.8.12 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusNotificationsApi(notifications-api) | 0.94.21 |
+| oci://artifacts.software-univention.de/nubus/charts | nubus-common | 0.29.18 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalConsumer(portal-consumer) | 0.94.21 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalFrontend(portal-frontend) | 0.94.21 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.94.21 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 2.2.1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusScimServer(scim-server) | 0.48.15 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceConsumer(selfservice-consumer) | 0.20.12 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.107.0 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusTwofaHelpdesk(twofa-helpdesk) | 0.16.19 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceConsumer(selfservice-consumer) | 0.20.13 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.107.2 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusTwofaHelpdesk(twofa-helpdesk) | 0.16.20 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 2.2.1 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUdmRestApi(udm-rest-api) | 0.46.1 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUdmRestApi(udm-rest-api) | 0.46.2 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.59.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUmcServer(umc-server) | 0.59.0 |
 | oci://docker.io/bitnamicharts | minio | 14.7.0 |
@@ -303,7 +303,7 @@ true
       "imagePullPolicy": "IfNotPresent",
       "registry": "artifacts.software-univention.de",
       "repository": "nubus/images/portal-extension",
-      "tag": "0.94.15@sha256:2f8fe9c970b6f4545fc4fc386385c0a6bb27a80c8d1f3e212c14cd3b1aa8b7d8"
+      "tag": "0.94.21@sha256:9367aae0848e7865e78bb63d105879ac59c1e1a0c9fe5291984e108edd8f0c8c"
     },
     "name": "portal"
   },
@@ -312,7 +312,7 @@ true
       "imagePullPolicy": "IfNotPresent",
       "registry": "artifacts.software-univention.de",
       "repository": "nubus/images/twofa-helpdesk-extensions",
-      "tag": "0.16.15@sha256:9a2725152785f87ea64780bd8ce0baff9225d0c4035e41ea75eb2d52f32acb5e"
+      "tag": "0.16.20@sha256:edde51e7f6e9cc37833b2dafab48626534e613351eb98af837f02f7dc7293248"
     },
     "name": "2fa-helpdesk"
   }

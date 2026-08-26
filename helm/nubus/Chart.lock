@@ -1,31 +1,31 @@
 dependencies:
 - name: nubus-common
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.29.17
+  version: 0.29.18
 - name: license-import
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.8.11
+  version: 0.8.12
 - name: ldap-notifier
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.48.2
+  version: 0.48.5
 - name: ldap-server
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.48.4
+  version: 0.48.5
 - name: notifications-api
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.94.18
+  version: 0.94.21
 - name: portal-frontend
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.94.19
+  version: 0.94.21
 - name: portal-consumer
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.94.18
+  version: 0.94.21
 - name: portal-server
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.94.18
+  version: 0.94.21
 - name: selfservice-consumer
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.20.12
+  version: 0.20.13
 - name: provisioning
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 2.2.1
@@ -40,16 +40,16 @@ dependencies:
   version: 26.7.0-nubus2
 - name: keycloak-extensions
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.24.11
+  version: 0.24.12
 - name: stack-data-ums
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.107.0
+  version: 0.107.2
 - name: twofa-helpdesk
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.16.19
+  version: 0.16.20
 - name: udm-rest-api
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.46.1
+  version: 0.46.2
 - name: umc-gateway
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.59.0
@@ -65,5 +65,5 @@ dependencies:
 - name: minio
   repository: oci://docker.io/bitnamicharts
   version: 14.7.0
-digest: sha256:dfde877ef10b64925661a29d505fb7a6e4db70f259109eacd8dd4d5c3b79317d
-generated: "2026-08-25T17:01:19.238631835+02:00"
+digest: sha256:cb36228348c584df7271cf7080a6ca2e3a5d5f6e122372228a988d57464a6e8b
+generated: "2026-08-26T15:19:35.46188104+02:00"
