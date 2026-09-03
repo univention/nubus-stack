@@ -14,7 +14,7 @@ dependencies:
   - name: "guardian"
     alias: "nubusGuardian"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "1.0.0"
+    version: "1.0.1"
     condition: "nubusGuardian.enabled"
 
   - name: "license-import"
