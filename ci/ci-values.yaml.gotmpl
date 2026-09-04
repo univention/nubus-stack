@@ -40,13 +40,6 @@ nubusLdapServer:
   replicaCountProxy: 0
 {{- end }}
 
-nubusNotificationsApi:
-  ingress:
-    certManager:
-      enabled: false
-    tls:
-      secretName: {{ .Values.ingress.tls.secretName | quote }}
-
 nubusStackDataSwp:
   stackDataContext:
     # TODO: Fix in the subchart
@@ -137,7 +130,6 @@ nubusPortalServer:
       {{ if .Values.portal.featureToggles.welcome_message }}
       welcome_message: true
       {{ end }}
-      notifications_api: true
       umc_session_refresh: true
 
 nubusUdmRestApi:

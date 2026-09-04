@@ -265,14 +265,6 @@ nubusLicenseImport:
         keyMapping:
           password: "{{ tpl .Values.global.ldap.auth.admin.existingSecret.keyMapping.password . }}"
 
-nubusNotificationsApi: &nubusNotificationsApi
-  terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
-  nameOverride: "notifications-api"
-  enabled: true
-  resources: *nubusDevelopmentResources
-  ingress:
-    host: "{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
-
 nubusPortalFrontend: &nubusPortalFrontend
   terminationGracePeriodSeconds: *nubusTerminationGracePeriodSeconds
   nameOverride: "portal-frontend"

@@ -37,12 +37,6 @@ dependencies:
     condition: "nubusLdapServer.enabled"
 
   # portal related chart(s)
-  - name: "notifications-api"
-    alias: "nubusNotificationsApi"
-    repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.94.24"
-    condition: "nubusNotificationsApi.enabled"
-
   - name: "portal-frontend"
     alias: "nubusPortalFrontend"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
@@ -58,7 +52,7 @@ dependencies:
   - name: "portal-server"
     alias: "nubusPortalServer"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.94.24"
+    version: "0.95.0"
     condition: "nubusPortalServer.enabled"
 
   # selfservice related chart(s)

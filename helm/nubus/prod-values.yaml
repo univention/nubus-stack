@@ -92,15 +92,6 @@ nubusPortalServer:
           access_key_id: portal-server-access-key
           secret_access_key: portal-server-secret-key
 
-nubusNotificationsApi:
-  postgresql:
-    auth:
-      username: "notificationsapi"
-      existingSecret:
-        name: postgresql-external-secret
-        keyMapping:
-          password: notifications
-
 nubusUmcServer:
   postgresql:
     selfservice:
@@ -174,16 +165,6 @@ nubusStackDataUms:
 #         keyMapping:
 #           password: "the-key-for-the-password-in-the-secret-if-not-password"
 #
-# nubusNotificationsApi:
-#   postgresql:
-#     auth:
-#       database: "notifications_api"
-#       username: "notifications_api_user"
-#       existingSecret:
-#         name: "notifications-api-postgresql-credentials"
-#         keyMapping:
-#           password: "the-key-for-the-password-in-the-secret-if-not-password"
-#
 # nubusUmcServer:
 #   postgresql:
 #     selfservice:
@@ -222,13 +203,6 @@ nubusStackDataUms:
 #       database: "keycloak"
 #       username: "keycloak_user"
 #       password: "your-keycloak-db-password"
-#
-# nubusNotificationsApi:
-#   postgresql:
-#     auth:
-#       database: "notifications_api"
-#       username: "notifications_api_user"
-#       password: "your-notifications-api-db-password"
 #
 # nubusUmcServer:
 #   postgresql:

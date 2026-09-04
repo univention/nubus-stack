@@ -123,9 +123,6 @@ spec:
           - name: "umc-server-postgresql-credentials"
             mountPath: "/provisioning/passwords/{{ .Values.nubusUmcServer.postgresql.selfservice.auth.username }}"
             subPath: "{{ .Values.nubusUmcServer.postgresql.selfservice.auth.username }}"
-          - name: "notifications-api-postgresql-credentials"
-            mountPath: "/provisioning/passwords/{{ .Values.nubusNotificationsApi.postgresql.auth.username }}"
-            subPath: "{{ .Values.nubusNotificationsApi.postgresql.auth.username }}"
           - name: "keycloak-postgresql-credentials"
             mountPath: "/provisioning/passwords/{{ .Values.keycloak.postgresql.auth.username }}"
             subPath: "{{ .Values.keycloak.postgresql.auth.username }}"
@@ -145,12 +142,6 @@ spec:
           items:
             - key: '{{ include "nubus-common.secrets.key" (dict "existingSecret" .Values.nubusUmcServer.postgresql.selfservice.auth.existingSecret "key" "password" "context" .) }}'
               path: {{ .Values.nubusUmcServer.postgresql.selfservice.auth.username | quote }}
-      - name: "notifications-api-postgresql-credentials"
-        secret:
-          secretName: {{ (printf "%s-notifications-api-postgresql-credentials" .Release.Name) | quote }}
-          items:
-            - key: {{ include "nubus-common.secrets.key" (dict "existingSecret" .Values.nubusNotificationsApi.postgresql.auth.existingSecret "key" "password" "context" .) }}
-              path: {{ .Values.nubusNotificationsApi.postgresql.auth.username | quote }}
       - name: "keycloak-postgresql-credentials"
         secret:
           secretName: {{ include "nubus-common.secrets.name" (dict "existingSecret" .Values.keycloak.postgresql.auth.existingSecret "defaultNameSuffix" "keycloak-postgresql-credentials" "context" . ) }}

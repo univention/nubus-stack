@@ -121,14 +121,6 @@ keycloak:
       existingSecret:
         name: '{{- printf "%s-keycloak-postgresql-credentials" .Release.Name -}}'
 
-nubusNotificationsApi:
-  postgresql:
-    auth:
-      username: notificationsapi
-      database: notificationsapi
-      existingSecret:
-        name: "{{ .Release.Name }}-notifications-api-postgresql-credentials"
-
 nubusPortalConsumer:
   objectStorage:
     auth:

@@ -14,9 +14,6 @@ dependencies:
 - name: ldap-server
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.48.6
-- name: notifications-api
-  repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.94.24
 - name: portal-frontend
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.94.25
@@ -25,7 +22,7 @@ dependencies:
   version: 0.94.24
 - name: portal-server
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.94.24
+  version: 0.95.0
 - name: selfservice-consumer
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.20.15
@@ -68,5 +65,5 @@ dependencies:
 - name: minio
   repository: oci://docker.io/bitnamicharts
   version: 14.7.0
-digest: sha256:c0557d19f2ecebc6a049b278a0c48945b8697e6182c054b984725ec2908e48ab
-generated: "2026-09-09T10:21:34.901291117+02:00"
+digest: sha256:918b88b190bb65e0f067b1050fc973a5d338f00ede301ddcab00ed26e18e0647
+generated: "2026-09-09T11:39:59.301817373+02:00"

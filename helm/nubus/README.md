@@ -42,11 +42,10 @@ helm uninstall nubus
 | oci://artifacts.software-univention.de/nubus/charts | nubusLdapNotifier(ldap-notifier) | 0.48.6 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusLdapServer(ldap-server) | 0.48.6 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusLicenseImport(license-import) | 0.8.13 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusNotificationsApi(notifications-api) | 0.94.24 |
 | oci://artifacts.software-univention.de/nubus/charts | nubus-common | 0.29.19 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusPortalConsumer(portal-consumer) | 0.94.24 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusPortalFrontend(portal-frontend) | 0.94.25 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.94.24 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.95.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 2.2.3 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusScimServer(scim-server) | 0.53.1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceConsumer(selfservice-consumer) | 0.20.15 |
@@ -1295,78 +1294,6 @@ false
 			<td>string</td>
 			<td><pre lang="json">
 "license-import"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusNotificationsApi.enabled</td>
-			<td>bool</td>
-			<td><pre lang="json">
-true
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusNotificationsApi.ingress.host</td>
-			<td>string</td>
-			<td><pre lang="json">
-"{{ .Values.global.subDomains.portal }}.{{ .Values.global.domain }}"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusNotificationsApi.nameOverride</td>
-			<td>string</td>
-			<td><pre lang="json">
-"notifications-api"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusNotificationsApi.resources.limits.cpu</td>
-			<td>int</td>
-			<td><pre lang="json">
-288
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusNotificationsApi.resources.limits.memory</td>
-			<td>string</td>
-			<td><pre lang="json">
-"1Gi"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusNotificationsApi.resources.requests.cpu</td>
-			<td>string</td>
-			<td><pre lang="json">
-"10m"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusNotificationsApi.resources.requests.memory</td>
-			<td>string</td>
-			<td><pre lang="json">
-"16Mi"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusNotificationsApi.terminationGracePeriodSeconds</td>
-			<td>int</td>
-			<td><pre lang="json">
-5
 </pre>
 </td>
 			<td></td>
