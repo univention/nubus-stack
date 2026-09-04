@@ -624,6 +624,17 @@ false
 			<td></td>
 		</tr>
 		<tr>
+			<td>nubusCredentialsSecret</td>
+			<td>object</td>
+			<td><pre lang="json">
+{
+  "create": true
+}
+</pre>
+</td>
+			<td>Controls the `<release>-nubus-credentials` Secret, which mirrors the initial Administrator password (`administrator_password`) for operator convenience. Nothing in this chart consumes it. Set `create: false` to keep the password out of the rendered manifests, for example when it is provided from an external secret manager; the password itself then no longer has to be set either.</td>
+		</tr>
+		<tr>
 			<td>nubusDevelopment.resources.limits.cpu</td>
 			<td>int</td>
 			<td><pre lang="json">
