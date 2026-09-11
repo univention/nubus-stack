@@ -52,10 +52,10 @@ dependencies:
   version: 0.46.5
 - name: umc-gateway
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.59.6
+  version: 0.59.7
 - name: umc-server
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.59.6
+  version: 0.59.7
 - name: scim-server
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.54.2
@@ -65,5 +65,5 @@ dependencies:
 - name: minio
   repository: oci://docker.io/bitnamicharts
   version: 14.7.0
-digest: sha256:c62bbd90ec5a6b80ae81f04eef3cfd65ed7b490397f56da870bc50395c0b039c
-generated: "2026-09-14T12:07:13.494002894+02:00"
+digest: sha256:802388fb8e10df8c60c4ba6bb9ef696954fd6b8ca2c9c32f3792958712478bed
+generated: "2026-09-14T18:00:14.106130121+03:00"
