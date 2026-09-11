@@ -74,13 +74,13 @@ global:
         registry: "artifacts.software-univention.de"
         repository: "nubus/images/portal-extension"
         imagePullPolicy: "IfNotPresent"
-        tag: "0.94.24@sha256:0963eae03c5a5dbd642cfb4db4de47e7da888c6146b265bb5d679df8d4b38d00"
+        tag: "0.95.1@sha256:4721950dc1d0291e83a9a32ec692401afbae3bc3fd87a163a599d3a2f259c559"
     - name: "2fa-helpdesk"
       image:
         registry: "artifacts.software-univention.de"
         repository: "nubus/images/twofa-helpdesk-extensions"
         imagePullPolicy: "IfNotPresent"
-        tag: "0.16.23@sha256:4b0090768b39f4d8ec4430b5c9a24d260ad192ca3bdd90fd2c6c064f39b9421a"
+        tag: "0.16.24@sha256:e459ac355e3ea34cd60fbe46f592bfd72d9ee1f4d64e1d873fc1d345662367e0"
 
 # -- Additional custom annotations to add to all objects deployed directly by the umbrella chart.
 additionalAnnotations: {}
