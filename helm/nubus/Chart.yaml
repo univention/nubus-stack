@@ -79,13 +79,13 @@ dependencies:
   - name: "keycloak"
     alias: "keycloak"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "26.7.2-nubus4"
+    version: "26.7.3-nubus1"
     condition: "keycloak.enabled"
 
   - name: "keycloak-bootstrap"
     alias: "nubusKeycloakBootstrap"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "26.7.2-nubus4"
+    version: "26.7.3-nubus1"
     condition: "nubusKeycloakBootstrap.enabled"
 
   - name: "keycloak-extensions"
