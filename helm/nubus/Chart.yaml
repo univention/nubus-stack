@@ -27,13 +27,13 @@ dependencies:
   - name: "ldap-notifier"
     alias: "nubusLdapNotifier"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.48.7"
+    version: "0.48.9"
     condition: "nubusLdapNotifier.enabled"
 
   - name: "ldap-server"
     alias: "nubusLdapServer"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.48.7"
+    version: "0.48.9"
     condition: "nubusLdapServer.enabled"
 
   # portal related chart(s)
@@ -97,7 +97,7 @@ dependencies:
   - name: "stack-data-ums"
     alias: "nubusStackDataUms"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.107.5"
+    version: "0.107.6"
     condition: "nubusStackDataUms.enabled"
 
   - name: "twofa-helpdesk"

@@ -344,8 +344,6 @@ nubusProvisioning: &nubusProvisioning
               name: "{{ .Release.Name }}-provisioning-udm-listener-nats"
               keyMapping:
                 password:
-    global:
-      imageRegistry: "docker.io"
     resources: *nubusDevelopmentResources
     reloader:
       resources: *nubusDevelopmentResources

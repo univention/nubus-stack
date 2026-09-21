@@ -39,8 +39,8 @@ helm uninstall nubus
 | oci://artifacts.software-univention.de/nubus/charts | keycloak(keycloak) | 26.7.3-nubus1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakBootstrap(keycloak-bootstrap) | 26.7.3-nubus1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakExtensions(keycloak-extensions) | 0.24.15 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusLdapNotifier(ldap-notifier) | 0.48.7 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusLdapServer(ldap-server) | 0.48.7 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusLdapNotifier(ldap-notifier) | 0.48.9 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusLdapServer(ldap-server) | 0.48.9 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusLicenseImport(license-import) | 0.8.15 |
 | oci://artifacts.software-univention.de/nubus/charts | nubus-common | 0.29.20 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusPortalConsumer(portal-consumer) | 0.95.1 |
@@ -49,7 +49,7 @@ helm uninstall nubus
 | oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 2.2.4 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusScimServer(scim-server) | 0.54.2 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceConsumer(selfservice-consumer) | 0.20.16 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.107.5 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.107.6 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusTwofaHelpdesk(twofa-helpdesk) | 0.16.25 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 2.2.4 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmRestApi(udm-rest-api) | 0.46.5 |
@@ -1663,15 +1663,6 @@ null
 			<td>string</td>
 			<td><pre lang="json">
 "\u003e"
-</pre>
-</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>nubusProvisioning.nats.global.imageRegistry</td>
-			<td>string</td>
-			<td><pre lang="json">
-"docker.io"
 </pre>
 </td>
 			<td></td>

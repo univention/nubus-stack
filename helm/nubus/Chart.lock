@@ -10,10 +10,10 @@ dependencies:
   version: 0.8.15
 - name: ldap-notifier
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.48.7
+  version: 0.48.9
 - name: ldap-server
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.48.7
+  version: 0.48.9
 - name: portal-frontend
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.95.2
@@ -43,7 +43,7 @@ dependencies:
   version: 0.24.15
 - name: stack-data-ums
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.107.5
+  version: 0.107.6
 - name: twofa-helpdesk
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.16.25
@@ -65,5 +65,5 @@ dependencies:
 - name: minio
   repository: oci://docker.io/bitnamicharts
   version: 14.7.0
-digest: sha256:1fdbfe3f46b7b57a9c9b939a4253c82312c7e4cbf19e60c2d581cf4a6b261269
-generated: "2026-09-22T18:29:42.974728951+02:00"
+digest: sha256:82693e7062f497d8dae76c5ae7fa1354de47f01a926a232e104d53d3c0d585e9
+generated: "2026-09-25T09:08:39.991099045+02:00"
