@@ -23,9 +23,21 @@ include:
       enable_mr_environments: false
       max_retries: 20
 
+.rules:run-on-schedule:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+      when: on_success
+      allow_failure: false
+
+.rules:skip-on-schedule:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+      when: never
+
 sbom-scan-and-upload:
   extends: .sbom-scan-and-upload
   rules:
+    - !reference [".rules:skip-on-schedule", "rules"]
     - if: '$CI_COMMIT_BRANCH == "develop"'
       when: always
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME =~ /^release-/ && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == $CI_DEFAULT_BRANCH'
@@ -64,9 +76,28 @@ cleanup-pre-develop-tags:
   script:
     - vul-man delete-tag --pattern "nubus:*-pre-develop"
 
+pre-semantic-release:
+  rules:
+    - !reference [".rules:run-on-schedule", "rules"]
+    - if: '$CI_PIPELINE_SOURCE == "schedule" || $CI_PIPELINE_SOURCE == "manual"'
+      when: never
+    - when: always
+
 package-helm-charts:
   before_script:
     - "python3 ci/patch-chart-version.py"
+  rules:
+    - !reference [".rules:run-on-schedule", "rules"]
+    - if: '$CI_PIPELINE_SOURCE == "schedule" || $CI_PIPELINE_SOURCE == "manual"'
+      when: never
+    - when: on_success
+
+publish-chart-external:
+  rules:
+    - !reference [".rules:run-on-schedule", "rules"]
+    - if: '$CI_PIPELINE_SOURCE == "schedule" || $CI_PIPELINE_SOURCE == "manual"'
+      when: never
+    - when: on_success
 
 variables:
   GIT_FETCH_EXTRA_FLAGS: --tags
@@ -154,15 +185,13 @@ lint-kubeconform:
     forward:
       pipeline_variables: true
     strategy: depend
-  rules:
-    - if: '$CI_PIPELINE_SOURCE == "schedule"'
-      when: never
 
 deploy-and-test:
   extends: .base-deploy-and-test
   variables:
     ENVIRONMENT_SUFFIX: ""
   rules:
+    - !reference [".rules:run-on-schedule", "rules"]
     - if: '$AUTO_TRIGGER_TESTS == "yes"'
       when: on_success
     - when: manual
@@ -175,6 +204,7 @@ deploy-and-test-external-dependencies:
     DEPLOY_SUBDOMAIN: "${CI_COMMIT_REF_SLUG}-ext"
     ENVIRONMENT_SUFFIX: "-ext"
   rules:
+    - !reference [".rules:skip-on-schedule", "rules"]
     - when: manual
 
 deploy-and-test-provided-secret-values:
@@ -185,6 +215,7 @@ deploy-and-test-provided-secret-values:
     DEPLOY_SUBDOMAIN: "${CI_COMMIT_REF_SLUG}-val"
     ENVIRONMENT_SUFFIX: "-val"
   rules:
+    - !reference [".rules:skip-on-schedule", "rules"]
     - when: manual
 
 deploy-and-test-upgrade:
@@ -195,6 +226,7 @@ deploy-and-test-upgrade:
     DEPLOY_SUBDOMAIN: "${CI_COMMIT_REF_SLUG}-up"
     ENVIRONMENT_SUFFIX: "-up"
   rules:
+    - !reference [".rules:run-on-schedule", "rules"]
     - when: manual
 
 # Temporarly allow failure when linting commit messages
