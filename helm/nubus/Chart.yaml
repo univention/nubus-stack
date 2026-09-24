@@ -123,7 +123,7 @@ dependencies:
   - name: "umc-server"
     alias: "nubusUmcServer"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.60.3"
+    version: "0.61.0"
     condition: "nubusUmcServer.enabled"
 
   # scim-server related chart(s)
