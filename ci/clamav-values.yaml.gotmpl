@@ -1,0 +1,9 @@
+---
+
+fullnameOverride: "clamav"
+
+settings:
+  icap:
+    # The default of the chart does not scan PNG files. The Self Service
+    # accepts PNG files as profile picture.
+    virusScanScanFileTypes: "TEXT DATA EXECUTABLE ARCHIVE GIF JPEG PNG MSOFFICE"
