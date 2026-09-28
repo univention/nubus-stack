@@ -2,6 +2,11 @@
 
 fullnameOverride: "clamav"
 
+resources:
+  requests:
+    cpu: "10m"
+    memory: "1Gi"
+
 settings:
   icap:
     # The default of the chart does not scan PNG files. The Self Service

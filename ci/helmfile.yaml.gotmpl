@@ -88,6 +88,9 @@ releases:
   - name: clamav
     chart: oci://registry.opencode.de/bmi/opendesk/components/platform-development/charts/opendesk-clamav/clamav-simple
     version: 4.2.0
+    # ClamAV downloads its signature database at start. The e2e tests get a
+    # 503 from the Self Service until the scanner is ready, so wait for it here.
+    wait: true
     values:
       - ./clamav-values.yaml.gotmpl
   {{- end }}
