@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: AGPL-3.0-only
-# SPDX-FileCopyrightText: 2024-2025 Univention GmbH
+# SPDX-FileCopyrightText: 2024-2026 Univention GmbH
 apiVersion: "v2"
 name: "nubus"
 description: "Univention Nubus"
@@ -79,13 +79,13 @@ dependencies:
   - name: "keycloak"
     alias: "keycloak"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "26.7.4-nubus2"
+    version: "26.7.4-nubus4"
     condition: "keycloak.enabled"
 
   - name: "keycloak-bootstrap"
     alias: "nubusKeycloakBootstrap"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "26.7.3-nubus1"
+    version: "26.7.4-nubus4"
     condition: "nubusKeycloakBootstrap.enabled"
 
   - name: "keycloak-extensions"
