@@ -25,7 +25,7 @@ dependencies:
   version: 0.95.2
 - name: selfservice-consumer
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.20.16
+  version: 0.21.1
 - name: provisioning
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 2.2.8
@@ -46,7 +46,7 @@ dependencies:
   version: 0.107.6
 - name: twofa-helpdesk
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.16.25
+  version: 0.16.28
 - name: udm-rest-api
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.46.5
@@ -65,5 +65,5 @@ dependencies:
 - name: minio
   repository: oci://docker.io/bitnamicharts
   version: 14.7.0
-digest: sha256:a6129b8e841dc691c99f2723f7ae50eb4aa1c3acd25607fed2762bdd7c80b0ce
-generated: "2026-10-26T14:53:37.095052041+01:00"
+digest: sha256:559f4721df8f43a09a17ff3cb277fdde0e6f1b41dfd5e64764caf304e08bf70f
+generated: "2026-10-26T15:20:22.715361207+01:00"

@@ -48,9 +48,9 @@ helm uninstall nubus
 | oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.95.2 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 2.2.8 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusScimServer(scim-server) | 0.54.2 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceConsumer(selfservice-consumer) | 0.20.16 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceConsumer(selfservice-consumer) | 0.21.1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.107.6 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusTwofaHelpdesk(twofa-helpdesk) | 0.16.25 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusTwofaHelpdesk(twofa-helpdesk) | 0.16.28 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 2.2.5 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmRestApi(udm-rest-api) | 0.46.5 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.60.0 |
@@ -312,7 +312,7 @@ true
       "imagePullPolicy": "IfNotPresent",
       "registry": "artifacts.software-univention.de",
       "repository": "nubus/images/twofa-helpdesk-extensions",
-      "tag": "0.16.25@sha256:e459ac355e3ea34cd60fbe46f592bfd72d9ee1f4d64e1d873fc1d345662367e0"
+      "tag": "0.16.28@sha256:c429ed2235b7dcd8f852ca340db2adf05a49ed2fc0b04a8b33f8b485c463a779"
     },
     "name": "2fa-helpdesk"
   }

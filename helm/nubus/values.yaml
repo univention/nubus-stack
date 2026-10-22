@@ -80,7 +80,7 @@ global:
         registry: "artifacts.software-univention.de"
         repository: "nubus/images/twofa-helpdesk-extensions"
         imagePullPolicy: "IfNotPresent"
-        tag: "0.16.25@sha256:e459ac355e3ea34cd60fbe46f592bfd72d9ee1f4d64e1d873fc1d345662367e0"
+        tag: "0.16.28@sha256:c429ed2235b7dcd8f852ca340db2adf05a49ed2fc0b04a8b33f8b485c463a779"
 
 # -- Additional custom annotations to add to all objects deployed directly by the umbrella chart.
 additionalAnnotations: {}
