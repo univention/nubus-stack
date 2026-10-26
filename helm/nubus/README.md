@@ -35,26 +35,26 @@ helm uninstall nubus
 
 | Repository | Name | Version |
 |------------|------|---------|
-| oci://artifacts.software-univention.de/nubus/charts | nubusGuardian(guardian) | 1.0.3 |
-| oci://artifacts.software-univention.de/nubus/charts | keycloak(keycloak) | 26.8.1-nubus1 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakBootstrap(keycloak-bootstrap) | 26.8.1-nubus1 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakExtensions(keycloak-extensions) | 0.24.15 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusLdapNotifier(ldap-notifier) | 0.48.11 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusLdapServer(ldap-server) | 0.48.11 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusLicenseImport(license-import) | 0.8.15 |
-| oci://artifacts.software-univention.de/nubus/charts | nubus-common | 0.29.21 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalConsumer(portal-consumer) | 0.95.6 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalFrontend(portal-frontend) | 0.95.6 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.95.6 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 2.2.8 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusScimServer(scim-server) | 0.54.2 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceConsumer(selfservice-consumer) | 0.21.1 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.107.6 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusTwofaHelpdesk(twofa-helpdesk) | 0.16.28 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 2.2.5 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUdmRestApi(udm-rest-api) | 0.46.5 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.60.3 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusUmcServer(umc-server) | 0.61.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusGuardian(guardian) | 1.1.0 |
+| oci://artifacts.software-univention.de/nubus/charts | keycloak(keycloak) | 26.8.1-nubus2 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakBootstrap(keycloak-bootstrap) | 26.8.1-nubus2 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakExtensions(keycloak-extensions) | 0.24.17 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusLdapNotifier(ldap-notifier) | 0.48.14 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusLdapServer(ldap-server) | 0.48.14 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusLicenseImport(license-import) | 0.8.18 |
+| oci://artifacts.software-univention.de/nubus/charts | nubus-common | 0.29.24 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalConsumer(portal-consumer) | 0.95.7 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalFrontend(portal-frontend) | 0.95.7 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.95.7 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 2.2.10 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusScimServer(scim-server) | 0.55.3 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceConsumer(selfservice-consumer) | 0.21.6 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.107.11 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusTwofaHelpdesk(twofa-helpdesk) | 0.16.33 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 2.2.10 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUdmRestApi(udm-rest-api) | 0.46.10 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.61.2 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusUmcServer(umc-server) | 0.61.2 |
 | oci://docker.io/bitnamicharts | minio | 14.7.0 |
 | oci://docker.io/bitnamicharts | postgresql | ^12.x.x |
 
@@ -303,7 +303,7 @@ true
       "imagePullPolicy": "IfNotPresent",
       "registry": "artifacts.software-univention.de",
       "repository": "nubus/images/portal-extension",
-      "tag": "0.95.2@sha256:4721950dc1d0291e83a9a32ec692401afbae3bc3fd87a163a599d3a2f259c559"
+      "tag": "0.95.7@sha256:2c42d4240e2876ec52e1a722f704f3dad10401040920206f5cec43b0c673e6f4"
     },
     "name": "portal"
   },
@@ -312,7 +312,7 @@ true
       "imagePullPolicy": "IfNotPresent",
       "registry": "artifacts.software-univention.de",
       "repository": "nubus/images/twofa-helpdesk-extensions",
-      "tag": "0.16.28@sha256:c429ed2235b7dcd8f852ca340db2adf05a49ed2fc0b04a8b33f8b485c463a779"
+      "tag": "0.16.33@sha256:f4cd0fb2745e8e508f745710fe2b164e4c71882737024543ee0449b16e691d2d"
     },
     "name": "2fa-helpdesk"
   }
