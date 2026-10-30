@@ -4,7 +4,7 @@
 ---
 include:
   - project: "univention/dev/nubus-for-k8s/common-ci"
-    ref: "v1.69.3"
+    ref: "v1.70.0"
     file:
       - "defaults/nubus-workflow.yaml"
       - "defaults/stages.yaml"
@@ -14,6 +14,7 @@ include:
       - "jobs/semantic-release-env.yaml"
       - "jobs/harbor-malware-scan.yaml"
       - "templates/sonarqube.yaml"
+      - "jobs/check-base-image.yaml"
   - component: "$CI_SERVER_FQDN/univention/dev/nubus-for-k8s/common-ci/vul-man@v1.69.0"
     inputs:
       helm_chart_name: "nubus"
