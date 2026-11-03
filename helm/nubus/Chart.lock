@@ -10,22 +10,22 @@ dependencies:
   version: 0.8.18
 - name: ldap-notifier
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.48.15
+  version: 0.49.0
 - name: ldap-server
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.48.15
+  version: 0.49.0
 - name: portal-frontend
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.95.7
+  version: 0.96.0
 - name: portal-consumer
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.95.7
+  version: 0.96.0
 - name: portal-server
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.95.7
+  version: 0.96.0
 - name: selfservice-consumer
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.21.6
+  version: 0.21.7
 - name: provisioning
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 2.2.10
@@ -40,13 +40,13 @@ dependencies:
   version: 26.8.1-nubus2
 - name: keycloak-extensions
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.24.17
+  version: 0.24.18
 - name: stack-data-ums
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.107.11
+  version: 0.107.12
 - name: twofa-helpdesk
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.16.33
+  version: 0.17.0
 - name: udm-rest-api
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 0.46.10
@@ -58,12 +58,12 @@ dependencies:
   version: 0.61.2
 - name: scim-server
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 0.55.3
+  version: 0.55.4
 - name: postgresql
   repository: oci://docker.io/bitnamicharts
   version: 12.12.10
 - name: minio
   repository: oci://docker.io/bitnamicharts
   version: 14.7.0
-digest: sha256:3829f2cc33206ebaaa62ee858399ae6370663f4ca42ed49ba85c612462af792d
-generated: "2026-10-28T13:59:53.369383157+01:00"
+digest: sha256:905a7d47753c7611c60e04a9f13c65a4c778669bdbbd5f1ccf87f9c8aabf0af6
+generated: "2026-11-04T08:39:31.126341212+01:00"

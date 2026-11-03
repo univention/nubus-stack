@@ -27,39 +27,39 @@ dependencies:
   - name: "ldap-notifier"
     alias: "nubusLdapNotifier"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.48.15"
+    version: "0.49.0"
     condition: "nubusLdapNotifier.enabled"
 
   - name: "ldap-server"
     alias: "nubusLdapServer"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.48.15"
+    version: "0.49.0"
     condition: "nubusLdapServer.enabled"
 
   # portal related chart(s)
   - name: "portal-frontend"
     alias: "nubusPortalFrontend"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.95.7"
+    version: "0.96.0"
     condition: "nubusPortalFrontend.enabled"
 
   - name: "portal-consumer"
     alias: "nubusPortalConsumer"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.95.7"
+    version: "0.96.0"
     condition: "nubusPortalConsumer.enabled"
 
   - name: "portal-server"
     alias: "nubusPortalServer"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.95.7"
+    version: "0.96.0"
     condition: "nubusPortalServer.enabled"
 
   # selfservice related chart(s)
   - name: "selfservice-consumer"
     alias: "nubusSelfServiceConsumer"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.21.6"
+    version: "0.21.7"
     condition: "nubusSelfServiceConsumer.enabled"
 
   # provisioning related chart(s)
@@ -91,19 +91,19 @@ dependencies:
   - name: "keycloak-extensions"
     alias: "nubusKeycloakExtensions"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.24.17"
+    version: "0.24.18"
     condition: "nubusKeycloakExtensions.enabled"
 
   - name: "stack-data-ums"
     alias: "nubusStackDataUms"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.107.11"
+    version: "0.107.12"
     condition: "nubusStackDataUms.enabled"
 
   - name: "twofa-helpdesk"
     alias: "nubusTwofaHelpdesk"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.16.33"
+    version: "0.17.0"
     condition: "nubusTwofaHelpdesk.enabled"
 
   # udm-rest-api related chart(s)
@@ -130,7 +130,7 @@ dependencies:
   - name: "scim-server"
     alias: "nubusScimServer"
     repository: "oci://artifacts.software-univention.de/nubus/charts"
-    version: "0.55.3"
+    version: "0.55.4"
     condition: "nubusScimServer.enabled"
 
   # Optionally bundled external dependencies

@@ -38,19 +38,19 @@ helm uninstall nubus
 | oci://artifacts.software-univention.de/nubus/charts | nubusGuardian(guardian) | 1.1.0 |
 | oci://artifacts.software-univention.de/nubus/charts | keycloak(keycloak) | 26.8.1-nubus2 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakBootstrap(keycloak-bootstrap) | 26.8.1-nubus2 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakExtensions(keycloak-extensions) | 0.24.17 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusLdapNotifier(ldap-notifier) | 0.48.15 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusLdapServer(ldap-server) | 0.48.15 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakExtensions(keycloak-extensions) | 0.24.18 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusLdapNotifier(ldap-notifier) | 0.49.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusLdapServer(ldap-server) | 0.49.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusLicenseImport(license-import) | 0.8.18 |
 | oci://artifacts.software-univention.de/nubus/charts | nubus-common | 0.29.24 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalConsumer(portal-consumer) | 0.95.7 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalFrontend(portal-frontend) | 0.95.7 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.95.7 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalConsumer(portal-consumer) | 0.96.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalFrontend(portal-frontend) | 0.96.0 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusPortalServer(portal-server) | 0.96.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 2.2.10 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusScimServer(scim-server) | 0.55.3 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceConsumer(selfservice-consumer) | 0.21.6 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.107.11 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusTwofaHelpdesk(twofa-helpdesk) | 0.16.33 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusScimServer(scim-server) | 0.55.4 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceConsumer(selfservice-consumer) | 0.21.7 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.107.12 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusTwofaHelpdesk(twofa-helpdesk) | 0.17.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 2.2.10 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmRestApi(udm-rest-api) | 0.46.10 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUmcGateway(umc-gateway) | 0.61.2 |
@@ -303,7 +303,7 @@ true
       "imagePullPolicy": "IfNotPresent",
       "registry": "artifacts.software-univention.de",
       "repository": "nubus/images/portal-extension",
-      "tag": "0.95.7@sha256:2c42d4240e2876ec52e1a722f704f3dad10401040920206f5cec43b0c673e6f4"
+      "tag": "0.96.0@sha256:2c42d4240e2876ec52e1a722f704f3dad10401040920206f5cec43b0c673e6f4"
     },
     "name": "portal"
   },
@@ -312,7 +312,7 @@ true
       "imagePullPolicy": "IfNotPresent",
       "registry": "artifacts.software-univention.de",
       "repository": "nubus/images/twofa-helpdesk-extensions",
-      "tag": "0.16.33@sha256:f4cd0fb2745e8e508f745710fe2b164e4c71882737024543ee0449b16e691d2d"
+      "tag": "0.17.0@sha256:f4cd0fb2745e8e508f745710fe2b164e4c71882737024543ee0449b16e691d2d"
     },
     "name": "2fa-helpdesk"
   }
