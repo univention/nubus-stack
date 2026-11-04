@@ -8,7 +8,12 @@ global:
   # -- The Nubus umbrella chart version.
   nubusChartVersion: "0.0.0"
   secrets:
-    # -- Master password from which other passwords are derived.
+    # -- Let the chart generate passwords that are not supplied as a value or an existing Secret.
+    # Set to `false` to disable password generation globally: the seed is ignored and not required,
+    # and rendering fails with the name of the first credential that is missing.
+    # Unset or `true` enables generation, any other value disables it.
+    generatePasswords: true
+    # -- Master password from which other passwords are derived. Required if `generatePasswords` is `true`.
     masterPassword: ""
 
   # -- Domain of the deployment

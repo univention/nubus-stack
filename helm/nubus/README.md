@@ -258,13 +258,22 @@ true
 			<td></td>
 		</tr>
 		<tr>
+			<td>global.secrets.generatePasswords</td>
+			<td>bool</td>
+			<td><pre lang="json">
+true
+</pre>
+</td>
+			<td>Let the chart generate passwords that are not supplied as a value or an existing Secret. Set to `false` to disable password generation globally: the seed is ignored and not required, and rendering fails with the name of the first credential that is missing. Unset or `true` enables generation, any other value disables it.</td>
+		</tr>
+		<tr>
 			<td>global.secrets.masterPassword</td>
 			<td>string</td>
 			<td><pre lang="json">
 ""
 </pre>
 </td>
-			<td>Master password from which other passwords are derived.</td>
+			<td>Master password from which other passwords are derived. Required if `generatePasswords` is `true`.</td>
 		</tr>
 		<tr>
 			<td>global.subDomains.keycloak</td>

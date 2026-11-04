@@ -13,4 +13,7 @@ global:
   # Operator should specify a masterPassword for the deployment.
   # Secrets in the deployment will be derived from this masterPassword
 #  secrets:
+#    # Set to false to generate no password. The masterPassword is then not needed,
+#    # but every credential has to be supplied as a value or an existing Secret.
+#    generatePasswords: true
 #    masterPassword:

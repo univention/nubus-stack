@@ -6,6 +6,13 @@ SPDX-License-Identifier: AGPL-3.0-only
 {{- .Values.global.secrets.masterPassword | default (randAlphaNum 10 | sha1sum) -}}
 {{- end -}}
 
+{{- /* The bundled PostgreSQL and MinIO derive their credentials from the seed, so they need generation. */ -}}
+{{- define "nubusTemplates.requireGeneratedPasswords" -}}
+{{- if not (include "nubus-common.secrets.generatePasswords" .) -}}
+{{- fail "The bundled PostgreSQL and MinIO are for demo deployments and need global.secrets.generatePasswords=true. Disable them and configure external services." -}}
+{{- end -}}
+{{- end -}}
+
 {{- define "nubusTemplates.credentials.administrator.password" -}}
 {{- $nubusMasterPassword := include "nubusTemplates.masterPassword" . -}}
 {{- print (derivePassword 1 "long" $nubusMasterPassword "nubus" "nubus-administrator") | sha1sum -}}
