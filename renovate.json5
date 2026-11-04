@@ -3,9 +3,6 @@
   "extends": [
     "local>univention/dev/nubus-for-k8s/common-renovate"
   ],
-  "baseBranchPatterns": [
-    "develop"
-  ],
   "packageRules": [
     {
       "matchFileNames": [

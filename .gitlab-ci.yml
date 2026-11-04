@@ -4,25 +4,23 @@
 ---
 include:
   - project: "univention/dev/nubus-for-k8s/common-ci"
-    ref: "v1.70.0"
+    ref: "v1.71.0"
     file:
       - "defaults/nubus-workflow.yaml"
       - "defaults/stages.yaml"
       - "jobs/lint-commit-messages.yaml"
       - "jobs/lint-pre-commit.yaml"
       - "jobs/package-and-publish-helm-charts-external.yaml"
-      - "jobs/semantic-release-env.yaml"
+      - "templates/tagged-release.yaml"
       - "jobs/harbor-malware-scan.yaml"
       - "templates/sonarqube.yaml"
       - "jobs/check-base-image.yaml"
-  - component: "$CI_SERVER_FQDN/univention/dev/nubus-for-k8s/common-ci/vul-man@v1.70.0"
+  - component: "$CI_SERVER_FQDN/univention/dev/nubus-for-k8s/common-ci/vul-man@v1.71.0"
     inputs:
       helm_chart_name: "nubus"
       helm_values: "--helm-values ${CI_PROJECT_DIR}/helm/nubus/prod-values.yaml --helm-values ${CI_PROJECT_DIR}/ci/example-custom-secret-values.yaml --helm-values ${CI_PROJECT_DIR}/ci/vul-man-values.yaml --helm-values ${CI_PROJECT_DIR}/helm/nubus/example.yaml"
       parallelism: 20
       max_retries: 20
-      rolling_branch: "develop"
-      release_branch_pattern: "^release-"
       branch_scan: "manual"
 
 .rules:run-on-schedule:
@@ -37,6 +35,7 @@ include:
       when: never
 
 pre-semantic-release:
+  extends: ".tagged-release"
   rules:
     - !reference [".rules:run-on-schedule", "rules"]
     - if: '$CI_PIPELINE_SOURCE == "schedule" || $CI_PIPELINE_SOURCE == "manual"'
@@ -60,6 +59,7 @@ publish-chart-external:
     - when: on_success
 
 variables:
+  TAGGED_RELEASE: "true"
   GIT_FETCH_EXTRA_FLAGS: --tags
   SKIP_UPDATE_HELM_VALUES: "1"
   AUTO_TRIGGER_TESTS:

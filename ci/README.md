@@ -141,6 +141,8 @@ The `ci/upgrade_version/upgrade_version.py` script selects the starting version:
 - Gets all `v*` git tags
 - Finds latest version with different minor than current
 - Example: Current 1.16.0 → starts from 1.15.2
+- A build that isn't a release starts from the last release
+- Example: Build 1.15.2-post-main → starts from 1.15.2
 
 ### Manual version selection
 

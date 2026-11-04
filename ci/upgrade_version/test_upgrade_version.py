@@ -3,7 +3,11 @@
 
 import pytest
 
-from upgrade_version.upgrade_version import SimpleSemver, find_upgrade_version
+from upgrade_version.upgrade_version import (
+    SimpleSemver,
+    find_upgrade_version,
+    upgrade_target,
+)
 
 
 @pytest.fixture
@@ -33,5 +37,21 @@ def test_find_upgrade_version(
     versions: list[SimpleSemver], current: SimpleSemver, expected: SimpleSemver
 ):
     res = find_upgrade_version(current, versions)
+
+    assert res == expected
+
+
+@pytest.mark.parametrize(
+    "semantic,release,expected",
+    [
+        ("1.15.2", "1.15.2", SimpleSemver.from_dotted("1.14.1")),
+        ("1.15.2", "1.15.2-post-main", SimpleSemver.from_dotted("1.15.2")),
+        ("1.15.2", "1.15.2-post-my-branch", SimpleSemver.from_dotted("1.15.2")),
+    ],
+)
+def test_upgrade_target(
+    versions: list[SimpleSemver], semantic: str, release: str, expected: SimpleSemver
+):
+    res = find_upgrade_version(upgrade_target(semantic, release), versions)
 
     assert res == expected

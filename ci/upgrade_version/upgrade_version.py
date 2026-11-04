@@ -93,6 +93,17 @@ def get_versions() -> list[SimpleSemver]:
     return versions
 
 
+def upgrade_target(semantic_version: str, release_version: str) -> SimpleSemver:
+    """
+    The version to upgrade to. A dev build carries the last release as its
+    semantic version and comes after it, so it counts as the next minor.
+    """
+    current = SimpleSemver.from_dotted(semantic_version)
+    if release_version == semantic_version:
+        return current
+    return SimpleSemver(current.major, current.minor + 1, 0)
+
+
 def find_upgrade_version(
     current_version: SimpleSemver, versions: list[SimpleSemver]
 ) -> SimpleSemver | None:
@@ -107,9 +118,11 @@ def find_upgrade_version(
 if __name__ == "__main__":
     current_version_env = os.environ.get("SEMANTIC_VERSION")
     assert current_version_env, "Please set SEMANTIC_VERSION to the current version"
+    release_version_env = os.environ.get("RELEASE_VERSION")
+    assert release_version_env, "Please set RELEASE_VERSION to the built version"
     versions = get_versions()
     upgrade_version = find_upgrade_version(
-        SimpleSemver.from_dotted(current_version_env), versions
+        upgrade_target(current_version_env, release_version_env), versions
     )
 
     assert upgrade_version, "No lower version found"
