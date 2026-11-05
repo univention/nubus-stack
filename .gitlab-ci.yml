@@ -15,6 +15,7 @@ include:
       - "jobs/harbor-malware-scan.yaml"
       - "templates/sonarqube.yaml"
       - "jobs/check-base-image.yaml"
+      - "jobs/release-announcement.yaml"
   - component: "$CI_SERVER_FQDN/univention/dev/nubus-for-k8s/common-ci/vul-man@v1.71.0"
     inputs:
       helm_chart_name: "nubus"
@@ -60,6 +61,17 @@ publish-chart-external:
 
 variables:
   TAGGED_RELEASE: "true"
+  RELEASE_PRODUCT: "Nubus"
+  RELEASE_NOTES_URL: "https://docs.software-univention.de/nubus-kubernetes-release-notes/{major}.x/en/{major}.{minor}.html"
+  RELEASE_MAIL_RECIPIENTS: >-
+    marketing-intern@univention.de
+    produktmanagement-intern@univention.de
+    tech-intern@univention.de
+    support-intern@univention.de
+    service-intern@univention.de
+  RELEASE_MAIL_SENDER: "nubus-core@univention.de"
+  RELEASE_AUTHOR: "Nubus Core Team"
+  RELEASE_CHAT_DESTINATION: "#product-announcements"
   GIT_FETCH_EXTRA_FLAGS: --tags
   SKIP_UPDATE_HELM_VALUES: "1"
   AUTO_TRIGGER_TESTS:
