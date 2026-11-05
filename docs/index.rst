@@ -8,6 +8,7 @@ UMS Stack
 
    about
    develop
+   release
    values-client
    genindex
    glossary
