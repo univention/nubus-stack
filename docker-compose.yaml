@@ -6,7 +6,7 @@ services:
 
   # Environment to build the documentation
   docs:
-    image: docker-registry.knut.univention.de/sphinx:latest
+    image: docker-registry.knut.univention.de/sphinx:latest@sha256:bd2b67f65aec9681e583379363a9ffb34037e636e79dcf62f5353c4769f228ed
     working_dir: /src/docs
     volumes:
       - ".:/src"
@@ -17,7 +17,7 @@ services:
   pre-commit:
     profiles:
       - test
-    image: gitregistry.knut.univention.de/univention/dev/tooling/pre-commit/univention-pre-commit:latest
+    image: gitregistry.knut.univention.de/univention/dev/tooling/pre-commit/univention-pre-commit:latest@sha256:bca4152a9e2f12fc27ae91eac6d8bb796aa353ac675b472440ecab5424ba26ee
     volumes:
       - type: bind
         source: .

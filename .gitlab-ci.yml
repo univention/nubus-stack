@@ -134,7 +134,7 @@ lint-kubeconform:
   needs:
     - lint-render-manifests
   image:
-    name: ghcr.io/yannh/kubeconform:latest-alpine
+    name: ghcr.io/yannh/kubeconform:latest-alpine@sha256:6b90a5f23d846140ce0194fe050b1995e546eba938f3a6bf10c039dd5e24588f
     entrypoint: [""]
   script:
     - /kubeconform -strict -ignore-missing-schemas -summary -output junit manifests/ > kubeconform-report.xml || true
