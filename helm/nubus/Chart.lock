@@ -28,10 +28,10 @@ dependencies:
   version: 0.21.7
 - name: provisioning
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 2.2.10
+  version: 2.2.11
 - name: udm-listener
   repository: oci://artifacts.software-univention.de/nubus/charts
-  version: 2.2.10
+  version: 2.2.11
 - name: keycloak
   repository: oci://artifacts.software-univention.de/nubus/charts
   version: 26.8.1-nubus2
@@ -65,5 +65,5 @@ dependencies:
 - name: minio
   repository: oci://docker.io/bitnamicharts
   version: 14.7.0
-digest: sha256:2d7063812f52894d546474bf8d1017a4a25e8c8ed7f584333d914bdffe439a39
-generated: "2026-11-05T10:09:10.782180774Z"
+digest: sha256:011fe8e8cf009e7fbd3160dc3f87070e16351dad27fb149664df1db313138aee
+generated: "2026-11-09T17:59:16.196103923Z"
