@@ -4,7 +4,7 @@
 ---
 include:
   - project: "univention/dev/nubus-for-k8s/common-ci"
-    ref: "v1.71.0"
+    ref: "v1.72.1"
     file:
       - "defaults/nubus-workflow.yaml"
       - "defaults/stages.yaml"
@@ -16,7 +16,7 @@ include:
       - "templates/sonarqube.yaml"
       - "jobs/check-base-image.yaml"
       - "jobs/release-announcement.yaml"
-  - component: "$CI_SERVER_FQDN/univention/dev/nubus-for-k8s/common-ci/vul-man@v1.71.0"
+  - component: "$CI_SERVER_FQDN/univention/dev/nubus-for-k8s/common-ci/vul-man@v1.72.1"
     inputs:
       helm_chart_name: "nubus"
       helm_values: "--helm-values ${CI_PROJECT_DIR}/helm/nubus/prod-values.yaml --helm-values ${CI_PROJECT_DIR}/ci/example-custom-secret-values.yaml --helm-values ${CI_PROJECT_DIR}/ci/vul-man-values.yaml --helm-values ${CI_PROJECT_DIR}/helm/nubus/example.yaml"
