@@ -326,6 +326,8 @@ scim-e2e-test:
 .pytest-base:
   extends: .check-variables
   image: "gitregistry.knut.univention.de/univention/dev/nubus-for-k8s/e2e-tests/e2e-tests-runner:${TESTRUNNER_VERSION}"
+  tags:
+    - dae-l
   variables:
     JUNIT_XML: "test_results.xml"
     HTML_REPORT: "report.html"
