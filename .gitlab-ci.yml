@@ -213,6 +213,28 @@ deploy-and-test-upgrade:
     - !reference [".rules:run-on-schedule", "rules"]
     - when: manual
 
+verify-image-signatures:
+  extends: ".vul-man-base"
+  stage: "analysis"
+  needs:
+    - job: "pre-semantic-release"
+    - job: "publish-chart-external"
+      artifacts: false
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /^v[0-9]+\.[0-9]+\.[0-9]+$/ && $CI_COMMIT_REF_PROTECTED == "true"'
+  script:
+    - |
+      # the values files of the vul-man component above, and the key from "Supply chain security" in the operation manual
+      vul-man --parallelism 20 --cache-dir "${CI_PROJECT_DIR}/.cache/" \
+        verify-signatures nubus \
+        --helm-repository-url oci://artifacts.software-univention.de/nubus/charts \
+        --helm-chart-version "${RELEASE_VERSION}" \
+        --helm-values helm/nubus/prod-values.yaml \
+        --helm-values ci/example-custom-secret-values.yaml \
+        --helm-values ci/vul-man-values.yaml \
+        --helm-values helm/nubus/example.yaml \
+        --cosign-public-key ci/nubus-cosign.pub
+
 # Temporarly allow failure when linting commit messages
 # until we know why it fails on issue links
 lint-commit-messages:
