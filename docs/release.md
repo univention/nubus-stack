@@ -1,118 +1,161 @@
 # Release
 
-A Nubus for Kubernetes release consists of the release notes in
-[nubus-docs](https://git.knut.univention.de/univention/dev/docs/nubus-docs)
-and the Helm chart artifacts from this repository.
+A Nubus for Kubernetes release consists of the release notes in the
+[nubus-docs repository](https://git.knut.univention.de/univention/dev/docs/nubus-docs)
+and the Helm Chart artifacts from this repository.
 A protected `vX.Y.Z` tag on `main` releases the artifacts.
-Merging into `main` publishes only a development build,
-`<last release>-post-main`, to the `nubus-dev` registry project.
+Merging into `main` publishes only a development build to the `nubus-dev` registry project.
+Its version is the version of the last release with the suffix `-post-main`.
 
-## Release notes
+## Plan the release
 
-### Create and prepare the release notes
+### Version and scope
+
+The team releases once every sprint.
+Sprints start on Wednesday and end on Tuesday,
+so the release usually happens on Tuesday or Wednesday.
+
+The team usually decides ahead of time whether the release is a minor or a patch.
+If you are unsure,
+check the commits on `main` since the last tag
+and ask in the daily or the `#NubusCore` Rocket.Chat channel.
+
+The release contains whatever is on `main` when you start the end-to-end tests.
+Optionally, ask in the daily beforehand whether everything critical is on `main`.
+
+### Release notes content
+
+Developers add the release notes entries for their changes
+to the `next-release` branch of the nubus-docs repository with their own merge requests.
+The first developer who adds an entry after a release also creates the version heading,
+and guesses the version.
+If the last release was 1.24.1, the first entry might go under 1.24.2,
+and a later entry under 1.25.0.
+
+Check that every entry is under the version that you release.
+The pipeline reads the release version from the version label, for example `.. _v1.24.2:`.
+For how to write entries and version headings, see the
+[release notes README](https://git.knut.univention.de/univention/dev/docs/nubus-docs/-/blob/main/docs/nubus-kubernetes-release-notes/README.md).
+
+The tech lead writes the release highlights for a minor release.
+If the release highlights are missing, contact the tech lead.
+
+## Prepare the release
+
+### Start the end-to-end tests
+
+Start all manual jobs in the `deploy` stage of the most recent `main` pipeline.
+Note the commit SHA of that pipeline. You tag this commit later.
+
+The tests take about an hour.
+They must pass before you release the Helm Chart.
+
+### Review the open vulnerabilities
+
+Open the
+[vulnerability report of `nubus:main`](https://univention.gitpages.knut.univention.de/dev/tooling/vulnerability-management/nubus/main/).
+It lists the open vulnerabilities of the chart's images by audience.
+
+The security update issue of the sprint resolves most vulnerabilities of the application audience,
+so expect few of them.
+
+The base image audience usually has more open vulnerabilities.
+
+In both audiences, a vulnerability that is still open on the day of the release
+most likely doesn't affect Nubus.
+Use your judgment to decide whether it has to delay the release.
+If you are unsure, ask in the `#NubusCore` Rocket.Chat channel.
+
+Look closer at the vulnerabilities that the report marks as likely exploited.
+A vulnerability is likely exploited when it is on the CISA Known Exploited Vulnerabilities (KEV) list,
+when its EPSS score is 10% or more,
+or when its EPSS percentile is 95 or more.
+The report shows the EPSS values of these vulnerabilities in red
+and counts them in the *likely exploited* tile.
+To see only them, select *Likely exploited* in the filter bar.
+
+Triage each likely exploited vulnerability
+and raise it in the `#NubusCore` Rocket.Chat channel.
+For how to triage, see
+[Vulnerability scanning](https://univention.gitpages.knut.univention.de/dev/internal/dev-handbook/tools/vulnerability-scanning.html)
+in the development handbook.
+
+The `validate-vulnerabilities` job of the tag pipeline checks the same vulnerabilities for the release.
+It can fail without stopping the pipeline.
+
+### Prepare the release notes
 
 1. Create a merge request from the `next-release` branch to `main` in the
    [nubus-docs repository](https://git.knut.univention.de/univention/dev/docs/nubus-docs).
 
-1. Follow the [release notes README](https://git.knut.univention.de/univention/dev/docs/nubus-docs/-/blob/main/docs/nubus-kubernetes-release-notes/README.md).
-   It describes the version label the pipeline reads, for example `.. _v1.24.1:`.
+1. Set the release date for the version and commit the change.
 
-### Generated changes
+1. Rebase `next-release` on `main`, because `main` gets commits independently of `next-release`:
+
+   ```console
+   $ git fetch
+   $ git rebase --rebase-merges origin/main
+   $ git push --force-with-lease origin next-release
+   ```
 
 Every push to `next-release` runs the `prepare-release-docs-pipeline`.
 It adds generated commits for the release version,
-the Helm chart values references, and the fixed CVEs.
+the Helm Chart values references, and the fixed CVEs.
 Review those commits.
 
-Before you push the release tag, the chart of the new version doesn't exist yet.
-The pipeline then uses the development build of `main`, `<previous release>-post-main`,
-and the validation job fails.
-After you push the release tag, run the pipeline again.
-It then uses the released chart, and the validation job passes.
+The validation job of that pipeline fails until you push the release tag.
+The chart of the new version doesn't exist yet,
+so the pipeline uses the `-post-main` development build of `main`.
 
-### Verify your changes
+Don't merge the merge request yet.
 
-Before you push your changes, verify the documentation:
+## Release
 
-1. Go to the release notes directory:
+### Tag the Helm Chart
 
-   ```console
-   $ cd docs/nubus-kubernetes-release-notes
-   ```
+Check the end-to-end tests that you started.
+If a job is red, retry it,
+or run the failing tests manually against the deployment
+as described in the README of the
+[e2e-tests repository](https://git.knut.univention.de/univention/dev/nubus-for-k8s/e2e-tests).
+If a test keeps failing, don't release. Raise it in the `#NubusCore` Rocket.Chat channel.
 
-1. Run the spelling checker:
-
-   ```console
-   $ make docker-spelling
-   ```
-
-1. Check all links:
-
-   ```console
-   $ make docker-linkcheck
-   ```
-
-1. Preview your changes in a browser:
-
-   ```console
-   $ make docker-livehtml
-   ```
-
-### Request review
-
-Request a review of the release notes from Nico Gulden (`@ngulden`) from the technical documentation team.
-
-Permissions to merge into `main` in nubus-docs are restrictive.
-You may need help to merge, even with the required approvals.
-
-## Helm chart artifacts
-
-### Prepare the release
-
-1. Check that the latest `main` pipeline of this repository succeeded.
-
-1. Run the end-to-end tests: start the manual jobs in the `deploy` stage of that pipeline.
-
-1. Review the open vulnerabilities of the chart's images in the
-   [vulnerability report of `nubus:main`](https://univention.gitpages.knut.univention.de/dev/tooling/vulnerability-management/nubus/main/)
-   and triage them.
-
-### Push the release tag
-
-Choose the version by the changes since the last release:
-a patch release for fixes only, a minor release for new features.
+Tag the commit that you tested:
 
 ```console
-$ git switch main
-$ git pull
-$ git tag --annotate v1.24.1 --message "Nubus 1.24.1"
-$ git push origin v1.24.1
+$ git fetch
+$ git tag --annotate vX.Y.Z --message "Nubus X.Y.Z" TESTED_COMMIT_SHA
+$ git push origin vX.Y.Z
 ```
 
-`v*` tags are protected. Only a maintainer can push them.
+Replace `X.Y.Z` with the release version
+and `TESTED_COMMIT_SHA` with the commit SHA that you noted.
 
-The tag pipeline does the following:
+Follow the pipeline of the tag on the
+[tags page](https://git.knut.univention.de/univention/dev/nubus-for-k8s/nubus-helm/-/tags).
 
-1. It publishes the chart to the `nubus` registry project.
-1. It imports the chart's images into Dependency-Track under `nubus:1.24.1`,
-   validates them, and attests the VEX document to the images.
-1. After every other job succeeded, it creates the GitLab release,
-   sends the release mail, and posts the release to `#product-announcements`.
+The pipeline publishes the chart to the public `nubus` registry project.
+The `verify-image-signatures` job then verifies the cosign signature of every image in the chart.
+If it fails, the job log lists the unsigned images,
+and the pipeline doesn't announce the release.
+At the end, the pipeline sends the release email and posts a Rocket.Chat message.
 
-The mail says that the release notes can take up to an hour to go online.
-Run the nubus-docs pipeline again and merge the release notes right after the tag pipeline.
+### Publish the release notes
 
-### Update the public code metadata
+The release email says that the release notes can take up to an hour to go online,
+so publish them right after the tag pipeline succeeds.
 
-Update the `softwareVersion` and `releaseDate` fields in
-[publiccode.yml](https://git.knut.univention.de/univention/dev/nubus/-/blob/main/publiccode.yml).
+1. Run the pipeline of the `next-release` merge request again.
+   It now uses the released chart, and the validation job passes.
+
+1. Merge the merge request.
+   You don't need an approval.
+
+The `main` pipeline of the nubus-docs repository publishes the release notes
+and creates the tile on the documentation overview page.
 
 ## After the release
 
-### Close related issues
-
-1. Review all GitLab issues and verify whether they have an associated Bugzilla link.
-
-1. For each issue with a Bugzilla link, close the corresponding Bugzilla bug and mention the fixed version.
-
-1. Move issues from the `waiting for release` status to `Done`.
+A nightly pipeline in the nubus repository updates the Nubus version in the
+[`publiccode.yml` file](https://git.knut.univention.de/univention/dev/web/nubus/-/blob/main/publiccode.yml).
+You don't need to do anything.
