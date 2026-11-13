@@ -49,7 +49,7 @@ helm uninstall nubus
 | oci://artifacts.software-univention.de/nubus/charts | nubusProvisioning(provisioning) | 2.2.12 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusScimServer(scim-server) | 0.55.6 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusSelfServiceConsumer(selfservice-consumer) | 0.21.8 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.107.15 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusStackDataUms(stack-data-ums) | 0.108.0 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusTwofaHelpdesk(twofa-helpdesk) | 0.17.2 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmListener(udm-listener) | 2.2.12 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusUdmRestApi(udm-rest-api) | 0.46.11 |
@@ -312,7 +312,7 @@ true
       "imagePullPolicy": "IfNotPresent",
       "registry": "artifacts.software-univention.de",
       "repository": "nubus/images/portal-extension",
-      "tag": "0.96.1@sha256:c17028e025b87733ad146fc1b21c6b6c5485b3259b0c65184bb3fd5d5642d0c4"
+      "tag": "0.98.0@sha256:fbb7709205c93f5762e2378b116fd9615007c3e5dce20c27a0829100c8bedf0f"
     },
     "name": "portal"
   },
