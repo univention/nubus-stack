@@ -19,16 +19,14 @@ ingress:
   tls:
     secretName: {{ .Values.ingress.tls.secretName | quote }}
 
+# enable the optional guardian component in CI
 nubusGuardian:
+  enabled: true
   ingress:
     certManager:
       enabled: false
     tls:
       secretName: {{ .Values.ingress.tls.secretName | quote }}
-
-# enable the optional guardian component in CI
-nubusGuardian:
-  enabled: true
 
 nubusLdapServer:
 {{- if .Values.toggles.scaledSetup }}
