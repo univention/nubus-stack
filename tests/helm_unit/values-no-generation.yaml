@@ -1,0 +1,88 @@
+# SPDX-License-Identifier: AGPL-3.0-only
+# SPDX-FileCopyrightText: 2026 Univention GmbH
+
+# Every credential the chart would otherwise generate, with global.secrets.generatePasswords off.
+# Used by test_generate_passwords_off.py. The values are stubs and not secrets.
+---
+global:
+  secrets:
+    generatePasswords: false
+nubusGuardian:
+  enabled: true
+nubusKeycloakExtensions:
+  enabled: true
+  smtp:
+    auth:
+      username: stub-user
+nubusScimServer:
+  enabled: true
+keycloak:
+  keycloak:
+    auth:
+      password: stub-0
+nubusKeycloakBootstrap:
+  oidc:
+    relyingParty:
+      umcServer:
+        clientSecret:
+          password: stub-1
+nubusLdapServer:
+  ldapServer:
+    auth:
+      password: stub-3
+nubusPortalConsumer:
+  provisioningApi:
+    auth:
+      password: stub-4
+nubusPortalServer:
+  portalServer:
+    centralNavigation:
+      auth:
+        sharedSecret: stub-5
+nubusProvisioning:
+  api:
+    auth:
+      admin:
+        password: stub-6
+      eventsUdm:
+        password: stub-7
+      prefill:
+        password: stub-8
+    nats:
+      auth:
+        password: stub-9
+  dispatcher:
+    nats:
+      auth:
+        password: stub-10
+  nats:
+    config:
+      createUsers:
+        adminUser:
+          auth:
+            password: stub-11
+  prefill:
+    nats:
+      auth:
+        password: stub-12
+  udmTransformer:
+    nats:
+      auth:
+        password: stub-13
+nubusSelfServiceConsumer:
+  provisioningApi:
+    auth:
+      password: stub-14
+nubusStackDataUms:
+  templateContext:
+    initialPasswordAdministrator: stub-15
+    readonlyUserPassword: stub-16
+    svcPortalServerUserPassword: stub-17
+nubusUdmListener:
+  nats:
+    auth:
+      password: stub-18
+nubusUmcServer:
+  memcached:
+    auth:
+      password: stub-19

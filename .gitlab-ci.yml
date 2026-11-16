@@ -143,6 +143,18 @@ lint-kubeconform:
     reports:
       junit: kubeconform-report.xml
 
+test-chart-nubus:
+  stage: test
+  needs: []
+  image: "gitregistry.knut.univention.de/univention/dev/nubus-for-k8s/common-helm/testrunner:0.29.10@sha256:5cba2a8fc4c6d5fa82bcec177ad433ab74695b4e02b2a2e9ed9b53c734b34dbf"
+  script:
+    - helm dep build helm/nubus
+    - pytest -W error --junitxml=helm-unit-report.xml tests/helm_unit
+  artifacts:
+    when: always
+    reports:
+      junit: helm-unit-report.xml
+
 .base-deploy-and-test:
   stage: deploy
   allow_failure: true
