@@ -386,6 +386,10 @@ e2e-tests:
   rules:
     - if: '$UPGRADE_TEST == "true"'
       when: "never"
+    # The external dependencies deployment turns password generation off.
+    - if: '$EXTERNAL_DEPENDENCIES == "true"'
+      variables:
+        PYTEST_EXPR: "(acceptance_environment and not feature_toggle) or password_generation_off"
     - when: "on_success"
 
 # Upgrade tests: Pre-upgrade phase
