@@ -36,8 +36,8 @@ helm uninstall nubus
 | Repository | Name | Version |
 |------------|------|---------|
 | oci://artifacts.software-univention.de/nubus/charts | nubusGuardian(guardian) | 1.1.0 |
-| oci://artifacts.software-univention.de/nubus/charts | keycloak(keycloak) | 26.8.1-nubus4 |
-| oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakBootstrap(keycloak-bootstrap) | 26.8.1-nubus4 |
+| oci://artifacts.software-univention.de/nubus/charts | keycloak(keycloak) | 26.8.2-nubus1 |
+| oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakBootstrap(keycloak-bootstrap) | 26.8.2-nubus1 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusKeycloakExtensions(keycloak-extensions) | 0.24.19 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusLdapNotifier(ldap-notifier) | 0.49.3 |
 | oci://artifacts.software-univention.de/nubus/charts | nubusLdapServer(ldap-server) | 0.49.3 |
