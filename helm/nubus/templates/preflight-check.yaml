@@ -12,8 +12,11 @@
 {{- if not (index (default dict .Values.global.subDomains) "keycloak") -}}
 # {{- required "Variable .Values.global.subDomains.keycloak must be set" .Values.false -}}
 {{- end -}}
-{{- if and .Values.ingress.certManager.enabled (not (or .Values.global.certManagerIssuer .Values.global.certManagerClusterIssuer .Values.ingress.certManager.issuerRef.name)) -}}
-# {{- required "Either .Values.global.certManagerIssuer or .Values.global.certManagerClusterIssuer must be set" .Values.false -}}
+{{- if .Values.global.certManagerClusterIssuer -}}
+# {{- required "Variable .Values.global.certManagerClusterIssuer is not read by any Nubus chart: set the ClusterIssuer name in .Values.global.certManagerIssuer instead (the ingresses default to kind ClusterIssuer)" .Values.false -}}
+{{- end -}}
+{{- if and .Values.ingress.certManager.enabled (not (or .Values.global.certManagerIssuer .Values.ingress.certManager.issuerRef.name)) -}}
+# {{- required "Variable .Values.global.certManagerIssuer must be set" .Values.false -}}
 {{- end -}}
 {{- if not (index (default dict .Values.global.ldap) "baseDn") -}}
 # {{- required "Variable .Values.global.ldap.baseDn must be set" .Values.false -}}
